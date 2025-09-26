@@ -3,6 +3,8 @@ package uk.ac.ebi.zooma2.prefix_map;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.ac.ebi.zooma2.Zooma2Config;
+
 public class PrefixMap {
 
     Bioregistry bioregistry;
@@ -11,6 +13,34 @@ public class PrefixMap {
 
     public PrefixMap() {
         bioregistry = new Bioregistry();
+
+        var prefix_map = Zooma2Config.config.prefix_map;
+
+        for (var entry : prefix_map.entrySet()) {
+            String zoomaPrefix = entry.getKey();
+            String iriPrefix = entry.getValue();
+            zoomaPrefixToIriPrefix.put(zoomaPrefix, iriPrefix);
+            iriPrefixToZoomaPrefix.put(iriPrefix, zoomaPrefix);
+        }
+
+    }
+
+    public String iriToShortForm(String iri) {
+
+        for (String iriPrefix : iriPrefixToZoomaPrefix.keySet()) {
+            if (iri.startsWith(iriPrefix)) {
+                String localId = iri.substring(iriPrefix.length());
+                String zoomaPrefix = iriPrefixToZoomaPrefix.get(iriPrefix);
+                return zoomaPrefix + "_" + localId;
+            }
+        }
+
+        var curie = bioregistry.getCurieForUrl(iri);
+
+        if(curie != null)
+            return curie.replace(":", "_");
+        
+        return null;
     }
 
     public String iriToCurie(String iri) {

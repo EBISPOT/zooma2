@@ -4,11 +4,14 @@ import * as ZoomaApi from './ZoomaApi'
 
 import { databases } from '../data/databases.json'
 
-let apiUrl = '/spot/zooma/v2/api'
+let apiUrl = process.env.REACT_APP_APIURL
+if(apiUrl?.endsWith('/')) {
+    apiUrl = apiUrl.slice(0, -1)
+}
 
 export async function getDatasources():Promise<ZoomaDatasources> {
 
-    let res = await fetch(apiUrl + '/sources', {
+    let res = await fetch(apiUrl + '/v2/api/sources', {
         method: 'GET',
         headers: {
             'accept': 'application/json'

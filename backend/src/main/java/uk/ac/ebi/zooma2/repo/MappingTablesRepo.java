@@ -13,10 +13,14 @@ import java.util.Set;
 import java.util.stream.Stream;
 import java.util.zip.GZIPInputStream;
 
+import com.google.gson.Gson;
+
 import uk.ac.ebi.zooma2.Zooma2Config;
 import uk.ac.ebi.zooma2.util.NormaliseString;
 
 public class MappingTablesRepo {
+
+    Gson gson = new Gson();
 
     public static String DATA_PATH = System.getenv().getOrDefault("ZOOMA2_DATA_PATH", "data");
 
@@ -66,8 +70,16 @@ public class MappingTablesRepo {
 
     public Stream<MappingTableEntry> allMappingsForString(String stringToMap) {
 
-        return tables.values().stream()
+        var res =  tables.values().stream()
             .flatMap(t -> t.streamEntriesForString(stringToMap));
+
+        var list = res.toList();
+
+        System.err.println("Mapped string '" + stringToMap + "' to " + gson.toJson(list));
+
+        return list.stream();
+
+        // return res;
 
     }
 

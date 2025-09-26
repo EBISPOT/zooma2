@@ -35,9 +35,9 @@ public class Annotation {
         public String evidence;
         public String accuracy;
         public String generator;
-        public Long generatedDate;
+        public String generatedDate;
         public String annotator;
-        public Long annotationDate;
+        public String annotationDate;
     }
 
     public static class Source {

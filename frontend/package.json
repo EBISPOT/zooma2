@@ -1,0 +1,65 @@
+{
+  "name": "zooma",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {
+    "@ramonak/react-progress-bar": "^2.1.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-autocomplete": "^1.8.5",
+    "@types/react-beautiful-dnd": "^13.0.0",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-foundation": "^0.9.6",
+    "@types/react-router-dom": "^5.1.6",
+    "file-saver": "^2.0.5",
+    "react": "^16.14.0",
+    "react-autocomplete": "^1.8.1",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-dom": "^16.14.0",
+    "react-foundation": "^0.9.6",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "typescript": "~3.7.2",
+    "url-join": "^5.0.0"
+  },
+  "scripts": {
+    "build": "dotenv -e .env.$REACT_APP_ENV -e .env -- node build.mjs",
+    "watch": "dotenv -e .env.$REACT_APP_ENV -e .env -- nodemon -e 'ts,tsx,js,jsx,css' -w src -w index.html.in --exec 'npm run build'",
+    "start": "dotenv -e .env.$REACT_APP_ENV -e .env -- concurrently -n 'Build,Serve' 'npm run watch' 'node dev_server.mjs'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/cytoscape": "^3.21.9",
+    "@types/d3-force": "^3.0.10",
+    "concurrently": "^9.2.1",
+    "dotenv-cli": "^7.2.1",
+    "esbuild": "^0.18.11",
+    "express": "^4.18.2",
+    "express-http-proxy": "^1.6.3",
+    "nocache": "^4.0.0",
+    "node-fetch": "^3.3.1",
+    "nodemon": "^2.0.22",
+    "tailwindcss": "^3.1.8"
+  }
+}

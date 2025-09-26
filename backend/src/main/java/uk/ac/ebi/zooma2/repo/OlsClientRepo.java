@@ -59,6 +59,16 @@ public class OlsClientRepo {
 
                 var found = urlToJson(OLS_URL + "/api/terms/findByIdAndIsDefiningOntology/" + doubleEncoded);
 
+                if(found == null ||
+                    !found.getAsJsonObject().has("_embedded") ||
+                    !found.getAsJsonObject().get("_embedded").getAsJsonObject().has("terms") ||
+                    found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray().size() == 0) {
+
+                    System.err.println("Failed to resolve term IRI: " + iri);
+                    continue;
+                }
+
+
                 var terms = found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray();
 
                 res.put(iri, gson.fromJson(terms.get(0), OlsTerm.class));
@@ -69,6 +79,63 @@ public class OlsClientRepo {
         }
 
         return res;
+    }
+
+    public Collection<OlsTerm> findByLabelAndOntologies(String stringToMap, Collection<String> ontologyIds) {
+
+
+        var escaped = java.net.URLEncoder.encode(stringToMap, java.nio.charset.StandardCharsets.UTF_8);
+        var url = OLS_URL + "/api/search?label=" + escaped + "&exact=true";
+
+        for(var ont : ontologyIds) {
+            url += "&ontology=" + ont;
+        }
+
+        JsonElement found;
+        try {
+            found = urlToJson(url);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return List.of();
+        }
+
+        if(found == null ||
+            !found.getAsJsonObject().has("_embedded") ||
+            !found.getAsJsonObject().get("_embedded").getAsJsonObject().has("docs") ||
+            found.getAsJsonObject().get("_embedded").getAsJsonObject().get("docs").getAsJsonArray().size() == 0) {
+
+            return List.of();
+        }
+
+        var terms = found.getAsJsonObject().get("_embedded").getAsJsonObject().get("docs").getAsJsonArray();
+
+        List<OlsTerm> res = gson.fromJson(terms, new TypeToken<List<OlsTerm>>(){}.getType());
+
+
+        // To get the synoynms to check these match we need the full objects
+        // TODO (1) fix exact=true in OLS so we can trust it and (2) return synonyms in the search api
+        List<String> termIris = res.stream().map((OlsTerm t) -> t.iri).toList();
+        Map<String,OlsTerm> fullTerms = resolveTerms(termIris);
+        res = fullTerms.values().stream().toList();
+
+
+        // check it actually matches
+        return res.stream()
+            .filter(t -> {
+                if(t.label != null && t.label.equalsIgnoreCase(stringToMap)) {
+                    return true;
+                }
+                if(t.synonyms != null) {
+                    for(String syn : t.synonyms) {
+                        if(syn.equalsIgnoreCase(stringToMap)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            })
+            .toList();
     }
 
     private JsonElement urlToJson(String url) throws IOException {

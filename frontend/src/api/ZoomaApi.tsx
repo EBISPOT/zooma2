@@ -1,5 +1,8 @@
 
 let apiUrl = process.env.REACT_APP_APIURL
+if(apiUrl?.endsWith('/')) {
+    apiUrl = apiUrl.slice(0, -1)
+}
 
 export interface SearchProperty {
 }
@@ -65,7 +68,7 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
         filter = 'filter=' + filter
     }
 
-    let res = await fetch(apiUrl + '/services/map?' + filter, {
+    let res = await fetch(apiUrl + '/v2/api/services/map?' + filter, {
         method: 'POST',
         body: JSON.stringify(params.properties),
         credentials: 'include',

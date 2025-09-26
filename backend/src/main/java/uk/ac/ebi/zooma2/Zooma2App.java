@@ -12,9 +12,12 @@ import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Zooma2App {
@@ -35,7 +38,7 @@ public class Zooma2App {
             config.router.apiBuilder(() -> {});
         });
 
-        app.get("/sources", ctx -> {
+        app.get("/v2/api/sources", ctx -> {
 
              var databases = Zooma2Config.config.datasources.entrySet().stream()
                 .map(entry -> {
@@ -58,39 +61,31 @@ public class Zooma2App {
             ctx.json( Stream.concat(databases, ontologies).toList() );
         });
 
-        app.get("/properties/types", ctx -> {
+        app.get("/v2/api/properties/types", ctx -> {
             ctx.json(mappingTablesRepo.getAllTypes());
         });
 
         // GET /services/annotate?propertyValue=...&propertyType=...&filter=...
-        app.get("/services/annotate", ctx -> {
+        app.get("/v2/api/services/annotate", ctx -> {
             String propertyValue = q(ctx, "propertyValue", true);
             String propertyType  = q(ctx, "propertyType", false);
             String filterRaw     = q(ctx, "filter", false);
             Filter filter = Filter.parse(filterRaw);
 
-            ctx.json(annotator.annotate(propertyValue, propertyType, filter));
+            ctx.json(annotator.annotate(propertyValue, propertyType, filter).collect(Collectors.toList()));
         });
 
-        app.post("/services/map", ctx -> {
+        app.post("/v2/api/services/map", ctx -> {
 
             var stringsToMap = bodyJson(ctx, uk.ac.ebi.zooma2.model.StringToMap[].class);
 
             String filterRaw     = q(ctx, "filter", false);
             Filter filter = Filter.parse(filterRaw);
 
+            Stream<MapResult> results = stringsToMap == null ? Stream.<MapResult>empty() : Arrays.stream(stringsToMap)
+                .flatMap(s -> annotator.map(s.propertyValue, s.propertyType, filter));
 
-            var results = stringsToMap == null ? List.<Annotation>of() : Arrays.stream(stringsToMap)
-                .flatMap(s -> annotator.annotate(s.propertyValue, s.propertyType, filter))
-                .map((Annotation a) -> {
-                    var result = new MapResult();
-                    result.propertyType = a.annotatedProperty.propertyType;
-                    result.propertyValue = a.annotatedProperty.propertyValue;
-
-                    return result;
-                });
-
-            ctx.json(results);
+            ctx.json(results.collect(Collectors.toList()));
         });
 
         // Global handlers
@@ -103,8 +98,18 @@ public class Zooma2App {
             "message", e.getMessage()
         )));
         app.exception(Exception.class, (e, ctx) -> {
-            e.printStackTrace();
-            throw new InternalServerErrorResponse("Unexpected error");
+
+            // send the full exception stack trace to the client
+
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            String stackTrace = sw.toString();
+            ctx.status(500).json(Map.of(
+                "error", "Internal Server Error",
+                "message", e.getMessage(),
+                "stackTrace", stackTrace
+            ));
         });
 
         app.after(ctx -> ctx.header("X-Zooma2", "stub"));

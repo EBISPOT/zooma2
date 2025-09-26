@@ -34,7 +34,7 @@ public class MappingTable {
 
                 MappingTableEntry entry = new MappingTableEntry();
                 entry.databaseId = databaseId;
-                entry.databaseId = databaseUrl;
+                entry.databaseUrl = databaseUrl;
 
                 for (int i = 0; i < headers.length; i++) {
                     switch (headers[i]) {
