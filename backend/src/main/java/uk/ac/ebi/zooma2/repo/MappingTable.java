@@ -10,13 +10,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
+
+import uk.ac.ebi.zooma2.util.NormaliseString;
 
 public class MappingTable {
 
     Map<String, Set<MappingTableEntry>> entries = new HashMap<>();
 
-    public MappingTable(InputStream inputStream) {
+    public MappingTable() {
+    }
 
+    public void loadFromInputStream(InputStream inputStream, String databaseId, String databaseUrl) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String headerLine = reader.readLine();
             if (headerLine == null) {
@@ -26,7 +31,11 @@ public class MappingTable {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split("\t");
+
                 MappingTableEntry entry = new MappingTableEntry();
+                entry.databaseId = databaseId;
+                entry.databaseId = databaseUrl;
+
                 for (int i = 0; i < headers.length; i++) {
                     switch (headers[i]) {
                         case "STUDY":
@@ -52,7 +61,10 @@ public class MappingTable {
                             break;
                     }
                 }
-                entries.computeIfAbsent(entry.semanticTag, k -> new HashSet<>()).add(entry);
+
+                String key = NormaliseString.normalise(entry.propertyValue);
+
+                entries.computeIfAbsent(key, k -> new HashSet<>()).add(entry);
             }
         } catch (IOException e) {
             throw new UncheckedIOException("Error reading mapping table", e);
@@ -61,6 +73,20 @@ public class MappingTable {
 
     public int getNumMappings() {
         return entries.keySet().size();
+    }
+
+    public Stream<MappingTableEntry> streamEntries() {
+        return entries.values().stream()
+            .flatMap(Set::stream);
+    }
+
+    public Stream<MappingTableEntry> streamEntriesForString(String stringToMap) {
+        stringToMap = NormaliseString.normalise(stringToMap);
+        Set<MappingTableEntry> result = entries.get(stringToMap);
+        if (result == null) {
+            return Stream.empty();
+        }
+        return result.stream();
     }
     
 }
