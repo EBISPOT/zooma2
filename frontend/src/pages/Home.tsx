@@ -219,12 +219,12 @@ Epilepsy, progressive myoclonic 1B\tphenotype
 Big cells
 Cardiomyopathy, dilated, 1S\tphenotype
 Long QT syndrome 3/6, digenic\tdisease
-Lung adenocarcinoma disease\tstate
-doxycycline 130 nanomolar\tcompound
-left tibia\torganism\tpart
+Lung adenocarcinoma disease state
+doxycycline 130 nanomolar compound
+left tibia\torganism part
 CD4-positive
-cerebellum\torganism\tpart
-hematology traits\tgwas\ttrait
-nifedipine 0.025 micromolar\tcompound
+cerebellum\torganism part
+hematology traits\tgwas trait
+nifedipine 0.025 micromolar compound
 Microtubule clumps
 `

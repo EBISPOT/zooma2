@@ -83,6 +83,7 @@ public class Zooma2App {
             Filter filter = Filter.parse(filterRaw);
 
             Stream<MapResult> results = stringsToMap == null ? Stream.<MapResult>empty() : Arrays.stream(stringsToMap)
+                .parallel()
                 .flatMap(s -> annotator.map(s.propertyValue, s.propertyType, filter));
 
             ctx.json(results.collect(Collectors.toList()));

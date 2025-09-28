@@ -71,7 +71,6 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
     let res = await fetch(apiUrl + '/v2/api/services/map?' + filter, {
         method: 'POST',
         body: JSON.stringify(params.properties),
-        credentials: 'include',
 
         headers: {
             'content-type': 'application/json',

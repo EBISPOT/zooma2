@@ -1,7 +1,6 @@
 
 import * as React from 'react'
 import Navbar from './Navbar'
-import { EBIFooter } from './components/EBI';
 import { Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Docs from './pages/docs';
@@ -9,6 +8,7 @@ import DocsApi from './pages/docs/api';
 import DocsSearch from './pages/docs/search';
 import DocsDevelopers from './pages/docs/developers';
 import About from './pages/about';
+import Footer from './components/Footer';
 
 export default function App() {
   return (
@@ -20,7 +20,6 @@ export default function App() {
       <Route exact path='/docs/api' component={DocsApi}></Route>
       <Route exact path='/docs/developers' component={DocsDevelopers}></Route>
       <Route exact path='/about' component={About}></Route>
-      <EBIFooter/>
     </div>
   );
 }
