@@ -21,44 +21,65 @@ public class MappingTable {
     public MappingTable() {
     }
 
-    public void loadFromInputStream(InputStream inputStream, String databaseId, String databaseUrl) {
+    public void loadFromInputStream(InputStream inputStream, String databaseId, String databaseUrl, Map<String,String> columnMap) {
+
+        Map<String,String> columnNamesToUse = new HashMap<>();
+
+        for(String key : new String[]{"STUDY","BIOENTITY","PROPERTY_TYPE","PROPERTY_VALUE","SEMANTIC_TAG","ANNOTATOR","ANNOTATION_DATE"}) {
+            columnNamesToUse.put(key, key);
+        }
+
+        if(columnMap != null) {
+            for(String key : columnMap.keySet()) {
+                columnNamesToUse.put(columnMap.get(key), key);
+            }
+        }
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String headerLine = reader.readLine();
             if (headerLine == null) {
-                throw new IllegalArgumentException("Input stream is empty");
+                return;
             }
-            String[] headers = headerLine.split("\t");
+
+            // dumb heuristic to guess if csv or tsv
+            long nCommas = headerLine.chars().filter(c -> c == ',').count();
+            long nTabs = headerLine.chars().filter(c -> c == '\t').count();
+            String delimiter = "\t";
+            if (nCommas > nTabs) {
+                // System.err.println("Detected CSV format for " + databaseId);
+                delimiter = ",";
+            } else {
+                // System.err.println("Detected TSV format for " + databaseId);
+            }
+
+
+            String[] headers = headerLine.split(delimiter);
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] values = line.split("\t");
+                String[] values = line.split(delimiter);
 
                 MappingTableEntry entry = new MappingTableEntry();
                 entry.databaseId = databaseId;
                 entry.databaseUrl = databaseUrl;
 
                 for (int i = 0; i < headers.length; i++) {
-                    switch (headers[i]) {
-                        case "STUDY":
-                            entry.study = values[i];
-                            break;
-                        case "BIOENTITY":
-                            entry.bioentity = values[i];
-                            break;
-                        case "PROPERTY_TYPE":
-                            entry.propertyType = values[i];
-                            break;
-                        case "PROPERTY_VALUE":
-                            entry.propertyValue = values[i];
-                            break;
-                        case "SEMANTIC_TAG":
-                            entry.semanticTag = values[i];
-                            break;
-                        case "ANNOTATOR":
-                            entry.annotator = values[i];
-                            break;
-                        case "ANNOTATION_DATE":
-                            entry.annotationDate = values[i];
-                            break;
+
+                    if(headers[i].equals(columnNamesToUse.get("STUDY"))) {
+                        entry.study = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("BIOENTITY"))) {
+                        entry.bioentity = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("PROPERTY_TYPE"))) {
+                        entry.propertyType = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("PROPERTY_VALUE"))) {
+                        entry.propertyValue = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("SEMANTIC_TAG"))) {
+                        entry.semanticTag = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("ANNOTATOR"))) {
+                        entry.annotator = values[i];
+                    } else if(headers[i].equals(columnNamesToUse.get("ANNOTATION_DATE"))) {
+                        entry.annotationDate = values[i];
+                    } else {
+                        // System.err.println("Skipping unknown column in mapping table: " + headers[i]);
                     }
                 }
 

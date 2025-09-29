@@ -168,7 +168,8 @@ export default class Home extends Component<Props, State> {
 
       let results = await ZoomaApi.search(searchParams)
 
-      let tsv = JSON.stringify(results, Object.keys(results[0]), '\t')
+      // let tsv = JSON.stringify(results, Object.keys(results[0]), '\t')
+      let tsv = ''
 
       this.setState(prevState => ({ ...prevState, searching: false, results, tsv }))
     }

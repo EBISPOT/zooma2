@@ -121,6 +121,8 @@ public class OlsClientRepo {
             return List.of();
         }
 
+        System.err.println("Found " + found.getAsJsonObject().get("response").getAsJsonObject().get("docs").getAsJsonArray().size() + " terms in OLS for '" + stringToMap + "' in ontologies " + ontologyIds);
+
         var terms = found.getAsJsonObject().get("response").getAsJsonObject().get("docs").getAsJsonArray();
 
         List<OlsTerm> res = gson.fromJson(terms, new TypeToken<List<OlsTerm>>(){}.getType());

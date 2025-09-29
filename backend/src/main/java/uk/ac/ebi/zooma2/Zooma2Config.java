@@ -31,7 +31,8 @@ public class Zooma2Config {
     public Map<String, String> prefix_map;
 
     public static class Datasource {
-        public String url;
-        public List<String> files;
+        public String uri;
+        public String import_url;
+        public Map<String,String> column_map;
     }
 }

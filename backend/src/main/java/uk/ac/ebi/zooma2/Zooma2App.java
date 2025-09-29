@@ -45,7 +45,7 @@ public class Zooma2App {
                     return Map.of(
                         "type", "DATABASE",
                         "name", entry.getKey(),
-                        "uri", entry.getValue().url
+                        "uri", entry.getValue().uri
                     );
                 });
 

@@ -16,7 +16,6 @@ import java.util.zip.GZIPInputStream;
 import com.google.gson.Gson;
 
 import uk.ac.ebi.zooma2.Zooma2Config;
-import uk.ac.ebi.zooma2.util.NormaliseString;
 
 public class MappingTablesRepo {
 
@@ -40,18 +39,19 @@ public class MappingTablesRepo {
 
             MappingTable table = new MappingTable();
 
-            for (String filename : dsConfig.files) {
-                File file = new File(path, filename);
-                if (!file.exists() || !file.canRead()) {
-                    throw new IllegalArgumentException("Cannot read mapping table file: " + file.getAbsolutePath());
-                }
-                try (InputStream is = file.getName().endsWith(".gz")
-                        ? new GZIPInputStream(new FileInputStream(file))
-                        : new FileInputStream(file)) {
-                    table.loadFromInputStream(is, databaseId, dsConfig.url);
-                } catch (IOException e) {
-                    throw new UncheckedIOException("Error reading mapping table file: " + file.getAbsolutePath(), e);
-                }
+            String filename = dsConfig.import_url.split("/")[dsConfig.import_url.split("/").length - 1] + ".gz";
+
+            System.err.println("Loading mapping table for datasource " + databaseId + " from file " + filename);
+
+            File file = new File(path, filename);
+            if (!file.exists() || !file.canRead()) {
+                throw new IllegalArgumentException("Cannot read mapping table file: " + file.getAbsolutePath());
+            }
+            try{
+            InputStream is = new GZIPInputStream(new FileInputStream(file));
+            table.loadFromInputStream(is, databaseId, dsConfig.uri, dsConfig.column_map);
+            } catch (IOException e) {
+                throw new UncheckedIOException("Error reading mapping table file: " + file.getAbsolutePath(), e);
             }
 
             System.err.println("Loaded " + table.entries.size() + " entries for datasource " + databaseId);

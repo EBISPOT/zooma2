@@ -144,7 +144,7 @@ public class Zooma2Annotator {
     Stream<MappingTableEntry> filterMappings(Stream<MappingTableEntry> mappings, String type, Filter filter) {
 
         return mappings
-            .filter(a -> type == null || a.propertyType.equals(type))
+            .filter(a -> type == null || a.propertyType == null || a.propertyType.equals(type))
             .filter(a -> {
                 
                 if(filter == null) return true;

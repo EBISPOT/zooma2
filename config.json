@@ -1,80 +1,65 @@
 {
     "datasources": {
-        "GWAS": {
-            "url": "http://www.ebi.ac.uk/gwas",
-            "files": [
-            ]
-        },
-        "ebisc": {
-            "url": "https://cells.ebisc.org/",
-            "files": [
-                "ebisc.tsv.gz"
-            ]
-        },
-        "ukbiobank": {
-            "url": "https://github.com/EBISPOT/EFO-UKB-mappings",
-            "files": [
-            ]
-        },
-        "HCA": {
-            "url": "https://www.ebi.ac.uk/about/collaborations/human-cell-atlas",
-            "files": [
-            ]
-        },
-        "cbi": {
-            "url": "https://www.ebi.ac.uk/biosamples",
-            "files": [
-            ]
-        },
-        "EBI-BioSamples": {
-            "url": "https://www.ebi.ac.uk/biosamples/",
-            "files": [
-                "biosamples_zooma_curations.csv.gz"
-            ]
-        },
-        "eva-clinvar": {
-            "url": "https://www.ebi.ac.uk/eva",
-            "files": [
-                "eva_clinvar.txt.gz"
-            ]
-        },
         "sysmicro": {
-            "url": "https://www.ebi.ac.uk/fg/sym",
-            "files": [
-            ]
+            "uri": "https://www.ebi.ac.uk/fg/sym",
+            "import_url": "https://www.ebi.ac.uk/cmpo/zooma-cmpo.csv"
         },
         "atlas": {
-            "url": "https://www.ebi.ac.uk/gxa",
-            "files": [
-            ]
+            "uri": "https://www.ebi.ac.uk/gxa",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/microarray/data/atlas/curation/zoomage_report.CURATED.tsv"
         },
-        "metabolights": {
-            "url": "https://www.ebi.ac.uk/metabolights",
-            "files": [
-                "metabolights_zooma.tsv.gz"
-            ]
-        },
-        "uniprot": {
-            "url": "https://www.ebi.ac.uk/uniprot",
-            "files": [
-                "uniprot_disease.csv.gz"
-            ]
-        },
-        "FAANG": {
-            "url": "https://www.ebi.ac.uk/vg/faang",
-            "files": [
-            ]
-        },
-        "clinvar-xrefs": {
-            "url": "https://www.ncbi.nlm.nih.gov/clinvar",
-            "files": [
-                "clinvar_xrefs.txt.gz"
-            ]
+        "ebisc": {
+            "uri": "https://cells.ebisc.org/",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/spot/zooma/data/annotations/ebisc/latest/ebisc.tsv"
         },
         "cttv": {
-            "url": "https://www.targetvalidation.org",
-            "files": [
-            ]
+            "uri": "https://www.targetvalidation.org",
+            "import_url": "https://raw.githubusercontent.com/opentargets/platform_semantic/master/resources/zooma/cttv_indications.csv"
+        },
+        "uniprot": {
+            "uri": "https://www.ebi.ac.uk/uniprot",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/spot/zooma/data/annotations/uniprot/latest/uniprot_disease.csv"
+        },
+        "eva-clinvar": {
+            "uri": "https://www.ebi.ac.uk/eva",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/eva/ClinVar/latest/eva_clinvar.txt"
+        },
+        "cbi": {
+            "uri": "https://www.ebi.ac.uk/biosamples",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/spot/zooma/data/annotations/cbi/latest/biosample_plant.csv"
+        },
+        "clinvar-xrefs": {
+            "uri": "https://www.ncbi.nlm.nih.gov/clinvar",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/eva/ClinVar/latest/clinvar_xrefs.txt"
+        },
+        "metabolights": {
+            "uri": "https://www.ebi.ac.uk/metabolights",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/metabolights/eb-eye/metabolights_zooma.tsv"
+        },
+        "ukbiobank": {
+            "uri": "https://github.com/EBISPOT/EFO-UKB-mappings",
+            "import_url": "https://raw.githubusercontent.com/EBISPOT/EFO-UKB-mappings/master/ukbiobank_zooma.txt"
+        },
+        "EBI-BioSamples": {
+            "uri": "https://www.ebi.ac.uk/biosamples/",
+            "import_url":
+  "https://ftp.ebi.ac.uk/pub/databases/biosamples/zooma/biosamples_zooma_curations.csv"
+        },
+        "FAANG": {
+            "uri": "https://www.ebi.ac.uk/vg/faang",
+            "import_url": "https://api.faang.org/files/faang_zooma_mappings.tsv"
+        },
+        "HCA": {
+            "uri": "https://www.ebi.ac.uk/about/collaborations/human-cell-atlas",
+            "import_url": "https://raw.githubusercontent.com/ebi-ait/hca-ebi-wrangler-central/master/src/outputs/current_zooma_import.txt"
+        },
+        "GWAS": {
+            "uri": "http://www.ebi.ac.uk/gwas",
+            "import_url": "https://ftp.ebi.ac.uk/pub/databases/gwas/releases/latest/gwas-efo-trait-mappings.tsv",
+            "column_map": {
+                "Disease trait": "PROPERTY_VALUE",
+                "EFO URI": "SEMANTIC_TAG"
+            }
         }
     },
     "prefix_map": {
