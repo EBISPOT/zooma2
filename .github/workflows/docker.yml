@@ -1,0 +1,41 @@
+name: Build & publish ZOOMA2 images
+
+on:
+  push:
+    branches: [ "dev", "stable" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push ZOOMA2 backend Docker image
+        run: |
+          cd webapp/zooma2_backend
+          docker build -t ghcr.io/ebispot/zooma2_backend:${{ github.sha }} .
+          docker tag ghcr.io/ebispot/zooma2_backend:${{github.sha}} ghcr.io/ebispot/zooma2_backend:${{ github.ref_name }}
+          docker push --all-tags ghcr.io/ebispot/zooma2_backend
+
+      - name: Build and push ZOOMA2 frontend Docker image
+        run: |
+          cd webapp/zooma2_frontend
+          docker build -t ghcr.io/ebispot/zooma2_frontend:${{ github.sha }} .
+          docker tag ghcr.io/ebispot/zooma2_frontend:${{github.sha}} ghcr.io/ebispot/zooma2_frontend:${{ github.ref_name }}
+          docker push --all-tags ghcr.io/ebispot/zooma2_frontend
+
