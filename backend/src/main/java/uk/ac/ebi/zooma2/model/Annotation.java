@@ -10,8 +10,11 @@ public class Annotation {
     // public List<String> replacedBy;
     // public List<String> replaces;
     // public DerivedFrom derivedFrom;
-    public String confidence;
+
+    public String confidence; 
+
     public Provenance provenance;
+
     // public List<AnnotatedBiologicalEntity> annotatedBiologicalEntities;
 
     public static class AnnotatedProperty {

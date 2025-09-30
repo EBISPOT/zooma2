@@ -72,21 +72,19 @@ public class Zooma2App {
             String filterRaw     = q(ctx, "filter", false);
             Filter filter = Filter.parse(filterRaw);
 
-            ctx.json(annotator.annotate(propertyValue, propertyType, filter).collect(Collectors.toList()));
+            ctx.json(annotator.annotate(propertyValue, propertyType, filter));
         });
 
         app.post("/v2/api/services/map", ctx -> {
 
             var stringsToMap = bodyJson(ctx, uk.ac.ebi.zooma2.model.StringToMap[].class);
 
-            String filterRaw     = q(ctx, "filter", false);
+            String filterRaw = q(ctx, "filter", false);
             Filter filter = Filter.parse(filterRaw);
 
-            Stream<MapResult> results = stringsToMap == null ? Stream.<MapResult>empty() : Arrays.stream(stringsToMap)
-                .parallel()
-                .flatMap(s -> annotator.map(s.propertyValue, s.propertyType, filter));
+            Collection<MapResult> results = annotator.mapAll(Arrays.stream(stringsToMap), filter);
 
-            ctx.json(results.collect(Collectors.toList()));
+            ctx.json(results);
         });
 
         // Global handlers

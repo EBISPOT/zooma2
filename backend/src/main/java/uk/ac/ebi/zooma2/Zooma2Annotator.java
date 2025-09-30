@@ -1,9 +1,15 @@
 package uk.ac.ebi.zooma2;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,6 +17,7 @@ import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.OlsTerm;
+import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.MappingTableEntry;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
@@ -30,83 +37,22 @@ public class Zooma2Annotator {
         this.olsRepo = olsRepo;
     }
 
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {
 
-    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
-
-        var curatedMappings = List.<MappingTableEntry>of().stream();
-        var ontologyMappings = List.<OlsTerm>of().stream();
-
-        // 1. Curated mappings from tables, only if "required" is not [none]
-
-        if(sources == null || !isNone(sources.required)) {
-            curatedMappings = mappingTablesRepo.allMappingsForString(stringToMap);
-            curatedMappings = filterMappings(curatedMappings, type, sources);
-        }
-
-        // 2. Mappings from ontologies, only if "ontologies" is not [none]
-
-        if(sources == null || !isNone(sources.ontologies)) {
-            ontologyMappings = olsRepo.findByLabelAndOntologies(stringToMap, sources.ontologies).stream();
-        }
-
-        return Stream.concat( curatedMappings.map(m -> {
-
-            Annotation a = new Annotation();
-
-            a.annotatedProperty = new Annotation.AnnotatedProperty();
-            a.annotatedProperty.propertyType = m.propertyType;
-            a.annotatedProperty.propertyValue = m.propertyValue;
-
-            a.semanticTags = List.of(m.semanticTag);
-            a.confidence = "HIGH";
-
-            a.provenance = new Annotation.Provenance();
-            a.provenance.source = new Annotation.Source();
-            a.provenance.source.type = "DATABASE";
-            a.provenance.source.name = m.databaseId;
-            a.provenance.source.uri = m.databaseUrl;
-            a.provenance.evidence = "ZOOMA_INFERRED_FROM_CURATED";
-            a.provenance.accuracy = "NOT_SPECIFIED";
-            a.provenance.generator = "ZOOMA";
-            a.provenance.generatedDate = new Date().toString();
-            a.provenance.annotator = m.annotator;
-            a.provenance.annotationDate = m.annotationDate;
-
-            return a;
-        }),
-
-        ontologyMappings.map(t -> {
-
-            Annotation a = new Annotation();
-
-            a.annotatedProperty = new Annotation.AnnotatedProperty();
-            a.annotatedProperty.propertyType = type != null ? type : "unspecified";
-            a.annotatedProperty.propertyValue = stringToMap;
-
-            a.semanticTags = List.of(t.iri);
-            a.confidence = "HIGH";
-
-            a.provenance = new Annotation.Provenance();
-            a.provenance.source = new Annotation.Source();
-            a.provenance.source.type = "ONTOLOGY";
-            a.provenance.source.name = t.ontology_name;
-            a.provenance.source.uri = t.ontology_name;
-            a.provenance.evidence = "NOT_SPECIFIED";
-            a.provenance.accuracy = "NOT_SPECIFIED";
-            a.provenance.generator = "ZOOMA";
-            a.provenance.generatedDate = new Date().toString();
-            a.provenance.annotator = null;
-            a.provenance.annotationDate = null;
-
-            return a;
-        }));
+        var results = stringsToMap
+            .parallel()
+            .flatMap(s -> map(s.propertyValue, s.propertyType, sources))
+            .collect(Collectors.toSet());
+        
+        return results;
     }
 
     public Stream<MapResult> map(String stringToMap, String type, Filter sources) {
 
         var annotated = annotate(stringToMap, type, sources).collect(Collectors.toList());
 
-        var termIrisToResolve = annotated.stream()
+        var termIrisToResolve = annotated
+            .stream()
             .flatMap(a -> a.semanticTags.stream())
             .collect(Collectors.toSet());
 
@@ -140,6 +86,82 @@ public class Zooma2Annotator {
         });
         
     }
+
+    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
+
+        var curatedMappings = getMappingsFromTables(stringToMap, type, sources).map(m -> {
+
+            Annotation a = new Annotation();
+
+            a.annotatedProperty = new Annotation.AnnotatedProperty();
+            a.annotatedProperty.propertyType = m.propertyType;
+            a.annotatedProperty.propertyValue = m.propertyValue;
+
+            a.semanticTags = List.of(m.semanticTag);
+            a.confidence = "HIGH";
+
+            a.provenance = new Annotation.Provenance();
+            a.provenance.source = new Annotation.Source();
+            a.provenance.source.type = "DATABASE";
+            a.provenance.source.name = m.databaseId;
+            a.provenance.source.uri = m.databaseUrl;
+            a.provenance.evidence = "ZOOMA_INFERRED_FROM_CURATED";
+            a.provenance.accuracy = "NOT_SPECIFIED";
+            a.provenance.generator = "ZOOMA";
+            a.provenance.generatedDate = new Date().toString();
+            a.provenance.annotator = m.annotator;
+            a.provenance.annotationDate = m.annotationDate;
+
+            return a;
+        });
+
+        var ontologyMappings = getMatchingTermsFromOls(stringToMap, type, sources).map(t -> {
+
+            Annotation a = new Annotation();
+
+            a.annotatedProperty = new Annotation.AnnotatedProperty();
+            a.annotatedProperty.propertyType = type != null ? type : "unspecified";
+            a.annotatedProperty.propertyValue = stringToMap;
+
+            a.semanticTags = List.of(t.iri);
+            a.confidence = "HIGH";
+
+            a.provenance = new Annotation.Provenance();
+            a.provenance.source = new Annotation.Source();
+            a.provenance.source.type = "ONTOLOGY";
+            a.provenance.source.name = t.ontology_name;
+            a.provenance.source.uri = t.ontology_name;
+            a.provenance.evidence = "NOT_SPECIFIED";
+            a.provenance.accuracy = "NOT_SPECIFIED";
+            a.provenance.generator = "ZOOMA";
+            a.provenance.generatedDate = new Date().toString();
+            a.provenance.annotator = null;
+            a.provenance.annotationDate = null;
+
+            return a;
+        });
+
+        return Stream.concat(curatedMappings, ontologyMappings);
+    }
+
+    private Stream<MappingTableEntry> getMappingsFromTables(String stringToMap, String type, Filter sources) {
+        if(sources == null || !isNone(sources.required)) {
+            var mappings = mappingTablesRepo.allMappingsForString(stringToMap);
+            mappings = filterMappings(mappings, type, sources);
+            return mappings;
+        } else {
+            return Stream.<MappingTableEntry>empty();
+        }
+    }
+
+    private Stream<OlsTerm> getMatchingTermsFromOls(String stringToMap, String type, Filter sources) {
+        if(sources == null || !isNone(sources.ontologies)) {
+            return olsRepo.findByLabelAndOntologies(stringToMap, sources.ontologies).stream();
+        } else {
+            return Stream.<OlsTerm>empty();
+        }
+    }
+
 
     Stream<MappingTableEntry> filterMappings(Stream<MappingTableEntry> mappings, String type, Filter filter) {
 
