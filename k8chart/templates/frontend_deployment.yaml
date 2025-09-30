@@ -37,4 +37,4 @@ spec:
             - name: ZOOMA2_MINIFY
               value: 'true'
           command: ["/bin/bash", "-c"]
-          args: ["/opt/zooma2_frontend/entrypoint.dockersh"]
+          args: ["/opt/zooma_frontend/entrypoint.dockersh"]
