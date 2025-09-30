@@ -34,7 +34,6 @@ public class Zooma2App {
         );
 
         var app = Javalin.create(config -> {
-            config.bundledPlugins.enableCors(cors -> cors.addRule(it -> it.anyHost()));
             config.http.generateEtags = true;
             config.router.apiBuilder(() -> {});
             config.bundledPlugins.enableCors(cors -> {
