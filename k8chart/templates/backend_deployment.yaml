@@ -35,6 +35,9 @@ spec:
             limits:
               memory: 8Gi
               cpu: 0.5
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-proxy-configmap
           env:
             - name: ZOOMA2_CONTEXT_PATH
               value: /spot/zooma
