@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-frontend
+  labels:
+    app: {{ .Release.Name }}-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-frontend
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-frontend
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/ebispot/zooma2_frontend:{{.Values.imageTag}}
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 1Gi
+              cpu: 0.25
+            limits:
+              memory: 1Gi
+              cpu: 0.5
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REACT_APP_ENV
+              value: ebi
+            - name: REACT_APP_APIURL
+              value: https://wwwdev.ebi.ac.uk/spot/zooma/
+            - name: PUBLIC_URL
+              value: /spot/zooma
+            - name: ZOOMA2_MINIFY
+              value: 'true'
+          command: ["/bin/bash", "-c"]
+          args: ["/opt/zooma2_frontend/entrypoint.dockersh"]

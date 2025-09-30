@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-backend
+  labels:
+    app: {{ .Release.Name }}-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-backend
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-backend
+    spec:
+      volumes:
+        - name: {{ .Release.Name }}-import
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-import-pvc
+      containers:
+        - name: web
+          image: ghcr.io/ebispot/zooma2_backend:{{.Values.imageTag}}
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "/data_import"
+              name: {{ .Release.Name }}-import
+              readOnly: true
+          ports:
+            - containerPort: 8090
+          resources:
+            requests:
+              memory: 8Gi
+              cpu: 0.5
+            limits:
+              memory: 8Gi
+              cpu: 0.5
+          env:
+            - name: ZOOMA2_CONTEXT_PATH
+              value: /spot/zooma
+            - name: JDK_JAVA_OPTIONS
+              value: "-XX:InitialRAMPercentage=60.0 -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
+            - name: ZOOMA2_DATA_PATH
+              value: /data_import
+              

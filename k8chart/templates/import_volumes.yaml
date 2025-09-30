@@ -1,0 +1,32 @@
+###
+### Read-only NFS mounts to read data from
+###
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+  finalizers:
+  - kubernetes.io/pv-protection
+  name: {{ .Release.Name }}-import-pv
+spec:
+  accessModes: ['ReadWriteMany']
+  storageClassName: standard-nfs-production
+  volumeMode: Filesystem
+  mountOptions: ['nfsvers=3']
+  nfs:
+    server: hh-isi-srv-vlan1496.ebi.ac.uk
+    path: {{.Values.importDir}}
+  capacity: 
+    storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{.Release.Name}}-import-pvc
+spec:
+  storageClassName: standard-nfs-production
+  volumeName: {{.Release.Name}}-import-pv
+  accessModes: ['ReadWriteMany']
+  resources:
+    requests:
+      storage: 100Gi

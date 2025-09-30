@@ -1,7 +1,7 @@
 
 import * as React from 'react'
 import Navbar from './Navbar'
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Docs from './pages/docs';
 import DocsApi from './pages/docs/api';
@@ -14,12 +14,14 @@ export default function App() {
   return (
     <div className="App">
       <Navbar />
+      <BrowserRouter basename={process.env.PUBLIC_URL!}>
       <Route exact path='/' component={Home}></Route>
       <Route exact path='/docs' component={Docs}></Route>
       <Route exact path='/docs/search' component={DocsSearch}></Route>
       <Route exact path='/docs/api' component={DocsApi}></Route>
       <Route exact path='/docs/developers' component={DocsDevelopers}></Route>
       <Route exact path='/about' component={About}></Route>
+      </BrowserRouter>
     </div>
   );
 }
