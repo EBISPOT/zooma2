@@ -118,9 +118,7 @@ public class Zooma2App {
             ));
         });
 
-        app.after(ctx -> ctx.header("X-Zooma2", "stub"));
-
-        app.start(7070);
+        app.start(8090);
     }
 
     // ----------------- DTOs -----------------
