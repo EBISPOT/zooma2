@@ -167,7 +167,7 @@ public class Bioregistry {
                 .setConnectionRequestTimeout(5000)
                 .setSocketTimeout(5000).build();
 
-        CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+        CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
 
         HttpGet request = new HttpGet(url);
         HttpResponse response = client.execute(request);
