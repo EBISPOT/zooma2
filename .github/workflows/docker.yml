@@ -27,14 +27,14 @@ jobs:
 
       - name: Build and push ZOOMA2 backend Docker image
         run: |
-          cd webapp/zooma2_backend
+          cd backend
           docker build -t ghcr.io/ebispot/zooma2_backend:${{ github.sha }} .
           docker tag ghcr.io/ebispot/zooma2_backend:${{github.sha}} ghcr.io/ebispot/zooma2_backend:${{ github.ref_name }}
           docker push --all-tags ghcr.io/ebispot/zooma2_backend
 
       - name: Build and push ZOOMA2 frontend Docker image
         run: |
-          cd webapp/zooma2_frontend
+          cd frontend
           docker build -t ghcr.io/ebispot/zooma2_frontend:${{ github.sha }} .
           docker tag ghcr.io/ebispot/zooma2_frontend:${{github.sha}} ghcr.io/ebispot/zooma2_frontend:${{ github.ref_name }}
           docker push --all-tags ghcr.io/ebispot/zooma2_frontend
