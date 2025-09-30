@@ -5,6 +5,7 @@ import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.http.NotFoundResponse;
+import io.javalin.plugin.bundled.CorsPluginConfig;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
@@ -36,6 +37,13 @@ public class Zooma2App {
             config.bundledPlugins.enableCors(cors -> cors.addRule(it -> it.anyHost()));
             config.http.generateEtags = true;
             config.router.apiBuilder(() -> {});
+            config.bundledPlugins.enableCors(cors -> {
+                cors.addRule(CorsPluginConfig.CorsRule::anyHost);
+            });
+            config.router.contextPath = System.getenv("ZOOMA2_CONTEXT_PATH");
+            if(config.router.contextPath == null) {
+                config.router.contextPath = "";
+            }
         });
 
         app.get("/v2/api/sources", ctx -> {

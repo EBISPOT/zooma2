@@ -38,8 +38,6 @@ spec:
           env:
             - name: ZOOMA2_CONTEXT_PATH
               value: /spot/zooma
-            - name: JDK_JAVA_OPTIONS
-              value: "-XX:InitialRAMPercentage=60.0 -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0"
             - name: ZOOMA2_DATA_PATH
               value: /data_import/data
             - name: ZOOMA2_CONFIG_PATH
