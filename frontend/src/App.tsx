@@ -1,27 +1,27 @@
 
 import * as React from 'react'
-import Navbar from './Navbar'
-import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Docs from './pages/docs';
 import DocsApi from './pages/docs/api';
-import DocsSearch from './pages/docs/search';
-import DocsDevelopers from './pages/docs/developers';
 import About from './pages/about';
-import Footer from './components/Footer';
+import Header from './components/Header';
+
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 
 export default function App() {
-  return (
-    <div className="App">
-      <Navbar />
-      <BrowserRouter basename={process.env.PUBLIC_URL!}>
-      <Route exact path='/' component={Home}></Route>
-      <Route exact path='/docs' component={Docs}></Route>
-      <Route exact path='/docs/search' component={DocsSearch}></Route>
-      <Route exact path='/docs/api' component={DocsApi}></Route>
-      <Route exact path='/docs/developers' component={DocsDevelopers}></Route>
-      <Route exact path='/about' component={About}></Route>
-      </BrowserRouter>
-    </div>
+return (
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <Routes>
+      <Route path='/' element={<Home/>}></Route>
+      <Route path='/docs' element={<DocsApi/>}></Route>
+      <Route path='/about' element={<About/>}></Route>
+    </Routes>
+    </BrowserRouter>
   );
 }

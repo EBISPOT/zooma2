@@ -1,208 +1,221 @@
-import { Fragment, Component, ChangeEvent } from "react";
-import { Row, Column, Callout } from 'react-foundation'
+
+import { Fragment, ChangeEvent, useEffect, useState } from "react";
 import ResultsTable from "../components/ResultsTable";
-import * as ZoomaApi from '../api/ZoomaApi'
+import * as ZoomaApi from '../api/ZoomaApi';
 import { getDatasources, ZoomaDatasources } from "../api/ZoomaDatasources";
 import { runInThisContext } from "vm";
 import DatasourcesModal from "../components/Datasources";
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig";
-import * as React from 'react'
-import Datasources from "../components/Datasources"
-import ProgressBar from "@ramonak/react-progress-bar"
-import FileSaver from 'file-saver'
+import * as React from 'react';
+import Datasources from "../components/Datasources";
+import FileSaver from 'file-saver';
+import Header from "../components/Header";
+import { Grid, Button, Box, Typography } from '@mui/material';
 
+export default function Home(props) {
 
-interface Props {
+  const [datasources, setDatasources] = useState<ZoomaDatasources | undefined>(undefined)
+  const [datasourceConfig, setDatasourceConfig] = useState<ZoomaDatasourceConfig | undefined>(undefined)
+  const [query, setQuery] = useState<string>('')
+  const [searching, setSearching] = useState<boolean>(false)
+  const [progress, setProgress] = useState<number>(0)
+  const [results, setResults] = useState<ZoomaApi.SearchResult[]>([])
+  const [tsv, setTsv] = useState<string>('')
+  const [showDatasourceModal, setShowDatasourceModal] = useState<boolean>(false)
+
+  useEffect(() => {
+    loadDatasources()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  async function loadDatasources() {
+    let datasources = await getDatasources()
+
+    let datasourceConfig: ZoomaDatasourceConfig = {
+      doNotSearchDatasources: false,
+
+      excludedDatasources: [],
+      unrankedDatasources: datasources.datasourceNames,
+      rankedDatasources: [],
+
+      doNotSearchOntologies: false,
+      ontologySources: []
+    }
+
+    setDatasources(datasources)
+    setDatasourceConfig(datasourceConfig)
+  }
+
+  const onEditQuery = (e: ChangeEvent) => {
+    let newValue = (e.target as any).value
+    setQuery(newValue)
+  }
+
+  const onClickAnnotate = async () => {
+
+    let properties = query
+      .split('\n')
+      .map(line => line.split('\t'))
+      .map(tokens => ({ propertyValue: tokens[0], propertyType: tokens[1] }))
+
+    let requiredSources = [...(datasourceConfig!.unrankedDatasources), ...(datasourceConfig!.rankedDatasources)]
+    let preferredSources = datasourceConfig!.rankedDatasources
+    let ontologySources = datasourceConfig!.ontologySources
+    let doNotSearchDatasources = datasourceConfig!.doNotSearchDatasources
+    let doNotSearchOntologies = datasourceConfig!.doNotSearchOntologies
+
+    let searchParams: ZoomaApi.SearchParams = {
+      properties, requiredSources, preferredSources, ontologySources, doNotSearchDatasources, doNotSearchOntologies
+    }
+
+    setSearching(true)
+
+    let results = await ZoomaApi.search(searchParams)
+
+    // let tsv = JSON.stringify(results, Object.keys(results[0]), '\t')
+    let tsv = ''
+
+    setSearching(false)
+    setResults(results)
+    setTsv(tsv)
+  }
+
+  const onClickClear = () => {
+    setQuery('')
+    setResults([])
+    setTsv('')
+  }
+
+  const onClickShowExamples = () => {
+    setQuery(examples)
+  }
+
+  const onClickDatasources = () => {
+    setShowDatasourceModal(true)
+  }
+
+  const onDatasourceConfigChanged = (config: ZoomaDatasourceConfig) => {
+    setDatasourceConfig(config)
+  }
+
+  const onDatasourcesModalDone = () => {
+    setShowDatasourceModal(false)
+  }
+
+  const onDownloadTSV = () => {
+    var blob = new Blob([tsv], { type: 'text/csv' })
+    FileSaver.saveAs(blob, 'results.tsv')
+  }
+
+  return (
+    <Fragment>
+      <Header section="home" />
+      <main>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="h4">Query</Typography>
+            <p>ZOOMA maps one or more strings of text to ontology terms. You can add one string (e.g. <i>Homo sapiens</i>) per
+              line. If you also have a type for your term (e.g. <i>organism</i>), put this after the term,
+              separated by a tab.</p>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <Grid container justifyContent="flex-end">
+                  <Grid item>
+                    <a onClick={onClickShowExamples} style={{ cursor: 'pointer' }}>
+                      Show me some examples...
+                    </a>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+                <textarea style={{ minHeight: '300px', width: '100%', border: '1px solid #ddd', padding: '8px', borderRadius: '4px' }} value={query}
+                  onKeyDown={(e) => {
+                    if (e.key === "Tab") {
+                      e.preventDefault();
+
+                      const target = e.target as any;
+                      const start = target.selectionStart;
+                      const end = target.selectionEnd;
+                      const value = target.value;
+
+                      // Insert a tab character
+                      target.value = value.substring(0, start) + "\t" + value.substring(end);
+
+                      // Move cursor after the tab
+                      target.selectionStart = target.selectionEnd = start + 1;
+
+                      // Fire React's onChange so state updates
+                      const event = new Event("input", { bubbles: true });
+                      target.dispatchEvent(event);
+                    }
+                  }}
+
+                  onChange={onEditQuery}></textarea>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="h4">Datasources</Typography>
+            <p>ZOOMA uses curated mappings from selected datasources (more
+              preferred), and searches ontologies directly (less preferred). Here, you can select
+              which curated datasources to use, optionally ranked in order of preference. You can also
+              select which ontologies to search directly. By default all ontologies in OLS are searched.</p>
+          </Grid>
+          <Grid item xs={12}>
+            {datasources && datasourceConfig && (
+              <Datasources
+                datasources={datasources}
+                datasourceConfig={datasourceConfig}
+                onConfigChanged={onDatasourceConfigChanged}
+              />
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
+              <button
+              className="button-primary text-lg font-bold self-center"
+                disabled={searching}
+                onClick={onClickAnnotate}
+              >
+                Annotate
+              </button>
+              {results.length > 0 &&
+              <Fragment>
+              &nbsp;
+              <button
+              className="button-secondary text-lg font-bold self-center"
+                onClick={onClickClear}
+              >
+                Clear
+              </button>
+              </Fragment>
 }
-
-interface State {
-  datasources:ZoomaDatasources|undefined
-  datasourceConfig:ZoomaDatasourceConfig|undefined
-  query:string
-  searching: boolean,
-  progress:number
-  results:ZoomaApi.SearchResult[]
-  tsv:string
-}
-
-export default class Home extends Component<Props, State> {
-
-    constructor(props:Props) {
-      super(props)
-
-      this.state = {
-        datasources: undefined,
-        datasourceConfig: undefined,
-        query: '',
-        searching: false,
-        progress: 0,
-        results: [],
-        tsv: ''
-      }
-    }
-
-    componentDidMount() {
-
-      this.loadDatasources()
-
-
-    }
-
-    async loadDatasources() {
-
-      let datasources = await getDatasources()
-
-      let datasourceConfig:ZoomaDatasourceConfig = {
-        doNotSearchDatasources: false,
-
-        excludedDatasources: [],
-        unrankedDatasources: datasources.datasourceNames,
-        rankedDatasources: [],
-
-        doNotSearchOntologies: false,
-        ontologySources: []
-      }
-
-      this.setState(prevState => ({ ...prevState, datasources, datasourceConfig }))
-
-    }
-
-    render() {
-
-        return (
-            <main>
-                <Row>
-                    <h3>Query</h3>
-                    <Column small={12} medium={12}>
-                        <p>Use the text box to find possible ontology mappings for free text terms in the ZOOMA
-                            repository of curated annotation knowledge. You can add one term (e.g. 'Homo sapiens') per
-                            line. If you also have a type for your term (e.g. 'organism'), put this after the term,
-                            separated by a tab.
-                            If you are new to ZOOMA, take a look at our getting started guide.</p>
-                    </Column>
-                    <Column small={12} medium={12}>
-                        <Row>
-                            <Column small={12} medium={12}>
-                                <Row className="align-right">
-                                    <a onClick={this.onClickShowExamples}>
-                                        Show me some examples...
-                                    </a>
-                                </Row>
-                            </Column>
-                        </Row>
-                        <Row>
-                            <textarea style={{minHeight: '300px'}} value={this.state.query}
-                                      onChange={this.onEditQuery}></textarea>
-                        </Row>
-                    </Column>
-                </Row>
-                <Row>
-                    <h3>Datasources</h3>
-                    <Column small={12} medium={12}>
-                        <p>ZOOMA maps text to ontology terms based on curated mappings from selected datasources (more
-                            preferred), and by searching ontologies directly (less preferred). Here, you can select
-                            which curated datasources to use, optionally ranked in order of preference. You can also
-                            select which ontologies to search directly.</p>
-                    </Column>
-                    <Column small={12} medium={12}>
-                        {
-                            this.state.datasources &&
-                            this.state.datasourceConfig &&
-                            <Datasources datasources={this.state.datasources}
-                                         datasourceConfig={this.state.datasourceConfig}
-                                         onConfigChanged={this.onDatasourceConfigChanged}/>
-                        }
-                    </Column>
-                </Row>
-                <br/>
-                <Row className="align-center">
-                    <button className="button large"
-                     disabled={this.state.searching}
-                     onClick={this.onClickAnnotate}>Annotate</button>
-                    &nbsp;
-                    <button className="button secondary large"
-                        disabled={this.state.results.length === 0}
-                        onClick={this.onClickClear}>Clear</button>
-                </Row>
-              <Row>
-                <h3>Results</h3>
-                <Column small={12} medium={12}>
-                    <Row>
-                        <Column small={8}>
-                            <p>The table below shows a report describing how ZOOMA annotates text terms supplied above.</p>
-                        </Column>
-                        <Column small={4} style={{ textAlign: 'right' }}>
-                            <img style={{cursor: 'pointer'}} onClick={this.onDownloadTSV} src="https://www.ebi.ac.uk/web_guidelines/images/icons/EBI-FileFormats/File%20format%20icons/file_TSV.png"/>
-                        </Column>
-                    </Row>
-                  <ResultsTable results={this.state.results} datasources={this.state.datasources} />
-                </Column>
-              </Row>
-            </main>
-        )
-    }
-
-    onEditQuery = (e:ChangeEvent) => {
-        let newValue = (e.target as any).value
-        this.setState(prevState => ({ ...prevState, query: newValue }))
-    }
-
-    onClickAnnotate = async () => {
-
-      let properties = this.state.query
-            .split('\n')
-            .map(line => line.split('\t'))
-            .map(tokens => ({ propertyValue: tokens[0], propertyType: tokens[1] }))
-
-      let requiredSources = [...this.state.datasourceConfig!.unrankedDatasources, ...this.state.datasourceConfig!.rankedDatasources]
-      let preferredSources = this.state.datasourceConfig!.rankedDatasources
-      let ontologySources = this.state.datasourceConfig!.ontologySources
-      let doNotSearchDatasources = this.state.datasourceConfig!.doNotSearchDatasources
-      let doNotSearchOntologies = this.state.datasourceConfig!.doNotSearchOntologies
-
-      let searchParams:ZoomaApi.SearchParams = {
-          properties, requiredSources, preferredSources, ontologySources, doNotSearchDatasources, doNotSearchOntologies
-      }
-
-      await this.setState(prevState => ({ ...prevState, searching: true }))
-
-      let results = await ZoomaApi.search(searchParams)
-
-      // let tsv = JSON.stringify(results, Object.keys(results[0]), '\t')
-      let tsv = ''
-
-      this.setState(prevState => ({ ...prevState, searching: false, results, tsv }))
-    }
-
-    onClickClear = () => {
-      this.setState(prevState => ({ ...prevState, query: '', results: [], tsv: '' }))
-    }
-
-    onClickShowExamples = () => {
-      this.setState(prevState => ({ ...prevState, query: examples }))
-    }
-
-    onClickDatasources = () => {
-      this.setState(prevState => ({ ...prevState, showDatasourceModal: true }))
-    }
-
-    onDatasourceConfigChanged = (config:ZoomaDatasourceConfig) => {
-      this.setState(prevState => ({ ...prevState, datasourceConfig: config }))
-    }
-
-    onDatasourcesModalDone = () => {
-      this.setState(prevState => ({ ...prevState, showDatasourceModal: false }))
-    }
-
-    onDownloadTSV = () => {
-        var blob = new Blob([this.state.tsv], { type: 'text/csv' })
-        FileSaver.saveAs(blob, 'results.tsv')
-    }
-
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <h3>Results</h3>
+            <Grid container spacing={1} alignItems="center">
+              <Grid item xs={8}>
+                <p>The table below shows a report describing how ZOOMA annotates text terms supplied above.</p>
+              </Grid>
+              <Grid item xs={4} style={{ textAlign: 'right' }}>
+                <img style={{ cursor: 'pointer' }} onClick={onDownloadTSV} src="https://www.ebi.ac.uk/web_guidelines/images/icons/EBI-FileFormats/File%20format%20icons/file_TSV.png" />
+              </Grid>
+            </Grid>
+            <ResultsTable results={results} datasources={datasources} />
+          </Grid>
+        </Grid>
+      </main>
+    </Fragment>
+  );
 }
 
 var examples =
-`Bright nuclei
+  `Bright nuclei
 Agammaglobulinemia 2\tphenotype
 Reduction in IR-induced 53BP1 foci in HeLa\tcell
 Impaired cell migration with increased protrusive activity\tphenotype
@@ -229,3 +242,4 @@ hematology traits\tgwas trait
 nifedipine 0.025 micromolar compound
 Microtubule clumps
 `
+

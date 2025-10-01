@@ -5,9 +5,9 @@ import * as React from 'react'
 import App from './App'
 
 ReactDOM.render((
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <React.StrictMode>
     <App />
-  </BrowserRouter>
+    </React.StrictMode>
   ), document.getElementById('root')
 );
 

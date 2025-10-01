@@ -1,267 +1,357 @@
-import { Link } from 'react-router-dom'
 import React, { Fragment } from "react";
-import { Row, Column } from "react-foundation";
-import examples from '../../data/api-response-examples.json'
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Link as MUILink,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Stack,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import Header from "../../components/Header";
+import examples from "../../data/api-response-examples.json";
 
-export default function docs() {
-    return (
-            <main>
-                <Row>
-                    <Column small={12} medium={12}>
-                    <h2>REST API Documentation</h2>
+// Reusable code block
+const CodeBlock: React.FC<React.PropsWithChildren<{ title?: string }>> = ({ title, children }) => (
+  <Box my={2}>
+    {title && (
+      <Typography variant="subtitle2" sx={{ mb: 0.5, textTransform: "uppercase", letterSpacing: 0.4 }}>
+        {title}
+      </Typography>
+    )}
+    <Paper
+      variant="outlined"
+      sx={{
+        p: 2,
+        bgcolor: (theme) => (theme.palette.mode === "dark" ? "background.default" : "grey.50"),
+        overflow: "auto",
+        fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        fontSize: 14,
+        lineHeight: 1.6,
+      }}
+      component="pre"
+    >
+      {children}
+    </Paper>
+  </Box>
+);
 
-                    <h3>Introduction</h3>
+// Section wrapper
+const Section: React.FC<React.PropsWithChildren<{ title: string; subtitle?: string }>> = ({
+  title,
+  subtitle,
+  children,
+}) => (
+  <Box my={4}>
+    <Typography variant="h4" gutterBottom>
+      {title}
+    </Typography>
+    {subtitle && (
+      <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+        {subtitle}
+      </Typography>
+    )}
+    {children}
+  </Box>
+);
 
-                    <p>
-                        This page describes how to develop against the ZOOMA REST API to search for and retrieve ZOOMA
-                        objects.
-                    </p>
+export default function Docs() {
+  return (
+    <Fragment>
+      <Header section="api" />
+      <main>
+        <Container maxWidth="lg" sx={{ py: 4 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Typography variant="h3" gutterBottom>
+                REST API Documentation
+              </Typography>
 
-                    <p>
-                        All requests should be made to the root URL of the Zooma API, which is not shown in the example
-    requests. The root URL for the API is <code>www.ebi.ac.uk/spot/zooma/v2/api</code>.
-                    </p>
+              <Divider sx={{ mb: 3 }} />
 
-                    <h3>Predicting Annotations</h3>
-                    <p>
-                        You can use Zooma to predict an ontology annotation given a property value (and optionally a property
-                        type).
-                    </p>
-                    <h5>Example Request:</h5>
-                    <p>
-                        Predict an ontology annotation for the text value "mus musculus"
-                    </p>
+              <Section title="Introduction">
+                <Typography paragraph>
+                  This page describes how to develop against the ZOOMA REST API to search for and retrieve ZOOMA objects.
+                </Typography>
+                <Typography paragraph>
+                  All requests should be made to the root URL of the Zooma API, which is not shown in the example
+                  requests. The root URL for the API is{" "}
+                  <Paper
+                    variant="outlined"
+                    sx={{
+                      display: "inline-block",
+                      px: 1,
+                      py: 0.25,
+                      mx: 0.5,
+                      fontFamily:
+                        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+                      fontSize: 14,
+                    }}
+                    component="code"
+                  >
+                    www.ebi.ac.uk/spot/zooma/v2/api
+                  </Paper>
+                  .
+                </Typography>
+              </Section>
 
-                    <div>
-                    <pre>GET /services/annotate?propertyValue=mus+musculus</pre>
-                    </div>
+              <Section title="Predicting Annotations">
+                <Typography paragraph>
+                  You can use Zooma to predict an ontology annotation given a property value (and optionally a property
+                  type).
+                </Typography>
 
-                    <br/>
+                <Typography variant="h6" gutterBottom>
+                  Example Request
+                </Typography>
+                <Typography paragraph>Predict an ontology annotation for the text value &quot;mus musculus&quot;.</Typography>
+                <CodeBlock>GET /services/annotate?propertyValue=mus+musculus</CodeBlock>
 
-                    <h5>Response:</h5>
-                    <div>
-                        <pre>
-                        {JSON.stringify(examples['2'], null, 2)}
-                        </pre>
-                    </div>
+                <Typography variant="h6" gutterBottom>
+                  Response
+                </Typography>
+                <CodeBlock>{JSON.stringify(examples["2"], null, 2)}</CodeBlock>
 
-                    <p>
-                        This example predicts that 'mus musculus' should be annotated with the ontology term
-                        <span className="uri">http://purl.obolibrary.org/obo/NCBITaxon_10090</span>. The confidence for this prediction is 'HIGH', and
-                        derives from an existing annotation the URI <span className="uri">http://rdf.ebi.ac.uk/resource/zooma/gxa/90E386B39F0AD3DA5CCBD8AAA6F14907</span>.
-                        This annotation was predicted based on curated mappings in the 'ExpressionAtlas (atlas)' database.
-                    </p>
+                <Typography paragraph>
+                  This example predicts that &apos;mus musculus&apos; should be annotated with the ontology term{" "}
+                  <MUILink
+                    href="http://purl.obolibrary.org/obo/NCBITaxon_10090"
+                    target="_blank"
+                    rel="noopener"
+                    underline="hover"
+                  >
+                    http://purl.obolibrary.org/obo/NCBITaxon_10090
+                  </MUILink>
+                  This annotation was predicted based on curated mappings in the &apos;ExpressionAtlas (atlas)&apos; database.
+                </Typography>
 
+                <Typography variant="h6" gutterBottom>
+                  Additional Parameters
+                </Typography>
+                <Typography paragraph>
+                  Zooma supports the option to specify the data sources it will search from. By default (specifying nothing),
+                  Zooma will search its available databases containing curated mappings (and that do not include ontology sources),
+                  and if nothing is found it will look in the Ontology Lookup Service (OLS) to predict ontology annotations.
+                </Typography>
 
-                    <h5>Additional Parameters:</h5>
-                    <p>Zooma supports the option to specify the data sources it will search from. By default (specifying nothing), Zooma will search its available databases containing curated mappings
-                        (and that do not include ontology sources), and if nothing is found it will look in the Ontology Lookup Service (OLS) to predict ontology annotations.
-                    </p>
-                    <p>
-                        A set of filters can be applied to modify the default behavior:
-                        <ul>
-                                <li>required:[datasource1,datasource2,…]</li>
-                                <li>preferred:[datasource2,datasource1,…]</li>
-                                <li>ontologies:[efo,go,…]</li>
-                        </ul>
+                <Typography paragraph>Filters you can apply to modify the default behavior:</Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText primary="required:[datasource1,datasource2,…]" />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="preferred:[datasource2,datasource1,…]" />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="ontologies:[efo,go,…]" />
+                  </ListItem>
+                </List>
 
-                    <p>
-                        where datasource1,datasource2,etc, are the database names of the datasources (see table below).
-                    </p>
+                <Typography paragraph>
+                  where <em>datasource1,datasource2</em>, etc., are the database names of the datasources (see table below).
+                </Typography>
 
-                        <ul>
-                            <li><i>required</i> will limit the search to the given datasources</li>
-                            <li><i>preferred</i> will provide a ranking for those datasources</li>
-                            <li>and <i>ontologies</i> will limit the OLS search to the given ontologies</li>
-                        </ul>
-                    </p>
-                    <p>If 'required:[none]' is specified, Zooma will search the OLS without looking into the datasources. If 'ontologies:[none]' is specified,
-                        Zooma will not search the OLS if the datasource search fails to make any predictions.
-                    </p>
-                    <p>
-                        In the table below you can see the available databases containing curated mappings in Zooma.<br/>
-                        To define the source(s) you want Zooma to search in, use the <i>Database name</i> in the 'required:[]' field.<br/>
-                        e.g. use 'required:[cttv]' to look into OpenTargets.
-                    </p>
-                    <pre>GET /services/annotate?propertyValue=disease&amp;filter=required:[cttv]</pre>
-                    <table>
-                        <tr>
-                            <th>Display name</th>
-                            <th>Database name</th>
-                            <th>Learn more about the database's origin</th>
-                        </tr>
-                        <tr>
-                            <td>OpenTargets</td>
-                            <td>cttv</td>
-                            <td><a href="//www.targetvalidation.org" target="_blank">www.targetvalidation.org</a></td>
-                        </tr>
-                        <tr>
-                            <td>ClinVar</td>
-                            <td>eva-clinvar</td>
-                            <td><a href="//www.ebi.ac.uk/eva" target="_blank">www.ebi.ac.uk/eva</a></td>
-                        </tr>
-                        <tr>
-                            <td>CellularPhenoTypes</td>
-                            <td>sysmicro</td>
-                            <td><a href="//www.ebi.ac.uk/fg/sym" target="_blank">www.ebi.ac.uk/fg/sym</a></td>
-                        </tr>
-                        <tr>
-                            <td>ExpressionAtlas</td>
-                            <td>atlas</td>
-                            <td><a href="//www.ebi.ac.uk/gxa" target="_blank">www.ebi.ac.uk/gxa</a></td>
-                        </tr>
-                        <tr>
-                            <td>EBiSC</td>
-                            <td>ebisc</td>
-                            <td><a href="//cells.ebisc.org/" target="_blank">www.cells.ebisc.org</a></td>
-                        </tr>
-                        <tr>
-                            <td>UniProt</td>
-                            <td>uniprot</td>
-                            <td><a href="//www.ebi.ac.uk/uniprot" target="_blank">www.ebi.ac.uk/uniprot</a></td>
-                        </tr>
-                        <tr>
-                            <td>GWAS</td>
-                            <td>gwas</td>
-                            <td><a href="//www.ebi.ac.uk/gwas/" target="_blank">www.ebi.ac.uk/gwas</a></td>
-                        </tr>
-                        <tr>
-                            <td>CBI</td>
-                            <td>cbi</td>
-                            <td><a href="//www.ebi.ac.uk/biosamples/" target="_blank">www.ebi.ac.uk/biosamples</a></td>
-                        </tr>
-                        <tr>
-                            <td>ClinVarXRefs</td>
-                            <td>clinvar-xrefs</td>
-                            <td><a href="//www.ncbi.nlm.nih.gov/clinvar" target="_blank">www.ncbi.nlm.nih.gov/clinvar</a></td>
-                        </tr>
-                    </table>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary={
+                        <span>
+                          <em>required</em> will limit the search to the given datasources
+                        </span>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary={
+                        <span>
+                          <em>preferred</em> will provide a ranking for those datasources
+                        </span>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary={
+                        <span>
+                          and <em>ontologies</em> will limit the OLS search to the given ontologies
+                        </span>
+                      }
+                    />
+                  </ListItem>
+                </List>
 
-            <p>
-                Predict an ontology annotation for the text value "mus musculus" and type "organism"
-            </p>
-            <pre>GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism</pre>
+                <Typography paragraph>
+                  If &apos;required:[none]&apos; is specified, Zooma will search OLS without looking into the datasources. If
+                  &apos;ontologies:[none]&apos; is specified, Zooma will not search OLS if the datasource search fails to make
+                  any predictions.
+                </Typography>
 
-            <p>
-                Predict an ontology annotation for the text value "mus musculus" and type "organism" using annotations that are present in a defined list of datasources
-            </p>
-            <pre>GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[atlas,gwas]</pre>
+                <Typography paragraph>
+                  In the table below you can see the available databases containing curated mappings in Zooma.
+                  <br />
+                  To define the source(s) you want Zooma to search in, use the <em>Database name</em> in the &apos;required:[]&apos; field.
+                  <br />
+                  e.g. use &apos;required:[cttv]&apos; to look in OpenTargets.
+                </Typography>
 
-            <p>Predict an ontology annotation for the text value "ear inflorescence" using annotations that are present in a defined list of datasources</p>
-            <pre>GET /services/annotate?propertyValue=ear+inflorescence&amp;filter=required:[sysmicro],ontologies:[none]</pre>
-            <p>The 'ontologies:[none]' parameter will restrain Zooma from looking in the OLS if no annotation was found.</p>
+                <CodeBlock>GET /services/annotate?propertyValue=disease&amp;filter=required:[cttv]</CodeBlock>
 
-            <p>
-                Predict an ontology annotation for the text value "lung adenocarcinoma" using annotations
-                that are present in a defined list of datasources, and specify a preference ranking for these
-                datasources.
-            </p>
-            <pre>GET /services/annotate?propertyValue=lung+adenocarcinoma&amp;filter=required:[atlas,gwas],preferred:[gwas]</pre>
-            <p>
-                Here, the 'preferred' parameter allows you to set on order of preferred datasources
-                (going from the datasource you trust the most, to the one you trust less) and this will affect the score.
-            </p>
+                <TableContainer component={Paper} variant="outlined" sx={{ my: 2 }}>
+                  <Table size="small" aria-label="datasources table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Display name</TableCell>
+                        <TableCell>Database name</TableCell>
+                        <TableCell>Learn more</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {[
+                        {
+                          display: "OpenTargets",
+                          db: "cttv",
+                          href: "//www.targetvalidation.org",
+                          text: "www.targetvalidation.org",
+                        },
+                        { display: "ClinVar", db: "eva-clinvar", href: "//www.ebi.ac.uk/eva", text: "www.ebi.ac.uk/eva" },
+                        {
+                          display: "CellularPhenoTypes",
+                          db: "sysmicro",
+                          href: "//www.ebi.ac.uk/fg/sym",
+                          text: "www.ebi.ac.uk/fg/sym",
+                        },
+                        { display: "ExpressionAtlas", db: "atlas", href: "//www.ebi.ac.uk/gxa", text: "www.ebi.ac.uk/gxa" },
+                        { display: "EBiSC", db: "ebisc", href: "//cells.ebisc.org/", text: "www.cells.ebisc.org" },
+                        { display: "UniProt", db: "uniprot", href: "//www.ebi.ac.uk/uniprot", text: "www.ebi.ac.uk/uniprot" },
+                        { display: "GWAS", db: "gwas", href: "//www.ebi.ac.uk/gwas/", text: "www.ebi.ac.uk/gwas" },
+                        { display: "CBI", db: "cbi", href: "//www.ebi.ac.uk/biosamples/", text: "www.ebi.ac.uk/biosamples" },
+                        {
+                          display: "ClinVarXRefs",
+                          db: "clinvar-xrefs",
+                          href: "//www.ncbi.nlm.nih.gov/clinvar",
+                          text: "www.ncbi.nlm.nih.gov/clinvar",
+                        },
+                      ].map((row) => (
+                        <TableRow key={row.db}>
+                          <TableCell>{row.display}</TableCell>
+                          <TableCell>
+                            <Typography
+                              component="code"
+                              sx={{
+                                px: 0.75,
+                                py: 0.25,
+                                border: "1px solid",
+                                borderColor: "divider",
+                                borderRadius: 1,
+                                fontSize: 13,
+                              }}
+                            >
+                              {row.db}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <MUILink href={row.href} target="_blank" rel="noopener" underline="hover">
+                              {row.text}
+                            </MUILink>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
 
-            <p>Predict an ontology annotation for the text value "mus musculus" and type "organism" using annotations that are present in a defined list of ontologies only</p>
-            <pre>GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[none],ontologies:[efo,mirnao]</pre>
+                <Stack spacing={2}>
+                  <Box>
+                    <Typography variant="subtitle1">Property type filter</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Predict an ontology annotation for the text value &quot;mus musculus&quot; and type &quot;organism&quot;.
+                    </Typography>
+                    <CodeBlock>GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism</CodeBlock>
+                  </Box>
 
-            <h3>Resolving Resource URIs</h3>
+                  <Box>
+                    <Typography variant="subtitle1">Datasources filter</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Predict using annotations present in a defined list of datasources.
+                    </Typography>
+                    <CodeBlock>
+                      GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[atlas,gwas]
+                    </CodeBlock>
+                  </Box>
 
-            <p>
-                Each resource in Zooma is given a URI as it's unique identifier.  The Zooma REST API takes compact URIs
-                ("CURIEs") as it's parameters, so in order to lookup a resource you first need to convert a resource's
-                URI to it's shortname.
-            </p>
+                  <Box>
+                    <Typography variant="subtitle1">Limit OLS lookup</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Predict for &quot;ear inflorescence&quot; searching a datasource only and skipping OLS if none found.
+                    </Typography>
+                    <CodeBlock>
+                      GET /services/annotate?propertyValue=ear+inflorescence&amp;filter=required:[sysmicro],ontologies:[none]
+                    </CodeBlock>
+                    <Typography variant="body2" color="text.secondary">
+                      The &apos;ontologies:[none]&apos; parameter restrains Zooma from looking in the OLS if no annotation is found.
+                    </Typography>
+                  </Box>
 
-            <p>
-                Zooma provides an API endpoint to do just this.  If we take an example property from our annotation above,
-                with the URI <span className="uri">http://rdf.ebi.ac.uk/resource/zooma/461CE7ADFDA7E46E0AAEA17AC66AF143</span>,
-                we can collapse this to it's shortform as follows
-            </p>
+                  <Box>
+                    <Typography variant="subtitle1">Preferred ranking</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Prefer GWAS within the required set to influence scoring.
+                    </Typography>
+                    <CodeBlock>
+                      GET /services/annotate?propertyValue=lung+adenocarcinoma&amp;filter=required:[atlas,gwas],preferred:[gwas]
+                    </CodeBlock>
+                    <Typography variant="body2" color="text.secondary">
+                      The &apos;preferred&apos; parameter sets an order of trusted datasources that affects the score.
+                    </Typography>
+                  </Box>
 
-            <h5>Request</h5>
-            <pre>
-POST /services/collapse
-Content-Type: application/json
-&#123;"uri":"http://rdf.ebi.ac.uk/resource/zooma/gxa/90E386B39F0AD3DA5CCBD8AAA6F14907"&#124;
-            </pre>
-            <h5>Response</h5>
-            <pre>
-                {JSON.stringify(examples['3'], null, 2)}
-            </pre>
+                  <Box>
+                    <Typography variant="subtitle1">Ontologies only</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Use only specified ontologies (no datasource lookups).
+                    </Typography>
+                    <CodeBlock>
+                      GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[none],ontologies:[efo,mirnao]
+                    </CodeBlock>
+                  </Box>
+                </Stack>
+              </Section>
 
-            <h3>Retrieving Resources</h3>
+              <Section title="Retrieving Resources" subtitle="How to fetch more information about Zooma resource types">
+                <Box mb={3}>
+                  <Typography variant="h5" gutterBottom>
+                    Property Types
+                  </Typography>
+                  <Typography>Retrieve all property types.</Typography>
+                  <CodeBlock>GET /properties/types?limit=10</CodeBlock>
 
-            <p>
-                You can also use the Zooma API to fetch more information about each of the resource types in Zooma
-                (which you may see in the above example when predicting annotations).  The following section describes
-                how to retrieve more information about the key resource types.
-            </p>
+                  <Typography variant="subtitle2" sx={{ mt: 2 }}>
+                    Request
+                  </Typography>
+                  <CodeBlock>{JSON.stringify(examples["4"], null, 2)}</CodeBlock>
 
-            <h4>Property Types</h4>
+                  <Typography variant="subtitle2">Response</Typography>
+                  <CodeBlock>{JSON.stringify(examples["4"], null, 2)}</CodeBlock>
+                </Box>
+              </Section>
 
-            <p>Retrieve all property types</p>
-            <pre>GET /properties/types?limit=10</pre>
-
-            <h5>Request</h5>
-            <pre>
-                {JSON.stringify(examples['4'], null, 2)}
-            </pre>
-            <h5>Response</h5>
-            <pre>
-                {JSON.stringify(examples['4'], null, 2)}
-            </pre>
-
-            <h4>Properties</h4>
-
-            <p>Retrieve a property given it's shortname</p>
-            <pre>GET /properties/zoomaresource:461CE7ADFDA7E46E0AAEA17AC66AF143</pre>
-
-            <h5>Response</h5>
-            <pre>
-                {JSON.stringify(examples['5'], null, 2)}
-            </pre>
-
-
-            <h4>Annotations</h4>
-
-            <p>
-                The first query shown on this page, allows you to annotate your given property with a semantic tag.
-                However, once you've retrieved an annotation prediction, you might be interested in getting more
-                information about the annotation that prompted Zooma to predict your new mapping.  You can do this by
-                using the "derivedFrom" relation and retrieving the annotation with the given ID.
-            </p>
-
-            <p>
-                In the example above, we saw this:
-            </p>
-<pre>
-...
-derivedFrom: &#123;
-    uri: "http://rdf.ebi.ac.uk/resource/zooma/gxa/90E386B39F0AD3DA5CCBD8AAA6F14907",
-...
-</pre>
-
-            <p>We can shorten this as described in the section above, and then retrieve this annotation</p>
-
-            <pre>GET /annotations/gxaresource:90E386B39F0AD3DA5CCBD8AAA6F14907</pre>
-
-            <h5>Response</h5>
-            <pre>
-                {JSON.stringify(examples['6'], null, 2)}
-            </pre>
-
-
-
-                <h3>Documentation</h3>
-                <ul id="secondary-nav">
-                    <li className="first"><Link to="/docs">Home</Link></li>
-                    <li><Link to="/docs/search">Getting Started</Link></li>
-                    <li><Link to="/docs/api">REST API Documentation</Link></li>
-                    <li className="last active"><Link to="/docs/developers">Developer Documentation</Link></li>
-                </ul>
-                    </Column>
-                </Row>
-            </main>
-    )
+            </Grid>
+          </Grid>
+        </Container>
+      </main>
+    </Fragment>
+  );
 }
+

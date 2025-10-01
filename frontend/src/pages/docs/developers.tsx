@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import React, { Fragment } from "react";
-import { Row } from "react-foundation";
 
 export default function developerDocs() {
     return (

@@ -1,129 +1,286 @@
+import * as React from "react";
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragStartEvent,
+  type DragOverEvent,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  useSortable,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Box, Paper, Typography } from "@mui/material";
+import { JSX } from "react";
 
-
-
-/// Adapted from https://codesandbox.io/s/ql08j35j3q
-/// Source: https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/about/examples.md
-
-
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-const grid = 8;
-
-const getItemStyle = (isDragging:any, draggableStyle:any) => ({
-    // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
-    padding: grid,
-    margin: `0 0 ${grid}px 0`,
-
-    // change background colour if dragging
-    background: isDragging ? '#ccc' : '#ddd',
-
-    // styles we need to apply on draggables
-    ...draggableStyle
-});
-
-const getListStyle = (isDraggingOver:any) => ({
-    background: isDraggingOver ? '#ccffcc' : 'white',
-    padding: grid,
-    width: 190,
-    height: '300px',
-    overflowY: 'scroll' as any,
-    overflowX: 'none' as any
-});
+const LIST_WIDTH = 190;
+const LIST_HEIGHT = 300;
+const GRID = 8;
 
 export interface ListEntry {
-    id:string
-    content:JSX.Element
+  id: string;
+  content: JSX.Element;
 }
 
 export interface List {
-    title:string
-    entries:ListEntry[]
+  title: string;
+  entries: ListEntry[];
 }
 
 interface Props {
-    lists:List[]
-    onChange:(lists:List[])=>void
+  lists: List[];
+  onChange: (lists: List[]) => void;
 }
 
-interface State {
+/** Utilities */
+function deepCloneLists(lists: List[]): List[] {
+  return lists.map((l) => ({ title: l.title, entries: [...l.entries] }));
 }
 
+function findListIndexByItemId(lists: List[], itemId: string): number {
+  return lists.findIndex((l) => l.entries.some((e) => e.id === itemId));
+}
 
-export default class DragAndDropLists extends Component<Props, State> {
+function findItemIndex(l: List, itemId: string): number {
+  return l.entries.findIndex((e) => e.id === itemId);
+}
 
-    onDragEnd = (result:any) => {
-        const { source, destination } = result;
+function getListId(idx: number) {
+  return `list-${idx}`;
+}
 
-        // dropped outside the list
-        if (!destination) {
-            return;
-        }
+function parseListIndex(listId: string) {
+  return Number(listId.split("-")[1]);
+}
 
-        let listsCopy:List[] = this.props.lists.map(l => ({ title: l.title, entries: l.entries.slice(0) }))
+/** Sortable item (a single draggable row) */
+function SortableItem({
+  id,
+  content,
+}: {
+  id: string;
+  content: JSX.Element;
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
 
-        console.log('source ' + source.index + ' dest ' + destination.index)
+  const style: React.CSSProperties = {
+    userSelect: "none",
+    padding: GRID,
+    marginBottom: GRID,
+    background: isDragging ? "#ccc" : "#ddd",
+    transform: CSS.Transform.toString(transform),
+    transition,
+    borderRadius: 6,
+    boxShadow: isDragging ? "0 4px 12px rgba(0,0,0,0.15)" : undefined,
+  };
 
-        let sourceId = parseInt(source.droppableId.split('-')[1])
-        let destId = parseInt(destination.droppableId.split('-')[1])
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      {content}
+    </div>
+  );
+}
 
-        if (sourceId === destId) {
+/** The main component */
+export default function DragAndDropLists({ lists, onChange }: Props) {
+  const [internal, setInternal] = React.useState<List[]>(() => deepCloneLists(lists));
+  const [activeId, setActiveId] = React.useState<string | null>(null);
 
-            let list = listsCopy[sourceId]
-            list.entries.splice(destination.index, 0, list.entries.splice(source.index, 1)[0]);
+  // keep internal in sync when parent updates lists
+  React.useEffect(() => setInternal(deepCloneLists(lists)), [lists]);
 
-        } else {
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
+  );
 
-            let sourceList = listsCopy[sourceId]
-            let destList = listsCopy[destId]
+  const activeItem =
+    activeId &&
+    internal.flatMap((l) => l.entries).find((e) => e.id === activeId) || null;
 
-            destList.entries.splice(destination.index, 0, sourceList.entries.splice(source.index, 1)[0]);
-        }
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(String(event.active.id));
+  };
 
-        this.props.onChange(listsCopy);
-    };
+  // Allow “hover to move” across lists for a nicer cross-column UX.
+  const handleDragOver = (event: DragOverEvent) => {
+    const { active, over } = event;
+    if (!over) return;
 
-    render() {
-        return (
-            <DragDropContext onDragEnd={this.onDragEnd}>
-                {
-                    this.props.lists.map((list, i) => 
-                        <Droppable droppableId={'droppable-' + i}>
-                        {(provided, snapshot) => (
-                            <div style={{display: 'inline-block', verticalAlign: 'top'}}>
-                                <h5>{list.title}</h5>
-                            <div
-                                ref={provided.innerRef}
-                                style={getListStyle(snapshot.isDraggingOver)}>
-                                {list.entries.map((item, index) => {
-                                    return <Draggable
-                                        key={item.id}
-                                        draggableId={item.id}
-                                        index={index}>
-                                        {(provided, snapshot) => (
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                style={getItemStyle(
-                                                    snapshot.isDragging,
-                                                    provided.draggableProps.style
-                                                )}>
-                                                {item.content}
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                })}
-                                {provided.placeholder}
-                            </div>
-                            </div>
-                        )}
-                    </Droppable>
-                    )
-                }
-            </DragDropContext>
-        );
+    const activeItemId = String(active.id);
+    const overId = String(over.id);
+
+    // If hovering a list container, over.id will be the list id (e.g., "list-1").
+    const overIsList = overId.startsWith("list-");
+    if (!overIsList) return;
+
+    const sourceListIdx = findListIndexByItemId(internal, activeItemId);
+    const destListIdx = parseListIndex(overId);
+    if (sourceListIdx === -1 || destListIdx === -1 || sourceListIdx === destListIdx) return;
+
+    setInternal((prev) => {
+      const next = deepCloneLists(prev);
+      const src = next[sourceListIdx];
+      const dst = next[destListIdx];
+      const fromIdx = findItemIndex(src, activeItemId);
+      if (fromIdx === -1) return prev;
+
+      // Move into destination list end while hovering its container
+      const [moved] = src.entries.splice(fromIdx, 1);
+      dst.entries.splice(dst.entries.length, 0, moved);
+      return next;
+    });
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    setActiveId(null);
+    if (!over) {
+      // dropped outside everything → revert internal to props
+      setInternal(deepCloneLists(lists));
+      return;
     }
+
+    const activeItemId = String(active.id);
+    const overId = String(over.id);
+
+    const sourceListIdx = findListIndexByItemId(internal, activeItemId);
+
+    // If dropped over an item, we'll sort within that item's list; if dropped over a list, append to end.
+    let destListIdx: number;
+    let destIndex: number;
+
+    if (overId.startsWith("list-")) {
+      destListIdx = parseListIndex(overId);
+      destIndex = internal[destListIdx].entries.length; // append to end
+    } else {
+      destListIdx = findListIndexByItemId(internal, overId);
+      const overItemIdx = findItemIndex(internal[destListIdx], overId);
+      destIndex = overItemIdx === -1 ? internal[destListIdx].entries.length : overItemIdx;
+    }
+
+    if (sourceListIdx === -1 || destListIdx === -1) {
+      setInternal(deepCloneLists(lists));
+      return;
+    }
+
+    setInternal((prev) => {
+      const next = deepCloneLists(prev);
+      const sourceList = next[sourceListIdx];
+      const destList = next[destListIdx];
+
+      const fromIdx = findItemIndex(sourceList, activeItemId);
+      if (fromIdx === -1) return prev;
+
+      const [moved] = sourceList.entries.splice(fromIdx, 1);
+
+      if (sourceListIdx === destListIdx) {
+        // Reorder inside same list
+        destList.entries = arrayMove(destList.entries, fromIdx, destIndex);
+      } else {
+        // Insert into another list at computed index
+        destList.entries.splice(destIndex, 0, moved);
+      }
+
+      // Emit up
+      onChange(next);
+      return next;
+    });
+  };
+
+  return (
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
+      <Box sx={{ display: "flex", gap: 2 }}>
+        {internal.map((list, i) => {
+          const listId = getListId(i);
+          return (
+            <Paper
+              key={listId}
+              variant="outlined"
+              sx={{
+                width: LIST_WIDTH,
+                p: 1,
+                display: "inline-block",
+                verticalAlign: "top",
+                borderRadius: 2,
+              }}
+            >
+              <Typography variant="subtitle1" sx={{ px: 1, pt: 1, pb: 0.5 }}>
+                {list.title}
+              </Typography>
+
+              {/* Sortable context: provide the list's item ids */}
+              <Box
+                id={listId}
+                sx={{
+                  background: "white",
+                  p: 1,
+                  height: LIST_HEIGHT,
+                  overflowY: "auto",
+                  outline: "2px solid transparent",
+                  "&:hover": { outlineColor: "#ccffcc" },
+                  borderRadius: 2,
+                }}
+              >
+                <SortableContext
+                  items={list.entries.map((e) => e.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {/* Make the whole list droppable by giving the container an id (handled via DndContext) */}
+                  <DroppableListBoundary id={listId} />
+                  {list.entries.map((item) => (
+                    <SortableItem key={item.id} id={item.id} content={item.content} />
+                  ))}
+                </SortableContext>
+              </Box>
+            </Paper>
+          );
+        })}
+      </Box>
+
+      {/* Nice drag preview */}
+      <DragOverlay>
+        {activeItem ? (
+          <div
+            style={{
+              padding: GRID,
+              background: "#ccc",
+              borderRadius: 6,
+              boxShadow: "0 6px 18px rgba(0,0,0,0.2)",
+              width: LIST_WIDTH - GRID * 2,
+            }}
+          >
+            {activeItem.content}
+          </div>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
+  );
+}
+
+/**
+ * Minimal invisible droppable “boundary” so hovering a list
+ * is recognized as a distinct drop target (id = list-x).
+ */
+function DroppableListBoundary({ id }: { id: string }) {
+  // useSortable also works for containers (it registers a drop target with this id)
+  const { setNodeRef } = useSortable({ id });
+  return <div ref={setNodeRef} style={{ position: "absolute", inset: 0, pointerEvents: "none" }} />;
 }

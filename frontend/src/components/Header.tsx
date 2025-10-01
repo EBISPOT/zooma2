@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import urlJoin from "url-join";
 import { Helmet } from 'react-helmet';
+import React from "react";
 
 export default function Header({ section }: { section?: string }) {
 
@@ -16,15 +17,15 @@ export default function Header({ section }: { section?: string }) {
     >
         <Helmet>
           <meta charSet="utf-8" />
-          <title>{caps(section || 'Not Found')} - Ontology Lookup Service</title>
+          <title>{caps(section || 'Not Found')} - ZOOMA</title>
         </Helmet>
-      <div className="container mx-auto px-4 flex flex-col md:flex-row md:gap-10">
+      <div className="container px-4 ml-4 flex flex-col md:flex-row md:gap-10">
         <div className="py-6 self-center">
           <a href={urlJoin(process.env.PUBLIC_URL!, "/")}>
             <img
-              alt="OLS logo"
+              alt="ZOOMA logo"
               className="h-24 inline-block"
-              src={urlJoin(process.env.PUBLIC_URL!, "/logo.svg")}
+              src={urlJoin(process.env.PUBLIC_URL!, "/images/zooma_logo_new.png")}
             />
           </a>
         </div>
@@ -47,19 +48,7 @@ export default function Header({ section }: { section?: string }) {
                 Home
               </li>
             </Link>
-            <Link to="/ontologies">
-              <li
-                role="menuitem"
-                className={`px-4 py-3 ${
-                  section === "ontologies"
-                    ? " bg-opacity-75 bg-neutral-500"
-                    : "hover:bg-opacity-50 hover:bg-neutral-500 "
-                }`}
-              >
-                Ontologies
-              </li>
-            </Link>
-            <Link to={`/api-docs`}>
+            <Link to={`/docs`}>
               <li
                 role="menuitem"
                 className={`px-4 py-3  ${
@@ -69,18 +58,6 @@ export default function Header({ section }: { section?: string }) {
                 }`}
               >
                 API Docs
-              </li>
-            </Link>
-            <Link to={`/mcp`}>
-              <li
-                role="menuitem"
-                className={`px-4 py-3  ${
-                  section === "mcp"
-                    ? " bg-opacity-75 bg-neutral-500"
-                    : "hover:bg-opacity-50 hover:bg-neutral-500"
-                }`}
-              >
-                MCP Server
               </li>
             </Link>
             <Link to={`/about`}>
@@ -93,18 +70,6 @@ export default function Header({ section }: { section?: string }) {
                 }`}
               >
                 About
-              </li>
-            </Link>
-            <Link to={`/downloads`}>
-              <li
-                role="menuitem"
-                className={`rounded-r-md px-4 py-3 ${
-                  section === "downloads"
-                    ? " bg-opacity-75 bg-neutral-500"
-                    : "hover:bg-opacity-50 hover:bg-neutral-500"
-                }`}
-              >
-                Downloads
               </li>
             </Link>
           </ul>
