@@ -6,6 +6,8 @@ import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.http.NotFoundResponse;
 import io.javalin.plugin.bundled.CorsPluginConfig;
+import uk.ac.ebi.zooma2.embedding.EmbeddingCache;
+import uk.ac.ebi.zooma2.embedding.EmbeddingService;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
@@ -25,12 +27,38 @@ public class Zooma2App {
 
     public static void main(String[] args) {
 
-        var mappingTablesRepo = new MappingTablesRepo();
+        // Initialize embedding components if configured
+        EmbeddingService embeddingService = null;
+        EmbeddingCache embeddingCache = null;
+        
+        if (Zooma2Config.config.embedding != null) {
+            try {
+                // Initialize SQLite embedding cache
+                String dbPath = Zooma2Config.config.embedding.database_path != null ? 
+                               Zooma2Config.config.embedding.database_path : "embeddings.db";
+                embeddingCache = EmbeddingCache.createSqliteCache(dbPath);
+                System.err.println("Using SQLite for embedding cache: " + dbPath);
+                
+                // Initialize embedding service (auto-discovers all loaded models)
+                int batchSize = Zooma2Config.config.embedding.batch_size != null ? 
+                               Zooma2Config.config.embedding.batch_size : 50;
+                embeddingService = new EmbeddingService(embeddingCache, batchSize);
+                System.err.println("Embedding service initialized");
+            } catch (Exception e) {
+                System.err.println("Warning: Failed to initialize embedding service: " + e.getMessage());
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("Embedding configuration not found, vector search disabled");
+        }
+
+        var mappingTablesRepo = new MappingTablesRepo(embeddingService);
         var olsRepo = new OlsClientRepo();
 
         var annotator = new Zooma2Annotator(
             mappingTablesRepo,
-            olsRepo
+            olsRepo,
+            embeddingService
         );
 
         var app = Javalin.create(config -> {

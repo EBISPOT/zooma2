@@ -2,6 +2,7 @@ package uk.ac.ebi.zooma2.repo;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -152,6 +153,82 @@ public class OlsClientRepo {
                 return false;
             })
             .toList();
+    }
+
+    /**
+     * Find OLS terms by embedding vector using the LLM embedding search endpoint.
+     * @param embedding The embedding vector to search with
+     * @param ontologyIds Optional list of ontology IDs to filter by
+     * @param topK Number of results to return (default 10)
+     * @return Collection of matching OLS terms
+     */
+    public Collection<OlsTerm> findByEmbedding(float[] embedding, Collection<String> ontologyIds, int topK) {
+        
+        try {
+            // Convert float[] to List for JSON serialization
+            List<Float> embeddingList = new ArrayList<>(embedding.length);
+            for (float f : embedding) {
+                embeddingList.add(f);
+            }
+            
+            // Build the request body with the embedding vector
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("vector", embeddingList);
+            if (topK > 0) {
+                requestBody.put("limit", topK);
+            }
+            if (ontologyIds != null && !ontologyIds.isEmpty()) {
+                requestBody.put("ontologies", ontologyIds);
+            }
+
+            String jsonBody = gson.toJson(requestBody);
+            
+            // Make POST request to OLS
+            var json = postJsonToUrl(OLS_URL + "/api/v2/classes/llm_embedding", jsonBody);
+            
+            if (json == null || !json.getAsJsonObject().has("_embedded")) {
+                System.err.println("No terms found in OLS by embedding");
+                return List.of();
+            }
+
+            var classes = json.getAsJsonObject().get("_embedded").getAsJsonObject().get("classes");
+            if (classes == null || !classes.isJsonArray() || classes.getAsJsonArray().size() == 0) {
+                System.err.println("No terms found in OLS by embedding");
+                return List.of();
+            }
+
+            System.err.println("Found " + classes.getAsJsonArray().size() + " terms in OLS by embedding");
+
+            List<OlsTerm> res = gson.fromJson(classes, new TypeToken<List<OlsTerm>>(){}.getType());
+            return res;
+
+        } catch (IOException e) {
+            System.err.println("Error searching OLS by embedding: " + e.getMessage());
+            e.printStackTrace();
+            return List.of();
+        }
+    }
+
+    private JsonElement postJsonToUrl(String url, String jsonBody) throws IOException {
+
+        RequestConfig config = RequestConfig.custom()
+                .setConnectTimeout(5000)
+                .setConnectionRequestTimeout(5000)
+                .setSocketTimeout(5000).build();
+
+        CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+
+        org.apache.http.client.methods.HttpPost request = new org.apache.http.client.methods.HttpPost(url);
+        request.setHeader("Content-Type", "application/json");
+        request.setEntity(new org.apache.http.entity.StringEntity(jsonBody));
+        
+        HttpResponse response = client.execute(request);
+        HttpEntity entity = response.getEntity();
+        if (entity != null) {
+            return new JsonParser().parse(new InputStreamReader(entity.getContent()));
+        } else {
+            throw new RuntimeException("OLS response was null");
+        }
     }
 
     private JsonElement urlToJson(String url) throws IOException {

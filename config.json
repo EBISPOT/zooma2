@@ -1,4 +1,8 @@
 {
+    "embedding": {
+        "batch_size": 1000,
+        "database_path": "embeddings.db"
+    },
     "datasources": {
         "sysmicro": {
             "uri": "https://www.ebi.ac.uk/fg/sym",

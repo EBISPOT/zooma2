@@ -13,6 +13,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import uk.ac.ebi.zooma2.embedding.EmbeddingService;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
@@ -27,6 +28,7 @@ public class Zooma2Annotator {
 
     MappingTablesRepo mappingTablesRepo;
     OlsClientRepo olsRepo;
+    EmbeddingService embeddingService;
     PrefixMap prefixMap = new PrefixMap();
 
     public Zooma2Annotator(
@@ -35,6 +37,17 @@ public class Zooma2Annotator {
     ) {
         this.mappingTablesRepo = mappingTablesRepo;
         this.olsRepo = olsRepo;
+        this.embeddingService = null;
+    }
+
+    public Zooma2Annotator(
+        MappingTablesRepo mappingTablesRepo,
+        OlsClientRepo olsRepo,
+        EmbeddingService embeddingService
+    ) {
+        this.mappingTablesRepo = mappingTablesRepo;
+        this.olsRepo = olsRepo;
+        this.embeddingService = embeddingService;
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {
@@ -156,7 +169,30 @@ public class Zooma2Annotator {
 
     private Stream<OlsTerm> getMatchingTermsFromOls(String stringToMap, String type, Filter sources) {
         if(sources == null || !isNone(sources.ontologies)) {
-            return olsRepo.findByLabelAndOntologies(stringToMap, sources.ontologies).stream();
+            // Try exact label match first
+            var exactMatches = olsRepo.findByLabelAndOntologies(stringToMap, sources.ontologies);
+            
+            if (!exactMatches.isEmpty()) {
+                return exactMatches.stream();
+            }
+            
+            // Fallback to vector search if enabled and no exact matches
+            if (embeddingService != null) {
+                System.err.println("No exact OLS matches for '" + stringToMap + "', trying vector search...");
+                try {
+                    float[] queryEmbedding = embeddingService.getEmbedding(stringToMap, "user_search");
+                    if (queryEmbedding != null) {
+                        var vectorMatches = olsRepo.findByEmbedding(queryEmbedding, sources.ontologies, 10);
+                        System.err.println("Vector search found " + vectorMatches.size() + " OLS matches");
+                        return vectorMatches.stream();
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error during OLS vector search: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+            
+            return exactMatches.stream();
         } else {
             return Stream.<OlsTerm>empty();
         }

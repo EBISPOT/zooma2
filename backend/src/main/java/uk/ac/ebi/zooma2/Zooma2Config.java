@@ -29,10 +29,16 @@ public class Zooma2Config {
 
     public Map<String, Datasource> datasources;
     public Map<String, String> prefix_map;
+    public EmbeddingConfig embedding;
 
     public static class Datasource {
         public String uri;
         public String import_url;
         public Map<String,String> column_map;
+    }
+
+    public static class EmbeddingConfig {
+        public Integer batch_size; // Optional: embeddings per request (default: 50)
+        public String database_path; // Path to SQLite database
     }
 }
