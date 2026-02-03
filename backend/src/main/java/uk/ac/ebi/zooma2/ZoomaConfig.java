@@ -8,16 +8,16 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-public class Zooma2Config {
+public class ZoomaConfig {
 
     public static final String CONFIG_PATH = System.getenv().getOrDefault("ZOOMA2_CONFIG_PATH", "config.json");
 
-    public static final Zooma2Config config = loadConfig();
+    public static final ZoomaConfig config = loadConfig();
 
-    static Zooma2Config loadConfig() {
+    static ZoomaConfig loadConfig() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(CONFIG_PATH)) {
-            return gson.fromJson(reader, Zooma2Config.class);
+            return gson.fromJson(reader, ZoomaConfig.class);
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Config file not found: " + CONFIG_PATH, e);
         } catch (JsonSyntaxException e) {
@@ -40,5 +40,6 @@ public class Zooma2Config {
     public static class EmbeddingConfig {
         public Integer batch_size; // Optional: embeddings per request (default: 50)
         public String database_path; // Path to SQLite database
+        public List<String> models; // Optional: list of model names to use (default: all loaded models)
     }
 }

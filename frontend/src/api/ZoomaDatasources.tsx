@@ -11,7 +11,7 @@ if(apiUrl?.endsWith('/')) {
 
 export async function getDatasources():Promise<ZoomaDatasources> {
 
-    let res = await fetch(apiUrl + '/v2/api/sources', {
+    let res = await fetch(apiUrl + '/v3/api/sources', {
         method: 'GET',
         headers: {
             'accept': 'application/json'

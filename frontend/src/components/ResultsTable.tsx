@@ -15,8 +15,14 @@ import {
     Checkbox,
     FormControlLabel,
     Typography,
-    Box
+    Box,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    IconButton,
+    Link
 } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 interface ResultsTableProps {
@@ -36,7 +42,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, datasources }) => 
                     <Checkbox
                         checked={hideUnmapped}
                         onChange={() => setHideUnmapped(!hideUnmapped)}
-                        color="primary"
+                        color="success"
                     />
                 }
                 label="Hide results that did not map"
@@ -63,6 +69,9 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, datasources }) => 
                             <TableCell className="context-help">
                                 <span className="context-help-label clickable" data-icon="?">Source</span>
                             </TableCell>
+                            <TableCell className="context-help">
+                                <span className="context-help-label clickable" data-icon="?">How Mapped</span>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -77,7 +86,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, datasources }) => 
                                     <TableCell>{result.mappingConfidence}</TableCell>
                                     <TableCell>{result.ontologyTermID}</TableCell>
                                     <TableCell><Datasource datasources={datasources} uri={result.datasource} /></TableCell>
-                                    {/* <TableCell>{result.ontologyIRI}</TableCell> */}
+                                    <TableCell><MappingProvenance provenance={result.mappingProvenance} /></TableCell>
                                 </TableRow>
                             ))}
                     </TableBody>
@@ -142,6 +151,128 @@ function getResultClass(result: any) {
             Low: 'curation',
         } as Record<string, string>
     )[result.mappingConfidence] || 'unmapped';
+}
+
+
+function MappingProvenance({ provenance }: { provenance?: ZoomaApi.MappingProvenanceStep[] }) {
+    const [open, setOpen] = useState(false);
+
+    if (!provenance || provenance.length === 0) {
+        return <span>-</span>;
+    }
+
+    // Get unique methods for concise display
+    const methods = [...new Set(provenance.map(step => {
+        switch (step.method) {
+            case 'semantic': return 'Semantic';
+            case 'lexical': return 'Lexical';
+            case 'curated': return 'Curated';
+            case 'cross_reference': return 'Cross-ref';
+            default: return step.method;
+        }
+    }))];
+
+    const summary = methods.join(', ');
+
+    const formatMatchType = (step: ZoomaApi.MappingProvenanceStep) => {
+        if (step.method === 'semantic') {
+            return step.similarity ? `${(step.similarity * 100).toFixed(0)}% similar` : 'embedding';
+        }
+        if (step.matchType === 'exact_label') return 'exact label';
+        if (step.matchType === 'synonym') return 'synonym';
+        if (step.matchType === 'database_mapping') return 'database';
+        if (step.matchType === 'OXO_MAPPING') {
+            const confidence = step.confidence ? `${(step.confidence * 100).toFixed(0)}%` : '';
+            return confidence ? `OXO (${confidence})` : 'OXO';
+        }
+        if (step.matchType === 'OLS_LLM_SIMILAR') {
+            const confidence = step.confidence ? `${(step.confidence * 100).toFixed(0)}%` : '';
+            return confidence ? `LLM similar (${confidence})` : 'LLM similar';
+        }
+        if (step.matchType === 'OBSOLETE_REPLACEMENT') return 'obsolete → replacement';
+        return step.matchType || '-';
+    };
+
+    return (
+        <>
+            <Link
+                component="button"
+                variant="body2"
+                onClick={() => setOpen(true)}
+                sx={{ cursor: 'pointer' }}
+            >
+                {summary}
+            </Link>
+            <Dialog 
+                open={open} 
+                onClose={() => setOpen(false)}
+                maxWidth="md"
+                fullWidth
+            >
+                <DialogTitle sx={{ m: 0, p: 2 }}>
+                    Mapping Provenance
+                    <IconButton
+                        aria-label="close"
+                        onClick={() => setOpen(false)}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
+                </DialogTitle>
+                <DialogContent dividers>
+                    <TableContainer>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><strong>Step</strong></TableCell>
+                                    <TableCell><strong>Method</strong></TableCell>
+                                    <TableCell><strong>Match Type</strong></TableCell>
+                                    <TableCell><strong>Input</strong></TableCell>
+                                    <TableCell><strong>Matched Text</strong></TableCell>
+                                    <TableCell><strong>Target</strong></TableCell>
+                                    <TableCell><strong>Source</strong></TableCell>
+                                    <TableCell><strong>Model</strong></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {provenance.map((step, idx) => (
+                                    <TableRow key={idx}>
+                                        <TableCell>{idx + 1}</TableCell>
+                                        <TableCell>
+                                            {step.method === 'semantic' && '🔍 '}
+                                            {step.method === 'lexical' && '📝 '}
+                                            {step.method === 'curated' && '📚 '}
+                                            {step.method === 'cross_reference' && '🔗 '}
+                                            {step.method}
+                                        </TableCell>
+                                        <TableCell>{formatMatchType(step)}</TableCell>
+                                        <TableCell>{step.input}</TableCell>
+                                        <TableCell>
+                                            {step.matchedText && step.matchedText !== step.input 
+                                                ? step.matchedText 
+                                                : <span style={{ color: '#999' }}>—</span>}
+                                        </TableCell>
+                                        <TableCell sx={{ fontFamily: 'monospace', fontSize: '0.85em' }}>
+                                            {step.target}
+                                        </TableCell>
+                                        <TableCell>{step.source || '-'}</TableCell>
+                                        <TableCell sx={{ fontSize: '0.85em' }}>
+                                            {step.model || '-'}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </DialogContent>
+            </Dialog>
+        </>
+    );
 }
 
 

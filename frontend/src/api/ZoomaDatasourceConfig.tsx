@@ -11,4 +11,9 @@ export interface ZoomaDatasourceConfig {
     doNotSearchOntologies:boolean
     ontologySources:string[]
 
+    // New: preferred ontologies for LLM semantic search
+    preferredOntologies:string[]
+    useLlmSearch:boolean
+    llmModel:string
+
 }

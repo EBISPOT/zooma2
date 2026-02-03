@@ -1,23 +1,12 @@
-
-package uk.ac.ebi.zooma2.model;
+package uk.ac.ebi.zooma2.api.v3.dto;
 
 import java.util.List;
 
-import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
-
-public class Annotation {
+public class V3AnnotationDto {
     public AnnotatedProperty annotatedProperty;
     public List<String> semanticTags;
     public String confidence; 
     public Provenance provenance;
-    public List<V3MappingProvenanceStepDto> mappingProvenance;
-    
-    /** 
-     * Reference to the source annotation that this annotation was derived from.
-     * Used for provenance chain composition when matchers are chained.
-     * This field is transient and not serialized.
-     */
-    public transient Annotation sourceAnnotation;
 
     public static class AnnotatedProperty {
         public String uri;

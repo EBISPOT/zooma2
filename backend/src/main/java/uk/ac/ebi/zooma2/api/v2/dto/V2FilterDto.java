@@ -1,4 +1,4 @@
-package uk.ac.ebi.zooma2.model;
+package uk.ac.ebi.zooma2.api.v2.dto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,32 +11,20 @@ import java.util.regex.Pattern;
 import io.javalin.http.BadRequestResponse;
 
 // Filter parser for e.g. required:[atlas,gwas],preferred:[gwas],ontologies:[none]
-public class Filter {
+public class V2FilterDto {
     public final List<String> required;
     public final List<String> preferred;
     public final List<String> ontologies;
 
-    private Filter(List<String> required, List<String> preferred, List<String> ontologies) {
+    private V2FilterDto(List<String> required, List<String> preferred, List<String> ontologies) {
         this.required = required;
         this.preferred = preferred;
         this.ontologies = ontologies;
     }
 
-    /**
-     * Factory method to create a Filter from lists.
-     * Used by API layers to convert from DTOs to internal Filter.
-     */
-    public static Filter fromLists(List<String> required, List<String> preferred, List<String> ontologies) {
-        return new Filter(
-            required != null ? required : new ArrayList<>(),
-            preferred != null ? preferred : new ArrayList<>(),
-            ontologies != null ? ontologies : new ArrayList<>()
-        );
-    }
-
     private static final Pattern PART = Pattern.compile("\\s*([a-zA-Z]+)\\s*:\\s*\\[(.*?)\\]\\s*");
 
-    public static Filter parse(String raw) {
+    public static V2FilterDto parse(String raw) {
         List<String> required = new ArrayList<>();
         List<String> preferred = new ArrayList<>();
         List<String> ontologies = new ArrayList<>();
@@ -66,7 +54,7 @@ public class Filter {
             }
         }
 
-        return new Filter(required, preferred, ontologies);
+        return new V2FilterDto(required, preferred, ontologies);
     }
 
     private static List<String> smartSplit(String s) {
@@ -94,5 +82,12 @@ public class Filter {
             "preferred", preferred,
             "ontologies", ontologies
         );
+    }
+
+    /**
+     * Convert this DTO to the internal Filter model.
+     */
+    public uk.ac.ebi.zooma2.model.Filter toFilter() {
+        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies);
     }
 }

@@ -16,7 +16,7 @@ import java.util.zip.GZIPInputStream;
 
 import com.google.gson.Gson;
 
-import uk.ac.ebi.zooma2.Zooma2Config;
+import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.embedding.EmbeddingService;
 import uk.ac.ebi.zooma2.embedding.VectorSearchIndex;
 
@@ -49,7 +49,7 @@ public class MappingTablesRepo {
 
     public void loadTables(String path) {
 
-        for (var dsEntry : Zooma2Config.config.datasources.entrySet()) {
+        for (var dsEntry : ZoomaConfig.config.datasources.entrySet()) {
 
             var databaseId = dsEntry.getKey();
             var dsConfig = dsEntry.getValue();
@@ -153,50 +153,90 @@ public class MappingTablesRepo {
         return allTypes;
     }
 
-    public Stream<MappingTableEntry> allMappingsForString(String stringToMap) {
+    /**
+     * Get all distinct semantic tags (IRIs) from curated mapping tables.
+     */
+    public Set<String> getAllSemanticTags() {
+        Set<String> tags = new HashSet<>();
+        for (MappingTable table : tables.values()) {
+            table.streamEntries().forEach(entry -> {
+                if (entry.semanticTag != null && !entry.semanticTag.isEmpty()) {
+                    tags.add(entry.semanticTag);
+                }
+            });
+        }
+        return tags;
+    }
 
-        // Try exact match first (existing behavior)
+    public Stream<MappingTableEntry> allMappingsForString(String stringToMap) {
+        // Return both exact and embedding matches
+        var exact = exactMappingsForString(stringToMap).toList();
+        var embedding = embeddingMappingsForString(stringToMap).toList();
+        
+        List<MappingTableEntry> all = new ArrayList<>(exact);
+        all.addAll(embedding);
+        return all.stream();
+    }
+
+    /**
+     * Get exact matches only from curated mapping tables.
+     */
+    public Stream<MappingTableEntry> exactMappingsForString(String stringToMap) {
         var exactMatches = tables.values().stream()
             .flatMap(t -> t.streamEntriesForString(stringToMap))
             .toList();
 
-        if (!exactMatches.isEmpty()) {
-            System.err.println("Mapped string '" + stringToMap + "' to " + exactMatches.size() + " exact matches");
-            return exactMatches.stream();
-        }
+        System.err.println("Curated exact matches for '" + stringToMap + "': " + exactMatches.size());
+        return exactMatches.stream();
+    }
 
-        // Fallback to vector search if no exact matches
-        if (embeddingService != null && vectorIndex != null) {
-            System.err.println("No exact matches for '" + stringToMap + "', trying vector search...");
+    /**
+     * Get embedding-based matches only from local vector index.
+     */
+    public Stream<MappingTableEntry> embeddingMappingsForString(String stringToMap) {
+        if (embeddingService == null || vectorIndex == null) {
+            System.err.println("Local vector search disabled (embeddingService=" + (embeddingService != null) + 
+                ", vectorIndex=" + (vectorIndex != null) + ")");
+            return Stream.empty();
+        }
+        
+        try {
+            System.err.println("Running local vector search for '" + stringToMap + "'...");
             
-            try {
-                // Get embedding for search query
-                float[] queryEmbedding = embeddingService.getEmbedding(stringToMap, "user_search");
-                
-                if (queryEmbedding != null) {
-                    // Search for similar vectors
-                    var searchResults = vectorIndex.search(queryEmbedding, 10, "mapping_table");
-                    
-                    System.err.println("Vector search found " + searchResults.size() + " similar values");
-                    
-                    // Get mapping table entries for the similar values
-                    var similarMatches = searchResults.stream()
-                        .flatMap(result -> tables.values().stream()
-                            .flatMap(t -> t.streamEntriesForString(result.text)))
-                        .toList();
-                    
-                    System.err.println("Mapped string '" + stringToMap + "' to " + similarMatches.size() + 
-                                     " matches via vector search");
-                    return similarMatches.stream();
-                }
-            } catch (Exception e) {
-                System.err.println("Error during vector search: " + e.getMessage());
-                e.printStackTrace();
+            // Get embedding for search query
+            float[] queryEmbedding = embeddingService.getEmbedding(stringToMap, "user_search");
+            
+            if (queryEmbedding == null) {
+                System.err.println("Failed to get embedding for query");
+                return Stream.empty();
             }
+            
+            // Search for similar vectors
+            var searchResults = vectorIndex.search(queryEmbedding, 10, "mapping_table").stream()
+                .filter(r -> r.score >= 0.7f)
+                .toList();
+            
+            System.err.println("Local vector search found " + searchResults.size() + " similar property values (min similarity 0.7)");
+            
+            // Get mapping table entries for the similar values
+            var similarMatches = searchResults.stream()
+                .flatMap(result -> tables.values().stream()
+                    .flatMap(t -> t.streamEntriesForString(result.text))
+                    .peek(entry -> {
+                        entry.fromEmbeddingSearch = true;
+                        entry.originalSearchTerm = stringToMap;
+                        entry.similarityScore = (double) result.score;
+                    }))
+                .toList();
+            
+            System.err.println("Curated semantic matches for '" + stringToMap + "': " + similarMatches.size());
+            return similarMatches.stream();
+            
+        } catch (Exception e) {
+            System.err.println("Error during local vector search: " + e.getMessage());
+            e.printStackTrace();
+            return Stream.empty();
         }
-
-        System.err.println("No mappings found for string '" + stringToMap + "'");
-        return Stream.empty();
     }
 
     public void close() {
@@ -207,5 +247,22 @@ public class MappingTablesRepo {
                 System.err.println("Error closing vector index: " + e.getMessage());
             }
         }
+    }
+
+    public boolean isVectorIndexEnabled() {
+        return vectorIndex != null && embeddingService != null;
+    }
+
+    public int getVectorIndexSize() {
+        if (vectorIndex == null) return 0;
+        try {
+            return vectorIndex.getDocumentCount();
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
+    public int getTotalMappingEntries() {
+        return tables.values().stream().mapToInt(t -> t.getNumMappings()).sum();
     }
 }

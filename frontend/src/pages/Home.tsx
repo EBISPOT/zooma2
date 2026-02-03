@@ -1,245 +1,362 @@
-
 import { Fragment, ChangeEvent, useEffect, useState } from "react";
 import ResultsTable from "../components/ResultsTable";
 import * as ZoomaApi from '../api/ZoomaApi';
 import { getDatasources, ZoomaDatasources } from "../api/ZoomaDatasources";
-import { runInThisContext } from "vm";
-import DatasourcesModal from "../components/Datasources";
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig";
 import * as React from 'react';
 import Datasources from "../components/Datasources";
+import PreferredOntologies from "../components/PreferredOntologies";
 import FileSaver from 'file-saver';
 import Header from "../components/Header";
-import { Grid, Button, Box, Typography } from '@mui/material';
+import { 
+  Button, Box, Typography, 
+  Accordion, AccordionSummary, AccordionDetails,
+  CircularProgress, Chip, IconButton, Tooltip
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import DownloadIcon from '@mui/icons-material/Download';
 
-export default function Home(props) {
+export default function Home() {
 
   const [datasources, setDatasources] = useState<ZoomaDatasources | undefined>(undefined)
   const [datasourceConfig, setDatasourceConfig] = useState<ZoomaDatasourceConfig | undefined>(undefined)
   const [query, setQuery] = useState<string>('')
   const [searching, setSearching] = useState<boolean>(false)
-  const [progress, setProgress] = useState<number>(0)
   const [results, setResults] = useState<ZoomaApi.SearchResult[]>([])
-  const [tsv, setTsv] = useState<string>('')
-  const [showDatasourceModal, setShowDatasourceModal] = useState<boolean>(false)
 
   useEffect(() => {
     loadDatasources()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (datasourceConfig) {
+      localStorage.setItem('zooma2_datasourceConfig', JSON.stringify(datasourceConfig))
+    }
+  }, [datasourceConfig])
 
   async function loadDatasources() {
     let datasources = await getDatasources()
 
-    let datasourceConfig: ZoomaDatasourceConfig = {
-      doNotSearchDatasources: false,
-
-      excludedDatasources: [],
-      unrankedDatasources: datasources.datasourceNames,
-      rankedDatasources: [],
-
-      doNotSearchOntologies: false,
-      ontologySources: []
+    const savedConfig = localStorage.getItem('zooma2_datasourceConfig')
+    let datasourceConfig: ZoomaDatasourceConfig
+    
+    if (savedConfig) {
+      try {
+        datasourceConfig = JSON.parse(savedConfig)
+        datasourceConfig.unrankedDatasources = datasourceConfig.unrankedDatasources.filter(
+          ds => datasources.datasourceNames.includes(ds)
+        )
+        datasourceConfig.rankedDatasources = datasourceConfig.rankedDatasources.filter(
+          ds => datasources.datasourceNames.includes(ds)
+        )
+        datasourceConfig.excludedDatasources = datasourceConfig.excludedDatasources.filter(
+          ds => datasources.datasourceNames.includes(ds)
+        )
+        const allSaved = [...datasourceConfig.unrankedDatasources, ...datasourceConfig.rankedDatasources, ...datasourceConfig.excludedDatasources]
+        const newDatasources = datasources.datasourceNames.filter(ds => !allSaved.includes(ds))
+        datasourceConfig.unrankedDatasources = [...datasourceConfig.unrankedDatasources, ...newDatasources]
+      } catch (e) {
+        datasourceConfig = getDefaultConfig(datasources)
+      }
+    } else {
+      datasourceConfig = getDefaultConfig(datasources)
     }
 
     setDatasources(datasources)
     setDatasourceConfig(datasourceConfig)
   }
 
-  const onEditQuery = (e: ChangeEvent) => {
-    let newValue = (e.target as any).value
-    setQuery(newValue)
+  function getDefaultConfig(datasources: ZoomaDatasources): ZoomaDatasourceConfig {
+    return {
+      doNotSearchDatasources: false,
+      excludedDatasources: [],
+      unrankedDatasources: datasources.datasourceNames,
+      rankedDatasources: [],
+      doNotSearchOntologies: false,
+      ontologySources: [],
+      preferredOntologies: [],
+      useLlmSearch: true,
+      llmModel: 'text-embedding-3-small'
+    }
   }
 
-  const onClickAnnotate = async () => {
+  const onEditQuery = (e: ChangeEvent) => {
+    setQuery((e.target as any).value)
+  }
 
+  const getQueryCount = () => query.split('\n').filter(line => line.trim()).length
+
+  const onClickAnnotate = async () => {
     let properties = query
       .split('\n')
+      .filter(line => line.trim())
       .map(line => line.split('\t'))
       .map(tokens => ({ propertyValue: tokens[0], propertyType: tokens[1] }))
 
-    let requiredSources = [...(datasourceConfig!.unrankedDatasources), ...(datasourceConfig!.rankedDatasources)]
-    let preferredSources = datasourceConfig!.rankedDatasources
-    let ontologySources = datasourceConfig!.ontologySources
-    let doNotSearchDatasources = datasourceConfig!.doNotSearchDatasources
-    let doNotSearchOntologies = datasourceConfig!.doNotSearchOntologies
-
-    let searchParams: ZoomaApi.SearchParams = {
-      properties, requiredSources, preferredSources, ontologySources, doNotSearchDatasources, doNotSearchOntologies
-    }
+    if (properties.length === 0) return
 
     setSearching(true)
 
+    let searchParams: ZoomaApi.SearchParams = {
+      properties,
+      requiredSources: [...(datasourceConfig!.unrankedDatasources), ...(datasourceConfig!.rankedDatasources)],
+      preferredSources: datasourceConfig!.rankedDatasources,
+      ontologySources: datasourceConfig!.ontologySources,
+      doNotSearchDatasources: datasourceConfig!.doNotSearchDatasources,
+      doNotSearchOntologies: datasourceConfig!.doNotSearchOntologies,
+      preferredOntologies: datasourceConfig!.preferredOntologies,
+      useLlmSearch: true,
+      llmModel: 'text-embedding-3-small'
+    }
+
     let results = await ZoomaApi.search(searchParams)
-
-    // let tsv = JSON.stringify(results, Object.keys(results[0]), '\t')
-    let tsv = ''
-
     setSearching(false)
     setResults(results)
-    setTsv(tsv)
   }
 
   const onClickClear = () => {
     setQuery('')
     setResults([])
-    setTsv('')
   }
 
   const onClickShowExamples = () => {
     setQuery(examples)
   }
 
-  const onClickDatasources = () => {
-    setShowDatasourceModal(true)
-  }
-
   const onDatasourceConfigChanged = (config: ZoomaDatasourceConfig) => {
     setDatasourceConfig(config)
   }
 
-  const onDatasourcesModalDone = () => {
-    setShowDatasourceModal(false)
+  const onDownloadTSV = () => {
+    if (results.length === 0) return
+    const headers = ['propertyValue', 'propertyType', 'ontologyTermLabel', 'ontologyTermID', 'ontologyURI', 'mappingConfidence', 'datasource']
+    const rows = results.map(r => headers.map(h => r[h] || '').join('\t'))
+    const tsv = [headers.join('\t'), ...rows].join('\n')
+    var blob = new Blob([tsv], { type: 'text/tsv' })
+    FileSaver.saveAs(blob, 'zooma_results.tsv')
   }
 
-  const onDownloadTSV = () => {
-    var blob = new Blob([tsv], { type: 'text/csv' })
-    FileSaver.saveAs(blob, 'results.tsv')
-  }
+  const hasDatasourceSettings = datasourceConfig && (
+    datasourceConfig.excludedDatasources.length > 0 ||
+    datasourceConfig.rankedDatasources.length > 0 ||
+    datasourceConfig.doNotSearchDatasources
+  )
+
+  const hasOntologySettings = datasourceConfig && (
+    datasourceConfig.preferredOntologies.length > 0 ||
+    datasourceConfig.doNotSearchOntologies
+  )
 
   return (
     <Fragment>
       <Header section="home" />
       <main>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h4">Query</Typography>
-            <p>ZOOMA maps one or more strings of text to ontology terms. You can add one string (e.g. <i>Homo sapiens</i>) per
-              line. If you also have a type for your term (e.g. <i>organism</i>), put this after the term,
-              separated by a tab.</p>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Grid container justifyContent="flex-end">
-                  <Grid item>
-                    <a onClick={onClickShowExamples} style={{ cursor: 'pointer' }}>
-                      Show me some examples...
-                    </a>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <textarea style={{ minHeight: '300px', width: '100%', border: '1px solid #ddd', padding: '8px', borderRadius: '4px' }} value={query}
-                  onKeyDown={(e) => {
-                    if (e.key === "Tab") {
-                      e.preventDefault();
-
-                      const target = e.target as any;
-                      const start = target.selectionStart;
-                      const end = target.selectionEnd;
-                      const value = target.value;
-
-                      // Insert a tab character
-                      target.value = value.substring(0, start) + "\t" + value.substring(end);
-
-                      // Move cursor after the tab
-                      target.selectionStart = target.selectionEnd = start + 1;
-
-                      // Fire React's onChange so state updates
-                      const event = new Event("input", { bubbles: true });
-                      target.dispatchEvent(event);
-                    }
-                  }}
-
-                  onChange={onEditQuery}></textarea>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h4">Datasources</Typography>
-            <p>ZOOMA uses curated mappings from selected datasources (more
-              preferred), and searches ontologies directly (less preferred). Here, you can select
-              which curated datasources to use, optionally ranked in order of preference. You can also
-              select which ontologies to search directly. By default all ontologies in OLS are searched.</p>
-          </Grid>
-          <Grid item xs={12}>
-            {datasources && datasourceConfig && (
-              <Datasources
-                datasources={datasources}
-                datasourceConfig={datasourceConfig}
-                onConfigChanged={onDatasourceConfigChanged}
-              />
-            )}
-          </Grid>
-          <Grid item xs={12}>
-            <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
-              <button
-              className="button-primary text-lg font-bold self-center"
-                disabled={searching}
-                onClick={onClickAnnotate}
+        <Box sx={{ maxWidth: 1100, mx: 'auto', px: 3, py: 4 }}>
+          
+          {/* Query Section */}
+          <Box sx={{ mb: 4 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Typography variant="h5" sx={{ fontWeight: 500, display: 'flex', alignItems: 'center' }}>
+                <Box component="span" sx={{ 
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  width: 28, height: 28, borderRadius: '50%', bgcolor: '#2e7d32', color: 'white',
+                  fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
+                }}>1</Box>
+                Enter terms to annotate
+              </Typography>
+              <Typography 
+                variant="body2" 
+                sx={{ color: '#2e7d32', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                onClick={onClickShowExamples}
               >
-                Annotate
-              </button>
-              {results.length > 0 &&
-              <Fragment>
-              &nbsp;
-              <button
-              className="button-secondary text-lg font-bold self-center"
-                onClick={onClickClear}
-              >
-                Clear
-              </button>
-              </Fragment>
-}
+                Load examples
+              </Typography>
             </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <h3>Results</h3>
-            <Grid container spacing={1} alignItems="center">
-              <Grid item xs={8}>
-                <p>The table below shows a report describing how ZOOMA annotates text terms supplied above.</p>
-              </Grid>
-              <Grid item xs={4} style={{ textAlign: 'right' }}>
-                <img style={{ cursor: 'pointer' }} onClick={onDownloadTSV} src="https://www.ebi.ac.uk/web_guidelines/images/icons/EBI-FileFormats/File%20format%20icons/file_TSV.png" />
-              </Grid>
-            </Grid>
-            <ResultsTable results={results} datasources={datasources} />
-          </Grid>
-        </Grid>
+            
+            <textarea 
+              style={{ 
+                width: '100%',
+                minHeight: '160px',
+                padding: '16px',
+                fontSize: '15px',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                border: '2px solid #e0e0e0',
+                borderRadius: '8px',
+                resize: 'vertical',
+                outline: 'none',
+                transition: 'border-color 0.2s',
+              }}
+              value={query}
+              placeholder={"Enter terms to annotate, one per line\n\nOptionally add a type after a tab:\nHomo sapiens\nheart disease\tdisease\ndoxycycline\tcompound"}
+              onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
+              onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+              onKeyDown={(e) => {
+                if (e.key === "Tab") {
+                  e.preventDefault();
+                  const target = e.target as any;
+                  const start = target.selectionStart;
+                  const end = target.selectionEnd;
+                  const value = target.value;
+                  target.value = value.substring(0, start) + "\t" + value.substring(end);
+                  target.selectionStart = target.selectionEnd = start + 1;
+                  const event = new Event("input", { bubbles: true });
+                  target.dispatchEvent(event);
+                }
+              }}
+              onChange={onEditQuery}
+            />
+          </Box>
+
+          {/* Settings Section */}
+          <Box sx={{ mb: 4 }}>
+            <Accordion 
+              disableGutters
+              sx={{ 
+                bgcolor: 'transparent',
+                boxShadow: 'none', 
+                '&:before': { display: 'none' },
+                '& .MuiAccordionSummary-root': { minHeight: 48, px: 0 },
+                '& .MuiAccordionSummary-content': { my: 1 }
+              }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h5" sx={{ fontWeight: 500, display: 'flex', alignItems: 'center' }}>
+                  <Box component="span" sx={{ 
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    width: 28, height: 28, borderRadius: '50%', bgcolor: '#9e9e9e', color: 'white',
+                    fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
+                  }}>2</Box>
+                  Where to get mappings?
+                  {hasDatasourceSettings && (
+                    <Chip label="customized" size="small" sx={{ ml: 1.5, height: 22, fontSize: '0.75rem' }} />
+                  )}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 0, pt: 1, pl: 5 }}>
+                {datasources && datasourceConfig && (
+                  <Datasources
+                    datasources={datasources}
+                    datasourceConfig={datasourceConfig}
+                    onConfigChanged={onDatasourceConfigChanged}
+                  />
+                )}
+              </AccordionDetails>
+            </Accordion>
+
+            <Accordion 
+              disableGutters
+              sx={{ 
+                bgcolor: 'transparent',
+                boxShadow: 'none', 
+                '&:before': { display: 'none' },
+                '& .MuiAccordionSummary-root': { minHeight: 48, px: 0 },
+                '& .MuiAccordionSummary-content': { my: 1 }
+              }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h5" sx={{ fontWeight: 500, display: 'flex', alignItems: 'center' }}>
+                  <Box component="span" sx={{ 
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    width: 28, height: 28, borderRadius: '50%', bgcolor: '#9e9e9e', color: 'white',
+                    fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
+                  }}>3</Box>
+                  Which ontologies to map to?
+                  {hasOntologySettings && (
+                    <Chip label="customized" size="small" sx={{ ml: 1.5, height: 22, fontSize: '0.75rem' }} />
+                  )}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 0, pt: 1, pl: 5 }}>
+                {datasources && datasourceConfig && (
+                  <PreferredOntologies
+                    datasources={datasources}
+                    datasourceConfig={datasourceConfig}
+                    onConfigChanged={onDatasourceConfigChanged}
+                  />
+                )}
+              </AccordionDetails>
+            </Accordion>
+
+            {/* Annotate Button */}
+            <Box sx={{ display: 'flex', alignItems: 'center', mt: 3, gap: 1.5 }}>
+              <Button
+                variant="contained"
+                color="success"
+                size="large"
+                onClick={onClickAnnotate}
+                disabled={searching || getQueryCount() === 0}
+                sx={{ 
+                  px: 4, 
+                  py: 1.25,
+                  fontSize: '1rem',
+                  textTransform: 'none',
+                  borderRadius: 2,
+                  boxShadow: 'none',
+                  '&:hover': { boxShadow: 'none' }
+                }}
+              >
+                {searching ? (
+                  <>
+                    <CircularProgress size={20} sx={{ mr: 1, color: 'white' }} />
+                    Searching...
+                  </>
+                ) : (
+                  `Annotate${getQueryCount() > 0 ? ` ${getQueryCount()} term${getQueryCount() > 1 ? 's' : ''}` : ''}`
+                )}
+              </Button>
+              {(results.length > 0 || query) && (
+                <Button 
+                  variant="text" 
+                  onClick={onClickClear}
+                  sx={{ textTransform: 'none', color: 'text.secondary' }}
+                >
+                  Clear
+                </Button>
+              )}
+            </Box>
+          </Box>
+
+          {/* Results Section */}
+          {(results.length > 0 || searching) && (
+            <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Typography variant="h5" sx={{ fontWeight: 500 }}>
+                  Results {!searching && `(${results.length})`}
+                </Typography>
+                {results.length > 0 && (
+                  <Tooltip title="Download as TSV">
+                    <IconButton onClick={onDownloadTSV} size="small">
+                      <DownloadIcon />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </Box>
+              
+              {searching ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
+                  <CircularProgress />
+                </Box>
+              ) : (
+                <ResultsTable results={results} datasources={datasources} />
+              )}
+            </Box>
+          )}
+
+        </Box>
       </main>
     </Fragment>
   );
 }
 
-var examples =
-  `Bright nuclei
-Agammaglobulinemia 2\tphenotype
-Reduction in IR-induced 53BP1 foci in HeLa\tcell
-Impaired cell migration with increased protrusive activity\tphenotype
-C57Black/6\tstrain
-nuclei stay close together
-Retinal cone dystrophy 3B\tdisease
-segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses
-Segawa syndrome autosomal recessive\tphenotype
+const examples = `Homo sapiens\torganism
+heart disease\tdisease
 BRCA1\tgene
-Deafness, autosomal dominant 17\tphenotype
-cooked broccoli\tcompound
-Amyloidosis, familial visceral\tphenotype
-Spastic paraplegia 10\tphenotype
-Epilepsy, progressive myoclonic 1B\tphenotype
-Big cells
-Cardiomyopathy, dilated, 1S\tphenotype
-Long QT syndrome 3/6, digenic\tdisease
-Lung adenocarcinoma disease state
-doxycycline 130 nanomolar compound
-left tibia\torganism part
-CD4-positive
 cerebellum\torganism part
-hematology traits\tgwas trait
-nifedipine 0.025 micromolar compound
-Microtubule clumps
+doxycycline\tcompound
+CD4-positive\tcell type
+lung adenocarcinoma\tdisease
+C57Black/6\tstrain
+Bright nuclei
+Big cells
 `
 

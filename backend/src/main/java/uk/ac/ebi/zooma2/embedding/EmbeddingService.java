@@ -37,23 +37,65 @@ public class EmbeddingService {
     private final int batchSize;
 
     /**
-     * Create an embedding service that uses all loaded models from EBI service.
+     * Create an embedding service that uses specified models or all loaded models from EBI service.
      * @param cache Cache for storing embeddings
      * @param batchSize Number of embeddings per request (default: 50)
+     * @param configuredModels Optional list of model names to use (null or empty = use all loaded models)
      */
-    public EmbeddingService(EmbeddingCache cache, int batchSize) {
+    public EmbeddingService(EmbeddingCache cache, int batchSize, List<String> configuredModels) {
         this.batchSize = batchSize > 0 ? batchSize : DEFAULT_BATCH_SIZE;
         this.cache = cache;
         this.gson = new Gson();
-        this.embeddingModels = discoverLoadedModels();
         
-        if (embeddingModels.isEmpty()) {
+        List<String> loadedModels = discoverLoadedModels();
+        
+        if (loadedModels.isEmpty()) {
             throw new RuntimeException("No loaded models found at EBI embedding service");
+        }
+        
+        // If configured models specified, validate and use only those
+        if (configuredModels != null && !configuredModels.isEmpty()) {
+            List<String> validModels = new ArrayList<>();
+            List<String> invalidModels = new ArrayList<>();
+            
+            for (String model : configuredModels) {
+                if (loadedModels.contains(model)) {
+                    validModels.add(model);
+                } else {
+                    invalidModels.add(model);
+                }
+            }
+            
+            if (!invalidModels.isEmpty()) {
+                System.err.println("Warning: configured models not available on server: " + 
+                                 String.join(", ", invalidModels));
+                System.err.println("Available models: " + String.join(", ", loadedModels));
+            }
+            
+            if (validModels.isEmpty()) {
+                throw new RuntimeException("None of the configured models are available. " +
+                                         "Configured: " + String.join(", ", configuredModels) + 
+                                         ". Available: " + String.join(", ", loadedModels));
+            }
+            
+            this.embeddingModels = validModels;
+        } else {
+            // Use all loaded models
+            this.embeddingModels = loadedModels;
         }
         
         System.err.println("EmbeddingService initialized with " + embeddingModels.size() + 
                          " models: " + String.join(", ", embeddingModels) + 
                          " (batch_size: " + this.batchSize + ")");
+    }
+    
+    /**
+     * Create an embedding service that uses all loaded models from EBI service.
+     * @param cache Cache for storing embeddings
+     * @param batchSize Number of embeddings per request (default: 50)
+     */
+    public EmbeddingService(EmbeddingCache cache, int batchSize) {
+        this(cache, batchSize, null);
     }
     
     /**

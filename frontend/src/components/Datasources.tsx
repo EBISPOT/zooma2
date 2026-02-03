@@ -1,18 +1,19 @@
 import * as React from 'react'
 import { useState, Fragment, useCallback } from 'react'
 import { ZoomaDatasources } from "../api/ZoomaDatasources"
-import DragAndDropLists, { List } from "./DragAndDropLists"
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig"
 
 import {
-  Grid,
   Box,
   Typography,
   FormControlLabel,
   Checkbox,
-  Link,
+  Chip,
+  Button,
   Autocomplete,
-  TextField
+  TextField,
+  Stack,
+  Divider
 } from '@mui/material'
 
 interface Props {
@@ -24,45 +25,70 @@ interface Props {
 export default function Datasources({ datasources, datasourceConfig, onConfigChanged }: Props) {
   const [ontoAutocomplete, setOntoAutocomplete] = useState<string>('')
 
-  console.log('datasources are')
-  console.dir(datasources)
-
-  const lists: List[] = [
-    {
-      title: 'Excluded',
-      entries: datasourceConfig.excludedDatasources.map(ds => ({
-        id: ds,
-        content: <Fragment>{datasources.nameTitleMap.get(ds) || ds}</Fragment>
-      })),
-    },
-    {
-      title: 'Unranked',
-      entries: datasourceConfig.unrankedDatasources.map(ds => ({
-        id: ds,
-        content: <Fragment>{datasources.nameTitleMap.get(ds) || ds}</Fragment>
-      })),
-    },
-    {
-      title: 'Ranked',
-      entries: datasourceConfig.rankedDatasources.map(ds => ({
-        id: ds,
-        content: <Fragment>{datasources.nameTitleMap.get(ds) || ds}</Fragment>
-      }))
-    }
+  // All active datasources (not excluded)
+  const activeDatasources = [
+    ...datasourceConfig.unrankedDatasources,
+    ...datasourceConfig.rankedDatasources
   ]
 
-  const onDatasourceListsChanged = useCallback((lists: List[]) => {
-    let [excludedDatasources, unrankedDatasources, rankedDatasources] = lists
-
-    let newConfig: ZoomaDatasourceConfig = {
-      ...datasourceConfig,
-      excludedDatasources: excludedDatasources.entries.map(d => d.id),
-      unrankedDatasources: unrankedDatasources.entries.map(d => d.id),
-      rankedDatasources: rankedDatasources.entries.map(d => d.id)
+  const toggleDatasource = useCallback((ds: string) => {
+    const isExcluded = datasourceConfig.excludedDatasources.includes(ds)
+    
+    if (isExcluded) {
+      // Move from excluded to unranked
+      onConfigChanged({
+        ...datasourceConfig,
+        excludedDatasources: datasourceConfig.excludedDatasources.filter(d => d !== ds),
+        unrankedDatasources: [...datasourceConfig.unrankedDatasources, ds]
+      })
+    } else {
+      // Move to excluded
+      onConfigChanged({
+        ...datasourceConfig,
+        excludedDatasources: [...datasourceConfig.excludedDatasources, ds],
+        unrankedDatasources: datasourceConfig.unrankedDatasources.filter(d => d !== ds),
+        rankedDatasources: datasourceConfig.rankedDatasources.filter(d => d !== ds)
+      })
     }
-
-    onConfigChanged(newConfig)
   }, [datasourceConfig, onConfigChanged])
+
+  const togglePriority = useCallback((ds: string) => {
+    const isRanked = datasourceConfig.rankedDatasources.includes(ds)
+    
+    if (isRanked) {
+      // Move from ranked to unranked
+      onConfigChanged({
+        ...datasourceConfig,
+        rankedDatasources: datasourceConfig.rankedDatasources.filter(d => d !== ds),
+        unrankedDatasources: [...datasourceConfig.unrankedDatasources, ds]
+      })
+    } else {
+      // Move from unranked to ranked
+      onConfigChanged({
+        ...datasourceConfig,
+        unrankedDatasources: datasourceConfig.unrankedDatasources.filter(d => d !== ds),
+        rankedDatasources: [...datasourceConfig.rankedDatasources, ds]
+      })
+    }
+  }, [datasourceConfig, onConfigChanged])
+
+  const selectAll = useCallback(() => {
+    onConfigChanged({
+      ...datasourceConfig,
+      excludedDatasources: [],
+      unrankedDatasources: datasources.datasourceNames,
+      rankedDatasources: []
+    })
+  }, [datasources, datasourceConfig, onConfigChanged])
+
+  const selectNone = useCallback(() => {
+    onConfigChanged({
+      ...datasourceConfig,
+      excludedDatasources: datasources.datasourceNames,
+      unrankedDatasources: [],
+      rankedDatasources: []
+    })
+  }, [datasources, datasourceConfig, onConfigChanged])
 
   const onSelectOntology = useCallback((val: string | null) => {
     if (!val) return
@@ -72,137 +98,136 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
       newSources.push(val)
     }
 
-    let newConfig: ZoomaDatasourceConfig = {
+    setOntoAutocomplete('')
+    onConfigChanged({
       ...datasourceConfig,
       ontologySources: newSources
-    }
-
-    setOntoAutocomplete('')
-    onConfigChanged(newConfig)
-  }, [datasourceConfig, onConfigChanged])
-
-  const onChangeDoNotSearchDatasources = useCallback((checked: boolean) => {
-    let newConfig: ZoomaDatasourceConfig = {
-      ...datasourceConfig,
-      doNotSearchDatasources: checked
-    }
-
-    onConfigChanged(newConfig)
-  }, [datasourceConfig, onConfigChanged])
-
-  const onChangeDoNotSearchOntologies = useCallback((checked: boolean) => {
-    let newConfig: ZoomaDatasourceConfig = {
-      ...datasourceConfig,
-      doNotSearchOntologies: checked
-    }
-
-    onConfigChanged(newConfig)
+    })
   }, [datasourceConfig, onConfigChanged])
 
   const removeOntologySource = useCallback((s: string) => {
-    let newSources = [...datasourceConfig.ontologySources]
-    let i = newSources.indexOf(s)
-
-    if (i !== -1) {
-      newSources.splice(i, 1)
-    }
-
-    let newConfig: ZoomaDatasourceConfig = {
+    onConfigChanged({
       ...datasourceConfig,
-      ontologySources: newSources
-    }
-
-    onConfigChanged(newConfig)
+      ontologySources: datasourceConfig.ontologySources.filter(src => src !== s)
+    })
   }, [datasourceConfig, onConfigChanged])
 
-  const excludeAll = useCallback(() => {
-    let config = datasourceConfig
-
-    let excluded = [
-      ...config.excludedDatasources,
-      ...config.unrankedDatasources,
-      ...config.rankedDatasources
-    ]
-
-    let newConfig: ZoomaDatasourceConfig = {
+  const onChangeDoNotSearchDatasources = useCallback((checked: boolean) => {
+    onConfigChanged({
       ...datasourceConfig,
-      excludedDatasources: excluded,
-      unrankedDatasources: [],
-      rankedDatasources: []
-    }
+      doNotSearchDatasources: checked
+    })
+  }, [datasourceConfig, onConfigChanged])
 
-    onConfigChanged(newConfig)
+  const onChangeDoNotSearchOntologies = useCallback((checked: boolean) => {
+    onConfigChanged({
+      ...datasourceConfig,
+      doNotSearchOntologies: checked
+    })
   }, [datasourceConfig, onConfigChanged])
 
   return (
-    <Fragment>
-      <Box sx={{ border: '1px solid #777', p: 1.5 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" component="h4" gutterBottom>
-              1. Curated Datasources
-            </Typography>
+    <Box>
+      {/* Curated Datasources Section */}
+      <Box sx={{ mb: 4 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
+          <Typography variant="body1" color="text.secondary">
+            Curated mapping databases
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Button size="small" color="success" onClick={selectAll} sx={{ textTransform: 'none' }}>
+              Select all
+            </Button>
+            <Button size="small" color="success" onClick={selectNone} sx={{ textTransform: 'none' }}>
+              Select none
+            </Button>
+          </Box>
+        </Box>
 
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={datasourceConfig.doNotSearchDatasources}
-                  onChange={(_, checked) => onChangeDoNotSearchDatasources(checked)}
-                />
-              }
-              label="Don't search in any datasources"
-            />
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 2 }}>
+          {datasources.datasourceNames.map(ds => {
+            const isActive = activeDatasources.includes(ds)
+            const isRanked = datasourceConfig.rankedDatasources.includes(ds)
+            const displayName = datasources.nameTitleMap.get(ds) || ds
+            
+            return (
+              <Chip
+                key={ds}
+                label={displayName}
+                onClick={() => toggleDatasource(ds)}
+                onDelete={isActive ? () => togglePriority(ds) : undefined}
+                deleteIcon={
+                  isRanked 
+                    ? <span style={{ fontSize: '16px', marginLeft: '-4px', color: '#ffc107' }}>★</span>
+                    : <span style={{ fontSize: '14px', marginLeft: '-4px', color: '#ffc107', opacity: 0.4 }}>☆</span>
+                }
+                variant={isActive ? "filled" : "outlined"}
+                color={isActive ? "success" : "default"}
+                sx={{ 
+                  fontSize: '0.95rem',
+                  py: 0.5,
+                  opacity: isActive ? 1 : 0.6,
+                  '& .MuiChip-deleteIcon': { 
+                    color: '#ffc107 !important'
+                  }
+                }}
+              />
+            )
+          })}
+        </Box>
 
-            <DragAndDropLists lists={lists} onChange={onDatasourceListsChanged} />
-
-            <Box mt={1}>
-              <Link component="button" onClick={excludeAll}>Exclude all</Link>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" component="h4" gutterBottom>
-              2. Ontology Sources
-            </Typography>
-
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={datasourceConfig.doNotSearchOntologies}
-                  onChange={(_, checked) => onChangeDoNotSearchOntologies(checked)}
-                />
-              }
-              label="Don't search in any ontologies"
-            />
-
-            <Autocomplete
-              options={datasources.searchableOntoNames}
-              getOptionLabel={(item: any) => item.displayName || item.name}
-              value={ontoAutocomplete || null}
-              onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name)}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder="Search ontologies by name, e.g. EFO or Experimental Factor Ontology"
-                  variant="outlined"
-                  sx={{ width: 500 }}
-                />
-              )}
-            />
-
-            <Box mt={2}>
-              {datasourceConfig.ontologySources.map(source => (
-                <div key={source}>
-                  <Link component="button" onClick={() => removeOntologySource(source)}>x</Link>
-                  &nbsp;
-                  {source}
-                </div>
-              ))}
-            </Box>
-          </Grid>
-        </Grid>
+        <Typography variant="body2" color="text.secondary">
+          Click to include/exclude • Click ☆ to prioritize
+        </Typography>
       </Box>
-    </Fragment>
+
+      <Divider sx={{ my: 3 }} />
+
+      {/* Ontology Sources Section */}
+      <Box>
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
+          Search specific ontologies directly (optional)
+        </Typography>
+
+        <Autocomplete
+          options={datasources.searchableOntoNames}
+          getOptionLabel={(item: any) => item.displayName || item.name}
+          value={null}
+          onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              placeholder="Search ontologies by name, e.g. EFO"
+              variant="outlined"
+              sx={{ maxWidth: 500 }}
+            />
+          )}
+        />
+
+        {datasourceConfig.ontologySources.length > 0 && (
+          <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', gap: 1 }}>
+            {datasourceConfig.ontologySources.map(source => (
+              <Chip
+                key={source}
+                label={source}
+                onDelete={() => removeOntologySource(source)}
+              />
+            ))}
+          </Stack>
+        )}
+
+        <FormControlLabel
+          sx={{ mt: 2 }}
+          control={
+            <Checkbox
+              checked={datasourceConfig.doNotSearchOntologies}
+              onChange={(_, checked) => onChangeDoNotSearchOntologies(checked)}
+            />
+          }
+          label={<Typography variant="body1">Skip ontology search entirely</Typography>}
+        />
+      </Box>
+    </Box>
   )
 }
 

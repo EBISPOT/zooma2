@@ -3,27 +3,23 @@ package uk.ac.ebi.zooma2;
 import io.javalin.Javalin;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
-import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.http.NotFoundResponse;
 import io.javalin.plugin.bundled.CorsPluginConfig;
+import uk.ac.ebi.zooma2.api.v2.ZoomaApiV2;
+import uk.ac.ebi.zooma2.api.v3.ZoomaApiV3;
 import uk.ac.ebi.zooma2.embedding.EmbeddingCache;
 import uk.ac.ebi.zooma2.embedding.EmbeddingService;
-import uk.ac.ebi.zooma2.model.Annotation;
-import uk.ac.ebi.zooma2.model.Filter;
-import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
-import uk.ac.ebi.zooma2.repo.OlsOntology;
+import uk.ac.ebi.zooma2.repo.OlsTermCache;
+import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Zooma2App {
+public class ZoomaApp {
 
     public static void main(String[] args) {
 
@@ -31,18 +27,19 @@ public class Zooma2App {
         EmbeddingService embeddingService = null;
         EmbeddingCache embeddingCache = null;
         
-        if (Zooma2Config.config.embedding != null) {
+        if (ZoomaConfig.config.embedding != null) {
             try {
                 // Initialize SQLite embedding cache
-                String dbPath = Zooma2Config.config.embedding.database_path != null ? 
-                               Zooma2Config.config.embedding.database_path : "embeddings.db";
+                String dbPath = ZoomaConfig.config.embedding.database_path != null ? 
+                               ZoomaConfig.config.embedding.database_path : "embeddings.db";
                 embeddingCache = EmbeddingCache.createSqliteCache(dbPath);
                 System.err.println("Using SQLite for embedding cache: " + dbPath);
                 
-                // Initialize embedding service (auto-discovers all loaded models)
-                int batchSize = Zooma2Config.config.embedding.batch_size != null ? 
-                               Zooma2Config.config.embedding.batch_size : 50;
-                embeddingService = new EmbeddingService(embeddingCache, batchSize);
+                // Initialize embedding service with configured models (or auto-discover all loaded models)
+                int batchSize = ZoomaConfig.config.embedding.batch_size != null ? 
+                               ZoomaConfig.config.embedding.batch_size : 50;
+                List<String> configuredModels = ZoomaConfig.config.embedding.models;
+                embeddingService = new EmbeddingService(embeddingCache, batchSize, configuredModels);
                 System.err.println("Embedding service initialized");
             } catch (Exception e) {
                 System.err.println("Warning: Failed to initialize embedding service: " + e.getMessage());
@@ -55,7 +52,14 @@ public class Zooma2App {
         var mappingTablesRepo = new MappingTablesRepo(embeddingService);
         var olsRepo = new OlsClientRepo();
 
-        var annotator = new Zooma2Annotator(
+        // Initialize OLS term cache
+        OlsTermCache olsTermCache = OlsTermCache.createSqliteCache("ols_cache.db");
+        olsRepo.setTermCache(olsTermCache);
+
+        // Warm up OLS term cache with all semantic tags from curated mappings
+        warmupOlsTermCache(mappingTablesRepo, olsRepo);
+
+        var annotator = new ZoomaAnnotator(
             mappingTablesRepo,
             olsRepo,
             embeddingService
@@ -73,54 +77,12 @@ public class Zooma2App {
             }
         });
 
-        app.get("/v2/api/sources", ctx -> {
-
-             var databases = Zooma2Config.config.datasources.entrySet().stream()
-                .map(entry -> {
-                    return Map.of(
-                        "type", "DATABASE",
-                        "name", entry.getKey(),
-                        "uri", entry.getValue().uri
-                    );
-                });
-
-             var ontologies = olsRepo.getOntologies().stream()
-                .map((OlsOntology o) -> Map.of(
-                    "type", "ONTOLOGY",
-                    "name", o.ontologyId,
-                    "title", o.config.title != null ? o.config.title : "",
-                    "description", o.config.description != null ? o.config.description : "",
-                    "uri", o.ontologyId
-                ));
-
-            ctx.json( Stream.concat(databases, ontologies).toList() );
-        });
-
-        app.get("/v2/api/properties/types", ctx -> {
-            ctx.json(mappingTablesRepo.getAllTypes());
-        });
-
-        // GET /services/annotate?propertyValue=...&propertyType=...&filter=...
-        app.get("/v2/api/services/annotate", ctx -> {
-            String propertyValue = q(ctx, "propertyValue", true);
-            String propertyType  = q(ctx, "propertyType", false);
-            String filterRaw     = q(ctx, "filter", false);
-            Filter filter = Filter.parse(filterRaw);
-
-            ctx.json(annotator.annotate(propertyValue, propertyType, filter));
-        });
-
-        app.post("/v2/api/services/map", ctx -> {
-
-            var stringsToMap = bodyJson(ctx, uk.ac.ebi.zooma2.model.StringToMap[].class);
-
-            String filterRaw = q(ctx, "filter", false);
-            Filter filter = Filter.parse(filterRaw);
-
-            Collection<MapResult> results = annotator.mapAll(Arrays.stream(stringsToMap), filter);
-
-            ctx.json(results);
-        });
+        // Register API routes
+        var apiV2 = new ZoomaApiV2(annotator, mappingTablesRepo, olsRepo);
+        apiV2.registerRoutes(app);
+        
+        var apiV3 = new ZoomaApiV3(annotator, mappingTablesRepo, olsRepo);
+        apiV3.registerRoutes(app);
 
         // Global handlers
         app.exception(BadRequestResponse.class, (e, ctx) -> ctx.status(400).json(Map.of(
@@ -196,5 +158,65 @@ public class Zooma2App {
         } catch (Exception e) {
             throw new BadRequestResponse("Invalid JSON body: " + e.getMessage());
         }
+    }
+
+    /**
+     * Warm up the OLS term cache by resolving all semantic tags from curated mappings.
+     * Runs synchronously before server starts.
+     * Skips IRIs that previously failed (but live queries will still try them).
+     */
+    private static void warmupOlsTermCache(MappingTablesRepo mappingTablesRepo, OlsClientRepo olsRepo) {
+        System.err.println("Starting OLS term cache warmup...");
+        
+        PrefixMap prefixMap = new PrefixMap();
+        Set<String> semanticTags = mappingTablesRepo.getAllSemanticTags();
+        System.err.println("Found " + semanticTags.size() + " distinct semantic tags in curated mappings");
+        
+        // Expand short forms to full IRIs, filter out nulls
+        Set<String> expandedIris = semanticTags.stream()
+            .filter(tag -> tag != null && !tag.isEmpty())
+            .map(tag -> prefixMap.shortFormToIri(tag))
+            .filter(iri -> iri != null && !iri.isEmpty())
+            .collect(Collectors.toSet());
+        
+        System.err.println("Expanded to " + expandedIris.size() + " distinct IRIs");
+        
+        // Get previously failed IRIs to skip during warmup
+        var termCache = olsRepo.getTermCache();
+        Set<String> failedIris = termCache != null ? termCache.getFailedIris() : Set.of();
+        Set<String> alreadyCached = termCache != null ? termCache.getTerms(expandedIris).keySet() : Set.of();
+        
+        // Filter out already cached and previously failed IRIs
+        List<String> irisToResolve = expandedIris.stream()
+            .filter(iri -> !failedIris.contains(iri))
+            .filter(iri -> !alreadyCached.contains(iri))
+            .collect(Collectors.toList());
+        
+        System.err.println("Skipping " + failedIris.size() + " previously failed and " + 
+            alreadyCached.size() + " already cached, " + irisToResolve.size() + " to resolve");
+        
+        if (irisToResolve.isEmpty()) {
+            System.err.println("OLS cache warmup complete (nothing to do)");
+            return;
+        }
+        
+        // Resolve in batches to avoid overwhelming OLS
+        int batchSize = 100;
+        int resolved = 0;
+        
+        for (int i = 0; i < irisToResolve.size(); i += batchSize) {
+            int end = Math.min(i + batchSize, irisToResolve.size());
+            List<String> batch = irisToResolve.subList(i, end);
+            
+            var terms = olsRepo.resolveTerms(batch);
+            resolved += terms.size();
+            
+            if ((i / batchSize) % 10 == 0) {
+                System.err.println("OLS cache warmup progress: " + (i + batch.size()) + "/" + irisToResolve.size() + 
+                    " (" + resolved + " resolved)");
+            }
+        }
+        
+        System.err.println("OLS term cache warmup complete: " + resolved + " terms cached");
     }
 }
