@@ -224,7 +224,7 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
               onChange={(_, checked) => onChangeDoNotSearchOntologies(checked)}
             />
           }
-          label={<Typography variant="body1">Skip ontology search entirely</Typography>}
+          label={<Typography variant="body1">Skip ontology search (only search existing mappings)</Typography>}
         />
       </Box>
     </Box>

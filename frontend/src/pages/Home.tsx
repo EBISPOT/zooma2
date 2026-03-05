@@ -6,6 +6,7 @@ import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig";
 import * as React from 'react';
 import Datasources from "../components/Datasources";
 import PreferredOntologies from "../components/PreferredOntologies";
+import CsvImportDialog from "../components/CsvImportDialog";
 import FileSaver from 'file-saver';
 import Header from "../components/Header";
 import { 
@@ -164,13 +165,16 @@ export default function Home() {
                 }}>1</Box>
                 Enter terms to annotate
               </Typography>
-              <Typography 
-                variant="body2" 
-                sx={{ color: '#2e7d32', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
-                onClick={onClickShowExamples}
-              >
-                Load examples
-              </Typography>
+              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                <CsvImportDialog onImport={(terms) => setQuery(prev => prev ? prev + '\n' + terms : terms)} />
+                <Typography 
+                  variant="body2" 
+                  sx={{ color: '#2e7d32', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                  onClick={onClickShowExamples}
+                >
+                  Load examples
+                </Typography>
+              </Box>
             </Box>
             
             <textarea 
