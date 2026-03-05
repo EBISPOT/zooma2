@@ -46,7 +46,7 @@ public class CuratedEmbeddingMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = m.propertyValue;
 
         a.semanticTags = List.of(m.semanticTag);
-        a.confidence = "GOOD";
+        a.confidence = capEmbeddingScore(m.similarityScore != null ? m.similarityScore : 0.75);
 
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
@@ -77,5 +77,9 @@ public class CuratedEmbeddingMatcher implements AnnotationMatcher {
         return list != null &&
             list.size() == 1 &&
             (list.get(0).equals("none") || list.get(0).equals("Select None"));
+    }
+
+    private static double capEmbeddingScore(double score) {
+        return Math.min(score, 0.89);
     }
 }

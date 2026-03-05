@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -35,6 +33,7 @@ public class ZoomaAnnotator {
     EmbeddingService embeddingService;
     OxoClient oxoClient;
     PrefixMap prefixMap = new PrefixMap();
+    Deduplicator deduplicator = new Deduplicator(prefixMap);
 
     // Individual matchers
     private final CuratedExactMatcher curatedExactMatcher;
@@ -71,89 +70,187 @@ public class ZoomaAnnotator {
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {
-        return mapAll(stringsToMap, sources, "text-embedding-3-small", null);
+        return mapAll(stringsToMap, sources, "text-embedding-3-small", null, null);
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> preferredOntologies) {
-        return stringsToMap
+        return mapAll(stringsToMap, sources, model, preferredOntologies, null);
+    }
+
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> preferredOntologies, List<String> excludeTermIds) {
+        List<StringToMap> properties = stringsToMap.collect(Collectors.toList());
+
+        List<String> allTerms = properties.stream()
+            .map(p -> p.propertyValue)
+            .filter(v -> v != null && !v.isEmpty())
+            .collect(Collectors.toList());
+        List<String> ontologyIds = sources != null ? sources.ontologies : null;
+        var tagTextResults = bulkTagText(allTerms, ontologyIds);
+
+        return properties.stream()
             .parallel()
             .flatMap(s -> {
-                var annotated = annotate(s.propertyValue, s.propertyType, sources, model, preferredOntologies)
-                    .collect(Collectors.toList());
-                
-                // Collect semantic tags and expand short forms to full IRIs
-                var termIrisToResolve = annotated.stream()
-                    .flatMap(a -> a.semanticTags.stream())
-                    .map(tag -> prefixMap.shortFormToIri(tag))
-                    .collect(Collectors.toSet());
-                
-                var termMap = olsRepo.resolveTerms(termIrisToResolve);
-                
-                // Check for obsolete terms and resolve their replacements
-                Set<String> replacementIris = new java.util.HashSet<>();
-                for (var term : termMap.values()) {
-                    if (term.isObsolete() && term.term_replaced_by != null) {
-                        replacementIris.add(term.term_replaced_by);
-                    }
+                var results = mapOne(s, sources, model, preferredOntologies);
+                var taggerAnnotations = tagTextResults.getOrDefault(s.propertyValue, List.of());
+                if (!taggerAnnotations.isEmpty()) {
+                    results.addAll(annotationsToMapResults(taggerAnnotations, s));
                 }
-                var replacementTermMap = olsRepo.resolveTerms(replacementIris);
-                
-                return annotated.stream().map(a -> {
-                    var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
-                    // Expand short form to full IRI for lookup
-                    var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
-                    MapResult r = new MapResult();
-                    r.propertyType = a.annotatedProperty.propertyType;
-                    r.propertyValue = a.annotatedProperty.propertyValue;
-                    
-                    OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
-                    OlsTerm finalTerm = term;
-                    
-                    // Check if term is obsolete and has a replacement
-                    if (term != null && term.isObsolete() && term.term_replaced_by != null) {
-                        OlsTerm replacement = replacementTermMap.get(term.term_replaced_by);
-                        if (replacement != null) {
-                            // Use the replacement term for the final result
-                            finalTerm = replacement;
-                            
-                            // Add obsolete replacement step to provenance
-                            List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
-                            newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
-                                term.iri, term.label,
-                                replacement.iri, replacement.label,
-                                term.ontology_name
-                            ));
-                            a.mappingProvenance = newProvenance;
-                        }
-                    }
-                    
-                    if (finalTerm != null) {
-                        r.ontologyTermID = finalTerm.short_form;
-                        r.ontologyTermLabel = finalTerm.label;
-                        r.ontologyTermSynonyms = finalTerm.synonyms != null ? String.join("|", finalTerm.synonyms) : null;
-                        r.ontologyURI = finalTerm.ontology_name;
-                    } else {
-                        r.ontologyTermLabel = r.propertyValue;
-                    }
-                    if(r.ontologyTermID == null && expandedTag != null) {
-                        r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
-                    }
-                    if(r.ontologyTermID == null && semanticTag != null) {
-                        r.ontologyTermID = semanticTag;
-                    }
-                    r.mappingConfidence = a.confidence;
-                    r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
-                    r.mappingProvenance = a.mappingProvenance;
-                    
-                    // Debug UMLS results
-                    if (r.ontologyTermID != null && (r.ontologyTermID.toUpperCase().contains("UMLS") || r.datasource != null && r.datasource.toLowerCase().contains("umls"))) {
-                        System.err.println("UMLS result: termId=" + r.ontologyTermID + ", label=" + r.ontologyTermLabel + ", datasource=" + r.datasource + ", provenance steps=" + (r.mappingProvenance != null ? r.mappingProvenance.size() : 0));
-                    }
-                    
-                    return r;
-                });
+                return deduplicator.deduplicate(results, sources, excludeTermIds).stream();
             })
             .collect(Collectors.toList());
+    }
+
+    /**
+     * Process a batch of properties sequentially, calling the consumer as each
+     * property completes. Performs bulk text tagging in one HTTP call before
+     * per-property processing for efficiency.
+     */
+    public void mapEach(List<StringToMap> properties, Filter filter, String model,
+                        List<String> preferredOntologies,
+                        java.util.function.BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+        List<String> allTerms = properties.stream()
+            .map(p -> p.propertyValue)
+            .filter(v -> v != null && !v.isEmpty())
+            .collect(Collectors.toList());
+        List<String> ontologyIds = filter != null ? filter.ontologies : null;
+        var tagTextResults = bulkTagText(allTerms, ontologyIds);
+        System.err.println("Bulk tag_text returned matches for " + tagTextResults.size() + "/" + allTerms.size() + " terms");
+
+        for (var prop : properties) {
+            List<MapResult> results = mapOne(prop, filter, model, preferredOntologies);
+            var taggerAnnotations = tagTextResults.getOrDefault(prop.propertyValue, List.of());
+            if (!taggerAnnotations.isEmpty()) {
+                results.addAll(annotationsToMapResults(taggerAnnotations, prop));
+            }
+            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+        }
+    }
+
+    /**
+     * Map a single property to ontology terms. Returns all MapResult candidates for this property.
+     */
+    public List<MapResult> mapOne(StringToMap s, Filter sources, String model, List<String> preferredOntologies) {
+        var annotated = annotate(s.propertyValue, s.propertyType, sources, model, preferredOntologies)
+            .collect(Collectors.toList());
+        
+        // Collect semantic tags and expand short forms to full IRIs
+        var termIrisToResolve = annotated.stream()
+            .flatMap(a -> a.semanticTags.stream())
+            .map(tag -> prefixMap.shortFormToIri(tag))
+            .collect(Collectors.toSet());
+        
+        var termMap = olsRepo.resolveTerms(termIrisToResolve);
+        
+        // Check for obsolete terms and resolve their replacements
+        Set<String> replacementIris = new java.util.HashSet<>();
+        for (var term : termMap.values()) {
+            if (term.isObsolete() && term.term_replaced_by != null) {
+                replacementIris.add(term.term_replaced_by);
+            }
+        }
+        var replacementTermMap = olsRepo.resolveTerms(replacementIris);
+        
+        var results = annotated.stream().map(a -> {
+            var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
+            // Expand short form to full IRI for lookup
+            var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
+            MapResult r = new MapResult();
+            r.propertyType = a.annotatedProperty.propertyType;
+            r.propertyValue = a.annotatedProperty.propertyValue;
+            
+            OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
+            OlsTerm finalTerm = term;
+            
+            // Check if term is obsolete and has a replacement
+            if (term != null && term.isObsolete() && term.term_replaced_by != null) {
+                OlsTerm replacement = replacementTermMap.get(term.term_replaced_by);
+                if (replacement != null) {
+                    // Use the replacement term for the final result
+                    finalTerm = replacement;
+                    
+                    // Add obsolete replacement step to provenance
+                    List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
+                    newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
+                        term.iri, term.label,
+                        replacement.iri, replacement.label,
+                        term.ontology_name
+                    ));
+                    a.mappingProvenance = newProvenance;
+                }
+            }
+            
+            if (finalTerm != null) {
+                r.ontologyTermID = finalTerm.short_form;
+                r.ontologyTermLabel = finalTerm.label;
+                r.ontologyTermSynonyms = finalTerm.synonyms != null ? String.join("|", finalTerm.synonyms) : null;
+                r.ontologyURI = finalTerm.ontology_name;
+            } else {
+                r.ontologyTermLabel = r.propertyValue;
+            }
+            if(r.ontologyTermID == null && expandedTag != null) {
+                r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
+            }
+            if(r.ontologyTermID == null && semanticTag != null) {
+                r.ontologyTermID = semanticTag;
+            }
+            r.mappingConfidence = a.confidence;
+            r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
+            r.mappingProvenance = a.mappingProvenance;
+            
+            return r;
+        }).collect(Collectors.toList());
+
+        return results;
+    }
+
+    /**
+     * Convert pre-computed annotations (e.g. from bulk text tagger) to MapResults,
+     * resolving term details from OLS.
+     */
+    private List<MapResult> annotationsToMapResults(List<Annotation> preComputed, StringToMap s) {
+        if (preComputed == null || preComputed.isEmpty()) {
+            return List.of();
+        }
+
+        // Set the correct propertyType on each annotation
+        for (var a : preComputed) {
+            a.annotatedProperty.propertyType = s.propertyType != null ? s.propertyType : "unspecified";
+        }
+
+        var termIrisToResolve = preComputed.stream()
+            .flatMap(a -> a.semanticTags.stream())
+            .map(tag -> prefixMap.shortFormToIri(tag))
+            .collect(Collectors.toSet());
+
+        var termMap = olsRepo.resolveTerms(termIrisToResolve);
+
+        return preComputed.stream().map(a -> {
+            var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
+            var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
+            MapResult r = new MapResult();
+            r.propertyType = a.annotatedProperty.propertyType;
+            r.propertyValue = a.annotatedProperty.propertyValue;
+
+            OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
+            if (term != null) {
+                r.ontologyTermID = term.short_form;
+                r.ontologyTermLabel = term.label;
+                r.ontologyTermSynonyms = term.synonyms != null ? String.join("|", term.synonyms) : null;
+                r.ontologyURI = term.ontology_name;
+            } else {
+                r.ontologyTermLabel = r.propertyValue;
+            }
+            if (r.ontologyTermID == null && expandedTag != null) {
+                r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
+            }
+            if (r.ontologyTermID == null && semanticTag != null) {
+                r.ontologyTermID = semanticTag;
+            }
+            r.mappingConfidence = a.confidence;
+            r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
+            r.mappingProvenance = a.mappingProvenance;
+            return r;
+        }).collect(Collectors.toList());
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
@@ -225,7 +322,6 @@ public class ZoomaAnnotator {
                 }
             }
             
-            System.err.println("Total annotations before return: " + allResults.size());
             return allResults.stream();
             
         } catch (Exception e) {
@@ -234,6 +330,8 @@ public class ZoomaAnnotator {
             return Stream.empty();
         }
     }
+
+
 
     private Stream<MappingTableEntry> getMappingsFromTables(String stringToMap, String type, Filter sources) {
         if(sources == null || !isNone(sources.required)) {
@@ -257,7 +355,7 @@ public class ZoomaAnnotator {
         a.annotatedProperty.propertyValue = stringToMap;
         
         a.semanticTags = List.of(term.iri);
-        a.confidence = "MEDIUM";
+        a.confidence = 0.6;
         
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
@@ -295,6 +393,47 @@ public class ZoomaAnnotator {
         }
         
         return a;
+    }
+
+    /**
+     * Bulk tag all input terms via OLS text tagger (single HTTP call).
+     * Returns a map from input propertyValue to a list of Annotations from the tagger.
+     */
+    private Map<String, List<Annotation>> bulkTagText(List<String> terms, List<String> ontologyIds) {
+        var tagResults = olsRepo.tagText(terms, ontologyIds);
+        Map<String, List<Annotation>> result = new java.util.HashMap<>();
+
+        for (var entry : tagResults.entrySet()) {
+            String inputTerm = entry.getKey();
+            List<Annotation> annotations = new ArrayList<>();
+            for (var match : entry.getValue()) {
+                Annotation a = new Annotation();
+                a.annotatedProperty = new Annotation.AnnotatedProperty();
+                a.annotatedProperty.propertyType = "unspecified";
+                a.annotatedProperty.propertyValue = inputTerm;
+                a.semanticTags = List.of(match.termIri);
+                a.confidence = 0.95;
+                a.provenance = new Annotation.Provenance();
+                a.provenance.source = new Annotation.Source();
+                a.provenance.source.type = "ONTOLOGY";
+                a.provenance.source.name = match.ontologyId;
+                a.provenance.source.uri = match.ontologyId;
+                a.provenance.evidence = "OLS_TEXT_TAGGER";
+                a.provenance.generator = "ZOOMA";
+                a.provenance.generatedDate = new Date().toString();
+                a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
+                    "ols:" + match.ontologyId,
+                    "OLS_TEXT_TAGGER",
+                    inputTerm,
+                    match.termLabel,
+                    match.termIri,
+                    1.0
+                ));
+                annotations.add(a);
+            }
+            result.put(inputTerm, annotations);
+        }
+        return result;
     }
 
     /**

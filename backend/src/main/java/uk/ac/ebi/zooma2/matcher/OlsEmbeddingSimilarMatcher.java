@@ -42,8 +42,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     }
 
     private List<String> getDefaultModels() {
-        // Use the embedding models available in OLS
-        return List.of("llama-embed-nemotron-8b_pca512", "text-embedding-3-small");
+        return List.of("llama-embed-nemotron-8b_pca512");
     }
 
     @Override
@@ -268,23 +267,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
      * Get confidence as a score between 0 and 1.
      */
     private double getConfidenceScore(Annotation annotation) {
-        if (annotation.confidence == null) {
-            return 0.0;
-        }
-        // Handle string confidence levels
-        switch (annotation.confidence.toUpperCase()) {
-            case "HIGH": return 1.0;
-            case "GOOD": return 0.9;
-            case "MEDIUM": return 0.7;
-            case "LOW": return 0.5;
-            default:
-                // Try to parse as numeric
-                try {
-                    return Double.parseDouble(annotation.confidence);
-                } catch (NumberFormatException e) {
-                    return 0.0;
-                }
-        }
+        return annotation.confidence;
     }
 
     /**
@@ -351,20 +334,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     /**
      * Reduce confidence for indirect mappings.
      */
-    private String reduceConfidence(String originalConfidence) {
-        if (originalConfidence == null) {
-            return "MEDIUM";
-        }
-        
-        switch (originalConfidence) {
-            case "HIGH":
-                return "MEDIUM";
-            case "GOOD":
-                return "MEDIUM";
-            case "MEDIUM":
-                return "LOW";
-            default:
-                return "LOW";
-        }
+    private double reduceConfidence(double originalConfidence) {
+        return originalConfidence * 0.7;
     }
 }

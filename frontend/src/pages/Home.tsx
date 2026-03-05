@@ -1,4 +1,4 @@
-import { Fragment, ChangeEvent, useEffect, useState } from "react";
+import { Fragment, ChangeEvent, useEffect, useState, useRef, useCallback } from "react";
 import ResultsTable from "../components/ResultsTable";
 import * as ZoomaApi from '../api/ZoomaApi';
 import { getDatasources, ZoomaDatasources } from "../api/ZoomaDatasources";
@@ -12,7 +12,8 @@ import Header from "../components/Header";
 import { 
   Button, Box, Typography, 
   Accordion, AccordionSummary, AccordionDetails,
-  CircularProgress, Chip, IconButton, Tooltip
+  CircularProgress, Chip, IconButton, Tooltip,
+  LinearProgress
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -24,6 +25,11 @@ export default function Home() {
   const [query, setQuery] = useState<string>('')
   const [searching, setSearching] = useState<boolean>(false)
   const [results, setResults] = useState<ZoomaApi.SearchResult[]>([])
+  const [lastSearchParams, setLastSearchParams] = useState<ZoomaApi.SearchParams | undefined>(undefined)
+  const [progress, setProgress] = useState<{ completed: number; total: number } | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
+  const pendingResultsRef = useRef<ZoomaApi.SearchResult[] | null>(null)
+  const throttleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     loadDatasources()
@@ -76,6 +82,7 @@ export default function Home() {
       doNotSearchOntologies: false,
       ontologySources: [],
       preferredOntologies: [],
+      includeOtherOntologies: true,
       useLlmSearch: true,
       llmModel: 'text-embedding-3-small'
     }
@@ -97,6 +104,8 @@ export default function Home() {
     if (properties.length === 0) return
 
     setSearching(true)
+    setResults([])
+    setProgress({ completed: 0, total: properties.length })
 
     let searchParams: ZoomaApi.SearchParams = {
       properties,
@@ -106,18 +115,66 @@ export default function Home() {
       doNotSearchDatasources: datasourceConfig!.doNotSearchDatasources,
       doNotSearchOntologies: datasourceConfig!.doNotSearchOntologies,
       preferredOntologies: datasourceConfig!.preferredOntologies,
+      includeOtherOntologies: datasourceConfig!.includeOtherOntologies,
       useLlmSearch: true,
       llmModel: 'text-embedding-3-small'
     }
 
-    let results = await ZoomaApi.search(searchParams)
-    setSearching(false)
-    setResults(results)
+    setLastSearchParams(searchParams)
+
+    abortControllerRef.current = ZoomaApi.searchStream(
+      searchParams,
+      (streamProgress) => {
+        pendingResultsRef.current = streamProgress.results
+        setProgress({ completed: streamProgress.completed, total: streamProgress.total })
+        if (!throttleTimerRef.current) {
+          throttleTimerRef.current = setTimeout(() => {
+            throttleTimerRef.current = null
+            if (pendingResultsRef.current) {
+              setResults(pendingResultsRef.current)
+            }
+          }, 500)
+        }
+      },
+      (finalResults) => {
+        if (throttleTimerRef.current) {
+          clearTimeout(throttleTimerRef.current)
+          throttleTimerRef.current = null
+        }
+        pendingResultsRef.current = null
+        setResults(finalResults)
+        setSearching(false)
+        setProgress(null)
+        abortControllerRef.current = null
+      },
+      (error) => {
+        if (throttleTimerRef.current) {
+          clearTimeout(throttleTimerRef.current)
+          throttleTimerRef.current = null
+        }
+        pendingResultsRef.current = null
+        console.error('Search error:', error)
+        setSearching(false)
+        setProgress(null)
+        abortControllerRef.current = null
+      }
+    )
   }
 
   const onClickClear = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      abortControllerRef.current = null
+    }
+    if (throttleTimerRef.current) {
+      clearTimeout(throttleTimerRef.current)
+      throttleTimerRef.current = null
+    }
+    pendingResultsRef.current = null
     setQuery('')
     setResults([])
+    setSearching(false)
+    setProgress(null)
   }
 
   const onClickShowExamples = () => {
@@ -325,7 +382,7 @@ export default function Home() {
             <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                  Results {!searching && `(${results.length})`}
+                  Results {results.length > 0 && `(${results.length})`}
                 </Typography>
                 {results.length > 0 && (
                   <Tooltip title="Download as TSV">
@@ -336,12 +393,31 @@ export default function Home() {
                 )}
               </Box>
               
-              {searching ? (
+              {searching && progress && (
+                <Box sx={{ mb: 3 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Mapped {progress.completed} of {progress.total} term{progress.total !== 1 ? 's' : ''}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {Math.round((progress.completed / progress.total) * 100)}%
+                    </Typography>
+                  </Box>
+                  <LinearProgress 
+                    variant="determinate" 
+                    value={(progress.completed / progress.total) * 100}
+                    color="success"
+                    sx={{ height: 8, borderRadius: 4 }}
+                  />
+                </Box>
+              )}
+              
+              {results.length > 0 ? (
+                <ResultsTable results={results} datasources={datasources} searchParams={lastSearchParams} />
+              ) : searching && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
                   <CircularProgress />
                 </Box>
-              ) : (
-                <ResultsTable results={results} datasources={datasources} />
               )}
             </Box>
           )}

@@ -13,6 +13,7 @@ export interface ZoomaDatasourceConfig {
 
     // New: preferred ontologies for LLM semantic search
     preferredOntologies:string[]
+    includeOtherOntologies:boolean
     useLlmSearch:boolean
     llmModel:string
 

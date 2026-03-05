@@ -323,7 +323,7 @@ public class OlsClientRepo {
             
             StringBuilder urlBuilder = new StringBuilder();
             urlBuilder.append(OLS_URL)
-                      .append("/api/v2/entities/embedding_search?q=")
+                      .append("/api/v2/entities/llm_search?q=")
                       .append(encodedQuery)
                       .append("&model=")
                       .append(encodedModel)
@@ -506,12 +506,116 @@ public class OlsClientRepo {
         }
     }
 
+    /**
+     * Use OLS text tagger (Aho-Corasick) to find exact lexical matches for multiple terms in one request.
+     * Joins all terms with newlines, POSTs to /api/v2/tag_text, then maps results back to input terms.
+     *
+     * @param terms List of input terms to match
+     * @param ontologyIds Optional list of ontology IDs to restrict to
+     * @return Map of input term → list of TagTextMatch results
+     */
+    public Map<String, List<TagTextMatch>> tagText(List<String> terms, List<String> ontologyIds) {
+        if (terms == null || terms.isEmpty()) {
+            return Map.of();
+        }
+
+        // Build a position index so we can map start/end back to the original term
+        // Join terms with newline delimiter
+        int[] termStarts = new int[terms.size()];
+        int[] termEnds = new int[terms.size()];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < terms.size(); i++) {
+            termStarts[i] = sb.length();
+            sb.append(terms.get(i));
+            termEnds[i] = sb.length();
+            if (i < terms.size() - 1) {
+                sb.append("\n");
+            }
+        }
+        String text = sb.toString();
+
+        // Build URL with query params
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=false");
+        if (ontologyIds != null) {
+            for (String ont : ontologyIds) {
+                urlBuilder.append("&ontologyId=").append(
+                    java.net.URLEncoder.encode(ont, java.nio.charset.StandardCharsets.UTF_8));
+            }
+        }
+
+        try {
+            String body = gson.toJson(Map.of("text", text));
+            var json = postJsonToUrl(urlBuilder.toString(), body);
+
+            if (json == null || !json.getAsJsonObject().has("entities")) {
+                System.err.println("No entities in tag_text response");
+                return Map.of();
+            }
+
+            var entities = json.getAsJsonObject().get("entities").getAsJsonArray();
+            System.err.println("tag_text returned " + entities.size() + " entity hits for " + terms.size() + " terms");
+
+            // Group results by which input term they fall within
+            Map<String, List<TagTextMatch>> results = new HashMap<>();
+            for (var entity : entities) {
+                var obj = entity.getAsJsonObject();
+                int start = obj.get("start").getAsInt();
+                int end = obj.get("end").getAsInt();
+                String termLabel = obj.has("term_label") ? obj.get("term_label").getAsString() : null;
+                String termIri = obj.has("term_iri") ? obj.get("term_iri").getAsString() : null;
+                String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
+
+                // Find which input term this entity belongs to
+                for (int i = 0; i < terms.size(); i++) {
+                    if (start >= termStarts[i] && end <= termEnds[i]) {
+                        // Only keep matches that span the entire input term (exact match)
+                        if (start == termStarts[i] && end == termEnds[i]) {
+                            var match = new TagTextMatch(termLabel, termIri, ontologyId);
+                            results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Deduplicate by IRI within each term
+            for (var entry : results.entrySet()) {
+                var seen = new HashSet<String>();
+                entry.setValue(entry.getValue().stream()
+                    .filter(m -> m.termIri != null && seen.add(m.termIri))
+                    .toList());
+            }
+
+            return results;
+
+        } catch (IOException e) {
+            System.err.println("Error calling tag_text: " + e.getMessage());
+            return Map.of();
+        }
+    }
+
+    /**
+     * Result from the OLS text tagger endpoint.
+     */
+    public static class TagTextMatch {
+        public final String termLabel;
+        public final String termIri;
+        public final String ontologyId;
+
+        public TagTextMatch(String termLabel, String termIri, String ontologyId) {
+            this.termLabel = termLabel;
+            this.termIri = termIri;
+            this.ontologyId = ontologyId;
+        }
+    }
+
     private JsonElement postJsonToUrl(String url, String jsonBody) throws IOException {
 
         RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(5000)
-                .setConnectionRequestTimeout(5000)
-                .setSocketTimeout(5000).build();
+                .setConnectTimeout(30000)
+                .setConnectionRequestTimeout(30000)
+                .setSocketTimeout(30000).build();
 
         CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
 
@@ -531,9 +635,9 @@ public class OlsClientRepo {
     private JsonElement urlToJson(String url) throws IOException {
 
         RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(5000)
-                .setConnectionRequestTimeout(5000)
-                .setSocketTimeout(5000).build();
+                .setConnectTimeout(30000)
+                .setConnectionRequestTimeout(30000)
+                .setSocketTimeout(30000).build();
 
         CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
 

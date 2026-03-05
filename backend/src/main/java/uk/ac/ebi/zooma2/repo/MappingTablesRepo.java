@@ -213,10 +213,10 @@ public class MappingTablesRepo {
             
             // Search for similar vectors
             var searchResults = vectorIndex.search(queryEmbedding, 10, "mapping_table").stream()
-                .filter(r -> r.score >= 0.7f)
+                .filter(r -> r.score >= 0.8f)
                 .toList();
             
-            System.err.println("Local vector search found " + searchResults.size() + " similar property values (min similarity 0.7)");
+            System.err.println("Local vector search found " + searchResults.size() + " similar property values (min similarity 0.8)");
             
             // Get mapping table entries for the similar values
             var similarMatches = searchResults.stream()

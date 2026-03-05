@@ -10,7 +10,9 @@ import {
   TextField,
   Chip,
   Button,
-  Stack
+  Stack,
+  FormControlLabel,
+  Checkbox
 } from '@mui/material'
 
 interface Props {
@@ -20,6 +22,7 @@ interface Props {
 }
 
 export default function PreferredOntologies({ datasources, datasourceConfig, onConfigChanged }: Props) {
+  const [inputValue, setInputValue] = useState('')
 
   const onSelectOntology = useCallback((val: string | null) => {
     if (!val) return
@@ -29,6 +32,7 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
       newSources.push(val)
     }
 
+    setInputValue('')
     onConfigChanged({
       ...datasourceConfig,
       preferredOntologies: newSources
@@ -59,6 +63,10 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
         options={datasources.searchableOntoNames}
         getOptionLabel={(item: any) => item.displayName || item.name}
         value={null}
+        inputValue={inputValue}
+        onInputChange={(_, newValue, reason) => {
+          if (reason !== 'reset') setInputValue(newValue)
+        }}
         onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name)}
         renderInput={(params) => (
           <TextField
@@ -91,6 +99,17 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
           >
             Clear all
           </Button>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={datasourceConfig.includeOtherOntologies}
+                onChange={(e) => onConfigChanged({ ...datasourceConfig, includeOtherOntologies: e.target.checked })}
+                color="success"
+              />
+            }
+            label="Include results from other ontologies"
+            sx={{ mt: 1, display: 'block' }}
+          />
         </Box>
       )}
 

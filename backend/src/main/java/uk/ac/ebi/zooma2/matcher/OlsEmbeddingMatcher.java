@@ -12,15 +12,20 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 /**
  * Finds embedding-based matches from OLS using embeddings.
  * Uses vector similarity search to find semantically related ontology terms.
+ * 
+ * Note: OLS only supports its own llama-based models for embedding search,
+ * so this matcher always uses the OLS default model regardless of the
+ * user-selected model (which may be an OpenAI model for local vector search).
  */
 public class OlsEmbeddingMatcher implements AnnotationMatcher {
 
     private final OlsClientRepo olsRepo;
     private final double minSimilarity;
     private final int maxResults;
+    private static final String OLS_MODEL = "llama-embed-nemotron-8b_pca512";
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo) {
-        this(olsRepo, 0.7, 250);
+        this(olsRepo, 0.7, 5);
     }
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults) {
@@ -37,16 +42,28 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     @Override
     public List<Annotation> findMatches(MatchContext context) {
         List<Annotation> annotations = new ArrayList<>();
-        
-        var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, context.model, null, maxResults);
-        
-        for (var term : terms) {
-            // Filter by minimum similarity
+
+        // Per-ontology search if preferred ontologies are set
+        List<String> ontologies = context.preferredOntologies;
+        if (ontologies != null && !ontologies.isEmpty()) {
+            for (String ontologyId : ontologies) {
+                var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, ontologyId, maxResults);
+                for (var term : terms) {
+                    if (term.score != null && term.score < minSimilarity) {
+                        continue;
+                    }
+                    annotations.add(createAnnotation(term, context));
+                }
+            }
+        }
+
+        // Also do a small OLS-wide search
+        var wideTerms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, maxResults);
+        for (var term : wideTerms) {
             if (term.score != null && term.score < minSimilarity) {
                 continue;
             }
-            var annotation = createAnnotation(term, context);
-            annotations.add(annotation);
+            annotations.add(createAnnotation(term, context));
         }
         
         return annotations;
@@ -60,7 +77,7 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(term.iri);
-        a.confidence = "MEDIUM";
+        a.confidence = capEmbeddingScore(term.score != null ? term.score : 0.6);
         
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
@@ -74,7 +91,7 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
 
         a.mappingProvenance = List.of(V3MappingProvenanceStepDto.semantic(
             "ols:" + term.ontology_name,
-            context.model,
+            OLS_MODEL,
             context.stringToMap,
             term.label,
             term.iri,
@@ -84,5 +101,9 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
         ));
         
         return a;
+    }
+
+    private static double capEmbeddingScore(double score) {
+        return Math.min(score, 0.89);
     }
 }

@@ -23,7 +23,7 @@ public class V3MapResultDto {
         dto.propertyValue = internal.propertyValue;
         dto.ontologyTermLabel = internal.ontologyTermLabel;
         dto.ontologyTermSynonyms = internal.ontologyTermSynonyms;
-        dto.mappingConfidence = internal.mappingConfidence;
+        dto.mappingConfidence = String.valueOf(internal.mappingConfidence);
         dto.ontologyTermID = internal.ontologyTermID;
         dto.ontologyURI = internal.ontologyURI;
         dto.datasource = internal.datasource;

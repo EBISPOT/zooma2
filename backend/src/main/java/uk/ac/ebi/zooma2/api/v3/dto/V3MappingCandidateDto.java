@@ -42,7 +42,7 @@ public class V3MappingCandidateDto {
         dto.synonyms = parseSynonyms(internal.ontologyTermSynonyms);
         dto.ontology = internal.ontologyURI;
         dto.uri = internal.ontologyURI;
-        dto.confidence = parseConfidence(internal.mappingConfidence);
+        dto.confidence = internal.mappingConfidence;
         dto.datasource = internal.datasource;
         dto.mappingProvenance = internal.mappingProvenance;
         return dto;
@@ -53,23 +53,5 @@ public class V3MappingCandidateDto {
             return List.of();
         }
         return List.of(synonymsStr.split("\\|"));
-    }
-
-    private static Double parseConfidence(String confidenceStr) {
-        if (confidenceStr == null || confidenceStr.isBlank()) {
-            return null;
-        }
-        try {
-            // Handle confidence strings like "HIGH", "MEDIUM", "LOW"
-            return switch (confidenceStr.toUpperCase()) {
-                case "HIGH" -> 0.9;
-                case "GOOD" -> 0.75;
-                case "MEDIUM" -> 0.6;
-                case "LOW" -> 0.3;
-                default -> Double.parseDouble(confidenceStr);
-            };
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 }

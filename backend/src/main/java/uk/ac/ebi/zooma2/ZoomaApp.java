@@ -12,6 +12,7 @@ import uk.ac.ebi.zooma2.embedding.EmbeddingService;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsTermCache;
+import uk.ac.ebi.zooma2.repo.VoteRepository;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 
 import java.io.PrintWriter;
@@ -81,7 +82,7 @@ public class ZoomaApp {
         var apiV2 = new ZoomaApiV2(annotator, mappingTablesRepo, olsRepo);
         apiV2.registerRoutes(app);
         
-        var apiV3 = new ZoomaApiV3(annotator, mappingTablesRepo, olsRepo);
+        var apiV3 = new ZoomaApiV3(annotator, mappingTablesRepo, olsRepo, new VoteRepository());
         apiV3.registerRoutes(app);
 
         // Global handlers

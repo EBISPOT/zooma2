@@ -19,4 +19,7 @@ public class V3MapRequestDto {
 
     /** Filter to restrict datasources and ontologies. */
     public V3FilterDto filter;
+
+    /** Term IDs to exclude from results (for "try again" / thumbs-down). */
+    public List<String> excludeTermIds;
 }

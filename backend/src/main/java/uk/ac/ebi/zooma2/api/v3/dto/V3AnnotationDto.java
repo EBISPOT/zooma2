@@ -5,7 +5,7 @@ import java.util.List;
 public class V3AnnotationDto {
     public AnnotatedProperty annotatedProperty;
     public List<String> semanticTags;
-    public String confidence; 
+    public Double confidence; 
     public Provenance provenance;
 
     public static class AnnotatedProperty {

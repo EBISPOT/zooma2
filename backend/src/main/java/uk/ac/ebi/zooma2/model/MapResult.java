@@ -11,7 +11,7 @@ public class MapResult {
     public String propertyValue;
     public String ontologyTermLabel;
     public String ontologyTermSynonyms;
-    public String mappingConfidence;
+    public double mappingConfidence;
     public String ontologyTermID;
     public String ontologyURI;
     public String datasource;
@@ -28,7 +28,7 @@ public class MapResult {
                Objects.equals(propertyValue, that.propertyValue) &&
                Objects.equals(ontologyTermLabel, that.ontologyTermLabel) &&
                Objects.equals(ontologyTermSynonyms, that.ontologyTermSynonyms) &&
-               Objects.equals(mappingConfidence, that.mappingConfidence) &&
+               mappingConfidence == that.mappingConfidence &&
                Objects.equals(ontologyTermID, that.ontologyTermID) &&
                Objects.equals(ontologyURI, that.ontologyURI) &&
                Objects.equals(datasource, that.datasource) &&
@@ -38,7 +38,7 @@ public class MapResult {
     @Override
     public int hashCode() {
         return Objects.hash(propertyType, propertyValue, ontologyTermLabel,
-                            ontologyTermSynonyms, mappingConfidence,
+                            ontologyTermSynonyms, Double.valueOf(mappingConfidence),
                             ontologyTermID, ontologyURI, datasource, mappingProvenance);
     }
 }

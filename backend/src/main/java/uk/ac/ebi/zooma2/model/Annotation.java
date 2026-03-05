@@ -8,7 +8,7 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 public class Annotation {
     public AnnotatedProperty annotatedProperty;
     public List<String> semanticTags;
-    public String confidence; 
+    public double confidence; 
     public Provenance provenance;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
     

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState, Fragment, useCallback } from 'react'
+import { useCallback } from 'react'
 import { ZoomaDatasources } from "../api/ZoomaDatasources"
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig"
 
@@ -7,13 +7,12 @@ import {
   Box,
   Typography,
   FormControlLabel,
-  Checkbox,
   Chip,
   Button,
-  Autocomplete,
-  TextField,
   Stack,
-  Divider
+  Divider,
+  Radio,
+  RadioGroup
 } from '@mui/material'
 
 interface Props {
@@ -23,7 +22,6 @@ interface Props {
 }
 
 export default function Datasources({ datasources, datasourceConfig, onConfigChanged }: Props) {
-  const [ontoAutocomplete, setOntoAutocomplete] = useState<string>('')
 
   // All active datasources (not excluded)
   const activeDatasources = [
@@ -90,39 +88,10 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
     })
   }, [datasources, datasourceConfig, onConfigChanged])
 
-  const onSelectOntology = useCallback((val: string | null) => {
-    if (!val) return
-    let newSources = [...datasourceConfig.ontologySources]
-
-    if (newSources.indexOf(val) === -1) {
-      newSources.push(val)
-    }
-
-    setOntoAutocomplete('')
+  const onChangeDoNotSearchOntologies = useCallback((doNotSearch: boolean) => {
     onConfigChanged({
       ...datasourceConfig,
-      ontologySources: newSources
-    })
-  }, [datasourceConfig, onConfigChanged])
-
-  const removeOntologySource = useCallback((s: string) => {
-    onConfigChanged({
-      ...datasourceConfig,
-      ontologySources: datasourceConfig.ontologySources.filter(src => src !== s)
-    })
-  }, [datasourceConfig, onConfigChanged])
-
-  const onChangeDoNotSearchDatasources = useCallback((checked: boolean) => {
-    onConfigChanged({
-      ...datasourceConfig,
-      doNotSearchDatasources: checked
-    })
-  }, [datasourceConfig, onConfigChanged])
-
-  const onChangeDoNotSearchOntologies = useCallback((checked: boolean) => {
-    onConfigChanged({
-      ...datasourceConfig,
-      doNotSearchOntologies: checked
+      doNotSearchOntologies: doNotSearch
     })
   }, [datasourceConfig, onConfigChanged])
 
@@ -131,7 +100,7 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
       {/* Curated Datasources Section */}
       <Box sx={{ mb: 4 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
             Curated mapping databases
           </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -183,49 +152,27 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
 
       <Divider sx={{ my: 3 }} />
 
-      {/* Ontology Sources Section */}
+      {/* Ontologies Section */}
       <Box>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-          Search specific ontologies directly (optional)
+        <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
+          Ontologies
         </Typography>
 
-        <Autocomplete
-          options={datasources.searchableOntoNames}
-          getOptionLabel={(item: any) => item.displayName || item.name}
-          value={null}
-          onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              placeholder="Search ontologies by name, e.g. EFO"
-              variant="outlined"
-              sx={{ maxWidth: 500 }}
-            />
-          )}
-        />
-
-        {datasourceConfig.ontologySources.length > 0 && (
-          <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', gap: 1 }}>
-            {datasourceConfig.ontologySources.map(source => (
-              <Chip
-                key={source}
-                label={source}
-                onDelete={() => removeOntologySource(source)}
-              />
-            ))}
-          </Stack>
-        )}
-
-        <FormControlLabel
-          sx={{ mt: 2 }}
-          control={
-            <Checkbox
-              checked={datasourceConfig.doNotSearchOntologies}
-              onChange={(_, checked) => onChangeDoNotSearchOntologies(checked)}
-            />
-          }
-          label={<Typography variant="body1">Skip ontology search (only search existing mappings)</Typography>}
-        />
+        <RadioGroup
+          value={datasourceConfig.doNotSearchOntologies ? 'no' : 'yes'}
+          onChange={(_, val) => onChangeDoNotSearchOntologies(val === 'no')}
+        >
+          <FormControlLabel
+            value="yes"
+            control={<Radio color="success" />}
+            label="Search ontologies in the Ontology Lookup Service (OLS)"
+          />
+          <FormControlLabel
+            value="no"
+            control={<Radio color="success" />}
+            label="Do not search ontologies in OLS; only use curated mappings"
+          />
+        </RadioGroup>
       </Box>
     </Box>
   )

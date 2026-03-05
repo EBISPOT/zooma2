@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
+import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
@@ -15,6 +16,7 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
+import uk.ac.ebi.zooma2.repo.VoteRepository;
 
 import java.io.IOException;
 import java.util.*;
@@ -30,11 +32,14 @@ public class ZoomaApiV3 {
     private final ZoomaAnnotator annotator;
     private final MappingTablesRepo mappingTablesRepo;
     private final OlsClientRepo olsRepo;
+    private final VoteRepository voteRepo;
+    private final Gson gson = new Gson();
 
-    public ZoomaApiV3(ZoomaAnnotator annotator, MappingTablesRepo mappingTablesRepo, OlsClientRepo olsRepo) {
+    public ZoomaApiV3(ZoomaAnnotator annotator, MappingTablesRepo mappingTablesRepo, OlsClientRepo olsRepo, VoteRepository voteRepo) {
         this.annotator = annotator;
         this.mappingTablesRepo = mappingTablesRepo;
         this.olsRepo = olsRepo;
+        this.voteRepo = voteRepo;
     }
 
     public void registerRoutes(Javalin app) {
@@ -50,6 +55,13 @@ public class ZoomaApiV3 {
         
         // Unified mapping endpoint - uses semantic search by default
         app.post("/v3/api/services/map", this::map);
+        
+        // Streaming mapping endpoint - sends results as NDJSON as each property completes
+        app.post("/v3/api/services/map-stream", this::mapStream);
+
+        // Vote endpoints
+        app.post("/v3/api/votes", this::recordVote);
+        app.get("/v3/api/votes", this::getVotes);
     }
 
     private void getStatus(Context ctx) {
@@ -125,7 +137,7 @@ public class ZoomaApiV3 {
         
         // Get internal results
         Collection<MapResult> internalResults = annotator.mapAll(
-            internalStringsToMap, filter, model, preferredOntologies
+            internalStringsToMap, filter, model, preferredOntologies, request.excludeTermIds
         );
         
         // Group results by input property (normalizing null/unspecified propertyType)
@@ -151,6 +163,115 @@ public class ZoomaApiV3 {
             .collect(Collectors.toList());
         
         ctx.json(V3MapResponseDto.of(mappings));
+    }
+
+    /**
+     * Streaming mapping endpoint. Sends results as NDJSON (one JSON object per line)
+     * as each property completes mapping. Each line is a JSON object with:
+     * - type: "result" or "done"
+     * - mapping: V3PropertyMappingDto (for "result" events)
+     * - completed: number of properties mapped so far
+     * - total: total number of properties to map
+     */
+    private void mapStream(Context ctx) {
+        var request = bodyJson(ctx, V3MapRequestDto.class);
+        
+        if (request.properties == null || request.properties.isEmpty()) {
+            throw new BadRequestResponse("'properties' is required and cannot be empty");
+        }
+        
+        var filter = request.filter != null ? request.filter.toFilter() : null;
+        var preferredOntologies = request.preferredOntologies;
+        
+        String model = request.model;
+        if (model == null || model.isEmpty()) {
+            model = olsRepo.getDefaultEmbeddingModel();
+            if (model == null) {
+                model = "text-embedding-3-small";
+            }
+        }
+        
+        int total = request.properties.size();
+        
+        List<uk.ac.ebi.zooma2.model.StringToMap> properties = request.properties.stream()
+            .map(V3StringToMapDto::toStringToMap)
+            .collect(Collectors.toList());
+        
+        ctx.res().setContentType("application/x-ndjson");
+        ctx.res().setCharacterEncoding("UTF-8");
+        
+        try {
+            var out = ctx.res().getOutputStream();
+            int[] completed = {0};
+            
+            annotator.mapEach(properties, filter, model, preferredOntologies, (prop, results) -> {
+                List<V3MappingCandidateDto> candidates = results.stream()
+                    .map(V3MappingCandidateDto::from)
+                    .sorted(Comparator.comparing(
+                        c -> c.confidence != null ? c.confidence : 0.0,
+                        Comparator.reverseOrder()
+                    ))
+                    .collect(Collectors.toList());
+                
+                var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.propertyValue, candidates);
+                completed[0]++;
+                
+                var event = new LinkedHashMap<String, Object>();
+                event.put("type", "result");
+                event.put("mapping", mapping);
+                event.put("completed", completed[0]);
+                event.put("total", total);
+                
+                try {
+                    out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                    out.flush();
+                } catch (IOException e) {
+                    throw new java.io.UncheckedIOException(e);
+                }
+            });
+            
+            var doneEvent = new LinkedHashMap<String, Object>();
+            doneEvent.put("type", "done");
+            doneEvent.put("completed", total);
+            doneEvent.put("total", total);
+            out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            out.flush();
+            
+        } catch (IOException | java.io.UncheckedIOException e) {
+            System.err.println("Client disconnected during streaming, stopping mapping (" + e.getMessage() + ")");
+        }
+    }
+
+    // ==================== Vote endpoints ====================
+
+    private static class VoteRequest {
+        public String propertyValue;
+        public String propertyType;
+        public String termId;
+        public String termLabel;
+        public String ontology;
+        public String vote; // "up" or "down"
+    }
+
+    private void recordVote(Context ctx) {
+        var req = bodyJson(ctx, VoteRequest.class);
+        if (req.propertyValue == null || req.termId == null || req.vote == null) {
+            throw new BadRequestResponse("propertyValue, termId, and vote are required");
+        }
+        if (!"up".equals(req.vote) && !"down".equals(req.vote)) {
+            throw new BadRequestResponse("vote must be 'up' or 'down'");
+        }
+        voteRepo.recordVote(req.propertyValue, req.propertyType, req.termId,
+                            req.termLabel, req.ontology, req.vote);
+        ctx.json(Map.of("status", "ok"));
+    }
+
+    private void getVotes(Context ctx) {
+        String propertyValue = ctx.queryParam("propertyValue");
+        if (propertyValue == null || propertyValue.isEmpty()) {
+            throw new BadRequestResponse("propertyValue query parameter is required");
+        }
+        ctx.json(voteRepo.getVotes(propertyValue));
     }
 
     // ==================== Helper methods ====================

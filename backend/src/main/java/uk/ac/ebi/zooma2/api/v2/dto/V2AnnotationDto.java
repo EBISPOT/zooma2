@@ -37,7 +37,7 @@ public class V2AnnotationDto {
     public static V2AnnotationDto from(Annotation internal) {
         V2AnnotationDto dto = new V2AnnotationDto();
         dto.semanticTags = internal.semanticTags;
-        dto.confidence = internal.confidence;
+        dto.confidence = scoreToLevel(internal.confidence);
         
         if (internal.annotatedProperty != null) {
             dto.annotatedProperty = new AnnotatedProperty();
@@ -64,5 +64,12 @@ public class V2AnnotationDto {
         }
         
         return dto;
+    }
+
+    private static String scoreToLevel(double score) {
+        if (score >= 0.9) return "HIGH";
+        if (score >= 0.7) return "GOOD";
+        if (score >= 0.5) return "MEDIUM";
+        return "LOW";
     }
 }

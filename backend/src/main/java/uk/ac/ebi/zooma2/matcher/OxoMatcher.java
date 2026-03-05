@@ -226,20 +226,8 @@ public class OxoMatcher implements AnnotationMatcher {
     /**
      * Reduce confidence for indirect mappings.
      */
-    private String reduceConfidence(String originalConfidence) {
-        if (originalConfidence == null) {
-            return "LOW";
-        }
-        
-        switch (originalConfidence.toUpperCase()) {
-            case "HIGH":
-                return "MEDIUM";
-            case "MEDIUM":
-                return "LOW";
-            case "LOW":
-            default:
-                return "LOW";
-        }
+    private double reduceConfidence(double originalConfidence) {
+        return originalConfidence * 0.7;
     }
 
     /**

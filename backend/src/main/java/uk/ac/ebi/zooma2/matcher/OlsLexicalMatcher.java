@@ -47,7 +47,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(t.iri);
-        a.confidence = "HIGH";
+        a.confidence = t.label != null && t.label.equalsIgnoreCase(context.stringToMap) ? 0.95 : 0.9;
 
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
