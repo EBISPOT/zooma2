@@ -5,6 +5,6 @@ COPY . /opt/
 RUN cd /opt/ && ls && mvn clean package
 
 EXPOSE 8090
-ENTRYPOINT ["java", "-jar", "/opt/target/zooma2-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "--add-modules", "jdk.incubator.vector", "-jar", "/opt/target/zooma2-1.0-SNAPSHOT.jar"]
 
 
