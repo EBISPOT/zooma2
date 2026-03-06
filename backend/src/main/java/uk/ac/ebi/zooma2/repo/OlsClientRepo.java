@@ -58,12 +58,16 @@ public class OlsClientRepo {
         // Check cache first
         if (termCache != null) {
             Map<String, OlsTerm> cached = termCache.getTerms(termIris);
-            result.putAll(cached);
             
-            // Find IRIs not in cache
             for (String iri : termIris) {
-                if (!cached.containsKey(iri)) {
+                OlsTerm cachedTerm = cached.get(iri);
+                if (cachedTerm == null) {
                     irisToFetch.add(iri);
+                } else if (cachedTerm.is_obsolete == null) {
+                    // Incomplete cache entry (e.g. from embedding search) — re-fetch for full metadata
+                    irisToFetch.add(iri);
+                } else {
+                    result.put(iri, cachedTerm);
                 }
             }
             
@@ -529,9 +533,9 @@ public class OlsClientRepo {
         // Build URL with query params
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=true");
-        // Sensible defaults matching OLS frontend: word-boundary delimiters so only whole tokens match
+        // word-boundary delimiters so only whole tokens match
         urlBuilder.append("&delimiters=").append(
-            java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-", java.nio.charset.StandardCharsets.UTF_8));
+            java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
         urlBuilder.append("&minLength=3");
         if (ontologyIds != null) {
             for (String ont : ontologyIds) {

@@ -302,8 +302,8 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                 <Typography variant="body2">
                     <b>Stats:</b> {effectiveResults.length} properties &emsp;&emsp;
                     {effectiveResults.filter(r => r._inProgress).length > 0 && <>{effectiveResults.filter(r => r._inProgress).length} in progress &emsp;&emsp;</>}
-                    {effectiveResults.filter(r => parseFloat(r.mappingConfidence) >= 0.9).length} high (&ge;0.9) &emsp;&emsp;
-                    {effectiveResults.filter(r => { const c = parseFloat(r.mappingConfidence); return c > 0 && c < 0.9; }).length} low (&lt;0.9) &emsp;&emsp;
+                    {effectiveResults.filter(r => parseFloat(r.mappingConfidence) >= 0.9).length} high (&ge;90%) &emsp;&emsp;
+                    {effectiveResults.filter(r => { const c = parseFloat(r.mappingConfidence); return c > 0 && c < 0.9; }).length} low (&lt;90%) &emsp;&emsp;
                     {effectiveResults.filter(r => r.mappingConfidence === 'Did not map').length} unmapped
                 </Typography>
             </Box>
@@ -399,7 +399,7 @@ function formatConfidence(confidence: string): string {
     if (!confidence || confidence === 'Did not map') return confidence;
     const num = parseFloat(confidence);
     if (isNaN(num)) return confidence;
-    return num.toFixed(4);
+    return (num * 100).toFixed(2) + '%';
 }
 
 function shortFormToCurie(shortForm: string): string {
@@ -433,6 +433,7 @@ function TermIdLink({ termId, ontology }: { termId: string; ontology: string }) 
 function getMappingTypeSummary(provenance?: ZoomaApi.MappingProvenanceStep[]): string {
     if (!provenance || provenance.length === 0) return '-';
     const methods = Array.from(new Set(provenance.map(step => {
+        if (step.matchType === 'OBSOLETE_REPLACEMENT') return 'Replace obsolete';
         switch (step.method) {
             case 'semantic': return 'Embedding';
             case 'lexical': return 'Lexical';
@@ -493,6 +494,7 @@ function MappingProvenance({ provenance }: { provenance?: ZoomaApi.MappingProven
 
     // Get unique methods for concise display
     const methods = Array.from(new Set(provenance.map(step => {
+        if (step.matchType === 'OBSOLETE_REPLACEMENT') return 'Replace obsolete';
         switch (step.method) {
             case 'semantic': return 'Embedding';
             case 'lexical': return 'Lexical';

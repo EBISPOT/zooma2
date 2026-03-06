@@ -104,6 +104,6 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     }
 
     private static double capEmbeddingScore(double score) {
-        return Math.min(score, 0.89);
+        return score * 0.89;
     }
 }

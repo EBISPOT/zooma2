@@ -172,8 +172,8 @@ public class ZoomaAnnotator {
         // Check for obsolete terms and resolve their replacements
         Set<String> replacementIris = new java.util.HashSet<>();
         for (var term : termMap.values()) {
-            if (term.isObsolete() && term.term_replaced_by != null) {
-                replacementIris.add(term.term_replaced_by);
+            if (term.isObsolete() && term.getReplacementIri() != null) {
+                replacementIris.add(term.getReplacementIri());
             }
         }
         var replacementTermMap = olsRepo.resolveTerms(replacementIris);
@@ -189,21 +189,24 @@ public class ZoomaAnnotator {
             OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
             OlsTerm finalTerm = term;
             
-            // Check if term is obsolete and has a replacement
-            if (term != null && term.isObsolete() && term.term_replaced_by != null) {
-                OlsTerm replacement = replacementTermMap.get(term.term_replaced_by);
-                if (replacement != null) {
-                    // Use the replacement term for the final result
-                    finalTerm = replacement;
-                    
-                    // Add obsolete replacement step to provenance
-                    List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
-                    newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
-                        term.iri, term.label,
-                        replacement.iri, replacement.label,
-                        term.ontology_name
-                    ));
-                    a.mappingProvenance = newProvenance;
+            // Handle obsolete terms: replace if possible, drop if not
+            if (term != null && term.isObsolete()) {
+                if (term.getReplacementIri() != null) {
+                    OlsTerm replacement = replacementTermMap.get(term.getReplacementIri());
+                    if (replacement != null) {
+                        finalTerm = replacement;
+                        List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
+                        newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
+                            term.iri, term.label,
+                            replacement.iri, replacement.label,
+                            term.ontology_name
+                        ));
+                        a.mappingProvenance = newProvenance;
+                    } else {
+                        return null; // obsolete, replacement not resolvable
+                    }
+                } else {
+                    return null; // obsolete with no replacement
                 }
             }
             
@@ -226,7 +229,7 @@ public class ZoomaAnnotator {
             r.mappingProvenance = a.mappingProvenance;
             
             return r;
-        }).collect(Collectors.toList());
+        }).filter(r -> r != null).collect(Collectors.toList());
 
         return results;
     }
@@ -252,6 +255,19 @@ public class ZoomaAnnotator {
 
         var termMap = olsRepo.resolveTerms(termIrisToResolve);
 
+        // Check for obsolete terms and resolve their replacements
+        Set<String> replacementIris = new java.util.HashSet<>();
+        for (var entry : termMap.entrySet()) {
+            var term = entry.getValue();
+            if (term.isObsolete()) {
+                String replacementIri = term.getReplacementIri();
+                if (replacementIri != null) {
+                    replacementIris.add(replacementIri);
+                }
+            }
+        }
+        var replacementTermMap = olsRepo.resolveTerms(replacementIris);
+
         return preComputed.stream().map(a -> {
             var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
             var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
@@ -260,11 +276,34 @@ public class ZoomaAnnotator {
             r.textToMap = s.textToMap;
 
             OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
-            if (term != null) {
-                r.ontologyTermID = term.short_form;
-                r.ontologyTermLabel = term.label;
-                r.ontologyTermSynonyms = term.synonyms != null ? String.join("|", term.synonyms) : null;
-                r.ontologyURI = term.ontology_name;
+            OlsTerm finalTerm = term;
+
+            // Handle obsolete terms: replace if possible, drop if not
+            if (term != null && term.isObsolete()) {
+                if (term.getReplacementIri() != null) {
+                    OlsTerm replacement = replacementTermMap.get(term.getReplacementIri());
+                    if (replacement != null) {
+                        finalTerm = replacement;
+                        List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
+                        newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
+                            term.iri, term.label,
+                            replacement.iri, replacement.label,
+                            term.ontology_name
+                        ));
+                        a.mappingProvenance = newProvenance;
+                    } else {
+                        return null; // obsolete, replacement not resolvable
+                    }
+                } else {
+                    return null; // obsolete with no replacement
+                }
+            }
+
+            if (finalTerm != null) {
+                r.ontologyTermID = finalTerm.short_form;
+                r.ontologyTermLabel = finalTerm.label;
+                r.ontologyTermSynonyms = finalTerm.synonyms != null ? String.join("|", finalTerm.synonyms) : null;
+                r.ontologyURI = finalTerm.ontology_name;
             } else {
                 r.ontologyTermLabel = r.textToMap;
             }
@@ -278,7 +317,7 @@ public class ZoomaAnnotator {
             r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
             r.mappingProvenance = a.mappingProvenance;
             return r;
-        }).collect(Collectors.toList());
+        }).filter(r -> r != null).collect(Collectors.toList());
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {

@@ -55,12 +55,15 @@ public class Deduplicator {
         keepBestEmbeddingResult(results);
 
         // 4. Drop results much weaker than the best match
-        suppressWeakResults(results);
+        suppressWeakResults(results, filter);
 
         // 5. Deduplicate by term ID, keeping highest confidence
         var deduped = deduplicateByTermId(results);
 
-        // 6. Among same-score results from target ontologies, keep highest priority
+        // 6. When target ontologies set, keep only the best result per ontology
+        keepBestPerTargetOntology(deduped, filter);
+
+        // 7. Among remaining results, remove lower-priority ontology results
         keepHigherPriorityOnTie(deduped, filter);
 
         return deduped;
@@ -105,9 +108,37 @@ public class Deduplicator {
     }
 
     /**
-     * Among results whose ontologies are both in the target list and whose
-     * confidence scores are close (within 0.01), keep only the one from the
-     * highest-priority ontology (earliest in the targetOntologies list).
+     * When target ontologies are set, keep only the single best result per
+     * target ontology. Multiple results from the same ontology are redundant
+     * when the user has specified which ontologies they care about.
+     */
+    void keepBestPerTargetOntology(List<MapResult> results, Filter filter) {
+        if (filter == null || filter.targetOntologies == null || filter.targetOntologies.isEmpty()) {
+            return;
+        }
+        Set<String> targets = filter.targetOntologies.stream()
+            .map(s -> s.toLowerCase(Locale.ROOT))
+            .collect(Collectors.toSet());
+
+        // Find best confidence per target ontology
+        Map<String, Double> bestPerOntology = new HashMap<>();
+        for (var r : results) {
+            String onto = getOntologyPrefix(r);
+            if (onto == null || !targets.contains(onto)) continue;
+            bestPerOntology.merge(onto, r.mappingConfidence, Math::max);
+        }
+
+        results.removeIf(r -> {
+            String onto = getOntologyPrefix(r);
+            if (onto == null || !targets.contains(onto)) return false;
+            return r.mappingConfidence < bestPerOntology.get(onto);
+        });
+    }
+
+    /**
+     * Among results whose ontologies are both in the target list, remove
+     * lower-priority ontology results when a higher-priority ontology
+     * result exists with an equal or better score.
      */
     void keepHigherPriorityOnTie(List<MapResult> results, Filter filter) {
         if (filter == null || filter.targetOntologies == null || filter.targetOntologies.size() < 2) {
@@ -120,7 +151,7 @@ public class Deduplicator {
         }
 
         // For each target-ontology result, check if a higher-priority
-        // target-ontology result exists within 0.01 confidence
+        // target-ontology result exists with equal or better confidence
         Set<MapResult> toRemove = new java.util.HashSet<>();
         for (var r : results) {
             String onto = getOntologyPrefix(r);
@@ -133,9 +164,9 @@ public class Deduplicator {
                 if (otherOnto == null || !priority.containsKey(otherOnto)) continue;
                 int otherPriority = priority.get(otherOnto);
 
-                // If a higher-priority result exists with a similar score, remove this one
+                // If a higher-priority result exists with equal or better score, remove this one
                 if (otherPriority < myPriority
-                        && Math.abs(r.mappingConfidence - other.mappingConfidence) <= 0.01) {
+                        && other.mappingConfidence >= r.mappingConfidence) {
                     toRemove.add(r);
                     break;
                 }
@@ -171,15 +202,19 @@ public class Deduplicator {
 
     /**
      * If the best result is significantly stronger than weaker results,
-     * drop the weak ones. Keeps results within 0.2 of the best confidence.
+     * drop the weak ones. When target ontologies are set, use a tighter
+     * threshold (0.05) so near-misses from other ontologies are suppressed.
+     * Otherwise keep results within 0.2 of the best.
      */
-    void suppressWeakResults(List<MapResult> results) {
+    void suppressWeakResults(List<MapResult> results, Filter filter) {
         double best = results.stream()
             .mapToDouble(r -> r.mappingConfidence)
             .max()
             .orElse(0.0);
+        boolean hasTargetOntologies = filter != null && filter.targetOntologies != null && !filter.targetOntologies.isEmpty();
+        double gap = hasTargetOntologies ? 0.05 : 0.2;
         if (best >= 0.7) {
-            results.removeIf(r -> r.mappingConfidence < best - 0.2);
+            results.removeIf(r -> r.mappingConfidence < best - gap);
         }
     }
 
