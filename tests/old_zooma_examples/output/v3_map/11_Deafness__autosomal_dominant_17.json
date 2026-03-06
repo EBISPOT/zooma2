@@ -3,6 +3,36 @@
     {
       "candidates": [
         {
+          "confidence": 0.95,
+          "datasource": "cttv",
+          "label": "Rare autosomal dominant non-syndromic sensorineural deafness type DFNA",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "Deafness, autosomal dominant 17",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "cttv",
+              "target": "http://www.orpha.net/ORDO/Orphanet_90635"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [
+            "Autosomal dominant isolated neurosensory deafness type DFNA",
+            "Autosomal dominant isolated neurosensory hearing loss type DFNA",
+            "Autosomal dominant isolated sensorineural deafness type DFNA",
+            "Autosomal dominant isolated sensorineural hearing loss type DFNA",
+            "Autosomal dominant non-syndromic neurosensory deafness type DFNA",
+            "Autosomal dominant non-syndromic neurosensory hearing loss type DFNA",
+            "Autosomal dominant non-syndromic sensorineural hearing loss type DFNA"
+          ],
+          "termId": "Orphanet_90635",
+          "uri": "ordo"
+        },
+        {
           "confidence": 0.9,
           "datasource": "mesh",
           "label": "MYH9-Related Disorders",
@@ -82,7 +112,7 @@
         }
       ],
       "propertyType": "phenotype",
-      "propertyValue": "Deafness, autosomal dominant 17"
+      "textToMap": "Deafness, autosomal dominant 17"
     }
   ]
 }

@@ -3,14 +3,14 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "ncit",
           "label": "Spastic Paraplegia 10",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "Spastic paraplegia 10",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "Spastic Paraplegia 10",
               "method": "lexical",
               "model": null,
@@ -26,43 +26,10 @@
           ],
           "termId": "NCIT_C192058",
           "uri": "ncit"
-        },
-        {
-          "confidence": 0.9,
-          "datasource": "mondo",
-          "label": "hereditary spastic paraplegia 10",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Spastic paraplegia 10",
-              "matchType": "OLS_LEXICAL_SYNONYM",
-              "matchedText": "hereditary spastic paraplegia 10",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0011408"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [
-            "spastic paraplegia 10 with or without peripheral neuropathy",
-            "KIF5A hereditary spastic paraplegia",
-            "SPG10",
-            "autosomal dominant spastic paraplegia 10",
-            "autosomal dominant spastic paraplegia type 10",
-            "autosomal dominant spastic paraplegia",
-            "hereditary spastic paraplegia caused by mutation in KIF5A",
-            "hereditary spastic paraplegia type 10",
-            "spastic paraplegia 10",
-            "spastic paraplegia 10, autosomal dominant"
-          ],
-          "termId": "MONDO_0011408",
-          "uri": "mondo"
         }
       ],
       "propertyType": "phenotype",
-      "propertyValue": "Spastic paraplegia 10"
+      "textToMap": "Spastic paraplegia 10"
     }
   ]
 }

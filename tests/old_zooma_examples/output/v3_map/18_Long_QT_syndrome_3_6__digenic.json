@@ -4,6 +4,37 @@
       "candidates": [
         {
           "confidence": 0.95,
+          "datasource": "eva-clinvar",
+          "label": "familial long QT syndrome",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "eva-clinvar",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0019171"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "Ward-Romano syndrome",
+            "LQTS",
+            "Long QT Syndrome",
+            "Romano-Ward long QT syndrome",
+            "Romano-Ward syndrome",
+            "congenital long QT syndrome",
+            "familial long QT syndrome",
+            "hereditary long QT syndrome"
+          ],
+          "termId": "MONDO_0019171",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.95,
           "datasource": "clinvar-xrefs",
           "label": "Long QT syndrome 3/6, digenic",
           "mappingProvenance": [
@@ -57,7 +88,7 @@
         }
       ],
       "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic"
+      "textToMap": "Long QT syndrome 3/6, digenic"
     }
   ]
 }

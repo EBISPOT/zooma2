@@ -218,9 +218,9 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
 
         # -- v3 map (single property) --
         if [ -n "$prop_type" ]; then
-            v3_body="{\"properties\":[{\"propertyValue\":$(python3 -c "import json; print(json.dumps('$prop_value'))"),\"propertyType\":$(python3 -c "import json; print(json.dumps('$prop_type'))")}]}"
+            v3_body="{\"properties\":[{\"textToMap\":$(python3 -c "import json; print(json.dumps('$prop_value'))"),\"propertyType\":$(python3 -c "import json; print(json.dumps('$prop_type'))")}]}"
         else
-            v3_body="{\"properties\":[{\"propertyValue\":$(python3 -c "import json; print(json.dumps('$prop_value'))")}]}"
+            v3_body="{\"properties\":[{\"textToMap\":$(python3 -c "import json; print(json.dumps('$prop_value'))")}]}"
         fi
         curl -sf -X POST "$BASE_URL/v3/api/services/map" \
             -H "Content-Type: application/json" \
@@ -240,7 +240,7 @@ props = []
 with open('$INPUT_FILE', newline='') as f:
     reader = csv.DictReader(f, delimiter='\t')
     for row in reader:
-        p = {'propertyValue': row['propertyValue']}
+        p = {'textToMap': row['propertyValue']}
         pt = row.get('propertyType', '').strip()
         if pt:
             p['propertyType'] = pt

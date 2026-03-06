@@ -4,6 +4,34 @@
       "candidates": [
         {
           "confidence": 0.95,
+          "datasource": "cttv",
+          "label": "Hereditary amyloidosis with primary renal involvement",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "cttv",
+              "target": "http://www.orpha.net/ORDO/Orphanet_85450"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [
+            "Amyloidosis, Ostertag type",
+            "Familial amyloid nephropathy",
+            "Familial renal amyloidosis",
+            "Hereditary amyloid nephropathy",
+            "Hereditary renal amyloidosis"
+          ],
+          "termId": "Orphanet_85450",
+          "uri": "ordo"
+        },
+        {
+          "confidence": 0.95,
           "datasource": "mesh",
           "label": "Amyloidosis, familial visceral",
           "mappingProvenance": [
@@ -75,7 +103,7 @@
         }
       ],
       "propertyType": "phenotype",
-      "propertyValue": "Amyloidosis, familial visceral"
+      "textToMap": "Amyloidosis, familial visceral"
     }
   ]
 }

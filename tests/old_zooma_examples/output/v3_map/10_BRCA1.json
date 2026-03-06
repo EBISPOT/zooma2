@@ -3,14 +3,14 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "omit",
           "label": "BRCA1",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "BRCA1",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "BRCA1",
               "method": "lexical",
               "model": null,
@@ -25,14 +25,14 @@
           "uri": "omit"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "ogg",
           "label": "BRCA1",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "BRCA1",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "BRCA1",
               "method": "lexical",
               "model": null,
@@ -45,152 +45,10 @@
           "synonyms": [],
           "termId": "OGG_3000000672",
           "uri": "ogg"
-        },
-        {
-          "confidence": 0.95,
-          "datasource": "hgnc",
-          "label": "BRCA1",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "BRCA1",
-              "matchType": "OLS_LEXICAL",
-              "matchedText": "BRCA1",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:hgnc",
-              "target": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/1100"
-            }
-          ],
-          "ontology": "hgnc",
-          "synonyms": [
-            "BRCA1/BRCA2-containing complex, subunit 1",
-            "Fanconi anemia, complementation group S",
-            "protein phosphatase 1, regulatory subunit 53",
-            "BRCC1",
-            "FANCS",
-            "PPP1R53",
-            "RNF53",
-            "breast cancer 1",
-            "breast cancer 1, early onset"
-          ],
-          "termId": "hgnc_1100",
-          "uri": "hgnc"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "efo",
-          "label": "BRCA1 mutation carier status",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "BRCA1",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "BRCA1 mutation carier status",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9377107620239258,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0011021"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [],
-          "termId": "EFO_0011021",
-          "uri": "efo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "pr",
-          "label": "BRCA1-associated protein",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "BRCA1",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "BRCA1-associated protein",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9358205795288086,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000004802"
-            }
-          ],
-          "ontology": "pr",
-          "synonyms": [],
-          "termId": "PR_000004802",
-          "uri": "pr"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "go",
-          "label": "BRCA1-A complex",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "BRCA1",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "BRCA1-A complex",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.934138298034668,
-              "source": "ols:go",
-              "target": "http://purl.obolibrary.org/obo/GO_0070531"
-            }
-          ],
-          "ontology": "go",
-          "synonyms": [],
-          "termId": "GO_0070531",
-          "uri": "go"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "go",
-          "label": "BRCA1-B complex",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "BRCA1",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "BRCA1-B complex",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.93365478515625,
-              "source": "ols:go",
-              "target": "http://purl.obolibrary.org/obo/GO_0070532"
-            }
-          ],
-          "ontology": "go",
-          "synonyms": [],
-          "termId": "GO_0070532",
-          "uri": "go"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "ncit",
-          "label": "BRCA1 Gene Mutation",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "BRCA1",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "BRCA1 Gene Mutation",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9325847625732422,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C19635"
-            }
-          ],
-          "ontology": "ncit",
-          "synonyms": [],
-          "termId": "NCIT_C19635",
-          "uri": "ncit"
         }
       ],
       "propertyType": "gene",
-      "propertyValue": "BRCA1"
+      "textToMap": "BRCA1"
     }
   ]
 }

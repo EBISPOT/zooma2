@@ -164,10 +164,32 @@
           "synonyms": [],
           "termId": "mesh_C567654",
           "uri": "mesh"
+        },
+        {
+          "confidence": 0.7581481481481481,
+          "datasource": "omit",
+          "label": "Cardiomyopathy, Dilated",
+          "mappingProvenance": [
+            {
+              "confidence": 0.8518518518518519,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Cardiomyopathy, Dilated",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.8518518518518519,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003646"
+            }
+          ],
+          "ontology": "omit",
+          "synonyms": [],
+          "termId": "OMIT_0003646",
+          "uri": "omit"
         }
       ],
       "propertyType": "phenotype",
-      "propertyValue": "Cardiomyopathy, dilated, 1S"
+      "textToMap": "Cardiomyopathy, dilated, 1S"
     }
   ]
 }

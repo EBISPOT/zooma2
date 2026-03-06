@@ -3,14 +3,14 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "ncit",
           "label": "Retinal Cone Dystrophy 3B",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "Retinal cone dystrophy 3B",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "Retinal Cone Dystrophy 3B",
               "method": "lexical",
               "model": null,
@@ -23,34 +23,10 @@
           "synonyms": [],
           "termId": "NCIT_C192089",
           "uri": "ncit"
-        },
-        {
-          "confidence": 0.95,
-          "datasource": "mesh",
-          "label": "Retinal Cone Dystrophy 3B",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "Retinal cone dystrophy 3B",
-              "matchType": "OLS_LEXICAL",
-              "matchedText": "Retinal Cone Dystrophy 3B",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C563678"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [
-            "Cone Dystrophy with Night Blindness and Supernormal Rod Responses, KCNV2-Related"
-          ],
-          "termId": "mesh_C563678",
-          "uri": "mesh"
         }
       ],
       "propertyType": "disease",
-      "propertyValue": "Retinal cone dystrophy 3B"
+      "textToMap": "Retinal cone dystrophy 3B"
     }
   ]
 }

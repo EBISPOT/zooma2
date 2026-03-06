@@ -4,6 +4,42 @@
       "candidates": [
         {
           "confidence": 0.89,
+          "datasource": "atlas",
+          "label": "obsolete_C57BL/6",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
+              "matchedText": "C57BL/6",
+              "method": "semantic",
+              "model": null,
+              "similarity": 0.9352483749389648,
+              "source": "atlas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004472"
+            }
+          ],
+          "ontology": "efo",
+          "synonyms": [
+            "B6",
+            "C57 Black/6",
+            "C57",
+            "C57/B6",
+            "C57/BL6",
+            "C57B/6",
+            "C57BL6",
+            "C57Bl,",
+            "C57Bl\\6",
+            "C57Black",
+            "C57Black/6",
+            "C57Black6",
+            "CB57"
+          ],
+          "termId": "EFO_0004472",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.89,
           "datasource": "ncit",
           "label": "C57BL/6ByJ Mouse",
           "mappingProvenance": [
@@ -114,7 +150,7 @@
         }
       ],
       "propertyType": "strain",
-      "propertyValue": "C57Black/6"
+      "textToMap": "C57Black/6"
     }
   ]
 }

@@ -1,9 +1,54 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 0.89,
+          "datasource": "sysmicro",
+          "label": "site of double-strand break",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Reduction in IR-induced 53BP1 foci in HeLa",
+              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
+              "matchedText": "Reduction in IR-induced 53BP1 foci in HeLa cells",
+              "method": "semantic",
+              "model": null,
+              "similarity": 0.8993107676506042,
+              "source": "sysmicro",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [],
+          "termId": "CMPO_0000180",
+          "uri": "cmpo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "sysmicro",
+          "label": "decreased number of site of double-strand break",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Reduction in IR-induced 53BP1 foci in HeLa",
+              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
+              "matchedText": "Reduction in IR-induced 53BP1 foci in HeLa cells",
+              "method": "semantic",
+              "model": null,
+              "similarity": 0.8993107676506042,
+              "source": "sysmicro",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [],
+          "termId": "CMPO_0000181",
+          "uri": "cmpo"
+        }
+      ],
       "propertyType": "cell",
-      "propertyValue": "Reduction in IR-induced 53BP1 foci in HeLa"
+      "textToMap": "Reduction in IR-induced 53BP1 foci in HeLa"
     }
   ]
 }

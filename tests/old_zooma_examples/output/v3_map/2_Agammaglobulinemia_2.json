@@ -3,14 +3,14 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "doid",
           "label": "agammaglobulinemia 2",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "agammaglobulinemia 2",
               "method": "lexical",
               "model": null,
@@ -25,74 +25,132 @@
           "uri": "doid"
         },
         {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "agammaglobulinemia 2, autosomal recessive",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "agammaglobulinemia 2, autosomal recessive",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9261884689331055,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013287"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0013287",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "agammaglobulinemia 4, autosomal recessive",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "agammaglobulinemia 4, autosomal recessive",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8914756774902344,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013289"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0013289",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
+          "confidence": 0.801,
           "datasource": "doid",
-          "label": "X-linked agammaglobulinemia",
+          "label": "agammaglobulinemia",
           "mappingProvenance": [
             {
-              "confidence": null,
+              "confidence": 0.9,
               "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "X-linked agammaglobulinemia",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8905506134033203,
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
               "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_14179"
+              "target": "http://purl.obolibrary.org/obo/DOID_2583"
             }
           ],
           "ontology": "doid",
-          "synonyms": [],
-          "termId": "DOID_14179",
+          "synonyms": [
+            "hypogammaglobulinemia",
+            "mu heavy chain deficiency",
+            "IGHM"
+          ],
+          "termId": "DOID_2583",
           "uri": "doid"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "omit",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0001789"
+            }
+          ],
+          "ontology": "omit",
+          "synonyms": [],
+          "termId": "OMIT_0001789",
+          "uri": "omit"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "mondo",
+          "label": "agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0015977"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "Gammaglobulin Deficiency",
+            "IGHM",
+            "Immunoglobulin Deficiency",
+            "agammaglobulinemia",
+            "antibody Deficiency",
+            "hypogammaglobulinemia",
+            "mu heavy chain deficiency"
+          ],
+          "termId": "MONDO_0015977",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "ordo",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [],
+          "termId": "Orphanet_183669",
+          "uri": "ordo"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "synonyms": [
+            "Agammaglobulinaemia"
+          ],
+          "termId": "HP_0004432",
+          "uri": "hp"
         }
       ],
       "propertyType": "phenotype",
-      "propertyValue": "Agammaglobulinemia 2"
+      "textToMap": "Agammaglobulinemia 2"
     }
   ]
 }
