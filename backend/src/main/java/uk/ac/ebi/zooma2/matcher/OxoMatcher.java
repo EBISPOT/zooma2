@@ -36,12 +36,12 @@ public class OxoMatcher implements AnnotationMatcher {
 
     /**
      * Takes existing annotations and attempts to expand them to preferred ontologies using OXO.
-     * Only runs if preferredOntologies is specified and previousResults exist.
+     * Only runs if targetOntologies is specified and previousResults exist.
      */
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        // Only run if we have preferred ontologies specified
-        if (context.preferredOntologies == null || context.preferredOntologies.isEmpty()) {
+        // Only run if we have target ontologies specified
+        if (context.targetOntologies == null || context.targetOntologies.isEmpty()) {
             return Collections.emptyList();
         }
 
@@ -50,8 +50,8 @@ public class OxoMatcher implements AnnotationMatcher {
             return Collections.emptyList();
         }
 
-        // Check if we already have results from preferred ontologies
-        Set<String> preferredOntologiesLower = context.preferredOntologies.stream()
+        // Check if we already have results from target ontologies
+        Set<String> preferredOntologiesLower = context.targetOntologies.stream()
             .map(String::toLowerCase)
             .collect(Collectors.toSet());
         
@@ -69,13 +69,13 @@ public class OxoMatcher implements AnnotationMatcher {
             });
         
         if (hasPreferredOntologyResults) {
-            System.err.println("OXO: Skipping expansion - already have results from preferred ontologies: " + 
-                context.preferredOntologies);
+            System.err.println("OXO: Skipping expansion - already have results from target ontologies: " + 
+                context.targetOntologies);
             return Collections.emptyList();
         }
 
         System.err.println("OXO: Attempting to expand " + context.previousResults.size() + 
-            " results to preferred ontologies: " + context.preferredOntologies);
+            " results to target ontologies: " + context.targetOntologies);
 
         List<Annotation> expandedAnnotations = new ArrayList<>();
 
@@ -100,10 +100,10 @@ public class OxoMatcher implements AnnotationMatcher {
 
         System.err.println("OXO: Querying " + termIds.size() + " term IDs: " + termIds);
 
-        // Query OXO for mappings to preferred ontologies
+        // Query OXO for mappings to target ontologies
         List<OxoClient.OxoMapping> oxoMappings = oxoClient.search(
             termIds,
-            context.preferredOntologies,
+            context.targetOntologies,
             DEFAULT_MAX_DISTANCE
         );
 

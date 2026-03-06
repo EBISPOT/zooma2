@@ -70,67 +70,95 @@ public class ZoomaAnnotator {
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {
-        return mapAll(stringsToMap, sources, "text-embedding-3-small", null, null);
+        return mapAll(stringsToMap, sources, "text-embedding-3-small", null, false);
     }
 
-    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> preferredOntologies) {
-        return mapAll(stringsToMap, sources, model, preferredOntologies, null);
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model) {
+        return mapAll(stringsToMap, sources, model, null, false);
     }
 
-    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> preferredOntologies, List<String> excludeTermIds) {
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> excludeTermIds) {
+        return mapAll(stringsToMap, sources, model, excludeTermIds, false);
+    }
+
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model, List<String> excludeTermIds, boolean returnAll) {
         List<StringToMap> properties = stringsToMap.collect(Collectors.toList());
 
         List<String> allTerms = properties.stream()
-            .map(p -> p.propertyValue)
+            .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
             .collect(Collectors.toList());
-        List<String> ontologyIds = sources != null ? sources.ontologies : null;
-        var tagTextResults = bulkTagText(allTerms, ontologyIds);
+        var tagTextResults = bulkTagText(allTerms);
 
         return properties.stream()
             .parallel()
             .flatMap(s -> {
-                var results = mapOne(s, sources, model, preferredOntologies);
-                var taggerAnnotations = tagTextResults.getOrDefault(s.propertyValue, List.of());
-                if (!taggerAnnotations.isEmpty()) {
-                    results.addAll(annotationsToMapResults(taggerAnnotations, s));
+                var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
+                // Short-circuit: if text tagger found a 1.0 match from a target ontology, skip expensive matchers
+                if (!returnAll && hasFullMatchFromTargetOntologies(taggerAnnotations, sources)) {
+                    var results = annotationsToMapResults(taggerAnnotations, s);
+                    var deduped = deduplicator.deduplicate(results, sources, excludeTermIds);
+                    return deduped.stream();
                 }
-                return deduplicator.deduplicate(results, sources, excludeTermIds).stream();
+                var results = mapOne(s, sources, model);
+                if (!taggerAnnotations.isEmpty()) {
+                    var taggerResults = annotationsToMapResults(taggerAnnotations, s);
+                    results.addAll(taggerResults);
+                }
+                var deduped = returnAll
+                    ? deduplicator.deduplicateLight(results, sources, excludeTermIds)
+                    : deduplicator.deduplicate(results, sources, excludeTermIds);
+                return deduped.stream();
             })
             .collect(Collectors.toList());
     }
 
     /**
-     * Process a batch of properties sequentially, calling the consumer as each
-     * property completes. Performs bulk text tagging in one HTTP call before
-     * per-property processing for efficiency.
+     * Process a batch of properties in parallel using virtual threads, calling
+     * the consumer as each property completes. Each property gets its own virtual
+     * thread so slow OXO calls never block other properties.
      */
     public void mapEach(List<StringToMap> properties, Filter filter, String model,
-                        List<String> preferredOntologies,
                         java.util.function.BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
         List<String> allTerms = properties.stream()
-            .map(p -> p.propertyValue)
+            .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
             .collect(Collectors.toList());
-        List<String> ontologyIds = filter != null ? filter.ontologies : null;
-        var tagTextResults = bulkTagText(allTerms, ontologyIds);
+        var tagTextResults = bulkTagText(allTerms);
         System.err.println("Bulk tag_text returned matches for " + tagTextResults.size() + "/" + allTerms.size() + " terms");
 
-        for (var prop : properties) {
-            List<MapResult> results = mapOne(prop, filter, model, preferredOntologies);
-            var taggerAnnotations = tagTextResults.getOrDefault(prop.propertyValue, List.of());
-            if (!taggerAnnotations.isEmpty()) {
-                results.addAll(annotationsToMapResults(taggerAnnotations, prop));
+        try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
+            var futures = properties.stream().map(prop ->
+                executor.submit(() -> {
+                    var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
+                    // Short-circuit: if text tagger found a 1.0 match from a target ontology, skip expensive matchers
+                    if (hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
+                        var results = annotationsToMapResults(taggerAnnotations, prop);
+                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                        return;
+                    }
+                    List<MapResult> results = mapOne(prop, filter, model);
+                    if (!taggerAnnotations.isEmpty()) {
+                        results.addAll(annotationsToMapResults(taggerAnnotations, prop));
+                    }
+                    onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                })
+            ).collect(Collectors.toList());
+
+            // Wait for all to complete
+            for (var future : futures) {
+                try { future.get(); } catch (Exception e) {
+                    System.err.println("Error mapping property: " + e.getMessage());
+                }
             }
-            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
         }
     }
 
     /**
      * Map a single property to ontology terms. Returns all MapResult candidates for this property.
      */
-    public List<MapResult> mapOne(StringToMap s, Filter sources, String model, List<String> preferredOntologies) {
-        var annotated = annotate(s.propertyValue, s.propertyType, sources, model, preferredOntologies)
+    public List<MapResult> mapOne(StringToMap s, Filter sources, String model) {
+        var annotated = annotate(s.textToMap, s.propertyType, sources, model)
             .collect(Collectors.toList());
         
         // Collect semantic tags and expand short forms to full IRIs
@@ -155,8 +183,8 @@ public class ZoomaAnnotator {
             // Expand short form to full IRI for lookup
             var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
             MapResult r = new MapResult();
-            r.propertyType = a.annotatedProperty.propertyType;
-            r.propertyValue = a.annotatedProperty.propertyValue;
+            r.propertyType = s.propertyType != null ? s.propertyType : a.annotatedProperty.propertyType;
+            r.textToMap = s.textToMap;
             
             OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
             OlsTerm finalTerm = term;
@@ -185,7 +213,7 @@ public class ZoomaAnnotator {
                 r.ontologyTermSynonyms = finalTerm.synonyms != null ? String.join("|", finalTerm.synonyms) : null;
                 r.ontologyURI = finalTerm.ontology_name;
             } else {
-                r.ontologyTermLabel = r.propertyValue;
+                r.ontologyTermLabel = r.textToMap;
             }
             if(r.ontologyTermID == null && expandedTag != null) {
                 r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
@@ -229,7 +257,7 @@ public class ZoomaAnnotator {
             var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
             MapResult r = new MapResult();
             r.propertyType = a.annotatedProperty.propertyType;
-            r.propertyValue = a.annotatedProperty.propertyValue;
+            r.textToMap = s.textToMap;
 
             OlsTerm term = expandedTag != null ? termMap.get(expandedTag) : null;
             if (term != null) {
@@ -238,7 +266,7 @@ public class ZoomaAnnotator {
                 r.ontologyTermSynonyms = term.synonyms != null ? String.join("|", term.synonyms) : null;
                 r.ontologyURI = term.ontology_name;
             } else {
-                r.ontologyTermLabel = r.propertyValue;
+                r.ontologyTermLabel = r.textToMap;
             }
             if (r.ontologyTermID == null && expandedTag != null) {
                 r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
@@ -254,7 +282,7 @@ public class ZoomaAnnotator {
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
-        return annotate(stringToMap, type, sources, "text-embedding-3-small", null);
+        return annotate(stringToMap, type, sources, "text-embedding-3-small");
     }
 
     /**
@@ -262,31 +290,17 @@ public class ZoomaAnnotator {
      * This makes it clear what each search type is finding.
      * Uses individual matcher classes for each search strategy.
      */
-    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model, List<String> preferredOntologies) {
+    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model) {
         
-        MatchContext context = new MatchContext(stringToMap, type, sources, model, preferredOntologies);
+        MatchContext context = new MatchContext(stringToMap, type, sources, model);
         
-        // 1. Curated exact matches
-        var curatedExactFuture = java.util.concurrent.CompletableFuture.supplyAsync(() -> 
-            curatedExactMatcher.findMatches(context)
-        );
-        
-        // 2. Curated embedding matches
-        var curatedEmbeddingFuture = java.util.concurrent.CompletableFuture.supplyAsync(() -> 
-            curatedEmbeddingMatcher.findMatches(context)
-        );
-        
-        // 3. OLS lexical matches
-        var olsLexicalFuture = java.util.concurrent.CompletableFuture.supplyAsync(() -> 
-            olsLexicalMatcher.findMatches(context)
-        );
-        
-        // 4. OLS embedding search
-        var olsEmbeddingFuture = java.util.concurrent.CompletableFuture.supplyAsync(() -> 
-            olsEmbeddingMatcher.findMatches(context)
-        );
-        
-        try {
+        try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
+            // Run all 4 matchers concurrently on virtual threads
+            var curatedExactFuture = executor.submit(() -> curatedExactMatcher.findMatches(context));
+            var curatedEmbeddingFuture = executor.submit(() -> curatedEmbeddingMatcher.findMatches(context));
+            var olsLexicalFuture = executor.submit(() -> olsLexicalMatcher.findMatches(context));
+            var olsEmbeddingFuture = executor.submit(() -> olsEmbeddingMatcher.findMatches(context));
+            
             List<Annotation> allResults = new ArrayList<>();
             allResults.addAll(curatedExactFuture.get());
             allResults.addAll(curatedEmbeddingFuture.get());
@@ -299,23 +313,21 @@ public class ZoomaAnnotator {
                 ", " + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() + 
                 ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() + ")");
             
-            // If preferred ontologies are specified, try to expand results using OXO and OLS LLM similarity
-            if (preferredOntologies != null && !preferredOntologies.isEmpty() && !allResults.isEmpty()) {
-                // Use the same context for both expansion methods (don't feed one into the other)
+            // If target ontologies specified, expand via OXO and OLS similarity in parallel
+            if (context.targetOntologies != null && !context.targetOntologies.isEmpty() && !allResults.isEmpty()) {
                 MatchContext expansionContext = context.withPreviousResults(allResults);
                 
-                // Try OXO cross-reference mappings
-                List<Annotation> oxoResults = oxoMatcher.findMatches(expansionContext);
+                // Run both expansion methods concurrently on virtual threads
+                var oxoFuture = executor.submit(() -> oxoMatcher.findMatches(expansionContext));
+                var similarFuture = executor.submit(() -> olsEmbeddingSimilarMatcher.findMatches(expansionContext));
                 
-                // Try OLS embedding similarity search for additional related terms (independently)
-                List<Annotation> embeddingSimilarResults = olsEmbeddingSimilarMatcher.findMatches(expansionContext);
+                List<Annotation> oxoResults = oxoFuture.get();
+                List<Annotation> embeddingSimilarResults = similarFuture.get();
                 
-                // Add both sets of results
                 if (!oxoResults.isEmpty()) {
                     System.err.println("OXO expanded " + oxoResults.size() + " additional results to preferred ontologies");
                     allResults.addAll(oxoResults);
                 }
-                
                 if (!embeddingSimilarResults.isEmpty()) {
                     System.err.println("OLS embedding similarity expanded " + embeddingSimilarResults.size() + " additional results");
                     allResults.addAll(embeddingSimilarResults);
@@ -397,37 +409,41 @@ public class ZoomaAnnotator {
 
     /**
      * Bulk tag all input terms via OLS text tagger (single HTTP call).
-     * Returns a map from input propertyValue to a list of Annotations from the tagger.
+     * Returns a map from input textToMap to a list of Annotations from the tagger.
      */
-    private Map<String, List<Annotation>> bulkTagText(List<String> terms, List<String> ontologyIds) {
-        var tagResults = olsRepo.tagText(terms, ontologyIds);
+    private Map<String, List<Annotation>> bulkTagText(List<String> terms) {
+        var tagResults = olsRepo.tagText(terms, null);
         Map<String, List<Annotation>> result = new java.util.HashMap<>();
 
         for (var entry : tagResults.entrySet()) {
             String inputTerm = entry.getKey();
             List<Annotation> annotations = new ArrayList<>();
             for (var match : entry.getValue()) {
+                boolean isFullMatch = match.coverage >= 1.0;
+                double confidence = isFullMatch ? 1.0 : match.coverage * 0.89;
+                String matchType = isFullMatch ? "OLS_TEXT_TAGGER" : "OLS_TEXT_TAGGER_SUBSTRING";
+
                 Annotation a = new Annotation();
                 a.annotatedProperty = new Annotation.AnnotatedProperty();
                 a.annotatedProperty.propertyType = "unspecified";
                 a.annotatedProperty.propertyValue = inputTerm;
                 a.semanticTags = List.of(match.termIri);
-                a.confidence = 0.95;
+                a.confidence = confidence;
                 a.provenance = new Annotation.Provenance();
                 a.provenance.source = new Annotation.Source();
                 a.provenance.source.type = "ONTOLOGY";
                 a.provenance.source.name = match.ontologyId;
                 a.provenance.source.uri = match.ontologyId;
-                a.provenance.evidence = "OLS_TEXT_TAGGER";
+                a.provenance.evidence = matchType;
                 a.provenance.generator = "ZOOMA";
                 a.provenance.generatedDate = new Date().toString();
                 a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
                     "ols:" + match.ontologyId,
-                    "OLS_TEXT_TAGGER",
+                    matchType,
                     inputTerm,
                     match.termLabel,
                     match.termIri,
-                    1.0
+                    match.coverage
                 ));
                 annotations.add(a);
             }
@@ -441,6 +457,26 @@ public class ZoomaAnnotator {
      */
     public List<Map<String, Object>> getEmbeddingModels() {
         return olsRepo.getEmbeddingModels();
+    }
+
+    /**
+     * Check if a 1.0-confidence text tagger match exists.
+     * If target ontologies are set, requires the match to be from one of them.
+     * If no target ontologies are set, any 1.0 match qualifies.
+     * Used to short-circuit expensive matchers when the tagger already found a perfect match.
+     */
+    private boolean hasFullMatchFromTargetOntologies(List<Annotation> taggerAnnotations, Filter filter) {
+        if (taggerAnnotations == null || taggerAnnotations.isEmpty()) return false;
+        boolean hasTargets = filter != null && filter.targetOntologies != null && !filter.targetOntologies.isEmpty();
+        if (hasTargets) {
+            Set<String> targets = filter.targetOntologies.stream().map(String::toLowerCase).collect(Collectors.toSet());
+            return taggerAnnotations.stream().anyMatch(a ->
+                a.confidence >= 1.0
+                && a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
+                && targets.contains(a.provenance.source.name.toLowerCase())
+            );
+        }
+        return taggerAnnotations.stream().anyMatch(a -> a.confidence >= 1.0);
     }
 
     /**

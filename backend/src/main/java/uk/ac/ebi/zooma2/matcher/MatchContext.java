@@ -21,18 +21,18 @@ public class MatchContext {
     /** Embedding model name to use for semantic searches */
     public final String model;
 
-    /** List of preferred ontology IDs (optional) */
-    public final List<String> preferredOntologies;
+    /** List of target ontology IDs (derived from sources filter) */
+    public final List<String> targetOntologies;
 
     /** Results from a previous matcher (for chained matchers like superclass traversal) */
     public List<Annotation> previousResults;
 
-    public MatchContext(String stringToMap, String propertyType, Filter sources, String model, List<String> preferredOntologies) {
+    public MatchContext(String stringToMap, String propertyType, Filter sources, String model) {
         this.stringToMap = stringToMap;
         this.propertyType = propertyType;
         this.sources = sources;
         this.model = model;
-        this.preferredOntologies = preferredOntologies;
+        this.targetOntologies = sources != null ? sources.targetOntologies : List.of();
         this.previousResults = null;
     }
 
@@ -40,7 +40,7 @@ public class MatchContext {
      * Create a new context with previous results for chained matching.
      */
     public MatchContext withPreviousResults(List<Annotation> previousResults) {
-        MatchContext newContext = new MatchContext(stringToMap, propertyType, sources, model, preferredOntologies);
+        MatchContext newContext = new MatchContext(stringToMap, propertyType, sources, model);
         newContext.previousResults = previousResults;
         return newContext;
     }

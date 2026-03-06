@@ -9,7 +9,7 @@ export interface SearchProperty {
 
 export interface SearchParams {
     properties: { 
-        propertyValue: string
+        textToMap: string
         propertyType: string
     }[]
 
@@ -18,10 +18,9 @@ export interface SearchParams {
     preferredSources:string[]
 
     doNotSearchOntologies:boolean
-    ontologySources:string[]
     
-    // New: preferred ontologies for semantic search
-    preferredOntologies:string[]
+    // Target ontologies for semantic search
+    targetOntologies:string[]
     includeOtherOntologies:boolean
     useLlmSearch:boolean
     llmModel:string
@@ -29,7 +28,7 @@ export interface SearchParams {
 
 export interface SearchResult {
     propertyType:string
-    propertyValue:string
+    textToMap:string
     ontologyTermLabel:string
     ontologyTermSynonyms:string
     mappingConfidence:string
@@ -46,7 +45,7 @@ export interface V3MapResponse {
 
 export interface V3PropertyMapping {
     propertyType: string
-    propertyValue: string
+    textToMap: string
     candidates: V3MappingCandidate[]
 }
 
@@ -118,9 +117,6 @@ function buildFilter(params: SearchParams) {
     return {
         required: params.doNotSearchDatasources ? [] : params.requiredSources,
         preferred: params.doNotSearchDatasources ? [] : params.preferredSources,
-        ontologies: !params.includeOtherOntologies && params.preferredOntologies?.length
-            ? params.preferredOntologies
-            : (params.doNotSearchOntologies ? [] : params.ontologySources)
     }
 }
 
@@ -129,14 +125,15 @@ function buildFilter(params: SearchParams) {
  */
 export async function remapOne(
     params: SearchParams,
-    propertyValue: string,
+    textToMap: string,
     propertyType: string,
     excludeTermIds: string[]
 ): Promise<SearchResult[]> {
     const requestBody = {
-        properties: [{ propertyValue, propertyType }],
+        properties: [{ textToMap, propertyType }],
         model: params.llmModel || 'text-embedding-3-small',
-        preferredOntologies: params.preferredOntologies || [],
+        targetOntologies: params.targetOntologies || [],
+        includeOtherOntologies: params.includeOtherOntologies,
         filter: buildFilter(params),
         excludeTermIds
     }
@@ -156,7 +153,56 @@ export async function remapOne(
         for (const candidate of mapping.candidates) {
             results.push({
                 propertyType: mapping.propertyType,
-                propertyValue: mapping.propertyValue,
+                textToMap: mapping.textToMap,
+                ontologyTermLabel: candidate.label,
+                ontologyTermSynonyms: candidate.synonyms?.join('|') || '',
+                mappingConfidence: candidate.confidence?.toString() || '',
+                ontologyTermID: candidate.termId,
+                ontologyURI: candidate.uri,
+                datasource: candidate.datasource,
+                mappingProvenance: candidate.mappingProvenance
+            })
+        }
+    }
+    return results
+}
+
+/**
+ * Fetch all candidate mappings for a single property (light dedup only).
+ * Used for the alternative mappings modal.
+ */
+export async function fetchAllCandidates(
+    params: SearchParams,
+    textToMap: string,
+    propertyType: string,
+    excludeTermIds: string[]
+): Promise<SearchResult[]> {
+    const requestBody = {
+        properties: [{ textToMap, propertyType }],
+        model: params.llmModel || 'text-embedding-3-small',
+        targetOntologies: params.targetOntologies || [],
+        includeOtherOntologies: params.includeOtherOntologies,
+        filter: buildFilter(params),
+        excludeTermIds,
+        returnAll: true
+    }
+
+    let res = await fetch(apiUrl + '/v3/api/services/map', {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+        }
+    })
+
+    const v3Response = (await res.json()) as V3MapResponse
+    const results: SearchResult[] = []
+    for (const mapping of v3Response.mappings) {
+        for (const candidate of mapping.candidates) {
+            results.push({
+                propertyType: mapping.propertyType,
+                textToMap: mapping.textToMap,
                 ontologyTermLabel: candidate.label,
                 ontologyTermSynonyms: candidate.synonyms?.join('|') || '',
                 mappingConfidence: candidate.confidence?.toString() || '',
@@ -171,7 +217,7 @@ export async function remapOne(
 }
 
 export async function recordVote(
-    propertyValue: string,
+    textToMap: string,
     propertyType: string,
     termId: string,
     termLabel: string,
@@ -180,7 +226,7 @@ export async function recordVote(
 ): Promise<void> {
     await fetch(apiUrl + '/v3/api/votes', {
         method: 'POST',
-        body: JSON.stringify({ propertyValue, propertyType, termId, termLabel, ontology, vote }),
+        body: JSON.stringify({ textToMap, propertyType, termId, termLabel, ontology, vote }),
         headers: { 'content-type': 'application/json' }
     })
 }
@@ -191,7 +237,8 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
     const requestBody = {
         properties: params.properties,
         model: params.llmModel || 'text-embedding-3-small',
-        preferredOntologies: params.preferredOntologies || [],
+        targetOntologies: params.targetOntologies || [],
+        includeOtherOntologies: params.includeOtherOntologies,
         filter: buildFilter(params)
     }
 
@@ -212,7 +259,7 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
         for (const candidate of mapping.candidates) {
             results.push({
                 propertyType: mapping.propertyType,
-                propertyValue: mapping.propertyValue,
+                textToMap: mapping.textToMap,
                 ontologyTermLabel: candidate.label,
                 ontologyTermSynonyms: candidate.synonyms?.join('|') || '',
                 mappingConfidence: candidate.confidence?.toString() || '',
@@ -230,7 +277,7 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
 export interface StreamProgress {
     completed: number
     total: number
-    results: SearchResult[]
+    results: SearchResult[]  // mutable reference, only snapshot when needed
 }
 
 /**
@@ -248,7 +295,8 @@ export function searchStream(
     const requestBody = {
         properties: params.properties,
         model: params.llmModel || 'text-embedding-3-small',
-        preferredOntologies: params.preferredOntologies || [],
+        targetOntologies: params.targetOntologies || [],
+        includeOtherOntologies: params.includeOtherOntologies,
         filter: buildFilter(params)
     }
 
@@ -287,7 +335,7 @@ export function searchStream(
                     for (const candidate of mapping.candidates) {
                         allResults.push({
                             propertyType: mapping.propertyType,
-                            propertyValue: mapping.propertyValue,
+                            textToMap: mapping.textToMap,
                             ontologyTermLabel: candidate.label,
                             ontologyTermSynonyms: candidate.synonyms?.join('|') || '',
                             mappingConfidence: candidate.confidence?.toString() || '',
@@ -301,8 +349,8 @@ export function searchStream(
                     if (mapping.candidates.length === 0) {
                         allResults.push({
                             propertyType: mapping.propertyType,
-                            propertyValue: mapping.propertyValue,
-                            ontologyTermLabel: mapping.propertyValue,
+                            textToMap: mapping.textToMap,
+                            ontologyTermLabel: mapping.textToMap,
                             ontologyTermSynonyms: '',
                             mappingConfidence: 'Did not map',
                             ontologyTermID: '',
@@ -313,10 +361,10 @@ export function searchStream(
                     onProgress({
                         completed: event.completed,
                         total: event.total,
-                        results: [...allResults]
+                        results: allResults
                     })
                 } else if (event.type === 'done') {
-                    onDone([...allResults])
+                    onDone(allResults)
                 }
             }
         }
@@ -324,7 +372,7 @@ export function searchStream(
         if (buffer.trim()) {
             const event = JSON.parse(buffer)
             if (event.type === 'done') {
-                onDone([...allResults])
+                onDone(allResults)
             }
         }
     }).catch((err) => {

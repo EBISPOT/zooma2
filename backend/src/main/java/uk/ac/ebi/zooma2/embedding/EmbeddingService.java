@@ -304,7 +304,7 @@ public class EmbeddingService {
             httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(new StringEntity(jsonBody, "UTF-8"));
 
-            try (CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build()) {
+            try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
                 HttpResponse httpResponse = client.execute(httpPost);
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 byte[] responseData = EntityUtils.toByteArray(httpResponse.getEntity());

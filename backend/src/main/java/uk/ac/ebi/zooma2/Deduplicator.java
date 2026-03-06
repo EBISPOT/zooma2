@@ -1,8 +1,11 @@
 package uk.ac.ebi.zooma2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,6 +58,22 @@ public class Deduplicator {
         suppressWeakResults(results);
 
         // 5. Deduplicate by term ID, keeping highest confidence
+        var deduped = deduplicateByTermId(results);
+
+        // 6. Among same-score results from target ontologies, keep highest priority
+        keepHigherPriorityOnTie(deduped, filter);
+
+        return deduped;
+    }
+
+    /**
+     * Light deduplication: only exclude rejected terms, filter by ontology,
+     * and deduplicate by term ID. Skips suppression of weak/embedding results
+     * so that all viable candidates are returned.
+     */
+    public List<MapResult> deduplicateLight(List<MapResult> results, Filter filter, List<String> excludeTermIds) {
+        excludeTerms(results, excludeTermIds);
+        filterByOntologies(results, filter);
         return deduplicateByTermId(results);
     }
 
@@ -72,20 +91,57 @@ public class Deduplicator {
     }
 
     void filterByOntologies(List<MapResult> results, Filter filter) {
-        if (filter == null || filter.ontologies == null || filter.ontologies.isEmpty()) {
+        if (filter == null || filter.includeOtherOntologies || filter.targetOntologies == null || filter.targetOntologies.isEmpty()) {
             return;
         }
-        Set<String> allowed = filter.ontologies.stream()
+        Set<String> allowed = filter.targetOntologies.stream()
             .map(String::toLowerCase)
             .collect(Collectors.toSet());
         results.removeIf(r -> {
-            String onto = r.ontologyURI;
-            if (onto == null && r.ontologyTermID != null && r.ontologyTermID.contains(":")) {
-                onto = r.ontologyTermID.split(":")[0];
-            }
+            String onto = getOntologyPrefix(r);
             if (onto == null) return true;
-            return !allowed.contains(onto.toLowerCase());
+            return !allowed.contains(onto);
         });
+    }
+
+    /**
+     * Among results whose ontologies are both in the target list and whose
+     * confidence scores are close (within 0.01), keep only the one from the
+     * highest-priority ontology (earliest in the targetOntologies list).
+     */
+    void keepHigherPriorityOnTie(List<MapResult> results, Filter filter) {
+        if (filter == null || filter.targetOntologies == null || filter.targetOntologies.size() < 2) {
+            return;
+        }
+        // Build priority map: lower index = higher priority
+        Map<String, Integer> priority = new HashMap<>();
+        for (int i = 0; i < filter.targetOntologies.size(); i++) {
+            priority.put(filter.targetOntologies.get(i).toLowerCase(Locale.ROOT), i);
+        }
+
+        // For each target-ontology result, check if a higher-priority
+        // target-ontology result exists within 0.01 confidence
+        Set<MapResult> toRemove = new java.util.HashSet<>();
+        for (var r : results) {
+            String onto = getOntologyPrefix(r);
+            if (onto == null || !priority.containsKey(onto)) continue;
+            int myPriority = priority.get(onto);
+
+            for (var other : results) {
+                if (other == r) continue;
+                String otherOnto = getOntologyPrefix(other);
+                if (otherOnto == null || !priority.containsKey(otherOnto)) continue;
+                int otherPriority = priority.get(otherOnto);
+
+                // If a higher-priority result exists with a similar score, remove this one
+                if (otherPriority < myPriority
+                        && Math.abs(r.mappingConfidence - other.mappingConfidence) <= 0.01) {
+                    toRemove.add(r);
+                    break;
+                }
+            }
+        }
+        results.removeAll(toRemove);
     }
 
     void suppressEmbeddingIfExactExists(List<MapResult> results) {
@@ -142,6 +198,18 @@ public class Deduplicator {
     }
 
     // ---- helpers ----
+
+    private static String getOntologyPrefix(MapResult r) {
+        // Prefer the term ID prefix (e.g. "EFO" from "EFO:0000699") over ontologyURI,
+        // because ontologyURI comes from OLS's ontology_name which reflects the ontology
+        // file that contained the term — not necessarily the term's own ontology.
+        // e.g. MONDO imports EFO terms, so EFO:0000699 resolved from MONDO has
+        // ontology_name="mondo", which would misidentify it.
+        if (r.ontologyTermID != null && r.ontologyTermID.contains(":")) {
+            return r.ontologyTermID.split(":")[0].toLowerCase(Locale.ROOT);
+        }
+        return r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
+    }
 
     private static boolean isCuratedExact(MapResult r) {
         if (r.mappingProvenance == null || r.mappingProvenance.isEmpty()) return false;

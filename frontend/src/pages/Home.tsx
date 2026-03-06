@@ -24,11 +24,11 @@ export default function Home() {
   const [datasourceConfig, setDatasourceConfig] = useState<ZoomaDatasourceConfig | undefined>(undefined)
   const [query, setQuery] = useState<string>('')
   const [searching, setSearching] = useState<boolean>(false)
-  const [results, setResults] = useState<ZoomaApi.SearchResult[]>([])
   const [lastSearchParams, setLastSearchParams] = useState<ZoomaApi.SearchParams | undefined>(undefined)
   const [progress, setProgress] = useState<{ completed: number; total: number } | null>(null)
+  const resultsRef = useRef<ZoomaApi.SearchResult[]>([])
+  const [resultsVersion, setResultsVersion] = useState(0)
   const abortControllerRef = useRef<AbortController | null>(null)
-  const pendingResultsRef = useRef<ZoomaApi.SearchResult[] | null>(null)
   const throttleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -61,12 +61,21 @@ export default function Home() {
         )
         const allSaved = [...datasourceConfig.unrankedDatasources, ...datasourceConfig.rankedDatasources, ...datasourceConfig.excludedDatasources]
         const newDatasources = datasources.datasourceNames.filter(ds => !allSaved.includes(ds))
-        datasourceConfig.unrankedDatasources = [...datasourceConfig.unrankedDatasources, ...newDatasources]
+        datasourceConfig.rankedDatasources = [...datasourceConfig.rankedDatasources, ...datasourceConfig.unrankedDatasources, ...newDatasources]
+        datasourceConfig.unrankedDatasources = []
       } catch (e) {
         datasourceConfig = getDefaultConfig(datasources)
       }
     } else {
       datasourceConfig = getDefaultConfig(datasources)
+    }
+
+    // Migrate stale cached configs missing new fields
+    if (!Array.isArray(datasourceConfig.targetOntologies)) {
+      datasourceConfig.targetOntologies = (datasourceConfig as any).preferredOntologies || [];
+    }
+    if (datasourceConfig.includeOtherOntologies === undefined) {
+      datasourceConfig.includeOtherOntologies = true;
     }
 
     setDatasources(datasources)
@@ -77,11 +86,10 @@ export default function Home() {
     return {
       doNotSearchDatasources: false,
       excludedDatasources: [],
-      unrankedDatasources: datasources.datasourceNames,
-      rankedDatasources: [],
+      unrankedDatasources: [],
+      rankedDatasources: datasources.datasourceNames,
       doNotSearchOntologies: false,
-      ontologySources: [],
-      preferredOntologies: [],
+      targetOntologies: [],
       includeOtherOntologies: true,
       useLlmSearch: true,
       llmModel: 'text-embedding-3-small'
@@ -99,23 +107,23 @@ export default function Home() {
       .split('\n')
       .filter(line => line.trim())
       .map(line => line.split('\t'))
-      .map(tokens => ({ propertyValue: tokens[0], propertyType: tokens[1] }))
+      .map(tokens => ({ textToMap: tokens[0], propertyType: tokens[1] }))
 
     if (properties.length === 0) return
 
     setSearching(true)
-    setResults([])
+    resultsRef.current = []
+    setResultsVersion(0)
     setProgress({ completed: 0, total: properties.length })
 
     let searchParams: ZoomaApi.SearchParams = {
       properties,
       requiredSources: [...(datasourceConfig!.unrankedDatasources), ...(datasourceConfig!.rankedDatasources)],
       preferredSources: datasourceConfig!.rankedDatasources,
-      ontologySources: datasourceConfig!.ontologySources,
       doNotSearchDatasources: datasourceConfig!.doNotSearchDatasources,
       doNotSearchOntologies: datasourceConfig!.doNotSearchOntologies,
-      preferredOntologies: datasourceConfig!.preferredOntologies,
-      includeOtherOntologies: datasourceConfig!.includeOtherOntologies,
+      targetOntologies: datasourceConfig!.targetOntologies || [],
+      includeOtherOntologies: datasourceConfig!.includeOtherOntologies ?? true,
       useLlmSearch: true,
       llmModel: 'text-embedding-3-small'
     }
@@ -125,14 +133,12 @@ export default function Home() {
     abortControllerRef.current = ZoomaApi.searchStream(
       searchParams,
       (streamProgress) => {
-        pendingResultsRef.current = streamProgress.results
-        setProgress({ completed: streamProgress.completed, total: streamProgress.total })
+        resultsRef.current = streamProgress.results
         if (!throttleTimerRef.current) {
           throttleTimerRef.current = setTimeout(() => {
             throttleTimerRef.current = null
-            if (pendingResultsRef.current) {
-              setResults(pendingResultsRef.current)
-            }
+            setResultsVersion(v => v + 1)
+            setProgress({ completed: streamProgress.completed, total: streamProgress.total })
           }, 500)
         }
       },
@@ -141,8 +147,8 @@ export default function Home() {
           clearTimeout(throttleTimerRef.current)
           throttleTimerRef.current = null
         }
-        pendingResultsRef.current = null
-        setResults(finalResults)
+        resultsRef.current = finalResults
+        setResultsVersion(v => v + 1)
         setSearching(false)
         setProgress(null)
         abortControllerRef.current = null
@@ -152,7 +158,6 @@ export default function Home() {
           clearTimeout(throttleTimerRef.current)
           throttleTimerRef.current = null
         }
-        pendingResultsRef.current = null
         console.error('Search error:', error)
         setSearching(false)
         setProgress(null)
@@ -170,9 +175,9 @@ export default function Home() {
       clearTimeout(throttleTimerRef.current)
       throttleTimerRef.current = null
     }
-    pendingResultsRef.current = null
     setQuery('')
-    setResults([])
+    resultsRef.current = []
+    setResultsVersion(0)
     setSearching(false)
     setProgress(null)
   }
@@ -186,9 +191,9 @@ export default function Home() {
   }
 
   const onDownloadTSV = () => {
-    if (results.length === 0) return
-    const headers = ['propertyValue', 'propertyType', 'ontologyTermLabel', 'ontologyTermID', 'ontologyURI', 'mappingConfidence', 'datasource']
-    const rows = results.map(r => headers.map(h => r[h] || '').join('\t'))
+    if (resultsRef.current.length === 0) return
+    const headers = ['textToMap', 'propertyType', 'ontologyTermLabel', 'ontologyTermID', 'ontologyURI', 'mappingConfidence', 'datasource']
+    const rows = resultsRef.current.map(r => headers.map(h => r[h] || '').join('\t'))
     const tsv = [headers.join('\t'), ...rows].join('\n')
     var blob = new Blob([tsv], { type: 'text/tsv' })
     FileSaver.saveAs(blob, 'zooma_results.tsv')
@@ -201,7 +206,7 @@ export default function Home() {
   )
 
   const hasOntologySettings = datasourceConfig && (
-    datasourceConfig.preferredOntologies.length > 0 ||
+    (datasourceConfig.targetOntologies?.length ?? 0) > 0 ||
     datasourceConfig.doNotSearchOntologies
   )
 
@@ -220,7 +225,7 @@ export default function Home() {
                   width: 28, height: 28, borderRadius: '50%', bgcolor: '#2e7d32', color: 'white',
                   fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
                 }}>1</Box>
-                Enter terms to annotate
+                Enter strings to map
               </Typography>
               <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                 <CsvImportDialog onImport={(terms) => setQuery(prev => prev ? prev + '\n' + terms : terms)} />
@@ -248,7 +253,7 @@ export default function Home() {
                 transition: 'border-color 0.2s',
               }}
               value={query}
-              placeholder={"Enter terms to annotate, one per line\n\nOptionally add a type after a tab:\nHomo sapiens\nheart disease\tdisease\ndoxycycline\tcompound"}
+              placeholder={"Enter strings to map, one per line"}
               onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
               onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
               onKeyDown={(e) => {
@@ -362,10 +367,10 @@ export default function Home() {
                     Searching...
                   </>
                 ) : (
-                  `Annotate${getQueryCount() > 0 ? ` ${getQueryCount()} term${getQueryCount() > 1 ? 's' : ''}` : ''}`
+                  `Map${getQueryCount() > 0 ? ` ${getQueryCount()} string${getQueryCount() > 1 ? 's' : ''}` : ''}`
                 )}
               </Button>
-              {(results.length > 0 || query) && (
+              {(resultsRef.current.length > 0 || query) && (
                 <Button 
                   variant="text" 
                   onClick={onClickClear}
@@ -378,13 +383,13 @@ export default function Home() {
           </Box>
 
           {/* Results Section */}
-          {(results.length > 0 || searching) && (
+          {(resultsRef.current.length > 0 || searching) && (
             <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                  Results {results.length > 0 && `(${results.length})`}
+                  Results {resultsRef.current.length > 0 && `(${resultsRef.current.filter(r => r.mappingConfidence !== 'Did not map' && r.ontologyTermID).length} out of ${resultsRef.current.length} mapped)`}
                 </Typography>
-                {results.length > 0 && (
+                {resultsRef.current.length > 0 && (
                   <Tooltip title="Download as TSV">
                     <IconButton onClick={onDownloadTSV} size="small">
                       <DownloadIcon />
@@ -412,8 +417,8 @@ export default function Home() {
                 </Box>
               )}
               
-              {results.length > 0 ? (
-                <ResultsTable results={results} datasources={datasources} searchParams={lastSearchParams} />
+              {resultsRef.current.length > 0 ? (
+                <ResultsTable results={resultsRef.current} resultsVersion={resultsVersion} datasources={datasources} searchParams={lastSearchParams} inputProperties={lastSearchParams?.properties} searching={searching} />
               ) : searching && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
                   <CircularProgress />

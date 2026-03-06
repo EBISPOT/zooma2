@@ -86,8 +86,9 @@ public class V2FilterDto {
 
     /**
      * Convert this DTO to the internal Filter model.
+     * V2's ontologies become targetOntologies with hard filter (includeOtherOntologies=false).
      */
     public uk.ac.ebi.zooma2.model.Filter toFilter() {
-        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies);
+        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies, ontologies.isEmpty());
     }
 }

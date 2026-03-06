@@ -528,7 +528,11 @@ public class OlsClientRepo {
 
         // Build URL with query params
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=false");
+        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=true");
+        // Sensible defaults matching OLS frontend: word-boundary delimiters so only whole tokens match
+        urlBuilder.append("&delimiters=").append(
+            java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-", java.nio.charset.StandardCharsets.UTF_8));
+        urlBuilder.append("&minLength=3");
         if (ontologyIds != null) {
             for (String ont : ontologyIds) {
                 urlBuilder.append("&ontologyId=").append(
@@ -561,11 +565,11 @@ public class OlsClientRepo {
                 // Find which input term this entity belongs to
                 for (int i = 0; i < terms.size(); i++) {
                     if (start >= termStarts[i] && end <= termEnds[i]) {
-                        // Only keep matches that span the entire input term (exact match)
-                        if (start == termStarts[i] && end == termEnds[i]) {
-                            var match = new TagTextMatch(termLabel, termIri, ontologyId);
-                            results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
-                        }
+                        int matchedLength = end - start;
+                        int termLength = termEnds[i] - termStarts[i];
+                        double coverage = termLength > 0 ? (double) matchedLength / termLength : 0.0;
+                        var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage);
+                        results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
                         break;
                     }
                 }
@@ -594,11 +598,13 @@ public class OlsClientRepo {
         public final String termLabel;
         public final String termIri;
         public final String ontologyId;
+        public final double coverage; // fraction of input term covered by this match (0..1)
 
-        public TagTextMatch(String termLabel, String termIri, String ontologyId) {
+        public TagTextMatch(String termLabel, String termIri, String ontologyId, double coverage) {
             this.termLabel = termLabel;
             this.termIri = termIri;
             this.ontologyId = ontologyId;
+            this.coverage = coverage;
         }
     }
 

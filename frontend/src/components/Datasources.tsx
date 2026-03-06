@@ -1,7 +1,24 @@
 import * as React from 'react'
-import { useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { ZoomaDatasources } from "../api/ZoomaDatasources"
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig"
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  closestCenter,
+  type DragStartEvent,
+  type DragEndEvent,
+} from "@dnd-kit/core"
+import {
+  SortableContext,
+  useSortable,
+  horizontalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 
 import {
   Box,
@@ -9,11 +26,11 @@ import {
   FormControlLabel,
   Chip,
   Button,
-  Stack,
   Divider,
   Radio,
   RadioGroup
 } from '@mui/material'
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 
 interface Props {
   datasources: ZoomaDatasources
@@ -21,23 +38,58 @@ interface Props {
   onConfigChanged: (config: ZoomaDatasourceConfig) => void
 }
 
-export default function Datasources({ datasources, datasourceConfig, onConfigChanged }: Props) {
+function SortableDatasourceChip({ id, index, displayName, onToggle }: {
+  id: string; index: number; displayName: string; onToggle: () => void
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id })
 
-  // All active datasources (not excluded)
-  const activeDatasources = [
-    ...datasourceConfig.unrankedDatasources,
-    ...datasourceConfig.rankedDatasources
-  ]
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+    cursor: 'grab',
+  }
+
+  return (
+    <Box ref={setNodeRef} style={style} {...attributes} {...listeners} sx={{ display: 'inline-flex' }}>
+      <Chip
+        icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
+        label={`${index + 1}. ${displayName}`}
+        onDelete={onToggle}
+        color="success"
+        sx={{ fontSize: '0.95rem', py: 0.5, cursor: 'grab' }}
+      />
+    </Box>
+  )
+}
+
+export default function Datasources({ datasources, datasourceConfig, onConfigChanged }: Props) {
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+  )
+
+  // Ranked datasources are the prioritized, ordered list
+  const ranked = datasourceConfig.rankedDatasources
 
   const toggleDatasource = useCallback((ds: string) => {
     const isExcluded = datasourceConfig.excludedDatasources.includes(ds)
     
     if (isExcluded) {
-      // Move from excluded to unranked
+      // Move from excluded to ranked (append at end)
       onConfigChanged({
         ...datasourceConfig,
         excludedDatasources: datasourceConfig.excludedDatasources.filter(d => d !== ds),
-        unrankedDatasources: [...datasourceConfig.unrankedDatasources, ds]
+        unrankedDatasources: datasourceConfig.unrankedDatasources.filter(d => d !== ds),
+        rankedDatasources: [...datasourceConfig.rankedDatasources, ds]
       })
     } else {
       // Move to excluded
@@ -50,32 +102,12 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
     }
   }, [datasourceConfig, onConfigChanged])
 
-  const togglePriority = useCallback((ds: string) => {
-    const isRanked = datasourceConfig.rankedDatasources.includes(ds)
-    
-    if (isRanked) {
-      // Move from ranked to unranked
-      onConfigChanged({
-        ...datasourceConfig,
-        rankedDatasources: datasourceConfig.rankedDatasources.filter(d => d !== ds),
-        unrankedDatasources: [...datasourceConfig.unrankedDatasources, ds]
-      })
-    } else {
-      // Move from unranked to ranked
-      onConfigChanged({
-        ...datasourceConfig,
-        unrankedDatasources: datasourceConfig.unrankedDatasources.filter(d => d !== ds),
-        rankedDatasources: [...datasourceConfig.rankedDatasources, ds]
-      })
-    }
-  }, [datasourceConfig, onConfigChanged])
-
   const selectAll = useCallback(() => {
     onConfigChanged({
       ...datasourceConfig,
       excludedDatasources: [],
-      unrankedDatasources: datasources.datasourceNames,
-      rankedDatasources: []
+      unrankedDatasources: [],
+      rankedDatasources: datasources.datasourceNames
     })
   }, [datasources, datasourceConfig, onConfigChanged])
 
@@ -95,14 +127,33 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
     })
   }, [datasourceConfig, onConfigChanged])
 
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(String(event.active.id))
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    setActiveId(null)
+    const { active, over } = event
+    if (!over || active.id === over.id) return
+
+    const oldIndex = ranked.indexOf(String(active.id))
+    const newIndex = ranked.indexOf(String(over.id))
+    if (oldIndex === -1 || newIndex === -1) return
+
+    onConfigChanged({
+      ...datasourceConfig,
+      rankedDatasources: arrayMove([...ranked], oldIndex, newIndex)
+    })
+  }
+
+  const getDisplayName = (ds: string) => datasources.nameTitleMap.get(ds) || ds
+  const activeDisplayName = activeId ? getDisplayName(activeId) : ''
+
   return (
     <Box>
       {/* Curated Datasources Section */}
       <Box sx={{ mb: 4 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            Curated mapping databases
-          </Typography>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <Button size="small" color="success" onClick={selectAll} sx={{ textTransform: 'none' }}>
               Select all
@@ -113,40 +164,60 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 2 }}>
-          {datasources.datasourceNames.map(ds => {
-            const isActive = activeDatasources.includes(ds)
-            const isRanked = datasourceConfig.rankedDatasources.includes(ds)
-            const displayName = datasources.nameTitleMap.get(ds) || ds
-            
-            return (
+        {/* Active (ranked) datasources - sortable */}
+        {ranked.length > 0 && (
+          <Box sx={{ mb: 2 }}>
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext items={ranked} strategy={horizontalListSortingStrategy}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                  {ranked.map((ds, index) => (
+                    <SortableDatasourceChip
+                      key={ds}
+                      id={ds}
+                      index={index}
+                      displayName={getDisplayName(ds)}
+                      onToggle={() => toggleDatasource(ds)}
+                    />
+                  ))}
+                </Box>
+              </SortableContext>
+              <DragOverlay>
+                {activeId ? (
+                  <Chip
+                    icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
+                    label={`${ranked.indexOf(activeId) + 1}. ${activeDisplayName}`}
+                    color="success"
+                    sx={{ fontSize: '0.95rem', py: 0.5, boxShadow: 3, cursor: 'grabbing' }}
+                  />
+                ) : null}
+              </DragOverlay>
+            </DndContext>
+          </Box>
+        )}
+
+        {/* Excluded datasources */}
+        {datasourceConfig.excludedDatasources.length > 0 && (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 2 }}>
+            {datasourceConfig.excludedDatasources.map(ds => (
               <Chip
                 key={ds}
-                label={displayName}
+                label={getDisplayName(ds)}
                 onClick={() => toggleDatasource(ds)}
-                onDelete={isActive ? () => togglePriority(ds) : undefined}
-                deleteIcon={
-                  isRanked 
-                    ? <span style={{ fontSize: '16px', marginLeft: '-4px', color: '#ffc107' }}>★</span>
-                    : <span style={{ fontSize: '14px', marginLeft: '-4px', color: '#ffc107', opacity: 0.4 }}>☆</span>
-                }
-                variant={isActive ? "filled" : "outlined"}
-                color={isActive ? "success" : "default"}
-                sx={{ 
-                  fontSize: '0.95rem',
-                  py: 0.5,
-                  opacity: isActive ? 1 : 0.6,
-                  '& .MuiChip-deleteIcon': { 
-                    color: '#ffc107 !important'
-                  }
-                }}
+                variant="outlined"
+                color="default"
+                sx={{ fontSize: '0.95rem', py: 0.5, opacity: 0.6 }}
               />
-            )
-          })}
-        </Box>
+            ))}
+          </Box>
+        )}
 
         <Typography variant="body2" color="text.secondary">
-          Click to include/exclude • Click ☆ to prioritize
+          Click excluded databases to re-add • Drag to set priority order
         </Typography>
       </Box>
 
@@ -154,10 +225,6 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
 
       {/* Ontologies Section */}
       <Box>
-        <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
-          Ontologies
-        </Typography>
-
         <RadioGroup
           value={datasourceConfig.doNotSearchOntologies ? 'no' : 'yes'}
           onChange={(_, val) => onChangeDoNotSearchOntologies(val === 'no')}
@@ -177,5 +244,4 @@ export default function Datasources({ datasources, datasourceConfig, onConfigCha
     </Box>
   )
 }
-
 

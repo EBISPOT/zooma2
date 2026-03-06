@@ -43,8 +43,8 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     public List<Annotation> findMatches(MatchContext context) {
         List<Annotation> annotations = new ArrayList<>();
 
-        // Per-ontology search if preferred ontologies are set
-        List<String> ontologies = context.preferredOntologies;
+        // Per-ontology search if target ontologies are set
+        List<String> ontologies = context.targetOntologies;
         if (ontologies != null && !ontologies.isEmpty()) {
             for (String ontologyId : ontologies) {
                 var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, ontologyId, maxResults);

@@ -54,7 +54,7 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build()) {
+        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(url);
             HttpResponse response = client.execute(request);
             HttpEntity entity = response.getEntity();
@@ -86,7 +86,7 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build()) {
+        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpPost request = new HttpPost(url);
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(jsonBody, "UTF-8"));
@@ -130,7 +130,7 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build()) {
+        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpPost request = new HttpPost(url);
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(jsonBody, "UTF-8"));

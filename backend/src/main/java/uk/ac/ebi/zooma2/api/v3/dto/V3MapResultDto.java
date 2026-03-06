@@ -6,7 +6,7 @@ import uk.ac.ebi.zooma2.model.MapResult;
 public class V3MapResultDto {
 
     public String propertyType;
-    public String propertyValue;
+    public String textToMap;
     public String ontologyTermLabel;
     public String ontologyTermSynonyms;
     public String mappingConfidence;
@@ -20,7 +20,7 @@ public class V3MapResultDto {
     public static V3MapResultDto from(MapResult internal) {
         V3MapResultDto dto = new V3MapResultDto();
         dto.propertyType = internal.propertyType;
-        dto.propertyValue = internal.propertyValue;
+        dto.textToMap = internal.textToMap;
         dto.ontologyTermLabel = internal.ontologyTermLabel;
         dto.ontologyTermSynonyms = internal.ontologyTermSynonyms;
         dto.mappingConfidence = String.valueOf(internal.mappingConfidence);
@@ -38,7 +38,7 @@ public class V3MapResultDto {
         V3MapResultDto that = (V3MapResultDto) o;
 
         return Objects.equals(propertyType, that.propertyType) &&
-               Objects.equals(propertyValue, that.propertyValue) &&
+               Objects.equals(textToMap, that.textToMap) &&
                Objects.equals(ontologyTermLabel, that.ontologyTermLabel) &&
                Objects.equals(ontologyTermSynonyms, that.ontologyTermSynonyms) &&
                Objects.equals(mappingConfidence, that.mappingConfidence) &&
@@ -49,7 +49,7 @@ public class V3MapResultDto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyType, propertyValue, ontologyTermLabel,
+        return Objects.hash(propertyType, textToMap, ontologyTermLabel,
                             ontologyTermSynonyms, mappingConfidence,
                             ontologyTermID, ontologyURI, datasource);
     }

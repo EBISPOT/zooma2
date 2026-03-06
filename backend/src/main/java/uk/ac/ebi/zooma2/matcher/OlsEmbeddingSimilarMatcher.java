@@ -57,8 +57,8 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
      */
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        // Only run if we have preferred ontologies specified
-        if (context.preferredOntologies == null || context.preferredOntologies.isEmpty()) {
+        // Only run if we have target ontologies specified
+        if (context.targetOntologies == null || context.targetOntologies.isEmpty()) {
             return Collections.emptyList();
         }
 
@@ -67,8 +67,8 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
             return Collections.emptyList();
         }
 
-        // Check if we already have results from preferred ontologies
-        Set<String> preferredOntologiesLower = context.preferredOntologies.stream()
+        // Check if we already have results from target ontologies
+        Set<String> preferredOntologiesLower = context.targetOntologies.stream()
             .map(String::toLowerCase)
             .collect(Collectors.toSet());
         
@@ -85,8 +85,8 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
             });
         
         if (hasPreferredOntologyResults) {
-            System.err.println("OLS Embedding Similar: Skipping expansion - already have results from preferred ontologies: " + 
-                context.preferredOntologies);
+            System.err.println("OLS Embedding Similar: Skipping expansion - already have results from target ontologies: " + 
+                context.targetOntologies);
             return Collections.emptyList();
         }
 
@@ -138,7 +138,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
 
         System.err.println("OLS LLM Similar: Resolved " + similarTermMap.size() + " similar terms");
 
-        // Filter to only include terms from preferred ontologies
+        // Filter to only include terms from target ontologies
         similarTermMap = similarTermMap.entrySet().stream()
             .filter(e -> e.getValue() != null && 
                          e.getValue().ontology_name != null &&
@@ -146,7 +146,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         System.err.println("OLS LLM Similar: Filtered to " + similarTermMap.size() + 
-            " terms from preferred ontologies: " + context.preferredOntologies);
+            " terms from target ontologies: " + context.targetOntologies);
 
         // Create new annotations for each similar term
         for (Map.Entry<String, Set<String>> entry : similarIrisBySource.entrySet()) {

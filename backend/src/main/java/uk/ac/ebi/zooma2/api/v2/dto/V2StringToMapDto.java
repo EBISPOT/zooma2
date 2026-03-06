@@ -13,7 +13,7 @@ public class V2StringToMapDto {
     public StringToMap toStringToMap() {
         var internal = new StringToMap();
         internal.propertyType = this.propertyType;
-        internal.propertyValue = this.propertyValue;
+        internal.textToMap = this.propertyValue;
         return internal;
     }
 }

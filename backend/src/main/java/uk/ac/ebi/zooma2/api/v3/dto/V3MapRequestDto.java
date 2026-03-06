@@ -14,12 +14,18 @@ public class V3MapRequestDto {
     /** Embedding model to use (default: text-embedding-3-small). */
     public String model;
 
-    /** Preferred ontologies to prioritize in results. */
-    public List<String> preferredOntologies;
+    /** Target ontologies to prioritize in results. */
+    public List<String> targetOntologies;
 
-    /** Filter to restrict datasources and ontologies. */
+    /** When false, only return results from target ontologies (default: true). */
+    public Boolean includeOtherOntologies;
+
+    /** Filter to restrict datasources. */
     public V3FilterDto filter;
 
     /** Term IDs to exclude from results (for "try again" / thumbs-down). */
     public List<String> excludeTermIds;
+
+    /** When true, return all candidates with light deduplication only. */
+    public Boolean returnAll;
 }

@@ -14,23 +14,26 @@ import io.javalin.http.BadRequestResponse;
 public class Filter {
     public final List<String> required;
     public final List<String> preferred;
-    public final List<String> ontologies;
+    public final List<String> targetOntologies;
+    public final boolean includeOtherOntologies;
 
-    private Filter(List<String> required, List<String> preferred, List<String> ontologies) {
+    private Filter(List<String> required, List<String> preferred, List<String> targetOntologies, boolean includeOtherOntologies) {
         this.required = required;
         this.preferred = preferred;
-        this.ontologies = ontologies;
+        this.targetOntologies = targetOntologies;
+        this.includeOtherOntologies = includeOtherOntologies;
     }
 
     /**
      * Factory method to create a Filter from lists.
      * Used by API layers to convert from DTOs to internal Filter.
      */
-    public static Filter fromLists(List<String> required, List<String> preferred, List<String> ontologies) {
+    public static Filter fromLists(List<String> required, List<String> preferred, List<String> targetOntologies, boolean includeOtherOntologies) {
         return new Filter(
             required != null ? required : new ArrayList<>(),
             preferred != null ? preferred : new ArrayList<>(),
-            ontologies != null ? ontologies : new ArrayList<>()
+            targetOntologies != null ? targetOntologies : new ArrayList<>(),
+            includeOtherOntologies
         );
     }
 
@@ -66,7 +69,8 @@ public class Filter {
             }
         }
 
-        return new Filter(required, preferred, ontologies);
+        // v2 parse: ontologies become targetOntologies with hard filter (includeOtherOntologies=false)
+        return new Filter(required, preferred, ontologies, ontologies.isEmpty());
     }
 
     private static List<String> smartSplit(String s) {
@@ -92,7 +96,8 @@ public class Filter {
         return Map.of(
             "required", required,
             "preferred", preferred,
-            "ontologies", ontologies
+            "targetOntologies", targetOntologies,
+            "includeOtherOntologies", includeOtherOntologies
         );
     }
 }

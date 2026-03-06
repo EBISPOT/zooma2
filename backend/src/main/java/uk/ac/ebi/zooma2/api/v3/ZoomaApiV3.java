@@ -12,6 +12,7 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3MapResponseDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingCandidateDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3StringToMapDto;
+import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
@@ -123,8 +124,11 @@ public class ZoomaApiV3 {
         
         var internalStringsToMap = request.properties.stream().map(V3StringToMapDto::toStringToMap);
         
-        var filter = request.filter != null ? request.filter.toFilter() : null;
-        var preferredOntologies = request.preferredOntologies;
+        var targetOntologies = request.targetOntologies;
+        boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        var filter = request.filter != null
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
         
         // Use requested model, or get default from OLS (first with can_embed=true)
         String model = request.model;
@@ -136,18 +140,19 @@ public class ZoomaApiV3 {
         }
         
         // Get internal results
+        boolean returnAll = request.returnAll != null && request.returnAll;
         Collection<MapResult> internalResults = annotator.mapAll(
-            internalStringsToMap, filter, model, preferredOntologies, request.excludeTermIds
+            internalStringsToMap, filter, model, request.excludeTermIds, returnAll
         );
         
         // Group results by input property (normalizing null/unspecified propertyType)
         Map<String, List<MapResult>> groupedResults = internalResults.stream()
-            .collect(Collectors.groupingBy(r -> normalizePropertyType(r.propertyType) + "|||" + r.propertyValue));
+            .collect(Collectors.groupingBy(r -> normalizePropertyType(r.propertyType) + "|||" + r.textToMap));
         
         // Build response grouped by input property
         List<V3PropertyMappingDto> mappings = request.properties.stream()
             .map(prop -> {
-                String key = normalizePropertyType(prop.propertyType) + "|||" + prop.propertyValue;
+                String key = normalizePropertyType(prop.propertyType) + "|||" + prop.textToMap;
                 List<MapResult> results = groupedResults.getOrDefault(key, List.of());
                 
                 List<V3MappingCandidateDto> candidates = results.stream()
@@ -158,7 +163,7 @@ public class ZoomaApiV3 {
                     ))
                     .collect(Collectors.toList());
                 
-                return V3PropertyMappingDto.of(prop.propertyType, prop.propertyValue, candidates);
+                return V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
             })
             .collect(Collectors.toList());
         
@@ -180,8 +185,11 @@ public class ZoomaApiV3 {
             throw new BadRequestResponse("'properties' is required and cannot be empty");
         }
         
-        var filter = request.filter != null ? request.filter.toFilter() : null;
-        var preferredOntologies = request.preferredOntologies;
+        var targetOntologies = request.targetOntologies;
+        boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        var filter = request.filter != null
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
         
         String model = request.model;
         if (model == null || model.isEmpty()) {
@@ -202,9 +210,9 @@ public class ZoomaApiV3 {
         
         try {
             var out = ctx.res().getOutputStream();
-            int[] completed = {0};
+            var completed = new java.util.concurrent.atomic.AtomicInteger(0);
             
-            annotator.mapEach(properties, filter, model, preferredOntologies, (prop, results) -> {
+            annotator.mapEach(properties, filter, model, (prop, results) -> {
                 List<V3MappingCandidateDto> candidates = results.stream()
                     .map(V3MappingCandidateDto::from)
                     .sorted(Comparator.comparing(
@@ -213,18 +221,20 @@ public class ZoomaApiV3 {
                     ))
                     .collect(Collectors.toList());
                 
-                var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.propertyValue, candidates);
-                completed[0]++;
+                var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                int done = completed.incrementAndGet();
                 
                 var event = new LinkedHashMap<String, Object>();
                 event.put("type", "result");
                 event.put("mapping", mapping);
-                event.put("completed", completed[0]);
+                event.put("completed", done);
                 event.put("total", total);
                 
                 try {
-                    out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                    out.flush();
+                    synchronized (out) {
+                        out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                        out.flush();
+                    }
                 } catch (IOException e) {
                     throw new java.io.UncheckedIOException(e);
                 }
@@ -245,7 +255,7 @@ public class ZoomaApiV3 {
     // ==================== Vote endpoints ====================
 
     private static class VoteRequest {
-        public String propertyValue;
+        public String textToMap;
         public String propertyType;
         public String termId;
         public String termLabel;
@@ -255,23 +265,23 @@ public class ZoomaApiV3 {
 
     private void recordVote(Context ctx) {
         var req = bodyJson(ctx, VoteRequest.class);
-        if (req.propertyValue == null || req.termId == null || req.vote == null) {
-            throw new BadRequestResponse("propertyValue, termId, and vote are required");
+        if (req.textToMap == null || req.termId == null || req.vote == null) {
+            throw new BadRequestResponse("textToMap, termId, and vote are required");
         }
         if (!"up".equals(req.vote) && !"down".equals(req.vote)) {
             throw new BadRequestResponse("vote must be 'up' or 'down'");
         }
-        voteRepo.recordVote(req.propertyValue, req.propertyType, req.termId,
+        voteRepo.recordVote(req.textToMap, req.propertyType, req.termId,
                             req.termLabel, req.ontology, req.vote);
         ctx.json(Map.of("status", "ok"));
     }
 
     private void getVotes(Context ctx) {
-        String propertyValue = ctx.queryParam("propertyValue");
-        if (propertyValue == null || propertyValue.isEmpty()) {
-            throw new BadRequestResponse("propertyValue query parameter is required");
+        String textToMap = ctx.queryParam("textToMap");
+        if (textToMap == null || textToMap.isEmpty()) {
+            throw new BadRequestResponse("textToMap query parameter is required");
         }
-        ctx.json(voteRepo.getVotes(propertyValue));
+        ctx.json(voteRepo.getVotes(textToMap));
     }
 
     // ==================== Helper methods ====================

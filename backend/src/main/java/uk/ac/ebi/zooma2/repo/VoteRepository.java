@@ -16,12 +16,12 @@ public class VoteRepository {
         this.db = db;
     }
 
-    public void recordVote(String propertyValue, String propertyType, String termId,
+    public void recordVote(String textToMap, String propertyType, String termId,
                            String termLabel, String ontology, String vote) {
         String sql = "INSERT INTO votes (property_value, property_type, term_id, term_label, ontology, vote) "
             + "VALUES (?, ?, ?, ?, ?, ?)";
         try (var conn = db.getConnection(); var ps = conn.prepareStatement(sql)) {
-            ps.setString(1, propertyValue);
+            ps.setString(1, textToMap);
             ps.setString(2, propertyType);
             ps.setString(3, termId);
             ps.setString(4, termLabel);
@@ -33,12 +33,12 @@ public class VoteRepository {
         }
     }
 
-    public List<Vote> getVotes(String propertyValue) {
+    public List<Vote> getVotes(String textToMap) {
         String sql = "SELECT id, property_value, property_type, term_id, term_label, ontology, vote, created_at "
             + "FROM votes WHERE property_value = ? ORDER BY created_at DESC";
         List<Vote> votes = new ArrayList<>();
         try (var conn = db.getConnection(); var ps = conn.prepareStatement(sql)) {
-            ps.setString(1, propertyValue);
+            ps.setString(1, textToMap);
             try (var rs = ps.executeQuery()) {
                 while (rs.next()) {
                     votes.add(new Vote(
@@ -61,7 +61,7 @@ public class VoteRepository {
 
     public record Vote(
         long id,
-        String propertyValue,
+        String textToMap,
         String propertyType,
         String termId,
         String termLabel,

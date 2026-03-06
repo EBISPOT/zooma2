@@ -8,7 +8,7 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 public class MapResult {
 
     public String propertyType;
-    public String propertyValue;
+    public String textToMap;
     public String ontologyTermLabel;
     public String ontologyTermSynonyms;
     public double mappingConfidence;
@@ -25,7 +25,7 @@ public class MapResult {
         MapResult that = (MapResult) o;
 
         return Objects.equals(propertyType, that.propertyType) &&
-               Objects.equals(propertyValue, that.propertyValue) &&
+               Objects.equals(textToMap, that.textToMap) &&
                Objects.equals(ontologyTermLabel, that.ontologyTermLabel) &&
                Objects.equals(ontologyTermSynonyms, that.ontologyTermSynonyms) &&
                mappingConfidence == that.mappingConfidence &&
@@ -37,7 +37,7 @@ public class MapResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(propertyType, propertyValue, ontologyTermLabel,
+        return Objects.hash(propertyType, textToMap, ontologyTermLabel,
                             ontologyTermSynonyms, Double.valueOf(mappingConfidence),
                             ontologyTermID, ontologyURI, datasource, mappingProvenance);
     }

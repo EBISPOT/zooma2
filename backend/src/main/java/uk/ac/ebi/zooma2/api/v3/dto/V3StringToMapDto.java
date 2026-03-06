@@ -5,7 +5,7 @@ import uk.ac.ebi.zooma2.model.StringToMap;
 public class V3StringToMapDto {
 
     public String propertyType;
-    public String propertyValue;
+    public String textToMap;
 
     /**
      * Convert this DTO to the internal StringToMap model.
@@ -13,7 +13,7 @@ public class V3StringToMapDto {
     public StringToMap toStringToMap() {
         var internal = new StringToMap();
         internal.propertyType = this.propertyType;
-        internal.propertyValue = this.propertyValue;
+        internal.textToMap = this.textToMap;
         return internal;
     }
 }

@@ -1,7 +1,24 @@
 import * as React from 'react'
-import { useState, Fragment, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { ZoomaDatasources } from "../api/ZoomaDatasources"
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig"
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  closestCenter,
+  type DragStartEvent,
+  type DragEndEvent,
+} from "@dnd-kit/core"
+import {
+  SortableContext,
+  useSortable,
+  horizontalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 
 import {
   Box,
@@ -14,6 +31,7 @@ import {
   FormControlLabel,
   Checkbox
 } from '@mui/material'
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 
 interface Props {
   datasources: ZoomaDatasources
@@ -21,12 +39,49 @@ interface Props {
   onConfigChanged: (config: ZoomaDatasourceConfig) => void
 }
 
+function SortableChip({ id, index, onDelete }: { id: string; index: number; onDelete: () => void }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id })
+
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+    cursor: 'grab',
+  }
+
+  return (
+    <Box ref={setNodeRef} style={style} {...attributes} {...listeners} sx={{ display: 'inline-flex' }}>
+      <Chip
+        icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
+        label={`${index + 1}. ${id.toUpperCase()}`}
+        onDelete={onDelete}
+        color="success"
+        sx={{ fontSize: '0.95rem', cursor: 'grab' }}
+      />
+    </Box>
+  )
+}
+
 export default function PreferredOntologies({ datasources, datasourceConfig, onConfigChanged }: Props) {
   const [inputValue, setInputValue] = useState('')
+  const [activeId, setActiveId] = useState<string | null>(null)
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
+  )
+
+  const ontologies = datasourceConfig.targetOntologies || []
 
   const onSelectOntology = useCallback((val: string | null) => {
     if (!val) return
-    let newSources = [...datasourceConfig.preferredOntologies]
+    let newSources = [...(datasourceConfig.targetOntologies || [])]
 
     if (newSources.indexOf(val) === -1) {
       newSources.push(val)
@@ -35,28 +90,47 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
     setInputValue('')
     onConfigChanged({
       ...datasourceConfig,
-      preferredOntologies: newSources
+      targetOntologies: newSources
     })
   }, [datasourceConfig, onConfigChanged])
 
   const removePreferredOntology = useCallback((s: string) => {
     onConfigChanged({
       ...datasourceConfig,
-      preferredOntologies: datasourceConfig.preferredOntologies.filter(src => src !== s)
+      targetOntologies: (datasourceConfig.targetOntologies || []).filter(src => src !== s)
     })
   }, [datasourceConfig, onConfigChanged])
 
   const clearAll = useCallback(() => {
     onConfigChanged({
       ...datasourceConfig,
-      preferredOntologies: []
+      targetOntologies: []
     })
   }, [datasourceConfig, onConfigChanged])
+
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveId(String(event.active.id))
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    setActiveId(null)
+    const { active, over } = event
+    if (!over || active.id === over.id) return
+
+    const oldIndex = ontologies.indexOf(String(active.id))
+    const newIndex = ontologies.indexOf(String(over.id))
+    if (oldIndex === -1 || newIndex === -1) return
+
+    onConfigChanged({
+      ...datasourceConfig,
+      targetOntologies: arrayMove([...ontologies], oldIndex, newIndex)
+    })
+  }
 
   return (
     <Box>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-        Results from these ontologies will be prioritized.
+        ZOOMA performs better when given specific target ontologies. Drag to set priority.
       </Typography>
 
       <Autocomplete
@@ -67,7 +141,7 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
         onInputChange={(_, newValue, reason) => {
           if (reason !== 'reset') setInputValue(newValue)
         }}
-        onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name)}
+        onChange={(_, val) => onSelectOntology(typeof val === 'string' ? val : val?.name ?? null)}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -78,19 +152,37 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
         )}
       />
 
-      {datasourceConfig.preferredOntologies.length > 0 && (
+      {ontologies.length > 0 && (
         <Box sx={{ mt: 2 }}>
-          <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
-            {datasourceConfig.preferredOntologies.map(source => (
-              <Chip
-                key={source}
-                label={source.toUpperCase()}
-                onDelete={() => removePreferredOntology(source)}
-                color="success"
-                sx={{ fontSize: '0.95rem' }}
-              />
-            ))}
-          </Stack>
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext items={ontologies} strategy={horizontalListSortingStrategy}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
+                {ontologies.map((source, index) => (
+                  <SortableChip
+                    key={source}
+                    id={source}
+                    index={index}
+                    onDelete={() => removePreferredOntology(source)}
+                  />
+                ))}
+              </Stack>
+            </SortableContext>
+            <DragOverlay>
+              {activeId ? (
+                <Chip
+                  icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
+                  label={`${ontologies.indexOf(activeId) + 1}. ${activeId.toUpperCase()}`}
+                  color="success"
+                  sx={{ fontSize: '0.95rem', boxShadow: 3, cursor: 'grabbing' }}
+                />
+              ) : null}
+            </DragOverlay>
+          </DndContext>
           <Button 
             size="small" 
             color="success"
@@ -102,7 +194,7 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
           <FormControlLabel
             control={
               <Checkbox
-                checked={datasourceConfig.includeOtherOntologies}
+                checked={datasourceConfig.includeOtherOntologies ?? true}
                 onChange={(e) => onConfigChanged({ ...datasourceConfig, includeOtherOntologies: e.target.checked })}
                 color="success"
               />
@@ -113,7 +205,7 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
         </Box>
       )}
 
-      {datasourceConfig.preferredOntologies.length === 0 && (
+      {ontologies.length === 0 && (
         <Typography variant="body1" color="text.secondary" sx={{ mt: 2, fontStyle: 'italic' }}>
           No preferred ontologies selected. All ontologies will be searched with equal priority.
         </Typography>

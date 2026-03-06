@@ -4,7 +4,7 @@ import java.util.List;
 import uk.ac.ebi.zooma2.model.Filter;
 
 /**
- * Filter to restrict which datasources and ontologies are searched.
+ * Filter to restrict which datasources are searched.
  * This is a simple JSON object - no string parsing needed.
  */
 public class V3FilterDto {
@@ -15,17 +15,16 @@ public class V3FilterDto {
     /** Preferred datasources - results from these are ranked higher. */
     public List<String> preferred;
 
-    /** Ontologies to search (empty = all). */
-    public List<String> ontologies;
-
     /**
      * Convert this DTO to the internal Filter model.
+     * Target ontologies and includeOtherOntologies are set at the request level, not here.
      */
-    public Filter toFilter() {
+    public Filter toFilter(List<String> targetOntologies, boolean includeOtherOntologies) {
         return Filter.fromLists(
             required != null ? required : List.of(),
             preferred != null ? preferred : List.of(),
-            ontologies != null ? ontologies : List.of()
+            targetOntologies != null ? targetOntologies : List.of(),
+            includeOtherOntologies
         );
     }
 }

@@ -28,7 +28,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
 
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        List<String> ontologies = context.sources != null ? context.sources.ontologies : null;
+        List<String> ontologies = context.sources != null ? context.sources.targetOntologies : null;
         if (context.sources != null && isNone(ontologies)) {
             return List.of();
         }

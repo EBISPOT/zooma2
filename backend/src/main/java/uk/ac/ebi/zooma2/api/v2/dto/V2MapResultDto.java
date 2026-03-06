@@ -20,7 +20,7 @@ public class V2MapResultDto {
     public static V2MapResultDto from(MapResult internal) {
         V2MapResultDto dto = new V2MapResultDto();
         dto.propertyType = internal.propertyType;
-        dto.propertyValue = internal.propertyValue;
+        dto.propertyValue = internal.textToMap;
         dto.ontologyTermLabel = internal.ontologyTermLabel;
         dto.ontologyTermSynonyms = internal.ontologyTermSynonyms;
         dto.mappingConfidence = scoreToLevel(internal.mappingConfidence);

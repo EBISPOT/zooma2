@@ -135,7 +135,7 @@ public class ZoomaApiV2 {
 
                 for (int i = 0; i < total; i++) {
                     var stm = job.inputs.get(i).toStringToMap();
-                    var results = annotator.mapOne(stm, filter, "text-embedding-3-small", null);
+                    var results = annotator.mapOne(stm, filter, "text-embedding-3-small");
                     for (var r : results) {
                         allResults.add(V2MapResultDto.from(r));
                     }

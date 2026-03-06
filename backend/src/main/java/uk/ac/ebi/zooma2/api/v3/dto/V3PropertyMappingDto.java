@@ -11,15 +11,15 @@ public class V3PropertyMappingDto {
     public String propertyType;
 
     /** The property value from the input. */
-    public String propertyValue;
+    public String textToMap;
 
     /** Candidate ontology term mappings, ranked by confidence. */
     public List<V3MappingCandidateDto> candidates;
 
-    public static V3PropertyMappingDto of(String propertyType, String propertyValue, List<V3MappingCandidateDto> candidates) {
+    public static V3PropertyMappingDto of(String propertyType, String textToMap, List<V3MappingCandidateDto> candidates) {
         var dto = new V3PropertyMappingDto();
         dto.propertyType = propertyType;
-        dto.propertyValue = propertyValue;
+        dto.textToMap = textToMap;
         dto.candidates = candidates;
         return dto;
     }
