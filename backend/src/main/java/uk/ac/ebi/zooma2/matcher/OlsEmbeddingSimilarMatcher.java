@@ -101,7 +101,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
             .filter(a -> a.semanticTags != null && !a.semanticTags.isEmpty())
             .filter(a -> !isEmbeddingOrSemanticMatch(a))
             .filter(a -> getConfidenceScore(a) > 0.7)
-            .collect(Collectors.groupingBy(a -> a.semanticTags.get(0)));
+            .collect(Collectors.groupingBy(a -> a.semanticTags.get(0), LinkedHashMap::new, Collectors.toList()));
 
         // Get unique term IRIs to query
         Set<String> termIris = annotationsByTag.keySet();
@@ -109,14 +109,14 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         System.err.println("OLS LLM Similar: Querying " + termIris.size() + " term IRIs");
 
         // Query OLS LLM similar API for each term IRI and model
-        Map<String, Set<String>> similarIrisBySource = new HashMap<>();
+        Map<String, Set<String>> similarIrisBySource = new LinkedHashMap<>();
         
         for (String termIri : termIris) {
             for (String model : models) {
                 List<String> similarIris = querySimilarTerms(termIri, model);
                 if (!similarIris.isEmpty()) {
                     String key = termIri + "|" + model;
-                    similarIrisBySource.put(key, new HashSet<>(similarIris));
+                    similarIrisBySource.put(key, new LinkedHashSet<>(similarIris));
                 }
             }
         }

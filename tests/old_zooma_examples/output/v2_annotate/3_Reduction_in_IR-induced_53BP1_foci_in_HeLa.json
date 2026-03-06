@@ -3,96 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000181",
-          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Reduction in IR-induced 53BP1 foci in HeLa cells",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000181",
-            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "C2_SyM_1",
-          "studies": [
-            {
-              "accession": "C2_SyM",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/892EF2183CBEB629288558D7CAE7914E"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/6373EA2ECC5805E72D06D21DC7A66410"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Reduction in IR-induced 53BP1 foci in HeLa cells",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Gabriella Rustici",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "sysmicro",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/fg/sym"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000180",
           "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
         }
@@ -191,7 +101,7 @@
     "annotatedBiologicalEntities": [],
     "annotatedProperty": {
       "propertyType": "phenotype",
-      "propertyValue": "Reduction in IR-induced 53BP1 foci in U2OS cells",
+      "propertyValue": "Reduction in IR-induced 53BP1 foci in HeLa cells",
       "uri": null
     },
     "confidence": "GOOD",
@@ -206,7 +116,7 @@
       },
       "annotatedBiologicalEntities": [
         {
-          "name": "C2_SyM_2",
+          "name": "C2_SyM_1",
           "studies": [
             {
               "accession": "C2_SyM",
@@ -221,12 +131,12 @@
             "http://www.w3.org/2002/07/owl#NamedIndividual",
             "http://rdf.ebi.ac.uk/terms/zooma/Target"
           ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/7126C10DF6C76D5B498CB2D2D7020041"
+          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/6373EA2ECC5805E72D06D21DC7A66410"
         }
       ],
       "annotatedProperty": {
         "propertyType": "phenotype",
-        "propertyValue": "Reduction in IR-induced 53BP1 foci in U2OS cells",
+        "propertyValue": "Reduction in IR-induced 53BP1 foci in HeLa cells",
         "uri": null
       },
       "provenance": {
@@ -356,6 +266,96 @@
     "replaces": [],
     "semanticTags": [
       "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000181",
+          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Reduction in IR-induced 53BP1 foci in U2OS cells",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000181",
+            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [
+        {
+          "name": "C2_SyM_2",
+          "studies": [
+            {
+              "accession": "C2_SyM",
+              "types": [
+                "http://www.w3.org/2002/07/owl#NamedIndividual",
+                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
+              ],
+              "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/892EF2183CBEB629288558D7CAE7914E"
+            }
+          ],
+          "types": [
+            "http://www.w3.org/2002/07/owl#NamedIndividual",
+            "http://rdf.ebi.ac.uk/terms/zooma/Target"
+          ],
+          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/7126C10DF6C76D5B498CB2D2D7020041"
+        }
+      ],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Reduction in IR-induced 53BP1 foci in U2OS cells",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "Gabriella Rustici",
+        "evidence": "CURATED_EMBEDDING_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "sysmicro",
+          "type": "DATABASE",
+          "uri": "https://www.ebi.ac.uk/fg/sym"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
     ],
     "uri": null
   },

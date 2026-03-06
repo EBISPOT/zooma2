@@ -3,148 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gwas trait",
-      "propertyValue": "Hematology traits",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gwas trait",
-        "propertyValue": "Hematology traits",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "CURATED_EXACT_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "GWAS",
-          "type": "DATABASE",
-          "uri": "http://www.ebi.ac.uk/gwas"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004587"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004587"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gwas trait",
-      "propertyValue": "Hematology traits",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gwas trait",
-        "propertyValue": "Hematology traits",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "CURATED_EXACT_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "GWAS",
-          "type": "DATABASE",
-          "uri": "http://www.ebi.ac.uk/gwas"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_0003460"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_0003460"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005128",
           "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005128"
         }
@@ -209,6 +67,77 @@
     "replaces": [],
     "semanticTags": [
       "http://www.ebi.ac.uk/efo/EFO_0005128"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gwas trait",
+      "propertyValue": "Hematology traits",
+      "uri": null
+    },
+    "confidence": "HIGH",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gwas trait",
+        "propertyValue": "Hematology traits",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": null,
+        "annotator": null,
+        "evidence": "CURATED_EXACT_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "GWAS",
+          "type": "DATABASE",
+          "uri": "http://www.ebi.ac.uk/gwas"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OBA_2045276"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OBA_2045276"
     ],
     "uri": null
   },
@@ -358,8 +287,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
         }
       ]
     },
@@ -374,8 +303,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
           }
         ]
       },
@@ -401,7 +330,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0009186"
+        "http://www.ebi.ac.uk/efo/EFO_0004503"
       ],
       "uri": null
     },
@@ -421,7 +350,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0009186"
+      "http://www.ebi.ac.uk/efo/EFO_0004503"
     ],
     "uri": null
   },
@@ -500,8 +429,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
         }
       ]
     },
@@ -516,8 +445,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
           }
         ]
       },
@@ -543,7 +472,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004503"
+        "http://www.ebi.ac.uk/efo/EFO_0004528"
       ],
       "uri": null
     },
@@ -563,7 +492,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004503"
+      "http://www.ebi.ac.uk/efo/EFO_0004528"
     ],
     "uri": null
   },
@@ -571,8 +500,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
         }
       ]
     },
@@ -587,8 +516,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
           }
         ]
       },
@@ -614,7 +543,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_VT0000217"
+        "http://www.ebi.ac.uk/efo/EFO_0004587"
       ],
       "uri": null
     },
@@ -634,7 +563,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_VT0000217"
+      "http://www.ebi.ac.uk/efo/EFO_0004587"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gwas trait",
+      "propertyValue": "Hematology traits",
+      "uri": null
+    },
+    "confidence": "HIGH",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gwas trait",
+        "propertyValue": "Hematology traits",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": null,
+        "annotator": null,
+        "evidence": "CURATED_EXACT_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "GWAS",
+          "type": "DATABASE",
+          "uri": "http://www.ebi.ac.uk/gwas"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OBA_0003460"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OBA_0003460"
     ],
     "uri": null
   },
@@ -713,8 +713,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
         }
       ]
     },
@@ -729,8 +729,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
           }
         ]
       },
@@ -756,7 +756,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004528"
+        "http://www.ebi.ac.uk/efo/EFO_0009186"
       ],
       "uri": null
     },
@@ -776,7 +776,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004528"
+      "http://www.ebi.ac.uk/efo/EFO_0009186"
     ],
     "uri": null
   },
@@ -784,8 +784,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
         }
       ]
     },
@@ -800,8 +800,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
           }
         ]
       },
@@ -827,7 +827,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_2045276"
+        "http://purl.obolibrary.org/obo/OBA_VT0000217"
       ],
       "uri": null
     },
@@ -847,149 +847,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_2045276"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gwas trait",
-      "propertyValue": "Hematology traits",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gwas trait",
-        "propertyValue": "Hematology traits",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "GWAS",
-          "type": "DATABASE",
-          "uri": "http://www.ebi.ac.uk/gwas"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004587"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004587"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gwas trait",
-      "propertyValue": "Hematology traits",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gwas trait",
-        "propertyValue": "Hematology traits",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "GWAS",
-          "type": "DATABASE",
-          "uri": "http://www.ebi.ac.uk/gwas"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_0003460"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_0003460"
+      "http://purl.obolibrary.org/obo/OBA_VT0000217"
     ],
     "uri": null
   },
@@ -1061,6 +919,77 @@
     "replaces": [],
     "semanticTags": [
       "http://www.ebi.ac.uk/efo/EFO_0005128"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gwas trait",
+      "propertyValue": "Hematology traits",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gwas trait",
+        "propertyValue": "Hematology traits",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": null,
+        "annotator": null,
+        "evidence": "CURATED_EMBEDDING_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "GWAS",
+          "type": "DATABASE",
+          "uri": "http://www.ebi.ac.uk/gwas"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OBA_2045276"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OBA_2045276"
     ],
     "uri": null
   },
@@ -1210,8 +1139,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
         }
       ]
     },
@@ -1226,8 +1155,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
           }
         ]
       },
@@ -1253,7 +1182,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0009186"
+        "http://www.ebi.ac.uk/efo/EFO_0004503"
       ],
       "uri": null
     },
@@ -1273,7 +1202,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0009186"
+      "http://www.ebi.ac.uk/efo/EFO_0004503"
     ],
     "uri": null
   },
@@ -1352,8 +1281,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
         }
       ]
     },
@@ -1368,8 +1297,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004503",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004503"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
           }
         ]
       },
@@ -1395,7 +1324,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004503"
+        "http://www.ebi.ac.uk/efo/EFO_0004528"
       ],
       "uri": null
     },
@@ -1415,7 +1344,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004503"
+      "http://www.ebi.ac.uk/efo/EFO_0004528"
     ],
     "uri": null
   },
@@ -1423,8 +1352,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
         }
       ]
     },
@@ -1439,8 +1368,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004587",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004587"
           }
         ]
       },
@@ -1466,7 +1395,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_VT0000217"
+        "http://www.ebi.ac.uk/efo/EFO_0004587"
       ],
       "uri": null
     },
@@ -1486,7 +1415,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_VT0000217"
+      "http://www.ebi.ac.uk/efo/EFO_0004587"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gwas trait",
+      "propertyValue": "Hematology traits",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_0003460",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_0003460"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gwas trait",
+        "propertyValue": "Hematology traits",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": null,
+        "annotator": null,
+        "evidence": "CURATED_EMBEDDING_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "GWAS",
+          "type": "DATABASE",
+          "uri": "http://www.ebi.ac.uk/gwas"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OBA_0003460"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OBA_0003460"
     ],
     "uri": null
   },
@@ -1565,8 +1565,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
         }
       ]
     },
@@ -1581,8 +1581,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004528",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004528"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009186",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009186"
           }
         ]
       },
@@ -1608,7 +1608,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004528"
+        "http://www.ebi.ac.uk/efo/EFO_0009186"
       ],
       "uri": null
     },
@@ -1628,7 +1628,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004528"
+      "http://www.ebi.ac.uk/efo/EFO_0009186"
     ],
     "uri": null
   },
@@ -1636,8 +1636,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
-          "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
         }
       ]
     },
@@ -1652,8 +1652,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2045276",
-            "semanticTag": "http://purl.obolibrary.org/obo/OBA_2045276"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_VT0000217",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_VT0000217"
           }
         ]
       },
@@ -1679,7 +1679,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/OBA_2045276"
+        "http://purl.obolibrary.org/obo/OBA_VT0000217"
       ],
       "uri": null
     },
@@ -1699,7 +1699,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/OBA_2045276"
+      "http://purl.obolibrary.org/obo/OBA_VT0000217"
     ],
     "uri": null
   },

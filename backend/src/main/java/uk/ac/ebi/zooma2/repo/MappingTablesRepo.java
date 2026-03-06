@@ -8,6 +8,8 @@ import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,8 +28,8 @@ public class MappingTablesRepo {
 
     public static String DATA_PATH = System.getenv().getOrDefault("ZOOMA2_DATA_PATH", "data");
 
-    Map<String, MappingTable> tables = new HashMap<>();
-    Set<String> allTypes = new HashSet<>();
+    Map<String, MappingTable> tables = new LinkedHashMap<>();
+    Set<String> allTypes = new LinkedHashSet<>();
     
     // Vector search components
     private VectorSearchIndex vectorIndex;
@@ -157,7 +159,7 @@ public class MappingTablesRepo {
      * Get all distinct semantic tags (IRIs) from curated mapping tables.
      */
     public Set<String> getAllSemanticTags() {
-        Set<String> tags = new HashSet<>();
+        Set<String> tags = new LinkedHashSet<>();
         for (MappingTable table : tables.values()) {
             table.streamEntries().forEach(entry -> {
                 if (entry.semanticTag != null && !entry.semanticTag.isEmpty()) {

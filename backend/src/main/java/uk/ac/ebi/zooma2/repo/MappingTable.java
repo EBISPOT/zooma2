@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -90,7 +90,7 @@ public class MappingTable {
 
                 String key = NormaliseString.normalise(entry.propertyValue);
 
-                entries.computeIfAbsent(key, k -> new HashSet<>()).add(entry);
+                entries.computeIfAbsent(key, k -> new LinkedHashSet<>()).add(entry);
             }
         } catch (IOException e) {
             throw new UncheckedIOException("Error reading mapping table", e);

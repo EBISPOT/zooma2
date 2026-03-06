@@ -82,7 +82,7 @@ public class OxoMatcher implements AnnotationMatcher {
         // Group annotations by their semantic tags for batch processing
         Map<String, List<Annotation>> annotationsByTag = context.previousResults.stream()
             .filter(a -> a.semanticTags != null && !a.semanticTags.isEmpty())
-            .collect(Collectors.groupingBy(a -> a.semanticTags.get(0)));
+            .collect(Collectors.groupingBy(a -> a.semanticTags.get(0), LinkedHashMap::new, Collectors.toList()));
 
         // Get unique term IRIs to query
         Set<String> termIris = annotationsByTag.keySet();

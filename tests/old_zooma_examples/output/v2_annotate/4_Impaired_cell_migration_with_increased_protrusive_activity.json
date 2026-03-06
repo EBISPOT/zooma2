@@ -3,96 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000349",
-          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000349",
-            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "P2_SyM_1",
-          "studies": [
-            {
-              "accession": "P2_SyM",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/FD33AFEA88C18B758133762296E27D6C"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/E68E1DB98C6FA00D669A812F271B0192"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Gabriella Rustici",
-        "evidence": "CURATED_EXACT_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "sysmicro",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/fg/sym"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000309",
           "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000309"
         }
@@ -194,7 +104,7 @@
       "propertyValue": "Impaired cell migration with increased protrusive activity",
       "uri": null
     },
-    "confidence": "GOOD",
+    "confidence": "HIGH",
     "derivedFrom": {
       "_links": {
         "olslinks": [
@@ -233,7 +143,7 @@
         "accuracy": null,
         "annotationDate": 0,
         "annotator": "Gabriella Rustici",
-        "evidence": "CURATED_EMBEDDING_MATCH",
+        "evidence": "CURATED_EXACT_MATCH",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
@@ -356,6 +266,96 @@
     "replaces": [],
     "semanticTags": [
       "http://www.ebi.ac.uk/cmpo/CMPO_0000309"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000349",
+          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000349",
+            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [
+        {
+          "name": "P2_SyM_1",
+          "studies": [
+            {
+              "accession": "P2_SyM",
+              "types": [
+                "http://www.w3.org/2002/07/owl#NamedIndividual",
+                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
+              ],
+              "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/FD33AFEA88C18B758133762296E27D6C"
+            }
+          ],
+          "types": [
+            "http://www.w3.org/2002/07/owl#NamedIndividual",
+            "http://rdf.ebi.ac.uk/terms/zooma/Target"
+          ],
+          "uri": "http://rdf.ebi.ac.uk/resource/zooma/sysmicro/E68E1DB98C6FA00D669A812F271B0192"
+        }
+      ],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "Gabriella Rustici",
+        "evidence": "CURATED_EMBEDDING_MATCH",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "sysmicro",
+          "type": "DATABASE",
+          "uri": "https://www.ebi.ac.uk/fg/sym"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
     ],
     "uri": null
   },

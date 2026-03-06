@@ -109,30 +109,6 @@
         {
           "confidence": 0.95,
           "datasource": "sysmicro",
-          "label": "increased substrate-dependent cell migration, cell extension",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "Impaired cell migration with increased protrusive activity",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "sysmicro",
-              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
-            }
-          ],
-          "ontology": "cmpo",
-          "synonyms": [
-            "increased protrusive activity"
-          ],
-          "termId": "CMPO_0000349",
-          "uri": "cmpo"
-        },
-        {
-          "confidence": 0.95,
-          "datasource": "sysmicro",
           "label": "impaired cell migration",
           "mappingProvenance": [
             {
@@ -152,6 +128,30 @@
             "abnormal cell migration"
           ],
           "termId": "CMPO_0000309",
+          "uri": "cmpo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "sysmicro",
+          "label": "increased substrate-dependent cell migration, cell extension",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "Impaired cell migration with increased protrusive activity",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "sysmicro",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [
+            "increased protrusive activity"
+          ],
+          "termId": "CMPO_0000349",
           "uri": "cmpo"
         }
       ],
