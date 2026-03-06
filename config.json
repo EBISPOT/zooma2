@@ -1,10 +1,6 @@
 {
     "embedding": {
-        "batch_size": 1000,
-        "models": [
-            "llama-embed-nemotron-8b_pca512"
-        ],
-        "database_path": "embeddings.db"
+        "batch_size": 1000
     },
     "datasources": {
         "sysmicro": {

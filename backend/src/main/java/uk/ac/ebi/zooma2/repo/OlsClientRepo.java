@@ -1,7 +1,6 @@
 package uk.ac.ebi.zooma2.repo;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,19 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import uk.ac.ebi.zooma2.model.OlsTerm;
+import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
 public class OlsClientRepo {
 
@@ -611,43 +603,10 @@ public class OlsClientRepo {
     }
 
     private JsonElement postJsonToUrl(String url, String jsonBody) throws IOException {
-
-        RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(30000)
-                .setConnectionRequestTimeout(30000)
-                .setSocketTimeout(30000).build();
-
-        CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
-
-        org.apache.http.client.methods.HttpPost request = new org.apache.http.client.methods.HttpPost(url);
-        request.setHeader("Content-Type", "application/json");
-        request.setEntity(new org.apache.http.entity.StringEntity(jsonBody));
-        
-        HttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        if (entity != null) {
-            return new JsonParser().parse(new InputStreamReader(entity.getContent()));
-        } else {
-            throw new RuntimeException("OLS response was null");
-        }
+        return CachedHttpClient.postJson(url, jsonBody, 30000);
     }
 
     private JsonElement urlToJson(String url) throws IOException {
-
-        RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(30000)
-                .setConnectionRequestTimeout(30000)
-                .setSocketTimeout(30000).build();
-
-        CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
-
-        HttpGet request = new HttpGet(url);
-        HttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        if (entity != null) {
-            return new JsonParser().parse(new InputStreamReader(entity.getContent()));
-        } else {
-            throw new RuntimeException("bioregistry response was null");
-        }
+        return CachedHttpClient.getJson(url, 30000);
     }
 }

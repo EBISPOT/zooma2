@@ -2,12 +2,9 @@ package uk.ac.ebi.zooma2.repo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.stream.Collectors;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,13 +16,9 @@ import java.util.stream.Collectors;
 public class OxoClient {
 
     private static final String OXO_API_BASE = "https://www.ebi.ac.uk/spot/oxo/api";
-    private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
     public OxoClient() {
-        this.httpClient = HttpClient.newBuilder()
-            .followRedirects(HttpClient.Redirect.NORMAL)
-            .build();
         this.objectMapper = new ObjectMapper();
     }
 
@@ -68,22 +61,10 @@ public class OxoClient {
 
             String jsonBody = objectMapper.writeValueAsString(requestBody);
 
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(OXO_API_BASE + "/search"))
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
-
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                return parseOxoResponse(response.body());
-            } else {
-                System.err.println("OXO API error: " + response.statusCode() + " - " + response.body());
-                return Collections.emptyList();
-            }
-        } catch (IOException | InterruptedException e) {
+            var json = CachedHttpClient.postJson(OXO_API_BASE + "/search", jsonBody, 30000);
+            String responseBody = json.toString();
+            return parseOxoResponse(responseBody);
+        } catch (IOException e) {
             System.err.println("Error calling OXO API: " + e.getMessage());
             return Collections.emptyList();
         }

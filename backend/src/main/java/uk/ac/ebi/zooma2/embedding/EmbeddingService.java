@@ -3,129 +3,172 @@ package uk.ac.ebi.zooma2.embedding;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.apache.http.HttpEntity;
+import com.google.gson.JsonParser;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Service for generating embeddings using EBI's internal embedding service.
  * Handles batching and caching of embeddings.
- * Supports multiple models - embeds with all loaded models from the service.
+ * Discovers models from a models directory. PCA model files (e.g. model_pca512.json.gz)
+ * are loaded and PCA projection is applied locally after calling the service with the base model.
  */
 public class EmbeddingService {
 
     private static final String EMBEDDING_SERVICE_URL = "https://wwwdev.ebi.ac.uk/spot/embed";
     private static final int DEFAULT_BATCH_SIZE = 50;
+    private static final Pattern PCA_PATTERN = Pattern.compile("^(.+)_pca(\\d+)$");
     
     private final List<String> embeddingModels;
     private final EmbeddingCache cache;
     private final Gson gson;
     private final Map<String, Integer> modelDimensions = new HashMap<>();
+    private final Map<String, PcaModel> pcaModels = new HashMap<>();
     private final int batchSize;
 
+    private static class PcaModel {
+        final String baseModelName;
+        final int nComponents;
+        final double[] mean;        // length = n_features
+        final double[][] components; // shape = (n_features, n_components)
+
+        PcaModel(String baseModelName, int nComponents, double[] mean, double[][] components) {
+            this.baseModelName = baseModelName;
+            this.nComponents = nComponents;
+            this.mean = mean;
+            this.components = components;
+        }
+    }
+
     /**
-     * Create an embedding service that uses specified models or all loaded models from EBI service.
+     * Create an embedding service that discovers models from a directory.
+     * PCA model JSON files (*.json or *.json.gz) matching the pattern {base}_pca{N}
+     * are loaded, and the PCA projection is applied locally.
      * @param cache Cache for storing embeddings
      * @param batchSize Number of embeddings per request (default: 50)
-     * @param configuredModels Optional list of model names to use (null or empty = use all loaded models)
+     * @param modelsDir Path to directory containing PCA model JSON files
      */
-    public EmbeddingService(EmbeddingCache cache, int batchSize, List<String> configuredModels) {
+    public EmbeddingService(EmbeddingCache cache, int batchSize, String modelsDir) {
         this.batchSize = batchSize > 0 ? batchSize : DEFAULT_BATCH_SIZE;
         this.cache = cache;
         this.gson = new Gson();
-        
-        List<String> loadedModels = discoverLoadedModels();
-        
-        if (loadedModels.isEmpty()) {
-            throw new RuntimeException("No loaded models found at EBI embedding service");
+        this.embeddingModels = new ArrayList<>();
+
+        if (modelsDir != null && !modelsDir.isEmpty()) {
+            loadModelsFromDirectory(modelsDir);
         }
-        
-        // If configured models specified, validate and use only those
-        if (configuredModels != null && !configuredModels.isEmpty()) {
-            List<String> validModels = new ArrayList<>();
-            List<String> invalidModels = new ArrayList<>();
-            
-            for (String model : configuredModels) {
-                if (loadedModels.contains(model)) {
-                    validModels.add(model);
-                } else {
-                    invalidModels.add(model);
-                }
-            }
-            
-            if (!invalidModels.isEmpty()) {
-                System.err.println("Warning: configured models not available on server: " + 
-                                 String.join(", ", invalidModels));
-                System.err.println("Available models: " + String.join(", ", loadedModels));
-            }
-            
-            if (validModels.isEmpty()) {
-                throw new RuntimeException("None of the configured models are available. " +
-                                         "Configured: " + String.join(", ", configuredModels) + 
-                                         ". Available: " + String.join(", ", loadedModels));
-            }
-            
-            this.embeddingModels = validModels;
-        } else {
-            // Use all loaded models
-            this.embeddingModels = loadedModels;
+
+        if (this.embeddingModels.isEmpty()) {
+            System.err.println("Warning: No models found in models directory, vector search disabled");
         }
-        
+
         System.err.println("EmbeddingService initialized with " + embeddingModels.size() + 
                          " models: " + String.join(", ", embeddingModels) + 
                          " (batch_size: " + this.batchSize + ")");
     }
     
     /**
-     * Create an embedding service that uses all loaded models from EBI service.
-     * @param cache Cache for storing embeddings
-     * @param batchSize Number of embeddings per request (default: 50)
+     * Load models from a directory. Files matching *_pca*.json or *_pca*.json.gz
+     * are loaded as PCA models. The model name is derived from the filename stem.
      */
-    public EmbeddingService(EmbeddingCache cache, int batchSize) {
-        this(cache, batchSize, null);
-    }
-    
-    /**
-     * Discover all loaded models from the EBI embedding service.
-     */
-    private List<String> discoverLoadedModels() {
-        List<String> models = new ArrayList<>();
-        
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            HttpGet request = new HttpGet(EMBEDDING_SERVICE_URL + "/models");
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-            
-            if (entity != null) {
-                String json = EntityUtils.toString(entity);
-                JsonObject obj = gson.fromJson(json, JsonObject.class);
-                
-                if (obj.has("loaded_models")) {
-                    JsonArray loadedModels = obj.getAsJsonArray("loaded_models");
-                    for (int i = 0; i < loadedModels.size(); i++) {
-                        models.add(loadedModels.get(i).getAsString());
-                    }
+    private void loadModelsFromDirectory(String modelsDir) {
+        Path dir = Paths.get(modelsDir);
+        if (!Files.isDirectory(dir)) {
+            System.err.println("Models directory does not exist: " + modelsDir);
+            return;
+        }
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, entry -> {
+                String n = entry.getFileName().toString();
+                return n.matches(".*_pca\\d+\\.json(\\.gz)?");
+            })) {
+            for (Path file : stream) {
+                String filename = file.getFileName().toString();
+                String stem = filename.replaceFirst("\\.json(\\.gz)?$", "");
+                Matcher m = PCA_PATTERN.matcher(stem);
+                if (!m.matches()) continue;
+
+                String baseModelName = m.group(1);
+                int nComponents = Integer.parseInt(m.group(2));
+
+                System.err.println("Loading PCA model: " + stem + " from " + file);
+
+                try (Reader reader = openJsonReader(file)) {
+                    JsonObject json = new JsonParser().parse(reader).getAsJsonObject();
+                    double[] mean = toDoubleArray(json.getAsJsonArray("mean"));
+                    double[][] components = toDoubleArray2D(json.getAsJsonArray("components"));
+
+                    pcaModels.put(stem, new PcaModel(baseModelName, nComponents, mean, components));
+                    embeddingModels.add(stem);
+
+                    System.err.println("Loaded PCA model: " + stem +
+                            " (base=" + baseModelName + ", components=" + nComponents +
+                            ", features=" + mean.length + ")");
                 }
             }
         } catch (IOException e) {
-            System.err.println("Failed to discover embedding models: " + e.getMessage());
-            throw new RuntimeException("Failed to discover loaded models from EBI service", e);
+            System.err.println("Error loading models from " + modelsDir + ": " + e.getMessage());
         }
-        
-        return models;
+    }
+
+    private static Reader openJsonReader(Path file) throws IOException {
+        if (file.toString().endsWith(".gz")) {
+            return new InputStreamReader(
+                    new GZIPInputStream(Files.newInputStream(file)), StandardCharsets.UTF_8);
+        }
+        return Files.newBufferedReader(file, StandardCharsets.UTF_8);
+    }
+
+    private static double[] toDoubleArray(JsonArray arr) {
+        double[] result = new double[arr.size()];
+        for (int i = 0; i < arr.size(); i++) {
+            result[i] = arr.get(i).getAsDouble();
+        }
+        return result;
+    }
+
+    private static double[][] toDoubleArray2D(JsonArray arr) {
+        double[][] result = new double[arr.size()][];
+        for (int i = 0; i < arr.size(); i++) {
+            result[i] = toDoubleArray(arr.get(i).getAsJsonArray());
+        }
+        return result;
+    }
+
+    /**
+     * Apply PCA transform: (x - mean) @ components
+     */
+    private float[] applyPca(float[] embedding, PcaModel pca) {
+        int nFeatures = pca.mean.length;
+        int nComponents = pca.nComponents;
+        float[] result = new float[nComponents];
+        for (int j = 0; j < nComponents; j++) {
+            double sum = 0.0;
+            for (int i = 0; i < nFeatures; i++) {
+                sum += ((double) embedding[i] - pca.mean[i]) * pca.components[i][j];
+            }
+            result[j] = (float) sum;
+        }
+        return result;
     }
 
     /**
@@ -232,12 +275,17 @@ public class EmbeddingService {
 
     /**
      * Embed a batch of texts using EBI embedding service with specified model.
+     * If the model is a PCA model, calls the service with the base model name
+     * and applies PCA projection locally.
      */
     private Map<String, float[]> embedBatch(List<String> texts, String model) {
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+        PcaModel pca = pcaModels.get(model);
+        String serviceModel = (pca != null) ? pca.baseModelName : model;
+
+        try {
             // Prepare request
             Map<String, Object> requestBody = new HashMap<>();
-            requestBody.put("model", model);
+            requestBody.put("model", serviceModel);
             requestBody.put("text", texts);
             
             String jsonBody = gson.toJson(requestBody);
@@ -247,53 +295,67 @@ public class EmbeddingService {
                 System.err.println("[" + model + "] Request: " + jsonBody);
             }
             
-            HttpPost request = new HttpPost(EMBEDDING_SERVICE_URL);
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(jsonBody, "UTF-8"));
-            
-            HttpResponse response = httpClient.execute(request);
-            int statusCode = response.getStatusLine().getStatusCode();
-            HttpEntity entity = response.getEntity();
-            
-            if (statusCode != 200) {
-                String errorBody = entity != null ? EntityUtils.toString(entity) : "No response body";
-                System.err.println("[" + model + "] HTTP error " + statusCode);
-                System.err.println("[" + model + "] Error response: " + errorBody);
-                System.err.println("[" + model + "] Request was: " + jsonBody.substring(0, Math.min(500, jsonBody.length())));
-                return new HashMap<>();
-            }
-            
-            if (entity == null) {
-                System.err.println("[" + model + "] Empty response from embedding service");
-                return new HashMap<>();
-            }
-            
-            // Get embedding dimension from header FIRST
-            int dimension = modelDimensions.getOrDefault(model, -1);
-            if (response.containsHeader("x-embedding-dim")) {
-                dimension = Integer.parseInt(response.getFirstHeader("x-embedding-dim").getValue());
-                if (!modelDimensions.containsKey(model)) {
-                    modelDimensions.put(model, dimension);
-                    System.err.println("[" + model + "] Embedding dimension: " + dimension);
+            RequestConfig config = RequestConfig.custom()
+                    .setConnectTimeout(30000)
+                    .setConnectionRequestTimeout(30000)
+                    .setSocketTimeout(30000).build();
+
+            HttpPost httpPost = new HttpPost(EMBEDDING_SERVICE_URL);
+            httpPost.setHeader("Content-Type", "application/json");
+            httpPost.setEntity(new StringEntity(jsonBody, "UTF-8"));
+
+            try (CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build()) {
+                HttpResponse httpResponse = client.execute(httpPost);
+                int statusCode = httpResponse.getStatusLine().getStatusCode();
+                byte[] responseData = EntityUtils.toByteArray(httpResponse.getEntity());
+
+                if (statusCode != 200) {
+                    System.err.println("[" + model + "] HTTP error " + statusCode);
+                    System.err.println("[" + model + "] Error response: " + new String(responseData));
+                    System.err.println("[" + model + "] Request was: " + jsonBody.substring(0, Math.min(500, jsonBody.length())));
+                    return new HashMap<>();
                 }
+
+                if (responseData == null || responseData.length == 0) {
+                    System.err.println("[" + model + "] Empty response from embedding service");
+                    return new HashMap<>();
+                }
+
+                // Get embedding dimension from header FIRST
+                int dimension = modelDimensions.getOrDefault(model, -1);
+                var dimHeaderObj = httpResponse.getFirstHeader("x-embedding-dim");
+                String dimHeader = dimHeaderObj != null ? dimHeaderObj.getValue() : null;
+                if (dimHeader != null) {
+                    dimension = Integer.parseInt(dimHeader);
+                    if (!modelDimensions.containsKey(model)) {
+                        modelDimensions.put(model, dimension);
+                        System.err.println("[" + model + "] Embedding dimension: " + dimension);
+                    }
+                }
+
+                if (dimension == -1) {
+                    System.err.println("[" + model + "] Error: No embedding dimension in response header");
+                    return new HashMap<>();
+                }
+
+                // Read binary response as float32 array
+                List<float[]> embeddings = parseBinaryEmbeddings(responseData, texts.size(), dimension);
+
+                // Apply PCA if this is a PCA model
+                if (pca != null) {
+                    for (int i = 0; i < embeddings.size(); i++) {
+                        embeddings.set(i, applyPca(embeddings.get(i), pca));
+                    }
+                }
+
+                // Map back to texts
+                Map<String, float[]> result = new HashMap<>();
+                for (int i = 0; i < texts.size() && i < embeddings.size(); i++) {
+                    result.put(texts.get(i), embeddings.get(i));
+                }
+
+                return result;
             }
-            
-            if (dimension == -1) {
-                System.err.println("[" + model + "] Error: No embedding dimension in response header");
-                return new HashMap<>();
-            }
-            
-            // Read binary response as float32 array
-            byte[] data = EntityUtils.toByteArray(entity);
-            List<float[]> embeddings = parseBinaryEmbeddings(data, texts.size(), dimension);
-            
-            // Map back to texts
-            Map<String, float[]> result = new HashMap<>();
-            for (int i = 0; i < texts.size() && i < embeddings.size(); i++) {
-                result.put(texts.get(i), embeddings.get(i));
-            }
-            
-            return result;
         } catch (IOException e) {
             System.err.println("[" + model + "] Error embedding batch: " + e.getMessage());
             e.printStackTrace();
@@ -347,7 +409,11 @@ public class EmbeddingService {
     
     public int getEmbeddingDimension() {
         String primaryModel = getPrimaryModel();
-        return primaryModel != null ? modelDimensions.getOrDefault(primaryModel, -1) : -1;
+        if (primaryModel == null) return -1;
+        // PCA models have a known output dimension
+        PcaModel pca = pcaModels.get(primaryModel);
+        if (pca != null) return pca.nComponents;
+        return modelDimensions.getOrDefault(primaryModel, -1);
     }
     
     public EmbeddingCache getCache() {

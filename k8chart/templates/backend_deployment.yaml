@@ -25,7 +25,6 @@ spec:
           volumeMounts:
             - mountPath: "/data_import"
               name: {{ .Release.Name }}-import
-              readOnly: true
           ports:
             - containerPort: 8090
           resources:
@@ -42,6 +41,10 @@ spec:
               value: /data_import/data
             - name: ZOOMA2_CONFIG_PATH
               value: /data_import/config.json
+            - name: ZOOMA2_DB_URL
+              value: "jdbc:sqlite:{{.Values.dbPath}}"
+            - name: ZOOMA2_MODELS_PATH
+              value: "{{.Values.modelsPath}}"
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -XX:InitialRAMPercentage=60.0 -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0

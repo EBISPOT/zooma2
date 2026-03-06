@@ -1,0 +1,63 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "clinvar-xrefs",
+          "label": "Long QT syndrome 3/6, digenic",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "clinvar-xrefs",
+              "target": "http://identifiers.org/medgen/C3276241"
+            }
+          ],
+          "ontology": null,
+          "synonyms": [],
+          "termId": "http://identifiers.org/medgen/C3276241",
+          "uri": null
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "long QT syndrome 3",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "long QT syndrome 3",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0011377"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "long QT syndrome 2/3, digenic",
+            "long QT syndrome 3, acquired, susceptibility to",
+            "long QT syndrome 3/6, digenic",
+            "LQT3",
+            "SCN5A long QT syndrome",
+            "long QT syndrome 3",
+            "long QT syndrome caused by mutation in SCN5A",
+            "long QT syndrome type 3"
+          ],
+          "termId": "MONDO_0011377",
+          "uri": "mondo"
+        }
+      ],
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic"
+    }
+  ]
+}

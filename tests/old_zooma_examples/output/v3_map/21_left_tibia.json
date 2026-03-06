@@ -1,0 +1,54 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.8778791427612305,
+          "datasource": "cmo",
+          "label": "tibia-fibula cross-sectional area",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "left tibia",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "tibia-fibula cross-sectional area",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8778791427612305,
+              "source": "ols:cmo",
+              "target": "http://purl.obolibrary.org/obo/CMO_0001718"
+            }
+          ],
+          "ontology": "cmo",
+          "synonyms": [],
+          "termId": "CMO_0001718",
+          "uri": "cmo"
+        },
+        {
+          "confidence": 0.8735313415527344,
+          "datasource": "mondo",
+          "label": "tibia fracture",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "left tibia",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "tibia fracture",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8735313415527344,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0005320"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [],
+          "termId": "MONDO_0005320",
+          "uri": "mondo"
+        }
+      ],
+      "propertyType": "organism part",
+      "propertyValue": "left tibia"
+    }
+  ]
+}

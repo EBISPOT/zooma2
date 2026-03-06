@@ -1,0 +1,151 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.9,
+          "datasource": "ncit",
+          "label": "CD4 Positive",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "CD4-positive",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "CD4 Positive",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C153220"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "CD4 Antigen Positive",
+            "CD4 Molecule Positive",
+            "CD4 Positive",
+            "CD4-Positive",
+            "OKT4 Antigen Positive",
+            "T-Cell Antigen T4/Leu3 Positive",
+            "T-Cell Surface Glycoprotein CD4 Positive",
+            "T4/Leu-3 Positive"
+          ],
+          "termId": "NCIT_C153220",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "ncit",
+          "label": "CD4-Positive T-Lymphocyte",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4-positive",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "CD4-Positive T-Lymphocyte",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9381437301635742,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C12537"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [],
+          "termId": "NCIT_C12537",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "vt",
+          "label": "CD4-positive T cell quantity",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4-positive",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "CD4-positive T cell quantity",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9347567558288574,
+              "source": "ols:vt",
+              "target": "http://purl.obolibrary.org/obo/VT_0008073"
+            }
+          ],
+          "ontology": "vt",
+          "synonyms": [],
+          "termId": "VT_0008073",
+          "uri": "vt"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "vt",
+          "label": "CD4-positive T cell development trait",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4-positive",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "CD4-positive T cell development trait",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9333863258361816,
+              "source": "ols:vt",
+              "target": "http://purl.obolibrary.org/obo/VT_0008076"
+            }
+          ],
+          "ontology": "vt",
+          "synonyms": [],
+          "termId": "VT_0008076",
+          "uri": "vt"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "oba",
+          "label": "CD4-positive helper T cell amount",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4-positive",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "CD4-positive helper T cell amount",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9308967590332031,
+              "source": "ols:oba",
+              "target": "http://purl.obolibrary.org/obo/OBA_0002637"
+            }
+          ],
+          "ontology": "oba",
+          "synonyms": [],
+          "termId": "OBA_0002637",
+          "uri": "oba"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mp",
+          "label": "abnormal CD4-positive, alpha beta T cell morphology",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4-positive",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "abnormal CD4-positive, alpha beta T cell morphology",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9197626113891602,
+              "source": "ols:mp",
+              "target": "http://purl.obolibrary.org/obo/MP_0002432"
+            }
+          ],
+          "ontology": "mp",
+          "synonyms": [],
+          "termId": "MP_0002432",
+          "uri": "mp"
+        }
+      ],
+      "propertyType": null,
+      "propertyValue": "CD4-positive"
+    }
+  ]
+}

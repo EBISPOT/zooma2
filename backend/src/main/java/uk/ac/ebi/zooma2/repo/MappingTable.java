@@ -37,6 +37,10 @@ public class MappingTable {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String headerLine = reader.readLine();
+            // Skip comment lines (e.g. in test data extracts)
+            while (headerLine != null && headerLine.startsWith("#")) {
+                headerLine = reader.readLine();
+            }
             if (headerLine == null) {
                 return;
             }
@@ -56,6 +60,7 @@ public class MappingTable {
             String[] headers = headerLine.split(delimiter);
             String line;
             while ((line = reader.readLine()) != null) {
+                if (line.startsWith("#")) continue;
                 String[] values = line.split(delimiter);
 
                 MappingTableEntry entry = new MappingTableEntry();

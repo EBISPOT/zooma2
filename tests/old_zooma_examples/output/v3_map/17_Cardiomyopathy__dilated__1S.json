@@ -1,0 +1,173 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1s",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "Cardiomyopathy, Dilated, 1s",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C563538"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C563538",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "dilated cardiomyopathy 1S",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "dilated cardiomyopathy 1S",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013262"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "CMD1S",
+            "MYH7 familial isolated dilated cardiomyopathy",
+            "cardiomyopathy, dilated, 1S",
+            "cardiomyopathy, dilated, type 1S",
+            "dilated cardiomyopathy type 1S",
+            "dilated cardiomyopathy-1S",
+            "familial isolated dilated cardiomyopathy caused by mutation in MYH7",
+            "left ventricular noncompaction 5"
+          ],
+          "termId": "MONDO_0013262",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1x",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Cardiomyopathy, Dilated, 1x",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9137983322143555,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C566907"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C566907",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1t",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Cardiomyopathy, Dilated, 1t",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9135379791259766,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C566052"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C566052",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1BB",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Cardiomyopathy, Dilated, 1BB",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.912841796875,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C567877"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C567877",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1z",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Cardiomyopathy, Dilated, 1z",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9127435684204102,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C567506"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C567506",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mesh",
+          "label": "Cardiomyopathy, Dilated, 1FF",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Cardiomyopathy, dilated, 1S",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Cardiomyopathy, Dilated, 1FF",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9116582870483398,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C567654"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [],
+          "termId": "mesh_C567654",
+          "uri": "mesh"
+        }
+      ],
+      "propertyType": "phenotype",
+      "propertyValue": "Cardiomyopathy, dilated, 1S"
+    }
+  ]
+}

@@ -303,6 +303,10 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         expandedAnnotation.provenance.generator = "ZOOMA";
         expandedAnnotation.provenance.generatedDate = new Date().toString();
         
+        // Propagate study/bioentity from source curated annotation
+        expandedAnnotation.study = sourceAnnotation.study;
+        expandedAnnotation.bioentity = sourceAnnotation.bioentity;
+        
         // Chain the provenance: include all steps from source annotation + add LLM similar step
         List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>();
         if (sourceAnnotation.mappingProvenance != null) {

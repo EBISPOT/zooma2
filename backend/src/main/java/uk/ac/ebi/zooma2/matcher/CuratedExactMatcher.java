@@ -59,6 +59,9 @@ public class CuratedExactMatcher implements AnnotationMatcher {
         a.provenance.annotator = m.annotator;
         a.provenance.annotationDate = m.annotationDate;
 
+        a.study = m.study;
+        a.bioentity = m.bioentity;
+
         a.mappingProvenance = List.of(V3MappingProvenanceStepDto.curated(
             m.databaseId,
             context.stringToMap,

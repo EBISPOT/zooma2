@@ -5,51 +5,18 @@ import java.nio.ByteOrder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import uk.ac.ebi.zooma2.repo.ZoomaDatabase;
 
 /**
- * SQLite cache for embeddings stored as binary float32 arrays.
+ * Cache for embeddings stored as binary float32 arrays.
+ * Uses the unified ZoomaDatabase (embeddings table).
  */
 public class EmbeddingCache {
 
-    private final String jdbcUrl;
+    private final ZoomaDatabase db;
 
-    /**
-     * Create an embedding cache with SQLite.
-     */
-    public static EmbeddingCache createSqliteCache(String dbPath) {
-        return new EmbeddingCache("jdbc:sqlite:" + dbPath);
-    }
-
-    private EmbeddingCache(String jdbcUrl) {
-        this.jdbcUrl = jdbcUrl;
-        initializeDatabase();
-    }
-
-    private void initializeDatabase() {
-        String createTableSQL = """
-            CREATE TABLE IF NOT EXISTS embeddings (
-                text TEXT NOT NULL,
-                model TEXT NOT NULL,
-                source_type TEXT NOT NULL,
-                embedding BLOB NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                PRIMARY KEY (text, model, source_type)
-            )
-        """;
-
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(createTableSQL);
-            
-            // Create index for faster lookups
-            String createIndexSQL = "CREATE INDEX IF NOT EXISTS idx_embeddings_lookup " +
-                                   "ON embeddings(text, model, source_type)";
-            stmt.execute(createIndexSQL);
-            
-            System.err.println("Embedding cache database initialized");
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to initialize embedding cache database", e);
-        }
+    public EmbeddingCache(ZoomaDatabase db) {
+        this.db = db;
     }
 
     /**
@@ -59,7 +26,7 @@ public class EmbeddingCache {
     public float[] getEmbedding(String text, String model, String sourceType) {
         String sql = "SELECT embedding FROM embeddings WHERE text = ? AND model = ? AND source_type = ?";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, text);
@@ -82,10 +49,13 @@ public class EmbeddingCache {
      * Save embedding to cache.
      */
     public void saveEmbedding(String text, String model, String sourceType, float[] embedding) {
-        String sql = "INSERT OR REPLACE INTO embeddings (text, model, source_type, embedding, created_at) " +
-                     "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
+        String sql = db.isPostgres()
+            ? "INSERT INTO embeddings (text, model, source_type, embedding, created_at) VALUES (?, ?, ?, ?, NOW()) "
+              + "ON CONFLICT (text, model, source_type) DO UPDATE SET embedding = EXCLUDED.embedding, created_at = NOW()"
+            : "INSERT OR REPLACE INTO embeddings (text, model, source_type, embedding, created_at) "
+              + "VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, text);
@@ -106,7 +76,7 @@ public class EmbeddingCache {
         String sql = "SELECT text, model, source_type, embedding FROM embeddings WHERE source_type = ?";
         List<CachedEmbedding> results = new ArrayList<>();
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, sourceType);

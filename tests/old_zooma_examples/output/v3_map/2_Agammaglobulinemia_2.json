@@ -1,0 +1,98 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "doid",
+          "label": "agammaglobulinemia 2",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "agammaglobulinemia 2",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0081135"
+            }
+          ],
+          "ontology": "doid",
+          "synonyms": [],
+          "termId": "DOID_0081135",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mondo",
+          "label": "agammaglobulinemia 2, autosomal recessive",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "agammaglobulinemia 2, autosomal recessive",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9261884689331055,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013287"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [],
+          "termId": "MONDO_0013287",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "mondo",
+          "label": "agammaglobulinemia 4, autosomal recessive",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "agammaglobulinemia 4, autosomal recessive",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8914756774902344,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013289"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [],
+          "termId": "MONDO_0013289",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "doid",
+          "label": "X-linked agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "X-linked agammaglobulinemia",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8905506134033203,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_14179"
+            }
+          ],
+          "ontology": "doid",
+          "synonyms": [],
+          "termId": "DOID_14179",
+          "uri": "doid"
+        }
+      ],
+      "propertyType": "phenotype",
+      "propertyValue": "Agammaglobulinemia 2"
+    }
+  ]
+}

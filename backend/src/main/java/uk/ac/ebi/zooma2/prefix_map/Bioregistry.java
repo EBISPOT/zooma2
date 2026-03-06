@@ -3,16 +3,9 @@ package uk.ac.ebi.zooma2.prefix_map;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -161,22 +154,7 @@ public class Bioregistry {
     }
 
     private JsonElement urlToJson(String url) throws IOException {
-
-        RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(5000)
-                .setConnectionRequestTimeout(5000)
-                .setSocketTimeout(5000).build();
-
-        CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build();
-
-        HttpGet request = new HttpGet(url);
-        HttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        if (entity != null) {
-            return new JsonParser().parse(new InputStreamReader(entity.getContent()));
-        } else {
-            throw new RuntimeException("bioregistry response was null");
-        }
+        return CachedHttpClient.getJsonWithSystemProperties(url, 5000);
     }
 
 }

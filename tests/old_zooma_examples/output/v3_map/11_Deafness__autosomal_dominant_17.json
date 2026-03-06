@@ -1,0 +1,88 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.9,
+          "datasource": "mesh",
+          "label": "MYH9-Related Disorders",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Deafness, autosomal dominant 17",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "MYH9-Related Disorders",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C535507"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Alport Syndrome with Leukocyte Inclusions and Macrothrombocytopenia",
+            "Alport syndrome with macrothrombocytopenia",
+            "Autosomal Dominant Myh9 Spectrum Disorders",
+            "DFNA17",
+            "Deafness, Autosomal Dominant 17",
+            "Dohle leukocyte inclusions with giant platelets",
+            "Epstein syndrome",
+            "Fechtner syndrome",
+            "Fechtner's syndrome",
+            "MYH9 Gene-Related Autosomal Macrothrombocytopenias",
+            "MYH9-Related Disease",
+            "MYH9RD",
+            "Macrothrombocytopathy, Nephritis, and Deafness",
+            "Macrothrombocytopathy, nephritis, deafness, and leukocyte inclusions",
+            "Macrothrombocytopenia with leukocyte inclusions",
+            "May-Hegglin anomaly",
+            "Myh9-Related Disorder",
+            "Myh9-Related Macrothrombocytopenias",
+            "Sebastian platelet syndrome",
+            "Sebastian syndrome"
+          ],
+          "termId": "mesh_C535507",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "autosomal dominant nonsyndromic hearing loss 17",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Deafness, autosomal dominant 17",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "autosomal dominant nonsyndromic hearing loss 17",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0011350"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "autosomal dominant deafness 17",
+            "autosomal dominant nonsyndromic deafness 17",
+            "cochleosaccular degeneration",
+            "DFNA17",
+            "MYH9 autosomal dominant nonsyndromic deafness",
+            "autosomal dominant nonsyndromic deafness caused by mutation in MYH9",
+            "autosomal dominant nonsyndromic deafness type 17",
+            "deafness, autosomal dominant 17",
+            "deafness, autosomal dominant nonsyndromic sensorineural 17",
+            "deafness, autosomal dominant type 17",
+            "late-onset progressive hereditary hearing impairment due to cochleosaccular degeneration",
+            "nonsyndromic hereditary deafness DFNA17"
+          ],
+          "termId": "MONDO_0011350",
+          "uri": "mondo"
+        }
+      ],
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17"
+    }
+  ]
+}

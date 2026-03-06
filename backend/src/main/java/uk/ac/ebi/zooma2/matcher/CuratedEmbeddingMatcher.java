@@ -59,6 +59,9 @@ public class CuratedEmbeddingMatcher implements AnnotationMatcher {
         a.provenance.annotator = m.annotator;
         a.provenance.annotationDate = m.annotationDate;
 
+        a.study = m.study;
+        a.bioentity = m.bioentity;
+
         a.mappingProvenance = List.of(V3MappingProvenanceStepDto.semantic(
             m.databaseId,
             null, // model tracked elsewhere

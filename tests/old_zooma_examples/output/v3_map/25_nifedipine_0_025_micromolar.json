@@ -1,0 +1,32 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.8615150451660156,
+          "datasource": "dron",
+          "label": "nifedipine 0.1 MG/ML Injectable Solution",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "nifedipine 0.025 micromolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "nifedipine 0.1 MG/ML Injectable Solution",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8615150451660156,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00049542"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00049542",
+          "uri": "dron"
+        }
+      ],
+      "propertyType": "compound",
+      "propertyValue": "nifedipine 0.025 micromolar"
+    }
+  ]
+}

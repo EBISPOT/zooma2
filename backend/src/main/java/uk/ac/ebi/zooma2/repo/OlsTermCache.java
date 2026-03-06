@@ -8,61 +8,16 @@ import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 
 /**
- * SQLite cache for OLS term lookups.
- * Caches term metadata (label, short_form, synonyms, etc.) by IRI.
+ * Cache for OLS term lookups.
+ * Uses the unified ZoomaDatabase (ols_terms + ols_failed_iris tables).
  */
 public class OlsTermCache {
 
-    private final String jdbcUrl;
+    private final ZoomaDatabase db;
     private final Gson gson = new Gson();
 
-    /**
-     * Create an OLS term cache with SQLite.
-     */
-    public static OlsTermCache createSqliteCache(String dbPath) {
-        return new OlsTermCache("jdbc:sqlite:" + dbPath);
-    }
-
-    private OlsTermCache(String jdbcUrl) {
-        this.jdbcUrl = jdbcUrl;
-        initializeDatabase();
-    }
-
-    private void initializeDatabase() {
-        String createTableSQL = """
-            CREATE TABLE IF NOT EXISTS ols_terms (
-                iri TEXT PRIMARY KEY,
-                short_form TEXT,
-                label TEXT,
-                ontology_name TEXT,
-                is_obsolete INTEGER,
-                term_replaced_by TEXT,
-                synonyms_json TEXT,
-                term_json TEXT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        """;
-
-        String createFailedTableSQL = """
-            CREATE TABLE IF NOT EXISTS ols_failed_iris (
-                iri TEXT PRIMARY KEY,
-                failed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        """;
-
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(createTableSQL);
-            stmt.execute(createFailedTableSQL);
-            
-            // Create indexes for faster lookups
-            stmt.execute("CREATE INDEX IF NOT EXISTS idx_ols_terms_short_form ON ols_terms(short_form)");
-            stmt.execute("CREATE INDEX IF NOT EXISTS idx_ols_terms_ontology ON ols_terms(ontology_name)");
-            
-            System.err.println("OLS term cache database initialized");
-        } catch (SQLException e) {
-            throw new RuntimeException("Failed to initialize OLS term cache database", e);
-        }
+    public OlsTermCache(ZoomaDatabase db) {
+        this.db = db;
     }
 
     /**
@@ -72,7 +27,7 @@ public class OlsTermCache {
     public OlsTerm getTerm(String iri) {
         String sql = "SELECT term_json FROM ols_terms WHERE iri = ?";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, iri);
@@ -104,7 +59,7 @@ public class OlsTermCache {
         String placeholders = String.join(",", Collections.nCopies(iris.size(), "?"));
         String sql = "SELECT iri, term_json FROM ols_terms WHERE iri IN (" + placeholders + ")";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             int i = 1;
@@ -134,13 +89,18 @@ public class OlsTermCache {
             return;
         }
 
-        String sql = """
-            INSERT OR REPLACE INTO ols_terms 
-            (iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-        """;
+        String sql = db.isPostgres()
+            ? "INSERT INTO ols_terms (iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW()) "
+              + "ON CONFLICT (iri) DO UPDATE SET short_form = EXCLUDED.short_form, label = EXCLUDED.label, "
+              + "ontology_name = EXCLUDED.ontology_name, is_obsolete = EXCLUDED.is_obsolete, "
+              + "term_replaced_by = EXCLUDED.term_replaced_by, synonyms_json = EXCLUDED.synonyms_json, "
+              + "term_json = EXCLUDED.term_json, created_at = NOW()"
+            : "INSERT OR REPLACE INTO ols_terms "
+              + "(iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, term.iri);
@@ -166,13 +126,18 @@ public class OlsTermCache {
             return;
         }
 
-        String sql = """
-            INSERT OR REPLACE INTO ols_terms 
-            (iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
-        """;
+        String sql = db.isPostgres()
+            ? "INSERT INTO ols_terms (iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW()) "
+              + "ON CONFLICT (iri) DO UPDATE SET short_form = EXCLUDED.short_form, label = EXCLUDED.label, "
+              + "ontology_name = EXCLUDED.ontology_name, is_obsolete = EXCLUDED.is_obsolete, "
+              + "term_replaced_by = EXCLUDED.term_replaced_by, synonyms_json = EXCLUDED.synonyms_json, "
+              + "term_json = EXCLUDED.term_json, created_at = NOW()"
+            : "INSERT OR REPLACE INTO ols_terms "
+              + "(iri, short_form, label, ontology_name, is_obsolete, term_replaced_by, synonyms_json, term_json, created_at) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             for (OlsTerm term : terms) {
@@ -204,7 +169,7 @@ public class OlsTermCache {
     public Map<String, Object> getStats() {
         Map<String, Object> stats = new HashMap<>();
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              Statement stmt = conn.createStatement()) {
             
             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as count FROM ols_terms");
@@ -236,7 +201,7 @@ public class OlsTermCache {
         Set<String> failed = new HashSet<>();
         String sql = "SELECT iri FROM ols_failed_iris";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
@@ -256,9 +221,11 @@ public class OlsTermCache {
     public void markFailed(String iri) {
         if (iri == null) return;
         
-        String sql = "INSERT OR IGNORE INTO ols_failed_iris (iri) VALUES (?)";
+        String sql = db.isPostgres()
+            ? "INSERT INTO ols_failed_iris (iri) VALUES (?) ON CONFLICT (iri) DO NOTHING"
+            : "INSERT OR IGNORE INTO ols_failed_iris (iri) VALUES (?)";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, iri);
             stmt.executeUpdate();
@@ -273,9 +240,11 @@ public class OlsTermCache {
     public void markFailed(Collection<String> iris) {
         if (iris == null || iris.isEmpty()) return;
         
-        String sql = "INSERT OR IGNORE INTO ols_failed_iris (iri) VALUES (?)";
+        String sql = db.isPostgres()
+            ? "INSERT INTO ols_failed_iris (iri) VALUES (?) ON CONFLICT (iri) DO NOTHING"
+            : "INSERT OR IGNORE INTO ols_failed_iris (iri) VALUES (?)";
         
-        try (Connection conn = DriverManager.getConnection(jdbcUrl);
+        try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             for (String iri : iris) {

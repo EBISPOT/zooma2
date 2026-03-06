@@ -1,0 +1,18 @@
+[
+  {
+    "can_embed": false,
+    "model": "llama-embed-nemotron-8b_pca16"
+  },
+  {
+    "can_embed": true,
+    "model": "llama-embed-nemotron-8b_pca512"
+  },
+  {
+    "can_embed": false,
+    "model": "text-embedding-3-small_pca16"
+  },
+  {
+    "can_embed": false,
+    "model": "text-embedding-3-small_pca512"
+  }
+]

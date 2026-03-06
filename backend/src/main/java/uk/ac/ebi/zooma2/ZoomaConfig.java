@@ -39,7 +39,6 @@ public class ZoomaConfig {
 
     public static class EmbeddingConfig {
         public Integer batch_size; // Optional: embeddings per request (default: 50)
-        public String database_path; // Path to SQLite database
-        public List<String> models; // Optional: list of model names to use (default: all loaded models)
+        public String database_path; // Path to SQLite database (legacy, now uses unified db)
     }
 }

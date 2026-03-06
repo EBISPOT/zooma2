@@ -1,0 +1,206 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "atlas",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "cerebellum",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "atlas",
+              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+            }
+          ],
+          "ontology": "uberon",
+          "synonyms": [
+            "corpus cerebelli",
+            "epencephalon-1",
+            "infratentorial region",
+            "parencephalon"
+          ],
+          "termId": "UBERON_0002037",
+          "uri": "uberon"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "zfa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:zfa",
+              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
+            }
+          ],
+          "ontology": "zfa",
+          "synonyms": [],
+          "termId": "ZFA_0000100",
+          "uri": "zfa"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "synonyms": [],
+          "termId": "MA_0000198",
+          "uri": "ma"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "mesh",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D002531"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Cerebella",
+            "Cerebellums",
+            "Corpus Cerebelli",
+            "Parencephalon",
+            "Parencephalons"
+          ],
+          "termId": "mesh_D002531",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "ncit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C12445"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRAIN, CEREBELLUM",
+            "Brain, Cerebellum, NOS",
+            "CEREBELLUM",
+            "Cerebellar structure (body structure)",
+            "Cerebellar",
+            "Cerebellum",
+            "Cerebellum, NOS",
+            "cerebellum"
+          ],
+          "termId": "NCIT_C12445",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "omit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
+            }
+          ],
+          "ontology": "omit",
+          "synonyms": [],
+          "termId": "OMIT_0003860",
+          "uri": "omit"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "xao",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:xao",
+              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
+            }
+          ],
+          "ontology": "xao",
+          "synonyms": [],
+          "termId": "XAO_0003098",
+          "uri": "xao"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "emapa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+            }
+          ],
+          "ontology": "emapa",
+          "synonyms": [],
+          "termId": "EMAPA_17787",
+          "uri": "emapa"
+        }
+      ],
+      "propertyType": "organism part",
+      "propertyValue": "cerebellum"
+    }
+  ]
+}

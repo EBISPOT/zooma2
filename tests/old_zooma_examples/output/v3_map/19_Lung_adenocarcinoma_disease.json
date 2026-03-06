@@ -1,0 +1,120 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.89,
+          "datasource": "mondo",
+          "label": "lung adenocarcinoma in situ",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "lung adenocarcinoma in situ",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9539432525634766,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [],
+          "termId": "MONDO_0000503",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "doid",
+          "label": "obsolete recurrent adenocarcinoma of lung",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "obsolete recurrent adenocarcinoma of lung",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9507579803466797,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_7002"
+            }
+          ],
+          "ontology": "doid",
+          "synonyms": [],
+          "termId": "DOID_7002",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "efo",
+          "label": "lung adenocarcinoma grade",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "lung adenocarcinoma grade",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9477024078369141,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0005620"
+            }
+          ],
+          "ontology": "efo",
+          "synonyms": [],
+          "termId": "EFO_0005620",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "oae",
+          "label": "lung adenocarcinoma AE",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "lung adenocarcinoma AE",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.946342945098877,
+              "source": "ols:oae",
+              "target": "http://purl.obolibrary.org/obo/OAE_0008717"
+            }
+          ],
+          "ontology": "oae",
+          "synonyms": [],
+          "termId": "OAE_0008717",
+          "uri": "oae"
+        },
+        {
+          "confidence": 0.89,
+          "datasource": "efo",
+          "label": "lung adenocarcinoma",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "lung adenocarcinoma",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9459562301635742,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0000571"
+            }
+          ],
+          "ontology": "efo",
+          "synonyms": [],
+          "termId": "EFO_0000571",
+          "uri": "efo"
+        }
+      ],
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease"
+    }
+  ]
+}

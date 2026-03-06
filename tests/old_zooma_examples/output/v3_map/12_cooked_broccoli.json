@@ -1,0 +1,40 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "atlas",
+          "label": "sulforaphane",
+          "mappingProvenance": [
+            {
+              "confidence": 0.95,
+              "input": "cooked broccoli",
+              "matchType": "ZOOMA_CURATED",
+              "matchedText": null,
+              "method": "curated",
+              "model": null,
+              "similarity": null,
+              "source": "atlas",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_47807"
+            }
+          ],
+          "ontology": "chebi",
+          "synonyms": [
+            "1-isothiocyanato-4-(methylsulfinyl)butane",
+            "1-isothiocyanato-4-(methylsulfinyl)butane",
+            "4-isothiocyanatobutyl methyl sulfoxide",
+            "4-isothiocyanatobutyl methyl sulfoxide",
+            "Sulforafan",
+            "Sulforaphane",
+            "sulforaphane"
+          ],
+          "termId": "CHEBI_47807",
+          "uri": "chebi"
+        }
+      ],
+      "propertyType": "compound",
+      "propertyValue": "cooked broccoli"
+    }
+  ]
+}

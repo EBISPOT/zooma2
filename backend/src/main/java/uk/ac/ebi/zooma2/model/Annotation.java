@@ -11,6 +11,11 @@ public class Annotation {
     public double confidence; 
     public Provenance provenance;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
+
+    /** STUDY column from curated data (may be null for OLS-based matches). */
+    public String study;
+    /** BIOENTITY column from curated data (may be null for OLS-based matches). */
+    public String bioentity;
     
     /** 
      * Reference to the source annotation that this annotation was derived from.

@@ -9,11 +9,14 @@ import uk.ac.ebi.zooma2.api.v2.ZoomaApiV2;
 import uk.ac.ebi.zooma2.api.v3.ZoomaApiV3;
 import uk.ac.ebi.zooma2.embedding.EmbeddingCache;
 import uk.ac.ebi.zooma2.embedding.EmbeddingService;
+import uk.ac.ebi.zooma2.repo.ExternalApiCache;
 import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsTermCache;
 import uk.ac.ebi.zooma2.repo.VoteRepository;
+import uk.ac.ebi.zooma2.repo.ZoomaDatabase;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
+import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -24,23 +27,27 @@ public class ZoomaApp {
 
     public static void main(String[] args) {
 
+        // Initialize unified database
+        var zoomaDb = new ZoomaDatabase();
+
+        // Initialize external API cache for transparent HTTP caching
+        var apiCache = new ExternalApiCache(zoomaDb);
+        CachedHttpClient.setApiCache(apiCache);
+
         // Initialize embedding components if configured
         EmbeddingService embeddingService = null;
         EmbeddingCache embeddingCache = null;
         
         if (ZoomaConfig.config.embedding != null) {
             try {
-                // Initialize SQLite embedding cache
-                String dbPath = ZoomaConfig.config.embedding.database_path != null ? 
-                               ZoomaConfig.config.embedding.database_path : "embeddings.db";
-                embeddingCache = EmbeddingCache.createSqliteCache(dbPath);
-                System.err.println("Using SQLite for embedding cache: " + dbPath);
+                embeddingCache = new EmbeddingCache(zoomaDb);
+                System.err.println("Using unified database for embedding cache");
                 
-                // Initialize embedding service with configured models (or auto-discover all loaded models)
+                // Initialize embedding service — models discovered from models directory
                 int batchSize = ZoomaConfig.config.embedding.batch_size != null ? 
                                ZoomaConfig.config.embedding.batch_size : 50;
-                List<String> configuredModels = ZoomaConfig.config.embedding.models;
-                embeddingService = new EmbeddingService(embeddingCache, batchSize, configuredModels);
+                String modelsDir = System.getenv().getOrDefault("ZOOMA2_MODELS_PATH", "models");
+                embeddingService = new EmbeddingService(embeddingCache, batchSize, modelsDir);
                 System.err.println("Embedding service initialized");
             } catch (Exception e) {
                 System.err.println("Warning: Failed to initialize embedding service: " + e.getMessage());
@@ -53,8 +60,8 @@ public class ZoomaApp {
         var mappingTablesRepo = new MappingTablesRepo(embeddingService);
         var olsRepo = new OlsClientRepo();
 
-        // Initialize OLS term cache
-        OlsTermCache olsTermCache = OlsTermCache.createSqliteCache("ols_cache.db");
+        // Initialize OLS term cache using unified database
+        OlsTermCache olsTermCache = new OlsTermCache(zoomaDb);
         olsRepo.setTermCache(olsTermCache);
 
         // Warm up OLS term cache with all semantic tags from curated mappings
@@ -82,7 +89,7 @@ public class ZoomaApp {
         var apiV2 = new ZoomaApiV2(annotator, mappingTablesRepo, olsRepo);
         apiV2.registerRoutes(app);
         
-        var apiV3 = new ZoomaApiV3(annotator, mappingTablesRepo, olsRepo, new VoteRepository());
+        var apiV3 = new ZoomaApiV3(annotator, mappingTablesRepo, olsRepo, new VoteRepository(zoomaDb));
         apiV3.registerRoutes(app);
 
         // Global handlers

@@ -1,0 +1,120 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.8501520156860352,
+          "datasource": "dron",
+          "label": "doxycycline hyclate 0.1 MG/MG Oral Gel",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline hyclate 0.1 MG/MG Oral Gel",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8501520156860352,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00064937"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00064937",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.8495721817016602,
+          "datasource": "dron",
+          "label": "doxycycline 57.7 MG Oral Capsule",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline 57.7 MG Oral Capsule",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8495721817016602,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00048420"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00048420",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.8491458892822266,
+          "datasource": "dron",
+          "label": "doxycycline 54.4 MG Oral Capsule",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline 54.4 MG Oral Capsule",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8491458892822266,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00047216"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00047216",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.8490839004516602,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 150 MG Oral Capsule",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 150 MG Oral Capsule",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8490839004516602,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00055986"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00055986",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.8485918045043945,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 100 MG Oral Tablet",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 100 MG Oral Tablet",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8485918045043945,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00759215"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00759215",
+          "uri": "dron"
+        }
+      ],
+      "propertyType": "compound",
+      "propertyValue": "doxycycline 130 nanomolar"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "mesh",
+          "label": "Amyloidosis, familial visceral",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "OLS_LEXICAL",
+              "matchedText": "Amyloidosis, familial visceral",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C538249"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Amyloidosis 8",
+            "Amyloidosis VIII",
+            "Amyloidosis, familial renal",
+            "Amyloidosis, systemic nonneuropathic",
+            "German type amyloidosis",
+            "Ostertag type amyloidosis"
+          ],
+          "termId": "mesh_C538249",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "familial visceral amyloidosis",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "familial visceral amyloidosis",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0007099"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "amyloidosis 8",
+            "amyloidosis, 3 or more types",
+            "amyloidosis, familial visceral",
+            "amyloidosis, renal",
+            "amyloidosis, systemic Nonneuropathic",
+            "German type amyloidosis",
+            "Ostertag type amyloidosis",
+            "amyloidosis VIII",
+            "amyloidosis familial renal",
+            "amyloidosis familial visceral",
+            "amyloidosis systemic nonneuropathic",
+            "amyloidosis, Ostertag type",
+            "amyloidosis, familial renal",
+            "familial amyloid nephropathy",
+            "familial renal amyloidosis",
+            "hereditary amyloid nephropathy",
+            "hereditary amyloidosis with primary renal involement",
+            "hereditary renal amyloidosis",
+            "systemic nonneuropathic amyloidosis"
+          ],
+          "termId": "MONDO_0007099",
+          "uri": "mondo"
+        }
+      ],
+      "propertyType": "phenotype",
+      "propertyValue": "Amyloidosis, familial visceral"
+    }
+  ]
+}
