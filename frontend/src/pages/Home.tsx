@@ -1,4 +1,4 @@
-import { Fragment, ChangeEvent, useEffect, useState, useRef, useCallback } from "react";
+import { Fragment, ChangeEvent, useEffect, useState, useRef, useCallback, useMemo } from "react";
 import ResultsTable from "../components/ResultsTable";
 import * as ZoomaApi from '../api/ZoomaApi';
 import { getDatasources, ZoomaDatasources } from "../api/ZoomaDatasources";
@@ -22,17 +22,31 @@ export default function Home() {
 
   const [datasources, setDatasources] = useState<ZoomaDatasources | undefined>(undefined)
   const [datasourceConfig, setDatasourceConfig] = useState<ZoomaDatasourceConfig | undefined>(undefined)
+  const [ontologyPresets, setOntologyPresets] = useState<ZoomaApi.OntologyPreset[]>([])
   const [query, setQuery] = useState<string>('')
   const [searching, setSearching] = useState<boolean>(false)
   const [lastSearchParams, setLastSearchParams] = useState<ZoomaApi.SearchParams | undefined>(undefined)
   const [progress, setProgress] = useState<{ completed: number; total: number } | null>(null)
   const resultsRef = useRef<ZoomaApi.SearchResult[]>([])
   const [resultsVersion, setResultsVersion] = useState(0)
+  const mappedCount = useMemo(() => resultsRef.current.filter(r => parseFloat(r.mappingConfidence) >= 0.9).length, [resultsVersion])
   const abortControllerRef = useRef<AbortController | null>(null)
   const throttleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     loadDatasources()
+    ZoomaApi.getOntologyPresets().then(presets => {
+      setOntologyPresets(presets)
+      // Apply first preset as default if no ontologies configured yet
+      if (presets.length > 0) {
+        setDatasourceConfig(prev => {
+          if (prev && (prev.targetOntologies?.length ?? 0) === 0) {
+            return { ...prev, targetOntologies: [...presets[0].ontologies], includeOtherOntologies: false }
+          }
+          return prev
+        })
+      }
+    })
   }, [])
 
   useEffect(() => {
@@ -338,6 +352,7 @@ export default function Home() {
                     datasources={datasources}
                     datasourceConfig={datasourceConfig}
                     onConfigChanged={onDatasourceConfigChanged}
+                    presets={ontologyPresets}
                   />
                 )}
               </AccordionDetails>
@@ -387,7 +402,7 @@ export default function Home() {
             <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h5" sx={{ fontWeight: 500 }}>
-                  Results {resultsRef.current.length > 0 && `(${resultsRef.current.filter(r => r.mappingConfidence !== 'Did not map' && r.ontologyTermID).length} out of ${resultsRef.current.length} mapped)`}
+                  Results {resultsRef.current.length > 0 && lastSearchParams?.properties && `(${mappedCount} out of ${lastSearchParams.properties.length} mapped)`}
                 </Typography>
                 {resultsRef.current.length > 0 && (
                   <Tooltip title="Download as TSV">
@@ -402,7 +417,7 @@ export default function Home() {
                 <Box sx={{ mb: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
                     <Typography variant="body2" color="text.secondary">
-                      Mapped {progress.completed} of {progress.total} term{progress.total !== 1 ? 's' : ''}
+                      {progress.completed} out of {progress.total} processed
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {Math.round((progress.completed / progress.total) * 100)}%

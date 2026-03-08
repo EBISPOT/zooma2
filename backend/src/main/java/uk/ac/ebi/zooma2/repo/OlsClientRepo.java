@@ -46,6 +46,23 @@ public class OlsClientRepo {
         return ontologies;
     }
 
+    /**
+     * Fetch ontology IDs from OLS v2 API whose IRI starts with http://purl.obolibrary.org/obo/ (OBO ontologies).
+     */
+    public List<String> getOboOntologyIds() throws IOException {
+        var json = urlToJson(OLS_URL + "/api/v2/ontologies?size=1000");
+        var elements = json.getAsJsonObject().getAsJsonArray("elements");
+        List<String> ids = new ArrayList<>();
+        for (var element : elements) {
+            var obj = element.getAsJsonObject();
+            var iri = obj.has("iri") && !obj.get("iri").isJsonNull() ? obj.get("iri").getAsString() : "";
+            if (iri.startsWith("http://purl.obolibrary.org/obo/")) {
+                ids.add(obj.get("ontologyId").getAsString());
+            }
+        }
+        return ids;
+    }
+
     public Map<String, OlsTerm> resolveTerms(Collection<String> termIris) {
 
         if(termIris == null || termIris.isEmpty()) {
@@ -313,6 +330,10 @@ public class OlsClientRepo {
      * @return Collection of matching OLS terms
      */
     public Collection<OlsTerm> findByEmbeddingSearch(String query, String model, String ontologyId, int size) {
+        return findByEmbeddingSearch(query, model, ontologyId, size, 30000);
+    }
+
+    public Collection<OlsTerm> findByEmbeddingSearch(String query, String model, String ontologyId, int size, int timeoutMs) {
         try {
             var encodedQuery = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
             var encodedModel = java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8);
@@ -333,7 +354,7 @@ public class OlsClientRepo {
             String url = urlBuilder.toString();
             System.err.println("Embedding search URL: " + url);
             
-            var json = urlToJson(url);
+            var json = urlToJson(url, timeoutMs);
             
             if (json == null) {
                 System.err.println("No response from OLS embedding search");
@@ -618,5 +639,9 @@ public class OlsClientRepo {
 
     private JsonElement urlToJson(String url) throws IOException {
         return CachedHttpClient.getJson(url, 30000);
+    }
+
+    private JsonElement urlToJson(String url, int timeoutMs) throws IOException {
+        return CachedHttpClient.getJson(url, timeoutMs);
     }
 }

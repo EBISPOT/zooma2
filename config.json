@@ -1,7 +1,24 @@
 {
-    "embedding": {
+    "local_embedding": {
         "batch_size": 1000
     },
+    "ols_embedding": {
+        "min_similarity": 0.7,
+        "max_results": 100,
+        "timeout_ms": 60000
+    },
+    "ontology_presets": [
+        {
+            "name": "EFO and OBO Foundry",
+            "ontologies": ["efo","uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "include_obo_ontologies": true
+        },
+        {
+            "name": "Just OBO Foundry",
+            "ontologies": ["uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "include_obo_ontologies": true
+        }
+    ],
     "datasources": {
         "sysmicro": {
             "uri": "https://www.ebi.ac.uk/fg/sym",

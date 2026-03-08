@@ -64,7 +64,15 @@ public class ZoomaAnnotator {
         this.curatedExactMatcher = new CuratedExactMatcher(mappingTablesRepo);
         this.curatedEmbeddingMatcher = new CuratedEmbeddingMatcher(mappingTablesRepo);
         this.olsLexicalMatcher = new OlsLexicalMatcher(olsRepo);
-        this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo);
+        var olsEmbeddingCfg = ZoomaConfig.config.ols_embedding;
+        if (olsEmbeddingCfg != null) {
+            double minSim = olsEmbeddingCfg.min_similarity != null ? olsEmbeddingCfg.min_similarity : 0.7;
+            int maxRes = olsEmbeddingCfg.max_results != null ? olsEmbeddingCfg.max_results : 100;
+            int timeoutMs = olsEmbeddingCfg.timeout_ms != null ? olsEmbeddingCfg.timeout_ms : 60000;
+            this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo, minSim, maxRes, timeoutMs);
+        } else {
+            this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo);
+        }
         this.oxoMatcher = new OxoMatcher(oxoClient, olsRepo);
         this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null); // Uses default models
     }
@@ -130,24 +138,34 @@ public class ZoomaAnnotator {
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
             var futures = properties.stream().map(prop ->
                 executor.submit(() -> {
-                    var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
-                    // Short-circuit: if text tagger found a 1.0 match from a target ontology, skip expensive matchers
-                    if (hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
-                        var results = annotationsToMapResults(taggerAnnotations, prop);
+                    try {
+                        var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
+                        // Short-circuit: if text tagger found a 1.0 match from a target ontology, skip expensive matchers
+                        if (hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
+                            var results = annotationsToMapResults(taggerAnnotations, prop);
+                            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                            return;
+                        }
+                        List<MapResult> results = mapOne(prop, filter, model);
+                        if (!taggerAnnotations.isEmpty()) {
+                            results.addAll(annotationsToMapResults(taggerAnnotations, prop));
+                        }
                         onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
-                        return;
+                    } catch (java.io.UncheckedIOException e) {
+                        throw e; // Client disconnected — propagate to stop all threads
+                    } catch (Exception e) {
+                        System.err.println("Error mapping property '" + prop.textToMap + "': " + e.getMessage());
+                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, e.getMessage())));
                     }
-                    List<MapResult> results = mapOne(prop, filter, model);
-                    if (!taggerAnnotations.isEmpty()) {
-                        results.addAll(annotationsToMapResults(taggerAnnotations, prop));
-                    }
-                    onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
                 })
             ).collect(Collectors.toList());
 
             // Wait for all to complete
             for (var future : futures) {
                 try { future.get(); } catch (Exception e) {
+                    if (e.getCause() instanceof java.io.UncheckedIOException) {
+                        throw (java.io.UncheckedIOException) e.getCause();
+                    }
                     System.err.println("Error mapping property: " + e.getMessage());
                 }
             }
@@ -158,6 +176,7 @@ public class ZoomaAnnotator {
      * Map a single property to ontology terms. Returns all MapResult candidates for this property.
      */
     public List<MapResult> mapOne(StringToMap s, Filter sources, String model) {
+        try {
         var annotated = annotate(s.textToMap, s.propertyType, sources, model)
             .collect(Collectors.toList());
         
@@ -232,6 +251,10 @@ public class ZoomaAnnotator {
         }).filter(r -> r != null).collect(Collectors.toList());
 
         return results;
+        } catch (Exception e) {
+            System.err.println("Error mapping '" + s.textToMap + "': " + e.getMessage());
+            return List.of(MapResult.error(s.textToMap, s.propertyType, e.getMessage()));
+        }
     }
 
     /**
@@ -378,7 +401,7 @@ public class ZoomaAnnotator {
         } catch (Exception e) {
             System.err.println("Error in parallel search: " + e.getMessage());
             e.printStackTrace();
-            return Stream.empty();
+            throw new RuntimeException("Search failed for '" + stringToMap + "': " + e.getMessage(), e);
         }
     }
 

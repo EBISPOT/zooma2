@@ -16,6 +16,15 @@ public class MapResult {
     public String ontologyURI;
     public String datasource;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
+    public String error;
+
+    public static MapResult error(String textToMap, String propertyType, String errorMessage) {
+        MapResult r = new MapResult();
+        r.textToMap = textToMap;
+        r.propertyType = propertyType;
+        r.error = errorMessage;
+        return r;
+    }
 
     @Override
     public boolean equals(Object o) {

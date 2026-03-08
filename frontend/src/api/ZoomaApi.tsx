@@ -36,6 +36,7 @@ export interface SearchResult {
     ontologyURI:string
     datasource:string
     mappingProvenance?: MappingProvenanceStep[]
+    error?: string
 }
 
 // V3 API response types
@@ -47,6 +48,7 @@ export interface V3PropertyMapping {
     propertyType: string
     textToMap: string
     candidates: V3MappingCandidate[]
+    error?: string
 }
 
 export interface V3MappingCandidate {
@@ -113,6 +115,31 @@ export async function getModels():Promise<Model[]> {
 export const getLlmModels = getModels;
 export const getEmbeddingModels = getModels;
 
+export interface OntologyPreset {
+    name: string
+    description: string
+    ontologies: string[]
+}
+
+export async function getOntologyPresets():Promise<OntologyPreset[]> {
+    try {
+        let res = await fetch(apiUrl + '/v3/api/ontology-presets', {
+            method: 'GET',
+            headers: {
+                'accept': 'application/json'
+            }
+        })
+        if (!res.ok) {
+            console.warn('Failed to fetch ontology presets:', res.status)
+            return []
+        }
+        return (await res.json()) as OntologyPreset[]
+    } catch (e) {
+        console.warn('Failed to fetch ontology presets:', e)
+        return []
+    }
+}
+
 function buildFilter(params: SearchParams) {
     return {
         required: params.doNotSearchDatasources ? [] : params.requiredSources,
@@ -147,9 +174,27 @@ export async function remapOne(
         }
     })
 
+    if (!res.ok) {
+        throw new Error(`HTTP ${res.status}: ${await res.text()}`)
+    }
+
     const v3Response = (await res.json()) as V3MapResponse
     const results: SearchResult[] = []
     for (const mapping of v3Response.mappings) {
+        if (mapping.error) {
+            results.push({
+                propertyType: mapping.propertyType,
+                textToMap: mapping.textToMap,
+                ontologyTermLabel: '',
+                ontologyTermSynonyms: '',
+                mappingConfidence: '',
+                ontologyTermID: '',
+                ontologyURI: '',
+                datasource: '',
+                error: mapping.error
+            })
+            continue
+        }
         for (const candidate of mapping.candidates) {
             results.push({
                 propertyType: mapping.propertyType,
@@ -196,9 +241,27 @@ export async function fetchAllCandidates(
         }
     })
 
+    if (!res.ok) {
+        throw new Error(`HTTP ${res.status}: ${await res.text()}`)
+    }
+
     const v3Response = (await res.json()) as V3MapResponse
     const results: SearchResult[] = []
     for (const mapping of v3Response.mappings) {
+        if (mapping.error) {
+            results.push({
+                propertyType: mapping.propertyType,
+                textToMap: mapping.textToMap,
+                ontologyTermLabel: '',
+                ontologyTermSynonyms: '',
+                mappingConfidence: '',
+                ontologyTermID: '',
+                ontologyURI: '',
+                datasource: '',
+                error: mapping.error
+            })
+            continue
+        }
         for (const candidate of mapping.candidates) {
             results.push({
                 propertyType: mapping.propertyType,
@@ -251,11 +314,29 @@ export async function search(params:SearchParams):Promise<SearchResult[]> {
         }
     })
 
+    if (!res.ok) {
+        throw new Error(`HTTP ${res.status}: ${await res.text()}`)
+    }
+
     const v3Response = (await res.json()) as V3MapResponse
 
     // Convert V3 response to legacy SearchResult[] format for backward compatibility
     const results: SearchResult[] = []
     for (const mapping of v3Response.mappings) {
+        if (mapping.error) {
+            results.push({
+                propertyType: mapping.propertyType,
+                textToMap: mapping.textToMap,
+                ontologyTermLabel: '',
+                ontologyTermSynonyms: '',
+                mappingConfidence: '',
+                ontologyTermID: '',
+                ontologyURI: '',
+                datasource: '',
+                error: mapping.error
+            })
+            continue
+        }
         for (const candidate of mapping.candidates) {
             results.push({
                 propertyType: mapping.propertyType,
@@ -332,6 +413,19 @@ export function searchStream(
 
                 if (event.type === 'result') {
                     const mapping = event.mapping as V3PropertyMapping
+                    if (mapping.error) {
+                        allResults.push({
+                            propertyType: mapping.propertyType,
+                            textToMap: mapping.textToMap,
+                            ontologyTermLabel: '',
+                            ontologyTermSynonyms: '',
+                            mappingConfidence: '',
+                            ontologyTermID: '',
+                            ontologyURI: '',
+                            datasource: '',
+                            error: mapping.error
+                        })
+                    } else {
                     for (const candidate of mapping.candidates) {
                         allResults.push({
                             propertyType: mapping.propertyType,
@@ -357,6 +451,7 @@ export function searchStream(
                             ontologyURI: '',
                             datasource: '',
                         })
+                    }
                     }
                     onProgress({
                         completed: event.completed,

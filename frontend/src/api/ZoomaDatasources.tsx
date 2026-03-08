@@ -60,6 +60,7 @@ export class ZoomaDatasources {
                 this.ontologyPrefixes.push(source.name)
                 this.loadedOntologyURIs.push(source.uri)
                 this.nameDescriptionMap.set(source.name, source.description)
+                this.nameTitleMap.set(source.name, source.title || source.name)
                 this.uriNameMap.set(source.uri, source.name)
             }
         }

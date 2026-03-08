@@ -60,6 +60,9 @@ public class ZoomaApiV3 {
         // Streaming mapping endpoint - sends results as NDJSON as each property completes
         app.post("/v3/api/services/map-stream", this::mapStream);
 
+        // Ontology presets
+        app.get("/v3/api/ontology-presets", this::getOntologyPresets);
+
         // Vote endpoints
         app.post("/v3/api/votes", this::recordVote);
         app.get("/v3/api/votes", this::getVotes);
@@ -102,6 +105,47 @@ public class ZoomaApiV3 {
 
     private void getPropertyTypes(Context ctx) {
         ctx.json(mappingTablesRepo.getAllTypes());
+    }
+
+    private void getOntologyPresets(Context ctx) {
+        var presets = ZoomaConfig.config.ontology_presets;
+        if (presets == null) {
+            ctx.json(List.of());
+            return;
+        }
+
+        boolean needsObo = presets.stream()
+                .anyMatch(p -> Boolean.TRUE.equals(p.include_obo_ontologies));
+
+        List<String> oboIds = List.of();
+        if (needsObo) {
+            try {
+                oboIds = olsRepo.getOboOntologyIds();
+            } catch (IOException e) {
+                System.err.println("Failed to fetch OBO Foundry ontologies: " + e.getMessage());
+            }
+        }
+
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (var preset : presets) {
+            var map = new LinkedHashMap<String, Object>();
+            map.put("name", preset.name);
+            map.put("description", preset.description);
+
+            List<String> ontologies = preset.ontologies != null
+                    ? new ArrayList<>(preset.ontologies) : new ArrayList<>();
+            if (Boolean.TRUE.equals(preset.include_obo_ontologies)) {
+                for (String id : oboIds) {
+                    if (!ontologies.contains(id)) {
+                        ontologies.add(id);
+                    }
+                }
+            }
+            map.put("ontologies", ontologies);
+            result.add(map);
+        }
+
+        ctx.json(result);
     }
 
     /**
@@ -155,7 +199,14 @@ public class ZoomaApiV3 {
                 String key = normalizePropertyType(prop.propertyType) + "|||" + prop.textToMap;
                 List<MapResult> results = groupedResults.getOrDefault(key, List.of());
                 
+                // Check if any result is an error
+                String error = results.stream()
+                    .filter(r -> r.error != null)
+                    .map(r -> r.error)
+                    .findFirst().orElse(null);
+                
                 List<V3MappingCandidateDto> candidates = results.stream()
+                    .filter(r -> r.error == null)
                     .map(V3MappingCandidateDto::from)
                     .sorted(Comparator.comparing(
                         c -> c.confidence != null ? c.confidence : 0.0, 
@@ -163,7 +214,9 @@ public class ZoomaApiV3 {
                     ))
                     .collect(Collectors.toList());
                 
-                return V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                var dto = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                dto.error = error;
+                return dto;
             })
             .collect(Collectors.toList());
         
@@ -213,7 +266,14 @@ public class ZoomaApiV3 {
             var completed = new java.util.concurrent.atomic.AtomicInteger(0);
             
             annotator.mapEach(properties, filter, model, (prop, results) -> {
+                // Check if any result is an error
+                String error = results.stream()
+                    .filter(r -> r.error != null)
+                    .map(r -> r.error)
+                    .findFirst().orElse(null);
+
                 List<V3MappingCandidateDto> candidates = results.stream()
+                    .filter(r -> r.error == null)
                     .map(V3MappingCandidateDto::from)
                     .sorted(Comparator.comparing(
                         c -> c.confidence != null ? c.confidence : 0.0,
@@ -222,6 +282,7 @@ public class ZoomaApiV3 {
                     .collect(Collectors.toList());
                 
                 var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                mapping.error = error;
                 int done = completed.incrementAndGet();
                 
                 var event = new LinkedHashMap<String, Object>();

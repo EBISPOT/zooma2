@@ -46,7 +46,7 @@ public class CuratedExactMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = m.propertyValue;
 
         a.semanticTags = List.of(m.semanticTag);
-        a.confidence = 0.95;
+        a.confidence = 1.0;
 
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();

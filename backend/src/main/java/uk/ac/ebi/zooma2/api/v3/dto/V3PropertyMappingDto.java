@@ -16,6 +16,9 @@ public class V3PropertyMappingDto {
     /** Candidate ontology term mappings, ranked by confidence. */
     public List<V3MappingCandidateDto> candidates;
 
+    /** Error message if mapping failed for this property. */
+    public String error;
+
     public static V3PropertyMappingDto of(String propertyType, String textToMap, List<V3MappingCandidateDto> candidates) {
         var dto = new V3PropertyMappingDto();
         dto.propertyType = propertyType;

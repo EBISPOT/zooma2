@@ -23,7 +23,6 @@ import {
     IconButton,
     Link,
     CircularProgress,
-    Tooltip,
     Radio
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -32,6 +31,11 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import ReplayIcon from '@mui/icons-material/Replay';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+
+const approvedStyle = { color: '#2e7d32' } as const;
 
 
 interface ResultsTableProps {
@@ -59,6 +63,10 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     } | null>(null);
     const [alternativesLoading, setAlternativesLoading] = useState(false);
     const [selectedAlternative, setSelectedAlternative] = useState<string | null>(null);
+    // Error detail modal state
+    const [errorDetail, setErrorDetail] = useState<string | null>(null);
+    // Retrying state: set of property keys currently being retried
+    const [retrying, setRetrying] = useState<Set<string>>(new Set());
 
     // Build a set of textToMap+type keys that have returned results
     const returnedKeys = useMemo(() => 
@@ -124,6 +132,20 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         return propKeys;
     }, [approved]);
 
+    // Property keys with multiple high-confidence (>=0.9) rows → show as yellow not green
+    const multiGreenKeys = useMemo(() => {
+        const counts = new Map<string, number>();
+        for (const r of effectiveResults) {
+            if (parseFloat(r.mappingConfidence) >= 0.9) {
+                const pk = (r.textToMap || '') + '\t' + (r.propertyType || '');
+                counts.set(pk, (counts.get(pk) || 0) + 1);
+            }
+        }
+        const keys = new Set<string>();
+        counts.forEach((v, k) => { if (v > 1) keys.add(k); });
+        return keys;
+    }, [effectiveResults]);
+
     const filteredResults = useMemo(() => effectiveResults
         .filter(r => !removedKeys.has(r._key))
         .filter(r => {
@@ -138,7 +160,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     );
     const paginatedResults = filteredResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
-    const hasAnyPropertyType = effectiveResults.some(r => r.propertyType && r.propertyType.trim() !== '');
+    const hasAnyPropertyType = useMemo(() => effectiveResults.some(r => r.propertyType && r.propertyType.trim() !== ''), [effectiveResults]);
 
     const handleApprove = (key: string, result: ZoomaApi.SearchResult) => {
         if (!approved.has(key) && result.ontologyTermID) {
@@ -227,6 +249,23 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         setRemovedKeys(prev => new Set(prev).add(key));
     };
 
+    const handleRetry = async (result: ZoomaApi.SearchResult) => {
+        if (!searchParams) return;
+        const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
+        setRetrying(prev => new Set(prev).add(propKey));
+        try {
+            const newResults = await ZoomaApi.remapOne(
+                searchParams, result.textToMap, result.propertyType, []
+            );
+            if (newResults.length > 0 && !newResults[0].error) {
+                const stableKey = resultKey(result);
+                setOverrides(prev => new Map(prev).set(stableKey, newResults[0]));
+            }
+        } finally {
+            setRetrying(prev => { const next = new Set(prev); next.delete(propKey); return next; });
+        }
+    };
+
     return (
         <Box>
             <TableContainer component={Paper} sx={{ mt: 2 }}>
@@ -248,40 +287,51 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                             const key = result._key;
                             const isApproved = approved.has(key);
                             const isInProgress = result._inProgress;
-                            const isMapped = result.mappingConfidence !== 'Did not map' && !isInProgress && !!result.ontologyTermID;
+                            const isError = !!(result as any).error;
+                            const isMapped = result.mappingConfidence !== 'Did not map' && !isInProgress && !isError && !!result.ontologyTermID;
+                            const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
+                            const isRetrying = retrying.has(propKey);
+                            const rowClass = isError ? 'error-row' : isInProgress ? 'in-progress' : isApproved ? 'automatic' : (getResultClass(result) === 'automatic' && multiGreenKeys.has(propKey)) ? 'curation' : getResultClass(result);
                             return (
-                                <TableRow key={key} className={isInProgress ? 'in-progress' : isApproved ? 'automatic' : getResultClass(result)} sx={{
-                                    ...(isInProgress ? { opacity: 0.5 } : {}),
-                                    transition: 'filter 0.15s ease',
-                                    '&:hover': { filter: 'brightness(0.95)' },
-                                }}>
+                                <TableRow key={key} className={`results-row ${rowClass}`}>
                                     <TableCell>{result.textToMap}</TableCell>
                                     {hasAnyPropertyType && <TableCell>{result.propertyType}</TableCell>}
-                                    <TableCell>{isInProgress ? '' : result.ontologyTermLabel}</TableCell>
-                                    <TableCell>{isInProgress ? <CircularProgress size={14} /> : formatConfidence(result.mappingConfidence)}</TableCell>
-                                    <TableCell><TermIdLink termId={result.ontologyTermID} ontology={result.ontologyURI} /></TableCell>
-                                    <TableCell><Datasource datasources={datasources} uri={result.datasource} /></TableCell>
-                                    <TableCell><MappingProvenance provenance={result.mappingProvenance} /></TableCell>
-                                    <TableCell sx={{ whiteSpace: 'nowrap', py: 0 }}>
-                                        <Tooltip title="Approve">
-                                            <IconButton size="small" onClick={() => handleApprove(key, result)}
-                                                sx={{ color: isApproved ? '#2e7d32' : undefined }}>
-                                                {isApproved ? <ThumbUpIcon fontSize="small" /> : <ThumbUpOutlinedIcon fontSize="small" />}
+                                    <TableCell>{isInProgress ? '' : isError ? (
+                                        <Typography variant="body2" color="error" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                                            <ErrorOutlineIcon sx={{ fontSize: 16 }} />
+                                            Error
+                                        </Typography>
+                                    ) : (<>
+                                        {result.ontologyTermLabel}
+                                        {!isNaN(parseFloat(result.mappingConfidence)) && parseFloat(result.mappingConfidence) < 0.2 && (
+                                            <WarningAmberIcon titleAccess="Low score" sx={{ fontSize: 16, ml: 0.5, verticalAlign: 'text-bottom', color: 'inherit' }} />
+                                        )}
+                                    </>)}</TableCell>
+                                    <TableCell>{isInProgress ? <CircularProgress size={14} /> : isError ? '' : formatConfidence(result.mappingConfidence)}</TableCell>
+                                    <TableCell>{isError ? '' : <TermIdLink termId={result.ontologyTermID} ontology={result.ontologyURI} />}</TableCell>
+                                    <TableCell>{isError ? '' : <Datasource datasources={datasources} uri={result.datasource} />}</TableCell>
+                                    <TableCell>{isError ? '' : <MappingProvenance provenance={result.mappingProvenance} />}</TableCell>
+                                    <TableCell style={{ whiteSpace: 'nowrap', paddingTop: 0, paddingBottom: 0 }}>
+                                        {isError ? (<>
+                                            <IconButton size="small" title="Retry mapping" onClick={() => handleRetry(result)} disabled={isRetrying}>
+                                                {isRetrying ? <CircularProgress size={16} /> : <ReplayIcon fontSize="small" />}
                                             </IconButton>
-                                        </Tooltip>
-                                        <Tooltip title="Select alternative mapping">
-                                            <span>
-                                                <IconButton size="small" onClick={() => handleReject(key, result)}
-                                                    disabled={!isMapped || !searchParams}>
-                                                    <ThumbDownOutlinedIcon fontSize="small" />
-                                                </IconButton>
-                                            </span>
-                                        </Tooltip>
-                                        <Tooltip title="Remove row">
-                                            <IconButton size="small" onClick={() => handleRemove(key)}>
-                                                <DeleteOutlineIcon fontSize="small" />
+                                            <IconButton size="small" title="View error details" onClick={() => setErrorDetail((result as any).error)}>
+                                                <ErrorOutlineIcon fontSize="small" />
                                             </IconButton>
-                                        </Tooltip>
+                                        </>) : (<>
+                                        <IconButton size="small" title="Approve" onClick={() => handleApprove(key, result)}
+                                            style={isApproved ? approvedStyle : undefined}>
+                                            {isApproved ? <ThumbUpIcon fontSize="small" /> : <ThumbUpOutlinedIcon fontSize="small" />}
+                                        </IconButton>
+                                        <IconButton size="small" title="Select alternative mapping" onClick={() => handleReject(key, result)}
+                                            disabled={!isMapped || !searchParams}>
+                                            <ThumbDownOutlinedIcon fontSize="small" />
+                                        </IconButton>
+                                        <IconButton size="small" title="Remove row" onClick={() => handleRemove(key)}>
+                                            <DeleteOutlineIcon fontSize="small" />
+                                        </IconButton>
+                                        </>)}
                                     </TableCell>
                                 </TableRow>
                             );
@@ -298,15 +348,13 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                     rowsPerPageOptions={[50, 100, 250, 500]}
                 />
             </TableContainer>
-            <Box mt={2}>
-                <Typography variant="body2">
-                    <b>Stats:</b> {effectiveResults.length} properties &emsp;&emsp;
-                    {effectiveResults.filter(r => r._inProgress).length > 0 && <>{effectiveResults.filter(r => r._inProgress).length} in progress &emsp;&emsp;</>}
-                    {effectiveResults.filter(r => parseFloat(r.mappingConfidence) >= 0.9).length} high (&ge;90%) &emsp;&emsp;
-                    {effectiveResults.filter(r => { const c = parseFloat(r.mappingConfidence); return c > 0 && c < 0.9; }).length} low (&lt;90%) &emsp;&emsp;
-                    {effectiveResults.filter(r => r.mappingConfidence === 'Did not map').length} unmapped
-                </Typography>
-            </Box>
+            {effectiveResults.filter(r => !!(r as any).error).length > 0 && (
+                <Box mt={2}>
+                    <Typography variant="body2" color="error">
+                        {effectiveResults.filter(r => !!(r as any).error).length} errored
+                    </Typography>
+                </Box>
+            )}
             {/* Alternative mappings modal */}
             <Dialog
                 open={alternativesModal !== null}
@@ -383,6 +431,18 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                     >
                         Confirm
                     </Button>
+                </DialogActions>
+            </Dialog>
+            {/* Error detail modal */}
+            <Dialog open={errorDetail !== null} onClose={() => setErrorDetail(null)} maxWidth="sm" fullWidth>
+                <DialogTitle>Error Details</DialogTitle>
+                <DialogContent>
+                    <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
+                        {errorDetail}
+                    </Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setErrorDetail(null)}>Close</Button>
                 </DialogActions>
             </Dialog>
         </Box>
@@ -478,9 +538,11 @@ function Datasource(props: any) {
 
 
 function getResultClass(result: any) {
+    if (result.error) return 'error-row';
     const c = parseFloat(result.mappingConfidence);
     if (isNaN(c)) return 'unmapped';
     if (c >= 0.9) return 'automatic';
+    if (c < 0.2) return 'low-score';
     return 'curation';
 }
 

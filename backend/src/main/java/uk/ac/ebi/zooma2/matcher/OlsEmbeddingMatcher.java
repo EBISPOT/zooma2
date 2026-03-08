@@ -22,16 +22,18 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     private final OlsClientRepo olsRepo;
     private final double minSimilarity;
     private final int maxResults;
+    private final int timeoutMs;
     private static final String OLS_MODEL = "llama-embed-nemotron-8b_pca512";
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo) {
-        this(olsRepo, 0.7, 5);
+        this(olsRepo, 0.7, 100, 60000);
     }
 
-    public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults) {
+    public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults, int timeoutMs) {
         this.olsRepo = olsRepo;
         this.minSimilarity = minSimilarity;
         this.maxResults = maxResults;
+        this.timeoutMs = timeoutMs;
     }
 
     @Override
@@ -43,23 +45,9 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     public List<Annotation> findMatches(MatchContext context) {
         List<Annotation> annotations = new ArrayList<>();
 
-        // Per-ontology search if target ontologies are set
-        List<String> ontologies = context.targetOntologies;
-        if (ontologies != null && !ontologies.isEmpty()) {
-            for (String ontologyId : ontologies) {
-                var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, ontologyId, maxResults);
-                for (var term : terms) {
-                    if (term.score != null && term.score < minSimilarity) {
-                        continue;
-                    }
-                    annotations.add(createAnnotation(term, context));
-                }
-            }
-        }
-
-        // Also do a small OLS-wide search
-        var wideTerms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, maxResults);
-        for (var term : wideTerms) {
+        // Single OLS-wide embedding search; the deduplicator filters to target ontologies
+        var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, maxResults, timeoutMs);
+        for (var term : terms) {
             if (term.score != null && term.score < minSimilarity) {
                 continue;
             }

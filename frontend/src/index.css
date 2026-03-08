@@ -28,6 +28,29 @@ main {
     background-color: #FFFDC4 !important;
 }
 
+.low-score {
+    background-color: #f5f5f5 !important;
+    color: rgba(0,0,0,0.4) !important;
+}
+
+.low-score td {
+    color: rgba(0,0,0,0.4) !important;
+}
+
+.error-row {
+    background-color: #ffebee !important;
+}
+
+.results-row {
+    transition: filter 0.15s ease;
+}
+.results-row:hover {
+    filter: brightness(0.95);
+}
+.in-progress {
+    opacity: 0.5;
+}
+
 .context-help-wrapper {
     position: relative;
     top: 20px;

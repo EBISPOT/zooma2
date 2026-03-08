@@ -28,12 +28,8 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
 
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        List<String> ontologies = context.sources != null ? context.sources.targetOntologies : null;
-        if (context.sources != null && isNone(ontologies)) {
-            return List.of();
-        }
-
-        var terms = olsRepo.findByLabelAndOntologies(context.stringToMap, ontologies);
+        // Search all of OLS (no ontology filter); the deduplicator filters to target ontologies
+        var terms = olsRepo.findByLabelAndOntologies(context.stringToMap, null);
         return terms.stream()
             .map(t -> createAnnotation(t, context))
             .collect(Collectors.toList());
@@ -47,7 +43,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(t.iri);
-        a.confidence = t.label != null && t.label.equalsIgnoreCase(context.stringToMap) ? 0.95 : 0.9;
+        a.confidence = t.label != null && t.label.equalsIgnoreCase(context.stringToMap) ? 1.0 : 0.9;
 
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();

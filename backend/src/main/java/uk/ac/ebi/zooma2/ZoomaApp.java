@@ -38,14 +38,14 @@ public class ZoomaApp {
         EmbeddingService embeddingService = null;
         EmbeddingCache embeddingCache = null;
         
-        if (ZoomaConfig.config.embedding != null) {
+        if (ZoomaConfig.config.local_embedding != null) {
             try {
                 embeddingCache = new EmbeddingCache(zoomaDb);
                 System.err.println("Using unified database for embedding cache");
                 
                 // Initialize embedding service — models discovered from models directory
-                int batchSize = ZoomaConfig.config.embedding.batch_size != null ? 
-                               ZoomaConfig.config.embedding.batch_size : 50;
+                int batchSize = ZoomaConfig.config.local_embedding.batch_size != null ? 
+                               ZoomaConfig.config.local_embedding.batch_size : 50;
                 String modelsDir = System.getenv().getOrDefault("ZOOMA2_MODELS_PATH", "models");
                 embeddingService = new EmbeddingService(embeddingCache, batchSize, modelsDir);
                 System.err.println("Embedding service initialized");
@@ -84,6 +84,9 @@ public class ZoomaApp {
                 config.router.contextPath = "";
             }
         });
+
+        // Watch config.json for changes and reload automatically
+        ZoomaConfig.startConfigWatcher();
 
         // Register API routes
         var apiV2 = new ZoomaApiV2(annotator, mappingTablesRepo, olsRepo);

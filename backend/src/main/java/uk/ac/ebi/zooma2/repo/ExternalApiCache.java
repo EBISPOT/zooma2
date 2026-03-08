@@ -74,6 +74,25 @@ public class ExternalApiCache {
         }
     }
 
+    /**
+     * Remove a cached entry (e.g. when it contains invalid data).
+     */
+    public void evict(String method, String url, String requestBody) {
+        String sql = "DELETE FROM external_api_cache WHERE method = ? AND url = ? AND coalesce(request_body, '') = coalesce(?, '')";
+        try (Connection conn = db.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, method);
+            ps.setString(2, url);
+            ps.setString(3, requestBody);
+            int deleted = ps.executeUpdate();
+            if (deleted > 0) {
+                System.err.println("Evicted bad cache entry: " + method + " " + url);
+            }
+        } catch (SQLException e) {
+            System.err.println("ExternalApiCache evict error: " + e.getMessage());
+        }
+    }
+
     public static class CachedResponse {
         public final String body;
         public final String headers;

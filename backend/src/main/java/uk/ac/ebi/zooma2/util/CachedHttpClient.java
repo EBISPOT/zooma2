@@ -45,7 +45,12 @@ public class CachedHttpClient {
         if (apiCache != null) {
             var cached = apiCache.get("GET", url, null);
             if (cached != null) {
-                return new JsonParser().parse(cached.body);
+                try {
+                    return parseJsonStrict(cached.body, "GET", url);
+                } catch (IOException e) {
+                    System.err.println("Evicting bad cached entry for GET " + url + ": " + e.getMessage());
+                    apiCache.evict("GET", url, null);
+                }
             }
         }
 
@@ -57,13 +62,18 @@ public class CachedHttpClient {
         try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(url);
             HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (apiCache != null) {
-                    apiCache.put("GET", url, null, body, null, response.getStatusLine().getStatusCode());
+                if (statusCode < 200 || statusCode >= 300) {
+                    throw new IOException("HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
                 }
-                return new JsonParser().parse(body);
+                var parsed = parseJsonStrict(body, "GET", url);
+                if (apiCache != null) {
+                    apiCache.put("GET", url, null, body, null, statusCode);
+                }
+                return parsed;
             } else {
                 throw new IOException("Response was null for GET " + url);
             }
@@ -77,7 +87,12 @@ public class CachedHttpClient {
         if (apiCache != null) {
             var cached = apiCache.get("POST", url, jsonBody);
             if (cached != null) {
-                return new JsonParser().parse(cached.body);
+                try {
+                    return parseJsonStrict(cached.body, "POST", url);
+                } catch (IOException e) {
+                    System.err.println("Evicting bad cached entry for POST " + url + ": " + e.getMessage());
+                    apiCache.evict("POST", url, jsonBody);
+                }
             }
         }
 
@@ -91,13 +106,18 @@ public class CachedHttpClient {
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(jsonBody, "UTF-8"));
             HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (apiCache != null) {
-                    apiCache.put("POST", url, jsonBody, body, null, response.getStatusLine().getStatusCode());
+                if (statusCode < 200 || statusCode >= 300) {
+                    throw new IOException("HTTP " + statusCode + " for POST " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
                 }
-                return new JsonParser().parse(body);
+                var parsed = parseJsonStrict(body, "POST", url);
+                if (apiCache != null) {
+                    apiCache.put("POST", url, jsonBody, body, null, statusCode);
+                }
+                return parsed;
             } else {
                 throw new IOException("Response was null for POST " + url);
             }
@@ -165,7 +185,12 @@ public class CachedHttpClient {
         if (apiCache != null) {
             var cached = apiCache.get("GET", url, null);
             if (cached != null) {
-                return new JsonParser().parse(cached.body);
+                try {
+                    return parseJsonStrict(cached.body, "GET", url);
+                } catch (IOException e) {
+                    System.err.println("Evicting bad cached entry for GET " + url + ": " + e.getMessage());
+                    apiCache.evict("GET", url, null);
+                }
             }
         }
 
@@ -177,16 +202,40 @@ public class CachedHttpClient {
         try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(url);
             HttpResponse response = client.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (apiCache != null) {
-                    apiCache.put("GET", url, null, body, null, response.getStatusLine().getStatusCode());
+                if (statusCode < 200 || statusCode >= 300) {
+                    throw new IOException("HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
                 }
-                return new JsonParser().parse(body);
+                var parsed = parseJsonStrict(body, "GET", url);
+                if (apiCache != null) {
+                    apiCache.put("GET", url, null, body, null, statusCode);
+                }
+                return parsed;
             } else {
                 throw new IOException("Response was null for GET " + url);
             }
+        }
+    }
+
+    /**
+     * Parse a string as JSON, validating that it looks like JSON first.
+     * Throws IOException with a clear message if the body is not valid JSON.
+     */
+    private static JsonElement parseJsonStrict(String body, String method, String url) throws IOException {
+        if (body == null || body.isEmpty()) {
+            throw new IOException("Empty response body for " + method + " " + url);
+        }
+        String trimmed = body.stripLeading();
+        if (!trimmed.startsWith("{") && !trimmed.startsWith("[") && !trimmed.startsWith("\"")) {
+            throw new IOException("Response is not JSON for " + method + " " + url + ": " + body.substring(0, Math.min(body.length(), 200)));
+        }
+        try {
+            return new JsonParser().parse(body);
+        } catch (com.google.gson.JsonSyntaxException e) {
+            throw new IOException("Malformed JSON for " + method + " " + url + ": " + e.getMessage());
         }
     }
 

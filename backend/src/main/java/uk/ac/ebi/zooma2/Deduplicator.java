@@ -101,6 +101,7 @@ public class Deduplicator {
             .map(String::toLowerCase)
             .collect(Collectors.toSet());
         results.removeIf(r -> {
+            if (r.error != null) return false; // preserve error results
             String onto = getOntologyPrefix(r);
             if (onto == null) return true;
             return !allowed.contains(onto);
@@ -220,7 +221,9 @@ public class Deduplicator {
 
     List<MapResult> deduplicateByTermId(List<MapResult> results) {
         LinkedHashMap<String, MapResult> best = new LinkedHashMap<>();
+        List<MapResult> errorResults = new ArrayList<>();
         for (var r : results) {
+            if (r.error != null) { errorResults.add(r); continue; }
             String key = r.ontologyTermID;
             if (key == null) continue;
             key = prefixMap.shortFormToIri(key);
@@ -229,7 +232,9 @@ public class Deduplicator {
                 best.put(key, r);
             }
         }
-        return new ArrayList<>(best.values());
+        List<MapResult> result = new ArrayList<>(best.values());
+        result.addAll(errorResults);
+        return result;
     }
 
     // ---- helpers ----

@@ -1,92 +1,71 @@
 import * as React from 'react'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { ZoomaDatasources } from "../api/ZoomaDatasources"
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig"
-import {
-  DndContext,
-  DragOverlay,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  closestCenter,
-  type DragStartEvent,
-  type DragEndEvent,
-} from "@dnd-kit/core"
-import {
-  SortableContext,
-  useSortable,
-  horizontalListSortingStrategy,
-  arrayMove,
-} from "@dnd-kit/sortable"
-import { CSS } from "@dnd-kit/utilities"
 
 import {
+  Alert,
   Box,
   Typography,
   Autocomplete,
   TextField,
-  Chip,
   Button,
-  Stack,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  Select,
+  MenuItem,
+  ListItemText,
+  List,
+  ListItem,
+  IconButton,
 } from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
+import type { OntologyPreset } from '../api/ZoomaApi'
 
 interface Props {
   datasources: ZoomaDatasources
   datasourceConfig: ZoomaDatasourceConfig
   onConfigChanged: (config: ZoomaDatasourceConfig) => void
+  presets?: OntologyPreset[]
 }
 
-function SortableChip({ id, index, onDelete }: { id: string; index: number; onDelete: () => void }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id })
-
-  const style: React.CSSProperties = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.4 : 1,
-    cursor: 'grab',
-  }
-
-  return (
-    <Box ref={setNodeRef} style={style} {...attributes} {...listeners} sx={{ display: 'inline-flex' }}>
-      <Chip
-        icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
-        label={`${index + 1}. ${id.toUpperCase()}`}
-        onDelete={onDelete}
-        color="success"
-        sx={{ fontSize: '0.95rem', cursor: 'grab' }}
-      />
-    </Box>
-  )
+function arraysEqual(a: string[], b: string[]) {
+  return a.length === b.length && a.every((v, i) => v === b[i])
 }
 
-export default function PreferredOntologies({ datasources, datasourceConfig, onConfigChanged }: Props) {
+const ID_BADGE_SX = {
+  display: 'inline-block',
+  backgroundColor: '#00827c',
+  color: '#fff',
+  borderRadius: '4px',
+  px: 0.75,
+  py: 0.25,
+  fontWeight: 700,
+  fontSize: '0.8rem',
+  lineHeight: 1.3,
+  mr: 1,
+  flexShrink: 0,
+} as const
+
+export default function PreferredOntologies({ datasources, datasourceConfig, onConfigChanged, presets }: Props) {
   const [inputValue, setInputValue] = useState('')
-  const [activeId, setActiveId] = useState<string | null>(null)
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 5 } })
-  )
+  const [customMode, setCustomMode] = useState(false)
+  const [dragIdx, setDragIdx] = useState<number | null>(null)
+  const [overIdx, setOverIdx] = useState<number | null>(null)
+  const dragRef = useRef<number | null>(null)
 
   const ontologies = datasourceConfig.targetOntologies || []
+
+  const matchedPreset = presets?.find(p => arraysEqual(p.ontologies, ontologies))?.name
+  const activePreset = matchedPreset ?? (customMode || (ontologies.length > 0 && !matchedPreset) ? '__custom__' : '__all__')
 
   const onSelectOntology = useCallback((val: string | null) => {
     if (!val) return
     let newSources = [...(datasourceConfig.targetOntologies || [])]
-
     if (newSources.indexOf(val) === -1) {
       newSources.push(val)
     }
-
     setInputValue('')
     onConfigChanged({
       ...datasourceConfig,
@@ -108,32 +87,115 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
     })
   }, [datasourceConfig, onConfigChanged])
 
-  const handleDragStart = (event: DragStartEvent) => {
-    setActiveId(String(event.active.id))
+  const handleDragStart = (idx: number) => (e: React.DragEvent) => {
+    dragRef.current = idx
+    setDragIdx(idx)
+    e.dataTransfer.effectAllowed = 'move'
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    setActiveId(null)
-    const { active, over } = event
-    if (!over || active.id === over.id) return
-
-    const oldIndex = ontologies.indexOf(String(active.id))
-    const newIndex = ontologies.indexOf(String(over.id))
-    if (oldIndex === -1 || newIndex === -1) return
-
-    onConfigChanged({
-      ...datasourceConfig,
-      targetOntologies: arrayMove([...ontologies], oldIndex, newIndex)
-    })
+  const handleDragOver = (idx: number) => (e: React.DragEvent) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+    setOverIdx(idx)
   }
+
+  const handleDrop = (idx: number) => (e: React.DragEvent) => {
+    e.preventDefault()
+    const from = dragRef.current
+    if (from === null || from === idx) { setDragIdx(null); setOverIdx(null); return }
+    const newList = [...ontologies]
+    const [moved] = newList.splice(from, 1)
+    newList.splice(idx, 0, moved)
+    onConfigChanged({ ...datasourceConfig, targetOntologies: newList })
+    setDragIdx(null)
+    setOverIdx(null)
+  }
+
+  const handleDragEnd = () => { setDragIdx(null); setOverIdx(null) }
 
   return (
     <Box>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-        ZOOMA performs better when given specific target ontologies. Drag to set priority.
-      </Typography>
+      {presets && presets.length > 0 && (
+        <Select
+          value={activePreset}
+          displayEmpty
+          size="small"
+          onChange={(e) => {
+            const value = e.target.value
+            if (value === '__all__') {
+              setCustomMode(false)
+              onConfigChanged({
+                ...datasourceConfig,
+                targetOntologies: [],
+                includeOtherOntologies: false
+              })
+              return
+            }
+            if (value === '__custom__') {
+              setCustomMode(true)
+              onConfigChanged({
+                ...datasourceConfig,
+                targetOntologies: [],
+                includeOtherOntologies: false
+              })
+              return
+            }
+            setCustomMode(false)
+            const preset = presets.find(p => p.name === value)
+            if (preset) {
+              onConfigChanged({
+                ...datasourceConfig,
+                targetOntologies: [...preset.ontologies],
+                includeOtherOntologies: false
+              })
+            }
+          }}
+          renderValue={(val) => {
+            if (!val || val === '__all__') return 'All ontologies (not recommended)'
+            if (val === '__custom__') return 'Custom ontologies'
+            return val
+          }}
+          sx={{ mb: 2, maxWidth: 500, display: 'block' }}
+        >
+          {presets.map(preset => {
+            const ids = preset.ontologies.map(o => o.toUpperCase())
+            const secondary = ids.length > 10
+              ? ids.slice(0, 10).join(', ') + ` … and ${ids.length - 10} more`
+              : ids.join(', ')
+            return (
+              <MenuItem key={preset.name} value={preset.name}>
+                <ListItemText
+                  primary={`${preset.name} (${ids.length})`}
+                  secondary={secondary}
+                  secondaryTypographyProps={{ variant: 'caption', sx: { mt: 0.25 } }}
+                />
+              </MenuItem>
+            )
+          })}
+          <MenuItem value="__custom__">
+            <ListItemText
+              primary="Choose custom ontologies"
+              secondary="Search and pick individual ontologies"
+              secondaryTypographyProps={{ variant: 'caption', sx: { mt: 0.25 } }}
+            />
+          </MenuItem>
+          <MenuItem value="__all__">
+            <ListItemText
+              primary="All ontologies (not recommended)"
+              secondary="Search all ontologies with equal priority"
+              secondaryTypographyProps={{ variant: 'caption', sx: { mt: 0.25 } }}
+            />
+          </MenuItem>
+        </Select>
+      )}
 
-      <Autocomplete
+      {activePreset === '__all__' && (
+        <Alert severity="warning" sx={{ mb: 2, maxWidth: 500 }}>
+          ZOOMA performs better when given specific target ontologies.
+        </Alert>
+      )}
+
+      {activePreset === '__custom__' && <Autocomplete
         options={datasources.searchableOntoNames}
         getOptionLabel={(item: any) => item.displayName || item.name}
         value={null}
@@ -150,65 +212,70 @@ export default function PreferredOntologies({ datasources, datasourceConfig, onC
             sx={{ maxWidth: 500 }}
           />
         )}
-      />
+      />}
 
       {ontologies.length > 0 && (
         <Box sx={{ mt: 2 }}>
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-          >
-            <SortableContext items={ontologies} strategy={horizontalListSortingStrategy}>
-              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
-                {ontologies.map((source, index) => (
-                  <SortableChip
-                    key={source}
-                    id={source}
-                    index={index}
-                    onDelete={() => removePreferredOntology(source)}
-                  />
-                ))}
-              </Stack>
-            </SortableContext>
-            <DragOverlay>
-              {activeId ? (
-                <Chip
-                  icon={<DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.7 }} />}
-                  label={`${ontologies.indexOf(activeId) + 1}. ${activeId.toUpperCase()}`}
-                  color="success"
-                  sx={{ fontSize: '0.95rem', boxShadow: 3, cursor: 'grabbing' }}
-                />
-              ) : null}
-            </DragOverlay>
-          </DndContext>
-          <Button 
-            size="small" 
+          <Box sx={{ maxHeight: 300, overflowY: 'scroll', border: 1, borderColor: 'divider', borderRadius: 1 }}>
+            <List dense disablePadding>
+              {ontologies.map((source, idx) => (
+                <ListItem
+                  key={source}
+                  draggable
+                  onDragStart={handleDragStart(idx)}
+                  onDragOver={handleDragOver(idx)}
+                  onDrop={handleDrop(idx)}
+                  onDragEnd={handleDragEnd}
+                  secondaryAction={
+                    <IconButton edge="end" size="small" onClick={() => removePreferredOntology(source)}>
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  }
+                  sx={{
+                    py: 0.5,
+                    pr: 6,
+                    opacity: dragIdx === idx ? 0.4 : 1,
+                    borderTop: overIdx === idx && dragIdx !== null && dragIdx > idx ? '2px solid #00827c' : '2px solid transparent',
+                    borderBottom: overIdx === idx && dragIdx !== null && dragIdx < idx ? '2px solid #00827c' : undefined,
+                    transition: 'border-color 0.15s',
+                  }}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'grab', mr: 0.5 }}>
+                    <DragIndicatorIcon sx={{ fontSize: '1.1rem', opacity: 0.5 }} />
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
+                    <Box component="span" sx={ID_BADGE_SX}>{source.toUpperCase()}</Box>
+                    <Typography variant="body2" color="text.secondary" noWrap>
+                      {datasources.nameTitleMap.get(source) || ''}
+                    </Typography>
+                  </Box>
+                </ListItem>
+              ))}
+            </List>
+          </Box>
+          <Button
+            size="small"
             color="success"
-            onClick={clearAll} 
+            onClick={clearAll}
             sx={{ mt: 2, textTransform: 'none' }}
           >
             Clear all
           </Button>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={datasourceConfig.includeOtherOntologies ?? true}
-                onChange={(e) => onConfigChanged({ ...datasourceConfig, includeOtherOntologies: e.target.checked })}
-                color="success"
-              />
-            }
-            label="Include results from other ontologies"
-            sx={{ mt: 1, display: 'block' }}
-          />
         </Box>
       )}
 
-      {ontologies.length === 0 && (
-        <Typography variant="body1" color="text.secondary" sx={{ mt: 2, fontStyle: 'italic' }}>
-          No preferred ontologies selected. All ontologies will be searched with equal priority.
-        </Typography>
+      {activePreset !== '__all__' && ontologies.length > 0 && (
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={datasourceConfig.includeOtherOntologies ?? false}
+              onChange={(e) => onConfigChanged({ ...datasourceConfig, includeOtherOntologies: e.target.checked })}
+              color="success"
+            />
+          }
+          label="Include results from other ontologies"
+          sx={{ mt: 1, display: 'block' }}
+        />
       )}
     </Box>
   )
