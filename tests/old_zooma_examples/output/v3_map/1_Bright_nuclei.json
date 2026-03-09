@@ -1,7 +1,31 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "bright nuclei",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Bright nuclei",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "bright nuclei phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000154"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [],
+          "termId": "CMPO_0000154",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "Bright nuclei"
     }

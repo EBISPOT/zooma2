@@ -1,7 +1,31 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "bright nuclei",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Bright nuclei",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "bright nuclei phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000154"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [],
+          "termId": "CMPO_0000154",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "Bright nuclei"
     },
@@ -79,6 +103,52 @@
         },
         {
           "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "synonyms": [
+            "Agammaglobulinaemia"
+          ],
+          "termId": "HP_0004432",
+          "uri": "hp"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "ordo",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [],
+          "termId": "Orphanet_183669",
+          "uri": "ordo"
+        },
+        {
+          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -109,7 +179,7 @@
         },
         {
           "confidence": 0.801,
-          "datasource": "ordo",
+          "datasource": "mesh",
           "label": "Agammaglobulinemia",
           "mappingProvenance": [
             {
@@ -120,47 +190,54 @@
               "method": "lexical",
               "model": null,
               "similarity": 0.9,
-              "source": "ols:ordo",
-              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D000361"
             }
           ],
-          "ontology": "ordo",
-          "synonyms": [],
-          "termId": "Orphanet_183669",
-          "uri": "ordo"
+          "ontology": "mesh",
+          "synonyms": [
+            "Agammaglobulinemias",
+            "Hypogammaglobulinemia",
+            "Hypogammaglobulinemias"
+          ],
+          "termId": "mesh_D000361",
+          "uri": "mesh"
         },
         {
           "confidence": 0.801,
-          "datasource": "hp",
-          "label": "Agammaglobulinemia",
+          "datasource": "ncit",
+          "label": "Hypogammaglobulinemia",
           "mappingProvenance": [
             {
               "confidence": 0.9,
               "input": "Agammaglobulinemia 2",
               "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
+              "matchedText": "Hypogammaglobulinemia",
               "method": "lexical",
               "model": null,
               "similarity": 0.9,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C26931"
             }
           ],
-          "ontology": "hp",
+          "ontology": "ncit",
           "synonyms": [
-            "Agammaglobulinaemia"
+            "Agammaglobulinemia",
+            "Hypogammaglobulinemia",
+            "hypogammaglobulinemia"
           ],
-          "termId": "HP_0004432",
-          "uri": "hp"
+          "termId": "NCIT_C26931",
+          "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Agammaglobulinemia 2"
     },
     {
       "candidates": [
         {
-          "confidence": 0.89,
+          "confidence": 0.8003865832090378,
           "datasource": "sysmicro",
           "label": "site of double-strand break",
           "mappingProvenance": [
@@ -182,7 +259,7 @@
           "uri": "cmpo"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8003865832090378,
           "datasource": "sysmicro",
           "label": "decreased number of site of double-strand break",
           "mappingProvenance": [
@@ -204,13 +281,14 @@
           "uri": "cmpo"
         }
       ],
+      "error": null,
       "propertyType": "cell",
       "textToMap": "Reduction in IR-induced 53BP1 foci in HeLa"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "sysmicro",
           "label": "impaired cell migration",
           "mappingProvenance": [
@@ -234,7 +312,7 @@
           "uri": "cmpo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "sysmicro",
           "label": "increased substrate-dependent cell migration, cell extension",
           "mappingProvenance": [
@@ -258,49 +336,14 @@
           "uri": "cmpo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Impaired cell migration with increased protrusive activity"
     },
     {
       "candidates": [
         {
-          "confidence": 0.89,
-          "datasource": "atlas",
-          "label": "obsolete_C57BL/6",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "C57Black/6",
-              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
-              "matchedText": "C57BL/6",
-              "method": "semantic",
-              "model": null,
-              "similarity": 0.9352483749389648,
-              "source": "atlas",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004472"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "B6",
-            "C57 Black/6",
-            "C57",
-            "C57/B6",
-            "C57/BL6",
-            "C57B/6",
-            "C57BL6",
-            "C57Bl,",
-            "C57Bl\\6",
-            "C57Black",
-            "C57Black/6",
-            "C57Black6",
-            "CB57"
-          ],
-          "termId": "EFO_0004472",
-          "uri": "efo"
-        },
-        {
-          "confidence": 0.89,
+          "confidence": 0.8488185214996338,
           "datasource": "ncit",
           "label": "C57BL/6ByJ Mouse",
           "mappingProvenance": [
@@ -317,12 +360,15 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "C57BL/6ByJ Mouse",
+            "C57BL/6ByJ"
+          ],
           "termId": "NCIT_C37382",
           "uri": "ncit"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8477533149719239,
           "datasource": "ncit",
           "label": "C57BL/6By Mouse",
           "mappingProvenance": [
@@ -339,12 +385,15 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "C57BL/6By Mouse",
+            "C57BL/6By"
+          ],
           "termId": "NCIT_C37381",
           "uri": "ncit"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8460905742645264,
           "datasource": "ncit",
           "label": "C57BL/6Pas Mouse",
           "mappingProvenance": [
@@ -361,12 +410,15 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "C57BL/6Pas Mouse",
+            "C57BL/6Pas"
+          ],
           "termId": "NCIT_C37386",
           "uri": "ncit"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8442899084091187,
           "datasource": "ncit",
           "label": "C57BL/6N Mouse",
           "mappingProvenance": [
@@ -383,12 +435,15 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "C57BL/6N Mouse",
+            "C57BL/6N"
+          ],
           "termId": "NCIT_C37385",
           "uri": "ncit"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8442860889434814,
           "datasource": "efo",
           "label": "C57BL/6NCrl",
           "mappingProvenance": [
@@ -405,21 +460,99 @@
             }
           ],
           "ontology": "efo",
-          "synonyms": [],
+          "synonyms": [
+            "C57BL/6NCrlBR",
+            "C57BL/6NCrlBr"
+          ],
           "termId": "EFO_0011030",
           "uri": "efo"
         }
       ],
+      "error": null,
       "propertyType": "strain",
       "textToMap": "C57Black/6"
     },
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "binuclear cell",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "nuclei stay close together",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "binuclear cell phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000213"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [
+            "nuclei stay close together"
+          ],
+          "termId": "CMPO_0000213",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "nuclei stay close together"
     },
     {
       "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "doid",
+          "label": "cone dystrophy with supernormal rod responses",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Retinal cone dystrophy 3B",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cone dystrophy with supernormal rod responses",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0081022"
+            }
+          ],
+          "ontology": "doid",
+          "synonyms": [
+            "retinal cone dystrophy 3B"
+          ],
+          "termId": "DOID_0081022",
+          "uri": "doid"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Retinal Cone Dystrophy 3B",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Retinal cone dystrophy 3B",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Retinal Cone Dystrophy 3B",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C563678"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Cone Dystrophy with Night Blindness and Supernormal Rod Responses, KCNV2-Related"
+          ],
+          "termId": "mesh_C563678",
+          "uri": "mesh"
+        },
         {
           "confidence": 1.0,
           "datasource": "ncit",
@@ -438,88 +571,60 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "RCD3B",
+            "Retinal Cone Dystrophy 3B"
+          ],
           "termId": "NCIT_C192089",
           "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "disease",
       "textToMap": "Retinal cone dystrophy 3B"
     },
     {
       "candidates": [],
+      "error": null,
       "propertyType": null,
       "textToMap": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses"
     },
     {
       "candidates": [
         {
-          "confidence": 0.8829069137573242,
-          "datasource": "mondo",
-          "label": "dopa-responsive dystonia due to sepiapterin reductase deficiency",
+          "confidence": 0.8131761169433593,
+          "datasource": "mesh",
+          "label": "Segawa syndrome, autosomal recessive",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Segawa syndrome autosomal recessive",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "dopa-responsive dystonia due to sepiapterin reductase deficiency",
+              "matchedText": "Segawa syndrome, autosomal recessive",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8829069137573242,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012994"
+              "similarity": 0.9136810302734375,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C537537"
             }
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0012994",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.8796453475952148,
-          "datasource": "mondo",
-          "label": "TH-deficient dopa-responsive dystonia",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "TH-deficient dopa-responsive dystonia",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8796453475952148,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0011551"
-            }
+          "ontology": "mesh",
+          "synonyms": [
+            "Autosomal Recessive Infantile Parkinsonism",
+            "DOPA responsive dystonia, autosomal recessive",
+            "Dopa-Responsive Dystonia, Autosomal Recessive",
+            "Dystonia, DOPA responsive, autosomal recessive",
+            "Dystonia, Dopa-Responsive, Autosomal Recessive",
+            "Dystonia, Dopa-Responsive, With Or Without Hyperphenylalaninemia, Autosomal Recessive",
+            "Parkinsonism, infantile, autosomal recessive",
+            "Th-Deficient Drd",
+            "Tyrosine Hydroxylase Deficiency"
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0011551",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.879359245300293,
-          "datasource": "doid",
-          "label": "autosomal recessive Segawa syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "autosomal recessive Segawa syndrome",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.879359245300293,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0051059"
-            }
-          ],
-          "ontology": "doid",
-          "synonyms": [],
-          "termId": "DOID_0051059",
-          "uri": "doid"
+          "termId": "mesh_C537537",
+          "uri": "mesh"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Segawa syndrome autosomal recessive"
     },
@@ -568,15 +673,268 @@
           "synonyms": [],
           "termId": "OGG_3000000672",
           "uri": "ogg"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "efo",
+          "label": "Hereditary breast and/or ovarian cancer syndrome",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "obsolete_hereditary breast and ovarian cancer",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0002611"
+            },
+            {
+              "confidence": 1.0,
+              "input": "http://www.ebi.ac.uk/efo/EFO_0002611",
+              "matchType": "OBSOLETE_REPLACEMENT",
+              "matchedText": "obsolete_hereditary breast and ovarian cancer → Hereditary breast and/or ovarian cancer syndrome",
+              "method": "cross_reference",
+              "model": null,
+              "similarity": null,
+              "source": "ols:efo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_145"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [],
+          "termId": "Orphanet_145",
+          "uri": "ordo"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "hgnc",
+          "label": "BRCA1",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "BRCA1",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:hgnc",
+              "target": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/1100"
+            }
+          ],
+          "ontology": "hgnc",
+          "synonyms": [
+            "BRCA1/BRCA2-containing complex, subunit 1",
+            "Fanconi anemia, complementation group S",
+            "protein phosphatase 1, regulatory subunit 53",
+            "BRCC1",
+            "FANCS",
+            "PPP1R53",
+            "RNF53",
+            "breast cancer 1",
+            "breast cancer 1, early onset"
+          ],
+          "termId": "hgnc_1100",
+          "uri": "hgnc"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Breast Cancer Type 1 Susceptibility Protein Measurement",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Breast Cancer Type 1 Susceptibility Protein Measurement",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C123555"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRCA1 Measurement",
+            "BRCA1",
+            "Breast Cancer Type 1 Susceptibility Prot",
+            "Breast Cancer Type 1 Susceptibility Protein Measurement"
+          ],
+          "termId": "NCIT_C123555",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Breast Cancer Type 1 Susceptibility Protein",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Breast Cancer Type 1 Susceptibility Protein",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C17815"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRCA1 Protein",
+            "BRCA1",
+            "BRCA1/BRCA2-Containing Complex, Subunit 1",
+            "Breast Cancer 1, Early Onset Protein",
+            "Breast Cancer Type 1 Susceptibility Protein",
+            "Breast and Ovarian Cancer Susceptibility Protein 1",
+            "Breast-Ovarian Cancer Protein",
+            "EC 2.3.2.27",
+            "EC 6.3.2.-, Formerly",
+            "Fanconi Anemia, Complementation Group S",
+            "Protein Phosphatase 1, Regulatory Subunit 53",
+            "RING Finger Protein 53",
+            "RING-Type E3 Ubiquitin Transferase BRCA1"
+          ],
+          "termId": "NCIT_C17815",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "BRCA1 Gene",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "BRCA1 Gene",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C17965"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRCA1 Gene",
+            "BRCA1",
+            "BRCA1, DNA Repair Associated Gene",
+            "Breast Cancer 1, Early Onset Gene"
+          ],
+          "termId": "NCIT_C17965",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "BRCA1 Gene Mutation",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "BRCA1 Gene Mutation",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C19635"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRCA1 Gene Mutation",
+            "BRCA1 Mutation",
+            "BRCA1",
+            "BROVCA1 Gene Mutation",
+            "Breast Cancer 1 Gene Mutation",
+            "Breast Cancer 1, Early Onset Gene Mutation",
+            "Breast Cancer Type 1 Susceptibility Gene Mutation",
+            "Mutation of the BRCA1 Gene"
+          ],
+          "termId": "NCIT_C19635",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "BRCA1 wt Allele",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "BRCA1 wt Allele",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C52060"
+            }
+          ],
+          "ontology": "ncit",
+          "synonyms": [
+            "BRCA1 wt Allele",
+            "BRCA1",
+            "BRCA1, DNA Repair Associated wt Allele",
+            "BRCAI",
+            "BRCC1",
+            "BROVCA1",
+            "Breast Cancer 1 Gene",
+            "Breast Cancer 1, Early Onset wt Allele",
+            "Breast Cancer Type 1 Susceptibility Gene",
+            "FANCS",
+            "Hereditary Breast Cancer 1 Gene",
+            "IRIS",
+            "PNCA4",
+            "PPP1R53",
+            "PSCP",
+            "RNF53"
+          ],
+          "termId": "NCIT_C52060",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "pr",
+          "label": "breast cancer type 1 susceptibility protein",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "BRCA1",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "breast cancer type 1 susceptibility protein",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:pr",
+              "target": "http://purl.obolibrary.org/obo/PR_000004803"
+            }
+          ],
+          "ontology": "pr",
+          "synonyms": [
+            "RING finger protein 53",
+            "RING-type E3 ubiquitin transferase BRCA1",
+            "BRCA1",
+            "RNF53"
+          ],
+          "termId": "PR_000004803",
+          "uri": "pr"
         }
       ],
+      "error": null,
       "propertyType": "gene",
       "textToMap": "BRCA1"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "cttv",
           "label": "Rare autosomal dominant non-syndromic sensorineural deafness type DFNA",
           "mappingProvenance": [
@@ -684,13 +1042,14 @@
           "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Deafness, autosomal dominant 17"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "atlas",
           "label": "sulforaphane",
           "mappingProvenance": [
@@ -720,48 +1079,21 @@
           "uri": "chebi"
         }
       ],
+      "error": null,
       "propertyType": "compound",
       "textToMap": "cooked broccoli"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
-          "datasource": "cttv",
-          "label": "Hereditary amyloidosis with primary renal involvement",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "Amyloidosis, familial visceral",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "cttv",
-              "target": "http://www.orpha.net/ORDO/Orphanet_85450"
-            }
-          ],
-          "ontology": "ordo",
-          "synonyms": [
-            "Amyloidosis, Ostertag type",
-            "Familial amyloid nephropathy",
-            "Familial renal amyloidosis",
-            "Hereditary amyloid nephropathy",
-            "Hereditary renal amyloidosis"
-          ],
-          "termId": "Orphanet_85450",
-          "uri": "ordo"
-        },
-        {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "mesh",
           "label": "Amyloidosis, familial visceral",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "Amyloidosis, familial visceral",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "Amyloidosis, familial visceral",
               "method": "lexical",
               "model": null,
@@ -781,50 +1113,9 @@
           ],
           "termId": "mesh_C538249",
           "uri": "mesh"
-        },
-        {
-          "confidence": 0.9,
-          "datasource": "mondo",
-          "label": "familial visceral amyloidosis",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Amyloidosis, familial visceral",
-              "matchType": "OLS_LEXICAL_SYNONYM",
-              "matchedText": "familial visceral amyloidosis",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0007099"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [
-            "amyloidosis 8",
-            "amyloidosis, 3 or more types",
-            "amyloidosis, familial visceral",
-            "amyloidosis, renal",
-            "amyloidosis, systemic Nonneuropathic",
-            "German type amyloidosis",
-            "Ostertag type amyloidosis",
-            "amyloidosis VIII",
-            "amyloidosis familial renal",
-            "amyloidosis familial visceral",
-            "amyloidosis systemic nonneuropathic",
-            "amyloidosis, Ostertag type",
-            "amyloidosis, familial renal",
-            "familial amyloid nephropathy",
-            "familial renal amyloidosis",
-            "hereditary amyloid nephropathy",
-            "hereditary amyloidosis with primary renal involement",
-            "hereditary renal amyloidosis",
-            "systemic nonneuropathic amyloidosis"
-          ],
-          "termId": "MONDO_0007099",
-          "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Amyloidosis, familial visceral"
     },
@@ -856,141 +1147,92 @@
           "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Spastic paraplegia 10"
     },
     {
       "candidates": [
         {
-          "confidence": 0.89,
+          "confidence": 1.0,
           "datasource": "mondo",
           "label": "epilepsy, progressive myoclonic, 1B",
           "mappingProvenance": [
             {
-              "confidence": null,
+              "confidence": 1.0,
               "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "epilepsy, progressive myoclonic, 1B",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9233779907226562,
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
               "source": "ols:mondo",
               "target": "http://purl.obolibrary.org/obo/MONDO_0012904"
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
+          "synonyms": [
+            "epilepsy, progressive myoclonic 1B",
+            "EPM1B",
+            "PRICKLE1 progressive myoclonic epilepsy",
+            "epilepsy, progressive myoclonic, 1B",
+            "epilepsy, progressive myoclonic, type 1B",
+            "progressive myoclonic epilepsy caused by mutation in PRICKLE1"
+          ],
           "termId": "MONDO_0012904",
           "uri": "mondo"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8114705882352942,
           "datasource": "mondo",
-          "label": "Unverricht-Lundborg syndrome",
+          "label": "progressive myoclonus epilepsy",
           "mappingProvenance": [
             {
-              "confidence": null,
+              "confidence": 0.9117647058823529,
               "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Unverricht-Lundborg syndrome",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9229564666748047,
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "progressive myoclonus epilepsy",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9117647058823529,
               "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0009698"
+              "target": "http://purl.obolibrary.org/obo/MONDO_0020074"
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0009698",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "Lafora disease",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Lafora disease",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9227275848388672,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0009697"
-            }
+          "synonyms": [
+            "progressive myoclonic epilepsy (disorder) [ambiguous]",
+            "PME",
+            "epilepsy, progressive myoclonic",
+            "familial progressive myoclonic epilepsy",
+            "progressive myoclonic epilepsy",
+            "progressive myoclonus epilepsy"
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0009697",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "progressive myoclonic epilepsy type 3",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "progressive myoclonic epilepsy type 3",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9149875640869141,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012721"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0012721",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "myoclonic epilepsy of Lafora 2",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "myoclonic epilepsy of Lafora 2",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9124841690063477,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0800306"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0800306",
+          "termId": "MONDO_0020074",
           "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Epilepsy, progressive myoclonic 1B"
     },
     {
       "candidates": [],
+      "error": null,
       "propertyType": null,
       "textToMap": "Big cells"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "mesh",
           "label": "Cardiomyopathy, Dilated, 1s",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_LEXICAL",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "Cardiomyopathy, Dilated, 1s",
               "method": "lexical",
               "model": null,
@@ -1003,178 +1245,16 @@
           "synonyms": [],
           "termId": "mesh_C563538",
           "uri": "mesh"
-        },
-        {
-          "confidence": 0.9,
-          "datasource": "mondo",
-          "label": "dilated cardiomyopathy 1S",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_LEXICAL_SYNONYM",
-              "matchedText": "dilated cardiomyopathy 1S",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013262"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [
-            "CMD1S",
-            "MYH7 familial isolated dilated cardiomyopathy",
-            "cardiomyopathy, dilated, 1S",
-            "cardiomyopathy, dilated, type 1S",
-            "dilated cardiomyopathy type 1S",
-            "dilated cardiomyopathy-1S",
-            "familial isolated dilated cardiomyopathy caused by mutation in MYH7",
-            "left ventricular noncompaction 5"
-          ],
-          "termId": "MONDO_0013262",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mesh",
-          "label": "Cardiomyopathy, Dilated, 1x",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Cardiomyopathy, Dilated, 1x",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9137983322143555,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C566907"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [],
-          "termId": "mesh_C566907",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mesh",
-          "label": "Cardiomyopathy, Dilated, 1t",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Cardiomyopathy, Dilated, 1t",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9135379791259766,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C566052"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [],
-          "termId": "mesh_C566052",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mesh",
-          "label": "Cardiomyopathy, Dilated, 1BB",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Cardiomyopathy, Dilated, 1BB",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.912841796875,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C567877"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [],
-          "termId": "mesh_C567877",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mesh",
-          "label": "Cardiomyopathy, Dilated, 1z",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Cardiomyopathy, Dilated, 1z",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9127435684204102,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C567506"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [],
-          "termId": "mesh_C567506",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mesh",
-          "label": "Cardiomyopathy, Dilated, 1FF",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Cardiomyopathy, Dilated, 1FF",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9116582870483398,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C567654"
-            }
-          ],
-          "ontology": "mesh",
-          "synonyms": [],
-          "termId": "mesh_C567654",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.7581481481481481,
-          "datasource": "omit",
-          "label": "Cardiomyopathy, Dilated",
-          "mappingProvenance": [
-            {
-              "confidence": 0.8518518518518519,
-              "input": "Cardiomyopathy, dilated, 1S",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Cardiomyopathy, Dilated",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.8518518518518519,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003646"
-            }
-          ],
-          "ontology": "omit",
-          "synonyms": [],
-          "termId": "OMIT_0003646",
-          "uri": "omit"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Cardiomyopathy, dilated, 1S"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "eva-clinvar",
           "label": "familial long QT syndrome",
           "mappingProvenance": [
@@ -1205,7 +1285,7 @@
           "uri": "mondo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "clinvar-xrefs",
           "label": "Long QT syndrome 3/6, digenic",
           "mappingProvenance": [
@@ -1256,15 +1336,46 @@
           ],
           "termId": "MONDO_0011377",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "long QT syndrome 6",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "long QT syndrome 6",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013370"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "long QT syndrome 3/6, digenic",
+            "long QT syndrome 6, acquired, susceptibility to",
+            "KCNE2 long QT syndrome",
+            "LQT6",
+            "long QT syndrome 6",
+            "long QT syndrome caused by mutation in KCNE2",
+            "long QT syndrome type 6"
+          ],
+          "termId": "MONDO_0013370",
+          "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "disease",
       "textToMap": "Long QT syndrome 3/6, digenic"
     },
     {
       "candidates": [
         {
-          "confidence": 0.89,
+          "confidence": 0.8490094947814941,
           "datasource": "mondo",
           "label": "lung adenocarcinoma in situ",
           "mappingProvenance": [
@@ -1281,106 +1392,34 @@
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
+          "synonyms": [
+            "adenosquamous cell carcinoma in situ of lung",
+            "adenosquamous cell carcinoma in situ of the lung",
+            "bronchioalveolar carcinoma",
+            "bronchioloalveolar carcinoma",
+            "in situ pulmonary adenocarcinoma",
+            "lung adenosquamous cell carcinoma in situ",
+            "stage 0 adenosquamous cell carcinoma of lung",
+            "stage 0 adenosquamous cell carcinoma of the lung",
+            "stage 0 adenosquamous cell lung carcinoma",
+            "stage 0 adenosquamous lung cancer",
+            "stage 0 adenosquamous lung carcinoma aJCC v6 and v7",
+            "stage 0 adenosquamous lung carcinoma aJCC v6",
+            "stage 0 adenosquamous lung carcinoma aJCC v7",
+            "lung adenocarcinoma In situ"
+          ],
           "termId": "MONDO_0000503",
           "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "doid",
-          "label": "obsolete recurrent adenocarcinoma of lung",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Lung adenocarcinoma disease",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "obsolete recurrent adenocarcinoma of lung",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9507579803466797,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_7002"
-            }
-          ],
-          "ontology": "doid",
-          "synonyms": [],
-          "termId": "DOID_7002",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "efo",
-          "label": "lung adenocarcinoma grade",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Lung adenocarcinoma disease",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma grade",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9477024078369141,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0005620"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [],
-          "termId": "EFO_0005620",
-          "uri": "efo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "oae",
-          "label": "lung adenocarcinoma AE",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Lung adenocarcinoma disease",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma AE",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.946342945098877,
-              "source": "ols:oae",
-              "target": "http://purl.obolibrary.org/obo/OAE_0008717"
-            }
-          ],
-          "ontology": "oae",
-          "synonyms": [],
-          "termId": "OAE_0008717",
-          "uri": "oae"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "efo",
-          "label": "lung adenocarcinoma",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Lung adenocarcinoma disease",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9459562301635742,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0000571"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [],
-          "termId": "EFO_0000571",
-          "uri": "efo"
         }
       ],
+      "error": null,
       "propertyType": "state",
       "textToMap": "Lung adenocarcinoma disease"
     },
     {
       "candidates": [
         {
-          "confidence": 0.8501520156860352,
+          "confidence": 0.7566352939605713,
           "datasource": "dron",
           "label": "doxycycline hyclate 0.1 MG/MG Oral Gel",
           "mappingProvenance": [
@@ -1402,7 +1441,7 @@
           "uri": "dron"
         },
         {
-          "confidence": 0.8495721817016602,
+          "confidence": 0.7561192417144775,
           "datasource": "dron",
           "label": "doxycycline 57.7 MG Oral Capsule",
           "mappingProvenance": [
@@ -1424,7 +1463,7 @@
           "uri": "dron"
         },
         {
-          "confidence": 0.8491458892822266,
+          "confidence": 0.7557398414611817,
           "datasource": "dron",
           "label": "doxycycline 54.4 MG Oral Capsule",
           "mappingProvenance": [
@@ -1446,7 +1485,7 @@
           "uri": "dron"
         },
         {
-          "confidence": 0.8490839004516602,
+          "confidence": 0.7556846714019776,
           "datasource": "dron",
           "label": "doxycycline monohydrate 150 MG Oral Capsule",
           "mappingProvenance": [
@@ -1468,7 +1507,7 @@
           "uri": "dron"
         },
         {
-          "confidence": 0.8485918045043945,
+          "confidence": 0.7552467060089112,
           "datasource": "dron",
           "label": "doxycycline monohydrate 100 MG Oral Tablet",
           "mappingProvenance": [
@@ -1488,15 +1527,148 @@
           "synonyms": [],
           "termId": "DRON_00759215",
           "uri": "dron"
+        },
+        {
+          "confidence": 0.7551771068572998,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 100 MG Oral Capsule",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 100 MG Oral Capsule",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8485136032104492,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00759211"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00759211",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.7551372146606445,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 5 MG/ML Oral Suspension",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 5 MG/ML Oral Suspension",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8484687805175781,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00759207"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00759207",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.7535415267944336,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 75 MG Oral Tablet",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 75 MG Oral Tablet",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8466758728027344,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00759213"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00759213",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.7526749324798584,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 50 MG Oral Capsule",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 50 MG Oral Capsule",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8457021713256836,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00759208"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00759208",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.7520264720916748,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 150 MG Oral Tablet [Adoxa]",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 150 MG Oral Tablet [Adoxa]",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8449735641479492,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00077270"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00077270",
+          "uri": "dron"
+        },
+        {
+          "confidence": 0.7518040943145752,
+          "datasource": "dron",
+          "label": "doxycycline monohydrate 100 MG Oral Tablet [Avidoxy]",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "doxycycline 130 nanomolar",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "doxycycline monohydrate 100 MG Oral Tablet [Avidoxy]",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8447237014770508,
+              "source": "ols:dron",
+              "target": "http://purl.obolibrary.org/obo/DRON_00079926"
+            }
+          ],
+          "ontology": "dron",
+          "synonyms": [],
+          "termId": "DRON_00079926",
+          "uri": "dron"
         }
       ],
+      "error": null,
       "propertyType": "compound",
       "textToMap": "doxycycline 130 nanomolar"
     },
     {
       "candidates": [
         {
-          "confidence": 0.8778791427612305,
+          "confidence": 0.7813124370574951,
           "datasource": "cmo",
           "label": "tibia-fibula cross-sectional area",
           "mappingProvenance": [
@@ -1513,12 +1685,16 @@
             }
           ],
           "ontology": "cmo",
-          "synonyms": [],
+          "synonyms": [
+            "tibia/fibula cross-sectional area",
+            "tibio-fibular complex cross-sectional area",
+            "tibiofibular fusion cross-sectional area"
+          ],
           "termId": "CMO_0001718",
           "uri": "cmo"
         },
         {
-          "confidence": 0.8735313415527344,
+          "confidence": 0.7774428939819336,
           "datasource": "mondo",
           "label": "tibia fracture",
           "mappingProvenance": [
@@ -1535,29 +1711,33 @@
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
+          "synonyms": [
+            "bone fracture of tibia",
+            "tibia bone fracture"
+          ],
           "termId": "MONDO_0005320",
           "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "organism part",
       "textToMap": "left tibia"
     },
     {
       "candidates": [
         {
-          "confidence": 0.9,
+          "confidence": 1.0,
           "datasource": "ncit",
           "label": "CD4 Positive",
           "mappingProvenance": [
             {
-              "confidence": 0.9,
+              "confidence": 1.0,
               "input": "CD4-positive",
-              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "CD4 Positive",
               "method": "lexical",
               "model": null,
-              "similarity": 0.9,
+              "similarity": 1.0,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C153220"
             }
@@ -1575,118 +1755,9 @@
           ],
           "termId": "NCIT_C153220",
           "uri": "ncit"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "ncit",
-          "label": "CD4-Positive T-Lymphocyte",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "CD4-positive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "CD4-Positive T-Lymphocyte",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9381437301635742,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C12537"
-            }
-          ],
-          "ontology": "ncit",
-          "synonyms": [],
-          "termId": "NCIT_C12537",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "vt",
-          "label": "CD4-positive T cell quantity",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "CD4-positive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "CD4-positive T cell quantity",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9347567558288574,
-              "source": "ols:vt",
-              "target": "http://purl.obolibrary.org/obo/VT_0008073"
-            }
-          ],
-          "ontology": "vt",
-          "synonyms": [],
-          "termId": "VT_0008073",
-          "uri": "vt"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "vt",
-          "label": "CD4-positive T cell development trait",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "CD4-positive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "CD4-positive T cell development trait",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9333863258361816,
-              "source": "ols:vt",
-              "target": "http://purl.obolibrary.org/obo/VT_0008076"
-            }
-          ],
-          "ontology": "vt",
-          "synonyms": [],
-          "termId": "VT_0008076",
-          "uri": "vt"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "oba",
-          "label": "CD4-positive helper T cell amount",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "CD4-positive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "CD4-positive helper T cell amount",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9308967590332031,
-              "source": "ols:oba",
-              "target": "http://purl.obolibrary.org/obo/OBA_0002637"
-            }
-          ],
-          "ontology": "oba",
-          "synonyms": [],
-          "termId": "OBA_0002637",
-          "uri": "oba"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mp",
-          "label": "abnormal CD4-positive, alpha beta T cell morphology",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "CD4-positive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "abnormal CD4-positive, alpha beta T cell morphology",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9197626113891602,
-              "source": "ols:mp",
-              "target": "http://purl.obolibrary.org/obo/MP_0002432"
-            }
-          ],
-          "ontology": "mp",
-          "synonyms": [],
-          "termId": "MP_0002432",
-          "uri": "mp"
         }
       ],
+      "error": null,
       "propertyType": null,
       "textToMap": "CD4-positive"
     },
@@ -1716,47 +1787,25 @@
         },
         {
           "confidence": 1.0,
-          "datasource": "emapa",
-          "label": "cerebellum",
+          "datasource": "omit",
+          "label": "Cerebellum",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "cerebellum",
               "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
+              "matchedText": "Cerebellum",
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:emapa",
-              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
             }
           ],
-          "ontology": "emapa",
+          "ontology": "omit",
           "synonyms": [],
-          "termId": "EMAPA_17787",
-          "uri": "emapa"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "synonyms": [],
-          "termId": "MA_0000198",
-          "uri": "ma"
+          "termId": "OMIT_0003860",
+          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -1779,50 +1828,6 @@
           "synonyms": [],
           "termId": "XAO_0003098",
           "uri": "xao"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "zfa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:zfa",
-              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
-            }
-          ],
-          "ontology": "zfa",
-          "synonyms": [],
-          "termId": "ZFA_0000100",
-          "uri": "zfa"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "synonyms": [],
-          "termId": "OMIT_0003860",
-          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -1850,6 +1855,100 @@
           ],
           "termId": "UBERON_0002037",
           "uri": "uberon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "synonyms": [],
+          "termId": "MA_0000198",
+          "uri": "ma"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "emapa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+            }
+          ],
+          "ontology": "emapa",
+          "synonyms": [],
+          "termId": "EMAPA_17787",
+          "uri": "emapa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "zfa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:zfa",
+              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
+            }
+          ],
+          "ontology": "zfa",
+          "synonyms": [],
+          "termId": "ZFA_0000100",
+          "uri": "zfa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D002531"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Cerebella",
+            "Cerebellums",
+            "Corpus Cerebelli",
+            "Parencephalon",
+            "Parencephalons"
+          ],
+          "termId": "mesh_D002531",
+          "uri": "mesh"
         },
         {
           "confidence": 1.0,
@@ -1883,13 +1982,14 @@
           "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "organism part",
       "textToMap": "cerebellum"
     },
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "albumin:globulin ratio measurement",
           "mappingProvenance": [
@@ -1916,7 +2016,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte attribute",
           "mappingProvenance": [
@@ -1940,7 +2040,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte count",
           "mappingProvenance": [
@@ -1966,7 +2066,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hematocrit",
           "mappingProvenance": [
@@ -1992,7 +2092,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hematological measurement",
           "mappingProvenance": [
@@ -2014,7 +2114,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hemoglobin measurement",
           "mappingProvenance": [
@@ -2041,7 +2141,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "mean corpuscular hemoglobin concentration",
           "mappingProvenance": [
@@ -2070,7 +2170,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "lymphocyte count",
           "mappingProvenance": [
@@ -2094,7 +2194,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte volume",
           "mappingProvenance": [
@@ -2118,7 +2218,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "Red cell distribution width",
           "mappingProvenance": [
@@ -2148,7 +2248,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "platelet larger cell ratio",
           "mappingProvenance": [
@@ -2174,7 +2274,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "leukocyte quantity",
           "mappingProvenance": [
@@ -2198,13 +2298,14 @@
           "uri": "oba"
         }
       ],
+      "error": null,
       "propertyType": "gwas trait",
       "textToMap": "hematology traits"
     },
     {
       "candidates": [
         {
-          "confidence": 0.8615150451660156,
+          "confidence": 0.7667483901977539,
           "datasource": "dron",
           "label": "nifedipine 0.1 MG/ML Injectable Solution",
           "mappingProvenance": [
@@ -2226,11 +2327,38 @@
           "uri": "dron"
         }
       ],
+      "error": null,
       "propertyType": "compound",
       "textToMap": "nifedipine 0.025 micromolar"
     },
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "aggregated microtubules",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Microtubule clumps",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "aggregated microtubules phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000286"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [
+            "microtubule clumps"
+          ],
+          "termId": "CMPO_0000286",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "Microtubule clumps"
     }

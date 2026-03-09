@@ -3,72 +3,39 @@
     {
       "candidates": [
         {
-          "confidence": 0.8829069137573242,
-          "datasource": "mondo",
-          "label": "dopa-responsive dystonia due to sepiapterin reductase deficiency",
+          "confidence": 0.8131761169433593,
+          "datasource": "mesh",
+          "label": "Segawa syndrome, autosomal recessive",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Segawa syndrome autosomal recessive",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "dopa-responsive dystonia due to sepiapterin reductase deficiency",
+              "matchedText": "Segawa syndrome, autosomal recessive",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8829069137573242,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012994"
+              "similarity": 0.9136810302734375,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C537537"
             }
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0012994",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.8796453475952148,
-          "datasource": "mondo",
-          "label": "TH-deficient dopa-responsive dystonia",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "TH-deficient dopa-responsive dystonia",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8796453475952148,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0011551"
-            }
+          "ontology": "mesh",
+          "synonyms": [
+            "Autosomal Recessive Infantile Parkinsonism",
+            "DOPA responsive dystonia, autosomal recessive",
+            "Dopa-Responsive Dystonia, Autosomal Recessive",
+            "Dystonia, DOPA responsive, autosomal recessive",
+            "Dystonia, Dopa-Responsive, Autosomal Recessive",
+            "Dystonia, Dopa-Responsive, With Or Without Hyperphenylalaninemia, Autosomal Recessive",
+            "Parkinsonism, infantile, autosomal recessive",
+            "Th-Deficient Drd",
+            "Tyrosine Hydroxylase Deficiency"
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0011551",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.879359245300293,
-          "datasource": "doid",
-          "label": "autosomal recessive Segawa syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "autosomal recessive Segawa syndrome",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.879359245300293,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0051059"
-            }
-          ],
-          "ontology": "doid",
-          "synonyms": [],
-          "termId": "DOID_0051059",
-          "uri": "doid"
+          "termId": "mesh_C537537",
+          "uri": "mesh"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Segawa syndrome autosomal recessive"
     }

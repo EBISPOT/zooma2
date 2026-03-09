@@ -26,47 +26,25 @@
         },
         {
           "confidence": 1.0,
-          "datasource": "emapa",
-          "label": "cerebellum",
+          "datasource": "omit",
+          "label": "Cerebellum",
           "mappingProvenance": [
             {
               "confidence": 1.0,
               "input": "cerebellum",
               "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
+              "matchedText": "Cerebellum",
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:emapa",
-              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
             }
           ],
-          "ontology": "emapa",
+          "ontology": "omit",
           "synonyms": [],
-          "termId": "EMAPA_17787",
-          "uri": "emapa"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "synonyms": [],
-          "termId": "MA_0000198",
-          "uri": "ma"
+          "termId": "OMIT_0003860",
+          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -89,50 +67,6 @@
           "synonyms": [],
           "termId": "XAO_0003098",
           "uri": "xao"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "zfa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:zfa",
-              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
-            }
-          ],
-          "ontology": "zfa",
-          "synonyms": [],
-          "termId": "ZFA_0000100",
-          "uri": "zfa"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "synonyms": [],
-          "termId": "OMIT_0003860",
-          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -160,6 +94,100 @@
           ],
           "termId": "UBERON_0002037",
           "uri": "uberon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "synonyms": [],
+          "termId": "MA_0000198",
+          "uri": "ma"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "emapa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+            }
+          ],
+          "ontology": "emapa",
+          "synonyms": [],
+          "termId": "EMAPA_17787",
+          "uri": "emapa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "zfa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:zfa",
+              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
+            }
+          ],
+          "ontology": "zfa",
+          "synonyms": [],
+          "termId": "ZFA_0000100",
+          "uri": "zfa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D002531"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Cerebella",
+            "Cerebellums",
+            "Corpus Cerebelli",
+            "Parencephalon",
+            "Parencephalons"
+          ],
+          "termId": "mesh_D002531",
+          "uri": "mesh"
         },
         {
           "confidence": 1.0,
@@ -193,6 +221,7 @@
           "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "organism part",
       "textToMap": "cerebellum"
     }

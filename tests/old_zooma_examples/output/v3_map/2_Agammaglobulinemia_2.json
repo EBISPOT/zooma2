@@ -74,6 +74,52 @@
         },
         {
           "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "synonyms": [
+            "Agammaglobulinaemia"
+          ],
+          "termId": "HP_0004432",
+          "uri": "hp"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "ordo",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+            }
+          ],
+          "ontology": "ordo",
+          "synonyms": [],
+          "termId": "Orphanet_183669",
+          "uri": "ordo"
+        },
+        {
+          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -104,7 +150,7 @@
         },
         {
           "confidence": 0.801,
-          "datasource": "ordo",
+          "datasource": "mesh",
           "label": "Agammaglobulinemia",
           "mappingProvenance": [
             {
@@ -115,40 +161,47 @@
               "method": "lexical",
               "model": null,
               "similarity": 0.9,
-              "source": "ols:ordo",
-              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D000361"
             }
           ],
-          "ontology": "ordo",
-          "synonyms": [],
-          "termId": "Orphanet_183669",
-          "uri": "ordo"
+          "ontology": "mesh",
+          "synonyms": [
+            "Agammaglobulinemias",
+            "Hypogammaglobulinemia",
+            "Hypogammaglobulinemias"
+          ],
+          "termId": "mesh_D000361",
+          "uri": "mesh"
         },
         {
           "confidence": 0.801,
-          "datasource": "hp",
-          "label": "Agammaglobulinemia",
+          "datasource": "ncit",
+          "label": "Hypogammaglobulinemia",
           "mappingProvenance": [
             {
               "confidence": 0.9,
               "input": "Agammaglobulinemia 2",
               "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
+              "matchedText": "Hypogammaglobulinemia",
               "method": "lexical",
               "model": null,
               "similarity": 0.9,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C26931"
             }
           ],
-          "ontology": "hp",
+          "ontology": "ncit",
           "synonyms": [
-            "Agammaglobulinaemia"
+            "Agammaglobulinemia",
+            "Hypogammaglobulinemia",
+            "hypogammaglobulinemia"
           ],
-          "termId": "HP_0004432",
-          "uri": "hp"
+          "termId": "NCIT_C26931",
+          "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Agammaglobulinemia 2"
     }

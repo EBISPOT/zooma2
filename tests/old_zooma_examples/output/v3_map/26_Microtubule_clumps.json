@@ -1,7 +1,33 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "aggregated microtubules",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Microtubule clumps",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "aggregated microtubules phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000286"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [
+            "microtubule clumps"
+          ],
+          "termId": "CMPO_0000286",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "Microtubule clumps"
     }

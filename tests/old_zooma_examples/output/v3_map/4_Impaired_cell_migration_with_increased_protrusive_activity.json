@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "sysmicro",
           "label": "impaired cell migration",
           "mappingProvenance": [
@@ -27,7 +27,7 @@
           "uri": "cmpo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "sysmicro",
           "label": "increased substrate-dependent cell migration, cell extension",
           "mappingProvenance": [
@@ -51,6 +51,7 @@
           "uri": "cmpo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Impaired cell migration with increased protrusive activity"
     }

@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "eva-clinvar",
           "label": "familial long QT syndrome",
           "mappingProvenance": [
@@ -34,7 +34,7 @@
           "uri": "mondo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "clinvar-xrefs",
           "label": "Long QT syndrome 3/6, digenic",
           "mappingProvenance": [
@@ -85,8 +85,39 @@
           ],
           "termId": "MONDO_0011377",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mondo",
+          "label": "long QT syndrome 6",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_SYNONYM",
+              "matchedText": "long QT syndrome 6",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013370"
+            }
+          ],
+          "ontology": "mondo",
+          "synonyms": [
+            "long QT syndrome 3/6, digenic",
+            "long QT syndrome 6, acquired, susceptibility to",
+            "KCNE2 long QT syndrome",
+            "LQT6",
+            "long QT syndrome 6",
+            "long QT syndrome caused by mutation in KCNE2",
+            "long QT syndrome type 6"
+          ],
+          "termId": "MONDO_0013370",
+          "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "disease",
       "textToMap": "Long QT syndrome 3/6, digenic"
     }

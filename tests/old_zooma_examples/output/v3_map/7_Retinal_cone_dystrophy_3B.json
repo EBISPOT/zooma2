@@ -4,6 +4,54 @@
       "candidates": [
         {
           "confidence": 1.0,
+          "datasource": "doid",
+          "label": "cone dystrophy with supernormal rod responses",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Retinal cone dystrophy 3B",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cone dystrophy with supernormal rod responses",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0081022"
+            }
+          ],
+          "ontology": "doid",
+          "synonyms": [
+            "retinal cone dystrophy 3B"
+          ],
+          "termId": "DOID_0081022",
+          "uri": "doid"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Retinal Cone Dystrophy 3B",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Retinal cone dystrophy 3B",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Retinal Cone Dystrophy 3B",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C563678"
+            }
+          ],
+          "ontology": "mesh",
+          "synonyms": [
+            "Cone Dystrophy with Night Blindness and Supernormal Rod Responses, KCNV2-Related"
+          ],
+          "termId": "mesh_C563678",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 1.0,
           "datasource": "ncit",
           "label": "Retinal Cone Dystrophy 3B",
           "mappingProvenance": [
@@ -20,11 +68,15 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [],
+          "synonyms": [
+            "RCD3B",
+            "Retinal Cone Dystrophy 3B"
+          ],
           "termId": "NCIT_C192089",
           "uri": "ncit"
         }
       ],
+      "error": null,
       "propertyType": "disease",
       "textToMap": "Retinal cone dystrophy 3B"
     }

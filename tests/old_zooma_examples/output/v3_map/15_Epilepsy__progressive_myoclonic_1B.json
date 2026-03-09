@@ -3,116 +3,65 @@
     {
       "candidates": [
         {
-          "confidence": 0.89,
+          "confidence": 1.0,
           "datasource": "mondo",
           "label": "epilepsy, progressive myoclonic, 1B",
           "mappingProvenance": [
             {
-              "confidence": null,
+              "confidence": 1.0,
               "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "epilepsy, progressive myoclonic, 1B",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9233779907226562,
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
               "source": "ols:mondo",
               "target": "http://purl.obolibrary.org/obo/MONDO_0012904"
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
+          "synonyms": [
+            "epilepsy, progressive myoclonic 1B",
+            "EPM1B",
+            "PRICKLE1 progressive myoclonic epilepsy",
+            "epilepsy, progressive myoclonic, 1B",
+            "epilepsy, progressive myoclonic, type 1B",
+            "progressive myoclonic epilepsy caused by mutation in PRICKLE1"
+          ],
           "termId": "MONDO_0012904",
           "uri": "mondo"
         },
         {
-          "confidence": 0.89,
+          "confidence": 0.8114705882352942,
           "datasource": "mondo",
-          "label": "Unverricht-Lundborg syndrome",
+          "label": "progressive myoclonus epilepsy",
           "mappingProvenance": [
             {
-              "confidence": null,
+              "confidence": 0.9117647058823529,
               "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Unverricht-Lundborg syndrome",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9229564666748047,
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "progressive myoclonus epilepsy",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9117647058823529,
               "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0009698"
+              "target": "http://purl.obolibrary.org/obo/MONDO_0020074"
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0009698",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "Lafora disease",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Lafora disease",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9227275848388672,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0009697"
-            }
+          "synonyms": [
+            "progressive myoclonic epilepsy (disorder) [ambiguous]",
+            "PME",
+            "epilepsy, progressive myoclonic",
+            "familial progressive myoclonic epilepsy",
+            "progressive myoclonic epilepsy",
+            "progressive myoclonus epilepsy"
           ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0009697",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "progressive myoclonic epilepsy type 3",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "progressive myoclonic epilepsy type 3",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9149875640869141,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012721"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0012721",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.89,
-          "datasource": "mondo",
-          "label": "myoclonic epilepsy of Lafora 2",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Epilepsy, progressive myoclonic 1B",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "myoclonic epilepsy of Lafora 2",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9124841690063477,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0800306"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [],
-          "termId": "MONDO_0800306",
+          "termId": "MONDO_0020074",
           "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "phenotype",
       "textToMap": "Epilepsy, progressive myoclonic 1B"
     }

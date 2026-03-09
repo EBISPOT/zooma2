@@ -1,7 +1,33 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "cmpo",
+          "label": "binuclear cell",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "nuclei stay close together",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "binuclear cell phenotype",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000213"
+            }
+          ],
+          "ontology": "cmpo",
+          "synonyms": [
+            "nuclei stay close together"
+          ],
+          "termId": "CMPO_0000213",
+          "uri": "cmpo"
+        }
+      ],
+      "error": null,
       "propertyType": null,
       "textToMap": "nuclei stay close together"
     }

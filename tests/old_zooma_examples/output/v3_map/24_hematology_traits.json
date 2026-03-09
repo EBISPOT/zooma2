@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "albumin:globulin ratio measurement",
           "mappingProvenance": [
@@ -30,7 +30,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte attribute",
           "mappingProvenance": [
@@ -54,7 +54,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte count",
           "mappingProvenance": [
@@ -80,7 +80,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hematocrit",
           "mappingProvenance": [
@@ -106,7 +106,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hematological measurement",
           "mappingProvenance": [
@@ -128,7 +128,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "hemoglobin measurement",
           "mappingProvenance": [
@@ -155,7 +155,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "mean corpuscular hemoglobin concentration",
           "mappingProvenance": [
@@ -184,7 +184,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "lymphocyte count",
           "mappingProvenance": [
@@ -208,7 +208,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "erythrocyte volume",
           "mappingProvenance": [
@@ -232,7 +232,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "Red cell distribution width",
           "mappingProvenance": [
@@ -262,7 +262,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "platelet larger cell ratio",
           "mappingProvenance": [
@@ -288,7 +288,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "GWAS",
           "label": "leukocyte quantity",
           "mappingProvenance": [
@@ -312,6 +312,7 @@
           "uri": "oba"
         }
       ],
+      "error": null,
       "propertyType": "gwas trait",
       "textToMap": "hematology traits"
     }

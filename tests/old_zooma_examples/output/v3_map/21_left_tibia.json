@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8778791427612305,
+          "confidence": 0.7813124370574951,
           "datasource": "cmo",
           "label": "tibia-fibula cross-sectional area",
           "mappingProvenance": [
@@ -20,12 +20,16 @@
             }
           ],
           "ontology": "cmo",
-          "synonyms": [],
+          "synonyms": [
+            "tibia/fibula cross-sectional area",
+            "tibio-fibular complex cross-sectional area",
+            "tibiofibular fusion cross-sectional area"
+          ],
           "termId": "CMO_0001718",
           "uri": "cmo"
         },
         {
-          "confidence": 0.8735313415527344,
+          "confidence": 0.7774428939819336,
           "datasource": "mondo",
           "label": "tibia fracture",
           "mappingProvenance": [
@@ -42,11 +46,15 @@
             }
           ],
           "ontology": "mondo",
-          "synonyms": [],
+          "synonyms": [
+            "bone fracture of tibia",
+            "tibia bone fracture"
+          ],
           "termId": "MONDO_0005320",
           "uri": "mondo"
         }
       ],
+      "error": null,
       "propertyType": "organism part",
       "textToMap": "left tibia"
     }
