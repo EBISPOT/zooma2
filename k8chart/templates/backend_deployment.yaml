@@ -33,11 +33,11 @@ spec:
             - containerPort: 8090
           resources:
             requests:
-              memory: 8Gi
-              cpu: 0.5
+              memory: 16Gi
+              cpu: 4
             limits:
-              memory: 8Gi
-              cpu: 0.5
+              memory: 16Gi
+              cpu: 4
           env:
             - name: ZOOMA2_CONTEXT_PATH
               value: /spot/zooma
