@@ -16,7 +16,25 @@ import com.google.gson.reflect.TypeToken;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
+import java.util.concurrent.Semaphore;
+
 public class OlsClientRepo {
+
+    private final Semaphore embeddingSemaphore;
+    private final Semaphore similarSemaphore;
+
+    public OlsClientRepo(int maxConcurrentEmbedding, int maxConcurrentSimilar) {
+        this.embeddingSemaphore = new Semaphore(maxConcurrentEmbedding);
+        this.similarSemaphore = new Semaphore(maxConcurrentSimilar);
+    }
+
+    public OlsClientRepo() {
+        this(3, 10);
+    }
+
+    public Semaphore getSimilarSemaphore() {
+        return similarSemaphore;
+    }
 
     Gson gson = new Gson();
 
@@ -334,6 +352,7 @@ public class OlsClientRepo {
     }
 
     public Collection<OlsTerm> findByEmbeddingSearch(String query, String model, String ontologyId, int size, int timeoutMs) {
+        embeddingSemaphore.acquireUninterruptibly();
         try {
             var encodedQuery = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
             var encodedModel = java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8);
@@ -414,6 +433,8 @@ public class OlsClientRepo {
             System.err.println("Error in OLS embedding search: " + e.getMessage());
             e.printStackTrace();
             return List.of();
+        } finally {
+            embeddingSemaphore.release();
         }
     }
 

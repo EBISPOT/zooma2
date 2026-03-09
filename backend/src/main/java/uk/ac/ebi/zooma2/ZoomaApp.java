@@ -58,7 +58,12 @@ public class ZoomaApp {
         }
 
         var mappingTablesRepo = new MappingTablesRepo(embeddingService);
-        var olsRepo = new OlsClientRepo();
+        var olsEmbeddingCfg = ZoomaConfig.config.ols_embedding;
+        int maxConcurrentEmbedding = (olsEmbeddingCfg != null && olsEmbeddingCfg.max_concurrent_embedding_requests != null) 
+            ? olsEmbeddingCfg.max_concurrent_embedding_requests : 3;
+        int maxConcurrentSimilar = (olsEmbeddingCfg != null && olsEmbeddingCfg.max_concurrent_similar_requests != null) 
+            ? olsEmbeddingCfg.max_concurrent_similar_requests : 10;
+        var olsRepo = new OlsClientRepo(maxConcurrentEmbedding, maxConcurrentSimilar);
 
         // Initialize OLS term cache using unified database
         OlsTermCache olsTermCache = new OlsTermCache(zoomaDb);

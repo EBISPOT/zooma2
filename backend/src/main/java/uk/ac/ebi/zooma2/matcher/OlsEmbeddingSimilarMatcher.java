@@ -15,6 +15,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
 /**
@@ -30,8 +31,13 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
     private final List<String> models;
+    private final Semaphore semaphore;
 
     public OlsEmbeddingSimilarMatcher(OlsClientRepo olsRepo, List<String> models) {
+        this(olsRepo, models, new Semaphore(10));
+    }
+
+    public OlsEmbeddingSimilarMatcher(OlsClientRepo olsRepo, List<String> models, Semaphore semaphore) {
         this.olsRepo = olsRepo;
         this.httpClient = HttpClient.newBuilder()
             .connectTimeout(java.time.Duration.ofSeconds(30))
@@ -39,6 +45,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
             .build();
         this.objectMapper = new ObjectMapper();
         this.models = models != null && !models.isEmpty() ? models : getDefaultModels();
+        this.semaphore = semaphore;
     }
 
     private List<String> getDefaultModels() {
@@ -195,6 +202,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
      * Returns list of similar term IRIs.
      */
     private List<String> querySimilarTerms(String termIri, String model) {
+        semaphore.acquireUninterruptibly();
         try {
             // Double URL encode the IRI as required by OLS V2 API
             String encodedIri = URLEncoder.encode(URLEncoder.encode(termIri, StandardCharsets.UTF_8), StandardCharsets.UTF_8);
@@ -220,6 +228,8 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         } catch (Exception e) {
             System.err.println("OLS LLM Similar: Error querying " + termIri + ": " + e.getMessage());
             return Collections.emptyList();
+        } finally {
+            semaphore.release();
         }
     }
 

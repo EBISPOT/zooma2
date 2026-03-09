@@ -74,7 +74,7 @@ public class ZoomaAnnotator {
             this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo);
         }
         this.oxoMatcher = new OxoMatcher(oxoClient, olsRepo);
-        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null); // Uses default models
+        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null, olsRepo.getSimilarSemaphore());
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {

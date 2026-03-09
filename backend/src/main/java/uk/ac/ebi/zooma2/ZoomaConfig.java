@@ -85,6 +85,8 @@ public class ZoomaConfig {
         public Double min_similarity;
         public Integer max_results;
         public Integer timeout_ms;
+        public Integer max_concurrent_embedding_requests;
+        public Integer max_concurrent_similar_requests;
     }
 
     public static class OntologyPreset {
