@@ -14,7 +14,6 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3StringToMapDto;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
-import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
 import uk.ac.ebi.zooma2.repo.VoteRepository;
@@ -31,14 +30,12 @@ import java.util.stream.Stream;
 public class ZoomaApiV3 {
 
     private final ZoomaAnnotator annotator;
-    private final MappingTablesRepo mappingTablesRepo;
     private final OlsClientRepo olsRepo;
     private final VoteRepository voteRepo;
     private final Gson gson = new Gson();
 
-    public ZoomaApiV3(ZoomaAnnotator annotator, MappingTablesRepo mappingTablesRepo, OlsClientRepo olsRepo, VoteRepository voteRepo) {
+    public ZoomaApiV3(ZoomaAnnotator annotator, OlsClientRepo olsRepo, VoteRepository voteRepo) {
         this.annotator = annotator;
-        this.mappingTablesRepo = mappingTablesRepo;
         this.olsRepo = olsRepo;
         this.voteRepo = voteRepo;
     }
@@ -70,10 +67,6 @@ public class ZoomaApiV3 {
 
     private void getStatus(Context ctx) {
         var status = new java.util.HashMap<String, Object>();
-        status.put("vectorIndexEnabled", mappingTablesRepo.isVectorIndexEnabled());
-        status.put("vectorIndexSize", mappingTablesRepo.getVectorIndexSize());
-        status.put("totalMappingEntries", mappingTablesRepo.getTotalMappingEntries());
-        status.put("embeddingServiceEnabled", annotator.isEmbeddingServiceEnabled());
         status.put("olsUrl", uk.ac.ebi.zooma2.repo.OlsClientRepo.OLS_URL);
         status.put("defaultModel", olsRepo.getDefaultEmbeddingModel());
         ctx.json(status);
@@ -81,11 +74,11 @@ public class ZoomaApiV3 {
 
     private void getSources(Context ctx) {
         try {
-            var databases = ZoomaConfig.config.datasources.entrySet().stream()
-                .map(entry -> Map.of(
+            var databases = olsRepo.getCurationSources().stream()
+                .map(name -> Map.of(
                     "type", "DATABASE",
-                    "name", entry.getKey(),
-                    "uri", entry.getValue().uri
+                    "name", name,
+                    "uri", name
                 ));
 
             var ontologies = olsRepo.getOntologies().stream()
@@ -99,12 +92,12 @@ public class ZoomaApiV3 {
 
             ctx.json(Stream.concat(databases, ontologies).toList());
         } catch (IOException e) {
-            throw new InternalServerErrorResponse("Failed to fetch ontologies: " + e.getMessage());
+            throw new InternalServerErrorResponse("Failed to fetch sources: " + e.getMessage());
         }
     }
 
     private void getPropertyTypes(Context ctx) {
-        ctx.json(mappingTablesRepo.getAllTypes());
+        ctx.json(List.of());
     }
 
     private void getOntologyPresets(Context ctx) {

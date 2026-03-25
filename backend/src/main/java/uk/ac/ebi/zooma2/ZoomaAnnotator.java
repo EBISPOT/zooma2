@@ -12,7 +12,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import uk.ac.ebi.zooma2.embedding.EmbeddingService;
 import uk.ac.ebi.zooma2.matcher.*;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
@@ -20,49 +19,28 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
-import uk.ac.ebi.zooma2.repo.MappingTableEntry;
-import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OxoClient;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 
 public class ZoomaAnnotator {
 
-    MappingTablesRepo mappingTablesRepo;
     OlsClientRepo olsRepo;
-    EmbeddingService embeddingService;
     OxoClient oxoClient;
     PrefixMap prefixMap = new PrefixMap();
     Deduplicator deduplicator = new Deduplicator(prefixMap);
 
     // Individual matchers
-    private final CuratedExactMatcher curatedExactMatcher;
-    private final CuratedEmbeddingMatcher curatedEmbeddingMatcher;
     private final OlsLexicalMatcher olsLexicalMatcher;
     private final OlsEmbeddingMatcher olsEmbeddingMatcher;
     private final OxoMatcher oxoMatcher;
     private final OlsEmbeddingSimilarMatcher olsEmbeddingSimilarMatcher;
 
-    public ZoomaAnnotator(
-        MappingTablesRepo mappingTablesRepo,
-        OlsClientRepo olsRepo
-    ) {
-        this(mappingTablesRepo, olsRepo, null);
-    }
-
-    public ZoomaAnnotator(
-        MappingTablesRepo mappingTablesRepo,
-        OlsClientRepo olsRepo,
-        EmbeddingService embeddingService
-    ) {
-        this.mappingTablesRepo = mappingTablesRepo;
+    public ZoomaAnnotator(OlsClientRepo olsRepo) {
         this.olsRepo = olsRepo;
-        this.embeddingService = embeddingService;
         this.oxoClient = new OxoClient();
 
         // Initialize matchers
-        this.curatedExactMatcher = new CuratedExactMatcher(mappingTablesRepo);
-        this.curatedEmbeddingMatcher = new CuratedEmbeddingMatcher(mappingTablesRepo);
         this.olsLexicalMatcher = new OlsLexicalMatcher(olsRepo);
         var olsEmbeddingCfg = ZoomaConfig.config.ols_embedding;
         if (olsEmbeddingCfg != null) {
@@ -357,22 +335,16 @@ public class ZoomaAnnotator {
         MatchContext context = new MatchContext(stringToMap, type, sources, model);
         
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
-            // Run all 4 matchers concurrently on virtual threads
-            var curatedExactFuture = executor.submit(() -> curatedExactMatcher.findMatches(context));
-            var curatedEmbeddingFuture = executor.submit(() -> curatedEmbeddingMatcher.findMatches(context));
+            // Run OLS lexical (fuzzy) + OLS embedding concurrently on virtual threads
             var olsLexicalFuture = executor.submit(() -> olsLexicalMatcher.findMatches(context));
             var olsEmbeddingFuture = executor.submit(() -> olsEmbeddingMatcher.findMatches(context));
             
             List<Annotation> allResults = new ArrayList<>();
-            allResults.addAll(curatedExactFuture.get());
-            allResults.addAll(curatedEmbeddingFuture.get());
             allResults.addAll(olsLexicalFuture.get());
             allResults.addAll(olsEmbeddingFuture.get());
             
             System.err.println("Total results for '" + stringToMap + "': " + allResults.size() + 
-                " (" + curatedExactMatcher.getName() + "=" + curatedExactFuture.get().size() + 
-                ", " + curatedEmbeddingMatcher.getName() + "=" + curatedEmbeddingFuture.get().size() +
-                ", " + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() + 
+                " (" + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() + 
                 ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() + ")");
             
             // If target ontologies specified, expand via OXO and OLS similarity in parallel
@@ -407,68 +379,6 @@ public class ZoomaAnnotator {
 
 
 
-    private Stream<MappingTableEntry> getMappingsFromTables(String stringToMap, String type, Filter sources) {
-        if(sources == null || !isNone(sources.required)) {
-            var mappings = mappingTablesRepo.allMappingsForString(stringToMap);
-            mappings = filterMappings(mappings, type, sources);
-            return mappings;
-        } else {
-            return Stream.<MappingTableEntry>empty();
-        }
-    }
-
-    private Annotation createAnnotationFromOlsTerm(OlsTerm term, String stringToMap, String type, String evidence) {
-        return createAnnotationFromOlsTerm(term, stringToMap, type, evidence, null);
-    }
-
-    private Annotation createAnnotationFromOlsTerm(OlsTerm term, String stringToMap, String type, String evidence, String model) {
-        Annotation a = new Annotation();
-        
-        a.annotatedProperty = new Annotation.AnnotatedProperty();
-        a.annotatedProperty.propertyType = type != null ? type : "unspecified";
-        a.annotatedProperty.propertyValue = stringToMap;
-        
-        a.semanticTags = List.of(term.iri);
-        a.confidence = 0.6;
-        
-        a.provenance = new Annotation.Provenance();
-        a.provenance.source = new Annotation.Source();
-        a.provenance.source.type = "ONTOLOGY";
-        a.provenance.source.name = term.ontology_name;
-        a.provenance.source.uri = term.ontology_name;
-        a.provenance.evidence = evidence;
-        a.provenance.accuracy = "NOT_SPECIFIED";
-        a.provenance.generator = "ZOOMA";
-        a.provenance.generatedDate = new Date().toString();
-        a.provenance.annotator = null;
-        a.provenance.annotationDate = null;
-
-        // Set mapping provenance based on evidence type
-        if (evidence.contains("SEMANTIC") || evidence.contains("LLM")) {
-            a.mappingProvenance = List.of(V3MappingProvenanceStepDto.semantic(
-                "ols:" + term.ontology_name,
-                model,
-                stringToMap,
-                term.label,
-                term.iri,
-                term.score != null ? term.score : null,
-                null,
-                "OLS_LLM_EMBEDDING"
-            ));
-        } else {
-            a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
-                term.ontology_name,
-                term.label.equalsIgnoreCase(stringToMap) ? "exact_label" : "synonym",
-                stringToMap,
-                term.label,
-                term.iri,
-                0.9
-            ));
-        }
-        
-        return a;
-    }
-
     /**
      * Bulk tag all input terms via OLS text tagger (single HTTP call).
      * Returns a map from input textToMap to a list of Annotations from the tagger.
@@ -482,8 +392,46 @@ public class ZoomaAnnotator {
             List<Annotation> annotations = new ArrayList<>();
             for (var match : entry.getValue()) {
                 boolean isFullMatch = match.coverage >= 1.0;
-                double confidence = isFullMatch ? 1.0 : match.coverage * 0.89;
-                String matchType = isFullMatch ? "OLS_TEXT_TAGGER" : "OLS_TEXT_TAGGER_SUBSTRING";
+                boolean isCuration = "CURATION".equals(match.stringType);
+                boolean isSynonym = "synonym".equalsIgnoreCase(match.stringType);
+
+                double confidence;
+                String matchType;
+                String provenanceMethod;
+                String sourceType;
+                String sourceName;
+
+                if (isCuration && isFullMatch) {
+                    confidence = 0.95;
+                    matchType = "CURATED_EXACT";
+                    provenanceMethod = "curated";
+                    sourceType = "DATABASE";
+                    sourceName = match.source != null ? match.source : match.ontologyId;
+                } else if (isFullMatch && isSynonym) {
+                    confidence = 0.9;
+                    matchType = "OLS_TEXT_TAGGER_SYNONYM";
+                    provenanceMethod = "lexical";
+                    sourceType = "ONTOLOGY";
+                    sourceName = match.ontologyId;
+                } else if (isFullMatch) {
+                    confidence = 1.0;
+                    matchType = "OLS_TEXT_TAGGER";
+                    provenanceMethod = "lexical";
+                    sourceType = "ONTOLOGY";
+                    sourceName = match.ontologyId;
+                } else if (isCuration) {
+                    confidence = match.coverage * 0.89;
+                    matchType = "CURATED_SUBSTRING";
+                    provenanceMethod = "curated";
+                    sourceType = "DATABASE";
+                    sourceName = match.source != null ? match.source : match.ontologyId;
+                } else {
+                    confidence = match.coverage * 0.89;
+                    matchType = "OLS_TEXT_TAGGER_SUBSTRING";
+                    provenanceMethod = "lexical";
+                    sourceType = "ONTOLOGY";
+                    sourceName = match.ontologyId;
+                }
 
                 Annotation a = new Annotation();
                 a.annotatedProperty = new Annotation.AnnotatedProperty();
@@ -493,20 +441,32 @@ public class ZoomaAnnotator {
                 a.confidence = confidence;
                 a.provenance = new Annotation.Provenance();
                 a.provenance.source = new Annotation.Source();
-                a.provenance.source.type = "ONTOLOGY";
-                a.provenance.source.name = match.ontologyId;
-                a.provenance.source.uri = match.ontologyId;
+                a.provenance.source.type = sourceType;
+                a.provenance.source.name = sourceName;
+                a.provenance.source.uri = sourceName;
                 a.provenance.evidence = matchType;
                 a.provenance.generator = "ZOOMA";
                 a.provenance.generatedDate = new Date().toString();
-                a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
-                    "ols:" + match.ontologyId,
-                    matchType,
-                    inputTerm,
-                    match.termLabel,
-                    match.termIri,
-                    match.coverage
-                ));
+
+                if ("curated".equals(provenanceMethod)) {
+                    a.mappingProvenance = List.of(V3MappingProvenanceStepDto.curated(
+                        sourceName,
+                        matchType,
+                        inputTerm,
+                        match.termLabel,
+                        match.termIri,
+                        match.coverage
+                    ));
+                } else {
+                    a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
+                        "ols:" + match.ontologyId,
+                        matchType,
+                        inputTerm,
+                        match.termLabel,
+                        match.termIri,
+                        match.coverage
+                    ));
+                }
                 annotations.add(a);
             }
             result.put(inputTerm, annotations);
@@ -539,33 +499,6 @@ public class ZoomaAnnotator {
             );
         }
         return taggerAnnotations.stream().anyMatch(a -> a.confidence >= 1.0);
-    }
-
-    /**
-     * Check if embedding service is enabled.
-     */
-    public boolean isEmbeddingServiceEnabled() {
-        return embeddingService != null;
-    }
-
-
-    Stream<MappingTableEntry> filterMappings(Stream<MappingTableEntry> mappings, String type, Filter filter) {
-
-        return mappings
-            .filter(a -> type == null || a.propertyType == null || a.propertyType.equals(type))
-            .filter(a -> {
-                
-                if(filter == null) return true;
-
-                if(filter.required.size() > 0) {
-                    if(!filter.required.contains(a.databaseId)) {
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-
     }
 
     boolean isNone(List<String> list) {

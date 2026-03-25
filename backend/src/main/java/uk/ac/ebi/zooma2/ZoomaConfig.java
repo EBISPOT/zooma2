@@ -64,22 +64,9 @@ public class ZoomaConfig {
         watcher.start();
     }
 
-    public Map<String, Datasource> datasources;
     public Map<String, String> prefix_map;
-    public EmbeddingConfig local_embedding;
     public OlsEmbeddingConfig ols_embedding;
     public List<OntologyPreset> ontology_presets;
-
-    public static class Datasource {
-        public String uri;
-        public String import_url;
-        public Map<String,String> column_map;
-    }
-
-    public static class EmbeddingConfig {
-        public Integer batch_size; // Optional: embeddings per request (default: 50)
-        public String database_path; // Path to SQLite database (legacy, now uses unified db)
-    }
 
     public static class OlsEmbeddingConfig {
         public Double min_similarity;

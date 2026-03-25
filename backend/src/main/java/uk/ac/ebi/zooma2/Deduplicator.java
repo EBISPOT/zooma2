@@ -45,6 +45,9 @@ public class Deduplicator {
         // 0. Exclude rejected term IDs (thumbs-down)
         excludeTerms(results, excludeTermIds);
 
+        // 0b. Filter by required datasources
+        filterByRequiredDatasources(results, filter);
+
         // 1. Filter by ontology
         filterByOntologies(results, filter);
 
@@ -76,6 +79,7 @@ public class Deduplicator {
      */
     public List<MapResult> deduplicateLight(List<MapResult> results, Filter filter, List<String> excludeTermIds) {
         excludeTerms(results, excludeTermIds);
+        filterByRequiredDatasources(results, filter);
         filterByOntologies(results, filter);
         return deduplicateByTermId(results);
     }
@@ -105,6 +109,25 @@ public class Deduplicator {
             String onto = getOntologyPrefix(r);
             if (onto == null) return true;
             return !allowed.contains(onto);
+        });
+    }
+
+    void filterByRequiredDatasources(List<MapResult> results, Filter filter) {
+        if (filter == null || filter.required == null || filter.required.isEmpty()) {
+            return;
+        }
+        Set<String> allowed = filter.required.stream()
+            .map(s -> s.toLowerCase(Locale.ROOT))
+            .collect(Collectors.toSet());
+        // Only filter curated results by datasource. Lexical and embedding
+        // results come from ontologies (datasource = ontology name) and should
+        // not be restricted by the DATABASE-level required filter.
+        results.removeIf(r -> {
+            if (r.error != null) return false;
+            if (!isCuratedExact(r)) return false;
+            String ds = r.datasource;
+            if (ds == null) return true;
+            return !allowed.contains(ds.toLowerCase(Locale.ROOT));
         });
     }
 

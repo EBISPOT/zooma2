@@ -607,6 +607,8 @@ public class OlsClientRepo {
                 String termLabel = obj.has("term_label") ? obj.get("term_label").getAsString() : null;
                 String termIri = obj.has("term_iri") ? obj.get("term_iri").getAsString() : null;
                 String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
+                String stringType = obj.has("string_type") ? obj.get("string_type").getAsString() : null;
+                String source = obj.has("source") && !obj.get("source").isJsonNull() ? obj.get("source").getAsString() : null;
 
                 // Find which input term this entity belongs to
                 for (int i = 0; i < terms.size(); i++) {
@@ -614,7 +616,7 @@ public class OlsClientRepo {
                         int matchedLength = end - start;
                         int termLength = termEnds[i] - termStarts[i];
                         double coverage = termLength > 0 ? (double) matchedLength / termLength : 0.0;
-                        var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage);
+                        var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage, stringType, source);
                         results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
                         break;
                     }
@@ -645,12 +647,77 @@ public class OlsClientRepo {
         public final String termIri;
         public final String ontologyId;
         public final double coverage; // fraction of input term covered by this match (0..1)
+        public final String stringType; // "label", "synonym", or "CURATION"
+        public final String source;     // curation source name (e.g. "atlas", "gwas") or null
 
-        public TagTextMatch(String termLabel, String termIri, String ontologyId, double coverage) {
+        public TagTextMatch(String termLabel, String termIri, String ontologyId, double coverage, String stringType, String source) {
             this.termLabel = termLabel;
             this.termIri = termIri;
             this.ontologyId = ontologyId;
             this.coverage = coverage;
+            this.stringType = stringType;
+            this.source = source;
+        }
+    }
+
+    /**
+     * Fetch the list of curation source names from OLS.
+     * These correspond to the datasource names (atlas, gwas, sysmicro, etc.).
+     */
+    public List<String> getCurationSources() throws IOException {
+        var json = urlToJson(OLS_URL + "/api/v2/curation_sources");
+        if (json == null || !json.isJsonArray()) {
+            System.err.println("Failed to get curation sources from OLS");
+            return List.of();
+        }
+        List<String> sources = gson.fromJson(json, new TypeToken<List<String>>(){}.getType());
+        System.err.println("Found " + sources.size() + " curation sources in OLS");
+        return sources;
+    }
+
+    /**
+     * Non-exact fuzzy search using OLS Solr index (edismax).
+     * Returns terms with relevance-based scores, capped at maxConfidence.
+     * Used by OlsLexicalMatcher for fuzzy/partial matches.
+     */
+    public List<OlsTerm> findByFuzzySearch(String query, int size) {
+        var escaped = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
+        var url = OLS_URL + "/api/v2/entities?search=" + escaped + "&exactMatch=false&size=" + size + "&type=class";
+
+        try {
+            var json = urlToJson(url);
+            if (json == null || !json.getAsJsonObject().has("elements")) {
+                return List.of();
+            }
+            var elements = json.getAsJsonObject().get("elements").getAsJsonArray();
+            if (elements.size() == 0) return List.of();
+
+            List<OlsTerm> results = new ArrayList<>();
+            for (var element : elements) {
+                var obj = element.getAsJsonObject();
+                OlsTerm term = new OlsTerm();
+                term.iri = obj.has("iri") ? obj.get("iri").getAsString() : null;
+                if (obj.has("label")) {
+                    var labelEl = obj.get("label");
+                    if (labelEl.isJsonArray() && labelEl.getAsJsonArray().size() > 0) {
+                        term.label = labelEl.getAsJsonArray().get(0).getAsString();
+                    } else if (labelEl.isJsonPrimitive()) {
+                        term.label = labelEl.getAsString();
+                    }
+                }
+                term.short_form = obj.has("shortForm") ? obj.get("shortForm").getAsString() :
+                                  (obj.has("short_form") ? obj.get("short_form").getAsString() : null);
+                term.ontology_name = obj.has("ontologyId") ? obj.get("ontologyId").getAsString() :
+                                     (obj.has("ontology_name") ? obj.get("ontology_name").getAsString() : null);
+                if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
+                    term.synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
+                }
+                results.add(term);
+            }
+            return results;
+        } catch (IOException e) {
+            System.err.println("Error in OLS fuzzy search: " + e.getMessage());
+            return List.of();
         }
     }
 

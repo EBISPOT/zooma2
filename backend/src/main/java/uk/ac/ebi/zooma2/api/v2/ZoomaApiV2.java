@@ -12,7 +12,6 @@ import uk.ac.ebi.zooma2.api.v2.dto.V2MapResultDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2StringToMapDto;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
-import uk.ac.ebi.zooma2.repo.MappingTablesRepo;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
 
@@ -32,7 +31,6 @@ import java.util.stream.Stream;
 public class ZoomaApiV2 {
 
     private final ZoomaAnnotator annotator;
-    private final MappingTablesRepo mappingTablesRepo;
     private final OlsClientRepo olsRepo;
 
     /** Session-scoped async mapping jobs, keyed by JSESSIONID cookie value. */
@@ -55,9 +53,8 @@ public class ZoomaApiV2 {
         }
     }
 
-    public ZoomaApiV2(ZoomaAnnotator annotator, MappingTablesRepo mappingTablesRepo, OlsClientRepo olsRepo) {
+    public ZoomaApiV2(ZoomaAnnotator annotator, OlsClientRepo olsRepo) {
         this.annotator = annotator;
-        this.mappingTablesRepo = mappingTablesRepo;
         this.olsRepo = olsRepo;
     }
 
@@ -72,11 +69,11 @@ public class ZoomaApiV2 {
 
     private void getSources(Context ctx) {
         try {
-            var databases = ZoomaConfig.config.datasources.entrySet().stream()
-                .map(entry -> Map.of(
+            var databases = olsRepo.getCurationSources().stream()
+                .map(name -> Map.of(
                     "type", "DATABASE",
-                    "name", entry.getKey(),
-                    "uri", entry.getValue().uri
+                    "name", name,
+                    "uri", name
                 ));
 
             var ontologies = olsRepo.getOntologies().stream()
@@ -90,12 +87,12 @@ public class ZoomaApiV2 {
 
             ctx.json(Stream.concat(databases, ontologies).toList());
         } catch (IOException e) {
-            throw new InternalServerErrorResponse("Failed to fetch ontologies: " + e.getMessage());
+            throw new InternalServerErrorResponse("Failed to fetch sources: " + e.getMessage());
         }
     }
 
     private void getPropertyTypes(Context ctx) {
-        ctx.json(mappingTablesRepo.getAllTypes());
+        ctx.json(List.of());
     }
 
     private void annotate(Context ctx) {

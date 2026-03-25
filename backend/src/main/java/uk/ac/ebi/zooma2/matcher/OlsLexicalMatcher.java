@@ -10,12 +10,14 @@ import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 
 /**
- * Finds lexical matches from OLS (exact label or synonym matches).
- * High confidence matches based on string equality.
+ * Finds fuzzy lexical matches from OLS using Solr's edismax search.
+ * Complements exact tag_text matches with fuzzy/partial results.
+ * Confidence capped at 0.85 to stay below exact matches.
  */
 public class OlsLexicalMatcher implements AnnotationMatcher {
 
     private final OlsClientRepo olsRepo;
+    private static final double MAX_CONFIDENCE = 0.85;
 
     public OlsLexicalMatcher(OlsClientRepo olsRepo) {
         this.olsRepo = olsRepo;
@@ -28,8 +30,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
 
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        // Search all of OLS (no ontology filter); the deduplicator filters to target ontologies
-        var terms = olsRepo.findByLabelAndOntologies(context.stringToMap, null);
+        var terms = olsRepo.findByFuzzySearch(context.stringToMap, 20);
         return terms.stream()
             .map(t -> createAnnotation(t, context))
             .collect(Collectors.toList());
@@ -43,22 +44,39 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(t.iri);
-        a.confidence = t.label != null && t.label.equalsIgnoreCase(context.stringToMap) ? 1.0 : 0.9;
+
+        // Compute confidence: exact label match gets MAX_CONFIDENCE, synonym slightly less, others lower
+        boolean isExactLabel = t.label != null && t.label.equalsIgnoreCase(context.stringToMap);
+        boolean isSynonymMatch = false;
+        if (!isExactLabel && t.synonyms != null) {
+            for (String syn : t.synonyms) {
+                if (syn.equalsIgnoreCase(context.stringToMap)) {
+                    isSynonymMatch = true;
+                    break;
+                }
+            }
+        }
+
+        if (isExactLabel) {
+            a.confidence = MAX_CONFIDENCE;
+        } else if (isSynonymMatch) {
+            a.confidence = MAX_CONFIDENCE - 0.05;
+        } else {
+            a.confidence = MAX_CONFIDENCE - 0.15;
+        }
 
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
         a.provenance.source.type = "ONTOLOGY";
         a.provenance.source.name = t.ontology_name;
         a.provenance.source.uri = t.ontology_name;
-        a.provenance.evidence = "OLS_LEXICAL";
+        a.provenance.evidence = "OLS_LEXICAL_FUZZY";
         a.provenance.generator = "ZOOMA";
         a.provenance.generatedDate = new Date().toString();
 
-        String matchType = t.label != null && t.label.equalsIgnoreCase(context.stringToMap) 
-            ? "OLS_LEXICAL" 
-            : "OLS_LEXICAL_SYNONYM";
-
-        double similarity = matchType.equals("OLS_LEXICAL") ? 1.0 : 0.9;
+        String matchType = isExactLabel ? "OLS_LEXICAL_FUZZY_LABEL" 
+            : isSynonymMatch ? "OLS_LEXICAL_FUZZY_SYNONYM"
+            : "OLS_LEXICAL_FUZZY";
 
         a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
             "ols:" + t.ontology_name,
@@ -66,15 +84,9 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
             context.stringToMap,
             t.label,
             t.iri,
-            similarity
+            a.confidence
         ));
 
         return a;
-    }
-
-    private boolean isNone(List<String> list) {
-        return list != null &&
-            list.size() == 1 &&
-            (list.get(0).equals("none") || list.get(0).equals("Select None"));
     }
 }

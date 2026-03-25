@@ -76,6 +76,18 @@ public class V3MappingProvenanceStepDto {
         return step;
     }
 
+    public static V3MappingProvenanceStepDto curated(String source, String matchType, String input, String matchedText, String target, Double similarity) {
+        var step = new V3MappingProvenanceStepDto();
+        step.method = "curated";
+        step.matchType = matchType;
+        step.source = source;
+        step.input = input;
+        step.matchedText = matchedText;
+        step.target = target;
+        step.similarity = similarity;
+        return step;
+    }
+
     /**
      * Create a provenance step for obsolete term replacement.
      * @param obsoleteTermIri The IRI of the obsolete term
