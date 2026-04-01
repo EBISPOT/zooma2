@@ -116,51 +116,32 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         System.err.println("OLS LLM Similar: Querying " + termIris.size() + " term IRIs");
 
         // Query OLS LLM similar API for each term IRI and model
-        Map<String, Set<String>> similarIrisBySource = new LinkedHashMap<>();
+        // Key: sourceIri|model, Value: list of similar OlsTerms (already resolved from the response)
+        Map<String, List<OlsTerm>> similarTermsBySource = new LinkedHashMap<>();
         
         for (String termIri : termIris) {
             for (String model : models) {
-                List<String> similarIris = querySimilarTerms(termIri, model);
-                if (!similarIris.isEmpty()) {
+                List<OlsTerm> similarTerms = querySimilarTerms(termIri, model);
+                if (!similarTerms.isEmpty()) {
                     String key = termIri + "|" + model;
-                    similarIrisBySource.put(key, new LinkedHashSet<>(similarIris));
+                    similarTermsBySource.put(key, similarTerms);
                 }
             }
         }
 
-        if (similarIrisBySource.isEmpty()) {
+        if (similarTermsBySource.isEmpty()) {
             System.err.println("OLS LLM Similar: Found no similar terms");
             return Collections.emptyList();
         }
 
-        System.err.println("OLS LLM Similar: Found " + similarIrisBySource.size() + " term-model combinations");
+        System.err.println("OLS LLM Similar: Found " + similarTermsBySource.size() + " term-model combinations");
 
-        // Collect all unique IRIs to resolve
-        Set<String> allSimilarIris = similarIrisBySource.values().stream()
-            .flatMap(Set::stream)
-            .collect(Collectors.toSet());
-
-        // Resolve all similar terms from OLS V1 API
-        var similarTermMap = olsRepo.resolveTerms(allSimilarIris);
-
-        System.err.println("OLS LLM Similar: Resolved " + similarTermMap.size() + " similar terms");
-
-        // Filter to only include terms from target ontologies
-        similarTermMap = similarTermMap.entrySet().stream()
-            .filter(e -> e.getValue() != null && 
-                         e.getValue().ontology_name != null &&
-                         preferredOntologiesLower.contains(e.getValue().ontology_name.toLowerCase()))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        System.err.println("OLS LLM Similar: Filtered to " + similarTermMap.size() + 
-            " terms from target ontologies: " + context.targetOntologies);
-
-        // Create new annotations for each similar term
-        for (Map.Entry<String, Set<String>> entry : similarIrisBySource.entrySet()) {
+        // Create new annotations for each similar term, filtering to target ontologies
+        for (Map.Entry<String, List<OlsTerm>> entry : similarTermsBySource.entrySet()) {
             String[] parts = entry.getKey().split("\\|");
             String sourceIri = parts[0];
             String model = parts[1];
-            Set<String> similarIris = entry.getValue();
+            List<OlsTerm> similarTerms = entry.getValue();
 
             // Get the source annotations that have this semantic tag
             List<Annotation> sourceAnnotations = annotationsByTag.get(sourceIri);
@@ -168,19 +149,12 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
                 continue;
             }
 
-            // Create expanded annotations for each similar term
-            for (String similarIri : similarIris) {
-                var similarTerm = similarTermMap.get(similarIri);
-                if (similarTerm == null) {
-                    continue;
-                }
+            // Create expanded annotations for each similar term from a target ontology
+            for (OlsTerm similarTerm : similarTerms) {
+                if (similarTerm.iri == null || similarTerm.ontology_name == null) continue;
+                if (!preferredOntologiesLower.contains(similarTerm.ontology_name.toLowerCase())) continue;
+                if (similarTerm.iri.equals(sourceIri)) continue;
 
-                // Skip if the similar term is the same as the source
-                if (similarIri.equals(sourceIri)) {
-                    continue;
-                }
-
-                // Create new annotation for each source annotation
                 for (Annotation sourceAnnotation : sourceAnnotations) {
                     Annotation expandedAnnotation = createExpandedAnnotation(
                         sourceAnnotation,
@@ -199,9 +173,9 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
 
     /**
      * Query OLS V2 LLM similar API for a term IRI.
-     * Returns list of similar term IRIs.
+     * Returns list of similar OlsTerms with full metadata from the response.
      */
-    private List<String> querySimilarTerms(String termIri, String model) {
+    private List<OlsTerm> querySimilarTerms(String termIri, String model) {
         semaphore.acquireUninterruptibly();
         try {
             // Double URL encode the IRI as required by OLS V2 API
@@ -234,25 +208,55 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     }
 
     /**
-     * Parse OLS V2 API response to extract term IRIs.
+     * Parse OLS V2 API response to extract full OlsTerm objects.
      */
-    private List<String> parseOlsV2Response(String responseBody) {
+    private List<OlsTerm> parseOlsV2Response(String responseBody) {
         try {
             JsonNode root = objectMapper.readTree(responseBody);
             JsonNode elements = root.path("elements");
 
-            List<String> iris = new ArrayList<>();
+            List<OlsTerm> terms = new ArrayList<>();
 
             if (elements.isArray()) {
                 for (JsonNode element : elements) {
-                    String iri = element.path("iri").asText(null);
-                    if (iri != null) {
-                        iris.add(iri);
+                    OlsTerm term = new OlsTerm();
+                    term.iri = element.path("iri").asText(null);
+                    if (term.iri == null) continue;
+
+                    JsonNode labelNode = element.path("label");
+                    if (labelNode.isArray() && labelNode.size() > 0) {
+                        term.label = labelNode.get(0).asText(null);
+                    } else if (labelNode.isTextual()) {
+                        term.label = labelNode.asText(null);
                     }
+
+                    term.short_form = element.has("shortForm") ? element.get("shortForm").asText(null) :
+                                      (element.has("short_form") ? element.get("short_form").asText(null) : null);
+                    term.ontology_name = element.has("ontologyId") ? element.get("ontologyId").asText(null) :
+                                         (element.has("ontology_name") ? element.get("ontology_name").asText(null) : null);
+
+                    JsonNode synsNode = element.path("synonyms");
+                    if (synsNode.isArray()) {
+                        List<String> syns = new ArrayList<>();
+                        for (JsonNode s : synsNode) syns.add(s.asText());
+                        term.synonyms = syns;
+                    }
+
+                    if (element.has("isObsolete")) {
+                        term.is_obsolete = element.get("isObsolete").asBoolean(false);
+                    } else if (element.has("is_obsolete")) {
+                        term.is_obsolete = element.get("is_obsolete").asBoolean(false);
+                    }
+
+                    if (element.has("score")) {
+                        term.score = element.get("score").asDouble();
+                    }
+
+                    terms.add(term);
                 }
             }
 
-            return iris;
+            return terms;
         } catch (Exception e) {
             System.err.println("OLS LLM Similar: Error parsing response: " + e.getMessage());
             return Collections.emptyList();
@@ -298,6 +302,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         
         // Set the new semantic tag to the similar term
         expandedAnnotation.semanticTags = List.of(similarTerm.iri);
+        expandedAnnotation.resolvedTerm = similarTerm;
         
         // Reduce confidence slightly since this is an indirect mapping
         expandedAnnotation.confidence = reduceConfidence(sourceAnnotation.confidence);

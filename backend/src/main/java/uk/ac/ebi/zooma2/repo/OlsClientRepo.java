@@ -22,14 +22,16 @@ public class OlsClientRepo {
 
     private final Semaphore embeddingSemaphore;
     private final Semaphore similarSemaphore;
+    private final Semaphore lexicalSemaphore;
 
-    public OlsClientRepo(int maxConcurrentEmbedding, int maxConcurrentSimilar) {
+    public OlsClientRepo(int maxConcurrentEmbedding, int maxConcurrentSimilar, int maxConcurrentLexical) {
         this.embeddingSemaphore = new Semaphore(maxConcurrentEmbedding);
         this.similarSemaphore = new Semaphore(maxConcurrentSimilar);
+        this.lexicalSemaphore = new Semaphore(maxConcurrentLexical);
     }
 
     public OlsClientRepo() {
-        this(3, 10);
+        this(3, 10, 5);
     }
 
     public Semaphore getSimilarSemaphore() {
@@ -352,7 +354,12 @@ public class OlsClientRepo {
     }
 
     public Collection<OlsTerm> findByEmbeddingSearch(String query, String model, String ontologyId, int size, int timeoutMs) {
-        embeddingSemaphore.acquireUninterruptibly();
+        try {
+            embeddingSemaphore.acquire();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
+        }
         try {
             var encodedQuery = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
             var encodedModel = java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8);
@@ -412,6 +419,11 @@ public class OlsClientRepo {
                                      (obj.has("ontology_name") ? obj.get("ontology_name").getAsString() : null);
                 if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
                     term.synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
+                }
+                if (obj.has("isObsolete")) {
+                    term.is_obsolete = obj.get("isObsolete").getAsBoolean();
+                } else if (obj.has("is_obsolete")) {
+                    term.is_obsolete = obj.get("is_obsolete").getAsBoolean();
                 }
                 
                 // Capture the similarity score from embedding search
@@ -609,6 +621,18 @@ public class OlsClientRepo {
                 String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
                 String stringType = obj.has("string_type") ? obj.get("string_type").getAsString() : null;
                 String source = obj.has("source") && !obj.get("source").isJsonNull() ? obj.get("source").getAsString() : null;
+                String shortForm = obj.has("short_form") ? obj.get("short_form").getAsString() :
+                                   (obj.has("shortForm") ? obj.get("shortForm").getAsString() : null);
+                List<String> synonyms = null;
+                if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
+                    synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
+                }
+                Boolean isObsolete = null;
+                if (obj.has("is_obsolete") && !obj.get("is_obsolete").isJsonNull()) {
+                    isObsolete = obj.get("is_obsolete").getAsBoolean();
+                } else if (obj.has("isObsolete") && !obj.get("isObsolete").isJsonNull()) {
+                    isObsolete = obj.get("isObsolete").getAsBoolean();
+                }
 
                 // Find which input term this entity belongs to
                 for (int i = 0; i < terms.size(); i++) {
@@ -616,7 +640,7 @@ public class OlsClientRepo {
                         int matchedLength = end - start;
                         int termLength = termEnds[i] - termStarts[i];
                         double coverage = termLength > 0 ? (double) matchedLength / termLength : 0.0;
-                        var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage, stringType, source);
+                        var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage, stringType, source, shortForm, synonyms, isObsolete);
                         results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
                         break;
                     }
@@ -649,14 +673,22 @@ public class OlsClientRepo {
         public final double coverage; // fraction of input term covered by this match (0..1)
         public final String stringType; // "label", "synonym", or "CURATION"
         public final String source;     // curation source name (e.g. "atlas", "gwas") or null
+        public final String shortForm;  // short form (e.g. "EFO_0000305") or null
+        public final List<String> synonyms; // synonyms or null
+        public final Boolean isObsolete; // whether the term is obsolete, or null if unknown
 
-        public TagTextMatch(String termLabel, String termIri, String ontologyId, double coverage, String stringType, String source) {
+        public TagTextMatch(String termLabel, String termIri, String ontologyId, double coverage,
+                            String stringType, String source, String shortForm, List<String> synonyms,
+                            Boolean isObsolete) {
             this.termLabel = termLabel;
             this.termIri = termIri;
             this.ontologyId = ontologyId;
             this.coverage = coverage;
             this.stringType = stringType;
             this.source = source;
+            this.shortForm = shortForm;
+            this.synonyms = synonyms;
+            this.isObsolete = isObsolete;
         }
     }
 
@@ -681,11 +713,22 @@ public class OlsClientRepo {
      * Used by OlsLexicalMatcher for fuzzy/partial matches.
      */
     public List<OlsTerm> findByFuzzySearch(String query, int size) {
+        return findByFuzzySearch(query, size, 60000);
+    }
+
+    public List<OlsTerm> findByFuzzySearch(String query, int size, int timeoutMs) {
+        try {
+            lexicalSemaphore.acquire();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
+        }
+        try {
         var escaped = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
         var url = OLS_URL + "/api/v2/entities?search=" + escaped + "&exactMatch=false&size=" + size + "&type=class";
 
         try {
-            var json = urlToJson(url);
+            var json = urlToJson(url, timeoutMs);
             if (json == null || !json.getAsJsonObject().has("elements")) {
                 return List.of();
             }
@@ -712,12 +755,20 @@ public class OlsClientRepo {
                 if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
                     term.synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
                 }
+                if (obj.has("isObsolete")) {
+                    term.is_obsolete = obj.get("isObsolete").getAsBoolean();
+                } else if (obj.has("is_obsolete")) {
+                    term.is_obsolete = obj.get("is_obsolete").getAsBoolean();
+                }
                 results.add(term);
             }
             return results;
         } catch (IOException e) {
             System.err.println("Error in OLS fuzzy search: " + e.getMessage());
             return List.of();
+        }
+        } finally {
+            lexicalSemaphore.release();
         }
     }
 

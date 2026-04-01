@@ -17,6 +17,7 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
 import uk.ac.ebi.zooma2.repo.VoteRepository;
+import uk.ac.ebi.zooma2.util.RequestCancellation;
 
 import java.io.IOException;
 import java.util.*;
@@ -253,56 +254,99 @@ public class ZoomaApiV3 {
         
         ctx.res().setContentType("application/x-ndjson");
         ctx.res().setCharacterEncoding("UTF-8");
-        
+
+        // Create cancellation flag before mapEach so the heartbeat and mapEach share
+        // the same AtomicBoolean instance (newCancellationFlag reuses if already set).
+        var cancelled = RequestCancellation.newFlag();
         try {
             var out = ctx.res().getOutputStream();
             var completed = new java.util.concurrent.atomic.AtomicInteger(0);
-            
-            annotator.mapEach(properties, filter, model, (prop, results) -> {
-                // Check if any result is an error
-                String error = results.stream()
-                    .filter(r -> r.error != null)
-                    .map(r -> r.error)
-                    .findFirst().orElse(null);
+            var mappingDone = new java.util.concurrent.atomic.AtomicBoolean(false);
 
-                List<V3MappingCandidateDto> candidates = results.stream()
-                    .filter(r -> r.error == null)
-                    .map(V3MappingCandidateDto::from)
-                    .sorted(Comparator.comparing(
-                        c -> c.confidence != null ? c.confidence : 0.0,
-                        Comparator.reverseOrder()
-                    ))
-                    .collect(Collectors.toList());
-                
-                var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
-                mapping.error = error;
-                int done = completed.incrementAndGet();
-                
-                var event = new LinkedHashMap<String, Object>();
-                event.put("type", "result");
-                event.put("mapping", mapping);
-                event.put("completed", done);
-                event.put("total", total);
-                
-                try {
-                    synchronized (out) {
-                        out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                        out.flush();
+            // Heartbeat: write a ping line every 200 ms so we detect a closed
+            // connection immediately. Without this, disconnect is only noticed
+            // when a result write fails — which may never happen if the OS
+            // socket buffer absorbs all remaining data.
+            var heartbeatThread = Thread.ofVirtual().start(() -> {
+                while (!mappingDone.get()) {
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        return;
                     }
-                } catch (IOException e) {
-                    throw new java.io.UncheckedIOException(e);
+                    if (mappingDone.get()) return;
+                    try {
+                        synchronized (out) {
+                            out.write("{\"type\":\"ping\"}\n".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                            out.flush();
+                        }
+                    } catch (IOException e) {
+                        cancelled.set(true);
+                        System.err.println("Client disconnected (heartbeat): " + e.getMessage());
+                        return;
+                    }
                 }
             });
-            
-            var doneEvent = new LinkedHashMap<String, Object>();
-            doneEvent.put("type", "done");
-            doneEvent.put("completed", total);
-            doneEvent.put("total", total);
-            out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
-            out.flush();
-            
+
+            try {
+                annotator.mapEach(properties, filter, model, (prop, results) -> {
+                    // Abort immediately if heartbeat (or a prior write) already detected disconnect.
+                    if (cancelled.get()) {
+                        throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
+                    }
+
+                    // Check if any result is an error
+                    String error = results.stream()
+                        .filter(r -> r.error != null)
+                        .map(r -> r.error)
+                        .findFirst().orElse(null);
+
+                    List<V3MappingCandidateDto> candidates = results.stream()
+                        .filter(r -> r.error == null)
+                        .map(V3MappingCandidateDto::from)
+                        .sorted(Comparator.comparing(
+                            c -> c.confidence != null ? c.confidence : 0.0,
+                            Comparator.reverseOrder()
+                        ))
+                        .collect(Collectors.toList());
+
+                    var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                    mapping.error = error;
+                    int done = completed.incrementAndGet();
+
+                    var event = new LinkedHashMap<String, Object>();
+                    event.put("type", "result");
+                    event.put("mapping", mapping);
+                    event.put("completed", done);
+                    event.put("total", total);
+
+                    try {
+                        synchronized (out) {
+                            out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                            out.flush();
+                        }
+                    } catch (IOException e) {
+                        throw new java.io.UncheckedIOException(e);
+                    }
+                });
+
+                if (!cancelled.get()) {
+                    var doneEvent = new LinkedHashMap<String, Object>();
+                    doneEvent.put("type", "done");
+                    doneEvent.put("completed", total);
+                    doneEvent.put("total", total);
+                    out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                    out.flush();
+                }
+            } finally {
+                mappingDone.set(true);
+                heartbeatThread.interrupt();
+            }
+
         } catch (IOException | java.io.UncheckedIOException e) {
             System.err.println("Client disconnected during streaming, stopping mapping (" + e.getMessage() + ")");
+        } finally {
+            RequestCancellation.clearFlag();
         }
     }
 

@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * HTTP utility with transparent caching via ExternalApiCache.
@@ -42,6 +43,9 @@ public class CachedHttpClient {
      * GET a URL and parse as JSON, with caching.
      */
     public static JsonElement getJson(String url, int timeoutMs) throws IOException {
+        if (RequestCancellation.isCancelled()) {
+            throw new IOException("HTTP request cancelled: client disconnected");
+        }
         if (apiCache != null) {
             var cached = apiCache.get("GET", url, null);
             if (cached != null) {
@@ -61,21 +65,38 @@ public class CachedHttpClient {
 
         try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(url);
-            HttpResponse response = client.execute(request);
-            int statusCode = response.getStatusLine().getStatusCode();
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (statusCode < 200 || statusCode >= 300) {
-                    throw new IOException("HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+            // Abort the in-flight request as soon as the cancellation flag is set
+            AtomicBoolean flag = RequestCancellation.getFlag();
+            Thread watcher = null;
+            if (flag != null) {
+                Thread callerThread = Thread.currentThread();
+                watcher = Thread.ofVirtual().start(() -> {
+                    while (!flag.get()) {
+                        try { Thread.sleep(100); } catch (InterruptedException e) { return; }
+                    }
+                    request.abort();
+                    callerThread.interrupt();
+                });
+            }
+            try {
+                HttpResponse response = client.execute(request);
+                int statusCode = response.getStatusLine().getStatusCode();
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
+                    if (statusCode < 200 || statusCode >= 300) {
+                        throw new IOException("HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+                    }
+                    var parsed = parseJsonStrict(body, "GET", url);
+                    if (apiCache != null) {
+                        apiCache.put("GET", url, null, body, null, statusCode);
+                    }
+                    return parsed;
+                } else {
+                    throw new IOException("Response was null for GET " + url);
                 }
-                var parsed = parseJsonStrict(body, "GET", url);
-                if (apiCache != null) {
-                    apiCache.put("GET", url, null, body, null, statusCode);
-                }
-                return parsed;
-            } else {
-                throw new IOException("Response was null for GET " + url);
+            } finally {
+                if (watcher != null) watcher.interrupt();
             }
         }
     }
@@ -84,6 +105,9 @@ public class CachedHttpClient {
      * POST JSON to a URL and parse response as JSON, with caching.
      */
     public static JsonElement postJson(String url, String jsonBody, int timeoutMs) throws IOException {
+        if (RequestCancellation.isCancelled()) {
+            throw new IOException("HTTP request cancelled: client disconnected");
+        }
         if (apiCache != null) {
             var cached = apiCache.get("POST", url, jsonBody);
             if (cached != null) {

@@ -20,7 +20,9 @@ public class OlsTerm {
     }
     
     public boolean isObsolete() {
-        return is_obsolete != null && is_obsolete;
+        if (is_obsolete != null && is_obsolete) return true;
+        // OBO convention: obsolete terms have a label prefixed with "obsolete"
+        return label != null && label.toLowerCase().startsWith("obsolete");
     }
 
     /**

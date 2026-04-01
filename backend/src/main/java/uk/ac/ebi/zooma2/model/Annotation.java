@@ -12,6 +12,10 @@ public class Annotation {
     public Provenance provenance;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
 
+    /** Pre-resolved OlsTerm metadata from the OLS call that found this annotation.
+     *  When set, mapOne/annotationsToMapResults can skip calling resolveTerms(). */
+    public transient OlsTerm resolvedTerm;
+
     /** STUDY column from curated data (may be null for OLS-based matches). */
     public String study;
     /** BIOENTITY column from curated data (may be null for OLS-based matches). */

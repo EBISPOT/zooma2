@@ -177,6 +177,7 @@ public class OxoMatcher implements AnnotationMatcher {
         // Set the new semantic tag to the OXO target IRI
         String targetIri = prefixMap.shortFormToIri(oxoMapping.targetId);
         expandedAnnotation.semanticTags = List.of(targetIri);
+        expandedAnnotation.resolvedTerm = targetTerm;
         
         // Reduce confidence slightly since this is an indirect mapping
         expandedAnnotation.confidence = reduceConfidence(sourceAnnotation.confidence);

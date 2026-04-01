@@ -1,7 +1,9 @@
 package uk.ac.ebi.zooma2.matcher;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
@@ -17,10 +19,18 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 public class OlsLexicalMatcher implements AnnotationMatcher {
 
     private final OlsClientRepo olsRepo;
+    private final int maxResults;
+    private final int timeoutMs;
     private static final double MAX_CONFIDENCE = 0.85;
 
     public OlsLexicalMatcher(OlsClientRepo olsRepo) {
+        this(olsRepo, 20, 60000);
+    }
+
+    public OlsLexicalMatcher(OlsClientRepo olsRepo, int maxResults, int timeoutMs) {
         this.olsRepo = olsRepo;
+        this.maxResults = maxResults;
+        this.timeoutMs = timeoutMs;
     }
 
     @Override
@@ -30,7 +40,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
 
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        var terms = olsRepo.findByFuzzySearch(context.stringToMap, 20);
+        var terms = olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs);
         return terms.stream()
             .map(t -> createAnnotation(t, context))
             .collect(Collectors.toList());
@@ -44,6 +54,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(t.iri);
+        a.resolvedTerm = t;
 
         // Compute confidence: exact label match gets MAX_CONFIDENCE, synonym slightly less, others lower
         boolean isExactLabel = t.label != null && t.label.equalsIgnoreCase(context.stringToMap);
@@ -62,7 +73,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         } else if (isSynonymMatch) {
             a.confidence = MAX_CONFIDENCE - 0.05;
         } else {
-            a.confidence = MAX_CONFIDENCE - 0.15;
+            a.confidence = (MAX_CONFIDENCE - 0.15) * bestSimilarity(context.stringToMap, t);
         }
 
         a.provenance = new Annotation.Provenance();
@@ -88,5 +99,32 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         ));
 
         return a;
+    }
+
+    /** Best Jaccard token overlap between {@code query} and the term's label + all synonyms. */
+    private double bestSimilarity(String query, OlsTerm t) {
+        double best = t.label != null ? jaccardTokenOverlap(query, t.label) : 0.0;
+        if (t.synonyms != null) {
+            for (String syn : t.synonyms) {
+                best = Math.max(best, jaccardTokenOverlap(query, syn));
+            }
+        }
+        return best;
+    }
+
+    private double jaccardTokenOverlap(String a, String b) {
+        Set<String> tokA = tokenSet(a);
+        Set<String> tokB = tokenSet(b);
+        if (tokA.isEmpty() && tokB.isEmpty()) return 1.0;
+        if (tokA.isEmpty() || tokB.isEmpty()) return 0.0;
+        long intersection = tokA.stream().filter(tokB::contains).count();
+        long union = tokA.size() + tokB.size() - intersection;
+        return (double) intersection / union;
+    }
+
+    private Set<String> tokenSet(String s) {
+        return Arrays.stream(s.toLowerCase().split("\\W+"))
+            .filter(t -> !t.isEmpty())
+            .collect(Collectors.toSet());
     }
 }

@@ -22,17 +22,23 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     private final OlsClientRepo olsRepo;
     private final double minSimilarity;
     private final int maxResults;
+    private final int shallowResults;
     private final int timeoutMs;
     private static final String OLS_MODEL = "llama-embed-nemotron-8b_pca512";
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo) {
-        this(olsRepo, 0.7, 100, 60000);
+        this(olsRepo, 0.7, 100, 10, 60000);
     }
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults, int timeoutMs) {
+        this(olsRepo, minSimilarity, maxResults, 10, timeoutMs);
+    }
+
+    public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults, int shallowResults, int timeoutMs) {
         this.olsRepo = olsRepo;
         this.minSimilarity = minSimilarity;
         this.maxResults = maxResults;
+        this.shallowResults = shallowResults;
         this.timeoutMs = timeoutMs;
     }
 
@@ -43,10 +49,21 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
 
     @Override
     public List<Annotation> findMatches(MatchContext context) {
+        return searchWithSize(context, shallowResults);
+    }
+
+    /**
+     * Deep embedding search with full maxResults. Only call this if the shallow
+     * search didn't return results from the target ontologies.
+     */
+    public List<Annotation> findDeepMatches(MatchContext context) {
+        return searchWithSize(context, maxResults);
+    }
+
+    private List<Annotation> searchWithSize(MatchContext context, int size) {
         List<Annotation> annotations = new ArrayList<>();
 
-        // Single OLS-wide embedding search; the deduplicator filters to target ontologies
-        var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, maxResults, timeoutMs);
+        var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, size, timeoutMs);
         for (var term : terms) {
             if (term.score != null && term.score < minSimilarity) {
                 continue;
@@ -65,6 +82,7 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
         a.annotatedProperty.propertyValue = context.stringToMap;
         
         a.semanticTags = List.of(term.iri);
+        a.resolvedTerm = term;
         a.confidence = capEmbeddingScore(term.score != null ? term.score : 0.6);
         
         a.provenance = new Annotation.Provenance();

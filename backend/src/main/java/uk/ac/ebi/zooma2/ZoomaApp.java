@@ -29,12 +29,15 @@ public class ZoomaApp {
         var apiCache = new ExternalApiCache(zoomaDb);
         CachedHttpClient.setApiCache(apiCache);
 
+        var olsLexicalCfg = ZoomaConfig.config.ols_lexical;
+        int maxConcurrentLexical = (olsLexicalCfg != null && olsLexicalCfg.max_concurrent_requests != null)
+            ? olsLexicalCfg.max_concurrent_requests : 5;
         var olsEmbeddingCfg = ZoomaConfig.config.ols_embedding;
         int maxConcurrentEmbedding = (olsEmbeddingCfg != null && olsEmbeddingCfg.max_concurrent_embedding_requests != null) 
             ? olsEmbeddingCfg.max_concurrent_embedding_requests : 3;
         int maxConcurrentSimilar = (olsEmbeddingCfg != null && olsEmbeddingCfg.max_concurrent_similar_requests != null) 
             ? olsEmbeddingCfg.max_concurrent_similar_requests : 10;
-        var olsRepo = new OlsClientRepo(maxConcurrentEmbedding, maxConcurrentSimilar);
+        var olsRepo = new OlsClientRepo(maxConcurrentEmbedding, maxConcurrentSimilar, maxConcurrentLexical);
 
         // Initialize OLS term cache using unified database
         OlsTermCache olsTermCache = new OlsTermCache(zoomaDb);
