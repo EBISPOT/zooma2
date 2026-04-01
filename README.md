@@ -15,18 +15,18 @@ The API is available at `http://localhost:8090`. See `/v3/api/status` for health
 
 All configuration is via environment variables:
 
-| Variable | Default | Description |
-|---|---|---|
-| `ZOOMA2_DB_URL` | `jdbc:sqlite:zooma.db` | JDBC URL (SQLite or PostgreSQL) |
-| `ZOOMA2_DB_USER` | – | Database username (PostgreSQL only) |
-| `ZOOMA2_DB_PASS` | – | Database password (PostgreSQL only) |
-| `ZOOMA2_DATA_PATH` | `data` | Path to curated mapping TSV files |
-| `ZOOMA2_CONFIG_PATH` | `config.json` | Path to config file |
-| `ZOOMA2_MODELS_PATH` | `models` | Directory containing PCA projection JSON files |
-| `ZOOMA2_OLS_URL` | `https://wwwdev.ebi.ac.uk/ols4` | OLS4 API base URL |
-| `ZOOMA2_CONTEXT_PATH` | (none) | URL path prefix, e.g. `/spot/zooma` |
+| Variable | Default | Required | Description |
+|---|---|---|---|
+| `ZOOMA2_DB_URL` | `jdbc:sqlite:zooma.db` | No | JDBC URL (SQLite or PostgreSQL) |
+| `ZOOMA2_DB_USER` | – | PostgreSQL only | Database username |
+| `ZOOMA2_DB_PASS` | – | PostgreSQL only | Database password |
+| `ZOOMA2_CONFIG_PATH` | `config.json` | No | Path to config file |
+| `ZOOMA2_OLS_URL` | `https://wwwdev.ebi.ac.uk/ols4` | No | OLS4 API base URL |
+| `ZOOMA2_CONTEXT_PATH` | (none) | No | URL path prefix, e.g. `/spot/zooma` |
 
 ## Database
+
+The database stores: user mapping votes, cached OLS term lookups, and cached external API responses (OLS, OXO). The cache allows the test suite to run offline and reduces latency in production.
 
 ### SQLite (default)
 
@@ -48,10 +48,6 @@ export ZOOMA2_DB_USER=zooma
 export ZOOMA2_DB_PASS=secret
 java -jar backend/target/zooma2-1.0-SNAPSHOT.jar
 ```
-
-## Embedding models
-
-PCA projection matrices are discovered from the models directory (`ZOOMA2_MODELS_PATH`). Files must match the pattern `<model>_pca<N>.json.gz` (or `.json`), e.g. `llama-embed-nemotron-8b_pca512.json.gz`.
 
 ## Tests
 
