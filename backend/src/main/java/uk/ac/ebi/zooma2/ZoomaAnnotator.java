@@ -73,6 +73,13 @@ public class ZoomaAnnotator {
         return olsRepo.getEmbeddingModels();
     }
 
+    /**
+     * Run OLS tag_text on a whole body of text and return the raw matches with character offsets.
+     */
+    public List<OlsClientRepo.WholeTextTagMatch> tagWholeText(String text, List<String> ontologyIds) {
+        return olsRepo.tagWholeText(text, ontologyIds);
+    }
+
     boolean isNone(List<String> list) {
         return textTaggerService.isNone(list);
     }

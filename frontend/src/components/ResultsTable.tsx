@@ -1,6 +1,6 @@
 
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import * as ZoomaApi from "../api/ZoomaApi";
 import { ZoomaDatasources } from "../api/ZoomaDatasources";
 import { sources } from '../data/sources.json';
@@ -45,9 +45,10 @@ interface ResultsTableProps {
     searchParams?: ZoomaApi.SearchParams;
     inputProperties?: { textToMap: string; propertyType: string }[];
     searching?: boolean;
+    highlightedText?: string;
 }
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, datasources, searchParams, inputProperties, searching }) => {
+const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, datasources, searchParams, inputProperties, searching, highlightedText }) => {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(100);
@@ -160,6 +161,29 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     );
     const paginatedResults = filteredResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
+    // Scroll to first matching row when highlightedText changes
+    const tableContainerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!highlightedText || !tableContainerRef.current) return;
+        // Find the first result index that matches
+        const matchIndex = filteredResults.findIndex(r => 
+            r.textToMap?.toLowerCase() === highlightedText.toLowerCase()
+        );
+        if (matchIndex < 0) return;
+        // Navigate to the correct page
+        const targetPage = Math.floor(matchIndex / rowsPerPage);
+        if (targetPage !== page) {
+            setPage(targetPage);
+        }
+        // Scroll to the row after a brief delay for rendering
+        setTimeout(() => {
+            const row = tableContainerRef.current?.querySelector(`[data-highlight-text="${CSS.escape(highlightedText.toLowerCase())}"]`);
+            if (row) {
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }, [highlightedText]);
+
     const hasAnyPropertyType = useMemo(() => effectiveResults.some(r => r.propertyType && r.propertyType.trim() !== ''), [effectiveResults]);
 
     const handleApprove = (key: string, result: ZoomaApi.SearchResult) => {
@@ -268,7 +292,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
 
     return (
         <Box>
-            <TableContainer component={Paper} sx={{ mt: 2 }}>
+            <TableContainer ref={tableContainerRef} component={Paper} sx={{ mt: 2 }}>
                 <Table size="small">
                     <TableHead>
                         <TableRow>
@@ -292,8 +316,18 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                             const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
                             const isRetrying = retrying.has(propKey);
                             const rowClass = isError ? 'error-row' : isInProgress ? 'in-progress' : isApproved ? 'automatic' : (getResultClass(result) === 'automatic' && multiGreenKeys.has(propKey)) ? 'curation' : getResultClass(result);
+                            const isHighlighted = !!highlightedText && result.textToMap?.toLowerCase() === highlightedText.toLowerCase();
                             return (
-                                <TableRow key={key} className={`results-row ${rowClass}`}>
+                                <TableRow 
+                                    key={key} 
+                                    className={`results-row ${rowClass}`}
+                                    data-highlight-text={result.textToMap?.toLowerCase() || ''}
+                                    sx={isHighlighted ? { 
+                                        outline: '2px solid #2e7d32',
+                                        outlineOffset: -2,
+                                        bgcolor: 'rgba(46, 125, 50, 0.08) !important',
+                                    } : undefined}
+                                >
                                     <TableCell>{result.textToMap}</TableCell>
                                     {hasAnyPropertyType && <TableCell>{result.propertyType}</TableCell>}
                                     <TableCell>{isInProgress ? '' : isError ? (

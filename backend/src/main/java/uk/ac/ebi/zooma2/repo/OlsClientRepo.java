@@ -590,7 +590,7 @@ public class OlsClientRepo {
         // word-boundary delimiters so only whole tokens match
         urlBuilder.append("&delimiters=").append(
             java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
-        urlBuilder.append("&minLength=3");
+        urlBuilder.append("&minLength=6");
         if (ontologyIds != null) {
             for (String ont : ontologyIds) {
                 urlBuilder.append("&ontologyId=").append(
@@ -689,6 +689,120 @@ public class OlsClientRepo {
             this.shortForm = shortForm;
             this.synonyms = synonyms;
             this.isObsolete = isObsolete;
+        }
+    }
+
+    /**
+     * Result from tagWholeText: a tag_text match with its character offsets in the original text
+     * and the matched substring.
+     */
+    public static class WholeTextTagMatch {
+        public final int start;
+        public final int end;
+        public final String matchedText; // substring of the original text that was matched
+        public final String termLabel;
+        public final String termIri;
+        public final String ontologyId;
+        public final String stringType;
+        public final String source;
+        public final String shortForm;
+        public final List<String> synonyms;
+        public final Boolean isObsolete;
+
+        public WholeTextTagMatch(int start, int end, String matchedText,
+                                 String termLabel, String termIri, String ontologyId,
+                                 String stringType, String source, String shortForm,
+                                 List<String> synonyms, Boolean isObsolete) {
+            this.start = start;
+            this.end = end;
+            this.matchedText = matchedText;
+            this.termLabel = termLabel;
+            this.termIri = termIri;
+            this.ontologyId = ontologyId;
+            this.stringType = stringType;
+            this.source = source;
+            this.shortForm = shortForm;
+            this.synonyms = synonyms;
+            this.isObsolete = isObsolete;
+        }
+    }
+
+    /**
+     * Use OLS text tagger on a whole body of text (not individual terms).
+     * Returns all matches with their character offsets in the original text.
+     *
+     * @param text The raw input text to tag
+     * @param ontologyIds Optional list of ontology IDs to restrict to
+     * @return List of matches with character positions in the input text
+     */
+    public List<WholeTextTagMatch> tagWholeText(String text, List<String> ontologyIds) {
+        if (text == null || text.isBlank()) {
+            return List.of();
+        }
+
+        StringBuilder urlBuilder = new StringBuilder();
+        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=true");
+        urlBuilder.append("&delimiters=").append(
+            java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
+        urlBuilder.append("&minLength=6");
+        if (ontologyIds != null) {
+            for (String ont : ontologyIds) {
+                urlBuilder.append("&ontologyId=").append(
+                    java.net.URLEncoder.encode(ont, java.nio.charset.StandardCharsets.UTF_8));
+            }
+        }
+
+        try {
+            String body = gson.toJson(Map.of("text", text));
+            var json = postJsonToUrl(urlBuilder.toString(), body);
+
+            if (json == null || !json.getAsJsonObject().has("entities")) {
+                System.err.println("No entities in tag_text (whole text) response");
+                return List.of();
+            }
+
+            var entities = json.getAsJsonObject().get("entities").getAsJsonArray();
+            System.err.println("tag_text (whole text) returned " + entities.size() + " entity hits");
+
+            List<WholeTextTagMatch> results = new ArrayList<>();
+            Set<String> seenSpanIri = new HashSet<>();
+
+            for (var entity : entities) {
+                var obj = entity.getAsJsonObject();
+                int start = obj.get("start").getAsInt();
+                int end = obj.get("end").getAsInt();
+                String termLabel = obj.has("term_label") ? obj.get("term_label").getAsString() : null;
+                String termIri = obj.has("term_iri") ? obj.get("term_iri").getAsString() : null;
+                String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
+                String stringType = obj.has("string_type") ? obj.get("string_type").getAsString() : null;
+                String source = obj.has("source") && !obj.get("source").isJsonNull() ? obj.get("source").getAsString() : null;
+                String shortForm = obj.has("short_form") ? obj.get("short_form").getAsString() :
+                                   (obj.has("shortForm") ? obj.get("shortForm").getAsString() : null);
+                List<String> synonyms = null;
+                if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
+                    synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
+                }
+                Boolean isObsolete = null;
+                if (obj.has("is_obsolete") && !obj.get("is_obsolete").isJsonNull()) {
+                    isObsolete = obj.get("is_obsolete").getAsBoolean();
+                } else if (obj.has("isObsolete") && !obj.get("isObsolete").isJsonNull()) {
+                    isObsolete = obj.get("isObsolete").getAsBoolean();
+                }
+
+                // Deduplicate by (start, end, IRI) to avoid duplicate annotations for the same span
+                String key = start + ":" + end + ":" + termIri;
+                if (!seenSpanIri.add(key)) continue;
+
+                String matchedText = text.substring(start, Math.min(end, text.length()));
+                results.add(new WholeTextTagMatch(start, end, matchedText,
+                    termLabel, termIri, ontologyId, stringType, source, shortForm, synonyms, isObsolete));
+            }
+
+            return results;
+
+        } catch (IOException e) {
+            System.err.println("Error calling tag_text (whole text): " + e.getMessage());
+            return List.of();
         }
     }
 

@@ -7,6 +7,7 @@ import io.javalin.http.NotFoundResponse;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import uk.ac.ebi.zooma2.api.v2.ZoomaApiV2;
 import uk.ac.ebi.zooma2.api.v3.ZoomaApiV3;
+import uk.ac.ebi.zooma2.nlp.TextSegmenter;
 import uk.ac.ebi.zooma2.repo.ExternalApiCache;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsTermCache;
@@ -45,6 +46,16 @@ public class ZoomaApp {
 
         var annotator = new ZoomaAnnotator(olsRepo);
 
+        // Initialize NLP text segmenter for annotate-text endpoint
+        TextSegmenter textSegmenter;
+        try {
+            textSegmenter = new TextSegmenter();
+            System.out.println("OpenNLP TextSegmenter initialized successfully");
+        } catch (java.io.IOException e) {
+            System.err.println("Failed to initialize TextSegmenter: " + e.getMessage());
+            throw new RuntimeException("Cannot start without NLP models", e);
+        }
+
         var app = Javalin.create(config -> {
             config.http.generateEtags = true;
             config.router.apiBuilder(() -> {});
@@ -64,7 +75,7 @@ public class ZoomaApp {
         var apiV2 = new ZoomaApiV2(annotator, olsRepo);
         apiV2.registerRoutes(app);
         
-        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb));
+        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb), textSegmenter);
         apiV3.registerRoutes(app);
 
         // Global handlers

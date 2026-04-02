@@ -478,3 +478,155 @@ export function searchStream(
 
     return controller
 }
+
+// ==================== Annotate Text (NLP segmentation + mapping) ====================
+
+export interface TextSegment {
+    text: string
+    start: number
+    end: number
+}
+
+export interface AnnotateTextParams {
+    text: string
+    doNotSearchDatasources: boolean
+    requiredSources: string[]
+    preferredSources: string[]
+    doNotSearchOntologies: boolean
+    targetOntologies: string[]
+    includeOtherOntologies: boolean
+    llmModel: string
+}
+
+export interface AnnotateTextSegmentsResult {
+    segments: TextSegment[]
+    originalText: string
+}
+
+/**
+ * Streaming annotate-text endpoint. First sends segments (NLP-extracted noun phrases),
+ * then streams mapping results as each segment completes.
+ * Returns an AbortController that can be used to cancel the request.
+ */
+export function annotateTextStream(
+    params: AnnotateTextParams,
+    onSegments: (result: AnnotateTextSegmentsResult) => void,
+    onProgress: (progress: StreamProgress) => void,
+    onDone: (results: SearchResult[]) => void,
+    onError: (error: Error) => void
+): AbortController {
+    const controller = new AbortController()
+
+    const requestBody = {
+        text: params.text,
+        model: params.llmModel || 'text-embedding-3-small',
+        targetOntologies: params.targetOntologies || [],
+        includeOtherOntologies: params.includeOtherOntologies,
+        filter: {
+            required: params.doNotSearchDatasources ? [] : params.requiredSources,
+            preferred: params.doNotSearchDatasources ? [] : params.preferredSources,
+        }
+    }
+
+    const allResults: SearchResult[] = []
+
+    fetch(apiUrl + '/v3/api/services/annotate-text-stream', {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/x-ndjson'
+        },
+        signal: controller.signal
+    }).then(async (res) => {
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${await res.text()}`)
+        }
+        const reader = res.body!.getReader()
+        const decoder = new TextDecoder()
+        let buffer = ''
+
+        while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+
+            buffer += decoder.decode(value, { stream: true })
+            const lines = buffer.split('\n')
+            buffer = lines.pop() || ''
+
+            for (const line of lines) {
+                if (!line.trim()) continue
+                const event = JSON.parse(line)
+
+                if (event.type === 'segments') {
+                    onSegments({
+                        segments: event.segments as TextSegment[],
+                        originalText: event.originalText as string
+                    })
+                } else if (event.type === 'result') {
+                    const mapping = event.mapping as V3PropertyMapping
+                    if (mapping.error) {
+                        allResults.push({
+                            propertyType: mapping.propertyType,
+                            textToMap: mapping.textToMap,
+                            ontologyTermLabel: '',
+                            ontologyTermSynonyms: '',
+                            mappingConfidence: '',
+                            ontologyTermID: '',
+                            ontologyURI: '',
+                            datasource: '',
+                            error: mapping.error
+                        })
+                    } else {
+                        for (const candidate of mapping.candidates) {
+                            allResults.push({
+                                propertyType: mapping.propertyType,
+                                textToMap: mapping.textToMap,
+                                ontologyTermLabel: candidate.label,
+                                ontologyTermSynonyms: candidate.synonyms?.join('|') || '',
+                                mappingConfidence: candidate.confidence?.toString() || '',
+                                ontologyTermID: candidate.termId,
+                                ontologyURI: candidate.uri,
+                                datasource: candidate.datasource,
+                                mappingProvenance: candidate.mappingProvenance
+                            })
+                        }
+                        if (mapping.candidates.length === 0) {
+                            allResults.push({
+                                propertyType: mapping.propertyType,
+                                textToMap: mapping.textToMap,
+                                ontologyTermLabel: mapping.textToMap,
+                                ontologyTermSynonyms: '',
+                                mappingConfidence: 'Did not map',
+                                ontologyTermID: '',
+                                ontologyURI: '',
+                                datasource: '',
+                            })
+                        }
+                    }
+                    onProgress({
+                        completed: event.completed,
+                        total: event.total,
+                        results: allResults
+                    })
+                } else if (event.type === 'done') {
+                    onDone(allResults)
+                }
+                // ignore 'ping' events
+            }
+        }
+        // Handle remaining buffer
+        if (buffer.trim()) {
+            const event = JSON.parse(buffer)
+            if (event.type === 'done') {
+                onDone(allResults)
+            }
+        }
+    }).catch((err) => {
+        if (err.name !== 'AbortError') {
+            onError(err)
+        }
+    })
+
+    return controller
+}

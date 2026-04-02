@@ -1,5 +1,6 @@
 import { Fragment, ChangeEvent, useEffect, useState, useRef, useCallback, useMemo } from "react";
 import ResultsTable from "../components/ResultsTable";
+import SegmentedTextDisplay from "../components/SegmentedTextDisplay";
 import * as ZoomaApi from '../api/ZoomaApi';
 import { getDatasources, ZoomaDatasources } from "../api/ZoomaDatasources";
 import { ZoomaDatasourceConfig } from "../api/ZoomaDatasourceConfig";
@@ -13,7 +14,7 @@ import {
   Button, Box, Typography, 
   Accordion, AccordionSummary, AccordionDetails,
   CircularProgress, Chip, IconButton, Tooltip,
-  LinearProgress
+  LinearProgress, Tabs, Tab
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -32,6 +33,13 @@ export default function Home() {
   const mappedCount = useMemo(() => resultsRef.current.filter(r => parseFloat(r.mappingConfidence) >= 0.9).length, [resultsVersion])
   const abortControllerRef = useRef<AbortController | null>(null)
   const throttleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Annotate Text mode state
+  const [inputMode, setInputMode] = useState<'mapStrings' | 'annotateText'>('mapStrings')
+  const [annotateText, setAnnotateText] = useState<string>('')
+  const [segments, setSegments] = useState<ZoomaApi.AnnotateTextSegmentsResult | null>(null)
+  const [activeSegment, setActiveSegment] = useState<string | undefined>(undefined)
+  const [removedPhrases, setRemovedPhrases] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     loadDatasources()
@@ -111,7 +119,13 @@ export default function Home() {
   }
 
   const onEditQuery = (e: ChangeEvent) => {
-    setQuery((e.target as any).value)
+    const value = (e.target as any).value as string
+    setQuery(value)
+    // Auto-switch to Annotate Text if any line has more than 30 words
+    if (inputMode === 'mapStrings' && value.split('\n').some(line => line.trim().split(/\s+/).length > 30)) {
+      setAnnotateText(value)
+      setInputMode('annotateText')
+    }
   }
 
   const getQueryCount = () => query.split('\n').filter(line => line.trim()).length
@@ -180,6 +194,67 @@ export default function Home() {
     )
   }
 
+  const onClickAnnotateText = async () => {
+    if (!annotateText.trim()) return
+
+    setSearching(true)
+    resultsRef.current = []
+    setResultsVersion(0)
+    setProgress(null)
+    setSegments(null)
+    setActiveSegment(undefined)
+
+    let params: ZoomaApi.AnnotateTextParams = {
+      text: annotateText,
+      requiredSources: [...(datasourceConfig!.unrankedDatasources), ...(datasourceConfig!.rankedDatasources)],
+      preferredSources: datasourceConfig!.rankedDatasources,
+      doNotSearchDatasources: datasourceConfig!.doNotSearchDatasources,
+      doNotSearchOntologies: datasourceConfig!.doNotSearchOntologies,
+      targetOntologies: datasourceConfig!.targetOntologies || [],
+      includeOtherOntologies: datasourceConfig!.includeOtherOntologies ?? true,
+      llmModel: 'text-embedding-3-small'
+    }
+
+    abortControllerRef.current = ZoomaApi.annotateTextStream(
+      params,
+      (segResult) => {
+        setSegments(segResult)
+        setProgress({ completed: 0, total: segResult.segments.length > 0 ? 1 : 0 })
+      },
+      (streamProgress) => {
+        resultsRef.current = streamProgress.results
+        if (!throttleTimerRef.current) {
+          throttleTimerRef.current = setTimeout(() => {
+            throttleTimerRef.current = null
+            setResultsVersion(v => v + 1)
+            setProgress({ completed: streamProgress.completed, total: streamProgress.total })
+          }, 500)
+        }
+      },
+      (finalResults) => {
+        if (throttleTimerRef.current) {
+          clearTimeout(throttleTimerRef.current)
+          throttleTimerRef.current = null
+        }
+        resultsRef.current = finalResults
+        setResultsVersion(v => v + 1)
+        setSearching(false)
+        setProgress(null)
+        abortControllerRef.current = null
+      },
+      (error) => {
+        if (throttleTimerRef.current) {
+          clearTimeout(throttleTimerRef.current)
+          throttleTimerRef.current = null
+        }
+        console.error('Annotate text error:', error)
+        setSearching(false)
+        setProgress(null)
+        abortControllerRef.current = null
+      }
+    )
+  }
+
   const onClickClear = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort()
@@ -190,10 +265,14 @@ export default function Home() {
       throttleTimerRef.current = null
     }
     setQuery('')
+    setAnnotateText('')
     resultsRef.current = []
     setResultsVersion(0)
     setSearching(false)
     setProgress(null)
+    setSegments(null)
+    setActiveSegment(undefined)
+    setRemovedPhrases(new Set())
   }
 
   const onClickShowExamples = () => {
@@ -232,59 +311,109 @@ export default function Home() {
           
           {/* Query Section */}
           <Box sx={{ mb: 4 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-              <Typography variant="h5" sx={{ fontWeight: 500, display: 'flex', alignItems: 'center' }}>
-                <Box component="span" sx={{ 
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  width: 28, height: 28, borderRadius: '50%', bgcolor: '#2e7d32', color: 'white',
-                  fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
-                }}>1</Box>
-                Enter strings to map
-              </Typography>
+            <Typography variant="h5" sx={{ fontWeight: 500, display: 'flex', alignItems: 'center', mb: 1.5 }}>
+              <Box component="span" sx={{ 
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 28, height: 28, borderRadius: '50%', bgcolor: '#2e7d32', color: 'white',
+                fontSize: '0.9rem', fontWeight: 600, mr: 1.5, flexShrink: 0
+              }}>1</Box>
+              Enter strings to map
+            </Typography>
+
+            {/* Tabs + Upload CSV / Load Examples row */}
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
+              <Tabs 
+                value={inputMode} 
+                onChange={(_, v) => setInputMode(v)}
+                sx={{ 
+                  minHeight: 42,
+                  borderBottom: '2px solid #e0e0e0',
+                  '& .MuiTabs-indicator': { bgcolor: '#2e7d32', height: '2px' },
+                  '& .MuiTab-root': {
+                    minHeight: 42,
+                    textTransform: 'none',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    py: 0,
+                    px: 2.5,
+                    color: 'text.secondary',
+                    '&.Mui-selected': { color: '#2e7d32' },
+                  },
+                }}
+              >
+                <Tab label="Map Strings" value="mapStrings" />
+                <Tab label="Annotate Text" value="annotateText" />
+              </Tabs>
               <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                <CsvImportDialog onImport={(terms) => setQuery(prev => prev ? prev + '\n' + terms : terms)} />
+                <CsvImportDialog onImport={(terms) => { setInputMode('mapStrings'); setQuery(prev => prev ? prev + '\n' + terms : terms); }} />
                 <Typography 
                   variant="body2" 
                   sx={{ color: '#2e7d32', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
-                  onClick={onClickShowExamples}
+                  onClick={() => { setInputMode('mapStrings'); onClickShowExamples(); }}
                 >
                   Load examples
                 </Typography>
               </Box>
             </Box>
-            
-            <textarea 
-              style={{ 
-                width: '100%',
-                minHeight: '160px',
-                padding: '16px',
-                fontSize: '15px',
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-                border: '2px solid #e0e0e0',
-                borderRadius: '8px',
-                resize: 'vertical',
-                outline: 'none',
-                transition: 'border-color 0.2s',
-              }}
-              value={query}
-              placeholder={"Enter strings to map, one per line"}
-              onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
-              onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
-              onKeyDown={(e) => {
-                if (e.key === "Tab") {
-                  e.preventDefault();
-                  const target = e.target as any;
-                  const start = target.selectionStart;
-                  const end = target.selectionEnd;
-                  const value = target.value;
-                  target.value = value.substring(0, start) + "\t" + value.substring(end);
-                  target.selectionStart = target.selectionEnd = start + 1;
-                  const event = new Event("input", { bubbles: true });
-                  target.dispatchEvent(event);
-                }
-              }}
-              onChange={onEditQuery}
-            />
+
+            {/* Map Strings textarea */}
+            {inputMode === 'mapStrings' && (
+              <textarea 
+                style={{ 
+                  width: '100%',
+                  minHeight: '160px',
+                  padding: '16px',
+                  fontSize: '15px',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                  border: '2px solid #e0e0e0',
+                  borderRadius: '8px',
+                  resize: 'vertical',
+                  outline: 'none',
+                  transition: 'border-color 0.2s',
+                }}
+                value={query}
+                placeholder={"Enter strings to map, one per line"}
+                onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
+                onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+                onKeyDown={(e) => {
+                  if (e.key === "Tab") {
+                    e.preventDefault();
+                    const target = e.target as any;
+                    const start = target.selectionStart;
+                    const end = target.selectionEnd;
+                    const value = target.value;
+                    target.value = value.substring(0, start) + "\t" + value.substring(end);
+                    target.selectionStart = target.selectionEnd = start + 1;
+                    const event = new Event("input", { bubbles: true });
+                    target.dispatchEvent(event);
+                  }
+                }}
+                onChange={onEditQuery}
+              />
+            )}
+
+            {/* Annotate Text textarea */}
+            {inputMode === 'annotateText' && (
+              <textarea 
+                style={{ 
+                  width: '100%',
+                  minHeight: '200px',
+                  padding: '16px',
+                  fontSize: '15px',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                  border: '2px solid #e0e0e0',
+                  borderRadius: '8px',
+                  resize: 'vertical',
+                  outline: 'none',
+                  transition: 'border-color 0.2s',
+                }}
+                value={annotateText}
+                placeholder={"Paste or type free text to annotate. Noun phrases will be extracted and mapped to ontology terms."}
+                onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
+                onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+                onChange={(e) => setAnnotateText(e.target.value)}
+              />
+            )}
           </Box>
 
           {/* Settings Section */}
@@ -364,8 +493,8 @@ export default function Home() {
                 variant="contained"
                 color="success"
                 size="large"
-                onClick={onClickAnnotate}
-                disabled={searching || getQueryCount() === 0}
+                onClick={inputMode === 'mapStrings' ? onClickAnnotate : onClickAnnotateText}
+                disabled={searching || (inputMode === 'mapStrings' ? getQueryCount() === 0 : !annotateText.trim())}
                 sx={{ 
                   px: 4, 
                   py: 1.25,
@@ -381,11 +510,13 @@ export default function Home() {
                     <CircularProgress size={20} sx={{ mr: 1, color: 'white' }} />
                     Searching...
                   </>
-                ) : (
+                ) : inputMode === 'mapStrings' ? (
                   `Map${getQueryCount() > 0 ? ` ${getQueryCount()} string${getQueryCount() > 1 ? 's' : ''}` : ''}`
+                ) : (
+                  'Annotate Text'
                 )}
               </Button>
-              {(resultsRef.current.length > 0 || query) && (
+              {(resultsRef.current.length > 0 || query || annotateText) && (
                 <Button 
                   variant="text" 
                   onClick={onClickClear}
@@ -398,8 +529,22 @@ export default function Home() {
           </Box>
 
           {/* Results Section */}
-          {(resultsRef.current.length > 0 || searching) && (
+          {(resultsRef.current.length > 0 || searching || segments) && (
             <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
+
+              {/* Segmented text display (annotate-text mode) */}
+              {segments && (
+                <SegmentedTextDisplay
+                  originalText={segments.originalText}
+                  segments={segments.segments}
+                  results={resultsRef.current}
+                  onSegmentClick={(text) => setActiveSegment(prev => prev?.toLowerCase() === text.toLowerCase() ? undefined : text)}
+                  onRemovePhrase={(text) => setRemovedPhrases(prev => { const next = new Set(prev); next.add(text.toLowerCase()); return next; })}
+                  removedPhrases={removedPhrases}
+                  activeSegment={activeSegment}
+                />
+              )}
+
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Typography variant="h5" sx={{ fontWeight: 500 }}>
                   Results {resultsRef.current.length > 0 && lastSearchParams?.properties && `(${mappedCount} out of ${lastSearchParams.properties.length} mapped)`}
@@ -420,12 +565,12 @@ export default function Home() {
                       {progress.completed} out of {progress.total} processed
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {Math.round((progress.completed / progress.total) * 100)}%
+                      {progress.total > 0 ? Math.round((progress.completed / progress.total) * 100) : 0}%
                     </Typography>
                   </Box>
                   <LinearProgress 
                     variant="determinate" 
-                    value={(progress.completed / progress.total) * 100}
+                    value={progress.total > 0 ? (progress.completed / progress.total) * 100 : 0}
                     color="success"
                     sx={{ height: 8, borderRadius: 4 }}
                   />
@@ -433,7 +578,7 @@ export default function Home() {
               )}
               
               {resultsRef.current.length > 0 ? (
-                <ResultsTable results={resultsRef.current} resultsVersion={resultsVersion} datasources={datasources} searchParams={lastSearchParams} inputProperties={lastSearchParams?.properties} searching={searching} />
+                <ResultsTable results={removedPhrases.size > 0 ? resultsRef.current.filter(r => !removedPhrases.has((r.textToMap || '').toLowerCase())) : resultsRef.current} resultsVersion={resultsVersion} datasources={datasources} searchParams={lastSearchParams} inputProperties={lastSearchParams?.properties} searching={searching} highlightedText={activeSegment} />
               ) : searching && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
                   <CircularProgress />

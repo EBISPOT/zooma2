@@ -7,6 +7,8 @@ import io.javalin.http.InternalServerErrorResponse;
 import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
+import uk.ac.ebi.zooma2.api.v3.dto.AnnotateTextRequestDto;
+import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapResponseDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingCandidateDto;
@@ -14,6 +16,8 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3StringToMapDto;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
+import uk.ac.ebi.zooma2.model.StringToMap;
+import uk.ac.ebi.zooma2.nlp.TextSegmenter;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OlsOntology;
 import uk.ac.ebi.zooma2.repo.VoteRepository;
@@ -33,12 +37,14 @@ public class ZoomaApiV3 {
     private final ZoomaAnnotator annotator;
     private final OlsClientRepo olsRepo;
     private final VoteRepository voteRepo;
+    private final TextSegmenter textSegmenter;
     private final Gson gson = new Gson();
 
-    public ZoomaApiV3(ZoomaAnnotator annotator, OlsClientRepo olsRepo, VoteRepository voteRepo) {
+    public ZoomaApiV3(ZoomaAnnotator annotator, OlsClientRepo olsRepo, VoteRepository voteRepo, TextSegmenter textSegmenter) {
         this.annotator = annotator;
         this.olsRepo = olsRepo;
         this.voteRepo = voteRepo;
+        this.textSegmenter = textSegmenter;
     }
 
     public void registerRoutes(Javalin app) {
@@ -57,6 +63,9 @@ public class ZoomaApiV3 {
         
         // Streaming mapping endpoint - sends results as NDJSON as each property completes
         app.post("/v3/api/services/map-stream", this::mapStream);
+
+        // Annotate text endpoint - NLP segmentation + streaming mapping
+        app.post("/v3/api/services/annotate-text-stream", this::annotateTextStream);
 
         // Ontology presets
         app.get("/v3/api/ontology-presets", this::getOntologyPresets);
@@ -345,6 +354,199 @@ public class ZoomaApiV3 {
 
         } catch (IOException | java.io.UncheckedIOException e) {
             System.err.println("Client disconnected during streaming, stopping mapping (" + e.getMessage() + ")");
+        } finally {
+            RequestCancellation.clearFlag();
+        }
+    }
+
+    /**
+     * Annotate free text: run OLS tag_text on the whole text as a fast initial pass,
+     * then segment using NLP, merge segments, and stream mapping results.
+     * First message is {"type":"segments",...} with extracted/tagged phrases and their offsets.
+     * Subsequent messages are {"type":"result",...} as each unique segment completes mapping.
+     * Final message is {"type":"done",...}.
+     */
+    private void annotateTextStream(Context ctx) {
+        var request = bodyJson(ctx, AnnotateTextRequestDto.class);
+
+        if (request.text == null || request.text.isBlank()) {
+            throw new BadRequestResponse("'text' is required and cannot be empty");
+        }
+
+        var targetOntologies = request.targetOntologies;
+        boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        var filter = request.filter != null
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+
+        String model = request.model;
+        if (model == null || model.isEmpty()) {
+            model = olsRepo.getDefaultEmbeddingModel();
+            if (model == null) {
+                model = "text-embedding-3-small";
+            }
+        }
+
+        // Step 1: Run OLS tag_text on the whole text AND NLP segmentation in parallel
+        var wholeTextMatches = new java.util.concurrent.atomic.AtomicReference<List<OlsClientRepo.WholeTextTagMatch>>();
+        var nlpResult = new java.util.concurrent.atomic.AtomicReference<TextSegmenter.SegmentationResult>();
+
+        var tagTextThread = Thread.ofVirtual().start(() ->
+            wholeTextMatches.set(annotator.tagWholeText(request.text, targetOntologies))
+        );
+        var nlpThread = Thread.ofVirtual().start(() ->
+            nlpResult.set(textSegmenter.segment(request.text))
+        );
+
+        try {
+            tagTextThread.join();
+            nlpThread.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new InternalServerErrorResponse("Interrupted during text analysis");
+        }
+
+        var tagMatches = wholeTextMatches.get();
+        var segResult = nlpResult.get();
+
+        System.err.println("Whole-text tag_text found " + tagMatches.size() + " matches; NLP found " + segResult.segments().size() + " segments");
+
+        // Step 2: Convert tag_text matches to segments and merge with NLP segments
+        List<TextSegmenter.TextSegment> tagTextSegments = tagMatches.stream()
+            .map(m -> new TextSegmenter.TextSegment(m.matchedText, m.start, m.end))
+            .collect(Collectors.toList());
+
+        var mergedResult = TextSegmenter.mergeSegments(segResult.segments(), tagTextSegments);
+
+        int total = mergedResult.uniqueTexts().size();
+
+        // Build StringToMap list from merged unique texts
+        List<StringToMap> properties = mergedResult.uniqueTexts().stream()
+            .map(text -> {
+                var stm = new StringToMap();
+                stm.textToMap = text;
+                return stm;
+            })
+            .collect(Collectors.toList());
+
+        // Build segment DTOs for the first message
+        List<TextSegmentDto> segmentDtos = mergedResult.segments().stream()
+            .map(seg -> new TextSegmentDto(seg.text(), seg.start(), seg.end()))
+            .collect(Collectors.toList());
+
+        ctx.res().setContentType("application/x-ndjson");
+        ctx.res().setCharacterEncoding("UTF-8");
+
+        var cancelled = RequestCancellation.newFlag();
+        try {
+            var out = ctx.res().getOutputStream();
+
+            // Step 3: Immediately send segments message
+            var segmentsEvent = new LinkedHashMap<String, Object>();
+            segmentsEvent.put("type", "segments");
+            segmentsEvent.put("segments", segmentDtos);
+            segmentsEvent.put("originalText", request.text);
+            synchronized (out) {
+                out.write((gson.toJson(segmentsEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                out.flush();
+            }
+
+            if (total == 0) {
+                // No segments found, send done immediately
+                var doneEvent = new LinkedHashMap<String, Object>();
+                doneEvent.put("type", "done");
+                doneEvent.put("completed", 0);
+                doneEvent.put("total", 0);
+                synchronized (out) {
+                    out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                    out.flush();
+                }
+                return;
+            }
+
+            // Step 4: Map each unique segment through the mapping pipeline
+            var completed = new java.util.concurrent.atomic.AtomicInteger(0);
+            var mappingDone = new java.util.concurrent.atomic.AtomicBoolean(false);
+
+            // Heartbeat thread (same pattern as mapStream)
+            var heartbeatThread = Thread.ofVirtual().start(() -> {
+                while (!mappingDone.get()) {
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+                    if (mappingDone.get()) return;
+                    try {
+                        synchronized (out) {
+                            out.write("{\"type\":\"ping\"}\n".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                            out.flush();
+                        }
+                    } catch (IOException e) {
+                        cancelled.set(true);
+                        System.err.println("Client disconnected (heartbeat): " + e.getMessage());
+                        return;
+                    }
+                }
+            });
+
+            try {
+                annotator.mapEach(properties, filter, model, (prop, results) -> {
+                    if (cancelled.get()) {
+                        throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
+                    }
+
+                    String error = results.stream()
+                        .filter(r -> r.error != null)
+                        .map(r -> r.error)
+                        .findFirst().orElse(null);
+
+                    List<V3MappingCandidateDto> candidates = results.stream()
+                        .filter(r -> r.error == null)
+                        .map(V3MappingCandidateDto::from)
+                        .sorted(Comparator.comparing(
+                            c -> c.confidence != null ? c.confidence : 0.0,
+                            Comparator.reverseOrder()
+                        ))
+                        .collect(Collectors.toList());
+
+                    var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
+                    mapping.error = error;
+                    int done = completed.incrementAndGet();
+
+                    var event = new LinkedHashMap<String, Object>();
+                    event.put("type", "result");
+                    event.put("mapping", mapping);
+                    event.put("completed", done);
+                    event.put("total", total);
+
+                    try {
+                        synchronized (out) {
+                            out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                            out.flush();
+                        }
+                    } catch (IOException e) {
+                        throw new java.io.UncheckedIOException(e);
+                    }
+                });
+
+                if (!cancelled.get()) {
+                    var doneEvent = new LinkedHashMap<String, Object>();
+                    doneEvent.put("type", "done");
+                    doneEvent.put("completed", total);
+                    doneEvent.put("total", total);
+                    synchronized (out) {
+                        out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                        out.flush();
+                    }
+                }
+            } finally {
+                mappingDone.set(true);
+                heartbeatThread.interrupt();
+            }
+
+        } catch (IOException | java.io.UncheckedIOException e) {
+            System.err.println("Client disconnected during annotate-text streaming (" + e.getMessage() + ")");
         } finally {
             RequestCancellation.clearFlag();
         }
