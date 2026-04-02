@@ -408,7 +408,7 @@ export default function Home() {
                   transition: 'border-color 0.2s',
                 }}
                 value={annotateText}
-                placeholder={"Paste or type free text to annotate. Noun phrases will be extracted and mapped to ontology terms."}
+                placeholder={"Paste or type free text to annotate."}
                 onFocus={(e) => e.target.style.borderColor = '#2e7d32'}
                 onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
                 onChange={(e) => setAnnotateText(e.target.value)}
