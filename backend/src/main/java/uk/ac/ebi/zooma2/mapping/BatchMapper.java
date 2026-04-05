@@ -52,7 +52,11 @@ public class BatchMapper {
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model,
                                         List<String> excludeTermIds, boolean returnAll) {
-        boolean deep = returnAll;
+        return mapAll(stringsToMap, sources, model, excludeTermIds, returnAll, null);
+    }
+
+    public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model,
+                                        List<String> excludeTermIds, boolean returnAll, Boolean deep) {
         List<StringToMap> properties = stringsToMap.collect(Collectors.toList());
 
         List<String> allTerms = properties.stream()

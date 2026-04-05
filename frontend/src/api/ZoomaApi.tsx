@@ -229,7 +229,8 @@ export async function fetchAllCandidates(
         includeOtherOntologies: params.includeOtherOntologies,
         filter: buildFilter(params),
         excludeTermIds,
-        returnAll: true
+        returnAll: true,
+        deep: true
     }
 
     let res = await fetch(apiUrl + '/v3/api/services/map', {

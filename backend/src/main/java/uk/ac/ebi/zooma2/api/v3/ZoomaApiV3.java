@@ -189,7 +189,7 @@ public class ZoomaApiV3 {
         // Get internal results
         boolean returnAll = request.returnAll != null && request.returnAll;
         Collection<MapResult> internalResults = annotator.mapAll(
-            internalStringsToMap, filter, model, request.excludeTermIds, returnAll
+            internalStringsToMap, filter, model, request.excludeTermIds, returnAll, request.deep
         );
         
         // Group results by input property (normalizing null/unspecified propertyType)

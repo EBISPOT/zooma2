@@ -72,7 +72,7 @@ public class AnnotationEngine {
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
-        return annotate(stringToMap, type, sources, "text-embedding-3-small", false);
+        return annotate(stringToMap, type, sources, "text-embedding-3-small", null);
     }
 
     /**
@@ -82,9 +82,10 @@ public class AnnotationEngine {
      * @param type        property type hint (may be {@code null})
      * @param sources     filter specifying target ontologies / datasources
      * @param model       embedding model identifier
-     * @param deep        if {@code true}, always runs Phase 2 strategies regardless of Phase 1 results
+     * @param deep        if {@code true}, always runs Phase 2; if {@code false}, never runs Phase 2;
+     *                    if {@code null}, auto-escalates when Phase 1 misses target ontologies
      */
-    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model, boolean deep) {
+    public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model, Boolean deep) {
 
         // Capture the cancellation flag from the calling (property-level) virtual thread
         // so it can be forwarded into the matcher-level virtual threads spawned below.
@@ -122,10 +123,13 @@ public class AnnotationEngine {
                 " (" + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() +
                 ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() + ")");
 
-            // Phase 2 trigger: explicit deep flag, or shallow miss on target ontologies
-            // (suppressed when shallowPassOnly is set — BatchMapper handles escalation itself)
-            boolean needsDeep = deep;
-            if (!deep && !shallowPassOnly.get() && hasTargets && !allResults.isEmpty()) {
+            // Phase 2 trigger:
+            //   deep=true  → always run Phase 2
+            //   deep=false → never run Phase 2
+            //   deep=null  → auto-escalate if Phase 1 missed target ontologies
+            // (auto-escalation is also suppressed when shallowPassOnly is set)
+            boolean needsDeep = Boolean.TRUE.equals(deep);
+            if (deep == null && !shallowPassOnly.get() && hasTargets && !allResults.isEmpty()) {
                 boolean hasTargetResult = allResults.stream().anyMatch(a ->
                     a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                     && targetsLower.contains(a.provenance.source.name.toLowerCase()));

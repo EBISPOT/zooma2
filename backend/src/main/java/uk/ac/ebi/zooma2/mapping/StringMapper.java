@@ -45,9 +45,9 @@ public class StringMapper {
      * @param s       the string (and optional property type) to map
      * @param sources filter specifying target ontologies / datasources
      * @param model   embedding model identifier
-     * @param deep    if {@code true}, runs the full deep-search phase
+     * @param deep    if {@code true}, always deep; {@code false}, never deep; {@code null}, auto
      */
-    public List<MapResult> mapOne(StringToMap s, Filter sources, String model, boolean deep) {
+    public List<MapResult> mapOne(StringToMap s, Filter sources, String model, Boolean deep) {
         try {
             var annotated = annotationEngine.annotate(s.textToMap, s.propertyType, sources, model, deep)
                 .collect(Collectors.toList());

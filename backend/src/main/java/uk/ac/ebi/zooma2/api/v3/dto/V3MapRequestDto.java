@@ -28,4 +28,11 @@ public class V3MapRequestDto {
 
     /** When true, return all candidates with light deduplication only. */
     public Boolean returnAll;
+
+    /**
+     * When true, always run Phase 2 (deep embedding, cross-reference expansion).
+     * When false, skip Phase 2 even if target ontologies are not found in Phase 1.
+     * Defaults to the value of {@code returnAll} if not set.
+     */
+    public Boolean deep;
 }
