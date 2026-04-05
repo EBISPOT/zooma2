@@ -67,6 +67,7 @@ public class ZoomaConfig {
     public Map<String, String> prefix_map;
     public OlsLexicalConfig ols_lexical;
     public OlsEmbeddingConfig ols_embedding;
+    public OxoConfig oxo;
     public List<OntologyPreset> ontology_presets;
 
     public static class OlsLexicalConfig {
@@ -82,6 +83,10 @@ public class ZoomaConfig {
         public Integer timeout_ms;
         public Integer max_concurrent_embedding_requests;
         public Integer max_concurrent_similar_requests;
+    }
+
+    public static class OxoConfig {
+        public Boolean enabled;
     }
 
     public static class OntologyPreset {

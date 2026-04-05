@@ -157,10 +157,15 @@ public class AnnotationEngine {
 
                 MatchContext expansionContext = context.withPreviousResults(allResults);
 
-                var oxoFuture = executor.submit(() -> {
-                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
-                    return oxoMatcher.findMatches(expansionContext);
-                });
+                var oxoCfg = ZoomaConfig.config.oxo;
+                boolean oxoEnabled = oxoCfg == null || oxoCfg.enabled == null || oxoCfg.enabled;
+
+                var oxoFuture = oxoEnabled
+                    ? executor.submit(() -> {
+                        if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                        return oxoMatcher.findMatches(expansionContext);
+                    })
+                    : null;
                 var similarFuture = executor.submit(() -> {
                     if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                     return olsEmbeddingSimilarMatcher.findMatches(expansionContext);
@@ -169,7 +174,7 @@ public class AnnotationEngine {
                 List<Annotation> oxoResults;
                 List<Annotation> embeddingSimilarResults;
                 try {
-                    oxoResults = oxoFuture.get();
+                    oxoResults = oxoFuture != null ? oxoFuture.get() : List.of();
                     embeddingSimilarResults = similarFuture.get();
                 } catch (InterruptedException e) {
                     executor.shutdownNow();
