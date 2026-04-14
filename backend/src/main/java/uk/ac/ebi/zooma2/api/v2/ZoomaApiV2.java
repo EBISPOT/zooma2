@@ -10,6 +10,8 @@ import uk.ac.ebi.zooma2.api.v2.dto.V2AnnotationDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2FilterDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2MapResultDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2StringToMapDto;
+import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
+import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
@@ -99,13 +101,18 @@ public class ZoomaApiV2 {
         String propertyValue = q(ctx, "propertyValue", true);
         String propertyType  = q(ctx, "propertyType", false);
         String filterRaw     = q(ctx, "filter", false);
-        
+
         var filterDto = V2FilterDto.parse(filterRaw);
         var filter = filterDto != null ? filterDto.toFilter() : null;
+        var stm = new StringToMap();
+        stm.textToMap = propertyValue;
+        stm.propertyType = propertyType;
 
-        var internalResults = annotator.annotate(propertyValue, propertyType, filter).collect(Collectors.toList());
-        var dtoResults = internalResults.stream().map(V2AnnotationDto::from).collect(Collectors.toList());
-        
+        var dtoResults = mapCompat(stm, filter).stream()
+            .map(this::toV2Annotation)
+            .map(V2AnnotationDto::from)
+            .collect(Collectors.toList());
+
         ctx.json(dtoResults);
     }
 
@@ -126,13 +133,14 @@ public class ZoomaApiV2 {
             try {
                 var filterDto = V2FilterDto.parse(job.filterRaw);
                 var filter = filterDto != null ? filterDto.toFilter() : null;
+                String model = resolveModel();
 
                 List<V2MapResultDto> allResults = new ArrayList<>();
                 int total = job.inputs.size();
 
                 for (int i = 0; i < total; i++) {
                     var stm = job.inputs.get(i).toStringToMap();
-                    var results = annotator.mapOne(stm, filter, "text-embedding-3-small", true);
+                    var results = mapCompat(stm, filter, model);
                     for (var r : results) {
                         allResults.add(V2MapResultDto.from(r));
                     }
@@ -222,6 +230,107 @@ public class ZoomaApiV2 {
     private static String titleCase(String s) {
         if (s == null || s.isEmpty()) return "";
         return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    }
+
+    /**
+     * Use the same candidate generation path as V3/UI so V2 compatibility
+     * inherits exact tagger hits and curated matches instead of only the raw
+     * lexical/embedding stream.
+     */
+    private List<MapResult> mapCompat(StringToMap stm, uk.ac.ebi.zooma2.model.Filter filter) {
+        return mapCompat(stm, filter, resolveModel());
+    }
+
+    private List<MapResult> mapCompat(StringToMap stm, uk.ac.ebi.zooma2.model.Filter filter, String model) {
+        return annotator.mapAll(Stream.of(stm), filter, model, null, true, true).stream()
+            .filter(r -> r.error == null)
+            .sorted(Comparator.comparingDouble((MapResult r) -> r.mappingConfidence).reversed())
+            .collect(Collectors.toList());
+    }
+
+    private String resolveModel() {
+        String model = olsRepo.getDefaultEmbeddingModel();
+        if (model == null || model.isBlank()) {
+            model = "text-embedding-3-small";
+        }
+        return model;
+    }
+
+    private Annotation toV2Annotation(MapResult result) {
+        Annotation wrapper = new Annotation();
+        wrapper.annotatedProperty = annotatedProperty(result);
+        wrapper.semanticTags = semanticTags(result);
+        wrapper.confidence = result.mappingConfidence;
+        wrapper.mappingProvenance = result.mappingProvenance;
+        wrapper.sourceAnnotation = toRawAnnotation(result);
+        return wrapper;
+    }
+
+    private Annotation toRawAnnotation(MapResult result) {
+        Annotation raw = new Annotation();
+        raw.annotatedProperty = annotatedProperty(result);
+        raw.semanticTags = semanticTags(result);
+        raw.confidence = result.mappingConfidence;
+        raw.mappingProvenance = result.mappingProvenance;
+
+        long now = System.currentTimeMillis();
+        var provenance = new Annotation.Provenance();
+        provenance.source = new Annotation.Source();
+
+        V3MappingProvenanceStepDto firstStep = firstProvenanceStep(result);
+        String sourceName = sourceName(result, firstStep);
+        provenance.source.type = firstStep != null && "curated".equals(firstStep.method) ? "DATABASE" : "ONTOLOGY";
+        provenance.source.name = sourceName;
+        provenance.source.uri = sourceName;
+        provenance.evidence = firstStep != null && firstStep.matchType != null ? firstStep.matchType : null;
+        provenance.generator = "ZOOMA";
+        provenance.annotator = sourceName != null ? sourceName : "ZOOMA";
+        provenance.generatedDate = String.valueOf(now);
+        provenance.annotationDate = String.valueOf(now);
+        raw.provenance = provenance;
+
+        return raw;
+    }
+
+    private Annotation.AnnotatedProperty annotatedProperty(MapResult result) {
+        var property = new Annotation.AnnotatedProperty();
+        property.propertyType = result.propertyType;
+        property.propertyValue = result.textToMap;
+        return property;
+    }
+
+    private List<String> semanticTags(MapResult result) {
+        String tag = resolveSemanticTag(result);
+        return tag == null || tag.isBlank() ? List.of() : List.of(tag);
+    }
+
+    private String resolveSemanticTag(MapResult result) {
+        if (result.mappingProvenance != null) {
+            for (int i = result.mappingProvenance.size() - 1; i >= 0; i--) {
+                var step = result.mappingProvenance.get(i);
+                if (step != null && step.target != null && !step.target.isBlank()) {
+                    return step.target;
+                }
+            }
+        }
+        return result.ontologyTermID;
+    }
+
+    private V3MappingProvenanceStepDto firstProvenanceStep(MapResult result) {
+        if (result.mappingProvenance == null || result.mappingProvenance.isEmpty()) {
+            return null;
+        }
+        return result.mappingProvenance.get(0);
+    }
+
+    private String sourceName(MapResult result, V3MappingProvenanceStepDto firstStep) {
+        if (result.datasource != null && !result.datasource.isBlank()) {
+            return result.datasource;
+        }
+        if (firstStep == null || firstStep.source == null || firstStep.source.isBlank()) {
+            return null;
+        }
+        return firstStep.source.startsWith("ols:") ? firstStep.source.substring(4) : firstStep.source;
     }
 
     /** Remove jobs older than 30 minutes to prevent unbounded memory growth. */
