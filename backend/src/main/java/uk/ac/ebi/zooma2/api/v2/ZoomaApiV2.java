@@ -160,6 +160,7 @@ public class ZoomaApiV2 {
     }
 
     private void mapStatus(Context ctx) {
+        disableCaching(ctx);
         String sessionId = ctx.cookie("JSESSIONID");
         MapJob job = sessionId != null ? mapJobs.get(sessionId) : null;
         double progress = job != null ? job.progress : 0.0;
@@ -168,6 +169,7 @@ public class ZoomaApiV2 {
     }
 
     private void mapResults(Context ctx) {
+        disableCaching(ctx);
         String accept = ctx.header("Accept");
         if (accept != null && accept.contains("application/json")) {
             ctx.status(406);
@@ -230,6 +232,17 @@ public class ZoomaApiV2 {
     private static String titleCase(String s) {
         if (s == null || s.isEmpty()) return "";
         return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+    }
+
+    /**
+     * Prevent proxy/browser caching for session-scoped async endpoints.
+     * Without this, repeated GET polls to /map/status can get stuck on a
+     * cached initial "0.0" even though the job has already completed.
+     */
+    private static void disableCaching(Context ctx) {
+        ctx.header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+        ctx.header("Pragma", "no-cache");
+        ctx.header("Expires", "0");
     }
 
     /**
