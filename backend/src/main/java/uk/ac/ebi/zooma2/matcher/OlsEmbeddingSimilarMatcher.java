@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
  * Takes existing annotations and queries OLS for similar terms using embedding models.
  */
 public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
-
-    private static final String OLS_BASE_URL = "https://wwwdev.ebi.ac.uk/ols4";
     private static final int DEFAULT_SIZE = 50;
     
     private final OlsClientRepo olsRepo;
@@ -180,7 +178,7 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         try {
             // Double URL encode the IRI as required by OLS V2 API
             String encodedIri = URLEncoder.encode(URLEncoder.encode(termIri, StandardCharsets.UTF_8), StandardCharsets.UTF_8);
-            String url = OLS_BASE_URL + "/api/v2/classes/" + encodedIri + 
+            String url = OlsClientRepo.getOlsUrl() + "/api/v2/classes/" + encodedIri +
                 "/llm_similar?model=" + model + "&size=" + DEFAULT_SIZE;
 
             HttpRequest request = HttpRequest.newBuilder()

@@ -77,7 +77,7 @@ public class ZoomaApiV3 {
 
     private void getStatus(Context ctx) {
         var status = new java.util.HashMap<String, Object>();
-        status.put("olsUrl", uk.ac.ebi.zooma2.repo.OlsClientRepo.OLS_URL);
+        status.put("olsUrl", uk.ac.ebi.zooma2.repo.OlsClientRepo.getOlsUrl());
         status.put("defaultModel", olsRepo.getDefaultEmbeddingModel());
         ctx.json(status);
     }

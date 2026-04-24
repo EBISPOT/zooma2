@@ -45,6 +45,8 @@ spec:
               value: /data_import/config.json
             - name: ZOOMA2_DB_URL
               value: "jdbc:sqlite:{{.Values.dbPath}}"
+            - name: ZOOMA2_OLS_URL
+              value: {{ .Values.olsUrl | quote }}
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -XX:InitialRAMPercentage=60.0 -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0

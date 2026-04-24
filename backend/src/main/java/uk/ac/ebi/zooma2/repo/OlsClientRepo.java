@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
+import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
@@ -40,9 +41,11 @@ public class OlsClientRepo {
 
     Gson gson = new Gson();
 
-    public static final String OLS_URL = System.getenv().getOrDefault("ZOOMA2_OLS_URL", "https://wwwdev.ebi.ac.uk/ols4");
-
     private OlsTermCache termCache;
+
+    public static String getOlsUrl() {
+        return ZoomaConfig.getOlsUrl();
+    }
 
     public void setTermCache(OlsTermCache cache) {
         this.termCache = cache;
@@ -54,7 +57,7 @@ public class OlsClientRepo {
 
     public List<OlsOntology> getOntologies() throws IOException {
 
-        var json = urlToJson(OLS_URL + "/api/ontologies?size=1000");
+        var json = urlToJson(getOlsUrl() + "/api/ontologies?size=1000");
         json = json.getAsJsonObject().get("_embedded").getAsJsonObject().get("ontologies");
 
         List<OlsOntology> ontologies = gson.fromJson(json, new TypeToken<List<OlsOntology>>(){}.getType());
@@ -70,7 +73,7 @@ public class OlsClientRepo {
      * Fetch ontology IDs from OLS v2 API whose IRI starts with http://purl.obolibrary.org/obo/ (OBO ontologies).
      */
     public List<String> getOboOntologyIds() throws IOException {
-        var json = urlToJson(OLS_URL + "/api/v2/ontologies?size=1000");
+        var json = urlToJson(getOlsUrl() + "/api/v2/ontologies?size=1000");
         var elements = json.getAsJsonObject().getAsJsonArray("elements");
         List<String> ids = new ArrayList<>();
         for (var element : elements) {
@@ -131,7 +134,7 @@ public class OlsClientRepo {
                     var doubleEncoded = java.net.URLEncoder.encode(iri, java.nio.charset.StandardCharsets.UTF_8);
                     doubleEncoded = java.net.URLEncoder.encode(doubleEncoded, java.nio.charset.StandardCharsets.UTF_8);
 
-                    var found = urlToJson(OLS_URL + "/api/terms/findByIdAndIsDefiningOntology/" + doubleEncoded);
+                    var found = urlToJson(getOlsUrl() + "/api/terms/findByIdAndIsDefiningOntology/" + doubleEncoded);
 
                     if(found == null ||
                         !found.getAsJsonObject().has("_embedded") ||
@@ -183,7 +186,7 @@ public class OlsClientRepo {
     public Collection<OlsTerm> findByLabelAndOntologies(String stringToMap, Collection<String> ontologyIds) {
 
         var escaped = java.net.URLEncoder.encode(stringToMap, java.nio.charset.StandardCharsets.UTF_8);
-        var url = OLS_URL + "/api/search?q=" + escaped + "&exact=true";
+        var url = getOlsUrl() + "/api/search?q=" + escaped + "&exact=true";
 
         if (ontologyIds != null) {
             for(var ont : ontologyIds) {
@@ -274,7 +277,7 @@ public class OlsClientRepo {
             String jsonBody = gson.toJson(requestBody);
             
             // Make POST request to OLS
-            var json = postJsonToUrl(OLS_URL + "/api/v2/classes/embedding", jsonBody);
+            var json = postJsonToUrl(getOlsUrl() + "/api/v2/classes/embedding", jsonBody);
             
             if (json == null || !json.getAsJsonObject().has("_embedded")) {
                 System.err.println("No terms found in OLS by embedding");
@@ -305,7 +308,7 @@ public class OlsClientRepo {
      */
     public List<Map<String, Object>> getEmbeddingModels() {
         try {
-            var json = urlToJson(OLS_URL + "/api/v2/llm_models");
+            var json = urlToJson(getOlsUrl() + "/api/v2/llm_models");
             if (json == null || !json.isJsonArray()) {
                 System.err.println("Failed to get embedding models from OLS");
                 return List.of();
@@ -365,7 +368,7 @@ public class OlsClientRepo {
             var encodedModel = java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8);
             
             StringBuilder urlBuilder = new StringBuilder();
-            urlBuilder.append(OLS_URL)
+            urlBuilder.append(getOlsUrl())
                       .append("/api/v2/entities/llm_search?q=")
                       .append(encodedQuery)
                       .append("&model=")
@@ -462,7 +465,7 @@ public class OlsClientRepo {
             var encoded = java.net.URLEncoder.encode(termIri, java.nio.charset.StandardCharsets.UTF_8);
             encoded = java.net.URLEncoder.encode(encoded, java.nio.charset.StandardCharsets.UTF_8);
             
-            String url = OLS_URL + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/parents";
+            String url = getOlsUrl() + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/parents";
             System.err.println("Getting parents from OLS: " + url);
             
             var json = urlToJson(url);
@@ -497,7 +500,7 @@ public class OlsClientRepo {
             var encoded = java.net.URLEncoder.encode(termIri, java.nio.charset.StandardCharsets.UTF_8);
             encoded = java.net.URLEncoder.encode(encoded, java.nio.charset.StandardCharsets.UTF_8);
             
-            String url = OLS_URL + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/ancestors";
+            String url = getOlsUrl() + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/ancestors";
             System.err.println("Getting ancestors from OLS: " + url);
             
             var json = urlToJson(url);
@@ -533,7 +536,7 @@ public class OlsClientRepo {
             var encoded = java.net.URLEncoder.encode(termIri, java.nio.charset.StandardCharsets.UTF_8);
             encoded = java.net.URLEncoder.encode(encoded, java.nio.charset.StandardCharsets.UTF_8);
             
-            String url = OLS_URL + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/hierarchicalAncestors";
+            String url = getOlsUrl() + "/api/ontologies/" + ontologyId + "/terms/" + encoded + "/hierarchicalAncestors";
             System.err.println("Getting hierarchical ancestors from OLS: " + url);
             
             var json = urlToJson(url);
@@ -586,7 +589,7 @@ public class OlsClientRepo {
 
         // Build URL with query params
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=true");
+        urlBuilder.append(getOlsUrl()).append("/api/v2/tag_text?includeSubstrings=true");
         // word-boundary delimiters so only whole tokens match
         urlBuilder.append("&delimiters=").append(
             java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
@@ -741,7 +744,7 @@ public class OlsClientRepo {
         }
 
         StringBuilder urlBuilder = new StringBuilder();
-        urlBuilder.append(OLS_URL).append("/api/v2/tag_text?includeSubstrings=true");
+        urlBuilder.append(getOlsUrl()).append("/api/v2/tag_text?includeSubstrings=true");
         urlBuilder.append("&delimiters=").append(
             java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
         urlBuilder.append("&minLength=6");
@@ -811,7 +814,7 @@ public class OlsClientRepo {
      * These correspond to the datasource names (atlas, gwas, sysmicro, etc.).
      */
     public List<String> getCurationSources() throws IOException {
-        var json = urlToJson(OLS_URL + "/api/v2/curation_sources");
+        var json = urlToJson(getOlsUrl() + "/api/v2/curation_sources");
         if (json == null || !json.isJsonArray()) {
             System.err.println("Failed to get curation sources from OLS");
             return List.of();
@@ -839,7 +842,7 @@ public class OlsClientRepo {
         }
         try {
         var escaped = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
-        var url = OLS_URL + "/api/v2/entities?search=" + escaped + "&exactMatch=false&size=" + size + "&type=class";
+        var url = getOlsUrl() + "/api/v2/entities?search=" + escaped + "&exactMatch=false&size=" + size + "&type=class";
 
         try {
             var json = urlToJson(url, timeoutMs);

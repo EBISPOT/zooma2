@@ -13,15 +13,17 @@ The API is available at `http://localhost:8090`. See `/v3/api/status` for health
 
 ## Configuration
 
-All configuration is via environment variables:
+Runtime tuning lives in `config.json`, and the file is watched for changes while the app is running. `ZOOMA2_CONFIG_PATH` can also point to an `http(s)` URL; in that case the config is fetched once at startup and is not watched for changes.
+
+Environment variables:
 
 | Variable | Default | Required | Description |
 |---|---|---|---|
 | `ZOOMA2_DB_URL` | `jdbc:sqlite:zooma.db` | No | JDBC URL (SQLite or PostgreSQL) |
 | `ZOOMA2_DB_USER` | – | PostgreSQL only | Database username |
 | `ZOOMA2_DB_PASS` | – | PostgreSQL only | Database password |
-| `ZOOMA2_CONFIG_PATH` | `config.json` | No | Path to config file |
-| `ZOOMA2_OLS_URL` | `https://wwwdev.ebi.ac.uk/ols4` | No | OLS4 API base URL |
+| `ZOOMA2_CONFIG_PATH` | `config.json` | No | Path to config file, or an `http(s)` URL |
+| `ZOOMA2_OLS_URL` | `https://www.ebi.ac.uk/ols4` | No | OLS4 API base URL |
 | `ZOOMA2_CONTEXT_PATH` | (none) | No | URL path prefix, e.g. `/spot/zooma` |
 
 ## Database
