@@ -27,7 +27,7 @@ spec:
           image: ghcr.io/ebispot/zooma2_backend:{{.Values.imageTag}}
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/data_import"
+            - mountPath: "/data"
               name: {{ .Release.Name }}-import
           ports:
             - containerPort: 8090
@@ -42,7 +42,7 @@ spec:
             - name: ZOOMA2_CONTEXT_PATH
               value: /spot/zooma
             - name: ZOOMA2_CONFIG_PATH
-              value: /data_import/config.json
+              value: https://raw.githubusercontent.com/EBISPOT/zooma2/refs/heads/dev/config.json
             - name: ZOOMA2_DB_URL
               value: "jdbc:sqlite:{{.Values.dbPath}}"
             - name: ZOOMA2_OLS_URL

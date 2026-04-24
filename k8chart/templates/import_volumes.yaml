@@ -15,7 +15,7 @@ spec:
   mountOptions: ['nfsvers=3']
   nfs:
     server: hh-isi-srv-vlan1496.ebi.ac.uk
-    path: {{.Values.importDir}}
+    path: {{.Values.nfsDir}}
   capacity: 
     storage: 100Gi
 ---

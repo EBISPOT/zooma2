@@ -65,5 +65,5 @@ UPDATE_EXPECTED=1 ./tests/run_tests.sh
 
 ```bash
 docker build -t zooma2-backend backend/
-docker run -p 8090:8090 -v /path/to/data:/data_import zooma2-backend
+docker run -p 8090:8090 -v /path/to/data:/data zooma2-backend
 ```
