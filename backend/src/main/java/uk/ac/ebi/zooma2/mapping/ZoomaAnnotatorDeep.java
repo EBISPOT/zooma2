@@ -37,6 +37,7 @@ public class ZoomaAnnotatorDeep {
             Map<String, List<Annotation>> tagTextResults,
             Filter filter,
             String model,
+            List<String> excludeTermIds,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
         var cancelled = RequestCancellation.newFlag();
@@ -52,7 +53,7 @@ public class ZoomaAnnotatorDeep {
                         if (!taggerAnnotations.isEmpty()) {
                             results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, false));
                         }
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {

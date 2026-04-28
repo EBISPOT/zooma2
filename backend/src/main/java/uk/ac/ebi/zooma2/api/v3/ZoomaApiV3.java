@@ -254,6 +254,8 @@ public class ZoomaApiV3 {
                 model = "text-embedding-3-small";
             }
         }
+
+        boolean returnAll = request.returnAll != null && request.returnAll;
         
         int total = request.properties.size();
         
@@ -298,7 +300,7 @@ public class ZoomaApiV3 {
             });
 
             try {
-                annotator.mapEach(properties, filter, model, (prop, results) -> {
+                annotator.mapEach(properties, filter, model, request.excludeTermIds, returnAll, request.deep, (prop, results) -> {
                     // Abort immediately if heartbeat (or a prior write) already detected disconnect.
                     if (cancelled.get()) {
                         throw new java.io.UncheckedIOException(new IOException("Client disconnected"));

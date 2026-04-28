@@ -47,6 +47,7 @@ public class ZoomaAnnotatorShallow {
             Map<String, List<Annotation>> tagTextResults,
             Filter filter,
             String model,
+            List<String> excludeTermIds,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
         var cancelled = RequestCancellation.newFlag();
@@ -62,7 +63,7 @@ public class ZoomaAnnotatorShallow {
                         var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
                         if (textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
                             var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, false);
-                            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
                             return;
                         }
                         List<MapResult> results = stringMapper.mapOne(prop, filter, model, false);
@@ -73,7 +74,7 @@ public class ZoomaAnnotatorShallow {
                             needsDeepSearch.add(prop);
                             return;
                         }
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter));
+                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
