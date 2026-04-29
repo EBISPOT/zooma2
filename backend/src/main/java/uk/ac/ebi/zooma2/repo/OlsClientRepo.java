@@ -11,6 +11,7 @@ import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import uk.ac.ebi.zooma2.ZoomaConfig;
@@ -402,38 +403,7 @@ public class OlsClientRepo {
             // Convert V2Entity format to OlsTerm
             List<OlsTerm> results = new ArrayList<>();
             for (var element : elements) {
-                var obj = element.getAsJsonObject();
-                OlsTerm term = new OlsTerm();
-                term.iri = obj.has("iri") ? obj.get("iri").getAsString() : null;
-                
-                // Label can be a string or array - handle both
-                if (obj.has("label")) {
-                    var labelEl = obj.get("label");
-                    if (labelEl.isJsonArray() && labelEl.getAsJsonArray().size() > 0) {
-                        term.label = labelEl.getAsJsonArray().get(0).getAsString();
-                    } else if (labelEl.isJsonPrimitive()) {
-                        term.label = labelEl.getAsString();
-                    }
-                }
-                
-                term.short_form = obj.has("shortForm") ? obj.get("shortForm").getAsString() : 
-                                  (obj.has("short_form") ? obj.get("short_form").getAsString() : null);
-                term.ontology_name = obj.has("ontologyId") ? obj.get("ontologyId").getAsString() : 
-                                     (obj.has("ontology_name") ? obj.get("ontology_name").getAsString() : null);
-                if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
-                    term.synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
-                }
-                if (obj.has("isObsolete")) {
-                    term.is_obsolete = obj.get("isObsolete").getAsBoolean();
-                } else if (obj.has("is_obsolete")) {
-                    term.is_obsolete = obj.get("is_obsolete").getAsBoolean();
-                }
-                
-                // Capture the similarity score from embedding search
-                if (obj.has("score")) {
-                    term.score = obj.get("score").getAsDouble();
-                }
-                
+                var term = olsTermFromEntity(element.getAsJsonObject());
                 results.add(term);
             }
             
@@ -448,9 +418,110 @@ public class OlsClientRepo {
             System.err.println("Error in OLS embedding search: " + e.getMessage());
             e.printStackTrace();
             return List.of();
+        } catch (RuntimeException e) {
+            System.err.println("Error parsing OLS embedding search response: " + e.getMessage());
+            e.printStackTrace();
+            return List.of();
         } finally {
             embeddingSemaphore.release();
         }
+    }
+
+    private OlsTerm olsTermFromEntity(JsonObject obj) {
+        OlsTerm term = new OlsTerm();
+        term.iri = firstStringMember(obj, "iri");
+        term.label = firstStringMember(obj, "label");
+        term.short_form = firstStringMember(obj, "shortForm", "short_form");
+        term.ontology_name = firstStringMember(obj, "ontologyId", "ontology_name");
+        term.synonyms = stringListMember(obj, "synonyms");
+        term.is_obsolete = firstBooleanMember(obj, "isObsolete", "is_obsolete");
+        term.score = firstDoubleMember(obj, "score");
+        return term;
+    }
+
+    private String firstStringMember(JsonObject obj, String... names) {
+        for (String name : names) {
+            if (obj.has(name)) {
+                var value = firstStringValue(obj.get(name));
+                if (value != null) {
+                    return value;
+                }
+            }
+        }
+        return null;
+    }
+
+    private String firstStringValue(JsonElement element) {
+        if (element == null || element.isJsonNull()) {
+            return null;
+        }
+        if (element.isJsonPrimitive()) {
+            return element.getAsString();
+        }
+        if (element.isJsonArray()) {
+            for (var value : element.getAsJsonArray()) {
+                var stringValue = firstStringValue(value);
+                if (stringValue != null && !stringValue.isBlank()) {
+                    return stringValue;
+                }
+            }
+            return null;
+        }
+        if (element.isJsonObject()) {
+            var obj = element.getAsJsonObject();
+            var preferred = firstStringMember(obj, "label", "value", "@value", "literal", "text", "name");
+            if (preferred != null) {
+                return preferred;
+            }
+        }
+        return null;
+    }
+
+    private List<String> stringListMember(JsonObject obj, String name) {
+        if (!obj.has(name)) {
+            return null;
+        }
+        var element = obj.get(name);
+        if (element == null || element.isJsonNull()) {
+            return null;
+        }
+        if (!element.isJsonArray()) {
+            var value = firstStringValue(element);
+            return value == null ? null : List.of(value);
+        }
+
+        List<String> values = new ArrayList<>();
+        for (var item : element.getAsJsonArray()) {
+            var value = firstStringValue(item);
+            if (value != null && !value.isBlank()) {
+                values.add(value);
+            }
+        }
+        return values.isEmpty() ? null : values;
+    }
+
+    private Boolean firstBooleanMember(JsonObject obj, String... names) {
+        for (String name : names) {
+            if (obj.has(name)) {
+                var value = obj.get(name);
+                if (value != null && !value.isJsonNull() && value.isJsonPrimitive()) {
+                    return value.getAsBoolean();
+                }
+            }
+        }
+        return null;
+    }
+
+    private Double firstDoubleMember(JsonObject obj, String... names) {
+        for (String name : names) {
+            if (obj.has(name)) {
+                var value = obj.get(name);
+                if (value != null && !value.isJsonNull() && value.isJsonPrimitive()) {
+                    return value.getAsDouble();
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -854,34 +925,15 @@ public class OlsClientRepo {
 
             List<OlsTerm> results = new ArrayList<>();
             for (var element : elements) {
-                var obj = element.getAsJsonObject();
-                OlsTerm term = new OlsTerm();
-                term.iri = obj.has("iri") ? obj.get("iri").getAsString() : null;
-                if (obj.has("label")) {
-                    var labelEl = obj.get("label");
-                    if (labelEl.isJsonArray() && labelEl.getAsJsonArray().size() > 0) {
-                        term.label = labelEl.getAsJsonArray().get(0).getAsString();
-                    } else if (labelEl.isJsonPrimitive()) {
-                        term.label = labelEl.getAsString();
-                    }
-                }
-                term.short_form = obj.has("shortForm") ? obj.get("shortForm").getAsString() :
-                                  (obj.has("short_form") ? obj.get("short_form").getAsString() : null);
-                term.ontology_name = obj.has("ontologyId") ? obj.get("ontologyId").getAsString() :
-                                     (obj.has("ontology_name") ? obj.get("ontology_name").getAsString() : null);
-                if (obj.has("synonyms") && obj.get("synonyms").isJsonArray()) {
-                    term.synonyms = gson.fromJson(obj.get("synonyms"), new TypeToken<List<String>>(){}.getType());
-                }
-                if (obj.has("isObsolete")) {
-                    term.is_obsolete = obj.get("isObsolete").getAsBoolean();
-                } else if (obj.has("is_obsolete")) {
-                    term.is_obsolete = obj.get("is_obsolete").getAsBoolean();
-                }
+                var term = olsTermFromEntity(element.getAsJsonObject());
                 results.add(term);
             }
             return results;
         } catch (IOException e) {
             System.err.println("Error in OLS fuzzy search: " + e.getMessage());
+            return List.of();
+        } catch (RuntimeException e) {
+            System.err.println("Error parsing OLS fuzzy search response: " + e.getMessage());
             return List.of();
         }
         } finally {
