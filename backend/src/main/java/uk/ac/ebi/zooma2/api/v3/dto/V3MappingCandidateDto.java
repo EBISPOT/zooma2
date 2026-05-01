@@ -14,9 +14,6 @@ public class V3MappingCandidateDto {
     /** The label of the ontology term. */
     public String label;
 
-    /** Synonyms of the ontology term. */
-    public List<String> synonyms;
-
     /** The ontology this term belongs to (e.g., "efo", "mondo"). */
     public String ontology;
 
@@ -39,19 +36,11 @@ public class V3MappingCandidateDto {
         var dto = new V3MappingCandidateDto();
         dto.termId = internal.ontologyTermID;
         dto.label = internal.ontologyTermLabel;
-        dto.synonyms = parseSynonyms(internal.ontologyTermSynonyms);
         dto.ontology = internal.ontologyURI;
         dto.uri = internal.ontologyURI;
         dto.confidence = internal.mappingConfidence;
         dto.datasource = internal.datasource;
         dto.mappingProvenance = internal.mappingProvenance;
         return dto;
-    }
-
-    private static List<String> parseSynonyms(String synonymsStr) {
-        if (synonymsStr == null || synonymsStr.isBlank()) {
-            return List.of();
-        }
-        return List.of(synonymsStr.split("\\|"));
     }
 }

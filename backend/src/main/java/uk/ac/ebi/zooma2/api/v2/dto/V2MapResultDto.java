@@ -8,7 +8,6 @@ public class V2MapResultDto {
     public String propertyType;
     public String propertyValue;
     public String ontologyTermLabel;
-    public String ontologyTermSynonyms;
     public String mappingConfidence;
     public String ontologyTermID;
     public String ontologyURI;
@@ -22,7 +21,6 @@ public class V2MapResultDto {
         dto.propertyType = internal.propertyType;
         dto.propertyValue = internal.textToMap;
         dto.ontologyTermLabel = internal.ontologyTermLabel;
-        dto.ontologyTermSynonyms = internal.ontologyTermSynonyms;
         dto.mappingConfidence = scoreToLevel(internal.mappingConfidence);
         dto.ontologyTermID = internal.ontologyTermID;
         dto.ontologyURI = internal.ontologyURI;
@@ -40,7 +38,6 @@ public class V2MapResultDto {
         return Objects.equals(propertyType, that.propertyType) &&
                Objects.equals(propertyValue, that.propertyValue) &&
                Objects.equals(ontologyTermLabel, that.ontologyTermLabel) &&
-               Objects.equals(ontologyTermSynonyms, that.ontologyTermSynonyms) &&
                Objects.equals(mappingConfidence, that.mappingConfidence) &&
                Objects.equals(ontologyTermID, that.ontologyTermID) &&
                Objects.equals(ontologyURI, that.ontologyURI) &&
@@ -50,8 +47,8 @@ public class V2MapResultDto {
     @Override
     public int hashCode() {
         return Objects.hash(propertyType, propertyValue, ontologyTermLabel,
-                            ontologyTermSynonyms, mappingConfidence,
-                            ontologyTermID, ontologyURI, datasource);
+                            mappingConfidence, ontologyTermID, ontologyURI,
+                            datasource);
     }
 
     private static String scoreToLevel(double score) {

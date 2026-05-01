@@ -3,55 +3,25 @@
     {
       "candidates": [
         {
-          "confidence": 0.7813124370574951,
-          "datasource": "cmo",
-          "label": "tibia-fibula cross-sectional area",
+          "confidence": 0.7959726300426198,
+          "datasource": "snomed",
+          "label": "Disorder of left tibial nerve (disorder)",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "left tibia",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "tibia-fibula cross-sectional area",
+              "matchedText": "Disorder of left tibial nerve (disorder)",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8778791427612305,
-              "source": "ols:cmo",
-              "target": "http://purl.obolibrary.org/obo/CMO_0001718"
+              "similarity": 0.8943512697108087,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/1275624008"
             }
           ],
-          "ontology": "cmo",
-          "synonyms": [
-            "tibia/fibula cross-sectional area",
-            "tibio-fibular complex cross-sectional area",
-            "tibiofibular fusion cross-sectional area"
-          ],
-          "termId": "CMO_0001718",
-          "uri": "cmo"
-        },
-        {
-          "confidence": 0.7774428939819336,
-          "datasource": "mondo",
-          "label": "tibia fracture",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "left tibia",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "tibia fracture",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8735313415527344,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0005320"
-            }
-          ],
-          "ontology": "mondo",
-          "synonyms": [
-            "bone fracture of tibia",
-            "tibia bone fracture"
-          ],
-          "termId": "MONDO_0005320",
-          "uri": "mondo"
+          "ontology": "snomed",
+          "termId": "SNOMED_1275624008",
+          "uri": "snomed"
         }
       ],
       "error": null,

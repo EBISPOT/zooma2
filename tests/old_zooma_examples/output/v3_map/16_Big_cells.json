@@ -1,7 +1,29 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "sysmicro",
+          "label": "increased cell size",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Big cells",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "increased cell size",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "sysmicro",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000128"
+            }
+          ],
+          "ontology": "cmpo",
+          "termId": "cmpo_0000128",
+          "uri": "cmpo"
+        }
+      ],
       "error": null,
       "propertyType": null,
       "textToMap": "Big cells"

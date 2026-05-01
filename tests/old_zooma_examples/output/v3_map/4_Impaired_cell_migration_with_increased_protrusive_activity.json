@@ -3,51 +3,24 @@
     {
       "candidates": [
         {
-          "confidence": 1.0,
+          "confidence": 0.95,
           "datasource": "sysmicro",
-          "label": "impaired cell migration",
+          "label": "increased substrate-dependent cell migration, cell extension phenotype",
           "mappingProvenance": [
             {
-              "confidence": 0.95,
+              "confidence": null,
               "input": "Impaired cell migration with increased protrusive activity",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
+              "matchType": "CURATED_EXACT",
+              "matchedText": "increased substrate-dependent cell migration, cell extension phenotype",
               "method": "curated",
               "model": null,
-              "similarity": null,
-              "source": "sysmicro",
-              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000309"
-            }
-          ],
-          "ontology": "cmpo",
-          "synonyms": [
-            "abnormal cell migration"
-          ],
-          "termId": "CMPO_0000309",
-          "uri": "cmpo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "sysmicro",
-          "label": "increased substrate-dependent cell migration, cell extension",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "Impaired cell migration with increased protrusive activity",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
+              "similarity": 1.0,
               "source": "sysmicro",
               "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
             }
           ],
           "ontology": "cmpo",
-          "synonyms": [
-            "increased protrusive activity"
-          ],
-          "termId": "CMPO_0000349",
+          "termId": "cmpo_0000349",
           "uri": "cmpo"
         }
       ],

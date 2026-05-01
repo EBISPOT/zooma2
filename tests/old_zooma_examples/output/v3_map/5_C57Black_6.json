@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8488185214996338,
+          "confidence": 0.8492652151034532,
           "datasource": "ncit",
           "label": "C57BL/6ByJ Mouse",
           "mappingProvenance": [
@@ -14,21 +14,38 @@
               "matchedText": "C57BL/6ByJ Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9537286758422852,
+              "similarity": 0.9542305787679249,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37382"
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "C57BL/6ByJ Mouse",
-            "C57BL/6ByJ"
-          ],
           "termId": "NCIT_C37382",
           "uri": "ncit"
         },
         {
-          "confidence": 0.8477533149719239,
+          "confidence": 0.84823179237729,
+          "datasource": "efo",
+          "label": "129xC57BL/6",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "129xC57BL/6",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9530694296374045,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0000601"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0000601",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.8475883001814557,
           "datasource": "ncit",
           "label": "C57BL/6By Mouse",
           "mappingProvenance": [
@@ -39,21 +56,17 @@
               "matchedText": "C57BL/6By Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9525318145751953,
+              "similarity": 0.9523464046982648,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37381"
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "C57BL/6By Mouse",
-            "C57BL/6By"
-          ],
           "termId": "NCIT_C37381",
           "uri": "ncit"
         },
         {
-          "confidence": 0.8460905742645264,
+          "confidence": 0.8464002584737214,
           "datasource": "ncit",
           "label": "C57BL/6Pas Mouse",
           "mappingProvenance": [
@@ -64,21 +77,59 @@
               "matchedText": "C57BL/6Pas Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9506635665893555,
+              "similarity": 0.9510115263749678,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37386"
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "C57BL/6Pas Mouse",
-            "C57BL/6Pas"
-          ],
           "termId": "NCIT_C37386",
           "uri": "ncit"
         },
         {
-          "confidence": 0.8442899084091187,
+          "confidence": 0.8445005212416812,
+          "datasource": "efo",
+          "label": "C57BL",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "C57BL",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9488769901591924,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0005181"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0005181",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.8445005212416812,
+          "datasource": "efo",
+          "label": "C57BL/6J",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "C57BL/6J",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9488769901591924,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0000606"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0000606",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.8444341093273554,
           "datasource": "ncit",
           "label": "C57BL/6N Mouse",
           "mappingProvenance": [
@@ -89,43 +140,14 @@
               "matchedText": "C57BL/6N Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9486403465270996,
+              "similarity": 0.9488023700307364,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37385"
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "C57BL/6N Mouse",
-            "C57BL/6N"
-          ],
           "termId": "NCIT_C37385",
           "uri": "ncit"
-        },
-        {
-          "confidence": 0.8442860889434814,
-          "datasource": "efo",
-          "label": "C57BL/6NCrl",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "C57Black/6",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "C57BL/6NCrl",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9486360549926758,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0011030"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "C57BL/6NCrlBR",
-            "C57BL/6NCrlBr"
-          ],
-          "termId": "EFO_0011030",
-          "uri": "efo"
         }
       ],
       "error": null,

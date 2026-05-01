@@ -3,313 +3,256 @@
     {
       "candidates": [
         {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "albumin:globulin ratio measurement",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0005128"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "ALBGLOB",
-            "Albumin to Globulin Ratio Measurement",
-            "Albumin/Globulin",
-            "albumin-globulin ratio measurement"
-          ],
-          "termId": "EFO_0005128",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "erythrocyte attribute",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://purl.obolibrary.org/obo/OBA_2045276"
-            }
-          ],
-          "ontology": "oba",
-          "synonyms": [
-            "quality of erythrocyte"
-          ],
-          "termId": "OBA_2045276",
-          "uri": "oba"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "erythrocyte count",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004305"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "RBC",
-            "erythrocyte number",
-            "red blood cell count"
-          ],
-          "termId": "EFO_0004305",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "hematocrit",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004348"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "Ht",
-            "packed erythrocyte volume",
-            "packed red-cell volume"
-          ],
-          "termId": "EFO_0004348",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "hematological measurement",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004503"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [],
-          "termId": "EFO_0004503",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "hemoglobin measurement",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004509"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "Hb",
-            "haemoglobin measurement",
-            "hemoglobin count",
-            "hemoglobin levels"
-          ],
-          "termId": "EFO_0004509",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "mean corpuscular hemoglobin concentration",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004528"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "CHCM",
-            "Corpuscular HGB Concentration Mean",
-            "Corpuscular Hemoglobin Concentration Mean",
-            "Erythrocyte Corpuscular Hemoglobin Concentration Mean",
-            "MCHC",
-            "mean corpuscular haemoglobin concentration"
-          ],
-          "termId": "EFO_0004528",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "lymphocyte count",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0004587"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "lymphocyte counts"
-          ],
-          "termId": "EFO_0004587",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
+          "confidence": 0.95,
+          "datasource": "gwas",
           "label": "erythrocyte volume",
           "mappingProvenance": [
             {
-              "confidence": 0.95,
+              "confidence": null,
               "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
+              "matchType": "CURATED_EXACT",
+              "matchedText": "erythrocyte volume",
               "method": "curated",
               "model": null,
-              "similarity": null,
-              "source": "GWAS",
+              "similarity": 1.0,
+              "source": "gwas",
               "target": "http://purl.obolibrary.org/obo/OBA_0003460"
             }
           ],
           "ontology": "oba",
-          "synonyms": [
-            "volume of erythrocyte"
-          ],
-          "termId": "OBA_0003460",
+          "termId": "oba_0003460",
           "uri": "oba"
         },
         {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "Red cell distribution width",
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "erythrocyte attribute",
           "mappingProvenance": [
             {
-              "confidence": 0.95,
+              "confidence": null,
               "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
+              "matchType": "CURATED_EXACT",
+              "matchedText": "erythrocyte attribute",
               "method": "curated",
               "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0009188"
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://purl.obolibrary.org/obo/OBA_2045276"
             }
           ],
-          "ontology": "efo",
-          "synonyms": [
-            "Erythrocyte Distribution Width Measurement",
-            "RCDW",
-            "RDW",
-            "RDW-CV",
-            "RDW-SD",
-            "Red blood cell erythrocyte distribution width",
-            "Red cell distribution width (RDW) blood test"
-          ],
-          "termId": "EFO_0009188",
-          "uri": "efo"
+          "ontology": "oba",
+          "termId": "oba_2045276",
+          "uri": "oba"
         },
         {
-          "confidence": 1.0,
-          "datasource": "GWAS",
-          "label": "platelet larger cell ratio",
-          "mappingProvenance": [
-            {
-              "confidence": 0.95,
-              "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
-              "method": "curated",
-              "model": null,
-              "similarity": null,
-              "source": "GWAS",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0009186"
-            }
-          ],
-          "ontology": "efo",
-          "synonyms": [
-            "P-LCR",
-            "Platelet larger cell ratio",
-            "platelet larger cell ratio (P-LCR)"
-          ],
-          "termId": "EFO_0009186",
-          "uri": "efo"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "GWAS",
+          "confidence": 0.95,
+          "datasource": "gwas",
           "label": "leukocyte quantity",
           "mappingProvenance": [
             {
-              "confidence": 0.95,
+              "confidence": null,
               "input": "hematology traits",
-              "matchType": "ZOOMA_CURATED",
-              "matchedText": null,
+              "matchType": "CURATED_EXACT",
+              "matchedText": "leukocyte quantity",
               "method": "curated",
               "model": null,
-              "similarity": null,
-              "source": "GWAS",
+              "similarity": 1.0,
+              "source": "gwas",
               "target": "http://purl.obolibrary.org/obo/OBA_VT0000217"
             }
           ],
           "ontology": "oba",
-          "synonyms": [
-            "amount of leukocyte"
-          ],
-          "termId": "OBA_VT0000217",
+          "termId": "oba_VT0000217",
           "uri": "oba"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "erythrocyte count",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "erythrocyte count",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004305"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004305",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "hematocrit",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "hematocrit",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004348"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004348",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "hematological measurement",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "hematological measurement",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004503"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004503",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "hemoglobin measurement",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "hemoglobin measurement",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004509"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004509",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "mean corpuscular hemoglobin concentration",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "mean corpuscular hemoglobin concentration",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004528"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004528",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "lymphocyte count",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "lymphocyte count",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0004587"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0004587",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "albumin:globulin ratio measurement",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "albumin:globulin ratio measurement",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0005128"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0005128",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "platelet larger cell ratio",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "platelet larger cell ratio",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0009186"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0009186",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "gwas",
+          "label": "Red cell distribution width",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "hematology traits",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "Red cell distribution width",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "gwas",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0009188"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "efo_0009188",
+          "uri": "efo"
         }
       ],
       "error": null,

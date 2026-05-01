@@ -1,0 +1,76 @@
+package uk.ac.ebi.zooma2.api;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public final class PropertyTypeMetadata {
+
+    private static final List<String> LEGACY_PROPERTY_TYPES = Collections.unmodifiableList(Arrays.asList(
+        "phenotype",
+        "compound",
+        "organism part",
+        "ecotype",
+        "disease",
+        "cell line",
+        "growth condition",
+        "infect",
+        "cell type",
+        "inferred cell type - authors labels",
+        "organism",
+        "rna",
+        "developmental stage",
+        "biosource type",
+        "sex",
+        "protocol",
+        "strain",
+        "specimen with known storage state",
+        "cell_line",
+        "CBI-plant",
+        "organismPart",
+        "factor",
+        "Technology",
+        "measurement",
+        "experimental process",
+        "quality",
+        "isolation source",
+        "host disease",
+        "disease state",
+        "sample type",
+        "isolate",
+        "tissue",
+        "Organism",
+        "organismPart, cellType",
+        "breed",
+        "cellType",
+        "developmentalStage",
+        "material",
+        "organism, species, breed",
+        "organismPart, cellType, developmentalStage",
+        "cell_type",
+        "library_construction_method",
+        "input_nucleic_acid_molecule",
+        "method",
+        "organism_age_unit",
+        "diseases",
+        "instrument_manufacturer_model",
+        "organ",
+        "genus_species",
+        "development_stage",
+        "selected_cell_types",
+        "organ_parts",
+        "project_role",
+        "content_description",
+        "weight_unit",
+        "cdna_library_amplification_method",
+        "organ_part",
+        null
+    ));
+
+    private PropertyTypeMetadata() {
+    }
+
+    public static List<String> legacyPropertyTypes() {
+        return LEGACY_PROPERTY_TYPES;
+    }
+}

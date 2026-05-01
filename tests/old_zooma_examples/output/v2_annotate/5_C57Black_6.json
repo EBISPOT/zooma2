@@ -3,186 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57BL/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "wt5",
-          "studies": [
-            {
-              "accession": "E-MEXP-1325",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/atlas/FF14D3A7B1DA2ECCBC939F4E5E9B8722"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/atlas/D48127A8784CE5B9D772E73FDA3E9625"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57BL/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Laura Huerta",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "atlas",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/gxa"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004472"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004472"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57BL/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "donor_organism",
-          "studies": [
-            {
-              "accession": "scRNAseqSystemicComparison",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/HCA/B24C957A264F21AEC614B99817639AB6"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/HCA/EE4970382E2D1297919BF3E9F57E3E38"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57BL/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "HCA",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/about/collaborations/human-cell-atlas"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004472"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004472"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37382",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C37382"
         }
@@ -211,9 +31,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -254,6 +74,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000601",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000601"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "strain",
+      "propertyValue": "C57Black/6",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000601",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000601"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "strain",
+        "propertyValue": "C57Black/6",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0000601"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0000601"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37381",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C37381"
         }
@@ -282,9 +173,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -353,9 +244,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -396,6 +287,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005181",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005181"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "strain",
+      "propertyValue": "C57Black/6",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005181",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005181"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "strain",
+        "propertyValue": "C57Black/6",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0005181"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0005181"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000606",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000606"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "strain",
+      "propertyValue": "C57Black/6",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000606",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000606"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "strain",
+        "propertyValue": "C57Black/6",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0000606"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0000606"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37385",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C37385"
         }
@@ -424,9 +457,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -495,9 +528,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -566,9 +599,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -637,9 +670,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -708,9 +741,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -779,9 +812,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -822,77 +855,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14551",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14551"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14551",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14551"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14551"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14551"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37380",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C37380"
         }
@@ -921,9 +883,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -992,9 +954,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1063,9 +1025,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1134,9 +1096,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1205,9 +1167,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1276,9 +1238,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1347,9 +1309,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1418,9 +1380,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1461,77 +1423,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004472",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004472"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0004472"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0004472"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000604",
           "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000604"
         }
@@ -1560,9 +1451,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1603,77 +1494,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14709",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14709"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14709",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14709"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14709"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14709"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C15171",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C15171"
         }
@@ -1702,9 +1522,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1773,9 +1593,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1844,9 +1664,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1915,9 +1735,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1986,9 +1806,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2057,9 +1877,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2128,9 +1948,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2199,9 +2019,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2270,9 +2090,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "clo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2313,219 +2133,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14525",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14525"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14525",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14525"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14525"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14525"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14536",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14536"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14536",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14536"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14536"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14536"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14537",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14537"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14537",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14537"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14537"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14537"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0037197",
           "semanticTag": "http://purl.obolibrary.org/obo/CLO_0037197"
         }
@@ -2554,9 +2161,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "clo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2625,9 +2232,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2696,9 +2303,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2767,9 +2374,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "clo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2810,148 +2417,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14520",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14520"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14520",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14520"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14520"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14520"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14522",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14522"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14522",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14522"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14522"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14522"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0002135",
           "semanticTag": "http://purl.obolibrary.org/obo/CLO_0002135"
         }
@@ -2980,9 +2445,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "clo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3051,9 +2516,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "bto",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3122,9 +2587,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3165,77 +2630,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14911",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14911"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14911",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14911"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14911"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14911"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0009864",
           "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0009864"
         }
@@ -3264,9 +2658,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3335,9 +2729,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3378,77 +2772,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14434",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14434"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14434",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14434"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14434"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14434"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37343",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C37343"
         }
@@ -3477,9 +2800,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3548,9 +2871,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3619,9 +2942,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3690,9 +3013,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3761,9 +3084,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3832,9 +3155,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3903,9 +3226,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3974,9 +3297,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4045,9 +3368,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4116,9 +3439,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4159,77 +3482,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14753",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14753"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14753",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14753"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14753"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14753"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRS_0005429",
           "semanticTag": "http://purl.obolibrary.org/obo/RS_0005429"
         }
@@ -4258,9 +3510,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4329,9 +3581,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4400,9 +3652,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4471,9 +3723,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4542,9 +3794,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4613,9 +3865,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4684,9 +3936,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4755,9 +4007,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4826,9 +4078,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4897,9 +4149,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4968,9 +4220,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5039,9 +4291,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5110,9 +4362,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5153,77 +4405,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14707",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14707"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14707",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14707"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14707"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14707"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRS_0001927",
           "semanticTag": "http://purl.obolibrary.org/obo/RS_0001927"
         }
@@ -5252,9 +4433,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5323,9 +4504,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5394,9 +4575,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5465,9 +4646,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5536,9 +4717,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5607,9 +4788,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5678,9 +4859,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5749,9 +4930,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5820,9 +5001,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5891,9 +5072,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5962,9 +5143,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6033,9 +5214,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6104,9 +5285,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6147,148 +5328,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14665",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14665"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14665",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14665"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14665"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14665"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14633",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14633"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "strain",
-      "propertyValue": "C57Black/6",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14633",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14633"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "strain",
-        "propertyValue": "C57Black/6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C14633"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C14633"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRS_0004298",
           "semanticTag": "http://purl.obolibrary.org/obo/RS_0004298"
         }
@@ -6317,9 +5356,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6388,9 +5427,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6459,9 +5498,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6530,9 +5569,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6601,9 +5640,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6672,9 +5711,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6743,9 +5782,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6814,9 +5853,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6885,9 +5924,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6956,9 +5995,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7027,9 +6066,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7098,9 +6137,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7169,9 +6208,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7240,9 +6279,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "rs",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",

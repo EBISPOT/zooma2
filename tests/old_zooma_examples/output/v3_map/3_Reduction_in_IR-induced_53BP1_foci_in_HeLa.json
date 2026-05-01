@@ -3,48 +3,46 @@
     {
       "candidates": [
         {
-          "confidence": 0.8003865832090378,
-          "datasource": "sysmicro",
-          "label": "site of double-strand break",
+          "confidence": 0.7478764800880533,
+          "datasource": "fypo",
+          "label": "decreased number of Rad51 foci during cellular response to ionizing radiation",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
-              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
-              "matchedText": "Reduction in IR-induced 53BP1 foci in HeLa cells",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "decreased number of Rad51 foci during cellular response to ionizing radiation",
               "method": "semantic",
-              "model": null,
-              "similarity": 0.8993107676506042,
-              "source": "sysmicro",
-              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8403106517843295,
+              "source": "ols:fypo",
+              "target": "http://purl.obolibrary.org/obo/FYPO_0005388"
             }
           ],
-          "ontology": "cmpo",
-          "synonyms": [],
-          "termId": "CMPO_0000180",
-          "uri": "cmpo"
+          "ontology": "fypo",
+          "termId": "FYPO_0005388",
+          "uri": "fypo"
         },
         {
-          "confidence": 0.8003865832090378,
-          "datasource": "sysmicro",
-          "label": "decreased number of site of double-strand break",
+          "confidence": 0.7452844798701899,
+          "datasource": "fypo",
+          "label": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
-              "matchType": "ZOOMA_EMBEDDING_OF_CURATED",
-              "matchedText": "Reduction in IR-induced 53BP1 foci in HeLa cells",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
               "method": "semantic",
-              "model": null,
-              "similarity": 0.8993107676506042,
-              "source": "sysmicro",
-              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8373982919889774,
+              "source": "ols:fypo",
+              "target": "http://purl.obolibrary.org/obo/FYPO_0006924"
             }
           ],
-          "ontology": "cmpo",
-          "synonyms": [],
-          "termId": "CMPO_0000181",
-          "uri": "cmpo"
+          "ontology": "fypo",
+          "termId": "FYPO_0006924",
+          "uri": "fypo"
         }
       ],
       "error": null,

@@ -4,6 +4,27 @@
       "candidates": [
         {
           "confidence": 1.0,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "termId": "ma_0000198",
+          "uri": "ma"
+        },
+        {
+          "confidence": 1.0,
           "datasource": "bto",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -20,8 +41,7 @@
             }
           ],
           "ontology": "bto",
-          "synonyms": [],
-          "termId": "BTO_0000232",
+          "termId": "bto_0000232",
           "uri": "bto"
         },
         {
@@ -42,80 +62,8 @@
             }
           ],
           "ontology": "omit",
-          "synonyms": [],
-          "termId": "OMIT_0003860",
+          "termId": "omit_0003860",
           "uri": "omit"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "xao",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:xao",
-              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
-            }
-          ],
-          "ontology": "xao",
-          "synonyms": [],
-          "termId": "XAO_0003098",
-          "uri": "xao"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "uberon",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:uberon",
-              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
-            }
-          ],
-          "ontology": "uberon",
-          "synonyms": [
-            "corpus cerebelli",
-            "epencephalon-1",
-            "infratentorial region",
-            "parencephalon"
-          ],
-          "termId": "UBERON_0002037",
-          "uri": "uberon"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "synonyms": [],
-          "termId": "MA_0000198",
-          "uri": "ma"
         },
         {
           "confidence": 1.0,
@@ -135,9 +83,50 @@
             }
           ],
           "ontology": "emapa",
-          "synonyms": [],
-          "termId": "EMAPA_17787",
+          "termId": "emapa_17787",
           "uri": "emapa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "uberon",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:uberon",
+              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+            }
+          ],
+          "ontology": "uberon",
+          "termId": "uberon_0002037",
+          "uri": "uberon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "xao",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:xao",
+              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
+            }
+          ],
+          "ontology": "xao",
+          "termId": "xao_0003098",
+          "uri": "xao"
         },
         {
           "confidence": 1.0,
@@ -157,8 +146,7 @@
             }
           ],
           "ontology": "zfa",
-          "synonyms": [],
-          "termId": "ZFA_0000100",
+          "termId": "zfa_0000100",
           "uri": "zfa"
         },
         {
@@ -179,14 +167,7 @@
             }
           ],
           "ontology": "mesh",
-          "synonyms": [
-            "Cerebella",
-            "Cerebellums",
-            "Corpus Cerebelli",
-            "Parencephalon",
-            "Parencephalons"
-          ],
-          "termId": "mesh_D002531",
+          "termId": "http://id.nlm.nih.gov/mesh/D002531",
           "uri": "mesh"
         },
         {
@@ -207,17 +188,7 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "BRAIN, CEREBELLUM",
-            "Brain, Cerebellum, NOS",
-            "CEREBELLUM",
-            "Cerebellar structure (body structure)",
-            "Cerebellar",
-            "Cerebellum",
-            "Cerebellum, NOS",
-            "cerebellum"
-          ],
-          "termId": "NCIT_C12445",
+          "termId": "ncit_C12445",
           "uri": "ncit"
         }
       ],

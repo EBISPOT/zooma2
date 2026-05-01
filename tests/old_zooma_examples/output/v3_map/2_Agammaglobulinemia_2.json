@@ -20,8 +20,7 @@
             }
           ],
           "ontology": "doid",
-          "synonyms": [],
-          "termId": "DOID_0081135",
+          "termId": "doid_0081135",
           "uri": "doid"
         },
         {
@@ -42,12 +41,7 @@
             }
           ],
           "ontology": "doid",
-          "synonyms": [
-            "hypogammaglobulinemia",
-            "mu heavy chain deficiency",
-            "IGHM"
-          ],
-          "termId": "DOID_2583",
+          "termId": "doid_2583",
           "uri": "doid"
         },
         {
@@ -68,8 +62,7 @@
             }
           ],
           "ontology": "omit",
-          "synonyms": [],
-          "termId": "OMIT_0001789",
+          "termId": "omit_0001789",
           "uri": "omit"
         },
         {
@@ -90,33 +83,8 @@
             }
           ],
           "ontology": "hp",
-          "synonyms": [
-            "Agammaglobulinaemia"
-          ],
-          "termId": "HP_0004432",
+          "termId": "hp_0004432",
           "uri": "hp"
-        },
-        {
-          "confidence": 0.801,
-          "datasource": "ordo",
-          "label": "Agammaglobulinemia",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:ordo",
-              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
-            }
-          ],
-          "ontology": "ordo",
-          "synonyms": [],
-          "termId": "Orphanet_183669",
-          "uri": "ordo"
         },
         {
           "confidence": 0.801,
@@ -136,17 +104,29 @@
             }
           ],
           "ontology": "mondo",
-          "synonyms": [
-            "Gammaglobulin Deficiency",
-            "IGHM",
-            "Immunoglobulin Deficiency",
-            "agammaglobulinemia",
-            "antibody Deficiency",
-            "hypogammaglobulinemia",
-            "mu heavy chain deficiency"
-          ],
-          "termId": "MONDO_0015977",
+          "termId": "mondo_0015977",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "ordo",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "orphanet.ordo_183669",
+          "uri": "ordo"
         },
         {
           "confidence": 0.801,
@@ -166,12 +146,7 @@
             }
           ],
           "ontology": "mesh",
-          "synonyms": [
-            "Agammaglobulinemias",
-            "Hypogammaglobulinemia",
-            "Hypogammaglobulinemias"
-          ],
-          "termId": "mesh_D000361",
+          "termId": "http://id.nlm.nih.gov/mesh/D000361",
           "uri": "mesh"
         },
         {
@@ -192,13 +167,29 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "Agammaglobulinemia",
-            "Hypogammaglobulinemia",
-            "hypogammaglobulinemia"
-          ],
-          "termId": "NCIT_C26931",
+          "termId": "ncit_C26931",
           "uri": "ncit"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "snomed",
+          "label": "Agammaglobulinaemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinaemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/119249001"
+            }
+          ],
+          "ontology": "snomed",
+          "termId": "http://snomed.info/id/119249001",
+          "uri": "snomed"
         }
       ],
       "error": null,

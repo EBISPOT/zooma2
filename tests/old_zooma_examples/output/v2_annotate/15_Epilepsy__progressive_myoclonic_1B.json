@@ -3,328 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_1934",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_1934"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Epileptic encephalopathy, early infantile, 23",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_1934",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_1934"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04135",
-          "studies": [
-            {
-              "accession": "DI-04135",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/668DD87FDDE6CFDE83ED1861D9E0EB32"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/668DD87FDDE6CFDE83ED1861D9E0EB32"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Epileptic encephalopathy, early infantile, 23",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_1934"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_1934"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_3451",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_3451"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Epileptic encephalopathy, early infantile, 27",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_3451",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_3451"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04289",
-          "studies": [
-            {
-              "accession": "DI-04289",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/F2186AE930272C5CB935510ABAB1F48C"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/F2186AE930272C5CB935510ABAB1F48C"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Epileptic encephalopathy, early infantile, 27",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_3451"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_3451"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_1934",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_1934"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "epileptic encephalopathy, early infantile, 42",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_1934",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_1934"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "epileptic encephalopathy, early infantile, 42",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_1934"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_1934"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_98784+",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_98784 "
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Epilepsy, nocturnal frontal lobe, 5",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_98784+",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_98784 "
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Epilepsy, nocturnal frontal lobe, 5",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_98784 "
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_98784 "
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012904",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012904"
         }
@@ -354,9 +32,9 @@
       },
       "provenance": {
         "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_LEXICAL",
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_TEXT_TAGGER",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
@@ -396,8 +74,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012904",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012904"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F612437",
+          "semanticTag": "http://identifiers.org/omim/612437"
         }
       ]
     },
@@ -412,8 +90,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012904",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012904"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F612437",
+            "semanticTag": "http://identifiers.org/omim/612437"
           }
         ]
       },
@@ -424,22 +102,22 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "cco",
+        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "cco",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "cco"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012904"
+        "http://identifiers.org/omim/612437"
       ],
       "uri": null
     },
@@ -459,7 +137,149 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012904"
+      "http://identifiers.org/omim/612437"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_501",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_501"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_501",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_501"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_501"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_501"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_308",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_308"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_308",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_308"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_308"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_308"
     ],
     "uri": null
   },
@@ -495,9 +315,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -566,9 +386,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -609,6 +429,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_263516",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_263516"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_263516",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_263516"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_263516"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_263516"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_163696",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_163696"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_163696",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_163696"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_163696"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_163696"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012721",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012721"
         }
@@ -637,9 +599,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -680,6 +642,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0030034",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0030034"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0030034",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0030034"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0030034"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0030034"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0800306",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0800306"
         }
@@ -708,9 +741,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -779,9 +812,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -850,9 +883,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -893,6 +926,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020074",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020074"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020074",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020074"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0020074"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0020074"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014717",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014717"
         }
@@ -921,9 +1025,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -992,9 +1096,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1063,9 +1167,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1134,9 +1238,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1205,9 +1309,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1248,77 +1352,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0030034",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0030034"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Epilepsy, progressive myoclonic 1B",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0030034",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0030034"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Epilepsy, progressive myoclonic 1B",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0030034"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0030034"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C216119",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C216119"
         }
@@ -1347,9 +1380,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1418,9 +1451,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1489,9 +1522,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1560,9 +1593,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1631,9 +1664,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1702,9 +1735,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1773,9 +1806,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1844,9 +1877,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1915,9 +1948,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1986,9 +2019,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2057,9 +2090,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2128,9 +2161,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2199,9 +2232,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2270,9 +2303,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2341,9 +2374,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2412,9 +2445,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2483,9 +2516,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2554,9 +2587,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2625,9 +2658,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2696,9 +2729,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2767,9 +2800,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2810,77 +2843,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020074",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020074"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Epilepsy, progressive myoclonic 1B",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020074",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020074"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Epilepsy, progressive myoclonic 1B",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0020074"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0020074"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013103",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013103"
         }
@@ -2909,9 +2871,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2980,9 +2942,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3051,9 +3013,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3122,9 +3084,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3193,9 +3155,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3264,9 +3226,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3335,9 +3297,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3406,9 +3368,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3477,9 +3439,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3548,9 +3510,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3619,9 +3581,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3690,9 +3652,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3761,9 +3723,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3832,9 +3794,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3903,9 +3865,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3974,9 +3936,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4045,9 +4007,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4116,9 +4078,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4187,9 +4149,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4258,9 +4220,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4329,9 +4291,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4400,9 +4362,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4471,9 +4433,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4542,9 +4504,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4613,9 +4575,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4684,9 +4646,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4755,9 +4717,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4826,9 +4788,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4897,9 +4859,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4968,9 +4930,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5039,9 +5001,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5110,9 +5072,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5181,9 +5143,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5252,9 +5214,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5323,9 +5285,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5394,9 +5356,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5465,9 +5427,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5536,9 +5498,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5607,9 +5569,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5678,9 +5640,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5749,9 +5711,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5820,9 +5782,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5891,9 +5853,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5962,9 +5924,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6033,9 +5995,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6104,9 +6066,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6175,9 +6137,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6246,9 +6208,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6317,9 +6279,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6388,9 +6350,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6459,9 +6421,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6530,9 +6492,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6601,9 +6563,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6672,9 +6634,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6743,9 +6705,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6814,9 +6776,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6885,9 +6847,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6956,9 +6918,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7027,9 +6989,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7098,9 +7060,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7169,9 +7131,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7240,9 +7202,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7311,9 +7273,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7382,9 +7344,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7453,9 +7415,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7489,6 +7451,1000 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0014719"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPATO_0001818",
+          "semanticTag": "http://purl.obolibrary.org/obo/PATO_0001818"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPATO_0001818",
+            "semanticTag": "http://purl.obolibrary.org/obo/PATO_0001818"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pato",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pato",
+          "type": "ONTOLOGY",
+          "uri": "pato"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PATO_0001818"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PATO_0001818"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBcv_0000793",
+          "semanticTag": "http://purl.obolibrary.org/obo/FBcv_0000793"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBcv_0000793",
+            "semanticTag": "http://purl.obolibrary.org/obo/FBcv_0000793"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fbcv",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fbcv",
+          "type": "ONTOLOGY",
+          "uri": "fbcv"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FBcv_0000793"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FBcv_0000793"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0003676",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0003676"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0003676",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0003676"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0003676"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0003676"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25254",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C25254"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25254",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C25254"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C25254"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C25254"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F255314001",
+          "semanticTag": "http://snomed.info/id/255314001"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F255314001",
+            "semanticTag": "http://snomed.info/id/255314001"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/255314001"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/255314001"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC580388",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C580388"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC580388",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C580388"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C580388"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C580388"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_1826",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_1826"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_1826",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_1826"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_1826"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_1826"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0006064",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0006064"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0006064",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0006064"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0006064"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0006064"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNBO_0000642",
+          "semanticTag": "http://purl.obolibrary.org/obo/NBO_0000642"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNBO_0000642",
+            "semanticTag": "http://purl.obolibrary.org/obo/NBO_0000642"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "nbo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "nbo",
+          "type": "ONTOLOGY",
+          "uri": "nbo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NBO_0000642"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NBO_0000642"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001250",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0001250"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001250",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0001250"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0001250"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0001250"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005027",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005027"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005027",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005027"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0005027"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0005027"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD004827",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D004827"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD004827",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D004827"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D004827"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D004827"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C3020",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C3020"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C3020",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C3020"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C3020"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C3020"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F84757009",
+          "semanticTag": "http://snomed.info/id/84757009"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Epilepsy, progressive myoclonic 1B",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F84757009",
+            "semanticTag": "http://snomed.info/id/84757009"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Epilepsy, progressive myoclonic 1B",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/84757009"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/84757009"
     ],
     "uri": null
   }

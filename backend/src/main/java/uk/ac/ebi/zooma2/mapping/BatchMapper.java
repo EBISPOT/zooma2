@@ -72,13 +72,13 @@ public class BatchMapper {
             .flatMap(s -> {
                 var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
                 if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources)) {
-                    var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, deep);
+                    var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
                     var deduped = deduplicator.deduplicate(results, sources, excludeTermIds);
                     return deduped.stream();
                 }
                 var results = stringMapper.mapOne(s, sources, model, deep);
                 if (!taggerAnnotations.isEmpty()) {
-                    var taggerResults = stringMapper.annotationsToMapResults(taggerAnnotations, s, deep);
+                    var taggerResults = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
                     results.addAll(taggerResults);
                 }
                 var deduped = returnAll

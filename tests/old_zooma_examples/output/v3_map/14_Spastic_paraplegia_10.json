@@ -20,12 +20,29 @@
             }
           ],
           "ontology": "ncit",
-          "synonyms": [
-            "SPG10",
-            "Spastic Paraplegia 10"
-          ],
-          "termId": "NCIT_C192058",
+          "termId": "ncit_C192058",
           "uri": "ncit"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "eva-clinvar",
+          "label": "Autosomal dominant spastic paraplegia type 10",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Spastic paraplegia 10",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "Autosomal dominant spastic paraplegia type 10",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "eva-clinvar",
+              "target": "http://www.orpha.net/ORDO/Orphanet_100991"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "orphanet.ordo_100991",
+          "uri": "ordo"
         }
       ],
       "error": null,

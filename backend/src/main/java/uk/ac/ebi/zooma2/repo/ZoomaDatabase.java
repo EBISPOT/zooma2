@@ -49,6 +49,30 @@ public class ZoomaDatabase {
         return jdbcUrl;
     }
 
+    public long countDistinctEmbeddingTexts() {
+        String sql = "SELECT COUNT(DISTINCT text) FROM embeddings";
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            return rs.next() ? rs.getLong(1) : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to count embedding texts", e);
+        }
+    }
+
+    public long countEmbeddingsBySourceType(String sourceType) {
+        String sql = "SELECT COUNT(*) FROM embeddings WHERE source_type = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, sourceType);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getLong(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to count embeddings by source type", e);
+        }
+    }
+
     private void initAllTables() {
         String autoIncrement = isPostgres ? "BIGSERIAL PRIMARY KEY" : "INTEGER PRIMARY KEY AUTOINCREMENT";
         String timestampDefault = isPostgres ? "TIMESTAMP DEFAULT NOW()" : "TIMESTAMP DEFAULT CURRENT_TIMESTAMP";

@@ -6,6 +6,8 @@ import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
+import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
+import uk.ac.ebi.zooma2.api.SourceMetadata;
 import uk.ac.ebi.zooma2.api.v2.dto.V2AnnotationDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2FilterDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2MapResultDto;
@@ -15,7 +17,6 @@ import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
-import uk.ac.ebi.zooma2.repo.OlsOntology;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -71,30 +72,14 @@ public class ZoomaApiV2 {
 
     private void getSources(Context ctx) {
         try {
-            var databases = olsRepo.getCurationSources().stream()
-                .map(name -> Map.of(
-                    "type", "DATABASE",
-                    "name", name,
-                    "uri", name
-                ));
-
-            var ontologies = olsRepo.getOntologies().stream()
-                .map((OlsOntology o) -> Map.of(
-                    "type", "ONTOLOGY",
-                    "name", o.ontologyId,
-                    "title", o.config.title != null ? o.config.title : "",
-                    "description", o.config.description != null ? o.config.description : "",
-                    "uri", o.ontologyId
-                ));
-
-            ctx.json(Stream.concat(databases, ontologies).toList());
+            ctx.json(SourceMetadata.buildSources(olsRepo.getOntologies()));
         } catch (IOException e) {
             throw new InternalServerErrorResponse("Failed to fetch sources: " + e.getMessage());
         }
     }
 
     private void getPropertyTypes(Context ctx) {
-        ctx.json(List.of());
+        ctx.json(PropertyTypeMetadata.legacyPropertyTypes());
     }
 
     private void annotate(Context ctx) {
@@ -193,7 +178,7 @@ public class ZoomaApiV2 {
         sb.append("Run at:\t").append(now.format(DateTimeFormatter.ofPattern("HH:mm.ss, dd.MM.yy"))).append("\n");
         sb.append("Run from:\thttp://www.ebi.ac.uk/fgpt/zooma\n");
         sb.append("\n\n");
-        sb.append("PROPERTY TYPE\tPROPERTY VALUE\tONTOLOGY TERM LABEL(S)\tONTOLOGY TERM SYNONYM(S)\t");
+        sb.append("PROPERTY TYPE\tPROPERTY VALUE\tONTOLOGY TERM LABEL(S)\t");
         sb.append("CONFIDENCE\tONTOLOGY TERM(S)\tONTOLOGY(S)\tSOURCE(S)\tSTUDY");
 
         for (var r : job.results) {
@@ -201,7 +186,6 @@ public class ZoomaApiV2 {
             sb.append(r.propertyType != null ? r.propertyType : "").append("\t");
             sb.append(r.propertyValue != null ? r.propertyValue : "").append("\t");
             sb.append(r.ontologyTermLabel != null ? r.ontologyTermLabel : "").append("\t");
-            sb.append(r.ontologyTermSynonyms != null ? r.ontologyTermSynonyms : "").append("\t");
             sb.append(titleCase(r.mappingConfidence)).append("\t");
             sb.append(r.ontologyTermID != null ? r.ontologyTermID : "").append("\t");
             sb.append(r.ontologyURI != null ? r.ontologyURI : "").append("\t");
@@ -294,7 +278,7 @@ public class ZoomaApiV2 {
         String sourceName = sourceName(result, firstStep);
         provenance.source.type = firstStep != null && "curated".equals(firstStep.method) ? "DATABASE" : "ONTOLOGY";
         provenance.source.name = sourceName;
-        provenance.source.uri = sourceName;
+        provenance.source.uri = provenance.source.type.equals("DATABASE") ? SourceMetadata.sourceUri(sourceName) : sourceName;
         provenance.evidence = firstStep != null && firstStep.matchType != null ? firstStep.matchType : null;
         provenance.generator = "ZOOMA";
         provenance.annotator = sourceName != null ? sourceName : "ZOOMA";

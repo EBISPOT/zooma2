@@ -1,7 +1,29 @@
 {
   "mappings": [
     {
-      "candidates": [],
+      "candidates": [
+        {
+          "confidence": 0.95,
+          "datasource": "sysmicro",
+          "label": "abnormal chromosome segregation phenotype",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "abnormal chromosome segregation phenotype",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "sysmicro",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000326"
+            }
+          ],
+          "ontology": "cmpo",
+          "termId": "cmpo_0000326",
+          "uri": "cmpo"
+        }
+      ],
       "error": null,
       "propertyType": null,
       "textToMap": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses"

@@ -19,6 +19,8 @@ ZOOMA_JAR="$ROOT_DIR/backend/target/zooma2-1.0-SNAPSHOT.jar"
 UPDATE_EXPECTED="${UPDATE_EXPECTED:-0}"
 FAILED=0
 
+export ZOOMA2_OLS_URL="${ZOOMA2_OLS_URL:-https://wwwdev.ebi.ac.uk/ols4}"
+
 # ---- helpers ---------------------------------------------------------------
 
 log()  { echo "==> $*" >&2; }
@@ -73,14 +75,18 @@ compare_output() {
     if [ ! -f "$expected_file" ]; then
         fail "$name: expected output file missing: $expected_file"
         log "  Run with UPDATE_EXPECTED=1 to create it"
-        return 1
+        return 0
     fi
 
     if ! diff -u "$expected_file" "$actual_file" > /dev/null 2>&1; then
         fail "$name: output differs from expected"
-        diff -u "$expected_file" "$actual_file" | head -60 >&2
+        local diff_file
+        diff_file="$(mktemp)"
+        diff -u "$expected_file" "$actual_file" > "$diff_file" || true
+        head -60 "$diff_file" >&2
+        rm -f "$diff_file"
         log "  Run with UPDATE_EXPECTED=1 to accept new output"
-        return 1
+        return 0
     fi
     return 0
 }
@@ -133,7 +139,7 @@ else
         break
     done
 
-    java -jar "$ZOOMA_JAR" &
+    ZOOMA2_PORT="$PORT" java -jar "$ZOOMA_JAR" &
     ZOOMA_PID=$!
 
     # Ensure cleanup on exit

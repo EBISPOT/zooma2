@@ -3,669 +3,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "spastic paraplegia 10",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "spastic paraplegia 10",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EXACT_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_100991"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_100991"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "spastic paraplegia 10",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "spastic paraplegia 10",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_100991"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_100991"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100981",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100981"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Spastic paraplegia 74, autosomal recessive",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100981",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100981"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04475",
-          "studies": [
-            {
-              "accession": "DI-04475",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/B18C0FC956E8485CF70CFAD29CA93BE1"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/B18C0FC956E8485CF70CFAD29CA93BE1"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Spastic paraplegia 74, autosomal recessive",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_100981"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_100981"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100990",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100990"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "*Spastic paraplegia 9A, autosomal dominant",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100990",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100990"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04556",
-          "studies": [
-            {
-              "accession": "DI-04556",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/28965227BFE125EFDB580B2402480352"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/28965227BFE125EFDB580B2402480352"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "*Spastic paraplegia 9A, autosomal dominant",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_100990"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_100990"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fmedgen%2FC0037772",
-          "semanticTag": "http://identifiers.org/medgen/C0037772"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Spastic paraplegia",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fmedgen%2FC0037772",
-            "semanticTag": "http://identifiers.org/medgen/C0037772"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "rs772704885",
-          "studies": [
-            {
-              "accession": "RCV001964023",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/F9DA3D45CE5842A6ADEFD98967391292"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/5F46ACD144DF0981F21F7F9ABC977954"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Spastic paraplegia",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "clinvar-xrefs",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "clinvar-xrefs",
-          "type": "DATABASE",
-          "uri": "https://www.ncbi.nlm.nih.gov/clinvar"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://identifiers.org/medgen/C0037772"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://identifiers.org/medgen/C0037772"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.omim.org%2Fentry%2F182601",
-          "semanticTag": "https://www.omim.org/entry/182601"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Hereditary spastic paraplegia 4",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.omim.org%2Fentry%2F182601",
-            "semanticTag": "https://www.omim.org/entry/182601"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "rs1232419017",
-          "studies": [
-            {
-              "accession": "RCV001446916",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/73720F7A6122AF90D4F82016899758DC"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/D47812A7E77EB275BC75263FE73C02C8"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Hereditary spastic paraplegia 4",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "clinvar-xrefs",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "clinvar-xrefs",
-          "type": "DATABASE",
-          "uri": "https://www.ncbi.nlm.nih.gov/clinvar"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "https://www.omim.org/entry/182601"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "https://www.omim.org/entry/182601"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014975",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014975"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Autosomal recessive spastic paraplegia type 78",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014975",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014975"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "rs766073047",
-          "studies": [
-            {
-              "accession": "RCV002600739",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/3A542681867FFBA0559953C6073C3457"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/clinvar-xrefs/68141332B1E9F94A3CEDE941269E15C5"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Autosomal recessive spastic paraplegia type 78",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "clinvar-xrefs",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "clinvar-xrefs",
-          "type": "DATABASE",
-          "uri": "https://www.ncbi.nlm.nih.gov/clinvar"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0014975"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0014975"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012639",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012639"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "hereditary spastic paraplegia 18",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012639",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012639"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "hereditary spastic paraplegia 18",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012639"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012639"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192058",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192058"
         }
@@ -695,9 +32,9 @@
       },
       "provenance": {
         "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_LEXICAL",
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
@@ -737,8 +74,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011408",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011408"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
         }
       ]
     },
@@ -753,8 +90,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011408",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011408"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_100991",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_100991"
           }
         ]
       },
@@ -766,21 +103,21 @@
       },
       "provenance": {
         "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_LEXICAL",
+        "annotationDate": 0,
+        "annotator": "eva-clinvar",
+        "evidence": "CURATED_EXACT",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
+          "name": "eva-clinvar",
+          "type": "DATABASE",
+          "uri": "https://www.ebi.ac.uk/eva"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0011408"
+        "http://www.orpha.net/ORDO/Orphanet_100991"
       ],
       "uri": null
     },
@@ -800,7 +137,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0011408"
+      "http://www.orpha.net/ORDO/Orphanet_100991"
     ],
     "uri": null
   },
@@ -836,9 +173,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -907,9 +244,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -950,8 +287,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C191840",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C191840"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_447753",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_447753"
         }
       ]
     },
@@ -966,8 +303,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C191840",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C191840"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_447753",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_447753"
           }
         ]
       },
@@ -978,22 +315,22 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "ordo",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "ordo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C191840"
+        "http://www.orpha.net/ORDO/Orphanet_447753"
       ],
       "uri": null
     },
@@ -1013,7 +350,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C191840"
+      "http://www.orpha.net/ORDO/Orphanet_447753"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_2822",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_2822"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_2822",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_2822"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_2822"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_2822"
     ],
     "uri": null
   },
@@ -1049,9 +457,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1092,6 +500,361 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C191840",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C191840"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C191840",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C191840"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C191840"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C191840"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101011",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101011"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101011",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101011"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_101011"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_101011"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032737",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032737"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032737",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032737"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0032737"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0032737"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_171863",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_171863"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_171863",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_171863"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_171863"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_171863"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101010",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101010"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101010",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101010"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_101010"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_101010"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC536863",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C536863"
         }
@@ -1120,9 +883,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1191,9 +954,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1262,9 +1025,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1333,9 +1096,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1404,9 +1167,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1475,9 +1238,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1546,9 +1309,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1617,9 +1380,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1688,9 +1451,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1759,9 +1522,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1830,9 +1593,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1901,9 +1664,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1972,9 +1735,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2043,9 +1806,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2114,9 +1877,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2157,77 +1920,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032737",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032737"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Spastic paraplegia 10",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032737",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032737"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Spastic paraplegia 10",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0032737"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0032737"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC536857",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C536857"
         }
@@ -2256,9 +1948,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2327,9 +2019,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2398,9 +2090,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2469,9 +2161,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2540,9 +2232,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2611,9 +2303,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2682,9 +2374,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2753,9 +2445,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2824,9 +2516,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2895,9 +2587,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2966,9 +2658,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3037,9 +2729,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3108,9 +2800,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3179,9 +2871,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3250,9 +2942,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3321,9 +3013,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3392,9 +3084,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3463,9 +3155,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3534,9 +3226,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3605,9 +3297,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3676,9 +3368,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3747,9 +3439,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3818,9 +3510,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3889,9 +3581,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3960,9 +3652,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4031,9 +3723,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4102,9 +3794,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4173,9 +3865,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4244,9 +3936,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4315,9 +4007,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4386,9 +4078,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4457,9 +4149,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4528,9 +4220,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4599,9 +4291,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4670,9 +4362,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4741,9 +4433,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4812,9 +4504,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4883,9 +4575,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4954,9 +4646,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5025,9 +4717,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5096,9 +4788,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5167,9 +4859,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5238,9 +4930,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5309,9 +5001,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5380,9 +5072,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5451,9 +5143,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5522,9 +5214,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5593,9 +5285,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5664,9 +5356,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5735,9 +5427,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5806,9 +5498,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5877,9 +5569,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5948,9 +5640,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6019,9 +5711,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6090,9 +5782,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6161,9 +5853,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6232,9 +5924,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6303,9 +5995,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6374,9 +6066,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6445,9 +6137,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6516,9 +6208,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6587,9 +6279,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6658,9 +6350,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6729,9 +6421,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6800,9 +6492,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6871,9 +6563,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6942,9 +6634,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7013,9 +6705,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7084,9 +6776,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7155,9 +6847,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7226,9 +6918,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7297,9 +6989,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7368,9 +7060,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7439,9 +7131,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7510,9 +7202,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7581,9 +7273,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7652,9 +7344,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7723,9 +7415,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7794,9 +7486,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7865,9 +7557,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7901,6 +7593,1213 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/HP_0001258"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F192967009",
+          "semanticTag": "http://snomed.info/id/192967009"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F192967009",
+            "semanticTag": "http://snomed.info/id/192967009"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/192967009"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/192967009"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011408",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011408"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011408",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011408"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0011408"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0011408"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110763",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110763"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110763",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110763"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110763"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110763"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_607",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_607"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_607",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_607"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_607"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_607"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0011260",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0011260"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0011260",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0011260"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0011260"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0011260"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FSYMP_0000349",
+          "semanticTag": "http://purl.obolibrary.org/obo/SYMP_0000349"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FSYMP_0000349",
+            "semanticTag": "http://purl.obolibrary.org/obo/SYMP_0000349"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "symp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "symp",
+          "type": "ONTOLOGY",
+          "uri": "symp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/SYMP_0000349"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/SYMP_0000349"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGSSO_007200",
+          "semanticTag": "http://purl.obolibrary.org/obo/GSSO_007200"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGSSO_007200",
+            "semanticTag": "http://purl.obolibrary.org/obo/GSSO_007200"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "gsso",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "gsso",
+          "type": "ONTOLOGY",
+          "uri": "gsso"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GSSO_007200"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GSSO_007200"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0010550",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0010550"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0010550",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0010550"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0010550"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0010550"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003757",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003757"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003757",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003757"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0003757"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0003757"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD010264",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D010264"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD010264",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D010264"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D010264"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D010264"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C50687",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C50687"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C50687",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C50687"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C50687"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C50687"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F60389000",
+          "semanticTag": "http://snomed.info/id/60389000"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F60389000",
+            "semanticTag": "http://snomed.info/id/60389000"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/60389000"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/60389000"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F604187",
+          "semanticTag": "http://identifiers.org/omim/604187"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F604187",
+            "semanticTag": "http://identifiers.org/omim/604187"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "cco",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "cco",
+          "type": "ONTOLOGY",
+          "uri": "cco"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://identifiers.org/omim/604187"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://identifiers.org/omim/604187"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD015419",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D015419"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD015419",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D015419"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D015419"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D015419"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F732948003",
+          "semanticTag": "http://snomed.info/id/732948003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F732948003",
+            "semanticTag": "http://snomed.info/id/732948003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/732948003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/732948003"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C79750",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C79750"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C79750",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C79750"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C79750"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C79750"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F263875003",
+          "semanticTag": "http://snomed.info/id/263875003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Spastic paraplegia 10",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F263875003",
+            "semanticTag": "http://snomed.info/id/263875003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Spastic paraplegia 10",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/263875003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/263875003"
     ],
     "uri": null
   }

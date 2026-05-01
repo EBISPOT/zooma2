@@ -3,26 +3,25 @@
     {
       "candidates": [
         {
-          "confidence": 0.7667483901977539,
-          "datasource": "dron",
-          "label": "nifedipine 0.1 MG/ML Injectable Solution",
+          "confidence": 0.7979588188233016,
+          "datasource": "chebi",
+          "label": "nifedipine",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "nifedipine 0.025 micromolar",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "nifedipine 0.1 MG/ML Injectable Solution",
+              "matchedText": "nifedipine",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8615150451660156,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00049542"
+              "similarity": 0.8965829424980916,
+              "source": "ols:chebi",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_7565"
             }
           ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00049542",
-          "uri": "dron"
+          "ontology": "chebi",
+          "termId": "CHEBI_7565",
+          "uri": "chebi"
         }
       ],
       "error": null,

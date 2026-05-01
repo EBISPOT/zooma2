@@ -3,246 +3,25 @@
     {
       "candidates": [
         {
-          "confidence": 0.7566352939605713,
-          "datasource": "dron",
-          "label": "doxycycline hyclate 0.1 MG/MG Oral Gel",
+          "confidence": 0.7788075942346979,
+          "datasource": "chebi",
+          "label": "doxycycline",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "doxycycline 130 nanomolar",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline hyclate 0.1 MG/MG Oral Gel",
+              "matchedText": "doxycycline",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8501520156860352,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00064937"
+              "similarity": 0.875064712623256,
+              "source": "ols:chebi",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_50845"
             }
           ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00064937",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7561192417144775,
-          "datasource": "dron",
-          "label": "doxycycline 57.7 MG Oral Capsule",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline 57.7 MG Oral Capsule",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8495721817016602,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00048420"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00048420",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7557398414611817,
-          "datasource": "dron",
-          "label": "doxycycline 54.4 MG Oral Capsule",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline 54.4 MG Oral Capsule",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8491458892822266,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00047216"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00047216",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7556846714019776,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 150 MG Oral Capsule",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 150 MG Oral Capsule",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8490839004516602,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00055986"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00055986",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7552467060089112,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 100 MG Oral Tablet",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 100 MG Oral Tablet",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8485918045043945,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00759215"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00759215",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7551771068572998,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 100 MG Oral Capsule",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 100 MG Oral Capsule",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8485136032104492,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00759211"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00759211",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7551372146606445,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 5 MG/ML Oral Suspension",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 5 MG/ML Oral Suspension",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8484687805175781,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00759207"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00759207",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7535415267944336,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 75 MG Oral Tablet",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 75 MG Oral Tablet",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8466758728027344,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00759213"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00759213",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7526749324798584,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 50 MG Oral Capsule",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 50 MG Oral Capsule",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8457021713256836,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00759208"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00759208",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7520264720916748,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 150 MG Oral Tablet [Adoxa]",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 150 MG Oral Tablet [Adoxa]",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8449735641479492,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00077270"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00077270",
-          "uri": "dron"
-        },
-        {
-          "confidence": 0.7518040943145752,
-          "datasource": "dron",
-          "label": "doxycycline monohydrate 100 MG Oral Tablet [Avidoxy]",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "doxycycline 130 nanomolar",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "doxycycline monohydrate 100 MG Oral Tablet [Avidoxy]",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8447237014770508,
-              "source": "ols:dron",
-              "target": "http://purl.obolibrary.org/obo/DRON_00079926"
-            }
-          ],
-          "ontology": "dron",
-          "synonyms": [],
-          "termId": "DRON_00079926",
-          "uri": "dron"
+          "ontology": "chebi",
+          "termId": "CHEBI_50845",
+          "uri": "chebi"
         }
       ],
       "error": null,

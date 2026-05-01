@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8490094947814941,
+          "confidence": 0.8498787537317662,
           "datasource": "mondo",
           "label": "lung adenocarcinoma in situ",
           "mappingProvenance": [
@@ -14,28 +14,12 @@
               "matchedText": "lung adenocarcinoma in situ",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9539432525634766,
+              "similarity": 0.9549199480132204,
               "source": "ols:mondo",
               "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
             }
           ],
           "ontology": "mondo",
-          "synonyms": [
-            "adenosquamous cell carcinoma in situ of lung",
-            "adenosquamous cell carcinoma in situ of the lung",
-            "bronchioalveolar carcinoma",
-            "bronchioloalveolar carcinoma",
-            "in situ pulmonary adenocarcinoma",
-            "lung adenosquamous cell carcinoma in situ",
-            "stage 0 adenosquamous cell carcinoma of lung",
-            "stage 0 adenosquamous cell carcinoma of the lung",
-            "stage 0 adenosquamous cell lung carcinoma",
-            "stage 0 adenosquamous lung cancer",
-            "stage 0 adenosquamous lung carcinoma aJCC v6 and v7",
-            "stage 0 adenosquamous lung carcinoma aJCC v6",
-            "stage 0 adenosquamous lung carcinoma aJCC v7",
-            "lung adenocarcinoma In situ"
-          ],
           "termId": "MONDO_0000503",
           "uri": "mondo"
         }

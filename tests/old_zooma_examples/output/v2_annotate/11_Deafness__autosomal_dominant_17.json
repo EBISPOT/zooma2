@@ -10,773 +10,6 @@
     },
     "annotatedBiologicalEntities": [],
     "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal dominant 17",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal dominant 17",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EXACT_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90635"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90635"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal dominant 17",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal dominant 17",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90635"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90635"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal dominant, 65",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04244",
-          "studies": [
-            {
-              "accession": "DI-04244",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/C3FFA6CA82A7D1F75EC578D56B55D813"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/C3FFA6CA82A7D1F75EC578D56B55D813"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal dominant, 65",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90635"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90635"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal recessive, 101",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04121",
-          "studies": [
-            {
-              "accession": "DI-04121",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/965331C60DAE6E1222CA88841DC7D506"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/965331C60DAE6E1222CA88841DC7D506"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal recessive, 101",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90636"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90636"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal recessive 3",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal recessive 3",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90636"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90636"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, autosomal recessive 102",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, autosomal recessive 102",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90636"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90636"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0019588",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0019588"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "deafness, autosomal recessive 94",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0019588",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0019588"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "deafness, autosomal recessive 94",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0019588"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0019588"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "*Deafness, autosomal recessive, 66",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90636",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90636"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [
-        {
-          "name": "DI-04549",
-          "studies": [
-            {
-              "accession": "DI-04549",
-              "types": [
-                "http://www.w3.org/2002/07/owl#NamedIndividual",
-                "http://rdf.ebi.ac.uk/terms/zooma/DatabaseEntrySource"
-              ],
-              "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/2DED0CB8FF165CEBEC5A3CFFB82ACE0A"
-            }
-          ],
-          "types": [
-            "http://www.w3.org/2002/07/owl#NamedIndividual",
-            "http://rdf.ebi.ac.uk/terms/zooma/Target"
-          ],
-          "uri": "http://rdf.ebi.ac.uk/resource/zooma/uniprot/2DED0CB8FF165CEBEC5A3CFFB82ACE0A"
-        }
-      ],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "*Deafness, autosomal recessive, 66",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Barbara Polka",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "uniprot",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/uniprot"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90636"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90636"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90625",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90625"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Deafness, X-linked 6",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90625",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90625"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Deafness, X-linked 6",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "Denise Carvalho-Silva, Ian Dunham, Gautier Koscielny, Naveen Aranganathan",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cttv",
-          "type": "DATABASE",
-          "uri": "https://www.targetvalidation.org"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_90625"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_90625"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0019587",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0019587"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "autosomal dominant nonsyndromic hearing loss 9",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0019587",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0019587"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "autosomal dominant nonsyndromic hearing loss 9",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "eva",
-        "evidence": "CURATED_EMBEDDING_MATCH",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "eva-clinvar",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/eva"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0019587"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0019587"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC535507",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C535507"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
       "propertyType": "phenotype",
       "propertyValue": "Deafness, autosomal dominant 17",
       "uri": null
@@ -786,8 +19,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC535507",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C535507"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90635",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90635"
           }
         ]
       },
@@ -799,21 +32,21 @@
       },
       "provenance": {
         "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_LEXICAL",
+        "annotationDate": 0,
+        "annotator": "cttv",
+        "evidence": "CURATED_EXACT",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
+          "name": "cttv",
+          "type": "DATABASE",
+          "uri": "https://www.targetvalidation.org"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C535507"
+        "http://www.orpha.net/ORDO/Orphanet_90635"
       ],
       "uri": null
     },
@@ -833,78 +66,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C535507"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011350",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011350"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Deafness, autosomal dominant 17",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011350",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011350"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Deafness, autosomal dominant 17",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_LEXICAL",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0011350"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0011350"
+      "http://www.orpha.net/ORDO/Orphanet_90635"
     ],
     "uri": null
   },
@@ -940,9 +102,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -983,148 +145,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538200",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C538200"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Deafness, autosomal dominant 17",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538200",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C538200"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Deafness, autosomal dominant 17",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C538200"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C538200"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538198",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C538198"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Deafness, autosomal dominant 17",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538198",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C538198"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Deafness, autosomal dominant 17",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C538198"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C538198"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538197",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C538197"
         }
@@ -1153,9 +173,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1196,8 +216,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538201",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C538201"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538198",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C538198"
         }
       ]
     },
@@ -1212,8 +232,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538201",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C538201"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538198",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C538198"
           }
         ]
       },
@@ -1224,9 +244,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1239,7 +259,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C538201"
+        "http://id.nlm.nih.gov/mesh/C538198"
       ],
       "uri": null
     },
@@ -1259,7 +279,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C538201"
+      "http://id.nlm.nih.gov/mesh/C538198"
     ],
     "uri": null
   },
@@ -1295,9 +315,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1338,6 +358,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538200",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C538200"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538200",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C538200"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C538200"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C538200"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538201",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C538201"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC538201",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C538201"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C538201"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C538201"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011571",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011571"
         }
@@ -1366,9 +528,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1409,6 +571,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_166260",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_166260"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_166260",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_166260"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_166260"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_166260"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C150160",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C150160"
         }
@@ -1437,9 +670,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1508,9 +741,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1579,9 +812,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1650,9 +883,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1721,9 +954,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1792,9 +1025,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1863,9 +1096,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -1934,9 +1167,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2005,9 +1238,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2076,9 +1309,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2147,9 +1380,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2218,9 +1451,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2289,9 +1522,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2360,9 +1593,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2431,9 +1664,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2502,9 +1735,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2573,9 +1806,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2644,9 +1877,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2715,9 +1948,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2786,9 +2019,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2857,9 +2090,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2928,9 +2161,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -2999,9 +2232,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3070,9 +2303,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3141,9 +2374,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3212,9 +2445,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3283,9 +2516,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3354,9 +2587,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3425,9 +2658,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3496,9 +2729,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3567,9 +2800,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3638,9 +2871,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3709,9 +2942,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3780,9 +3013,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3851,9 +3084,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3922,9 +3155,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -3993,9 +3226,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4064,9 +3297,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4135,9 +3368,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4206,9 +3439,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4277,9 +3510,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4348,9 +3581,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4419,9 +3652,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4490,9 +3723,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4561,9 +3794,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4632,9 +3865,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4703,9 +3936,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4774,9 +4007,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4845,9 +4078,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4916,9 +4149,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -4987,9 +4220,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5058,9 +4291,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5129,9 +4362,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5200,9 +4433,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5271,9 +4504,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5342,9 +4575,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5413,9 +4646,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5484,9 +4717,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5555,9 +4788,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5626,9 +4859,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5697,9 +4930,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5768,9 +5001,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5839,9 +5072,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5910,9 +5143,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -5981,9 +5214,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6052,9 +5285,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6123,9 +5356,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6194,9 +5427,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6265,9 +5498,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6336,9 +5569,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6407,9 +5640,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6478,9 +5711,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6549,9 +5782,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6620,9 +5853,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6691,9 +5924,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6762,9 +5995,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6833,9 +6066,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6904,9 +6137,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -6975,9 +6208,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7046,9 +6279,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7117,9 +6350,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7188,9 +6421,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7259,9 +6492,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7330,9 +6563,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7401,9 +6634,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7472,9 +6705,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7543,9 +6776,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7614,9 +6847,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7685,9 +6918,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7756,9 +6989,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7827,9 +7060,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7898,9 +7131,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -7969,9 +7202,9 @@
         "uri": null
       },
       "provenance": {
-        "accuracy": "NOT_SPECIFIED",
-        "annotationDate": null,
-        "annotator": null,
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
@@ -8005,6 +7238,1213 @@
     "replaces": [],
     "semanticTags": [
       "http://id.nlm.nih.gov/mesh/C566410"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F603622",
+          "semanticTag": "http://identifiers.org/omim/603622"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fidentifiers.org%2Fomim%2F603622",
+            "semanticTag": "http://identifiers.org/omim/603622"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "cco",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "cco",
+          "type": "ONTOLOGY",
+          "uri": "cco"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://identifiers.org/omim/603622"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://identifiers.org/omim/603622"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110548",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110548"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110548",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110548"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110548"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110548"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0000006",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0000006"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0000006",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0000006"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0000006"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0000006"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C94245",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C94245"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C94245",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C94245"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C94245"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C94245"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011350",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011350"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011350",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011350"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0011350"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0011350"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C32168",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C32168"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C32168",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C32168"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C32168"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C32168"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0004921",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0004921"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0004921",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0004921"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0004921"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0004921"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FSYMP_0000019",
+          "semanticTag": "http://purl.obolibrary.org/obo/SYMP_0000019"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FSYMP_0000019",
+            "semanticTag": "http://purl.obolibrary.org/obo/SYMP_0000019"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "symp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "symp",
+          "type": "ONTOLOGY",
+          "uri": "symp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/SYMP_0000019"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/SYMP_0000019"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0001967",
+          "semanticTag": "http://purl.obolibrary.org/obo/MP_0001967"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0001967",
+            "semanticTag": "http://purl.obolibrary.org/obo/MP_0001967"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mp",
+          "type": "ONTOLOGY",
+          "uri": "mp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MP_0001967"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MP_0001967"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0000365",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0000365"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0000365",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0000365"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0000365"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0000365"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD003638",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D003638"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD003638",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D003638"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D003638"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D003638"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0001063",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0001063"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0001063",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0001063"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0001063"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0001063"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27644",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C27644"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C27644",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C27644"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C27644"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C27644"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBcv_0000299",
+          "semanticTag": "http://purl.obolibrary.org/obo/FBcv_0000299"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBcv_0000299",
+            "semanticTag": "http://purl.obolibrary.org/obo/FBcv_0000299"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fbcv",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fbcv",
+          "type": "ONTOLOGY",
+          "uri": "fbcv"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FBcv_0000299"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FBcv_0000299"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVBO_0007860",
+          "semanticTag": "http://purl.obolibrary.org/obo/VBO_0007860"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVBO_0007860",
+            "semanticTag": "http://purl.obolibrary.org/obo/VBO_0007860"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "vbo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "vbo",
+          "type": "ONTOLOGY",
+          "uri": "vbo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/VBO_0007860"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/VBO_0007860"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25487",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C25487"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25487",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C25487"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C25487"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C25487"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC535507",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C535507"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Deafness, autosomal dominant 17",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC535507",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C535507"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Deafness, autosomal dominant 17",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C535507"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C535507"
     ],
     "uri": null
   }

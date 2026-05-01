@@ -75,7 +75,7 @@ public class ZoomaApp {
         var apiV2 = new ZoomaApiV2(annotator, olsRepo);
         apiV2.registerRoutes(app);
         
-        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb), textSegmenter);
+        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb), zoomaDb, textSegmenter);
         apiV3.registerRoutes(app);
 
         // Global handlers
@@ -95,14 +95,14 @@ public class ZoomaApp {
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             String stackTrace = sw.toString();
-            ctx.status(500).json(Map.of(
-                "error", "Internal Server Error",
-                "message", e.getMessage(),
-                "stackTrace", stackTrace
-            ));
+            Map<String, Object> body = new LinkedHashMap<>();
+            body.put("error", "Internal Server Error");
+            body.put("message", e.getMessage());
+            body.put("stackTrace", stackTrace);
+            ctx.status(500).json(body);
         });
 
-        app.start(8090);
+        app.start(configuredPort());
     }
 
     // ----------------- DTOs -----------------
@@ -143,6 +143,19 @@ public class ZoomaApp {
             return v;
         } catch (NumberFormatException e) {
             throw new BadRequestResponse("Query parameter '" + name + "' must be an integer in [" + min + "," + max + "]");
+        }
+    }
+
+    private static int configuredPort() {
+        String raw = System.getenv().getOrDefault("ZOOMA2_PORT", "8090");
+        try {
+            int port = Integer.parseInt(raw);
+            if (port < 1 || port > 65535) {
+                throw new NumberFormatException("out of range");
+            }
+            return port;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("ZOOMA2_PORT must be an integer in [1,65535], got: " + raw, e);
         }
     }
 

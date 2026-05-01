@@ -20,16 +20,29 @@
             }
           ],
           "ontology": "mesh",
-          "synonyms": [
-            "Amyloidosis 8",
-            "Amyloidosis VIII",
-            "Amyloidosis, familial renal",
-            "Amyloidosis, systemic nonneuropathic",
-            "German type amyloidosis",
-            "Ostertag type amyloidosis"
-          ],
-          "termId": "mesh_C538249",
+          "termId": "http://id.nlm.nih.gov/mesh/C538249",
           "uri": "mesh"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "cttv",
+          "label": "Hereditary amyloidosis with primary renal involvement",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "Hereditary amyloidosis with primary renal involvement",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "cttv",
+              "target": "http://www.orpha.net/ORDO/Orphanet_85450"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "orphanet.ordo_85450",
+          "uri": "ordo"
         }
       ],
       "error": null,

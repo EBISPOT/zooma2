@@ -7,6 +7,8 @@ import io.javalin.http.InternalServerErrorResponse;
 import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
+import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
+import uk.ac.ebi.zooma2.api.SourceMetadata;
 import uk.ac.ebi.zooma2.api.v3.dto.AnnotateTextRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
@@ -19,8 +21,8 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.nlp.TextSegmenter;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
-import uk.ac.ebi.zooma2.repo.OlsOntology;
 import uk.ac.ebi.zooma2.repo.VoteRepository;
+import uk.ac.ebi.zooma2.repo.ZoomaDatabase;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
 
 import java.io.IOException;
@@ -37,13 +39,15 @@ public class ZoomaApiV3 {
     private final ZoomaAnnotator annotator;
     private final OlsClientRepo olsRepo;
     private final VoteRepository voteRepo;
+    private final ZoomaDatabase zoomaDb;
     private final TextSegmenter textSegmenter;
     private final Gson gson = new Gson();
 
-    public ZoomaApiV3(ZoomaAnnotator annotator, OlsClientRepo olsRepo, VoteRepository voteRepo, TextSegmenter textSegmenter) {
+    public ZoomaApiV3(ZoomaAnnotator annotator, OlsClientRepo olsRepo, VoteRepository voteRepo, ZoomaDatabase zoomaDb, TextSegmenter textSegmenter) {
         this.annotator = annotator;
         this.olsRepo = olsRepo;
         this.voteRepo = voteRepo;
+        this.zoomaDb = zoomaDb;
         this.textSegmenter = textSegmenter;
     }
 
@@ -82,37 +86,27 @@ public class ZoomaApiV3 {
 
     private void getStatus(Context ctx) {
         var status = new java.util.HashMap<String, Object>();
+        long vectorIndexSize = zoomaDb.countEmbeddingsBySourceType("mapping_table");
+        String defaultModel = olsRepo.getDefaultEmbeddingModel();
         status.put("olsUrl", uk.ac.ebi.zooma2.repo.OlsClientRepo.getOlsUrl());
-        status.put("defaultModel", olsRepo.getDefaultEmbeddingModel());
+        status.put("defaultModel", defaultModel);
+        status.put("embeddingServiceEnabled", defaultModel != null);
+        status.put("totalMappingEntries", zoomaDb.countDistinctEmbeddingTexts());
+        status.put("vectorIndexEnabled", vectorIndexSize > 0);
+        status.put("vectorIndexSize", vectorIndexSize);
         ctx.json(status);
     }
 
     private void getSources(Context ctx) {
         try {
-            var databases = olsRepo.getCurationSources().stream()
-                .map(name -> Map.of(
-                    "type", "DATABASE",
-                    "name", name,
-                    "uri", name
-                ));
-
-            var ontologies = olsRepo.getOntologies().stream()
-                .map((OlsOntology o) -> Map.of(
-                    "type", "ONTOLOGY",
-                    "name", o.ontologyId,
-                    "title", o.config.title != null ? o.config.title : "",
-                    "description", o.config.description != null ? o.config.description : "",
-                    "uri", o.ontologyId
-                ));
-
-            ctx.json(Stream.concat(databases, ontologies).toList());
+            ctx.json(SourceMetadata.buildSources(olsRepo.getOntologies()));
         } catch (IOException e) {
             throw new InternalServerErrorResponse("Failed to fetch sources: " + e.getMessage());
         }
     }
 
     private void getPropertyTypes(Context ctx) {
-        ctx.json(List.of());
+        ctx.json(PropertyTypeMetadata.legacyPropertyTypes());
     }
 
     private void getOntologyPresets(Context ctx) {
