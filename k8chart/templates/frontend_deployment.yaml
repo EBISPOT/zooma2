@@ -33,7 +33,7 @@ spec:
             - name: REACT_APP_APIURL
               value: https://wwwdev.ebi.ac.uk/spot/zooma/
             - name: PUBLIC_URL
-              value: /spot/zooma
+              value: /spot/zooma/
             - name: ZOOMA2_MINIFY
               value: 'true'
           command: ["/bin/bash", "-c"]
