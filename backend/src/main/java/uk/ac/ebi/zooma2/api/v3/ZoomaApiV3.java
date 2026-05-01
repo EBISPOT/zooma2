@@ -48,10 +48,8 @@ public class ZoomaApiV3 {
     }
 
     public void registerRoutes(Javalin app) {
-        // Health endpoint for lightweight uptime checks
-        app.get("/v3/health", this::getHealth);
-
         // Core endpoints
+        app.get("/v3/api/health", this::getHealth);
         app.get("/v3/api/sources", this::getSources);
         app.get("/v3/api/properties/types", this::getPropertyTypes);
         
@@ -79,7 +77,7 @@ public class ZoomaApiV3 {
     }
 
     private void getHealth(Context ctx) {
-        ctx.json(Map.of("status", "ok"));
+        ctx.result("All systems are operational.");
     }
 
     private void getStatus(Context ctx) {
