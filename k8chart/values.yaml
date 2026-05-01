@@ -1,5 +1,11 @@
 
 imageTag: dev
+nfsServer: hh-isi-srv-vlan1496.ebi.ac.uk
 nfsDir: /ifs/public/rw/ontotools/zooma2/dev
 dbPath: /data/zooma.db
 olsUrl: https://www.ebi.ac.uk/ols4
+httpProxyHost: hh-wwwcache.ebi.ac.uk
+httpProxyPort: 3128
+httpsProxyHost: hh-wwwcache.ebi.ac.uk
+httpsProxyPort: 3128
+nonProxyHosts: "localhost|127.0.0.1|*.cluster.local|*.svc|kubernetes|*.svc.cluster.local"
