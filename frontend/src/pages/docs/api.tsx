@@ -1,16 +1,12 @@
 import React, { Fragment } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
+  Button,
   Container,
   Divider,
   Grid,
   Link as MUILink,
-  List,
-  ListItem,
-  ListItemText,
   Paper,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -19,41 +15,136 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Header from "../../components/Header";
-import examples from "../../data/api-response-examples.json";
 
-// Reusable code block
-const CodeBlock: React.FC<React.PropsWithChildren<{ title?: string }>> = ({ title, children }) => (
-  <Box my={2}>
-    {title && (
-      <Typography variant="subtitle2" sx={{ mb: 0.5, textTransform: "uppercase", letterSpacing: 0.4 }}>
-        {title}
-      </Typography>
-    )}
-    <Paper
-      variant="outlined"
-      sx={{
-        p: 2,
-        bgcolor: (theme) => (theme.palette.mode === "dark" ? "background.default" : "grey.50"),
-        overflow: "auto",
-        fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-        fontSize: 14,
-        lineHeight: 1.6,
-      }}
-      component="pre"
-    >
-      {children}
-    </Paper>
-  </Box>
+type CodeLanguage = "json" | "ndjson" | "schema" | "text";
+
+function tokenColor(code: string, offset: number, token: string, language: CodeLanguage) {
+  if (language === "schema") {
+    if (/^"/.test(token)) return "#0f766e";
+    if (/^(string|number|boolean|null|true|false)$/.test(token)) return "#b45309";
+    if (/^[A-Z]/.test(token)) return "#2563eb";
+    return "#7c3aed";
+  }
+  if (/^"/.test(token)) {
+    return /^\s*:/.test(code.slice(offset + token.length)) ? "#7c3aed" : "#0f766e";
+  }
+  if (/^(true|false|null)$/.test(token)) return "#b45309";
+  return "#2563eb";
+}
+
+function highlightCode(code: string, language: CodeLanguage) {
+  if (language === "text") {
+    return [code];
+  }
+
+  const tokenPattern =
+    language === "schema"
+      ? /"(?:\\.|[^"\\])*"|\b(?:string|number|boolean|null|true|false)\b|[A-Z][A-Za-z0-9]*(?=\s*\{)|\b[A-Za-z][A-Za-z0-9_]*(?=\??:)/g
+      : /"(?:\\.|[^"\\])*"|\b(?:true|false|null)\b|-?\d+(?:\.\d+)?/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = tokenPattern.exec(code)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(code.slice(lastIndex, match.index));
+    }
+    parts.push(
+      <Box component="span" key={`${match.index}-${match[0]}`} sx={{ color: tokenColor(code, match.index, match[0], language) }}>
+        {match[0]}
+      </Box>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < code.length) {
+    parts.push(code.slice(lastIndex));
+  }
+
+  return parts;
+}
+
+const CodeBlock: React.FC<React.PropsWithChildren<{ title?: string; language?: CodeLanguage }>> = ({
+  title,
+  language = "json",
+  children,
+}) => {
+  const [copied, setCopied] = React.useState(false);
+  const code = typeof children === "string" ? children : String(children || "");
+
+  const copyCode = () => {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1400);
+    });
+  };
+
+  return (
+    <Box my={2}>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2, mb: 0.5 }}>
+        {title ? (
+          <Typography variant="subtitle2" sx={{ textTransform: "uppercase", letterSpacing: 0.4 }}>
+            {title}
+          </Typography>
+        ) : (
+          <Box />
+        )}
+        <Button
+          size="small"
+          variant="outlined"
+          onClick={copyCode}
+          startIcon={copied ? <CheckIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
+          sx={{ minWidth: 96 }}
+        >
+          {copied ? "Copied" : "Copy"}
+        </Button>
+      </Box>
+      <Paper
+        variant="outlined"
+        sx={{
+          p: 2,
+          bgcolor: (theme) => (theme.palette.mode === "dark" ? "background.default" : "grey.50"),
+          overflow: "auto",
+          fontFamily:
+            "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+          fontSize: 14,
+          lineHeight: 1.6,
+        }}
+        component="pre"
+      >
+        {highlightCode(code, language)}
+      </Paper>
+    </Box>
+  );
+};
+
+const InlineCode: React.FC<React.PropsWithChildren<{}>> = ({ children }) => (
+  <Typography
+    component="code"
+    sx={{
+      px: 0.75,
+      py: 0.25,
+      border: "1px solid",
+      borderColor: "divider",
+      borderRadius: 1,
+      fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      fontSize: 13,
+    }}
+  >
+    {children}
+  </Typography>
 );
 
-// Section wrapper
-const Section: React.FC<React.PropsWithChildren<{ title: string; subtitle?: string }>> = ({
+const Section: React.FC<React.PropsWithChildren<{ title: string; subtitle?: string; id?: string }>> = ({
+  id,
   title,
   subtitle,
   children,
 }) => (
-  <Box my={4}>
+  <Box id={id} my={4} sx={{ scrollMarginTop: 96 }}>
     <Typography variant="h4" gutterBottom>
       {title}
     </Typography>
@@ -65,6 +156,179 @@ const Section: React.FC<React.PropsWithChildren<{ title: string; subtitle?: stri
     {children}
   </Box>
 );
+
+const endpoints = [
+  { method: "GET", path: "/health", description: "Plain-text health check.", target: "health" },
+  { method: "GET", path: "/status", description: "Current backend status, including OLS URL and default embedding model.", target: "status" },
+  { method: "GET", path: "/sources", description: "Available curated datasources and ontologies.", target: "sources" },
+  { method: "GET", path: "/models", description: "Embedding models available from OLS.", target: "models" },
+  { method: "GET", path: "/ontology-presets", description: "Configured ontology presets for common searches.", target: "ontology-presets" },
+  { method: "POST", path: "/services/map", description: "Map one or more properties to ontology term candidates.", target: "mapping" },
+  { method: "POST", path: "/services/map-stream", description: "Stream property mapping progress as NDJSON.", target: "streaming-map" },
+  { method: "POST", path: "/services/annotate-text-stream", description: "Segment free text and stream mappings for extracted phrases.", target: "annotate-text" },
+];
+
+const healthResponse = `All systems are operational.`;
+
+const statusResponse = `{
+  "olsUrl": "https://www.ebi.ac.uk/ols4",
+  "defaultModel": "text-embedding-3-small"
+}`;
+
+const sourcesResponse = `[
+  {
+    "type": "DATABASE",
+    "name": "atlas",
+    "uri": "atlas"
+  },
+  {
+    "type": "ONTOLOGY",
+    "name": "efo",
+    "title": "Experimental Factor Ontology",
+    "description": "An application ontology covering experimental variables.",
+    "uri": "efo"
+  }
+]`;
+
+const modelsResponse = `[
+  {
+    "name": "text-embedding-3-small",
+    "can_embed": true
+  }
+]`;
+
+const ontologyPresetsResponse = `[
+  {
+    "name": "Phenotypes",
+    "description": "Common phenotype ontologies.",
+    "ontologies": ["hp", "mp", "zp"]
+  }
+]`;
+
+const mappingRequest = `{
+  "properties": [
+    {
+      "propertyType": "organism",
+      "textToMap": "mus musculus"
+    }
+  ],
+  "model": "text-embedding-3-small",
+  "targetOntologies": ["ncbitaxon"],
+  "includeOtherOntologies": true,
+  "filter": {
+    "required": ["atlas", "gwas"],
+    "preferred": ["atlas"]
+  },
+  "excludeTermIds": [],
+  "returnAll": false,
+  "deep": false
+}`;
+
+const mappingResponse = `{
+  "mappings": [
+    {
+      "propertyType": "organism",
+      "textToMap": "mus musculus",
+      "candidates": [
+        {
+          "termId": "NCBITaxon:10090",
+          "label": "Mus musculus",
+          "synonyms": ["mouse"],
+          "ontology": "ncbitaxon",
+          "uri": "ncbitaxon",
+          "confidence": 1.0,
+          "datasource": "atlas",
+          "mappingProvenance": [
+            {
+              "method": "curated",
+              "matchType": "ZOOMA_CURATED",
+              "source": "atlas",
+              "input": "mus musculus",
+              "target": "NCBITaxon:10090",
+              "confidence": 1.0
+            }
+          ]
+        }
+      ],
+      "error": null
+    }
+  ]
+}`;
+
+const mapStreamEvents = `{"type":"ping"}
+{"type":"result","mapping":{"propertyType":"organism","textToMap":"mus musculus","candidates":[]},"completed":1,"total":2}
+{"type":"done","completed":2,"total":2}`;
+
+const annotateTextRequest = `{
+  "text": "The sample was collected from Mus musculus liver.",
+  "model": "text-embedding-3-small",
+  "targetOntologies": ["ncbitaxon", "uberon"],
+  "includeOtherOntologies": true,
+  "filter": {
+    "required": [],
+    "preferred": []
+  }
+}`;
+
+const annotateTextEvents = `{"type":"segments","segments":[{"text":"Mus musculus","start":30,"end":42},{"text":"liver","start":43,"end":48}],"originalText":"The sample was collected from Mus musculus liver."}
+{"type":"ping"}
+{"type":"result","mapping":{"propertyType":null,"textToMap":"Mus musculus","candidates":[]},"completed":1,"total":2}
+{"type":"done","completed":2,"total":2}`;
+
+const schemas = `V3MapRequest {
+  properties: V3StringToMap[]
+  model?: string
+  targetOntologies?: string[]
+  includeOtherOntologies?: boolean
+  filter?: V3Filter
+  excludeTermIds?: string[]
+  returnAll?: boolean
+  deep?: boolean
+}
+
+V3StringToMap {
+  propertyType?: string
+  textToMap: string
+}
+
+V3Filter {
+  required?: string[]
+  preferred?: string[]
+}
+
+V3MapResponse {
+  mappings: V3PropertyMapping[]
+}
+
+V3PropertyMapping {
+  propertyType?: string
+  textToMap: string
+  candidates: V3MappingCandidate[]
+  error?: string
+}
+
+V3MappingCandidate {
+  termId: string
+  label: string
+  synonyms: string[]
+  ontology: string
+  uri: string
+  confidence: number | null
+  datasource: string
+  mappingProvenance: V3MappingProvenanceStep[]
+}
+
+V3MappingProvenanceStep {
+  method: "lexical" | "semantic" | "curated" | "cross_reference" | "ontology_traversal"
+  matchType?: string
+  source?: string
+  model?: string
+  confidence?: number
+  input: string
+  matchedText?: string
+  similarity?: number
+  target: string
+}`;
 
 export default function Docs() {
   return (
@@ -78,275 +342,131 @@ export default function Docs() {
                 REST API Documentation
               </Typography>
 
-              <Divider sx={{ mb: 3 }} />
+              <Divider sx={{ my: 3 }} />
 
-              <Section title="Introduction">
+              <Section id="base-url" title="Base URL">
                 <Typography paragraph>
-                  This page describes how to develop against the ZOOMA REST API to search for and retrieve ZOOMA objects.
+                  The API is located at <InlineCode>https://www.ebi.ac.uk/spot/zooma/v3/api</InlineCode>.
                 </Typography>
                 <Typography paragraph>
-                  All requests should be made to the root URL of the Zooma API, which is not shown in the example
-                  requests. The root URL for the API is{" "}
-                  <Paper
-                    variant="outlined"
-                    sx={{
-                      display: "inline-block",
-                      px: 1,
-                      py: 0.25,
-                      mx: 0.5,
-                      fontFamily:
-                        "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-                      fontSize: 14,
-                    }}
-                    component="code"
-                  >
-                    www.ebi.ac.uk/spot/zooma/v2/api
-                  </Paper>
-                  .
+                  JSON endpoints expect <InlineCode>Content-Type: application/json</InlineCode>. Streaming endpoints
+                  return newline-delimited JSON with <InlineCode>Content-Type: application/x-ndjson</InlineCode>.
                 </Typography>
               </Section>
 
-              <Section title="Predicting Annotations">
-                <Typography paragraph>
-                  You can use Zooma to predict an ontology annotation given a property value (and optionally a property
-                  type).
-                </Typography>
-
-                <Typography variant="h6" gutterBottom>
-                  Example Request
-                </Typography>
-                <Typography paragraph>Predict an ontology annotation for the text value &quot;mus musculus&quot;.</Typography>
-                <CodeBlock>GET /services/annotate?propertyValue=mus+musculus</CodeBlock>
-
-                <Typography variant="h6" gutterBottom>
-                  Response
-                </Typography>
-                <CodeBlock>{JSON.stringify(examples["2"], null, 2)}</CodeBlock>
-
-                <Typography paragraph>
-                  This example predicts that &apos;mus musculus&apos; should be annotated with the ontology term{" "}
-                  <MUILink
-                    href="http://purl.obolibrary.org/obo/NCBITaxon_10090"
-                    target="_blank"
-                    rel="noopener"
-                    underline="hover"
-                  >
-                    http://purl.obolibrary.org/obo/NCBITaxon_10090
-                  </MUILink>
-                  This annotation was predicted based on curated mappings in the &apos;ExpressionAtlas (atlas)&apos; database.
-                </Typography>
-
-                <Typography variant="h6" gutterBottom>
-                  Additional Parameters
-                </Typography>
-                <Typography paragraph>
-                  Zooma supports the option to specify the data sources it will search from. By default (specifying nothing),
-                  Zooma will search its available databases containing curated mappings (and that do not include ontology sources),
-                  and if nothing is found it will look in the Ontology Lookup Service (OLS) to predict ontology annotations.
-                </Typography>
-
-                <Typography paragraph>Filters you can apply to modify the default behavior:</Typography>
-                <List dense>
-                  <ListItem>
-                    <ListItemText primary="required:[datasource1,datasource2,…]" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="preferred:[datasource2,datasource1,…]" />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="ontologies:[efo,go,…]" />
-                  </ListItem>
-                </List>
-
-                <Typography paragraph>
-                  where <em>datasource1,datasource2</em>, etc., are the database names of the datasources (see table below).
-                </Typography>
-
-                <List dense>
-                  <ListItem>
-                    <ListItemText
-                      primary={
-                        <span>
-                          <em>required</em> will limit the search to the given datasources
-                        </span>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText
-                      primary={
-                        <span>
-                          <em>preferred</em> will provide a ranking for those datasources
-                        </span>
-                      }
-                    />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText
-                      primary={
-                        <span>
-                          and <em>ontologies</em> will limit the OLS search to the given ontologies
-                        </span>
-                      }
-                    />
-                  </ListItem>
-                </List>
-
-                <Typography paragraph>
-                  If &apos;required:[none]&apos; is specified, Zooma will search OLS without looking into the datasources. If
-                  &apos;ontologies:[none]&apos; is specified, Zooma will not search OLS if the datasource search fails to make
-                  any predictions.
-                </Typography>
-
-                <Typography paragraph>
-                  In the table below you can see the available databases containing curated mappings in Zooma.
-                  <br />
-                  To define the source(s) you want Zooma to search in, use the <em>Database name</em> in the &apos;required:[]&apos; field.
-                  <br />
-                  e.g. use &apos;required:[cttv]&apos; to look in OpenTargets.
-                </Typography>
-
-                <CodeBlock>GET /services/annotate?propertyValue=disease&amp;filter=required:[cttv]</CodeBlock>
-
-                <TableContainer component={Paper} variant="outlined" sx={{ my: 2 }}>
-                  <Table size="small" aria-label="datasources table">
+              <Section id="endpoints" title="Endpoints">
+                <TableContainer component={Paper} variant="outlined">
+                  <Table size="small" aria-label="v3 endpoints">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Display name</TableCell>
-                        <TableCell>Database name</TableCell>
-                        <TableCell>Learn more</TableCell>
+                        <TableCell>Method</TableCell>
+                        <TableCell>Path</TableCell>
+                        <TableCell>Description</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {[
-                        {
-                          display: "OpenTargets",
-                          db: "cttv",
-                          href: "//www.targetvalidation.org",
-                          text: "www.targetvalidation.org",
-                        },
-                        { display: "ClinVar", db: "eva-clinvar", href: "//www.ebi.ac.uk/eva", text: "www.ebi.ac.uk/eva" },
-                        {
-                          display: "CellularPhenoTypes",
-                          db: "sysmicro",
-                          href: "//www.ebi.ac.uk/fg/sym",
-                          text: "www.ebi.ac.uk/fg/sym",
-                        },
-                        { display: "ExpressionAtlas", db: "atlas", href: "//www.ebi.ac.uk/gxa", text: "www.ebi.ac.uk/gxa" },
-                        { display: "EBiSC", db: "ebisc", href: "//cells.ebisc.org/", text: "www.cells.ebisc.org" },
-                        { display: "UniProt", db: "uniprot", href: "//www.ebi.ac.uk/uniprot", text: "www.ebi.ac.uk/uniprot" },
-                        { display: "GWAS", db: "gwas", href: "//www.ebi.ac.uk/gwas/", text: "www.ebi.ac.uk/gwas" },
-                        { display: "CBI", db: "cbi", href: "//www.ebi.ac.uk/biosamples/", text: "www.ebi.ac.uk/biosamples" },
-                        {
-                          display: "ClinVarXRefs",
-                          db: "clinvar-xrefs",
-                          href: "//www.ncbi.nlm.nih.gov/clinvar",
-                          text: "www.ncbi.nlm.nih.gov/clinvar",
-                        },
-                      ].map((row) => (
-                        <TableRow key={row.db}>
-                          <TableCell>{row.display}</TableCell>
+                      {endpoints.map(({ method, path, description, target }) => (
+                        <TableRow key={`${method} ${path}`}>
                           <TableCell>
-                            <Typography
-                              component="code"
-                              sx={{
-                                px: 0.75,
-                                py: 0.25,
-                                border: "1px solid",
-                                borderColor: "divider",
-                                borderRadius: 1,
-                                fontSize: 13,
-                              }}
-                            >
-                              {row.db}
-                            </Typography>
+                            <InlineCode>{method}</InlineCode>
                           </TableCell>
                           <TableCell>
-                            <MUILink href={row.href} target="_blank" rel="noopener" underline="hover">
-                              {row.text}
+                            <MUILink href={`#${target}`} underline="hover">
+                              <InlineCode>{path}</InlineCode>
                             </MUILink>
                           </TableCell>
+                          <TableCell>{description}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
                   </Table>
                 </TableContainer>
-
-                <Stack spacing={2}>
-                  <Box>
-                    <Typography variant="subtitle1">Property type filter</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Predict an ontology annotation for the text value &quot;mus musculus&quot; and type &quot;organism&quot;.
-                    </Typography>
-                    <CodeBlock>GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism</CodeBlock>
-                  </Box>
-
-                  <Box>
-                    <Typography variant="subtitle1">Datasources filter</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Predict using annotations present in a defined list of datasources.
-                    </Typography>
-                    <CodeBlock>
-                      GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[atlas,gwas]
-                    </CodeBlock>
-                  </Box>
-
-                  <Box>
-                    <Typography variant="subtitle1">Limit OLS lookup</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Predict for &quot;ear inflorescence&quot; searching a datasource only and skipping OLS if none found.
-                    </Typography>
-                    <CodeBlock>
-                      GET /services/annotate?propertyValue=ear+inflorescence&amp;filter=required:[sysmicro],ontologies:[none]
-                    </CodeBlock>
-                    <Typography variant="body2" color="text.secondary">
-                      The &apos;ontologies:[none]&apos; parameter restrains Zooma from looking in the OLS if no annotation is found.
-                    </Typography>
-                  </Box>
-
-                  <Box>
-                    <Typography variant="subtitle1">Preferred ranking</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Prefer GWAS within the required set to influence scoring.
-                    </Typography>
-                    <CodeBlock>
-                      GET /services/annotate?propertyValue=lung+adenocarcinoma&amp;filter=required:[atlas,gwas],preferred:[gwas]
-                    </CodeBlock>
-                    <Typography variant="body2" color="text.secondary">
-                      The &apos;preferred&apos; parameter sets an order of trusted datasources that affects the score.
-                    </Typography>
-                  </Box>
-
-                  <Box>
-                    <Typography variant="subtitle1">Ontologies only</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Use only specified ontologies (no datasource lookups).
-                    </Typography>
-                    <CodeBlock>
-                      GET /services/annotate?propertyValue=mus+musculus&amp;propertyType=organism&amp;filter=required:[none],ontologies:[efo,mirnao]
-                    </CodeBlock>
-                  </Box>
-                </Stack>
               </Section>
 
-              <Section title="Retrieving Resources" subtitle="How to fetch more information about Zooma resource types">
-                <Box mb={3}>
-                  <Typography variant="h5" gutterBottom>
-                    Property Types
-                  </Typography>
-                  <Typography>Retrieve all property types.</Typography>
-                  <CodeBlock>GET /properties/types?limit=10</CodeBlock>
-
-                  <Typography variant="subtitle2" sx={{ mt: 2 }}>
-                    Request
-                  </Typography>
-                  <CodeBlock>{JSON.stringify(examples["4"], null, 2)}</CodeBlock>
-
-                  <Typography variant="subtitle2">Response</Typography>
-                  <CodeBlock>{JSON.stringify(examples["4"], null, 2)}</CodeBlock>
-                </Box>
+              <Section id="health" title="GET /health" subtitle="Plain-text health check">
+                <Typography paragraph>
+                  Returns a lightweight liveness response. Use this for simple uptime checks where JSON is not needed.
+                </Typography>
+                <CodeBlock title="Response" language="text">{healthResponse}</CodeBlock>
               </Section>
 
+              <Section id="status" title="GET /status" subtitle="Backend status metadata">
+                <Typography paragraph>
+                  Returns runtime metadata useful for diagnostics, including the OLS instance the backend is using and
+                  the default embedding model selected from OLS.
+                </Typography>
+                <CodeBlock title="Response">{statusResponse}</CodeBlock>
+              </Section>
+
+              <Section id="sources" title="GET /sources" subtitle="Curated datasources and ontologies">
+                <Typography paragraph>
+                  Lists the sources available for filtering and mapping. Curated sources have <InlineCode>type</InlineCode>{" "}
+                  set to <InlineCode>DATABASE</InlineCode>; ontology sources have <InlineCode>type</InlineCode> set to{" "}
+                  <InlineCode>ONTOLOGY</InlineCode> and may include title and description metadata from OLS.
+                </Typography>
+                <CodeBlock title="Response">{sourcesResponse}</CodeBlock>
+              </Section>
+
+              <Section id="models" title="GET /models" subtitle="Embedding model metadata">
+                <Typography paragraph>
+                  Returns embedding model metadata from OLS. Use a model whose <InlineCode>can_embed</InlineCode> value
+                  is <InlineCode>true</InlineCode> in mapping requests. If a request omits <InlineCode>model</InlineCode>,
+                  ZOOMA uses the first embeddable model returned by OLS, falling back to{" "}
+                  <InlineCode>text-embedding-3-small</InlineCode>.
+                </Typography>
+                <CodeBlock title="Response">{modelsResponse}</CodeBlock>
+              </Section>
+
+              <Section id="ontology-presets" title="GET /ontology-presets" subtitle="Configured ontology groups">
+                <Typography paragraph>
+                  Returns named ontology groups configured for the deployment. Clients can use these presets to populate
+                  common target-ontology choices without hard-coding ontology lists.
+                </Typography>
+                <CodeBlock title="Response">{ontologyPresetsResponse}</CodeBlock>
+              </Section>
+
+              <Section id="mapping" title="POST /services/map" subtitle="Batch property mapping">
+                <Typography paragraph>
+                  Maps one or more input properties to ranked ontology term candidates. Results are grouped by input
+                  property.
+                </Typography>
+                <CodeBlock title="Request" language="json">{mappingRequest}</CodeBlock>
+                <CodeBlock title="Response" language="json">{mappingResponse}</CodeBlock>
+                <Typography paragraph>
+                  <InlineCode>includeOtherOntologies</InlineCode> defaults to <InlineCode>true</InlineCode>. When set to{" "}
+                  <InlineCode>false</InlineCode>, returned candidates are restricted to <InlineCode>targetOntologies</InlineCode>.
+                  Use <InlineCode>returnAll</InlineCode> with <InlineCode>deep</InlineCode> to retrieve a broader candidate list (slower).
+                </Typography>
+              </Section>
+
+              <Section id="streaming-map" title="POST /services/map-stream" subtitle="Streaming batch property mapping">
+                <Typography paragraph>
+                  Accepts the same request body as <InlineCode>/services/map</InlineCode> and streams NDJSON events as
+                  each property completes. <InlineCode>ping</InlineCode> events are heartbeats and can be ignored.
+                </Typography>
+                <CodeBlock title="Events" language="ndjson">{mapStreamEvents}</CodeBlock>
+              </Section>
+
+              <Section id="annotate-text" title="POST /services/annotate-text-stream" subtitle="Free-text segmentation and mapping">
+                <Typography paragraph>
+                  Segments free text. Emits the selected phrase offsets followed by streamed mappings for each
+                  unique segment.
+                </Typography>
+                <CodeBlock title="Request" language="json">{annotateTextRequest}</CodeBlock>
+                <CodeBlock title="Events" language="ndjson">{annotateTextEvents}</CodeBlock>
+              </Section>
+
+              <Section id="schemas" title="Schemas">
+                <CodeBlock language="schema">{schemas}</CodeBlock>
+              </Section>
+
+              <Section id="errors" title="Errors">
+                <Typography paragraph>
+                  Invalid requests return JSON with <InlineCode>error</InlineCode> and <InlineCode>message</InlineCode>.
+                  For example, <InlineCode>/services/map</InlineCode> requires a non-empty <InlineCode>properties</InlineCode>{" "}
+                  array and <InlineCode>/services/annotate-text-stream</InlineCode> requires non-empty <InlineCode>text</InlineCode>.
+                </Typography>
+              </Section>
             </Grid>
           </Grid>
         </Container>
@@ -354,4 +474,3 @@ export default function Docs() {
     </Fragment>
   );
 }
-
