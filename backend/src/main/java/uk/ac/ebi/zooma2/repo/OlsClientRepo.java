@@ -1,6 +1,8 @@
 package uk.ac.ebi.zooma2.repo;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -21,6 +23,8 @@ import uk.ac.ebi.zooma2.util.CachedHttpClient;
 import java.util.concurrent.Semaphore;
 
 public class OlsClientRepo {
+
+    private static final byte TERM_SEPARATOR_BYTE = (byte) '\n';
 
     private final Semaphore embeddingSemaphore;
     private final Semaphore similarSemaphore;
@@ -643,20 +647,10 @@ public class OlsClientRepo {
             return Map.of();
         }
 
-        // Build a position index so we can map start/end back to the original term
-        // Join terms with newline delimiter
-        int[] termStarts = new int[terms.size()];
-        int[] termEnds = new int[terms.size()];
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < terms.size(); i++) {
-            termStarts[i] = sb.length();
-            sb.append(terms.get(i));
-            termEnds[i] = sb.length();
-            if (i < terms.size() - 1) {
-                sb.append("\n");
-            }
-        }
-        String text = sb.toString();
+        // OLS tag_text returns UTF-8 byte offsets. Keep the joined text and
+        // term boundaries in bytes until the HTTP request body needs a String.
+        var joinedText = joinTermsAsUtf8(terms);
+        String text = joinedText.asString();
 
         // Build URL with query params
         StringBuilder urlBuilder = new StringBuilder();
@@ -688,8 +682,8 @@ public class OlsClientRepo {
             Map<String, List<TagTextMatch>> results = new HashMap<>();
             for (var entity : entities) {
                 var obj = entity.getAsJsonObject();
-                int start = obj.get("start").getAsInt();
-                int end = obj.get("end").getAsInt();
+                int startByte = obj.get("start").getAsInt();
+                int endByte = obj.get("end").getAsInt();
                 String termLabel = obj.has("term_label") ? obj.get("term_label").getAsString() : null;
                 String termIri = obj.has("term_iri") ? obj.get("term_iri").getAsString() : null;
                 String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
@@ -710,9 +704,9 @@ public class OlsClientRepo {
 
                 // Find which input term this entity belongs to
                 for (int i = 0; i < terms.size(); i++) {
-                    if (start >= termStarts[i] && end <= termEnds[i]) {
-                        int matchedLength = end - start;
-                        int termLength = termEnds[i] - termStarts[i];
+                    if (startByte >= joinedText.termStartBytes()[i] && endByte <= joinedText.termEndBytes()[i]) {
+                        int matchedLength = endByte - startByte;
+                        int termLength = joinedText.termEndBytes()[i] - joinedText.termStartBytes()[i];
                         double coverage = termLength > 0 ? (double) matchedLength / termLength : 0.0;
                         var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage, stringType, source, shortForm, synonyms, isObsolete);
                         results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
@@ -766,6 +760,29 @@ public class OlsClientRepo {
         }
     }
 
+    private record JoinedUtf8Text(byte[] bytes, int[] termStartBytes, int[] termEndBytes) {
+        String asString() {
+            return new String(bytes, StandardCharsets.UTF_8);
+        }
+    }
+
+    private static JoinedUtf8Text joinTermsAsUtf8(List<String> terms) {
+        var bytes = new ByteArrayOutputStream();
+        int[] termStartBytes = new int[terms.size()];
+        int[] termEndBytes = new int[terms.size()];
+
+        for (int i = 0; i < terms.size(); i++) {
+            termStartBytes[i] = bytes.size();
+            bytes.writeBytes(String.valueOf(terms.get(i)).getBytes(StandardCharsets.UTF_8));
+            termEndBytes[i] = bytes.size();
+            if (i < terms.size() - 1) {
+                bytes.write(TERM_SEPARATOR_BYTE);
+            }
+        }
+
+        return new JoinedUtf8Text(bytes.toByteArray(), termStartBytes, termEndBytes);
+    }
+
     /**
      * Result from tagWholeText: a tag_text match with its character offsets in the original text
      * and the matched substring.
@@ -814,6 +831,9 @@ public class OlsClientRepo {
             return List.of();
         }
 
+        byte[] textBytes = text.getBytes(StandardCharsets.UTF_8);
+        int[] byteToCharIndex = utf8ByteOffsetToCharIndexMap(text);
+
         StringBuilder urlBuilder = new StringBuilder();
         urlBuilder.append(getOlsUrl()).append("/api/v2/tag_text?includeSubstrings=true");
         urlBuilder.append("&delimiters=").append(
@@ -827,7 +847,7 @@ public class OlsClientRepo {
         }
 
         try {
-            String body = gson.toJson(Map.of("text", text));
+            String body = gson.toJson(Map.of("text", new String(textBytes, StandardCharsets.UTF_8)));
             var json = postJsonToUrl(urlBuilder.toString(), body);
 
             if (json == null || !json.getAsJsonObject().has("entities")) {
@@ -843,8 +863,10 @@ public class OlsClientRepo {
 
             for (var entity : entities) {
                 var obj = entity.getAsJsonObject();
-                int start = obj.get("start").getAsInt();
-                int end = obj.get("end").getAsInt();
+                int startByte = obj.get("start").getAsInt();
+                int endByte = obj.get("end").getAsInt();
+                int start = byteOffsetToCharIndex(byteToCharIndex, startByte);
+                int end = byteOffsetToCharIndex(byteToCharIndex, endByte);
                 String termLabel = obj.has("term_label") ? obj.get("term_label").getAsString() : null;
                 String termIri = obj.has("term_iri") ? obj.get("term_iri").getAsString() : null;
                 String ontologyId = obj.has("ontology_id") ? obj.get("ontology_id").getAsString() : null;
@@ -864,7 +886,7 @@ public class OlsClientRepo {
                 }
 
                 // Deduplicate by (start, end, IRI) to avoid duplicate annotations for the same span
-                String key = start + ":" + end + ":" + termIri;
+                String key = startByte + ":" + endByte + ":" + termIri;
                 if (!seenSpanIri.add(key)) continue;
 
                 String matchedText = text.substring(start, Math.min(end, text.length()));
@@ -878,6 +900,35 @@ public class OlsClientRepo {
             System.err.println("Error calling tag_text (whole text): " + e.getMessage());
             return List.of();
         }
+    }
+
+    private static int[] utf8ByteOffsetToCharIndexMap(String text) {
+        byte[] bytes = text.getBytes(StandardCharsets.UTF_8);
+        int[] byteToCharIndex = new int[bytes.length + 1];
+        int byteOffset = 0;
+
+        for (int charIndex = 0; charIndex < text.length();) {
+            int nextCharIndex = text.offsetByCodePoints(charIndex, 1);
+            int nextByteOffset = byteOffset + text.substring(charIndex, nextCharIndex).getBytes(StandardCharsets.UTF_8).length;
+            for (int i = byteOffset; i < nextByteOffset && i < byteToCharIndex.length; i++) {
+                byteToCharIndex[i] = charIndex;
+            }
+            byteOffset = Math.min(nextByteOffset, byteToCharIndex.length - 1);
+            charIndex = nextCharIndex;
+            byteToCharIndex[byteOffset] = charIndex;
+        }
+
+        return byteToCharIndex;
+    }
+
+    private static int byteOffsetToCharIndex(int[] byteToCharIndex, int byteOffset) {
+        if (byteOffset <= 0) {
+            return 0;
+        }
+        if (byteOffset >= byteToCharIndex.length) {
+            return byteToCharIndex[byteToCharIndex.length - 1];
+        }
+        return byteToCharIndex[byteOffset];
     }
 
     /**
