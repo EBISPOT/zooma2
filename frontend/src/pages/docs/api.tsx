@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   Divider,
   Grid,
@@ -18,6 +19,7 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Header from "../../components/Header";
+import { getModels } from "../../api/ZoomaApi";
 
 type CodeLanguage = "json" | "ndjson" | "schema" | "text";
 
@@ -170,11 +172,6 @@ const endpoints = [
 
 const healthResponse = `All systems are operational.`;
 
-const statusResponse = `{
-  "olsUrl": "https://www.ebi.ac.uk/ols4",
-  "defaultModel": "text-embedding-3-small"
-}`;
-
 const sourcesResponse = `[
   {
     "type": "DATABASE",
@@ -190,13 +187,6 @@ const sourcesResponse = `[
   }
 ]`;
 
-const modelsResponse = `[
-  {
-    "name": "text-embedding-3-small",
-    "can_embed": true
-  }
-]`;
-
 const ontologyPresetsResponse = `[
   {
     "name": "Phenotypes",
@@ -205,14 +195,14 @@ const ontologyPresetsResponse = `[
   }
 ]`;
 
-const mappingRequest = `{
+function makeMappingRequest(model: string) { return `{
   "properties": [
     {
       "propertyType": "organism",
       "textToMap": "mus musculus"
     }
   ],
-  "model": "text-embedding-3-small",
+  "model": "${model}",`
   "targetOntologies": ["ncbitaxon"],
   "includeOtherOntologies": true,
   "filter": {
@@ -222,7 +212,7 @@ const mappingRequest = `{
   "excludeTermIds": [],
   "returnAll": false,
   "deep": false
-}`;
+}`; }
 
 const mappingResponse = `{
   "mappings": [
@@ -259,16 +249,16 @@ const mapStreamEvents = `{"type":"ping"}
 {"type":"result","mapping":{"propertyType":"organism","textToMap":"mus musculus","candidates":[]},"completed":1,"total":2}
 {"type":"done","completed":2,"total":2}`;
 
-const annotateTextRequest = `{
+function makeAnnotateTextRequest(model: string) { return `{
   "text": "The sample was collected from Mus musculus liver.",
-  "model": "text-embedding-3-small",
+  "model": "${model}",`
   "targetOntologies": ["ncbitaxon", "uberon"],
   "includeOtherOntologies": true,
   "filter": {
     "required": [],
     "preferred": []
   }
-}`;
+}`; }
 
 const annotateTextEvents = `{"type":"segments","segments":[{"text":"Mus musculus","start":30,"end":42},{"text":"liver","start":43,"end":48}],"originalText":"The sample was collected from Mus musculus liver."}
 {"type":"ping"}
@@ -331,6 +321,43 @@ V3MappingProvenanceStep {
 }`;
 
 export default function Docs() {
+  const [defaultModel, setDefaultModel] = useState<string | null>(null);
+
+  useEffect(() => {
+    getModels().then(models => {
+      const embeddable = models.find(m => m.canEmbed);
+      setDefaultModel(embeddable ? embeddable.name : "");
+    });
+  }, []);
+
+  if (defaultModel === null) {
+    return (
+      <Fragment>
+        <Header section="api" />
+        <main>
+          <Box display="flex" justifyContent="center" alignItems="center" minHeight="50vh">
+            <CircularProgress />
+          </Box>
+        </main>
+      </Fragment>
+    );
+  }
+
+  const statusResponse = `{
+  "olsUrl": "https://www.ebi.ac.uk/ols4",
+  "defaultModel": "${defaultModel}"
+}`;
+
+  const modelsResponse = `[
+  {
+    "name": "${defaultModel}",
+    "can_embed": true
+  }
+]`;
+
+  const mappingRequest = makeMappingRequest(defaultModel);
+  const annotateTextRequest = makeAnnotateTextRequest(defaultModel);
+
   return (
     <Fragment>
       <Header section="api" />
@@ -412,7 +439,7 @@ export default function Docs() {
                   Returns embedding model metadata from OLS. Use a model whose <InlineCode>can_embed</InlineCode> value
                   is <InlineCode>true</InlineCode> in mapping requests. If a request omits <InlineCode>model</InlineCode>,
                   ZOOMA uses the first embeddable model returned by OLS, falling back to{" "}
-                  <InlineCode>text-embedding-3-small</InlineCode>.
+                  <InlineCode>{defaultModel}</InlineCode>.
                 </Typography>
                 <CodeBlock title="Response">{modelsResponse}</CodeBlock>
               </Section>
