@@ -202,7 +202,7 @@ function makeMappingRequest(model: string) { return `{
       "textToMap": "mus musculus"
     }
   ],
-  "model": "${model}",`
+  "model": "${model}",
   "targetOntologies": ["ncbitaxon"],
   "includeOtherOntologies": true,
   "filter": {
