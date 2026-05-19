@@ -24,7 +24,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.8.0",
     "typescript": "~3.7.2",
-    "url-join": "^5.0.0"
+    "url-join": "^5.0.0",
+    "express-rate-limit": "^8.5.2"
   },
   "scripts": {
     "build": "dotenv -e .env.$REACT_APP_ENV -e .env -- node build.mjs",
