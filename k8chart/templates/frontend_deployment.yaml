@@ -14,10 +14,34 @@ spec:
       labels:
         app: {{ .Release.Name }}-frontend
     spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - name: caddy-data
+          emptyDir: {}
+        - name: caddy-config
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: web
           image: ghcr.io/ebispot/zooma2_frontend:{{.Values.imageTag}}
           imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - mountPath: /data
+              name: caddy-data
+            - mountPath: /config
+              name: caddy-config
+            - mountPath: /tmp
+              name: tmp
           resources:
             requests:
               memory: 1Gi
@@ -27,14 +51,18 @@ spec:
               cpu: 0.5
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /spot/zooma/
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /spot/zooma/
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
           env:
-            - name: REACT_APP_ENV
-              value: ebi
-            - name: REACT_APP_APIURL
-              value: https://wwwdev.ebi.ac.uk/spot/zooma/
             - name: PUBLIC_URL
               value: /spot/zooma/
-            - name: ZOOMA2_MINIFY
-              value: 'true'
-          command: ["/bin/bash", "-c"]
-          args: ["/opt/zooma_frontend/entrypoint.dockersh"]

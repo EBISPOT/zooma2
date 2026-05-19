@@ -6,8 +6,17 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite ^/spot/zooma$ /spot/zooma/ permanent;
 spec:
+  {{- if .Values.ingress.tlsSecretName }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ .Values.ingress.tlsSecretName | quote }}
+  {{- end }}
   rules:
-    - http:
+    - {{- if .Values.ingress.host }}
+      host: {{ .Values.ingress.host | quote }}
+      {{- end }}
+      http:
         paths:
           - path: /spot/zooma/v2/api
             pathType: Prefix

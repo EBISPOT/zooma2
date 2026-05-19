@@ -288,11 +288,8 @@ export async function recordVote(
     ontology: string,
     vote: 'up' | 'down'
 ): Promise<void> {
-    await fetch(apiUrl + '/v3/api/votes', {
-        method: 'POST',
-        body: JSON.stringify({ textToMap, propertyType, termId, termLabel, ontology, vote }),
-        headers: { 'content-type': 'application/json' }
-    })
+    // Votes are disabled until anonymous feedback has abuse controls.
+    return Promise.resolve()
 }
 
 export async function search(params:SearchParams):Promise<SearchResult[]> {

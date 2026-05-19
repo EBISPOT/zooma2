@@ -1,0 +1,80 @@
+{
+    "ols_lexical": {
+        "max_results": 20,
+        "timeout_ms": 60000,
+        "max_concurrent_requests": 5
+    },
+    "ols_embedding": {
+        "min_similarity": 0.7,
+        "max_deep_results": 100,
+        "max_shallow_results": 10,
+        "timeout_ms": 60000,
+        "max_concurrent_embedding_requests": 3,
+        "max_concurrent_similar_requests": 10
+    },
+    "oxo": {
+        "enabled": false
+    },
+    "ontology_presets": [
+        {
+            "name": "EFO and OBO Foundry",
+            "ontologies": ["efo","uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "include_obo_ontologies": true
+        },
+        {
+            "name": "Just OBO Foundry",
+            "ontologies": ["uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "include_obo_ontologies": true
+        }
+    ],
+    "prefix_map": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "swrl": "http://www.w3.org/2003/11/swrl#",
+        "swrlb": "http://www.w3.org/2003/11/swrlb#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "oac": "http://www.openannotation.org/ns/",
+        "prov": "http://www.w3.org/TR/prov-o/",
+        "zooma": "http://www.ebi.ac.uk/fgpt/zooma/",
+        "zoomaterms": "http://rdf.ebi.ac.uk/terms/zooma/",
+        "zoomaresource": "http://rdf.ebi.ac.uk/resource/zooma/",
+        "annotation": "http://rdf.ebi.ac.uk/resource/zooma/annotation/",
+        "propval": "http://rdf.ebi.ac.uk/resource/zooma/propertyvalue/",
+        "ebi": "http://www.ebi.ac.uk/",
+        "ebiresource": "http://rdf.ebi.ac.uk/resource/",
+        "arrayexpress": "http://www.ebi.ac.uk/arrayexpress/",
+        "aeresource": "http://rdf.ebi.ac.uk/resource/zooma/arrayexpress/",
+        "aeannotation": "http://rdf.ebi.ac.uk/resource/zooma/arrayexpress/annotation/",
+        "aeexperiment": "http://rdf.ebi.ac.uk/resource/zooma/arrayexpress/experiment/",
+        "aeproperty": "http://rdf.ebi.ac.uk/resource/zooma/arrayexpress/property/",
+        "gxa": "http://www.ebi.ac.uk/gxa/",
+        "gxaresource": "http://rdf.ebi.ac.uk/resource/zooma/gxa/",
+        "gxaannotation": "http://rdf.ebi.ac.uk/resource/zooma/gxa/annotation/",
+        "gxaexperiment": "http://rdf.ebi.ac.uk/resource/zooma/gxa/experiment/",
+        "gxaproperty": "http://rdf.ebi.ac.uk/resource/zooma/gxa/property/",
+        "genome": "http://www.genome.gov/",
+        "gwas": "http://www.genome.gov/gwastudies/",
+        "gwasresource": "http://rdf.ebi.ac.uk/resource/zooma/gwas/",
+        "gwasannotation": "http://rdf.ebi.ac.uk/resource/zooma/gwas/annotation/",
+        "gwassnp": "http://rdf.ebi.ac.uk/resource/zooma/gwas/snp/",
+        "gwasproperty": "http://rdf.ebi.ac.uk/resource/zooma/gwas/property/",
+        "owlresource": "http://rdf.ebi.ac.uk/resource/zooma/owl/",
+        "owlannotation": "http://rdf.ebi.ac.uk/resource/zooma/owl/annotation/",
+        "owlproperty": "http://rdf.ebi.ac.uk/resource/zooma/owl/property/",
+        "efo": "http://www.ebi.ac.uk/efo/",
+        "snap": "http://www.ifomis.org/bfo/1.1/snap#",
+        "span": "http://www.ifomis.org/bfo/1.1/span#",
+        "cl": "http://purl.org/obo/owl/CL#",
+        "obo": "http://purl.obolibrary.org/obo/",
+        "oboinowl": "http://www.geneontology.org/formats/oboInOwl#",
+        "ncbitaxon": "http://purl.org/obo/owl/NCBITaxon#",
+        "bto": "http://purl.org/obo/owl/BTO#",
+        "pato": "http://purl.org/obo/owl/PATO#",
+        "pubmed": "http://europepmc.org/abstract/MED/",
+        "orpha": "http://www.orphanet.org/rdfns#"
+    }
+}

@@ -32,6 +32,9 @@ public class ZoomaConfig {
     }
 
     private static Reader openConfigReader() throws IOException {
+        if (CONFIG_PATH.startsWith("http://")) {
+            throw new IOException("Remote config URLs must use HTTPS: " + CONFIG_PATH);
+        }
         if (isRemoteConfigPath()) {
             HttpURLConnection connection = (HttpURLConnection) new URL(CONFIG_PATH).openConnection();
             connection.setConnectTimeout(10000);
@@ -43,7 +46,7 @@ public class ZoomaConfig {
     }
 
     private static boolean isRemoteConfigPath() {
-        return CONFIG_PATH.startsWith("http://") || CONFIG_PATH.startsWith("https://");
+        return CONFIG_PATH.startsWith("https://");
     }
 
     /**

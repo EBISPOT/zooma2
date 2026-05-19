@@ -251,7 +251,7 @@ const mapStreamEvents = `{"type":"ping"}
 
 function makeAnnotateTextRequest(model: string) { return `{
   "text": "The sample was collected from Mus musculus liver.",
-  "model": "${model}",`
+  "model": "${model}",
   "targetOntologies": ["ncbitaxon", "uberon"],
   "includeOtherOntologies": true,
   "filter": {

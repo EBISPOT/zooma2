@@ -1,9 +1,9 @@
 package uk.ac.ebi.zooma2.api.v2;
 
-import io.javalin.Javalin;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
+import io.javalin.router.JavalinDefaultRoutingApi;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
@@ -61,7 +61,7 @@ public class ZoomaApiV2 {
         this.olsRepo = olsRepo;
     }
 
-    public void registerRoutes(Javalin app) {
+    public void registerRoutes(JavalinDefaultRoutingApi app) {
         app.get("/v2/api/sources", this::getSources);
         app.get("/v2/api/properties/types", this::getPropertyTypes);
         app.get("/v2/api/services/annotate", this::annotate);

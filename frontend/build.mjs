@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import { execFileSync } from "child_process";
 import { build } from "esbuild";
 import fs from "fs";
 
@@ -11,6 +11,7 @@ for (const k in process.env) {
 /// Build index.html (simple find and replace)
 ///
 console.log("### Building index.html");
+fs.mkdirSync("dist", { recursive: true });
 fs.writeFileSync(
   "dist/index.html",
   fs
@@ -26,7 +27,7 @@ fs.writeFileSync(
 /// Build bundle.js (esbuild)
 ///
 console.log("### Building bundle.js");
-build({
+await build({
   entryPoints: ["src/index.tsx"],
   bundle: true,
   platform: "browser",
@@ -47,10 +48,14 @@ build({
 /// Build styles.css (tailwind)
 ///
 console.log("### Building styles.css");
-exec("tailwind -i ./src/index.css -o ./dist/styles.css");
+execFileSync("./node_modules/.bin/tailwind", ["-i", "./src/index.css", "-o", "./dist/styles.css"], {
+  stdio: "inherit",
+});
 
 ///
 /// Copy files
 ///
 console.log("### Copying misc files");
-exec("cp ./src/banner.txt ./dist"); // home page banner text
+if (fs.existsSync("./src/banner.txt")) {
+  fs.copyFileSync("./src/banner.txt", "./dist/banner.txt"); // home page banner text
+}

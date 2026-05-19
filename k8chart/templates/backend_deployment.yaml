@@ -18,19 +18,44 @@ spec:
         runAsUser: 5533
         runAsGroup: 1279
         fsGroup: 5533
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       volumes:
         - name: {{ .Release.Name }}-import
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-import-pvc
+        - name: tmp
+          emptyDir: {}
       containers:
         - name: web
           image: ghcr.io/ebispot/zooma2_backend:{{.Values.imageTag}}
           imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
           volumeMounts:
             - mountPath: "/data"
               name: {{ .Release.Name }}-import
+            - mountPath: "/tmp"
+              name: tmp
           ports:
             - containerPort: 8090
+          livenessProbe:
+            httpGet:
+              path: /spot/zooma/v3/api/health
+              port: 8090
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /spot/zooma/v3/api/health
+              port: 8090
+            initialDelaySeconds: 10
+            periodSeconds: 10
           resources:
             requests:
               memory: 16Gi
@@ -42,11 +67,13 @@ spec:
             - name: ZOOMA2_CONTEXT_PATH
               value: /spot/zooma
             - name: ZOOMA2_CONFIG_PATH
-              value: https://raw.githubusercontent.com/EBISPOT/zooma2/refs/heads/dev/config.json
+              value: /app/config.json
             - name: ZOOMA2_DB_URL
               value: "jdbc:sqlite:{{.Values.dbPath}}"
             - name: ZOOMA2_OLS_URL
               value: {{ .Values.olsUrl | quote }}
+            - name: ZOOMA2_CORS_ALLOWED_ORIGINS
+              value: {{ .Values.corsAllowedOrigins | quote }}
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -XX:InitialRAMPercentage=60.0 -XX:MinRAMPercentage=60.0 -XX:MaxRAMPercentage=80.0

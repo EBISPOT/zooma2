@@ -15,8 +15,6 @@ import uk.ac.ebi.zooma2.repo.VoteRepository;
 import uk.ac.ebi.zooma2.repo.ZoomaDatabase;
 import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.*;
 
 public class ZoomaApp {
@@ -56,51 +54,51 @@ public class ZoomaApp {
             throw new RuntimeException("Cannot start without NLP models", e);
         }
 
+        var apiV2 = new ZoomaApiV2(annotator, olsRepo);
+        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb), zoomaDb, textSegmenter);
+
         var app = Javalin.create(config -> {
             config.http.generateEtags = true;
-            config.router.apiBuilder(() -> {});
+            config.http.maxRequestSize = configuredMaxRequestBytes();
             config.bundledPlugins.enableCors(cors -> {
-                cors.addRule(CorsPluginConfig.CorsRule::anyHost);
+                cors.addRule(ZoomaApp::configureCors);
             });
             config.router.contextPath = System.getenv("ZOOMA2_CONTEXT_PATH");
             if(config.router.contextPath == null) {
                 config.router.contextPath = "";
             }
+
+            config.routes.before(ctx -> {
+                ctx.header("X-Content-Type-Options", "nosniff");
+                ctx.header("Referrer-Policy", "strict-origin-when-cross-origin");
+                ctx.header("X-Frame-Options", "DENY");
+            });
+
+            apiV2.registerRoutes(config.routes);
+            apiV3.registerRoutes(config.routes);
+
+            config.routes.exception(BadRequestResponse.class, (e, ctx) -> ctx.status(400).json(Map.of(
+                "error", "Bad Request",
+                "message", e.getMessage()
+            )));
+            config.routes.exception(NotFoundResponse.class, (e, ctx) -> ctx.status(404).json(Map.of(
+                "error", "Not Found",
+                "message", e.getMessage()
+            )));
+            config.routes.exception(Exception.class, (e, ctx) -> {
+                String requestId = UUID.randomUUID().toString();
+                System.err.println("Unhandled request error " + requestId + ": " + e.getMessage());
+                e.printStackTrace();
+                Map<String, Object> body = new LinkedHashMap<>();
+                body.put("error", "Internal Server Error");
+                body.put("message", "Unexpected server error");
+                body.put("requestId", requestId);
+                ctx.status(500).json(body);
+            });
         });
 
         // Watch config.json for changes and reload automatically
         ZoomaConfig.startConfigWatcher();
-
-        // Register API routes
-        var apiV2 = new ZoomaApiV2(annotator, olsRepo);
-        apiV2.registerRoutes(app);
-        
-        var apiV3 = new ZoomaApiV3(annotator, olsRepo, new VoteRepository(zoomaDb), zoomaDb, textSegmenter);
-        apiV3.registerRoutes(app);
-
-        // Global handlers
-        app.exception(BadRequestResponse.class, (e, ctx) -> ctx.status(400).json(Map.of(
-            "error", "Bad Request",
-            "message", e.getMessage()
-        )));
-        app.exception(NotFoundResponse.class, (e, ctx) -> ctx.status(404).json(Map.of(
-            "error", "Not Found",
-            "message", e.getMessage()
-        )));
-        app.exception(Exception.class, (e, ctx) -> {
-
-            // send the full exception stack trace to the client
-
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            e.printStackTrace(pw);
-            String stackTrace = sw.toString();
-            Map<String, Object> body = new LinkedHashMap<>();
-            body.put("error", "Internal Server Error");
-            body.put("message", e.getMessage());
-            body.put("stackTrace", stackTrace);
-            ctx.status(500).json(body);
-        });
 
         app.start(configuredPort());
     }
@@ -156,6 +154,49 @@ public class ZoomaApp {
             return port;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("ZOOMA2_PORT must be an integer in [1,65535], got: " + raw, e);
+        }
+    }
+
+    private static void configureCors(CorsPluginConfig.CorsRule rule) {
+        var allowedOrigins = configuredCorsOrigins();
+        if (allowedOrigins.size() == 1 && "*".equals(allowedOrigins.get(0))) {
+            rule.anyHost();
+            return;
+        }
+        rule.maxAge = 3600;
+        rule.allowHost(allowedOrigins.get(0), allowedOrigins.subList(1, allowedOrigins.size()).toArray(String[]::new));
+    }
+
+    private static List<String> configuredCorsOrigins() {
+        String raw = System.getenv("ZOOMA2_CORS_ALLOWED_ORIGINS");
+        if (raw == null || raw.isBlank()) {
+            return List.of(
+                "https://www.ebi.ac.uk",
+                "https://wwwdev.ebi.ac.uk",
+                "http://localhost:3000",
+                "http://localhost:8080"
+            );
+        }
+        var origins = Arrays.stream(raw.split(","))
+            .map(String::trim)
+            .filter(s -> !s.isEmpty())
+            .toList();
+        if (origins.isEmpty()) {
+            throw new IllegalArgumentException("ZOOMA2_CORS_ALLOWED_ORIGINS cannot be empty when set");
+        }
+        return origins;
+    }
+
+    private static long configuredMaxRequestBytes() {
+        String raw = System.getenv().getOrDefault("ZOOMA2_MAX_REQUEST_BYTES", "2097152");
+        try {
+            long max = Long.parseLong(raw);
+            if (max < 1024 || max > 104_857_600L) {
+                throw new NumberFormatException("out of range");
+            }
+            return max;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("ZOOMA2_MAX_REQUEST_BYTES must be an integer in [1024,104857600], got: " + raw, e);
         }
     }
 

@@ -13,7 +13,7 @@ The API is available at `http://localhost:8090`. See `/v3/api/status` for health
 
 ## Configuration
 
-Runtime tuning lives in `config.json`, and the file is watched for changes while the app is running. `ZOOMA2_CONFIG_PATH` can also point to an `http(s)` URL; in that case the config is fetched once at startup and is not watched for changes.
+Runtime tuning lives in `config.json`, and the file is watched for changes while the app is running. `ZOOMA2_CONFIG_PATH` can also point to an `https` URL; in that case the config is fetched once at startup and is not watched for changes.
 
 Environment variables:
 
@@ -22,13 +22,19 @@ Environment variables:
 | `ZOOMA2_DB_URL` | `jdbc:sqlite:zooma.db` | No | JDBC URL (SQLite or PostgreSQL) |
 | `ZOOMA2_DB_USER` | – | PostgreSQL only | Database username |
 | `ZOOMA2_DB_PASS` | – | PostgreSQL only | Database password |
-| `ZOOMA2_CONFIG_PATH` | `config.json` | No | Path to config file, or an `http(s)` URL |
+| `ZOOMA2_CONFIG_PATH` | `config.json` | No | Path to config file, or an `https` URL |
 | `ZOOMA2_OLS_URL` | `https://www.ebi.ac.uk/ols4` | No | OLS4 API base URL |
 | `ZOOMA2_CONTEXT_PATH` | (none) | No | URL path prefix, e.g. `/spot/zooma` |
+| `ZOOMA2_CORS_ALLOWED_ORIGINS` | EBI + localhost origins | No | Comma-separated allowed browser origins; use `*` only for local testing |
+| `ZOOMA2_MAX_REQUEST_BYTES` | `2097152` | No | Maximum request body size |
+| `ZOOMA2_MAX_PROPERTIES` | `1000` | No | Maximum properties accepted by V3 map endpoints |
+| `ZOOMA2_MAX_DEEP_PROPERTIES` | `200` | No | Maximum properties accepted when `deep=true` |
+| `ZOOMA2_MAX_PROPERTY_TEXT_LENGTH` | `1000` | No | Maximum length for one property value |
+| `ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH` | `50000` | No | Maximum length for annotate-text input |
 
 ## Database
 
-The database stores: user mapping votes, cached OLS term lookups, and cached external API responses (OLS, OXO). The cache allows the test suite to run offline and reduces latency in production.
+The database stores: cached OLS term lookups and cached external API responses (OLS, OXO). The votes table still exists for compatibility, but V3 vote routes are currently disabled until anonymous feedback has abuse controls. The cache allows the test suite to run offline and reduces latency in production.
 
 ### SQLite (default)
 

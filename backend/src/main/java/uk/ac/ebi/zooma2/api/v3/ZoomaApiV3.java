@@ -1,9 +1,9 @@
 package uk.ac.ebi.zooma2.api.v3;
 
-import io.javalin.Javalin;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
+import io.javalin.router.JavalinDefaultRoutingApi;
 import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
@@ -11,6 +11,7 @@ import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
 import uk.ac.ebi.zooma2.api.SourceMetadata;
 import uk.ac.ebi.zooma2.api.v3.dto.AnnotateTextRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
+import uk.ac.ebi.zooma2.api.v3.dto.V3FilterDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapResponseDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingCandidateDto;
@@ -36,6 +37,16 @@ import java.util.stream.Stream;
  */
 public class ZoomaApiV3 {
 
+    private static final int MAX_PROPERTIES = envInt("ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000);
+    private static final int MAX_DEEP_PROPERTIES = envInt("ZOOMA2_MAX_DEEP_PROPERTIES", 200, 1, 100_000);
+    private static final int MAX_PROPERTY_TEXT_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TEXT_LENGTH", 1000, 1, 1_000_000);
+    private static final int MAX_PROPERTY_TYPE_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TYPE_LENGTH", 200, 1, 10_000);
+    private static final int MAX_ANNOTATE_TEXT_LENGTH = envInt("ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH", 50_000, 1, 5_000_000);
+    private static final int MAX_LIST_ITEMS = envInt("ZOOMA2_MAX_FILTER_ITEMS", 200, 1, 100_000);
+    private static final int MAX_LIST_ITEM_LENGTH = envInt("ZOOMA2_MAX_FILTER_ITEM_LENGTH", 200, 1, 10_000);
+    private static final int MAX_EXCLUDED_TERMS = envInt("ZOOMA2_MAX_EXCLUDED_TERMS", 1000, 1, 100_000);
+    private static final int MAX_MODEL_LENGTH = envInt("ZOOMA2_MAX_MODEL_LENGTH", 200, 1, 10_000);
+
     private final ZoomaAnnotator annotator;
     private final OlsClientRepo olsRepo;
     private final VoteRepository voteRepo;
@@ -51,7 +62,7 @@ public class ZoomaApiV3 {
         this.textSegmenter = textSegmenter;
     }
 
-    public void registerRoutes(Javalin app) {
+    public void registerRoutes(JavalinDefaultRoutingApi app) {
         // Core endpoints
         app.get("/v3/api/health", this::getHealth);
         app.get("/v3/api/sources", this::getSources);
@@ -75,9 +86,9 @@ public class ZoomaApiV3 {
         // Ontology presets
         app.get("/v3/api/ontology-presets", this::getOntologyPresets);
 
-        // Vote endpoints
-        app.post("/v3/api/votes", this::recordVote);
-        app.get("/v3/api/votes", this::getVotes);
+        // Vote endpoints are disabled until anonymous feedback has abuse controls.
+        // app.post("/v3/api/votes", this::recordVote);
+        // app.get("/v3/api/votes", this::getVotes);
     }
 
     private void getHealth(Context ctx) {
@@ -163,10 +174,7 @@ public class ZoomaApiV3 {
      */
     private void map(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
-        
-        if (request.properties == null || request.properties.isEmpty()) {
-            throw new BadRequestResponse("'properties' is required and cannot be empty");
-        }
+        validateMapRequest(request);
         
         var internalStringsToMap = request.properties.stream().map(V3StringToMapDto::toStringToMap);
         
@@ -235,10 +243,7 @@ public class ZoomaApiV3 {
      */
     private void mapStream(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
-        
-        if (request.properties == null || request.properties.isEmpty()) {
-            throw new BadRequestResponse("'properties' is required and cannot be empty");
-        }
+        validateMapRequest(request);
         
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
@@ -369,10 +374,7 @@ public class ZoomaApiV3 {
      */
     private void annotateTextStream(Context ctx) {
         var request = bodyJson(ctx, AnnotateTextRequestDto.class);
-
-        if (request.text == null || request.text.isBlank()) {
-            throw new BadRequestResponse("'text' is required and cannot be empty");
-        }
+        validateAnnotateTextRequest(request);
 
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
@@ -565,24 +567,11 @@ public class ZoomaApiV3 {
     }
 
     private void recordVote(Context ctx) {
-        var req = bodyJson(ctx, VoteRequest.class);
-        if (req.textToMap == null || req.termId == null || req.vote == null) {
-            throw new BadRequestResponse("textToMap, termId, and vote are required");
-        }
-        if (!"up".equals(req.vote) && !"down".equals(req.vote)) {
-            throw new BadRequestResponse("vote must be 'up' or 'down'");
-        }
-        voteRepo.recordVote(req.textToMap, req.propertyType, req.termId,
-                            req.termLabel, req.ontology, req.vote);
-        ctx.json(Map.of("status", "ok"));
+        ctx.status(204);
     }
 
     private void getVotes(Context ctx) {
-        String textToMap = ctx.queryParam("textToMap");
-        if (textToMap == null || textToMap.isEmpty()) {
-            throw new BadRequestResponse("textToMap query parameter is required");
-        }
-        ctx.json(voteRepo.getVotes(textToMap));
+        ctx.json(List.of());
     }
 
     // ==================== Helper methods ====================
@@ -592,6 +581,93 @@ public class ZoomaApiV3 {
             return "";
         }
         return propertyType;
+    }
+
+    private static void validateMapRequest(V3MapRequestDto request) {
+        if (request == null) {
+            throw new BadRequestResponse("Request body is required");
+        }
+        if (request.properties == null || request.properties.isEmpty()) {
+            throw new BadRequestResponse("'properties' is required and cannot be empty");
+        }
+        if (request.properties.size() > MAX_PROPERTIES) {
+            throw new BadRequestResponse("'properties' cannot contain more than " + MAX_PROPERTIES + " items");
+        }
+        if (Boolean.TRUE.equals(request.deep) && request.properties.size() > MAX_DEEP_PROPERTIES) {
+            throw new BadRequestResponse("'deep' requests cannot contain more than " + MAX_DEEP_PROPERTIES + " properties");
+        }
+        validateString("model", request.model, false, MAX_MODEL_LENGTH);
+        validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
+        validateStringList("excludeTermIds", request.excludeTermIds, MAX_EXCLUDED_TERMS, MAX_LIST_ITEM_LENGTH);
+        validateFilter(request.filter);
+
+        for (int i = 0; i < request.properties.size(); i++) {
+            var property = request.properties.get(i);
+            if (property == null) {
+                throw new BadRequestResponse("'properties[" + i + "]' cannot be null");
+            }
+            validateString("properties[" + i + "].textToMap", property.textToMap, true, MAX_PROPERTY_TEXT_LENGTH);
+            validateString("properties[" + i + "].propertyType", property.propertyType, false, MAX_PROPERTY_TYPE_LENGTH);
+        }
+    }
+
+    private static void validateAnnotateTextRequest(AnnotateTextRequestDto request) {
+        if (request == null) {
+            throw new BadRequestResponse("Request body is required");
+        }
+        validateString("text", request.text, true, MAX_ANNOTATE_TEXT_LENGTH);
+        validateString("model", request.model, false, MAX_MODEL_LENGTH);
+        validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
+        validateFilter(request.filter);
+    }
+
+    private static void validateFilter(V3FilterDto filter) {
+        if (filter == null) {
+            return;
+        }
+        validateStringList("filter.required", filter.required, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
+        validateStringList("filter.preferred", filter.preferred, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
+    }
+
+    private static void validateStringList(String name, List<String> values, int maxItems, int maxLength) {
+        if (values == null) {
+            return;
+        }
+        if (values.size() > maxItems) {
+            throw new BadRequestResponse("'" + name + "' cannot contain more than " + maxItems + " items");
+        }
+        for (int i = 0; i < values.size(); i++) {
+            validateString(name + "[" + i + "]", values.get(i), true, maxLength);
+        }
+    }
+
+    private static void validateString(String name, String value, boolean required, int maxLength) {
+        if (value == null || value.isBlank()) {
+            if (required) {
+                throw new BadRequestResponse("'" + name + "' is required and cannot be empty");
+            }
+            return;
+        }
+        if (value.length() > maxLength) {
+            throw new BadRequestResponse("'" + name + "' cannot be longer than " + maxLength + " characters");
+        }
+    }
+
+    private static int envInt(String name, int defaultValue, int min, int max) {
+        String raw = System.getenv(name);
+        if (raw == null || raw.isBlank()) {
+            return defaultValue;
+        }
+        try {
+            int parsed = Integer.parseInt(raw);
+            if (parsed < min || parsed > max) {
+                throw new NumberFormatException("out of range");
+            }
+            return parsed;
+        } catch (NumberFormatException e) {
+            System.err.println("Ignoring invalid " + name + "='" + raw + "'; using " + defaultValue);
+            return defaultValue;
+        }
     }
     
     private static <T> T bodyJson(Context ctx, Class<T> clazz) {

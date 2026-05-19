@@ -1,30 +1,34 @@
+FROM node:20-bookworm-slim AS build
 
-FROM ubuntu:22.04
+WORKDIR /workspace
 
-RUN apt update && apt install -y curl gpg
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# node
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash
+COPY . .
 
-# caddy
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
+ARG PUBLIC_URL=/spot/zooma/
+ARG REACT_APP_APIURL=https://wwwdev.ebi.ac.uk/spot/zooma/
+ARG ZOOMA_MINIFY=true
 
+ENV PUBLIC_URL=${PUBLIC_URL}
+ENV REACT_APP_APIURL=${REACT_APP_APIURL}
+ENV ZOOMA_MINIFY=${ZOOMA_MINIFY}
 
-RUN apt update && apt install -y nodejs caddy
+RUN node build.mjs
 
-RUN mkdir /opt/zooma_frontend
+FROM caddy:2-alpine
 
+ARG PUBLIC_URL=/spot/zooma/
+ENV PUBLIC_URL=${PUBLIC_URL}
 
-WORKDIR /opt/zooma_frontend
+RUN addgroup -S -g 1279 zooma \
+    && adduser -S -D -H -u 5534 -G zooma zooma \
+    && chown -R 5534:1279 /data /config
 
+COPY --chown=5534:1279 Caddyfile /etc/caddy/Caddyfile
+COPY --chown=5534:1279 --from=build /workspace/dist /srv
 
-COPY package.json package-lock.json /opt/zooma_frontend/
-RUN npm install
+USER 5534:1279
 
-COPY . /opt/zooma_frontend/
-
-RUN chmod +x /opt/zooma_frontend/entrypoint.dockersh
-
-CMD ["/opt/zooma_frontend/entrypoint.dockersh"]
-
+EXPOSE 8080
