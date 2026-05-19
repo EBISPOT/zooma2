@@ -3,9 +3,17 @@ import express from 'express'
 import fetch from 'node-fetch'
 import urlJoin from 'url-join'
 import nocache from 'nocache'
+import rateLimit from 'express-rate-limit'
 
 
 let server = express()
+
+const pageLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+})
 
 server.use(nocache())
 
@@ -44,7 +52,7 @@ server.use(/^\/v[23].*/, async (req, res) => {
 
 server.use(express.static('dist'))
 
-server.get(/^(?!\/api).*$/, (req, res) => {
+server.get(/^(?!\/api).*$/, pageLimiter, (req, res) => {
   res.sendFile(process.cwd() + '/dist/index.html')
 })
 
