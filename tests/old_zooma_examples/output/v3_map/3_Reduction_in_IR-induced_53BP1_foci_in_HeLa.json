@@ -3,46 +3,46 @@
     {
       "candidates": [
         {
-          "confidence": 0.7478764800880533,
-          "datasource": "fypo",
-          "label": "decreased number of Rad51 foci during cellular response to ionizing radiation",
+          "confidence": 0.8000838375091552,
+          "datasource": "cmpo",
+          "label": "site of double-strand break phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "decreased number of Rad51 foci during cellular response to ionizing radiation",
+              "matchedText": "site of double-strand break phenotype",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8403106517843295,
-              "source": "ols:fypo",
-              "target": "http://purl.obolibrary.org/obo/FYPO_0005388"
+              "similarity": 0.8989706039428711,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
             }
           ],
-          "ontology": "fypo",
-          "termId": "FYPO_0005388",
-          "uri": "fypo"
+          "ontology": "cmpo",
+          "termId": "CMPO_0000180",
+          "uri": "cmpo"
         },
         {
-          "confidence": 0.7452844798701899,
-          "datasource": "fypo",
-          "label": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
+          "confidence": 0.8000838375091552,
+          "datasource": "cmpo",
+          "label": "decreased number of site of double-strand break phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
+              "matchedText": "decreased number of site of double-strand break phenotype",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8373982919889774,
-              "source": "ols:fypo",
-              "target": "http://purl.obolibrary.org/obo/FYPO_0006924"
+              "similarity": 0.8989706039428711,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
             }
           ],
-          "ontology": "fypo",
-          "termId": "FYPO_0006924",
-          "uri": "fypo"
+          "ontology": "cmpo",
+          "termId": "CMPO_0000181",
+          "uri": "cmpo"
         }
       ],
       "error": null,

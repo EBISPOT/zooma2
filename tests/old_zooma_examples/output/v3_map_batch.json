@@ -95,27 +95,6 @@
         },
         {
           "confidence": 0.801,
-          "datasource": "hp",
-          "label": "Agammaglobulinemia",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0004432"
-            }
-          ],
-          "ontology": "hp",
-          "termId": "hp_0004432",
-          "uri": "hp"
-        },
-        {
-          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -134,6 +113,27 @@
           "ontology": "mondo",
           "termId": "mondo_0015977",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "termId": "hp_0004432",
+          "uri": "hp"
         },
         {
           "confidence": 0.801,
@@ -227,46 +227,46 @@
     {
       "candidates": [
         {
-          "confidence": 0.7478764800880533,
-          "datasource": "fypo",
-          "label": "decreased number of Rad51 foci during cellular response to ionizing radiation",
+          "confidence": 0.8000838375091552,
+          "datasource": "cmpo",
+          "label": "site of double-strand break phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "decreased number of Rad51 foci during cellular response to ionizing radiation",
+              "matchedText": "site of double-strand break phenotype",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8403106517843295,
-              "source": "ols:fypo",
-              "target": "http://purl.obolibrary.org/obo/FYPO_0005388"
+              "similarity": 0.8989706039428711,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000180"
             }
           ],
-          "ontology": "fypo",
-          "termId": "FYPO_0005388",
-          "uri": "fypo"
+          "ontology": "cmpo",
+          "termId": "CMPO_0000180",
+          "uri": "cmpo"
         },
         {
-          "confidence": 0.7452844798701899,
-          "datasource": "fypo",
-          "label": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
+          "confidence": 0.8000838375091552,
+          "datasource": "cmpo",
+          "label": "decreased number of site of double-strand break phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Reduction in IR-induced 53BP1 foci in HeLa",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "decreased number of Rad52 foci at mitotic DNA replication fork barriers",
+              "matchedText": "decreased number of site of double-strand break phenotype",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8373982919889774,
-              "source": "ols:fypo",
-              "target": "http://purl.obolibrary.org/obo/FYPO_0006924"
+              "similarity": 0.8989706039428711,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000181"
             }
           ],
-          "ontology": "fypo",
-          "termId": "FYPO_0006924",
-          "uri": "fypo"
+          "ontology": "cmpo",
+          "termId": "CMPO_0000181",
+          "uri": "cmpo"
         }
       ],
       "error": null,
@@ -304,28 +304,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8492652151034532,
-          "datasource": "ncit",
-          "label": "C57BL/6ByJ Mouse",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "C57Black/6",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "C57BL/6ByJ Mouse",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9542305787679249,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C37382"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C37382",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.84823179237729,
+          "confidence": 0.8481047058105469,
           "datasource": "efo",
           "label": "129xC57BL/6",
           "mappingProvenance": [
@@ -336,7 +315,7 @@
               "matchedText": "129xC57BL/6",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9530694296374045,
+              "similarity": 0.9529266357421875,
               "source": "ols:efo",
               "target": "http://www.ebi.ac.uk/efo/EFO_0000601"
             }
@@ -346,7 +325,28 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.8475883001814557,
+          "confidence": 0.8481042814254761,
+          "datasource": "ncit",
+          "label": "C57BL/6ByJ Mouse",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "C57BL/6ByJ Mouse",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9529261589050293,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C37382"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C37382",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.8469397687911987,
           "datasource": "ncit",
           "label": "C57BL/6By Mouse",
           "mappingProvenance": [
@@ -357,7 +357,7 @@
               "matchedText": "C57BL/6By Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9523464046982648,
+              "similarity": 0.9516177177429199,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37381"
             }
@@ -367,7 +367,7 @@
           "uri": "ncit"
         },
         {
-          "confidence": 0.8464002584737214,
+          "confidence": 0.8461784219741821,
           "datasource": "ncit",
           "label": "C57BL/6Pas Mouse",
           "mappingProvenance": [
@@ -378,7 +378,7 @@
               "matchedText": "C57BL/6Pas Mouse",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9510115263749678,
+              "similarity": 0.9507622718811035,
               "source": "ols:ncit",
               "target": "http://purl.obolibrary.org/obo/NCIT_C37386"
             }
@@ -388,7 +388,28 @@
           "uri": "ncit"
         },
         {
-          "confidence": 0.8445005212416812,
+          "confidence": 0.8453190422058106,
+          "datasource": "efo",
+          "label": "C57BL/6NTac",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "C57BL/6NTac",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9497966766357422,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0020093"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0020093",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.8452303457260132,
           "datasource": "efo",
           "label": "C57BL",
           "mappingProvenance": [
@@ -399,7 +420,7 @@
               "matchedText": "C57BL",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9488769901591924,
+              "similarity": 0.9496970176696777,
               "source": "ols:efo",
               "target": "http://www.ebi.ac.uk/efo/EFO_0005181"
             }
@@ -409,7 +430,28 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.8445005212416812,
+          "confidence": 0.8450958156585694,
+          "datasource": "efo",
+          "label": "C57BL/6JxCAST/EiJ",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "C57Black/6",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "C57BL/6JxCAST/EiJ",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9495458602905273,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0010946"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0010946",
+          "uri": "efo"
+        },
+        {
+          "confidence": 0.8446693086624145,
           "datasource": "efo",
           "label": "C57BL/6J",
           "mappingProvenance": [
@@ -420,7 +462,7 @@
               "matchedText": "C57BL/6J",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9488769901591924,
+              "similarity": 0.9490666389465332,
               "source": "ols:efo",
               "target": "http://www.ebi.ac.uk/efo/EFO_0000606"
             }
@@ -430,25 +472,25 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.8444341093273554,
-          "datasource": "ncit",
-          "label": "C57BL/6N Mouse",
+          "confidence": 0.844344654083252,
+          "datasource": "efo",
+          "label": "C57BL/6NCrl",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "C57Black/6",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "C57BL/6N Mouse",
+              "matchedText": "C57BL/6NCrl",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9488023700307364,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C37385"
+              "similarity": 0.9487018585205078,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0011030"
             }
           ],
-          "ontology": "ncit",
-          "termId": "NCIT_C37385",
-          "uri": "ncit"
+          "ontology": "efo",
+          "termId": "EFO_0011030",
+          "uri": "efo"
         }
       ],
       "error": null,
@@ -605,7 +647,7 @@
           "uri": "cco"
         },
         {
-          "confidence": 0.812348232546721,
+          "confidence": 0.8119674682617187,
           "datasource": "mesh",
           "label": "Segawa syndrome, autosomal recessive",
           "mappingProvenance": [
@@ -616,7 +658,7 @@
               "matchedText": "Segawa syndrome, autosomal recessive",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9127508230862033,
+              "similarity": 0.912322998046875,
               "source": "ols:mesh",
               "target": "http://id.nlm.nih.gov/mesh/C537537"
             }
@@ -673,27 +715,6 @@
           "ontology": "hgnc",
           "termId": "hgnc_1100",
           "uri": "hgnc"
-        },
-        {
-          "confidence": 0.85,
-          "datasource": "ogg",
-          "label": "BRCA1",
-          "mappingProvenance": [
-            {
-              "confidence": 0.85,
-              "input": "BRCA1",
-              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
-              "matchedText": "BRCA1",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.85,
-              "source": "ols:ogg",
-              "target": "http://purl.obolibrary.org/obo/OGG_3000000672"
-            }
-          ],
-          "ontology": "ogg",
-          "termId": "OGG_3000000672",
-          "uri": "ogg"
         },
         {
           "confidence": 0.85,
@@ -780,7 +801,28 @@
           "uri": "mondo"
         },
         {
-          "confidence": 0.8368723035815729,
+          "confidence": 0.85,
+          "datasource": "ogg",
+          "label": "BRCA1",
+          "mappingProvenance": [
+            {
+              "confidence": 0.85,
+              "input": "BRCA1",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "BRCA1",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.85,
+              "source": "ols:ogg",
+              "target": "http://purl.obolibrary.org/obo/OGG_3000000672"
+            }
+          ],
+          "ontology": "ogg",
+          "termId": "OGG_3000000672",
+          "uri": "ogg"
+        },
+        {
+          "confidence": 0.8363479661941529,
           "datasource": "efo",
           "label": "BRCA1 mutation carier status",
           "mappingProvenance": [
@@ -791,7 +833,7 @@
               "matchedText": "BRCA1 mutation carier status",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.940305959080419,
+              "similarity": 0.9397168159484863,
               "source": "ols:efo",
               "target": "http://www.ebi.ac.uk/efo/EFO_0011021"
             }
@@ -801,7 +843,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.8346297059222135,
+          "confidence": 0.8340872669219971,
           "datasource": "snomed",
           "label": "BRCA1 gene mutation detected (finding)",
           "mappingProvenance": [
@@ -812,7 +854,7 @@
               "matchedText": "BRCA1 gene mutation detected (finding)",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9377861864294534,
+              "similarity": 0.9371767044067383,
               "source": "ols:snomed",
               "target": "http://snomed.info/id/412734009"
             }
@@ -822,7 +864,7 @@
           "uri": "snomed"
         },
         {
-          "confidence": 0.8333404274449628,
+          "confidence": 0.8323366785049439,
           "datasource": "pr",
           "label": "BRCA1-associated protein",
           "mappingProvenance": [
@@ -833,7 +875,7 @@
               "matchedText": "BRCA1-associated protein",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9363375589269245,
+              "similarity": 0.9352097511291504,
               "source": "ols:pr",
               "target": "http://purl.obolibrary.org/obo/PR_000004802"
             }
@@ -843,7 +885,7 @@
           "uri": "pr"
         },
         {
-          "confidence": 0.8321736118674252,
+          "confidence": 0.8313644123077393,
           "datasource": "go",
           "label": "BRCA1-A complex",
           "mappingProvenance": [
@@ -854,7 +896,7 @@
               "matchedText": "BRCA1-A complex",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9350265301881182,
+              "similarity": 0.934117317199707,
               "source": "ols:go",
               "target": "http://purl.obolibrary.org/obo/GO_0070531"
             }
@@ -1130,6 +1172,27 @@
     {
       "candidates": [
         {
+          "confidence": 0.5833333333333334,
+          "datasource": "mesh",
+          "label": "Long Qt Syndrome 3-6",
+          "mappingProvenance": [
+            {
+              "confidence": 0.5833333333333334,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "Long Qt Syndrome 3-6",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.5833333333333334,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C566334"
+            }
+          ],
+          "ontology": "mesh",
+          "termId": "mesh_C566334",
+          "uri": "mesh"
+        },
+        {
           "confidence": 0.5524137931034483,
           "datasource": "mondo",
           "label": "long QT syndrome 3",
@@ -1257,6 +1320,27 @@
         },
         {
           "confidence": 0.4910344827586207,
+          "datasource": "hp",
+          "label": "Prolonged QT interval",
+          "mappingProvenance": [
+            {
+              "confidence": 0.5517241379310345,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Prolonged QT interval",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.5517241379310345,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0001657"
+            }
+          ],
+          "ontology": "hp",
+          "termId": "hp_0001657",
+          "uri": "hp"
+        },
+        {
+          "confidence": 0.4910344827586207,
           "datasource": "cvdo",
           "label": "long QT syndrome",
           "mappingProvenance": [
@@ -1317,27 +1401,6 @@
           "ontology": "omit",
           "termId": "omit_0009216",
           "uri": "omit"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "hp",
-          "label": "Prolonged QT interval",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Prolonged QT interval",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0001657"
-            }
-          ],
-          "ontology": "hp",
-          "termId": "hp_0001657",
-          "uri": "hp"
         },
         {
           "confidence": 0.4910344827586207,
@@ -1464,6 +1527,300 @@
           "ontology": "mondo",
           "termId": "MONDO_0013370",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 9",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 9",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0012736"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0012736",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 5",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 5",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013372"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0013372",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 13",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 13",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013279"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0013279",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 10",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 10",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0012737"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0012737",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 2",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 2",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013367"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0013367",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "doid",
+          "label": "long QT syndrome 9",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 9",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0110650"
+            }
+          ],
+          "ontology": "doid",
+          "termId": "DOID_0110650",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 15",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 15",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0014550"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0014550",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "doid",
+          "label": "long QT syndrome 2",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 2",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0110645"
+            }
+          ],
+          "ontology": "doid",
+          "termId": "DOID_0110645",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 11",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 11",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0012738"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0012738",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 14",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 14",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0014548"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0014548",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "doid",
+          "label": "long QT syndrome 14",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 14",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0110655"
+            }
+          ],
+          "ontology": "doid",
+          "termId": "DOID_0110655",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "mondo",
+          "label": "long QT syndrome 12",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 12",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0013062"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_0013062",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "doid",
+          "label": "long QT syndrome 13",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 13",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0110654"
+            }
+          ],
+          "ontology": "doid",
+          "termId": "DOID_0110654",
+          "uri": "doid"
+        },
+        {
+          "confidence": 0.3,
+          "datasource": "doid",
+          "label": "long QT syndrome 16",
+          "mappingProvenance": [
+            {
+              "confidence": 0.3,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "long QT syndrome 16",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.3,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_0070533"
+            }
+          ],
+          "ontology": "doid",
+          "termId": "DOID_0070533",
+          "uri": "doid"
         },
         {
           "confidence": 0.24551724137931036,
@@ -1653,6 +2010,27 @@
           "ontology": "ncit",
           "termId": "ncit_C28193",
           "uri": "ncit"
+        },
+        {
+          "confidence": 0.06999999999999999,
+          "datasource": "ordo",
+          "label": "Jervell and Lange-Nielsen syndrome",
+          "mappingProvenance": [
+            {
+              "confidence": 0.06999999999999999,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_LEXICAL_FUZZY",
+              "matchedText": "Jervell and Lange-Nielsen syndrome",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.06999999999999999,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_90647"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "Orphanet_90647",
+          "uri": "ordo"
         }
       ],
       "error": null,
@@ -1662,7 +2040,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8498787537317662,
+          "confidence": 0.8489628124237061,
           "datasource": "mondo",
           "label": "lung adenocarcinoma in situ",
           "mappingProvenance": [
@@ -1673,7 +2051,7 @@
               "matchedText": "lung adenocarcinoma in situ",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9549199480132204,
+              "similarity": 0.9538908004760742,
               "source": "ols:mondo",
               "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
             }
@@ -1690,7 +2068,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.7788075942346979,
+          "confidence": 0.7785492658615113,
           "datasource": "chebi",
           "label": "doxycycline",
           "mappingProvenance": [
@@ -1701,7 +2079,7 @@
               "matchedText": "doxycycline",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.875064712623256,
+              "similarity": 0.8747744560241699,
               "source": "ols:chebi",
               "target": "http://purl.obolibrary.org/obo/CHEBI_50845"
             }
@@ -1718,7 +2096,28 @@
     {
       "candidates": [
         {
-          "confidence": 0.7959726300426198,
+          "confidence": 0.85,
+          "datasource": "fma",
+          "label": "Left tibia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.85,
+              "input": "left tibia",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "Left tibia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.85,
+              "source": "ols:fma",
+              "target": "http://purl.org/sig/ont/fma/fma24478"
+            }
+          ],
+          "ontology": "fma",
+          "termId": "fma24478",
+          "uri": "fma"
+        },
+        {
+          "confidence": 0.794971694946289,
           "datasource": "snomed",
           "label": "Disorder of left tibial nerve (disorder)",
           "mappingProvenance": [
@@ -1729,7 +2128,7 @@
               "matchedText": "Disorder of left tibial nerve (disorder)",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8943512697108087,
+              "similarity": 0.8932266235351562,
               "source": "ols:snomed",
               "target": "http://snomed.info/id/1275624008"
             }
@@ -1775,27 +2174,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "termId": "ma_0000198",
-          "uri": "ma"
-        },
-        {
-          "confidence": 1.0,
           "datasource": "bto",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -1814,27 +2192,6 @@
           "ontology": "bto",
           "termId": "bto_0000232",
           "uri": "bto"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "omit_0003860",
-          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -1859,7 +2216,7 @@
         },
         {
           "confidence": 1.0,
-          "datasource": "uberon",
+          "datasource": "ma",
           "label": "cerebellum",
           "mappingProvenance": [
             {
@@ -1870,13 +2227,13 @@
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:uberon",
-              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
             }
           ],
-          "ontology": "uberon",
-          "termId": "uberon_0002037",
-          "uri": "uberon"
+          "ontology": "ma",
+          "termId": "ma_0000198",
+          "uri": "ma"
         },
         {
           "confidence": 1.0,
@@ -1901,6 +2258,27 @@
         },
         {
           "confidence": 1.0,
+          "datasource": "omit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "omit_0003860",
+          "uri": "omit"
+        },
+        {
+          "confidence": 1.0,
           "datasource": "zfa",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -1919,6 +2297,27 @@
           "ontology": "zfa",
           "termId": "zfa_0000100",
           "uri": "zfa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "uberon",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:uberon",
+              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+            }
+          ],
+          "ontology": "uberon",
+          "termId": "uberon_0002037",
+          "uri": "uberon"
         },
         {
           "confidence": 1.0,
@@ -2229,7 +2628,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.7979588188233016,
+          "confidence": 0.7984541988372803,
           "datasource": "chebi",
           "label": "nifedipine",
           "mappingProvenance": [
@@ -2240,7 +2639,7 @@
               "matchedText": "nifedipine",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8965829424980916,
+              "similarity": 0.8971395492553711,
               "source": "ols:chebi",
               "target": "http://purl.obolibrary.org/obo/CHEBI_7565"
             }

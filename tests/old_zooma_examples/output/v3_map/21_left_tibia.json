@@ -3,7 +3,28 @@
     {
       "candidates": [
         {
-          "confidence": 0.7959726300426198,
+          "confidence": 0.85,
+          "datasource": "fma",
+          "label": "Left tibia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.85,
+              "input": "left tibia",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "Left tibia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.85,
+              "source": "ols:fma",
+              "target": "http://purl.org/sig/ont/fma/fma24478"
+            }
+          ],
+          "ontology": "fma",
+          "termId": "fma24478",
+          "uri": "fma"
+        },
+        {
+          "confidence": 0.794971694946289,
           "datasource": "snomed",
           "label": "Disorder of left tibial nerve (disorder)",
           "mappingProvenance": [
@@ -14,7 +35,7 @@
               "matchedText": "Disorder of left tibial nerve (disorder)",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8943512697108087,
+              "similarity": 0.8932266235351562,
               "source": "ols:snomed",
               "target": "http://snomed.info/id/1275624008"
             }

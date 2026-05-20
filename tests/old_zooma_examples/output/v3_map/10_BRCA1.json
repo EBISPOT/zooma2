@@ -25,27 +25,6 @@
         },
         {
           "confidence": 0.85,
-          "datasource": "ogg",
-          "label": "BRCA1",
-          "mappingProvenance": [
-            {
-              "confidence": 0.85,
-              "input": "BRCA1",
-              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
-              "matchedText": "BRCA1",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.85,
-              "source": "ols:ogg",
-              "target": "http://purl.obolibrary.org/obo/OGG_3000000672"
-            }
-          ],
-          "ontology": "ogg",
-          "termId": "OGG_3000000672",
-          "uri": "ogg"
-        },
-        {
-          "confidence": 0.85,
           "datasource": "omit",
           "label": "BRCA1",
           "mappingProvenance": [
@@ -129,7 +108,28 @@
           "uri": "mondo"
         },
         {
-          "confidence": 0.8368723035815729,
+          "confidence": 0.85,
+          "datasource": "ogg",
+          "label": "BRCA1",
+          "mappingProvenance": [
+            {
+              "confidence": 0.85,
+              "input": "BRCA1",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "BRCA1",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.85,
+              "source": "ols:ogg",
+              "target": "http://purl.obolibrary.org/obo/OGG_3000000672"
+            }
+          ],
+          "ontology": "ogg",
+          "termId": "OGG_3000000672",
+          "uri": "ogg"
+        },
+        {
+          "confidence": 0.8363479661941529,
           "datasource": "efo",
           "label": "BRCA1 mutation carier status",
           "mappingProvenance": [
@@ -140,7 +140,7 @@
               "matchedText": "BRCA1 mutation carier status",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.940305959080419,
+              "similarity": 0.9397168159484863,
               "source": "ols:efo",
               "target": "http://www.ebi.ac.uk/efo/EFO_0011021"
             }
@@ -150,7 +150,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.8346297059222135,
+          "confidence": 0.8340872669219971,
           "datasource": "snomed",
           "label": "BRCA1 gene mutation detected (finding)",
           "mappingProvenance": [
@@ -161,7 +161,7 @@
               "matchedText": "BRCA1 gene mutation detected (finding)",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9377861864294534,
+              "similarity": 0.9371767044067383,
               "source": "ols:snomed",
               "target": "http://snomed.info/id/412734009"
             }
@@ -171,7 +171,7 @@
           "uri": "snomed"
         },
         {
-          "confidence": 0.8333404274449628,
+          "confidence": 0.8323366785049439,
           "datasource": "pr",
           "label": "BRCA1-associated protein",
           "mappingProvenance": [
@@ -182,7 +182,7 @@
               "matchedText": "BRCA1-associated protein",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9363375589269245,
+              "similarity": 0.9352097511291504,
               "source": "ols:pr",
               "target": "http://purl.obolibrary.org/obo/PR_000004802"
             }
@@ -192,7 +192,7 @@
           "uri": "pr"
         },
         {
-          "confidence": 0.8321736118674252,
+          "confidence": 0.8313644123077393,
           "datasource": "go",
           "label": "BRCA1-A complex",
           "mappingProvenance": [
@@ -203,7 +203,7 @@
               "matchedText": "BRCA1-A complex",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9350265301881182,
+              "similarity": 0.934117317199707,
               "source": "ols:go",
               "target": "http://purl.obolibrary.org/obo/GO_0070531"
             }

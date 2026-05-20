@@ -145,8 +145,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000232",
-          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000237",
+          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
         }
       ]
     },
@@ -161,8 +161,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000232",
-            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000237",
+            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
           }
         ]
       },
@@ -188,7 +188,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
+        "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
       ],
       "uri": null
     },
@@ -208,7 +208,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
+      "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
     ],
     "uri": null
   },
@@ -287,8 +287,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000237",
-          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000232",
+          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
         }
       ]
     },
@@ -303,8 +303,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000237",
-            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000232",
+            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
           }
         ]
       },
@@ -330,7 +330,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
+        "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
       ],
       "uri": null
     },
@@ -350,78 +350,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/cmpo/CMPO_0000237"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002002",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002002"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002002",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002002"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0002002"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0002002"
+      "http://www.ebi.ac.uk/cmpo/CMPO_0000232"
     ],
     "uri": null
   },
@@ -642,6 +571,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002002",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002002"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002002",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002002"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0002002"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0002002"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001811",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001811"
         }
@@ -706,148 +706,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0001811"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021814",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0021814"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021814",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0021814"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0021814"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0021814"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012729",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012729"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012729",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012729"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0012729"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0012729"
     ],
     "uri": null
   },
@@ -926,6 +784,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021814",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0021814"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021814",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0021814"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0021814"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0021814"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001550",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001550"
         }
@@ -990,6 +919,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0001550"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012729",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012729"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012729",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012729"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0012729"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0012729"
     ],
     "uri": null
   },
@@ -1139,77 +1139,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0006912",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0006912"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0006912",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0006912"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0006912"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0006912"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0004329",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0004329"
         }
@@ -1274,6 +1203,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0004329"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0006912",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0006912"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0006912",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0006912"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0006912"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0006912"
     ],
     "uri": null
   },
@@ -1352,77 +1352,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0007702",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0007702"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0007702",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0007702"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0007702"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0007702"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0004078",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0004078"
         }
@@ -1487,6 +1416,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0004078"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0007702",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0007702"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0007702",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0007702"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0007702"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0007702"
     ],
     "uri": null
   },
@@ -1565,77 +1565,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0004747",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0004747"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0004747",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0004747"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0004747"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0004747"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0004511",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0004511"
         }
@@ -1700,6 +1629,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0004511"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0004747",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0004747"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0004747",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0004747"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fypo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fypo",
+          "type": "ONTOLOGY",
+          "uri": "fypo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FYPO_0004747"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FYPO_0004747"
     ],
     "uri": null
   },
@@ -1920,8 +1920,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0141540",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0141540"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0019898",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0019898"
         }
       ]
     },
@@ -1936,8 +1936,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0141540",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0141540"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0019898",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0019898"
           }
         ]
       },
@@ -1963,7 +1963,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0141540"
+        "http://purl.obolibrary.org/obo/ZP_0019898"
       ],
       "uri": null
     },
@@ -1983,78 +1983,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0141540"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002659",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002659"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002659",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002659"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0002659"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0002659"
+      "http://purl.obolibrary.org/obo/ZP_0019898"
     ],
     "uri": null
   },
@@ -2126,77 +2055,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/GO_0044319"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0019898",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0019898"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0019898",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0019898"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0019898"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0019898"
     ],
     "uri": null
   },
@@ -2346,6 +2204,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0141540",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0141540"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0141540",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0141540"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0141540"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0141540"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002659",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002659"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002659",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002659"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0002659"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0002659"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012916",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012916"
         }
@@ -2410,77 +2410,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0012916"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002895",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002895"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002895",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002895"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0002895"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0002895"
     ],
     "uri": null
   },
@@ -2559,8 +2488,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090248",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0090248"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002895",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002895"
         }
       ]
     },
@@ -2575,8 +2504,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090248",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0090248"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002895",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002895"
           }
         ]
       },
@@ -2589,20 +2518,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "go",
+        "annotator": "zp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "go",
+          "name": "zp",
           "type": "ONTOLOGY",
-          "uri": "go"
+          "uri": "zp"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0090248"
+        "http://purl.obolibrary.org/obo/ZP_0002895"
       ],
       "uri": null
     },
@@ -2622,7 +2551,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0090248"
+      "http://purl.obolibrary.org/obo/ZP_0002895"
     ],
     "uri": null
   },
@@ -2701,8 +2630,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011336",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011336"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090248",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0090248"
         }
       ]
     },
@@ -2717,8 +2646,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011336",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011336"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090248",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0090248"
           }
         ]
       },
@@ -2731,20 +2660,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "zp",
+        "annotator": "go",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "zp",
+          "name": "go",
           "type": "ONTOLOGY",
-          "uri": "zp"
+          "uri": "go"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0011336"
+        "http://purl.obolibrary.org/obo/GO_0090248"
       ],
       "uri": null
     },
@@ -2764,149 +2693,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0011336"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012917",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012917"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012917",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012917"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0012917"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0012917"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0005573",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0005573"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0005573",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0005573"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0005573"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0005573"
+      "http://purl.obolibrary.org/obo/GO_0090248"
     ],
     "uri": null
   },
@@ -2985,8 +2772,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0143578",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0143578"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011336",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011336"
         }
       ]
     },
@@ -3001,8 +2788,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0143578",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0143578"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011336",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011336"
           }
         ]
       },
@@ -3028,7 +2815,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0143578"
+        "http://purl.obolibrary.org/obo/ZP_0011336"
       ],
       "uri": null
     },
@@ -3048,7 +2835,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0143578"
+      "http://purl.obolibrary.org/obo/ZP_0011336"
     ],
     "uri": null
   },
@@ -3056,8 +2843,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012922",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012922"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012917",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012917"
         }
       ]
     },
@@ -3072,8 +2859,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012922",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012922"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012917",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012917"
           }
         ]
       },
@@ -3099,7 +2886,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0012922"
+        "http://purl.obolibrary.org/obo/ZP_0012917"
       ],
       "uri": null
     },
@@ -3119,7 +2906,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0012922"
+      "http://purl.obolibrary.org/obo/ZP_0012917"
     ],
     "uri": null
   },
@@ -3127,8 +2914,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097231",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0097231"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0005573",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0005573"
         }
       ]
     },
@@ -3143,79 +2930,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097231",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0097231"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0097231"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0097231"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001230",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001230"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001230",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001230"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0005573",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0005573"
           }
         ]
       },
@@ -3241,7 +2957,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0001230"
+        "http://purl.obolibrary.org/obo/ZP_0005573"
       ],
       "uri": null
     },
@@ -3261,7 +2977,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0001230"
+      "http://purl.obolibrary.org/obo/ZP_0005573"
     ],
     "uri": null
   },
@@ -3340,8 +3056,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016355",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016355"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012922",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012922"
         }
       ]
     },
@@ -3356,8 +3072,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016355",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016355"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0012922",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0012922"
           }
         ]
       },
@@ -3383,7 +3099,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0016355"
+        "http://purl.obolibrary.org/obo/ZP_0012922"
       ],
       "uri": null
     },
@@ -3403,7 +3119,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0016355"
+      "http://purl.obolibrary.org/obo/ZP_0012922"
     ],
     "uri": null
   },
@@ -3411,8 +3127,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035787",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0035787"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0143578",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0143578"
         }
       ]
     },
@@ -3427,8 +3143,150 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035787",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0035787"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0143578",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0143578"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0143578"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0143578"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001230",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001230"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0001230",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0001230"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0001230"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0001230"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097231",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0097231"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097231",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0097231"
           }
         ]
       },
@@ -3454,7 +3312,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0035787"
+        "http://purl.obolibrary.org/obo/GO_0097231"
       ],
       "uri": null
     },
@@ -3474,7 +3332,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0035787"
+      "http://purl.obolibrary.org/obo/GO_0097231"
     ],
     "uri": null
   },
@@ -3553,8 +3411,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0080391",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0080391"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0000343",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0000343"
         }
       ]
     },
@@ -3569,8 +3427,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0080391",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0080391"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0000343",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0000343"
           }
         ]
       },
@@ -3583,20 +3441,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "upheno",
+        "annotator": "zp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "upheno",
+          "name": "zp",
           "type": "ONTOLOGY",
-          "uri": "upheno"
+          "uri": "zp"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0080391"
+        "http://purl.obolibrary.org/obo/ZP_0000343"
       ],
       "uri": null
     },
@@ -3616,78 +3474,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0080391"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0003875",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0003875"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0003875",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0003875"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0003875"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0003875"
+      "http://purl.obolibrary.org/obo/ZP_0000343"
     ],
     "uri": null
   },
@@ -3766,6 +3553,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0080391",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0080391"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0080391",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0080391"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "upheno",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "upheno",
+          "type": "ONTOLOGY",
+          "uri": "upheno"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/UPHENO_0080391"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/UPHENO_0080391"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035787",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0035787"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035787",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0035787"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0035787"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0035787"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0104131",
           "semanticTag": "http://purl.obolibrary.org/obo/ZP_0104131"
         }
@@ -3830,148 +3759,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/ZP_0104131"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097230",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0097230"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097230",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0097230"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0097230"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0097230"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0010621",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0010621"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0010621",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0010621"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0010621"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0010621"
     ],
     "uri": null
   },
@@ -4050,8 +3837,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0000343",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0000343"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097230",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0097230"
         }
       ]
     },
@@ -4066,79 +3853,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0000343",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0000343"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0000343"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0000343"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090134",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0090134"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090134",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0090134"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0097230",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0097230"
           }
         ]
       },
@@ -4164,7 +3880,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0090134"
+        "http://purl.obolibrary.org/obo/GO_0097230"
       ],
       "uri": null
     },
@@ -4184,7 +3900,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0090134"
+      "http://purl.obolibrary.org/obo/GO_0097230"
     ],
     "uri": null
   },
@@ -4192,8 +3908,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003273",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003273"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0003875",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0003875"
         }
       ]
     },
@@ -4208,8 +3924,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003273",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003273"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0003875",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0003875"
           }
         ]
       },
@@ -4222,20 +3938,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "go",
+        "annotator": "fypo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "go",
+          "name": "fypo",
           "type": "ONTOLOGY",
-          "uri": "go"
+          "uri": "fypo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0003273"
+        "http://purl.obolibrary.org/obo/FYPO_0003875"
       ],
       "uri": null
     },
@@ -4255,149 +3971,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0003273"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0000714",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0000714"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0000714",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0000714"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "upheno",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "upheno",
-          "type": "ONTOLOGY",
-          "uri": "upheno"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0000714"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0000714"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002003",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002003"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002003",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002003"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0002003"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0002003"
+      "http://purl.obolibrary.org/obo/FYPO_0003875"
     ],
     "uri": null
   },
@@ -4476,8 +4050,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0018880",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0018880"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016355",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016355"
         }
       ]
     },
@@ -4492,8 +4066,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0018880",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0018880"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016355",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016355"
           }
         ]
       },
@@ -4506,20 +4080,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "upheno",
+        "annotator": "zp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "upheno",
+          "name": "zp",
           "type": "ONTOLOGY",
-          "uri": "upheno"
+          "uri": "zp"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0018880"
+        "http://purl.obolibrary.org/obo/ZP_0016355"
       ],
       "uri": null
     },
@@ -4539,7 +4113,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0018880"
+      "http://purl.obolibrary.org/obo/ZP_0016355"
     ],
     "uri": null
   },
@@ -4547,8 +4121,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035441",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0035441"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003273",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003273"
         }
       ]
     },
@@ -4563,8 +4137,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035441",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0035441"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003273",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003273"
           }
         ]
       },
@@ -4590,7 +4164,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0035441"
+        "http://purl.obolibrary.org/obo/GO_0003273"
       ],
       "uri": null
     },
@@ -4610,7 +4184,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0035441"
+      "http://purl.obolibrary.org/obo/GO_0003273"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090134",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0090134"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0090134",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0090134"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0090134"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0090134"
     ],
     "uri": null
   },
@@ -4689,8 +4334,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0050359",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0050359"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002003",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002003"
         }
       ]
     },
@@ -4705,8 +4350,221 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0050359",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0050359"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0002003",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0002003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0002003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0002003"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035441",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0035441"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0035441",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0035441"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0035441"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0035441"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0010621",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0010621"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0010621",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0010621"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0010621"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0010621"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0018880",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0018880"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0018880",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0018880"
           }
         ]
       },
@@ -4732,7 +4590,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0050359"
+        "http://purl.obolibrary.org/obo/UPHENO_0018880"
       ],
       "uri": null
     },
@@ -4752,7 +4610,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0050359"
+      "http://purl.obolibrary.org/obo/UPHENO_0018880"
     ],
     "uri": null
   },
@@ -4760,8 +4618,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005831",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005831"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0000714",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0000714"
         }
       ]
     },
@@ -4776,8 +4634,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005831",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005831"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0000714",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0000714"
           }
         ]
       },
@@ -4790,20 +4648,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "fypo",
+        "annotator": "upheno",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "fypo",
+          "name": "upheno",
           "type": "ONTOLOGY",
-          "uri": "fypo"
+          "uri": "upheno"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0005831"
+        "http://purl.obolibrary.org/obo/UPHENO_0000714"
       ],
       "uri": null
     },
@@ -4823,149 +4681,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0005831"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021822",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0021822"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021822",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0021822"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0021822"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0021822"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060973",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060973"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060973",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060973"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0060973"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0060973"
+      "http://purl.obolibrary.org/obo/UPHENO_0000714"
     ],
     "uri": null
   },
@@ -5044,8 +4760,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0051537",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0051537"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003366",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003366"
         }
       ]
     },
@@ -5060,8 +4776,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0051537",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0051537"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003366",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003366"
           }
         ]
       },
@@ -5074,20 +4790,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "upheno",
+        "annotator": "go",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "upheno",
+          "name": "go",
           "type": "ONTOLOGY",
-          "uri": "upheno"
+          "uri": "go"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0051537"
+        "http://purl.obolibrary.org/obo/GO_0003366"
       ],
       "uri": null
     },
@@ -5107,7 +4823,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0051537"
+      "http://purl.obolibrary.org/obo/GO_0003366"
     ],
     "uri": null
   },
@@ -5186,8 +4902,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016526",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016526"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021822",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0021822"
         }
       ]
     },
@@ -5202,8 +4918,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016526",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016526"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0021822",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0021822"
           }
         ]
       },
@@ -5216,20 +4932,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "zp",
+        "annotator": "go",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "zp",
+          "name": "go",
           "type": "ONTOLOGY",
-          "uri": "zp"
+          "uri": "go"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0016526"
+        "http://purl.obolibrary.org/obo/GO_0021822"
       ],
       "uri": null
     },
@@ -5249,7 +4965,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0016526"
+      "http://purl.obolibrary.org/obo/GO_0021822"
     ],
     "uri": null
   },
@@ -5257,8 +4973,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011528",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011528"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0050359",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0050359"
         }
       ]
     },
@@ -5273,79 +4989,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011528",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011528"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0011528"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0011528"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019172",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019172"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019172",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019172"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0050359",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0050359"
           }
         ]
       },
@@ -5371,7 +5016,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0019172"
+        "http://purl.obolibrary.org/obo/UPHENO_0050359"
       ],
       "uri": null
     },
@@ -5391,7 +5036,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0019172"
+      "http://purl.obolibrary.org/obo/UPHENO_0050359"
     ],
     "uri": null
   },
@@ -5470,6 +5115,290 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019172",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019172"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019172",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019172"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "upheno",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "upheno",
+          "type": "ONTOLOGY",
+          "uri": "upheno"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/UPHENO_0019172"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/UPHENO_0019172"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060973",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060973"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060973",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060973"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0060973"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0060973"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011528",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011528"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011528",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011528"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "zp",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "zp",
+          "type": "ONTOLOGY",
+          "uri": "zp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/ZP_0011528"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/ZP_0011528"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0051537",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0051537"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0051537",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0051537"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "upheno",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "upheno",
+          "type": "ONTOLOGY",
+          "uri": "upheno"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/UPHENO_0051537"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/UPHENO_0051537"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0006637",
           "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0006637"
         }
@@ -5541,8 +5470,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003366",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003366"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019171",
+          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019171"
         }
       ]
     },
@@ -5557,8 +5486,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003366",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003366"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019171",
+            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019171"
           }
         ]
       },
@@ -5571,20 +5500,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "go",
+        "annotator": "upheno",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "go",
+          "name": "upheno",
           "type": "ONTOLOGY",
-          "uri": "go"
+          "uri": "upheno"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0003366"
+        "http://purl.obolibrary.org/obo/UPHENO_0019171"
       ],
       "uri": null
     },
@@ -5604,7 +5533,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0003366"
+      "http://purl.obolibrary.org/obo/UPHENO_0019171"
     ],
     "uri": null
   },
@@ -5683,8 +5612,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0007668",
-          "semanticTag": "http://purl.obolibrary.org/obo/HP_0007668"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016526",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016526"
         }
       ]
     },
@@ -5699,8 +5628,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0007668",
-            "semanticTag": "http://purl.obolibrary.org/obo/HP_0007668"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0016526",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0016526"
           }
         ]
       },
@@ -5713,20 +5642,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "hp",
+        "annotator": "zp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "hp",
+          "name": "zp",
           "type": "ONTOLOGY",
-          "uri": "hp"
+          "uri": "zp"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/HP_0007668"
+        "http://purl.obolibrary.org/obo/ZP_0016526"
       ],
       "uri": null
     },
@@ -5746,7 +5675,220 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/HP_0007668"
+      "http://purl.obolibrary.org/obo/ZP_0016526"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005831",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005831"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005831",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005831"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fypo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fypo",
+          "type": "ONTOLOGY",
+          "uri": "fypo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FYPO_0005831"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FYPO_0005831"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060974",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060974"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060974",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060974"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0060974"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0060974"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0007980",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0007980"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0007980",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0007980"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fypo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fypo",
+          "type": "ONTOLOGY",
+          "uri": "fypo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FYPO_0007980"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FYPO_0007980"
     ],
     "uri": null
   },
@@ -5896,8 +6038,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019171",
-          "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019171"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003305",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003305"
         }
       ]
     },
@@ -5912,8 +6054,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUPHENO_0019171",
-            "semanticTag": "http://purl.obolibrary.org/obo/UPHENO_0019171"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003305",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003305"
           }
         ]
       },
@@ -5926,20 +6068,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "upheno",
+        "annotator": "go",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "upheno",
+          "name": "go",
           "type": "ONTOLOGY",
-          "uri": "upheno"
+          "uri": "go"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/UPHENO_0019171"
+        "http://purl.obolibrary.org/obo/GO_0003305"
       ],
       "uri": null
     },
@@ -5959,78 +6101,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/UPHENO_0019171"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0007980",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0007980"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0007980",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0007980"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0007980"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0007980"
+      "http://purl.obolibrary.org/obo/GO_0003305"
     ],
     "uri": null
   },
@@ -6109,8 +6180,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060974",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060974"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0140219",
+          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0140219"
         }
       ]
     },
@@ -6125,8 +6196,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060974",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060974"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0140219",
+            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0140219"
           }
         ]
       },
@@ -6139,20 +6210,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "go",
+        "annotator": "zp",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "go",
+          "name": "zp",
           "type": "ONTOLOGY",
-          "uri": "go"
+          "uri": "zp"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0060974"
+        "http://purl.obolibrary.org/obo/ZP_0140219"
       ],
       "uri": null
     },
@@ -6172,78 +6243,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0060974"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060981",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060981"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060981",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060981"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "go",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "go",
-          "type": "ONTOLOGY",
-          "uri": "go"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0060981"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0060981"
+      "http://purl.obolibrary.org/obo/ZP_0140219"
     ],
     "uri": null
   },
@@ -6322,8 +6322,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0140219",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0140219"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060981",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0060981"
         }
       ]
     },
@@ -6338,150 +6338,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0140219",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0140219"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0140219"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0140219"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005643",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005643"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005643",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005643"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0005643"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0005643"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003305",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0003305"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0003305",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0003305"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0060981",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0060981"
           }
         ]
       },
@@ -6507,7 +6365,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0003305"
+        "http://purl.obolibrary.org/obo/GO_0060981"
       ],
       "uri": null
     },
@@ -6527,78 +6385,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0003305"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005422",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005422"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005422",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005422"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0005422"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0005422"
+      "http://purl.obolibrary.org/obo/GO_0060981"
     ],
     "uri": null
   },
@@ -6677,8 +6464,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011337",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011337"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005643",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005643"
         }
       ]
     },
@@ -6693,79 +6480,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0011337",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0011337"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0011337"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0011337"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0006941",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0006941"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0006941",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0006941"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005643",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005643"
           }
         ]
       },
@@ -6791,7 +6507,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0006941"
+        "http://purl.obolibrary.org/obo/FYPO_0005643"
       ],
       "uri": null
     },
@@ -6811,149 +6527,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0006941"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0013386",
-          "semanticTag": "http://purl.obolibrary.org/obo/ZP_0013386"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FZP_0013386",
-            "semanticTag": "http://purl.obolibrary.org/obo/ZP_0013386"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "zp",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "zp",
-          "type": "ONTOLOGY",
-          "uri": "zp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/ZP_0013386"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/ZP_0013386"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059978",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000059978"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059978",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000059978"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000059978"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000059978"
+      "http://purl.obolibrary.org/obo/FYPO_0005643"
     ],
     "uri": null
   },
@@ -7103,77 +6677,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005569",
-          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005569"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0005569",
-            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0005569"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "fypo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "fypo",
-          "type": "ONTOLOGY",
-          "uri": "fypo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/FYPO_0005569"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/FYPO_0005569"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0003317",
           "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0003317"
         }
@@ -7245,8 +6748,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0040238",
-          "semanticTag": "http://purl.obolibrary.org/obo/HP_0040238"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059978",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000059978"
         }
       ]
     },
@@ -7261,8 +6764,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0040238",
-            "semanticTag": "http://purl.obolibrary.org/obo/HP_0040238"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059978",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000059978"
           }
         ]
       },
@@ -7275,20 +6778,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "hp",
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "hp",
+          "name": "pr",
           "type": "ONTOLOGY",
-          "uri": "hp"
+          "uri": "pr"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/HP_0040238"
+        "http://purl.obolibrary.org/obo/PR_000059978"
       ],
       "uri": null
     },
@@ -7308,7 +6811,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/HP_0040238"
+      "http://purl.obolibrary.org/obo/PR_000059978"
     ],
     "uri": null
   },
@@ -7316,8 +6819,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0031402",
-          "semanticTag": "http://purl.obolibrary.org/obo/HP_0031402"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0006941",
+          "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0006941"
         }
       ]
     },
@@ -7332,8 +6835,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0031402",
-            "semanticTag": "http://purl.obolibrary.org/obo/HP_0031402"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFYPO_0006941",
+            "semanticTag": "http://purl.obolibrary.org/obo/FYPO_0006941"
           }
         ]
       },
@@ -7346,20 +6849,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "hp",
+        "annotator": "fypo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "hp",
+          "name": "fypo",
           "type": "ONTOLOGY",
-          "uri": "hp"
+          "uri": "fypo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/HP_0031402"
+        "http://purl.obolibrary.org/obo/FYPO_0006941"
       ],
       "uri": null
     },
@@ -7379,7 +6882,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/HP_0031402"
+      "http://purl.obolibrary.org/obo/FYPO_0006941"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0014472",
+          "semanticTag": "http://purl.obolibrary.org/obo/MP_0014472"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0014472",
+            "semanticTag": "http://purl.obolibrary.org/obo/MP_0014472"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mp",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mp",
+          "type": "ONTOLOGY",
+          "uri": "mp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MP_0014472"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MP_0014472"
     ],
     "uri": null
   },
@@ -7398,7 +6972,7 @@
       "propertyValue": "Impaired cell migration with increased protrusive activity",
       "uri": null
     },
-    "confidence": "MEDIUM",
+    "confidence": "LOW",
     "derivedFrom": {
       "_links": {
         "olslinks": [
@@ -7418,7 +6992,7 @@
         "accuracy": null,
         "annotationDate": 0,
         "annotator": "mp",
-        "evidence": "OLS_EMBEDDING",
+        "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
@@ -7451,77 +7025,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MP_0011707"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000033",
-          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "phenotype",
-      "propertyValue": "Impaired cell migration with increased protrusive activity",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000033",
-            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "phenotype",
-        "propertyValue": "Impaired cell migration with increased protrusive activity",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "sysmicro",
-        "evidence": "CURATED_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "sysmicro",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/fg/sym"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
     ],
     "uri": null
   },
@@ -7600,6 +7103,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000033",
+          "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fcmpo%2FCMPO_0000033",
+            "semanticTag": "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "sysmicro",
+        "evidence": "CURATED_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "sysmicro",
+          "type": "DATABASE",
+          "uri": "https://www.ebi.ac.uk/fg/sym"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/cmpo/CMPO_0000033"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C26169",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C26169"
         }
@@ -7664,6 +7238,148 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C26169"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPHIPO_0000338",
+          "semanticTag": "http://purl.obolibrary.org/obo/PHIPO_0000338"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPHIPO_0000338",
+            "semanticTag": "http://purl.obolibrary.org/obo/PHIPO_0000338"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "phipo",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "phipo",
+          "type": "ONTOLOGY",
+          "uri": "phipo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PHIPO_0000338"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PHIPO_0000338"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0014471",
+          "semanticTag": "http://purl.obolibrary.org/obo/MP_0014471"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0014471",
+            "semanticTag": "http://purl.obolibrary.org/obo/MP_0014471"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mp",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mp",
+          "type": "ONTOLOGY",
+          "uri": "mp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MP_0014471"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MP_0014471"
     ],
     "uri": null
   },
@@ -9297,6 +9013,1000 @@
     "replaces": [],
     "semanticTags": [
       "http://snomed.info/id/257733005"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVO_0007735",
+          "semanticTag": "http://purl.obolibrary.org/obo/VO_0007735"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FVO_0007735",
+            "semanticTag": "http://purl.obolibrary.org/obo/VO_0007735"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "vo",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "vo",
+          "type": "ONTOLOGY",
+          "uri": "vo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/VO_0007735"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/VO_0007735"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F770785002",
+          "semanticTag": "http://snomed.info/id/770785002"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F770785002",
+            "semanticTag": "http://snomed.info/id/770785002"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/770785002"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/770785002"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142086",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142086"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142086",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142086"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C142086"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C142086"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C67083",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C67083"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C67083",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C67083"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C67083"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C67083"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C208344",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C208344"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C208344",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C208344"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C208344"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C208344"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C116891",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C116891"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C116891",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C116891"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C116891"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C116891"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBbt_00007135",
+          "semanticTag": "http://purl.obolibrary.org/obo/FBbt_00007135"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FFBbt_00007135",
+            "semanticTag": "http://purl.obolibrary.org/obo/FBbt_00007135"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "fbbt",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "fbbt",
+          "type": "ONTOLOGY",
+          "uri": "fbbt"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/FBbt_00007135"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/FBbt_00007135"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C113435",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C113435"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C113435",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C113435"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C113435"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C113435"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C189826",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C189826"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C189826",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C189826"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C189826"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C189826"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C222759",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C222759"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C222759",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C222759"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C222759"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C222759"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0020416",
+          "semanticTag": "http://purl.obolibrary.org/obo/MP_0020416"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMP_0020416",
+            "semanticTag": "http://purl.obolibrary.org/obo/MP_0020416"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mp",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mp",
+          "type": "ONTOLOGY",
+          "uri": "mp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MP_0020416"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MP_0020416"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C150392",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C150392"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C150392",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C150392"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C150392"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C150392"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C176853",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C176853"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C176853",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C176853"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C176853"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C176853"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C126817",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C126817"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "phenotype",
+      "propertyValue": "Impaired cell migration with increased protrusive activity",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C126817",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C126817"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "phenotype",
+        "propertyValue": "Impaired cell migration with increased protrusive activity",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C126817"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C126817"
     ],
     "uri": null
   }

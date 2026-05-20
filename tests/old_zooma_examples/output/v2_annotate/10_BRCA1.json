@@ -74,77 +74,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000000672",
-          "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000000672"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000000672",
-            "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000000672"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ogg",
-        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ogg",
-          "type": "ONTOLOGY",
-          "uri": "ogg"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OGG_3000000672"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OGG_3000000672"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0030554",
           "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0030554"
         }
@@ -422,6 +351,77 @@
     "replaces": [],
     "semanticTags": [
       "http://identifiers.org/hgnc/1100"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000000672",
+          "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000000672"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000000672",
+            "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000000672"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ogg",
+        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ogg",
+          "type": "ONTOLOGY",
+          "uri": "ogg"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OGG_3000000672"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OGG_3000000672"
     ],
     "uri": null
   },
@@ -784,77 +784,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19635",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19635"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19635",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19635"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C19635"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C19635"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36688",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36688"
         }
@@ -919,6 +848,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C36688"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19635",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19635"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19635",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19635"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C19635"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C19635"
     ],
     "uri": null
   },
@@ -997,77 +997,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgenegroup%2F%23%21%2Fgroup%2F1328",
-          "semanticTag": "https://www.genenames.org/data/genegroup/#!/group/1328"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgenegroup%2F%23%21%2Fgroup%2F1328",
-            "semanticTag": "https://www.genenames.org/data/genegroup/#!/group/1328"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "hgnc.genegroup",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "hgnc.genegroup",
-          "type": "ONTOLOGY",
-          "uri": "hgnc.genegroup"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "https://www.genenames.org/data/genegroup/#!/group/1328"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "https://www.genenames.org/data/genegroup/#!/group/1328"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgenegroup%2F%23%21%2Fgroup%2F1335",
           "semanticTag": "https://www.genenames.org/data/genegroup/#!/group/1335"
         }
@@ -1139,6 +1068,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgenegroup%2F%23%21%2Fgroup%2F1328",
+          "semanticTag": "https://www.genenames.org/data/genegroup/#!/group/1328"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgenegroup%2F%23%21%2Fgroup%2F1328",
+            "semanticTag": "https://www.genenames.org/data/genegroup/#!/group/1328"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hgnc.genegroup",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hgnc.genegroup",
+          "type": "ONTOLOGY",
+          "uri": "hgnc.genegroup"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "https://www.genenames.org/data/genegroup/#!/group/1328"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "https://www.genenames.org/data/genegroup/#!/group/1328"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0070533",
           "semanticTag": "http://purl.obolibrary.org/obo/GO_0070533"
         }
@@ -1203,77 +1203,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/GO_0070533"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119068",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119068"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119068",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119068"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_119068"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_119068"
     ],
     "uri": null
   },
@@ -1423,6 +1352,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119068",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119068"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119068",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119068"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_119068"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_119068"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C184312",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C184312"
         }
@@ -1487,77 +1487,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C184312"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C115197",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C115197"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C115197",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C115197"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C115197"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C115197"
     ],
     "uri": null
   },
@@ -1636,8 +1565,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36100",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36100"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0054116",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0054116"
         }
       ]
     },
@@ -1652,8 +1581,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36100",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36100"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0054116",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0054116"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0054116"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0054116"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C115197",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C115197"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C115197",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C115197"
           }
         ]
       },
@@ -1679,7 +1679,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C36100"
+        "http://purl.obolibrary.org/obo/NCIT_C115197"
       ],
       "uri": null
     },
@@ -1699,78 +1699,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C36100"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000394269",
-          "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000394269"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGG_3000394269",
-            "semanticTag": "http://purl.obolibrary.org/obo/OGG_3000394269"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ogg",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ogg",
-          "type": "ONTOLOGY",
-          "uri": "ogg"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OGG_3000394269"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OGG_3000394269"
+      "http://purl.obolibrary.org/obo/NCIT_C115197"
     ],
     "uri": null
   },
@@ -1849,8 +1778,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0054116",
-          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0054116"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412736006",
+          "semanticTag": "http://snomed.info/id/412736006"
         }
       ]
     },
@@ -1865,8 +1794,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0054116",
-            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0054116"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412736006",
+            "semanticTag": "http://snomed.info/id/412736006"
           }
         ]
       },
@@ -1879,20 +1808,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "omit",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "omit",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "omit"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/OMIT_0054116"
+        "http://snomed.info/id/412736006"
       ],
       "uri": null
     },
@@ -1912,7 +1841,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/OMIT_0054116"
+      "http://snomed.info/id/412736006"
     ],
     "uri": null
   },
@@ -1920,8 +1849,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009443",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009443"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2051262",
+          "semanticTag": "http://purl.obolibrary.org/obo/OBA_2051262"
         }
       ]
     },
@@ -1936,8 +1865,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009443",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009443"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOBA_2051262",
+            "semanticTag": "http://purl.obolibrary.org/obo/OBA_2051262"
           }
         ]
       },
@@ -1950,20 +1879,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "oba",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "oba",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "oba"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0009443"
+        "http://purl.obolibrary.org/obo/OBA_2051262"
       ],
       "uri": null
     },
@@ -1983,7 +1912,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0009443"
+      "http://purl.obolibrary.org/obo/OBA_2051262"
     ],
     "uri": null
   },
@@ -1991,8 +1920,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17815",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17815"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36100",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36100"
         }
       ]
     },
@@ -2007,8 +1936,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17815",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17815"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36100",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36100"
           }
         ]
       },
@@ -2034,7 +1963,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C17815"
+        "http://purl.obolibrary.org/obo/NCIT_C36100"
       ],
       "uri": null
     },
@@ -2054,78 +1983,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C17815"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003582",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003582"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003582",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003582"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0003582"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0003582"
+      "http://purl.obolibrary.org/obo/NCIT_C36100"
     ],
     "uri": null
   },
@@ -2204,8 +2062,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0070767",
-          "semanticTag": "http://purl.obolibrary.org/obo/GO_0070767"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17815",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17815"
         }
       ]
     },
@@ -2220,8 +2078,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0070767",
-            "semanticTag": "http://purl.obolibrary.org/obo/GO_0070767"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17815",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17815"
           }
         ]
       },
@@ -2234,20 +2092,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "go",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "go",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "go"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/GO_0070767"
+        "http://purl.obolibrary.org/obo/NCIT_C17815"
       ],
       "uri": null
     },
@@ -2267,7 +2125,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/GO_0070767"
+      "http://purl.obolibrary.org/obo/NCIT_C17815"
     ],
     "uri": null
   },
@@ -2346,6 +2204,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0070767",
+          "semanticTag": "http://purl.obolibrary.org/obo/GO_0070767"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0070767",
+            "semanticTag": "http://purl.obolibrary.org/obo/GO_0070767"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "go",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "go",
+          "type": "ONTOLOGY",
+          "uri": "go"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/GO_0070767"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/GO_0070767"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C131473",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C131473"
         }
@@ -2417,8 +2346,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019313",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/D019313"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C21490",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C21490"
         }
       ]
     },
@@ -2433,8 +2362,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019313",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/D019313"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C21490",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C21490"
           }
         ]
       },
@@ -2447,20 +2376,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mesh",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mesh",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "mesh"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/D019313"
+        "http://purl.obolibrary.org/obo/NCIT_C21490"
       ],
       "uri": null
     },
@@ -2480,7 +2409,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/D019313"
+      "http://purl.obolibrary.org/obo/NCIT_C21490"
     ],
     "uri": null
   },
@@ -2559,6 +2488,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C63528",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C63528"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C63528",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C63528"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C63528"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C63528"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019313",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D019313"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019313",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D019313"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D019313"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D019313"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011450",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011450"
         }
@@ -2623,77 +2694,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0011450"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C21490",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C21490"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C21490",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C21490"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C21490"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C21490"
     ],
     "uri": null
   },
@@ -2843,77 +2843,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C63528",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C63528"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C63528",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C63528"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C63528"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C63528"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C52060",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C52060"
         }
@@ -2978,77 +2907,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C52060"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004641",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004641"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004641",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004641"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000004641"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000004641"
     ],
     "uri": null
   },
@@ -3127,8 +2985,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004811",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004811"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004641",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004641"
         }
       ]
     },
@@ -3143,8 +3001,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004811",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004811"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004641",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004641"
           }
         ]
       },
@@ -3170,7 +3028,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000004811"
+        "http://purl.obolibrary.org/obo/PR_000004641"
       ],
       "uri": null
     },
@@ -3190,220 +3048,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000004811"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_268795",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_268795"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_268795",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_268795"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_268795"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_268795"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004805",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004805"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004805",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004805"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000004805"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000004805"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC103780",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C103780"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC103780",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C103780"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C103780"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C103780"
+      "http://purl.obolibrary.org/obo/PR_000004641"
     ],
     "uri": null
   },
@@ -3766,8 +3411,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179308",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179308"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC103780",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C103780"
         }
       ]
     },
@@ -3782,8 +3427,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179308",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179308"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC103780",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C103780"
           }
         ]
       },
@@ -3796,20 +3441,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "mesh",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "mesh"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C179308"
+        "http://id.nlm.nih.gov/mesh/C103780"
       ],
       "uri": null
     },
@@ -3829,7 +3474,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C179308"
+      "http://id.nlm.nih.gov/mesh/C103780"
     ],
     "uri": null
   },
@@ -3908,8 +3553,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124111",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124111"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003582",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003582"
         }
       ]
     },
@@ -3924,8 +3569,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124111",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124111"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003582",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003582"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0003582"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0003582"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179308",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179308"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179308",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179308"
           }
         ]
       },
@@ -3951,7 +3667,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C124111"
+        "http://purl.obolibrary.org/obo/NCIT_C179308"
       ],
       "uri": null
     },
@@ -3971,7 +3687,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C124111"
+      "http://purl.obolibrary.org/obo/NCIT_C179308"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F405823003",
+          "semanticTag": "http://snomed.info/id/405823003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F405823003",
+            "semanticTag": "http://snomed.info/id/405823003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/405823003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/405823003"
     ],
     "uri": null
   },
@@ -4050,8 +3837,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C123555",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C123555"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004805",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004805"
         }
       ]
     },
@@ -4066,8 +3853,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C123555",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C123555"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004805",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004805"
           }
         ]
       },
@@ -4080,20 +3867,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "pr",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "pr",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "pr"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C123555"
+        "http://purl.obolibrary.org/obo/PR_000004805"
       ],
       "uri": null
     },
@@ -4113,7 +3900,149 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C123555"
+      "http://purl.obolibrary.org/obo/PR_000004805"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004811",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004811"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004811",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004811"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pr",
+          "type": "ONTOLOGY",
+          "uri": "pr"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PR_000004811"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PR_000004811"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_268795",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_268795"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_268795",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_268795"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_268795"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_268795"
     ],
     "uri": null
   },
@@ -4192,8 +4121,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17916",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17916"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124111",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124111"
         }
       ]
     },
@@ -4208,8 +4137,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17916",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17916"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124111",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124111"
           }
         ]
       },
@@ -4235,7 +4164,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C17916"
+        "http://purl.obolibrary.org/obo/NCIT_C124111"
       ],
       "uri": null
     },
@@ -4255,7 +4184,149 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C17916"
+      "http://purl.obolibrary.org/obo/NCIT_C124111"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009443",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009443"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009443",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0009443"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0009443"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0009443"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C123555",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C123555"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C123555",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C123555"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C123555"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C123555"
     ],
     "uri": null
   },
@@ -4334,6 +4405,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17916",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17916"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17916",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C17916"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C17916"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C17916"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C131475",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C131475"
         }
@@ -4398,361 +4540,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C131475"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_201093",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_201093"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_201093",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_201093"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_201093"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_201093"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142121",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142121"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142121",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142121"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C142121"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C142121"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C157167",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C157167"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C157167",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C157167"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C157167"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C157167"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C8493",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C8493"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C8493",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C8493"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C8493"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C8493"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004642",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004642"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004642",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004642"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000004642"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000004642"
     ],
     "uri": null
   },
@@ -4831,6 +4618,290 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C157167",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C157167"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C157167",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C157167"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C157167"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C157167"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142121",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142121"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142121",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142121"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C142121"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C142121"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C8493",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C8493"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C8493",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C8493"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C8493"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C8493"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_201093",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_201093"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_201093",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_201093"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_201093"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_201093"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124109",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124109"
         }
@@ -4902,8 +4973,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013685",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013685"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004642",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004642"
         }
       ]
     },
@@ -4918,434 +4989,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013685",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013685"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013685"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013685"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179406",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179406"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179406",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179406"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C179406"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C179406"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000605931",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C000605931"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000605931",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C000605931"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C000605931"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C000605931"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19636",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19636"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19636",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19636"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C19636"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C19636"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C186812",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C186812"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C186812",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C186812"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C186812"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C186812"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C18120",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C18120"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C18120",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C18120"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C18120"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C18120"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000029464",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000029464"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000029464",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000029464"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004642",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004642"
           }
         ]
       },
@@ -5371,7 +5016,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000029464"
+        "http://purl.obolibrary.org/obo/PR_000004642"
       ],
       "uri": null
     },
@@ -5391,7 +5036,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000029464"
+      "http://purl.obolibrary.org/obo/PR_000004642"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004747",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004747"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0004747",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0004747"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "efo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "efo",
+          "type": "ONTOLOGY",
+          "uri": "efo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.ebi.ac.uk/efo/EFO_0004747"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.ebi.ac.uk/efo/EFO_0004747"
     ],
     "uri": null
   },
@@ -5470,8 +5186,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124110",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124110"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013685",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013685"
         }
       ]
     },
@@ -5486,8 +5202,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124110",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124110"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013685",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013685"
           }
         ]
       },
@@ -5500,20 +5216,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "mondo",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "mondo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C124110"
+        "http://purl.obolibrary.org/obo/MONDO_0013685"
       ],
       "uri": null
     },
@@ -5533,149 +5249,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C124110"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36101",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36101"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36101",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36101"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C36101"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C36101"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C160324",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C160324"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C160324",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C160324"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C160324"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C160324"
+      "http://purl.obolibrary.org/obo/MONDO_0013685"
     ],
     "uri": null
   },
@@ -5754,8 +5328,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C148085",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C148085"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000605931",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C000605931"
         }
       ]
     },
@@ -5770,8 +5344,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C148085",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C148085"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000605931",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C000605931"
           }
         ]
       },
@@ -5784,20 +5358,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "mesh",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "mesh"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C148085"
+        "http://id.nlm.nih.gov/mesh/C000605931"
       ],
       "uri": null
     },
@@ -5817,7 +5391,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C148085"
+      "http://id.nlm.nih.gov/mesh/C000605931"
     ],
     "uri": null
   },
@@ -5825,8 +5399,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20715",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C20715"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179406",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179406"
         }
       ]
     },
@@ -5841,8 +5415,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20715",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C20715"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C179406",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C179406"
           }
         ]
       },
@@ -5868,7 +5442,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C20715"
+        "http://purl.obolibrary.org/obo/NCIT_C179406"
       ],
       "uri": null
     },
@@ -5888,7 +5462,433 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C20715"
+      "http://purl.obolibrary.org/obo/NCIT_C179406"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19636",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19636"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C19636",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C19636"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C19636"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C19636"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C18120",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C18120"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C18120",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C18120"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C18120"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C18120"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C186812",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C186812"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C186812",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C186812"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C186812"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C186812"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124110",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124110"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C124110",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C124110"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C124110"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C124110"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000029464",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_000029464"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000029464",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_000029464"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pr",
+          "type": "ONTOLOGY",
+          "uri": "pr"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PR_000029464"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PR_000029464"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C160324",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C160324"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C160324",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C160324"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C160324"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C160324"
     ],
     "uri": null
   },
@@ -5967,8 +5967,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q8K3W0",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_Q8K3W0"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36101",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36101"
         }
       ]
     },
@@ -5983,8 +5983,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q8K3W0",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_Q8K3W0"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36101",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36101"
           }
         ]
       },
@@ -5997,20 +5997,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "pr",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "pr",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "pr"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_Q8K3W0"
+        "http://purl.obolibrary.org/obo/NCIT_C36101"
       ],
       "uri": null
     },
@@ -6030,7 +6030,149 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_Q8K3W0"
+      "http://purl.obolibrary.org/obo/NCIT_C36101"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20715",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C20715"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C20715",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C20715"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C20715"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C20715"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C148085",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C148085"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C148085",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C148085"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C148085"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C148085"
     ],
     "uri": null
   },
@@ -6109,290 +6251,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167189",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167189"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167189",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167189"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C167189"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C167189"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q99MP8",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_Q99MP8"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q99MP8",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_Q99MP8"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_Q99MP8"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_Q99MP8"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C146648",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C146648"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C146648",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C146648"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C146648"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C146648"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C122865",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C122865"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C122865",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C122865"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C122865"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C122865"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C131468",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C131468"
         }
@@ -6464,8 +6322,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167090",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167090"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C146648",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C146648"
         }
       ]
     },
@@ -6480,8 +6338,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167090",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167090"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C146648",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C146648"
           }
         ]
       },
@@ -6507,7 +6365,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C167090"
+        "http://purl.obolibrary.org/obo/NCIT_C146648"
       ],
       "uri": null
     },
@@ -6527,7 +6385,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C167090"
+      "http://purl.obolibrary.org/obo/NCIT_C146648"
     ],
     "uri": null
   },
@@ -6748,8 +6606,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_P46736",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_P46736"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167189",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167189"
         }
       ]
     },
@@ -6764,8 +6622,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_P46736",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_P46736"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167189",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167189"
           }
         ]
       },
@@ -6778,20 +6636,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "pr",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "pr",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "pr"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_P46736"
+        "http://purl.obolibrary.org/obo/NCIT_C167189"
       ],
       "uri": null
     },
@@ -6811,7 +6669,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_P46736"
+      "http://purl.obolibrary.org/obo/NCIT_C167189"
     ],
     "uri": null
   },
@@ -6890,6 +6748,290 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q99MP8",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_Q99MP8"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_Q99MP8",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_Q99MP8"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pr",
+          "type": "ONTOLOGY",
+          "uri": "pr"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PR_Q99MP8"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PR_Q99MP8"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C122865",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C122865"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C122865",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C122865"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C122865"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C122865"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167090",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167090"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C167090",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C167090"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C167090"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C167090"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_P46736",
+          "semanticTag": "http://purl.obolibrary.org/obo/PR_P46736"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "gene",
+      "propertyValue": "BRCA1",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_P46736",
+            "semanticTag": "http://purl.obolibrary.org/obo/PR_P46736"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "gene",
+        "propertyValue": "BRCA1",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pr",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pr",
+          "type": "ONTOLOGY",
+          "uri": "pr"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PR_P46736"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PR_P46736"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192893",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192893"
         }
@@ -6954,77 +7096,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C192893"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36689",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36689"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C36689",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C36689"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C36689"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C36689"
     ],
     "uri": null
   },
@@ -7103,8 +7174,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004804",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000004804"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412738007",
+          "semanticTag": "http://snomed.info/id/412738007"
         }
       ]
     },
@@ -7119,8 +7190,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000004804",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000004804"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412738007",
+            "semanticTag": "http://snomed.info/id/412738007"
           }
         ]
       },
@@ -7133,224 +7204,11 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "pr",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000004804"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000004804"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019398",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/D019398"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD019398",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/D019398"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/D019398"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/D019398"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119080",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119080"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_119080",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_119080"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_119080"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_119080"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F405823003",
-          "semanticTag": "http://snomed.info/id/405823003"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F405823003",
-            "semanticTag": "http://snomed.info/id/405823003"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "snomed",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
           "name": "snomed",
           "type": "ONTOLOGY",
           "uri": "snomed"
@@ -7359,7 +7217,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://snomed.info/id/405823003"
+        "http://snomed.info/id/412738007"
       ],
       "uri": null
     },
@@ -7379,220 +7237,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://snomed.info/id/405823003"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412736006",
-          "semanticTag": "http://snomed.info/id/412736006"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F412736006",
-            "semanticTag": "http://snomed.info/id/412736006"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "snomed",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "snomed",
-          "type": "ONTOLOGY",
-          "uri": "snomed"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://snomed.info/id/412736006"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://snomed.info/id/412736006"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000010328",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000010328"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000010328",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000010328"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000010328"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000010328"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000618935",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C000618935"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "gene",
-      "propertyValue": "BRCA1",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC000618935",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C000618935"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "gene",
-        "propertyValue": "BRCA1",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C000618935"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C000618935"
+      "http://snomed.info/id/412738007"
     ],
     "uri": null
   }

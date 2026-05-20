@@ -67,27 +67,6 @@
         },
         {
           "confidence": 0.801,
-          "datasource": "hp",
-          "label": "Agammaglobulinemia",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0004432"
-            }
-          ],
-          "ontology": "hp",
-          "termId": "hp_0004432",
-          "uri": "hp"
-        },
-        {
-          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -106,6 +85,27 @@
           "ontology": "mondo",
           "termId": "mondo_0015977",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "termId": "hp_0004432",
+          "uri": "hp"
         },
         {
           "confidence": 0.801,

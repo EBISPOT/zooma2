@@ -19,7 +19,7 @@ ZOOMA_JAR="$ROOT_DIR/backend/target/zooma2-1.0-SNAPSHOT.jar"
 UPDATE_EXPECTED="${UPDATE_EXPECTED:-0}"
 FAILED=0
 
-export ZOOMA2_OLS_URL="${ZOOMA2_OLS_URL:-https://wwwdev.ebi.ac.uk/ols4}"
+export ZOOMA2_OLS_URL="${ZOOMA2_OLS_URL:-https://www.ebi.ac.uk/ols4}"
 
 # ---- helpers ---------------------------------------------------------------
 

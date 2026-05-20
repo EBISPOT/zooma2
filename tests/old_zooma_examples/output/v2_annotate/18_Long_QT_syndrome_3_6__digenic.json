@@ -74,6 +74,219 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208909006",
+          "semanticTag": "http://snomed.info/id/1208909006"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208909006",
+            "semanticTag": "http://snomed.info/id/1208909006"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208909006"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208909006"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208866002",
+          "semanticTag": "http://snomed.info/id/1208866002"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208866002",
+            "semanticTag": "http://snomed.info/id/1208866002"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208866002"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208866002"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_7770288",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_7770288"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_7770288",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_7770288"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_7770288"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_7770288"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1012868",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1012868"
         }
@@ -287,8 +500,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC537034",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C537034"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208868001",
+          "semanticTag": "http://snomed.info/id/1208868001"
         }
       ]
     },
@@ -303,8 +516,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC537034",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C537034"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208868001",
+            "semanticTag": "http://snomed.info/id/1208868001"
           }
         ]
       },
@@ -317,20 +530,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mesh",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mesh",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "mesh"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C537034"
+        "http://snomed.info/id/1208868001"
       ],
       "uri": null
     },
@@ -350,7 +563,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C537034"
+      "http://snomed.info/id/1208868001"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_7770521",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_7770521"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_7770521",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_7770521"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_7770521"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_7770521"
     ],
     "uri": null
   },
@@ -422,6 +706,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0013279"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC537034",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C537034"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC537034",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C537034"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C537034"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C537034"
     ],
     "uri": null
   },
@@ -571,6 +926,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208870005",
+          "semanticTag": "http://snomed.info/id/1208870005"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208870005",
+            "semanticTag": "http://snomed.info/id/1208870005"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208870005"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208870005"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208911002",
+          "semanticTag": "http://snomed.info/id/1208911002"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208911002",
+            "semanticTag": "http://snomed.info/id/1208911002"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208911002"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208911002"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013372",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013372"
         }
@@ -635,6 +1132,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0013372"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208884000",
+          "semanticTag": "http://snomed.info/id/1208884000"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208884000",
+            "semanticTag": "http://snomed.info/id/1208884000"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208884000"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208884000"
     ],
     "uri": null
   },
@@ -713,8 +1281,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012737",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012737"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208864004",
+          "semanticTag": "http://snomed.info/id/1208864004"
         }
       ]
     },
@@ -729,8 +1297,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012737",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012737"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208864004",
+            "semanticTag": "http://snomed.info/id/1208864004"
           }
         ]
       },
@@ -743,20 +1311,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012737"
+        "http://snomed.info/id/1208864004"
       ],
       "uri": null
     },
@@ -776,7 +1344,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012737"
+      "http://snomed.info/id/1208864004"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208881008",
+          "semanticTag": "http://snomed.info/id/1208881008"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208881008",
+            "semanticTag": "http://snomed.info/id/1208881008"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208881008"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208881008"
     ],
     "uri": null
   },
@@ -855,8 +1494,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012738",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012738"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208863005",
+          "semanticTag": "http://snomed.info/id/1208863005"
         }
       ]
     },
@@ -871,8 +1510,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012738",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012738"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208863005",
+            "semanticTag": "http://snomed.info/id/1208863005"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208863005"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208863005"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012737",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012737"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012737",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012737"
           }
         ]
       },
@@ -898,7 +1608,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012738"
+        "http://purl.obolibrary.org/obo/MONDO_0012737"
       ],
       "uri": null
     },
@@ -918,78 +1628,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012738"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101016",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101016"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101016",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101016"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_101016"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_101016"
+      "http://purl.obolibrary.org/obo/MONDO_0012737"
     ],
     "uri": null
   },
@@ -1068,6 +1707,290 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012738",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012738"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012738",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012738"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0012738"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0012738"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208861007",
+          "semanticTag": "http://snomed.info/id/1208861007"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1208861007",
+            "semanticTag": "http://snomed.info/id/1208861007"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1208861007"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1208861007"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101016",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101016"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_101016",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_101016"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_101016"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_101016"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F715971003",
+          "semanticTag": "http://snomed.info/id/715971003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F715971003",
+            "semanticTag": "http://snomed.info/id/715971003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/715971003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/715971003"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014548",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014548"
         }
@@ -1132,6 +2055,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0014548"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013367",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013367"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013367",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013367"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0013367"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0013367"
     ],
     "uri": null
   },
@@ -1281,8 +2275,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013367",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013367"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014550",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014550"
         }
       ]
     },
@@ -1297,8 +2291,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013367",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013367"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014550",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014550"
           }
         ]
       },
@@ -1324,7 +2318,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013367"
+        "http://purl.obolibrary.org/obo/MONDO_0014550"
       ],
       "uri": null
     },
@@ -1344,7 +2338,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013367"
+      "http://purl.obolibrary.org/obo/MONDO_0014550"
     ],
     "uri": null
   },
@@ -1423,77 +2417,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014550",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014550"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014550",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014550"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0014550"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0014550"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0008222",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0008222"
         }
@@ -1558,290 +2481,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0008222"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202637",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202637"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202637",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202637"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C202637"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C202637"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566334",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C566334"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566334",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C566334"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C566334"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C566334"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C137959",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C137959"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C137959",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C137959"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C137959"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C137959"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202628",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202628"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202628",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202628"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C202628"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C202628"
     ],
     "uri": null
   },
@@ -1920,6 +2559,361 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0800323",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0800323"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0800323",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0800323"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0800323"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0800323"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202637",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202637"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202637",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202637"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C202637"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C202637"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C137959",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C137959"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C137959",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C137959"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C137959"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C137959"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566334",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C566334"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566334",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C566334"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C566334"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C566334"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202628",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202628"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C202628",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C202628"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C202628"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C202628"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC565841",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C565841"
         }
@@ -1931,7 +2925,7 @@
       "propertyValue": "Long QT syndrome 3/6, digenic",
       "uri": null
     },
-    "confidence": "MEDIUM",
+    "confidence": "GOOD",
     "derivedFrom": {
       "_links": {
         "olslinks": [
@@ -2133,8 +3127,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142894",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142894"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C172094",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C172094"
         }
       ]
     },
@@ -2149,8 +3143,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142894",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142894"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C172094",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C172094"
           }
         ]
       },
@@ -2176,7 +3170,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C142894"
+        "http://purl.obolibrary.org/obo/NCIT_C172094"
       ],
       "uri": null
     },
@@ -2196,7 +3190,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C142894"
+      "http://purl.obolibrary.org/obo/NCIT_C172094"
     ],
     "uri": null
   },
@@ -2275,8 +3269,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C172094",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C172094"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142894",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142894"
         }
       ]
     },
@@ -2291,8 +3285,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C172094",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C172094"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C142894",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C142894"
           }
         ]
       },
@@ -2318,7 +3312,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C172094"
+        "http://purl.obolibrary.org/obo/NCIT_C142894"
       ],
       "uri": null
     },
@@ -2338,7 +3332,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C172094"
+      "http://purl.obolibrary.org/obo/NCIT_C142894"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F766883006",
+          "semanticTag": "http://snomed.info/id/766883006"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F766883006",
+            "semanticTag": "http://snomed.info/id/766883006"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/766883006"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/766883006"
     ],
     "uri": null
   },
@@ -2488,8 +3553,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0800323",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0800323"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192202",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192202"
         }
       ]
     },
@@ -2504,8 +3569,150 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0800323",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0800323"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192202",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192202"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C192202"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C192202"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566006",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C566006"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566006",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C566006"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C566006"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C566006"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1012897",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1012897"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1012897",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1012897"
           }
         ]
       },
@@ -2531,7 +3738,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0800323"
+        "http://purl.obolibrary.org/obo/MONDO_1012897"
       ],
       "uri": null
     },
@@ -2551,7 +3758,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0800323"
+      "http://purl.obolibrary.org/obo/MONDO_1012897"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566765",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C566765"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566765",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C566765"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C566765"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C566765"
     ],
     "uri": null
   },
@@ -2630,8 +3908,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192202",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192202"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F9651007",
+          "semanticTag": "http://snomed.info/id/9651007"
         }
       ]
     },
@@ -2646,8 +3924,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C192202",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C192202"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F9651007",
+            "semanticTag": "http://snomed.info/id/9651007"
           }
         ]
       },
@@ -2660,20 +3938,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C192202"
+        "http://snomed.info/id/9651007"
       ],
       "uri": null
     },
@@ -2693,78 +3971,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C192202"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1012897",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1012897"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1012897",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1012897"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_1012897"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_1012897"
+      "http://snomed.info/id/9651007"
     ],
     "uri": null
   },
@@ -3127,77 +4334,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012871",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012871"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012871",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012871"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012871"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012871"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002441",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002441"
         }
@@ -3262,6 +4398,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0002441"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012871",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012871"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012871",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012871"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0012871"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0012871"
     ],
     "uri": null
   },
@@ -3411,6 +4618,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566333",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C566333"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566333",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C566333"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C566333"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C566333"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC565840",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C565840"
         }
@@ -3482,8 +4760,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566333",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C566333"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007269",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007269"
         }
       ]
     },
@@ -3498,8 +4776,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566333",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C566333"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007269",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007269"
           }
         ]
       },
@@ -3512,20 +4790,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mesh",
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mesh",
+          "name": "mondo",
           "type": "ONTOLOGY",
-          "uri": "mesh"
+          "uri": "mondo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C566333"
+        "http://purl.obolibrary.org/obo/MONDO_0007269"
       ],
       "uri": null
     },
@@ -3545,7 +4823,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C566333"
+      "http://purl.obolibrary.org/obo/MONDO_0007269"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0971094",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0971094"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0971094",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0971094"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0971094"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0971094"
     ],
     "uri": null
   },
@@ -3695,77 +5044,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007269",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007269"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007269",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007269"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0007269"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0007269"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC563614",
           "semanticTag": "http://id.nlm.nih.gov/mesh/C563614"
         }
@@ -3830,148 +5108,6 @@
     "replaces": [],
     "semanticTags": [
       "http://id.nlm.nih.gov/mesh/C563614"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0971094",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0971094"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0971094",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0971094"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0971094"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0971094"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012677",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012677"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012677",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012677"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012677"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012677"
     ],
     "uri": null
   },
@@ -4050,8 +5186,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009076",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009076"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009459",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009459"
         }
       ]
     },
@@ -4066,8 +5202,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009076",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009076"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009459",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009459"
           }
         ]
       },
@@ -4093,7 +5229,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0009076"
+        "http://purl.obolibrary.org/obo/MONDO_0009459"
       ],
       "uri": null
     },
@@ -4113,7 +5249,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0009076"
+      "http://purl.obolibrary.org/obo/MONDO_0009459"
     ],
     "uri": null
   },
@@ -4121,8 +5257,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011003",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011003"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1269318001",
+          "semanticTag": "http://snomed.info/id/1269318001"
         }
       ]
     },
@@ -4137,8 +5273,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011003",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011003"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1269318001",
+            "semanticTag": "http://snomed.info/id/1269318001"
           }
         ]
       },
@@ -4151,20 +5287,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0011003"
+        "http://snomed.info/id/1269318001"
       ],
       "uri": null
     },
@@ -4184,7 +5320,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0011003"
+      "http://snomed.info/id/1269318001"
     ],
     "uri": null
   },
@@ -4192,8 +5328,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0022648",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0022648"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0700388",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0700388"
         }
       ]
     },
@@ -4208,8 +5344,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0022648",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0022648"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0700388",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0700388"
           }
         ]
       },
@@ -4235,7 +5371,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0022648"
+        "http://purl.obolibrary.org/obo/MONDO_0700388"
       ],
       "uri": null
     },
@@ -4255,78 +5391,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0022648"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100050",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100050"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100050",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100050"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0100050"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0100050"
+      "http://purl.obolibrary.org/obo/MONDO_0700388"
     ],
     "uri": null
   },
@@ -4405,8 +5470,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1040003",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1040003"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_970",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_970"
         }
       ]
     },
@@ -4421,8 +5486,150 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1040003",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1040003"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_970",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_970"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_970"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_970"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_88642",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_88642"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_88642",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_88642"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_88642"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_88642"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0022648",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0022648"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0022648",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0022648"
           }
         ]
       },
@@ -4448,7 +5655,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_1040003"
+        "http://purl.obolibrary.org/obo/MONDO_0022648"
       ],
       "uri": null
     },
@@ -4468,7 +5675,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_1040003"
+      "http://purl.obolibrary.org/obo/MONDO_0022648"
     ],
     "uri": null
   },
@@ -4476,8 +5683,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100507",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100507"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F698270004",
+          "semanticTag": "http://snomed.info/id/698270004"
         }
       ]
     },
@@ -4492,8 +5699,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100507",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100507"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F698270004",
+            "semanticTag": "http://snomed.info/id/698270004"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/698270004"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/698270004"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011003",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011003",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011003"
           }
         ]
       },
@@ -4519,7 +5797,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0100507"
+        "http://purl.obolibrary.org/obo/MONDO_0011003"
       ],
       "uri": null
     },
@@ -4539,7 +5817,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0100507"
+      "http://purl.obolibrary.org/obo/MONDO_0011003"
     ],
     "uri": null
   },
@@ -4547,8 +5825,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567842",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C567842"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566766",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C566766"
         }
       ]
     },
@@ -4563,8 +5841,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567842",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C567842"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC566766",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C566766"
           }
         ]
       },
@@ -4590,7 +5868,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C567842"
+        "http://id.nlm.nih.gov/mesh/C566766"
       ],
       "uri": null
     },
@@ -4610,1072 +5888,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C567842"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_611327",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_611327"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_611327",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_611327"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_611327"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_611327"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0700064",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0700064"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0700064",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0700064"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0700064"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0700064"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_269570",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_269570"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_269570",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_269570"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_269570"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_269570"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC563428",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/C563428"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC563428",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/C563428"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/C563428"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/C563428"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293888",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293888"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293888",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293888"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_293888"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_293888"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012742",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012742"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012742",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012742"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012742"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012742"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100499",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100499"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100499",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100499"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0100499"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0100499"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_330206",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_330206"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_330206",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_330206"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_330206"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_330206"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011857",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011857"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011857",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011857"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0011857"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0011857"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013146",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013146"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013146",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013146"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013146"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013146"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012743",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012743"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012743",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012743"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012743"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012743"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293899",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293899"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293899",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293899"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_293899"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_293899"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014191",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014191"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014191",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014191"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0014191"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0014191"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0035679",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0035679"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0035679",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0035679"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0035679"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0035679"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293910",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293910"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293910",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293910"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_293910"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_293910"
+      "http://id.nlm.nih.gov/mesh/C566766"
     ],
     "uri": null
   },
@@ -5754,8 +5967,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C213617",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C213617"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012677",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012677"
         }
       ]
     },
@@ -5770,79 +5983,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C213617",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C213617"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C213617"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C213617"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012506",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012506"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012506",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012506"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012677",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012677"
           }
         ]
       },
@@ -5868,7 +6010,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012506"
+        "http://purl.obolibrary.org/obo/MONDO_0012677"
       ],
       "uri": null
     },
@@ -5888,7 +6030,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012506"
+      "http://purl.obolibrary.org/obo/MONDO_0012677"
     ],
     "uri": null
   },
@@ -5896,8 +6038,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020745",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020745"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567513",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C567513"
         }
       ]
     },
@@ -5912,8 +6054,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0020745",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0020745"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567513",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C567513"
           }
         ]
       },
@@ -5926,20 +6068,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "mesh",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "mesh"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0020745"
+        "http://id.nlm.nih.gov/mesh/C567513"
       ],
       "uri": null
     },
@@ -5959,7 +6101,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0020745"
+      "http://id.nlm.nih.gov/mesh/C567513"
     ],
     "uri": null
   },
@@ -5967,8 +6109,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C114318",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C114318"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_37553",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_37553"
         }
       ]
     },
@@ -5983,150 +6125,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C114318",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C114318"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C114318"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C114318"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007240",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007240"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0007240",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0007240"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0007240"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0007240"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_562569",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_562569"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_562569",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_562569"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_37553",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_37553"
           }
         ]
       },
@@ -6152,7 +6152,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_562569"
+        "http://www.orpha.net/ORDO/Orphanet_37553"
       ],
       "uri": null
     },
@@ -6172,7 +6172,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_562569"
+      "http://www.orpha.net/ORDO/Orphanet_37553"
     ],
     "uri": null
   },
@@ -6180,8 +6180,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013563",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013563"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100050",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100050"
         }
       ]
     },
@@ -6196,8 +6196,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013563",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013563"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100050",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100050"
           }
         ]
       },
@@ -6223,7 +6223,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013563"
+        "http://purl.obolibrary.org/obo/MONDO_0100050"
       ],
       "uri": null
     },
@@ -6243,7 +6243,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013563"
+      "http://purl.obolibrary.org/obo/MONDO_0100050"
     ],
     "uri": null
   },
@@ -6251,8 +6251,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012728",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012728"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_154",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_154"
         }
       ]
     },
@@ -6267,434 +6267,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012728",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012728"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012728"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012728"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014165",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014165"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0014165",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0014165"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0014165"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0014165"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012180",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012180"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0012180",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0012180"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0012180"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0012180"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011001",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011001"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0011001",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0011001"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0011001"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0011001"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPCL_0120673",
-          "semanticTag": "http://purl.obolibrary.org/obo/PCL_0120673"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPCL_0120673",
-            "semanticTag": "http://purl.obolibrary.org/obo/PCL_0120673"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pcl",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pcl",
-          "type": "ONTOLOGY",
-          "uri": "pcl"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PCL_0120673"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PCL_0120673"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013148",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013148"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013148",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013148"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013148"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013148"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_183533",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_183533"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "MEDIUM",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_183533",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_183533"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_154",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_154"
           }
         ]
       },
@@ -6720,7 +6294,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_183533"
+        "http://www.orpha.net/ORDO/Orphanet_154"
       ],
       "uri": null
     },
@@ -6740,7 +6314,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_183533"
+      "http://www.orpha.net/ORDO/Orphanet_154"
     ],
     "uri": null
   },
@@ -6748,8 +6322,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0010466",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0010466"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009076",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009076"
         }
       ]
     },
@@ -6764,8 +6338,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0010466",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0010466"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009076",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009076"
           }
         ]
       },
@@ -6791,7 +6365,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0010466"
+        "http://purl.obolibrary.org/obo/MONDO_0009076"
       ],
       "uri": null
     },
@@ -6811,7 +6385,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0010466"
+      "http://purl.obolibrary.org/obo/MONDO_0009076"
     ],
     "uri": null
   },
@@ -6819,8 +6393,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032672",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032672"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567515",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C567515"
         }
       ]
     },
@@ -6835,8 +6409,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0032672",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0032672"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567515",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C567515"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C567515"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C567515"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1040003",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1040003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_1040003",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_1040003"
           }
         ]
       },
@@ -6862,7 +6507,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0032672"
+        "http://purl.obolibrary.org/obo/MONDO_1040003"
       ],
       "uri": null
     },
@@ -6882,7 +6527,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0032672"
+      "http://purl.obolibrary.org/obo/MONDO_1040003"
     ],
     "uri": null
   },
@@ -6890,8 +6535,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_228410",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_228410"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567842",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C567842"
         }
       ]
     },
@@ -6906,8 +6551,221 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_228410",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_228410"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC567842",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C567842"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C567842"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C567842"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100507",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100507"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0100507",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0100507"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0100507"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0100507"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC563428",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/C563428"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FC563428",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/C563428"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/C563428"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/C563428"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_51083",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_51083"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "MEDIUM",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_51083",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_51083"
           }
         ]
       },
@@ -6933,7 +6791,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_228410"
+        "http://www.orpha.net/ORDO/Orphanet_51083"
       ],
       "uri": null
     },
@@ -6953,7 +6811,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_228410"
+      "http://www.orpha.net/ORDO/Orphanet_51083"
     ],
     "uri": null
   },
@@ -6961,8 +6819,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009459",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009459"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0700064",
+          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0700064"
         }
       ]
     },
@@ -6977,8 +6835,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0009459",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0009459"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0700064",
+            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0700064"
           }
         ]
       },
@@ -6991,20 +6849,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "efo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "efo",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "efo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0009459"
+        "http://www.ebi.ac.uk/efo/EFO_0700064"
       ],
       "uri": null
     },
@@ -7024,7 +6882,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0009459"
+      "http://www.ebi.ac.uk/efo/EFO_0700064"
     ],
     "uri": null
   },
@@ -7032,8 +6890,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_324410",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_324410"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_611327",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_611327"
         }
       ]
     },
@@ -7048,8 +6906,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_324410",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_324410"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_611327",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_611327"
           }
         ]
       },
@@ -7075,7 +6933,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_324410"
+        "http://www.orpha.net/ORDO/Orphanet_611327"
       ],
       "uri": null
     },
@@ -7095,7 +6953,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_324410"
+      "http://www.orpha.net/ORDO/Orphanet_611327"
     ],
     "uri": null
   },
@@ -7103,8 +6961,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013015",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013015"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293888",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293888"
         }
       ]
     },
@@ -7119,8 +6977,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0013015",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0013015"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_293888",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_293888"
           }
         ]
       },
@@ -7133,20 +6991,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "ordo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "ordo",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "ordo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0013015"
+        "http://www.orpha.net/ORDO/Orphanet_293888"
       ],
       "uri": null
     },
@@ -7166,7 +7024,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0013015"
+      "http://www.orpha.net/ORDO/Orphanet_293888"
     ],
     "uri": null
   },
@@ -7309,6 +7167,77 @@
     "replaces": [],
     "semanticTags": [
       "http://id.nlm.nih.gov/mesh/C565840"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001657",
+          "semanticTag": "http://purl.obolibrary.org/obo/HP_0001657"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001657",
+            "semanticTag": "http://purl.obolibrary.org/obo/HP_0001657"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "hp",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "hp",
+          "type": "ONTOLOGY",
+          "uri": "hp"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/HP_0001657"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/HP_0001657"
     ],
     "uri": null
   },
@@ -7522,77 +7451,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/OMIT_0009216"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001657",
-          "semanticTag": "http://purl.obolibrary.org/obo/HP_0001657"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "disease",
-      "propertyValue": "Long QT syndrome 3/6, digenic",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHP_0001657",
-            "semanticTag": "http://purl.obolibrary.org/obo/HP_0001657"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "disease",
-        "propertyValue": "Long QT syndrome 3/6, digenic",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "hp",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "hp",
-          "type": "ONTOLOGY",
-          "uri": "hp"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/HP_0001657"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/HP_0001657"
     ],
     "uri": null
   },
@@ -7877,6 +7735,361 @@
     "replaces": [],
     "semanticTags": [
       "http://snomed.info/id/9651007"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110650",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110650"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110650",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110650"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110650"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110650"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110645",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110645"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110645",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110645"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110645"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110645"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110655",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110655"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110655",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110655"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110655"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110655"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110654",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110654"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0110654",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0110654"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0110654"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0110654"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0070533",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0070533"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0070533",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0070533"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0070533"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0070533"
     ],
     "uri": null
   },
@@ -8516,6 +8729,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C28193"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90647",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90647"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "disease",
+      "propertyValue": "Long QT syndrome 3/6, digenic",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_90647",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_90647"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "disease",
+        "propertyValue": "Long QT syndrome 3/6, digenic",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_90647"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_90647"
     ],
     "uri": null
   }

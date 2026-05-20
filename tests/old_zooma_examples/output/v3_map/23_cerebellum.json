@@ -4,27 +4,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "termId": "ma_0000198",
-          "uri": "ma"
-        },
-        {
-          "confidence": 1.0,
           "datasource": "bto",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -43,27 +22,6 @@
           "ontology": "bto",
           "termId": "bto_0000232",
           "uri": "bto"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "omit_0003860",
-          "uri": "omit"
         },
         {
           "confidence": 1.0,
@@ -88,7 +46,7 @@
         },
         {
           "confidence": 1.0,
-          "datasource": "uberon",
+          "datasource": "ma",
           "label": "cerebellum",
           "mappingProvenance": [
             {
@@ -99,13 +57,13 @@
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:uberon",
-              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
             }
           ],
-          "ontology": "uberon",
-          "termId": "uberon_0002037",
-          "uri": "uberon"
+          "ontology": "ma",
+          "termId": "ma_0000198",
+          "uri": "ma"
         },
         {
           "confidence": 1.0,
@@ -130,6 +88,27 @@
         },
         {
           "confidence": 1.0,
+          "datasource": "omit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "omit_0003860",
+          "uri": "omit"
+        },
+        {
+          "confidence": 1.0,
           "datasource": "zfa",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -148,6 +127,27 @@
           "ontology": "zfa",
           "termId": "zfa_0000100",
           "uri": "zfa"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "uberon",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:uberon",
+              "target": "http://purl.obolibrary.org/obo/UBERON_0002037"
+            }
+          ],
+          "ontology": "uberon",
+          "termId": "uberon_0002037",
+          "uri": "uberon"
         },
         {
           "confidence": 1.0,

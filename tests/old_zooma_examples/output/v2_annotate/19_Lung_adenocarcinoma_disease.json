@@ -74,77 +74,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000571",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000571"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000571",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000571"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000571"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000571"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005620",
           "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005620"
         }
@@ -287,77 +216,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3910",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_3910"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3910",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_3910"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_3910"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_3910"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005061",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005061"
         }
@@ -422,6 +280,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0005061"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3910",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_3910"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3910",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_3910"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_3910"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_3910"
     ],
     "uri": null
   },
@@ -1636,6 +1565,219 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424993006",
+          "semanticTag": "http://snomed.info/id/424993006"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424993006",
+            "semanticTag": "http://snomed.info/id/424993006"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/424993006"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/424993006"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C5666",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C5666"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C5666",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C5666"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C5666"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C5666"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424454009",
+          "semanticTag": "http://snomed.info/id/424454009"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424454009",
+            "semanticTag": "http://snomed.info/id/424454009"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/424454009"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/424454009"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004127",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004127"
         }
@@ -1700,6 +1842,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0004127"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424078005",
+          "semanticTag": "http://snomed.info/id/424078005"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424078005",
+            "semanticTag": "http://snomed.info/id/424078005"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/424078005"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/424078005"
     ],
     "uri": null
   },
@@ -1849,8 +2062,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C5666",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C5666"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424632001",
+          "semanticTag": "http://snomed.info/id/424632001"
         }
       ]
     },
@@ -1865,8 +2078,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C5666",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C5666"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F424632001",
+            "semanticTag": "http://snomed.info/id/424632001"
           }
         ]
       },
@@ -1879,20 +2092,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C5666"
+        "http://snomed.info/id/424632001"
       ],
       "uri": null
     },
@@ -1912,7 +2125,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C5666"
+      "http://snomed.info/id/424632001"
     ],
     "uri": null
   },
@@ -1991,77 +2204,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_6482",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_6482"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_6482",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_6482"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_6482"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_6482"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4872",
           "semanticTag": "http://purl.obolibrary.org/obo/DOID_4872"
         }
@@ -2133,8 +2275,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000046",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000046"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F254626006",
+          "semanticTag": "http://snomed.info/id/254626006"
         }
       ]
     },
@@ -2149,8 +2291,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000046",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000046"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F254626006",
+            "semanticTag": "http://snomed.info/id/254626006"
           }
         ]
       },
@@ -2163,20 +2305,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_1000046"
+        "http://snomed.info/id/254626006"
       ],
       "uri": null
     },
@@ -2196,7 +2338,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_1000046"
+      "http://snomed.info/id/254626006"
     ],
     "uri": null
   },
@@ -2204,8 +2346,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006049",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006049"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_6482",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_6482"
         }
       ]
     },
@@ -2220,8 +2362,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006049",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006049"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_6482",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_6482"
           }
         ]
       },
@@ -2234,20 +2376,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "doid",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "doid"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0006049"
+        "http://purl.obolibrary.org/obo/DOID_6482"
       ],
       "uri": null
     },
@@ -2267,7 +2409,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0006049"
+      "http://purl.obolibrary.org/obo/DOID_6482"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F15956341000119105",
+          "semanticTag": "http://snomed.info/id/15956341000119105"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F15956341000119105",
+            "semanticTag": "http://snomed.info/id/15956341000119105"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/15956341000119105"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/15956341000119105"
     ],
     "uri": null
   },
@@ -2346,8 +2559,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0027772",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0027772"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006049",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006049"
         }
       ]
     },
@@ -2362,8 +2575,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0027772",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0027772"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006049",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006049"
           }
         ]
       },
@@ -2389,7 +2602,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0027772"
+        "http://purl.obolibrary.org/obo/MONDO_0006049"
       ],
       "uri": null
     },
@@ -2409,7 +2622,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0027772"
+      "http://purl.obolibrary.org/obo/MONDO_0006049"
     ],
     "uri": null
   },
@@ -2417,8 +2630,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000233",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000233"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F15956381000119100",
+          "semanticTag": "http://snomed.info/id/15956381000119100"
         }
       ]
     },
@@ -2433,8 +2646,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000233",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000233"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F15956381000119100",
+            "semanticTag": "http://snomed.info/id/15956381000119100"
           }
         ]
       },
@@ -2447,20 +2660,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000233"
+        "http://snomed.info/id/15956381000119100"
       ],
       "uri": null
     },
@@ -2480,7 +2693,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000233"
+      "http://snomed.info/id/15956381000119100"
     ],
     "uri": null
   },
@@ -2630,77 +2843,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050870",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050870"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050870",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050870"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_0050870"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_0050870"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004973",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004973"
         }
@@ -2765,6 +2907,148 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0004973"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0027772",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0027772"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0027772",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0027772"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0027772"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0027772"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050870",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050870"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050870",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050870"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0050870"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0050870"
     ],
     "uri": null
   },
@@ -2843,6 +3127,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1255725002",
+          "semanticTag": "http://snomed.info/id/1255725002"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1255725002",
+            "semanticTag": "http://snomed.info/id/1255725002"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1255725002"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1255725002"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C176727",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C176727"
         }
@@ -2914,148 +3269,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C136717",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C136717"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C136717",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C136717"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C136717"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C136717"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C9379",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C9379"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C9379",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C9379"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C9379"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C9379"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C9133",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C9133"
         }
@@ -3120,6 +3333,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C9133"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C136717",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C136717"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C136717",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C136717"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C136717"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C136717"
     ],
     "uri": null
   },
@@ -3269,8 +3553,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080305",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080305"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C9379",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C9379"
         }
       ]
     },
@@ -3285,8 +3569,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080305",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080305"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C9379",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C9379"
           }
         ]
       },
@@ -3299,20 +3583,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "doid",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "doid",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "doid"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_0080305"
+        "http://purl.obolibrary.org/obo/NCIT_C9379"
       ],
       "uri": null
     },
@@ -3332,7 +3616,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_0080305"
+      "http://purl.obolibrary.org/obo/NCIT_C9379"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1141626005",
+          "semanticTag": "http://snomed.info/id/1141626005"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1141626005",
+            "semanticTag": "http://snomed.info/id/1141626005"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1141626005"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1141626005"
     ],
     "uri": null
   },
@@ -3411,8 +3766,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4926",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_4926"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080305",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080305"
         }
       ]
     },
@@ -3427,8 +3782,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4926",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_4926"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080305",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080305"
           }
         ]
       },
@@ -3454,7 +3809,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_4926"
+        "http://purl.obolibrary.org/obo/DOID_0080305"
       ],
       "uri": null
     },
@@ -3474,7 +3829,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_4926"
+      "http://purl.obolibrary.org/obo/DOID_0080305"
     ],
     "uri": null
   },
@@ -3553,8 +3908,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050917",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050917"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F423595004",
+          "semanticTag": "http://snomed.info/id/423595004"
         }
       ]
     },
@@ -3569,8 +3924,79 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050917",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050917"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F423595004",
+            "semanticTag": "http://snomed.info/id/423595004"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/423595004"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/423595004"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4926",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_4926"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4926",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_4926"
           }
         ]
       },
@@ -3596,7 +4022,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_0050917"
+        "http://purl.obolibrary.org/obo/DOID_4926"
       ],
       "uri": null
     },
@@ -3616,7 +4042,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_0050917"
+      "http://purl.obolibrary.org/obo/DOID_4926"
     ],
     "uri": null
   },
@@ -3695,8 +4121,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080186",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080186"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1363306004",
+          "semanticTag": "http://snomed.info/id/1363306004"
         }
       ]
     },
@@ -3711,8 +4137,150 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080186",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080186"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1363306004",
+            "semanticTag": "http://snomed.info/id/1363306004"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/1363306004"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/1363306004"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F4590003",
+          "semanticTag": "http://snomed.info/id/4590003"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F4590003",
+            "semanticTag": "http://snomed.info/id/4590003"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/4590003"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/4590003"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050917",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050917"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0050917",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0050917"
           }
         ]
       },
@@ -3738,7 +4306,7 @@
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_0080186"
+        "http://purl.obolibrary.org/obo/DOID_0050917"
       ],
       "uri": null
     },
@@ -3758,149 +4326,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_0080186"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080185",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080185"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080185",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080185"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_0080185"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_0080185"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0004078",
-          "semanticTag": "http://purl.obolibrary.org/obo/BTO_0004078"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0004078",
-            "semanticTag": "http://purl.obolibrary.org/obo/BTO_0004078"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "bto",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "bto",
-          "type": "ONTOLOGY",
-          "uri": "bto"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/BTO_0004078"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/BTO_0004078"
+      "http://purl.obolibrary.org/obo/DOID_0050917"
     ],
     "uri": null
   },
@@ -3979,6 +4405,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080185",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080185"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080185",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080185"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0080185"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0080185"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080303",
           "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080303"
         }
@@ -4043,6 +4540,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/DOID_0080303"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080186",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080186"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080186",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080186"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "doid",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "doid",
+          "type": "ONTOLOGY",
+          "uri": "doid"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/DOID_0080186"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/DOID_0080186"
     ],
     "uri": null
   },
@@ -4121,8 +4689,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000197",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000197"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0004078",
+          "semanticTag": "http://purl.obolibrary.org/obo/BTO_0004078"
         }
       ]
     },
@@ -4137,8 +4705,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000197",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000197"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0004078",
+            "semanticTag": "http://purl.obolibrary.org/obo/BTO_0004078"
           }
         ]
       },
@@ -4151,20 +4719,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "bto",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "bto",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "bto"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000197"
+        "http://purl.obolibrary.org/obo/BTO_0004078"
       ],
       "uri": null
     },
@@ -4184,7 +4752,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000197"
+      "http://purl.obolibrary.org/obo/BTO_0004078"
     ],
     "uri": null
   },
@@ -4263,8 +4831,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000044",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000044"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD000077192",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D000077192"
         }
       ]
     },
@@ -4279,8 +4847,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000044",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000044"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD000077192",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D000077192"
           }
         ]
       },
@@ -4293,20 +4861,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "mesh",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "mesh",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "mesh"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_1000044"
+        "http://id.nlm.nih.gov/mesh/D000077192"
       ],
       "uri": null
     },
@@ -4326,7 +4894,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_1000044"
+      "http://id.nlm.nih.gov/mesh/D000077192"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F408646000",
+          "semanticTag": "http://snomed.info/id/408646000"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F408646000",
+            "semanticTag": "http://snomed.info/id/408646000"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "snomed",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "snomed",
+          "type": "ONTOLOGY",
+          "uri": "snomed"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://snomed.info/id/408646000"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://snomed.info/id/408646000"
     ],
     "uri": null
   },
@@ -4405,148 +5044,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPW_0001017",
-          "semanticTag": "http://purl.obolibrary.org/obo/PW_0001017"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPW_0001017",
-            "semanticTag": "http://purl.obolibrary.org/obo/PW_0001017"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pw",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pw",
-          "type": "ONTOLOGY",
-          "uri": "pw"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PW_0001017"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PW_0001017"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005708",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005708"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0005708",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0005708"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0005708"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0005708"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006047",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006047"
         }
@@ -4611,148 +5108,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0006047"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD000077192",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/D000077192"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD000077192",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/D000077192"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/D000077192"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/D000077192"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002512",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002512"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002512",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002512"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0002512"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0002512"
     ],
     "uri": null
   },
@@ -4831,8 +5186,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004988",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004988"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_5386",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_5386"
         }
       ]
     },
@@ -4847,8 +5202,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004988",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004988"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_5386",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_5386"
           }
         ]
       },
@@ -4861,20 +5216,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "mondo",
+        "annotator": "doid",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "mondo",
+          "name": "doid",
           "type": "ONTOLOGY",
-          "uri": "mondo"
+          "uri": "doid"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0004988"
+        "http://purl.obolibrary.org/obo/DOID_5386"
       ],
       "uri": null
     },
@@ -4894,7 +5249,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0004988"
+      "http://purl.obolibrary.org/obo/DOID_5386"
     ],
     "uri": null
   },
@@ -4902,8 +5257,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000304",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000304"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F787091002",
+          "semanticTag": "http://snomed.info/id/787091002"
         }
       ]
     },
@@ -4918,8 +5273,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000304",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000304"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F787091002",
+            "semanticTag": "http://snomed.info/id/787091002"
           }
         ]
       },
@@ -4932,20 +5287,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000304"
+        "http://snomed.info/id/787091002"
       ],
       "uri": null
     },
@@ -4965,220 +5320,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000304"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C4123",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C4123"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C4123",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C4123"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ncit",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ncit",
-          "type": "ONTOLOGY",
-          "uri": "ncit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C4123"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C4123"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000673",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000673"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000673",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000673"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000673"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000673"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000005047",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000005047"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000005047",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000005047"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "pr",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "pr",
-          "type": "ONTOLOGY",
-          "uri": "pr"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000005047"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000005047"
+      "http://snomed.info/id/787091002"
     ],
     "uri": null
   },
@@ -5257,8 +5399,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C60387",
-          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C60387"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1255085007",
+          "semanticTag": "http://snomed.info/id/1255085007"
         }
       ]
     },
@@ -5273,8 +5415,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C60387",
-            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C60387"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1255085007",
+            "semanticTag": "http://snomed.info/id/1255085007"
           }
         ]
       },
@@ -5287,20 +5429,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ncit",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ncit",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "ncit"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/NCIT_C60387"
+        "http://snomed.info/id/1255085007"
       ],
       "uri": null
     },
@@ -5320,7 +5462,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/NCIT_C60387"
+      "http://snomed.info/id/1255085007"
     ],
     "uri": null
   },
@@ -5328,8 +5470,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000402",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000402"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F700423003",
+          "semanticTag": "http://snomed.info/id/700423003"
         }
       ]
     },
@@ -5344,8 +5486,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000402",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000402"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F700423003",
+            "semanticTag": "http://snomed.info/id/700423003"
           }
         ]
       },
@@ -5358,20 +5500,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "snomed",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "snomed",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "snomed"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000402"
+        "http://snomed.info/id/700423003"
       ],
       "uri": null
     },
@@ -5391,78 +5533,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000402"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_5386",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_5386"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_5386",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_5386"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_5386"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_5386"
+      "http://snomed.info/id/700423003"
     ],
     "uri": null
   },
@@ -5541,8 +5612,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000348",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000348"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004988",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004988"
         }
       ]
     },
@@ -5557,8 +5628,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0000348",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0000348"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0004988",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0004988"
           }
         ]
       },
@@ -5571,20 +5642,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "efo",
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "efo",
+          "name": "mondo",
           "type": "ONTOLOGY",
-          "uri": "efo"
+          "uri": "mondo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0000348"
+        "http://purl.obolibrary.org/obo/MONDO_0004988"
       ],
       "uri": null
     },
@@ -5604,7 +5675,78 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0000348"
+      "http://purl.obolibrary.org/obo/MONDO_0004988"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002512",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002512"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002512",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002512"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mondo",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mondo",
+          "type": "ONTOLOGY",
+          "uri": "mondo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/MONDO_0002512"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/MONDO_0002512"
     ],
     "uri": null
   },
@@ -5683,6 +5825,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPW_0001017",
+          "semanticTag": "http://purl.obolibrary.org/obo/PW_0001017"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPW_0001017",
+            "semanticTag": "http://purl.obolibrary.org/obo/PW_0001017"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "pw",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "pw",
+          "type": "ONTOLOGY",
+          "uri": "pw"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/PW_0001017"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/PW_0001017"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C60387",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C60387"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "GOOD",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C60387",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C60387"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_EMBEDDING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C60387"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C60387"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002751",
           "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002751"
         }
@@ -5747,361 +6031,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MONDO_0002751"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000125",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000125"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000125",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000125"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_1000125"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_1000125"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005082",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005082"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005082",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005082"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0005082"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0005082"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0001416",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0001416"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0001416",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0001416"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0001416"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0001416"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005153",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005153"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005153",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005153"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0005153"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0005153"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000262",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000262"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_1000262",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_1000262"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_1000262"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_1000262"
     ],
     "uri": null
   },
@@ -6180,8 +6109,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_424943",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_424943"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005082",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005082"
         }
       ]
     },
@@ -6196,8 +6125,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_424943",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_424943"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005082",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005082"
           }
         ]
       },
@@ -6210,20 +6139,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "ordo",
+        "annotator": "mondo",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "ordo",
+          "name": "mondo",
           "type": "ONTOLOGY",
-          "uri": "ordo"
+          "uri": "mondo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_424943"
+        "http://purl.obolibrary.org/obo/MONDO_0005082"
       ],
       "uri": null
     },
@@ -6243,7 +6172,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_424943"
+      "http://purl.obolibrary.org/obo/MONDO_0005082"
     ],
     "uri": null
   },
@@ -6251,8 +6180,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059918",
-          "semanticTag": "http://purl.obolibrary.org/obo/PR_000059918"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C4123",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C4123"
         }
       ]
     },
@@ -6267,8 +6196,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPR_000059918",
-            "semanticTag": "http://purl.obolibrary.org/obo/PR_000059918"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C4123",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C4123"
           }
         ]
       },
@@ -6281,20 +6210,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "pr",
+        "annotator": "ncit",
         "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "pr",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "pr"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/PR_000059918"
+        "http://purl.obolibrary.org/obo/NCIT_C4123"
       ],
       "uri": null
     },
@@ -6314,78 +6243,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/PR_000059918"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0006460",
-          "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0006460"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0006460",
-            "semanticTag": "http://www.ebi.ac.uk/efo/EFO_0006460"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "efo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "efo",
-          "type": "ONTOLOGY",
-          "uri": "efo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.ebi.ac.uk/efo/EFO_0006460"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.ebi.ac.uk/efo/EFO_0006460"
+      "http://purl.obolibrary.org/obo/NCIT_C4123"
     ],
     "uri": null
   },
@@ -6457,503 +6315,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCIT_C136716"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006215",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006215"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006215",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006215"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0006215"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0006215"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3500",
-          "semanticTag": "http://purl.obolibrary.org/obo/DOID_3500"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_3500",
-            "semanticTag": "http://purl.obolibrary.org/obo/DOID_3500"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "doid",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "doid",
-          "type": "ONTOLOGY",
-          "uri": "doid"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/DOID_3500"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/DOID_3500"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003205",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003205"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003205",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003205"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0003205"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0003205"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0024336",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0024336"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0024336",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0024336"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0024336"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0024336"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002752",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002752"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0002752",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0002752"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0002752"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0002752"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003209",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003209"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0003209",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0003209"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0003209"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0003209"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006234",
-          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006234"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0006234",
-            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0006234"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mondo",
-        "evidence": "OLS_EMBEDDING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mondo",
-          "type": "ONTOLOGY",
-          "uri": "mondo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/MONDO_0006234"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/MONDO_0006234"
     ],
     "uri": null
   },
@@ -7103,77 +6464,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0001663",
-          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0001663"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0001663",
-            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0001663"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "omit",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "omit",
-          "type": "ONTOLOGY",
-          "uri": "omit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OMIT_0001663"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OMIT_0001663"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMPATH_268",
           "semanticTag": "http://purl.obolibrary.org/obo/MPATH_268"
         }
@@ -7238,6 +6528,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/MPATH_268"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0001663",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0001663"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0001663",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0001663"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0001663"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0001663"
     ],
     "uri": null
   },
@@ -7813,6 +7174,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C45509",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C45509"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C45509",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C45509"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C45509"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C45509"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C2923",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C2923"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C2923",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C2923"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ncit",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ncit",
+          "type": "ONTOLOGY",
+          "uri": "ncit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/NCIT_C2923"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/NCIT_C2923"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4",
           "semanticTag": "http://purl.obolibrary.org/obo/DOID_4"
         }
@@ -7877,148 +7380,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/DOID_4"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGMS_0000031",
-          "semanticTag": "http://purl.obolibrary.org/obo/OGMS_0000031"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGMS_0000031",
-            "semanticTag": "http://purl.obolibrary.org/obo/OGMS_0000031"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ogms",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ogms",
-          "type": "ONTOLOGY",
-          "uri": "ogms"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OGMS_0000031"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OGMS_0000031"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0005457",
-          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0005457"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0005457",
-            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0005457"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "omit",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "omit",
-          "type": "ONTOLOGY",
-          "uri": "omit"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/OMIT_0005457"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/OMIT_0005457"
     ],
     "uri": null
   },
@@ -8168,6 +7529,148 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGMS_0000031",
+          "semanticTag": "http://purl.obolibrary.org/obo/OGMS_0000031"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOGMS_0000031",
+            "semanticTag": "http://purl.obolibrary.org/obo/OGMS_0000031"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ogms",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ogms",
+          "type": "ONTOLOGY",
+          "uri": "ogms"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OGMS_0000031"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OGMS_0000031"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0005457",
+          "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0005457"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FOMIT_0005457",
+            "semanticTag": "http://purl.obolibrary.org/obo/OMIT_0005457"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "omit",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "omit",
+          "type": "ONTOLOGY",
+          "uri": "omit"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://purl.obolibrary.org/obo/OMIT_0005457"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://purl.obolibrary.org/obo/OMIT_0005457"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGSSO_000486",
           "semanticTag": "http://purl.obolibrary.org/obo/GSSO_000486"
         }
@@ -8310,77 +7813,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_377788",
-          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_377788"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_377788",
-            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_377788"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "ordo",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "ordo",
-          "type": "ONTOLOGY",
-          "uri": "ordo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.orpha.net/ORDO/Orphanet_377788"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.orpha.net/ORDO/Orphanet_377788"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fedamontology.org%2Ftopic_0634",
           "semanticTag": "http://edamontology.org/topic_0634"
         }
@@ -8452,77 +7884,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0002927",
-          "semanticTag": "http://www.bioassayontology.org/bao#BAO_0002927"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0002927",
-            "semanticTag": "http://www.bioassayontology.org/bao#BAO_0002927"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "bao",
-        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "bao",
-          "type": "ONTOLOGY",
-          "uri": "bao"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://www.bioassayontology.org/bao#BAO_0002927"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://www.bioassayontology.org/bao#BAO_0002927"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FSIO_010299",
           "semanticTag": "http://semanticscience.org/resource/SIO_010299"
         }
@@ -8587,6 +7948,148 @@
     "replaces": [],
     "semanticTags": [
       "http://semanticscience.org/resource/SIO_010299"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_377788",
+          "semanticTag": "http://www.orpha.net/ORDO/Orphanet_377788"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.orpha.net%2FORDO%2FOrphanet_377788",
+            "semanticTag": "http://www.orpha.net/ORDO/Orphanet_377788"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "ordo",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "ordo",
+          "type": "ONTOLOGY",
+          "uri": "ordo"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.orpha.net/ORDO/Orphanet_377788"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.orpha.net/ORDO/Orphanet_377788"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0002927",
+          "semanticTag": "http://www.bioassayontology.org/bao#BAO_0002927"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "state",
+      "propertyValue": "Lung adenocarcinoma disease",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fwww.bioassayontology.org%2Fbao%23BAO_0002927",
+            "semanticTag": "http://www.bioassayontology.org/bao#BAO_0002927"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "state",
+        "propertyValue": "Lung adenocarcinoma disease",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "bao",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "bao",
+          "type": "ONTOLOGY",
+          "uri": "bao"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://www.bioassayontology.org/bao#BAO_0002927"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://www.bioassayontology.org/bao#BAO_0002927"
     ],
     "uri": null
   },
@@ -8807,8 +8310,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0003657",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0003657"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080304",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080304"
         }
       ]
     },
@@ -8823,8 +8326,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0003657",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0003657"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080304",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080304"
           }
         ]
       },
@@ -8837,20 +8340,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "doid",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "doid",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "doid"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0003657"
+        "http://purl.obolibrary.org/obo/DOID_0080304"
       ],
       "uri": null
     },
@@ -8870,7 +8373,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0003657"
+      "http://purl.obolibrary.org/obo/DOID_0080304"
     ],
     "uri": null
   },
@@ -8878,8 +8381,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008021",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008021"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4829",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_4829"
         }
       ]
     },
@@ -8894,8 +8397,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008021",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008021"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_4829",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_4829"
           }
         ]
       },
@@ -8908,20 +8411,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "doid",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "doid",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "doid"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008021"
+        "http://purl.obolibrary.org/obo/DOID_4829"
       ],
       "uri": null
     },
@@ -8941,7 +8444,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008021"
+      "http://purl.obolibrary.org/obo/DOID_4829"
     ],
     "uri": null
   },
@@ -8949,8 +8452,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008104",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008104"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080306",
+          "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080306"
         }
       ]
     },
@@ -8965,8 +8468,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008104",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008104"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FDOID_0080306",
+            "semanticTag": "http://purl.obolibrary.org/obo/DOID_0080306"
           }
         ]
       },
@@ -8979,20 +8482,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "doid",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "doid",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "doid"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008104"
+        "http://purl.obolibrary.org/obo/DOID_0080306"
       ],
       "uri": null
     },
@@ -9012,7 +8515,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008104"
+      "http://purl.obolibrary.org/obo/DOID_0080306"
     ],
     "uri": null
   },
@@ -9020,8 +8523,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008126",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008126"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005233",
+          "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005233"
         }
       ]
     },
@@ -9036,8 +8539,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008126",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008126"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FMONDO_0005233",
+            "semanticTag": "http://purl.obolibrary.org/obo/MONDO_0005233"
           }
         ]
       },
@@ -9050,20 +8553,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "mondo",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "mondo",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "mondo"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008126"
+        "http://purl.obolibrary.org/obo/MONDO_0005233"
       ],
       "uri": null
     },
@@ -9083,7 +8586,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008126"
+      "http://purl.obolibrary.org/obo/MONDO_0005233"
     ],
     "uri": null
   },
@@ -9091,8 +8594,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008128",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008128"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C117131",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C117131"
         }
       ]
     },
@@ -9107,8 +8610,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008128",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008128"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C117131",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C117131"
           }
         ]
       },
@@ -9121,20 +8624,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "ncit",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008128"
+        "http://purl.obolibrary.org/obo/NCIT_C117131"
       ],
       "uri": null
     },
@@ -9154,7 +8657,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008128"
+      "http://purl.obolibrary.org/obo/NCIT_C117131"
     ],
     "uri": null
   },
@@ -9162,8 +8665,8 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008003",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008003"
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C117134",
+          "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C117134"
         }
       ]
     },
@@ -9178,8 +8681,8 @@
       "_links": {
         "olslinks": [
           {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008003",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008003"
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C117134",
+            "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C117134"
           }
         ]
       },
@@ -9192,20 +8695,20 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "clo",
+        "annotator": "ncit",
         "evidence": "OLS_LEXICAL_FUZZY",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "clo",
+          "name": "ncit",
           "type": "ONTOLOGY",
-          "uri": "clo"
+          "uri": "ncit"
         }
       },
       "replacedBy": [],
       "replaces": [],
       "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008003"
+        "http://purl.obolibrary.org/obo/NCIT_C117134"
       ],
       "uri": null
     },
@@ -9225,78 +8728,7 @@
     "replacedBy": [],
     "replaces": [],
     "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008003"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008014",
-          "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008014"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "state",
-      "propertyValue": "Lung adenocarcinoma disease",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCLO_0008014",
-            "semanticTag": "http://purl.obolibrary.org/obo/CLO_0008014"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "state",
-        "propertyValue": "Lung adenocarcinoma disease",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "clo",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "clo",
-          "type": "ONTOLOGY",
-          "uri": "clo"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://purl.obolibrary.org/obo/CLO_0008014"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://purl.obolibrary.org/obo/CLO_0008014"
+      "http://purl.obolibrary.org/obo/NCIT_C117134"
     ],
     "uri": null
   }

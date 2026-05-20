@@ -140,6 +140,13 @@
     "uri": "apollo_sv"
   },
   {
+    "description": "Antibiotic resistance genes and mutations",
+    "name": "aro",
+    "title": "Antibiotic Resistance Ontology",
+    "type": "ONTOLOGY",
+    "uri": "aro"
+  },
+  {
     "description": "The BioAssay Ontology (BAO) describes biological screening assays and their results including high-throughput screening (HTS) data for the purpose of categorizing assays and data analysis. BAO is an extensible, knowledge-based, highly expressive (currently SHOIQ(D)) description of biological assays making use of descriptive logic based features of the Web Ontology Language (OWL). BAO currently has over 700 classes and also makes use of several other ontologies. It describes several concepts related to biological screening, including Perturbagen, Format, Meta Target, Design, Detection Technology, and Endpoint. Perturbagens are perturbing agents that are screened in an assay; they are mostly small molecules. Assay Meta Target describes what is known about the biological system and / or its components interrogated in the assay (and influenced by the Perturbagen). Meta target can be directly described as a molecular entity (e.g. a purified protein or a protein complex), or indirectly by a biological process or event (e.g. phosphorylation). Format describes the biological or chemical features common to each test condition in the assay and includes biochemical, cell-based, organism-based, and variations thereof. The assay Design describes the assay methodology and implementation of how the perturbation of the biological system is translated into a detectable signal. Detection Technology relates to the physical method and technical details to detect and record a signal. Endpoints are the final HTS results as they are usually published (such as IC50, percent inhibition, etc). BAO has been designed to accommodate multiplexed assays. All main BAO components include multiple levels of sub-categories and specification classes, which are linked via object property relationships forming an expressive knowledge-based representation.",
     "name": "bao",
     "title": "BioAssay Ontology",
@@ -560,6 +567,13 @@
     "uri": "emi"
   },
   {
+    "description": "The eNanoMapper project (https://www.enanomapper.net/), NanoCommons project (https://www.nanocommons.eu/) and ACEnano project (http://acenano-project.eu/) are creating a pan-European computational infrastructure for toxicological data management for ENMs, based on semantic web standards and ontologies. This ontology is an application ontology targeting the full domain of nanomaterial safety assessment. It re-uses several other ontologies including the NPO, CHEMINF, ChEBI, and ENVO.",
+    "name": "enm",
+    "title": "eNanoMapper ontology",
+    "type": "ONTOLOGY",
+    "uri": "enm"
+  },
+  {
     "description": "The Ensembl glossary lists the terms, data types and file types that are used in Ensembl and describes how they are used.",
     "name": "ensemblglossary",
     "title": "Ensembl Glossary",
@@ -616,7 +630,7 @@
     "uri": "fao"
   },
   {
-    "description": "A structured controlled vocabulary of sample preparation, visualization and imaging methods used in biomedical research.",
+    "description": "An ontology for the description of sample preparation, visualization, and imaging methods used in biomedical research.",
     "name": "fbbi",
     "title": "Biological Imaging Methods Ontology",
     "type": "ONTOLOGY",
@@ -642,6 +656,13 @@
     "title": "Drosophila development",
     "type": "ONTOLOGY",
     "uri": "fbdv"
+  },
+  {
+    "description": "Food-Drug interactions automatically extracted from scientific literature",
+    "name": "fideo",
+    "title": "Food Interactions with Drugs Evidence Ontology",
+    "type": "ONTOLOGY",
+    "uri": "fideo"
   },
   {
     "description": "Traits and phenotypes of flowering plants occurring in digitized Floras",
@@ -672,7 +693,7 @@
     "uri": "foodon"
   },
   {
-    "description": "These are the terms that are improted for FOVT to describe vertebrate traits.",
+    "description": "FuTRES Ontology of Vertebrate Traits is an application ontology used to convert vertebrate trait data in spreadsheet to triples. FOVT leverages the BioCollections Ontology (BCO) to link observations of individual specimens to their trait values. Traits are defined in the Ontology of Biological Attributes (OBA).",
     "name": "fovt",
     "title": "FuTRES Ontology of Vertebrate Traits",
     "type": "ONTOLOGY",
@@ -733,6 +754,13 @@
     "title": "Gene Expression Ontology",
     "type": "ONTOLOGY",
     "uri": "gexo"
+  },
+  {
+    "description": "The GALENOS Mental Health Ontology (GMHO) is being developed to represent the full range of concepts relevant to mental health. It forms a core component of the Global Alliance for Living Evidence on aNxiety, depressiOn and pSychosis (GALENOS) project, which aims to build a living evidence base for anxiety, depression, and psychosis.\nThe GMHO is designed to structure and organise evidence drawn from multiple living systematic reviews, supporting the creation of a structured data repository that enables clearer synthesis, integration, and retrieval of research findings. Its upper-level framework is intentionally designed for reuse, providing a general foundation for organising evidence across the broader mental health domain.",
+    "name": "gmho",
+    "title": "GALENOS Mental Health Ontology",
+    "type": "ONTOLOGY",
+    "uri": "gmho"
   },
   {
     "description": "An ontology for glycans based on GlyTouCan, but organized by subsumption.",
@@ -810,6 +838,13 @@
     "title": "HGNC Gene Group",
     "type": "ONTOLOGY",
     "uri": "hgnc.genegroup"
+  },
+  {
+    "description": "This ontology represents concepts related to homology, as well as other concepts used to describe similarity and non-homology.",
+    "name": "hom",
+    "title": "Homology Ontology",
+    "type": "ONTOLOGY",
+    "uri": "hom"
   },
   {
     "description": "The Human Phenotype Ontology (HPO) provides a standardized vocabulary of phenotypic abnormalities and clinical features encountered in human disease.",
@@ -1400,6 +1435,13 @@
     "uri": "pato"
   },
   {
+    "description": "An ontology for modeling and understanding of pharmacokinetics in biological systems.",
+    "name": "pbpko",
+    "title": "Physiologically-Based Pharmacokinetic Ontology",
+    "type": "ONTOLOGY",
+    "uri": "pbpko"
+  },
+  {
     "description": "Cell types that are provisionally defined by experimental techniques such as single cell transcriptomics rather than a straightforward & coherent set of properties.",
     "name": "pcl",
     "title": "Provisional Cell Ontology",
@@ -1433,6 +1475,13 @@
     "title": "Plant Experimental Conditions Ontology",
     "type": "ONTOLOGY",
     "uri": "peco"
+  },
+  {
+    "description": "Pathogen-Host Interaction database Ontology used by Ensembl",
+    "name": "phi",
+    "title": "PHI-base Ontology",
+    "type": "ONTOLOGY",
+    "uri": "phi"
   },
   {
     "description": "Ontology of species-neutral phenotypes observed in pathogen-host interactions.",
@@ -1496,6 +1545,13 @@
     "title": "Proteomics Identification Database Ontology",
     "type": "ONTOLOGY",
     "uri": "pride"
+  },
+  {
+    "description": "ProbOnto, is an ontology-based knowledge base of probability distributions, featuring more than eighty uni- and multivariate distributions with their defining functions, characteristics, relationships and reparameterisation formulas.",
+    "name": "probonto",
+    "title": "Probability Distribution Ontology",
+    "type": "ONTOLOGY",
+    "uri": "probonto"
   },
   {
     "description": "PROCO (PROcess Chemistry Ontology) is a formal ontology that aims to standardly represent entities and relations among entities in the domain of process chemistry.",
@@ -1666,11 +1722,25 @@
     "uri": "skos"
   },
   {
+    "description": "SwissLipids is a curated resource that provides information about known lipids, including lipid structure, metabolism, interactions, and subcellular and tissue localization. Information is curated from peer-reviewed literature and referenced using established ontologies, and provided with full provenance and evidence codes for curated assertions.",
+    "name": "slm",
+    "title": "SwissLipids",
+    "type": "ONTOLOGY",
+    "uri": "slm"
+  },
+  {
     "description": "The Space Life Sciences Ontology is an application ontology and is intended to support the operation of NASA's Life Sciences Data Archive and other systems that contain space life science research data.",
     "name": "slso",
     "title": "Space Life Sciences Ontology",
     "type": "ONTOLOGY",
     "uri": "slso"
+  },
+  {
+    "description": "SNOMED CT or SNOMED Clinical Terms is a systematically organized computer processable collection of medical terms providing codes, terms, synonyms and definitions used in clinical documentation and reporting.\n",
+    "name": "snomed",
+    "title": "SNOMED CT (International Edition)",
+    "type": "ONTOLOGY",
+    "uri": "snomed"
   },
   {
     "description": "A structured controlled vocabulary for sequence annotation, for the exchange of annotation data and for the description of sequence objects in databases.",
@@ -1743,6 +1813,20 @@
     "uri": "taxrank"
   },
   {
+    "description": "TEDDY is an ontology for dynamical behaviours, observable dynamical phenomena, and control elements of bio-models and biological systems in Systems and Synthetic Biology.",
+    "name": "teddy",
+    "title": "Terminology for Description of Dynamics",
+    "type": "ONTOLOGY",
+    "uri": "teddy"
+  },
+  {
+    "description": "A domain ontology on food and bioproduct processing and characterization that is a specialization of the PO2 ontology (Process and Observation Ontology).",
+    "name": "tfo",
+    "title": "TransformON",
+    "type": "ONTOLOGY",
+    "uri": "tfo"
+  },
+  {
     "description": "A structured controlled vocabulary of the anatomy of mosquitoes.",
     "name": "tgma",
     "title": "Mosquito gross anatomy ontology",
@@ -1757,7 +1841,7 @@
     "uri": "to"
   },
   {
-    "description": "The Pathogen Transmission Ontology describes the tranmission methods of human disease pathogens describing how a pathogen is transmitted from one host, reservoir, or source to another host. The pathogen transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles.",
+    "description": "The Pathogen Transmission Ontology describes the transmission methods of human disease pathogens describing how a pathogen is transmitted from one host, reservoir, or source to another host. The pathogen transmission may occur either directly or indirectly and may involve animate vectors or inanimate vehicles.",
     "name": "trans",
     "title": "Pathogen Transmission Ontology",
     "type": "ONTOLOGY",
@@ -1820,6 +1904,13 @@
     "uri": "upheno"
   },
   {
+    "description": "Variation Ontology, VariO, is an ontology for standardized, systematic description of effects, consequences and mechanisms of variations.",
+    "name": "vario",
+    "title": "Variation Ontology",
+    "type": "ONTOLOGY",
+    "uri": "vario"
+  },
+  {
     "description": "Vertebrate Breed Ontology is an ontology created to serve as a single computable resource for vertebrate breed names.",
     "name": "vbo",
     "title": "Vertebrate Breed Ontology",
@@ -1827,7 +1918,7 @@
     "uri": "vbo"
   },
   {
-    "description": "The Vaccine Ontology (VO) is a community-based biomedical ontology in the domain of vaccine and vaccination. VO aims to standardize vaccine types and annotations, integrate various vaccine data, and support computer-assisted reasoning. The VO supports basic vaccine R&D and clinical vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities.",
+    "description": "The Vaccine Ontology (VO) is a community-based biomedical ontology in the domain of vaccines and vaccination. VO aims to standardize vaccine types and annotations, integrate various vaccine data, and support computer-assisted reasoning. The VO supports basic vaccine R&D and clinical vaccine usage. VO is being developed as a community-based ontology with support and collaborations from the vaccine and bio-ontology communities.",
     "name": "vo",
     "title": "Vaccine Ontology",
     "type": "ONTOLOGY",
@@ -1918,11 +2009,18 @@
     "uri": "zeco"
   },
   {
-    "description": "ZFA description.",
+    "description": "A structured controlled vocabulary of the anatomy and development of the Zebrafish",
     "name": "zfa",
-    "title": "Zebrafish Anatomy Ontology (ZFA)",
+    "title": "Zebrafish anatomy and development ontology",
     "type": "ONTOLOGY",
     "uri": "zfa"
+  },
+  {
+    "description": "Developmental stages of the Zebrafish",
+    "name": "zfs",
+    "title": "Zebrafish developmental stages ontology",
+    "type": "ONTOLOGY",
+    "uri": "zfs"
   },
   {
     "description": "The Zebrafish Phenotype Ontology formally defines all phenotypes of the Zebrafish model organism.",
