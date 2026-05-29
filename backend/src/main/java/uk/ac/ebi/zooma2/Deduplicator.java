@@ -12,62 +12,83 @@ import java.util.stream.Collectors;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
+import uk.ac.ebi.zooma2.rules.RuleContext;
+import uk.ac.ebi.zooma2.rules.RuleEngine;
 
 /**
  * Centralised deduplication and filtering of mapping results.
  *
- * All rules are applied in order:
- *   1. Filter by allowed ontologies (if an ontology filter is active)
- *   2. Suppress curated-embedding results when a curated-exact result exists
- *   3. Among embedding results, keep only the best match (ties allowed)
- *   4. Drop results much weaker than the best match
- *   5. Deduplicate by ontologyTermID, keeping the highest confidence
+ * <p>Rules are applied in order:
+ *   1. Exclude rejected (thumbs-down) terms and required-datasource filter
+ *   2. Filter by allowed ontologies (if an ontology filter is active)
+ *   3. Assign each result a composite {@link RankFusion} score combining
+ *      Reciprocal-Rank-Fusion across matchers with a small ontology-priority bonus
+ *   4. Suppress curated-embedding results when a curated-exact result exists
+ *   5. Among embedding results, keep only the best match (ties allowed)
+ *   6. Drop results much weaker than the best match
+ *   7. Deduplicate by ontologyTermID, keeping the result with the highest
+ *      rankingScore (mappingConfidence as tiebreak)
+ *   8. Optionally collapse to one result per target ontology (opt-in via
+ *      {@code filter.limitPerOntology})
  */
 public class Deduplicator {
 
     private final PrefixMap prefixMap;
+    private final RuleEngine ruleEngine;
 
     public Deduplicator(PrefixMap prefixMap) {
+        this(prefixMap, RuleEngine.empty());
+    }
+
+    public Deduplicator(PrefixMap prefixMap, RuleEngine ruleEngine) {
         this.prefixMap = prefixMap;
+        this.ruleEngine = ruleEngine != null ? ruleEngine : RuleEngine.empty();
     }
 
     /**
      * Apply all dedup/filter rules to a list of MapResults for a single term.
      */
     public List<MapResult> deduplicate(List<MapResult> results, Filter filter) {
-        return deduplicate(results, filter, null);
+        return deduplicate(results, filter, null, null);
     }
 
     /**
      * Apply all dedup/filter rules, optionally excluding specific term IDs.
      */
     public List<MapResult> deduplicate(List<MapResult> results, Filter filter, List<String> excludeTermIds) {
-        // 0. Exclude rejected term IDs (thumbs-down)
+        return deduplicate(results, filter, excludeTermIds, null);
+    }
+
+    /**
+     * Apply all dedup/filter rules, optionally excluding specific term IDs and
+     * applying the declarative GATE rules for the supplied {@link RuleContext}.
+     */
+    public List<MapResult> deduplicate(List<MapResult> results, Filter filter, List<String> excludeTermIds, RuleContext ruleCtx) {
         excludeTerms(results, excludeTermIds);
-
-        // 0b. Filter by required datasources
         filterByRequiredDatasources(results, filter);
-
-        // 1. Filter by ontology
         filterByOntologies(results, filter);
 
-        // 2. If any curated-exact result exists, drop curated-embedding results
+        // GATE: drop candidates that violate domain rules, before fusion/ranking
+        // so rejected terms never influence the composite score.
+        applyGate(results, ruleCtx);
+
+        // Compute composite rankingScore (RRF across matchers + ontology-priority
+        // bonus). Must run before any step that compares cross-method scores.
+        RankFusion.apply(results, filter);
+
+        // SCORE / SELECT: rule-driven bonuses/penalties and ontology-preference
+        // nudges, composed on top of the fusion score.
+        applyScore(results, ruleCtx);
+        applySelect(results, ruleCtx);
+
         suppressEmbeddingIfExactExists(results);
-
-        // 3. Among embedding results, keep only the best match
         keepBestEmbeddingResult(results);
-
-        // 4. Drop results much weaker than the best match
         suppressWeakResults(results, filter);
 
-        // 5. Deduplicate by term ID, keeping highest confidence
         var deduped = deduplicateByTermId(results);
 
-        // 6. When target ontologies set, keep only the best result per ontology
+        // Opt-in: collapse to a single best result per target ontology.
         keepBestPerTargetOntology(deduped, filter);
-
-        // 7. Among remaining results, remove lower-priority ontology results
-        keepHigherPriorityOnTie(deduped, filter);
 
         return deduped;
     }
@@ -78,13 +99,80 @@ public class Deduplicator {
      * so that all viable candidates are returned.
      */
     public List<MapResult> deduplicateLight(List<MapResult> results, Filter filter, List<String> excludeTermIds) {
+        return deduplicateLight(results, filter, excludeTermIds, null);
+    }
+
+    public List<MapResult> deduplicateLight(List<MapResult> results, Filter filter, List<String> excludeTermIds, RuleContext ruleCtx) {
         excludeTerms(results, excludeTermIds);
         filterByRequiredDatasources(results, filter);
         filterByOntologies(results, filter);
+        // GATE still applies in the light path: forbidden terms must not leak just
+        // because the caller asked for the full candidate set.
+        applyGate(results, ruleCtx);
+        // Stamp rankingScore even in the light path so callers that consume the
+        // candidate set can re-rank deterministically.
+        RankFusion.apply(results, filter);
+        applyScore(results, ruleCtx);
+        applySelect(results, ruleCtx);
         return deduplicateByTermId(results);
     }
 
     // ---- individual rules (package-visible for testing) ----
+
+    /**
+     * GATE: remove candidates rejected by the declarative rule engine. No-op when
+     * no rule context is supplied or the engine has no rulesets. Error results are
+     * preserved so failures still surface to the caller.
+     */
+    void applyGate(List<MapResult> results, RuleContext ruleCtx) {
+        if (ruleCtx == null || ruleEngine == null || ruleEngine.isEmpty()) return;
+        results.removeIf(r -> {
+            if (r.error != null) return false;
+            boolean reject = ruleEngine.shouldReject(ruleCtx, r);
+            if (reject) {
+                System.err.println("GATE rejected " + r.ontologyTermID + " for '"
+                    + ruleCtx.originalText() + "': " + ruleCtx.rejectReason());
+            }
+            return reject;
+        });
+    }
+
+    /** Largest ranking-score nudge a SELECT ontology-preference rule can add. */
+    private static final double SELECT_BONUS_MAX = 0.01;
+
+    /**
+     * SCORE: add each candidate's net rule-driven score delta to its rankingScore.
+     * No-op when no rule context is supplied or the engine has no rulesets.
+     */
+    void applyScore(List<MapResult> results, RuleContext ruleCtx) {
+        if (ruleCtx == null || ruleEngine.isEmpty()) return;
+        for (MapResult r : results) {
+            if (r.error != null) continue;
+            r.rankingScore += ruleEngine.scoreDelta(ruleCtx, r);
+        }
+    }
+
+    /**
+     * SELECT: nudge rankingScore by ontology preference. A declared order such as
+     * [efo, mondo, hp, oba] adds a small, rank-scaled bonus so that — all else
+     * equal — preferred ontologies sort first. Composes with the existing
+     * {@link RankFusion} priority bonus rather than replacing it.
+     */
+    void applySelect(List<MapResult> results, RuleContext ruleCtx) {
+        if (ruleCtx == null || ruleEngine.isEmpty()) return;
+        List<String> order = ruleEngine.selectOntologyOrder(ruleCtx);
+        if (order == null || order.isEmpty()) return;
+        List<String> lower = order.stream().map(s -> s.toLowerCase(Locale.ROOT)).collect(Collectors.toList());
+        int n = lower.size();
+        for (MapResult r : results) {
+            if (r.error != null) continue;
+            String onto = getOntologyPrefix(r);
+            int idx = onto == null ? -1 : lower.indexOf(onto);
+            if (idx >= 0) {
+                r.rankingScore += SELECT_BONUS_MAX * (double) (n - idx) / n;
+            }
+        }
+    }
 
     void excludeTerms(List<MapResult> results, List<String> excludeTermIds) {
         if (excludeTermIds == null || excludeTermIds.isEmpty()) return;
@@ -132,71 +220,48 @@ public class Deduplicator {
     }
 
     /**
-     * When target ontologies are set, keep only the single best result per
-     * target ontology. Multiple results from the same ontology are redundant
-     * when the user has specified which ontologies they care about.
+     * Opt-in: when {@code filter.limitPerOntology} is true and target ontologies
+     * are set, keep only the single best result per target ontology. "Best" is
+     * measured by composite {@link MapResult#rankingScore}, with
+     * {@code mappingConfidence} as tiebreak.
+     *
+     * <p>By default ({@code limitPerOntology=false}) this is a no-op so callers
+     * that want the full candidate set for downstream re-ranking get every
+     * unique term back. Cross-ontology priority is already encoded in
+     * rankingScore by {@link RankFusion}, so no separate tie-break pass is
+     * needed at this stage.
      */
     void keepBestPerTargetOntology(List<MapResult> results, Filter filter) {
-        if (filter == null || filter.targetOntologies == null || filter.targetOntologies.isEmpty()) {
+        if (filter == null || !filter.limitPerOntology) {
+            return;
+        }
+        if (filter.targetOntologies == null || filter.targetOntologies.isEmpty()) {
             return;
         }
         Set<String> targets = filter.targetOntologies.stream()
             .map(s -> s.toLowerCase(Locale.ROOT))
             .collect(Collectors.toSet());
 
-        // Find best confidence per target ontology
-        Map<String, Double> bestPerOntology = new HashMap<>();
+        // Find best (rankingScore, mappingConfidence) per target ontology.
+        Map<String, double[]> bestPerOntology = new HashMap<>();
         for (var r : results) {
             String onto = getOntologyPrefix(r);
             if (onto == null || !targets.contains(onto)) continue;
-            bestPerOntology.merge(onto, r.mappingConfidence, Math::max);
+            double[] cur = bestPerOntology.get(onto);
+            if (cur == null || r.rankingScore > cur[0]
+                    || (r.rankingScore == cur[0] && r.mappingConfidence > cur[1])) {
+                bestPerOntology.put(onto, new double[]{r.rankingScore, r.mappingConfidence});
+            }
         }
 
         results.removeIf(r -> {
             String onto = getOntologyPrefix(r);
             if (onto == null || !targets.contains(onto)) return false;
-            return r.mappingConfidence < bestPerOntology.get(onto);
+            double[] best = bestPerOntology.get(onto);
+            if (r.rankingScore < best[0]) return true;
+            if (r.rankingScore > best[0]) return false;
+            return r.mappingConfidence < best[1];
         });
-    }
-
-    /**
-     * Among results whose ontologies are both in the target list, remove
-     * lower-priority ontology results when a higher-priority ontology
-     * result exists with an equal or better score.
-     */
-    void keepHigherPriorityOnTie(List<MapResult> results, Filter filter) {
-        if (filter == null || filter.targetOntologies == null || filter.targetOntologies.size() < 2) {
-            return;
-        }
-        // Build priority map: lower index = higher priority
-        Map<String, Integer> priority = new HashMap<>();
-        for (int i = 0; i < filter.targetOntologies.size(); i++) {
-            priority.put(filter.targetOntologies.get(i).toLowerCase(Locale.ROOT), i);
-        }
-
-        // For each target-ontology result, check if a higher-priority
-        // target-ontology result exists with equal or better confidence
-        Set<MapResult> toRemove = new java.util.HashSet<>();
-        for (var r : results) {
-            String onto = getOntologyPrefix(r);
-            if (onto == null || !priority.containsKey(onto)) continue;
-            int myPriority = priority.get(onto);
-
-            for (var other : results) {
-                if (other == r) continue;
-                String otherOnto = getOntologyPrefix(other);
-                if (otherOnto == null || !priority.containsKey(otherOnto)) continue;
-                int otherPriority = priority.get(otherOnto);
-
-                // If a higher-priority result exists with equal or better score, remove this one
-                if (otherPriority < myPriority
-                        && other.mappingConfidence >= r.mappingConfidence) {
-                    toRemove.add(r);
-                    break;
-                }
-            }
-        }
-        results.removeAll(toRemove);
     }
 
     void suppressEmbeddingIfExactExists(List<MapResult> results) {
@@ -251,6 +316,10 @@ public class Deduplicator {
             if (key == null) continue;
             key = prefixMap.shortFormToIri(key);
             MapResult existing = best.get(key);
+            // Prefer the survivor with the highest raw matcher confidence — that's
+            // what the API reports. rankingScore is already term-aggregated by
+            // RankFusion, so it is the same across all per-method entries for
+            // a given term and can't be used to pick between them.
             if (existing == null || r.mappingConfidence > existing.mappingConfidence) {
                 best.put(key, r);
             }

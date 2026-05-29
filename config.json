@@ -5,6 +5,7 @@
         "max_concurrent_requests": 5
     },
     "ols_embedding": {
+        "enabled": true,
         "min_similarity": 0.7,
         "max_deep_results": 100,
         "max_shallow_results": 10,

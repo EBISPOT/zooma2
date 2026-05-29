@@ -1,0 +1,90 @@
+{
+  "id": "hdruk",
+  "domain": "hdruk",
+  "note": "Opt-in ruleset for HDR UK Phenotype Library names (PL_phenotypes.xlsx). REWRITE-only. Patterns and frequencies derived empirically from the dataset's fixable misses (see /tmp/pl_freq.py). Trailing coding-tag/obsolete/version parens are stripped FIRST (priority 70) because they block the code-list-suffix strip. Ontology routing is the caller's job (set targetOntologies by phenotype type).",
+  "default": false,
+  "appliesWhen": { "propertyTypeIn": ["*"] },
+  "rules": [
+    {
+      "id": "hdruk-strip-trailing-cruft",
+      "stage": "rewrite",
+      "priority": 70,
+      "note": "strip a trailing run of coding-system/obsolete/grouping/route/version parens & version tags, e.g. 'X (ICD10) V1.3', 'X diagnosis codes (obsolete)', 'Amoxicillin (oral)'",
+      "then": [ { "normalize": { "pattern": "(?i)(?:\\s*(?:\\((?:obsolete|snomed|icd-?10|icd-?9|read(?:\\s*v\\d+)?|ctv3|opcs-?4?|bnf|dm\\+?d|20\\d\\d\\s+grouping|persisting|resolved|numerical value|oral|iv|im|subcutaneous|topical|inhaled|m\\d)\\)|v\\d+(?:[.\\s]\\d+)*))+\\s*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-strip-care-context",
+      "stage": "rewrite",
+      "priority": 66,
+      "note": "strip comorbidity-index / care-setting tail: '- Charlson/Elixhauser primary care', 'Secondary care'",
+      "then": [ { "normalize": { "pattern": "(?i)\\s*[-–]?\\s*(?:charlson|elixhauser)?\\s*(?:primary|secondary)\\s+care\\s*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-strip-cohort-tail",
+      "stage": "rewrite",
+      "priority": 64,
+      "note": "strip trailing cohort/source tags: 'Biobank', 'UK Biobank', 'CPRD'",
+      "then": [ { "normalize": { "pattern": "(?i)\\s+(?:uk\\s+)?biobank\\s*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-strip-qualified-codes",
+      "stage": "rewrite",
+      "priority": 60,
+      "note": "strip 'X diagnosis/administration/drug/... codes' EHR code-list suffix",
+      "then": [ { "normalize": { "pattern": "(?i)\\s+(?:diagnosis|diagnostic|administration|drug|product|medication|procedure|referral)\\s+codes?\\s*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-strip-used-in-audit",
+      "stage": "rewrite",
+      "priority": 57,
+      "note": "strip trailing 'used in (the) National Audit ...' context",
+      "then": [ { "normalize": { "pattern": "(?i)\\s+used\\s+in\\s+(?:the\\s+)?national\\s+audit.*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-strip-codes",
+      "stage": "rewrite",
+      "priority": 56,
+      "note": "strip trailing bare 'codes'/'code' word",
+      "then": [ { "normalize": { "pattern": "(?i)\\s+codes?\\s*$", "replacement": "" } } ]
+    },
+    {
+      "id": "hdruk-variant-base",
+      "stage": "rewrite",
+      "priority": 40,
+      "note": "also search the parenthetical-stripped base form",
+      "then": [ { "addVariant": { "transform": "stripParentheticals" } } ]
+    },
+    {
+      "id": "hdruk-variant-abbrev",
+      "stage": "rewrite",
+      "priority": 40,
+      "note": "also search the in-paren abbreviation, e.g. 'Chronic Kidney Disease (CKD)' -> 'CKD'",
+      "then": [ { "addVariant": { "transform": "extractParenthetical" } } ]
+    },
+    {
+      "id": "hdruk-expand-abbreviations",
+      "stage": "rewrite",
+      "priority": 35,
+      "note": "search an abbreviation-expanded variant. Small curated dict of unambiguous clinical abbreviations seen in PL_phenotypes / standard usage.",
+      "then": [ { "addNormalizedVariant": { "subs": [
+        {"pattern":"(?i)\\besr\\b","replacement":"erythrocyte sedimentation rate"},
+        {"pattern":"(?i)\\bpsa\\b","replacement":"prostate specific antigen"},
+        {"pattern":"(?i)\\bcrp\\b","replacement":"c reactive protein"},
+        {"pattern":"(?i)\\bbmi\\b","replacement":"body mass index"},
+        {"pattern":"(?i)\\bcopd\\b","replacement":"chronic obstructive pulmonary disease"},
+        {"pattern":"(?i)\\bckd\\b","replacement":"chronic kidney disease"},
+        {"pattern":"(?i)\\baaa\\b","replacement":"abdominal aortic aneurysm"},
+        {"pattern":"(?i)\\bami\\b","replacement":"acute myocardial infarction"},
+        {"pattern":"(?i)\\bcvd\\b","replacement":"cardiovascular disease"},
+        {"pattern":"(?i)\\bibs\\b","replacement":"irritable bowel syndrome"},
+        {"pattern":"(?i)\\bibd\\b","replacement":"inflammatory bowel disease"},
+        {"pattern":"(?i)\\buti\\b","replacement":"urinary tract infection"},
+        {"pattern":"(?i)\\burti\\b","replacement":"upper respiratory tract infection"},
+        {"pattern":"(?i)\\bt2dm\\b","replacement":"type 2 diabetes mellitus"},
+        {"pattern":"(?i)\\bt1dm\\b","replacement":"type 1 diabetes mellitus"},
+        {"pattern":"(?i)\\bgvhd\\b","replacement":"graft versus host disease"},
+        {"pattern":"(?i)\\btia\\b","replacement":"transient ischaemic attack"}
+      ] } } ]
+    }
+  ]
+}

@@ -20,11 +20,17 @@ public class V3FilterDto {
      * Target ontologies and includeOtherOntologies are set at the request level, not here.
      */
     public Filter toFilter(List<String> targetOntologies, boolean includeOtherOntologies) {
+        return toFilter(targetOntologies, includeOtherOntologies, false);
+    }
+
+    /** Overload that also threads through {@code limitPerOntology}. */
+    public Filter toFilter(List<String> targetOntologies, boolean includeOtherOntologies, boolean limitPerOntology) {
         return Filter.fromLists(
             required != null ? required : List.of(),
             preferred != null ? preferred : List.of(),
             targetOntologies != null ? targetOntologies : List.of(),
-            includeOtherOntologies
+            includeOtherOntologies,
+            limitPerOntology
         );
     }
 }

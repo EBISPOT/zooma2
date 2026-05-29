@@ -47,6 +47,7 @@ public class AnnotationEngine {
     private final OlsEmbeddingMatcher olsEmbeddingMatcher;
     private final OxoMatcher oxoMatcher;
     private final OlsEmbeddingSimilarMatcher olsEmbeddingSimilarMatcher;
+    private final boolean embeddingEnabled;
 
     public AnnotationEngine(OlsClientRepo olsRepo) {
         OxoClient oxoClient = new OxoClient();
@@ -67,6 +68,7 @@ public class AnnotationEngine {
             this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo);
         }
 
+        this.embeddingEnabled = olsEmbeddingCfg == null || olsEmbeddingCfg.enabled == null || olsEmbeddingCfg.enabled;
         this.oxoMatcher = new OxoMatcher(oxoClient, olsRepo);
         this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null, olsRepo.getSimilarSemaphore());
     }
@@ -104,15 +106,15 @@ public class AnnotationEngine {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                 return olsLexicalMatcher.findMatches(context);
             });
-            var olsEmbeddingFuture = executor.submit(() -> {
+            var olsEmbeddingFuture = embeddingEnabled ? executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                 return olsEmbeddingMatcher.findMatches(context);
-            });
+            }) : null;
 
             List<Annotation> allResults = new ArrayList<>();
             try {
                 allResults.addAll(olsLexicalFuture.get());
-                allResults.addAll(olsEmbeddingFuture.get());
+                if (olsEmbeddingFuture != null) allResults.addAll(olsEmbeddingFuture.get());
             } catch (InterruptedException e) {
                 executor.shutdownNow();
                 Thread.currentThread().interrupt();
@@ -121,7 +123,7 @@ public class AnnotationEngine {
 
             System.err.println("Phase 1 results for '" + stringToMap + "': " + allResults.size() +
                 " (" + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() +
-                ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() + ")");
+                (olsEmbeddingFuture != null ? ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() : ", embedding=disabled") + ")");
 
             // Phase 2 trigger:
             //   deep=true  → always run Phase 2
@@ -142,13 +144,13 @@ public class AnnotationEngine {
 
             if (needsDeep && !allResults.isEmpty()) {
                 System.err.println("Running deep search for '" + stringToMap + "'");
-                var deepFuture = executor.submit(() -> {
+                var deepFuture = embeddingEnabled ? executor.submit(() -> {
                     if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                     return olsEmbeddingMatcher.findDeepMatches(context);
-                });
+                }) : null;
                 List<Annotation> deepResults;
                 try {
-                    deepResults = deepFuture.get();
+                    deepResults = deepFuture != null ? deepFuture.get() : List.of();
                 } catch (InterruptedException e) {
                     executor.shutdownNow();
                     Thread.currentThread().interrupt();
@@ -170,16 +172,16 @@ public class AnnotationEngine {
                         return oxoMatcher.findMatches(expansionContext);
                     })
                     : null;
-                var similarFuture = executor.submit(() -> {
+                var similarFuture = embeddingEnabled ? executor.submit(() -> {
                     if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                     return olsEmbeddingSimilarMatcher.findMatches(expansionContext);
-                });
+                }) : null;
 
                 List<Annotation> oxoResults;
                 List<Annotation> embeddingSimilarResults;
                 try {
                     oxoResults = oxoFuture != null ? oxoFuture.get() : List.of();
-                    embeddingSimilarResults = similarFuture.get();
+                    embeddingSimilarResults = similarFuture != null ? similarFuture.get() : List.of();
                 } catch (InterruptedException e) {
                     executor.shutdownNow();
                     Thread.currentThread().interrupt();

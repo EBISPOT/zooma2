@@ -12,6 +12,8 @@ import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
+import uk.ac.ebi.zooma2.rules.RuleEngine;
+import uk.ac.ebi.zooma2.rules.RuleSetLoader;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
 import uk.ac.ebi.zooma2.mapping.StringMapper;
 import uk.ac.ebi.zooma2.mapping.BatchMapper;
@@ -20,18 +22,37 @@ public class ZoomaAnnotator {
 
     OlsClientRepo olsRepo;
     PrefixMap prefixMap = new PrefixMap();
-    Deduplicator deduplicator = new Deduplicator(prefixMap);
+    RuleEngine ruleEngine = buildRuleEngine();
+    Deduplicator deduplicator = new Deduplicator(prefixMap, ruleEngine);
     OlsTextTaggerMatcher textTaggerService;
     AnnotationEngine annotationEngine;
     StringMapper stringMapper;
     BatchMapper batchMapper;
+    AncestorSurfacer ancestorSurfacer;
+
+    /**
+     * Builds the declarative {@link RuleEngine} from {@link ZoomaConfig}. Disabled
+     * when {@code rules.enabled=false}; otherwise loads from {@code rules.path} if
+     * set, else the default rules directory. An empty engine is a no-op.
+     */
+    private static RuleEngine buildRuleEngine() {
+        var rc = ZoomaConfig.config != null ? ZoomaConfig.config.rules : null;
+        if (rc != null && Boolean.FALSE.equals(rc.enabled)) {
+            return RuleEngine.empty();
+        }
+        if (rc != null && rc.path != null && !rc.path.isBlank()) {
+            return RuleSetLoader.loadFrom(java.nio.file.Paths.get(rc.path));
+        }
+        return RuleSetLoader.loadDefault();
+    }
 
     public ZoomaAnnotator(OlsClientRepo olsRepo) {
         this.olsRepo = olsRepo;
         this.textTaggerService = new OlsTextTaggerMatcher(olsRepo, prefixMap);
         this.annotationEngine = new AnnotationEngine(olsRepo);
-        this.stringMapper = new StringMapper(annotationEngine, olsRepo, prefixMap);
-        this.batchMapper = new BatchMapper(stringMapper, textTaggerService, deduplicator);
+        this.stringMapper = new StringMapper(annotationEngine, olsRepo, prefixMap, ruleEngine);
+        this.ancestorSurfacer = new AncestorSurfacer(olsRepo);
+        this.batchMapper = new BatchMapper(stringMapper, textTaggerService, deduplicator, ancestorSurfacer);
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {

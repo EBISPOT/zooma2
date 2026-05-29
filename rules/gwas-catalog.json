@@ -1,0 +1,8 @@
+{
+  "id": "gwas-catalog",
+  "domain": "trait",
+  "note": "Opt-in profile (default:false). GWAS Catalog curation is trait mapping, so it composes the trait ruleset. Select per request via ruleSets:[\"gwas-catalog\"].",
+  "default": false,
+  "appliesWhen": { "propertyTypeIn": ["*"] },
+  "includes": ["trait-default", "trait-canonical"]
+}

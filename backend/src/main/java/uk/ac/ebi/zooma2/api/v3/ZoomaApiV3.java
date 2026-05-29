@@ -175,14 +175,16 @@ public class ZoomaApiV3 {
     private void map(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
         validateMapRequest(request);
-        
+
         var internalStringsToMap = request.properties.stream().map(V3StringToMapDto::toStringToMap);
-        
+
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        boolean limitPerOntology = Boolean.TRUE.equals(request.limitPerOntology);
         var filter = request.filter != null
-            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
-            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies, limitPerOntology)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies, limitPerOntology);
+        filter = filter.withRuleSets(request.ruleSets);
         
         // Use requested model, or get default from OLS (first with can_embed=true)
         String model = request.model;
@@ -217,11 +219,8 @@ public class ZoomaApiV3 {
                 
                 List<V3MappingCandidateDto> candidates = results.stream()
                     .filter(r -> r.error == null)
+                    .sorted(rankingComparator())
                     .map(V3MappingCandidateDto::from)
-                    .sorted(Comparator.comparing(
-                        c -> c.confidence != null ? c.confidence : 0.0, 
-                        Comparator.reverseOrder()
-                    ))
                     .collect(Collectors.toList());
                 
                 var dto = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
@@ -244,12 +243,14 @@ public class ZoomaApiV3 {
     private void mapStream(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
         validateMapRequest(request);
-        
+
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        boolean limitPerOntology = Boolean.TRUE.equals(request.limitPerOntology);
         var filter = request.filter != null
-            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
-            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies, limitPerOntology)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies, limitPerOntology);
+        filter = filter.withRuleSets(request.ruleSets);
         
         String model = request.model;
         if (model == null || model.isEmpty()) {
@@ -318,11 +319,8 @@ public class ZoomaApiV3 {
 
                     List<V3MappingCandidateDto> candidates = results.stream()
                         .filter(r -> r.error == null)
+                        .sorted(rankingComparator())
                         .map(V3MappingCandidateDto::from)
-                        .sorted(Comparator.comparing(
-                            c -> c.confidence != null ? c.confidence : 0.0,
-                            Comparator.reverseOrder()
-                        ))
                         .collect(Collectors.toList());
 
                     var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
@@ -381,6 +379,7 @@ public class ZoomaApiV3 {
         var filter = request.filter != null
             ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
             : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+        filter = filter.withRuleSets(request.ruleSets);
 
         String model = request.model;
         if (model == null || model.isEmpty()) {
@@ -506,11 +505,8 @@ public class ZoomaApiV3 {
 
                     List<V3MappingCandidateDto> candidates = results.stream()
                         .filter(r -> r.error == null)
+                        .sorted(rankingComparator())
                         .map(V3MappingCandidateDto::from)
-                        .sorted(Comparator.comparing(
-                            c -> c.confidence != null ? c.confidence : 0.0,
-                            Comparator.reverseOrder()
-                        ))
                         .collect(Collectors.toList());
 
                     var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
@@ -583,6 +579,18 @@ public class ZoomaApiV3 {
         return propertyType;
     }
 
+    /**
+     * Order candidates by composite {@code rankingScore} (RRF across matchers
+     * plus ontology-priority bonus) descending, with raw {@code mappingConfidence}
+     * as tiebreaker. Falls back to confidence-only sort when the ranking step
+     * hasn't run (e.g. pre-resolved error placeholders).
+     */
+    private static Comparator<MapResult> rankingComparator() {
+        return Comparator
+            .comparingDouble((MapResult r) -> r.rankingScore).reversed()
+            .thenComparing(Comparator.comparingDouble((MapResult r) -> r.mappingConfidence).reversed());
+    }
+
     private static void validateMapRequest(V3MapRequestDto request) {
         if (request == null) {
             throw new BadRequestResponse("Request body is required");
@@ -599,6 +607,7 @@ public class ZoomaApiV3 {
         validateString("model", request.model, false, MAX_MODEL_LENGTH);
         validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
         validateStringList("excludeTermIds", request.excludeTermIds, MAX_EXCLUDED_TERMS, MAX_LIST_ITEM_LENGTH);
+        validateStringList("ruleSets", request.ruleSets, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
         validateFilter(request.filter);
 
         for (int i = 0; i < request.properties.size(); i++) {
@@ -618,6 +627,7 @@ public class ZoomaApiV3 {
         validateString("text", request.text, true, MAX_ANNOTATE_TEXT_LENGTH);
         validateString("model", request.model, false, MAX_MODEL_LENGTH);
         validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
+        validateStringList("ruleSets", request.ruleSets, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
         validateFilter(request.filter);
     }
 

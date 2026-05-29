@@ -35,4 +35,19 @@ public class V3MapRequestDto {
      * Defaults to the value of {@code returnAll} if not set.
      */
     public Boolean deep;
+
+    /**
+     * When true, deduplication keeps only the single best result per target
+     * ontology. Opt-in: when null or false, the full candidate set (one per
+     * unique term) is returned, which is the right default for callers that
+     * re-rank downstream.
+     */
+    public Boolean limitPerOntology;
+
+    /**
+     * Rulesets to apply for this request, by id (e.g. {@code ["gwas-catalog"]}).
+     * When set, only the named rulesets (and the rulesets they {@code include})
+     * are applied. When omitted, all default rulesets apply.
+     */
+    public List<String> ruleSets;
 }

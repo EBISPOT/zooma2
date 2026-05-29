@@ -1,6 +1,7 @@
 package uk.ac.ebi.zooma2.mapping;
 
 import uk.ac.ebi.zooma2.Deduplicator;
+import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
@@ -9,6 +10,9 @@ import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.rules.RuleContext;
+import uk.ac.ebi.zooma2.rules.RuleEngine;
+import uk.ac.ebi.zooma2.rules.RuleStage;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
 
 import java.util.ArrayList;
@@ -31,11 +35,41 @@ public class StringMapper {
     private final AnnotationEngine annotationEngine;
     private final OlsClientRepo olsRepo;
     private final PrefixMap prefixMap;
+    private final RuleEngine ruleEngine;
 
     public StringMapper(AnnotationEngine annotationEngine, OlsClientRepo olsRepo, PrefixMap prefixMap) {
+        this(annotationEngine, olsRepo, prefixMap, RuleEngine.empty());
+    }
+
+    public StringMapper(AnnotationEngine annotationEngine, OlsClientRepo olsRepo, PrefixMap prefixMap, RuleEngine ruleEngine) {
         this.annotationEngine = annotationEngine;
         this.olsRepo = olsRepo;
         this.prefixMap = prefixMap;
+        this.ruleEngine = ruleEngine != null ? ruleEngine : RuleEngine.empty();
+    }
+
+    /** Max REWRITE-generated query variants to search per query (config: rules.max_query_variants, default 3). */
+    private static int maxQueryVariants() {
+        var rc = ZoomaConfig.config != null ? ZoomaConfig.config.rules : null;
+        return rc != null && rc.max_query_variants != null ? Math.max(0, rc.max_query_variants) : 3;
+    }
+
+    /** Build a single curated {@link MapResult} for an OVERRIDE rule's emitted term. */
+    private static MapResult overrideResult(StringToMap s, RuleContext.EmittedTerm emitted) {
+        MapResult r = new MapResult();
+        r.propertyType = s.propertyType;
+        r.textToMap = s.textToMap;
+        r.ontologyTermID = emitted.id();
+        r.ontologyTermLabel = emitted.label();
+        r.mappingConfidence = emitted.confidence();
+        String id = emitted.id();
+        int sep = id.indexOf(':');
+        if (sep < 0) sep = id.indexOf('_');
+        r.ontologyURI = sep > 0 ? id.substring(0, sep).toLowerCase() : null;
+        r.datasource = "zooma-rule";
+        r.mappingProvenance = List.of(
+            V3MappingProvenanceStepDto.curated("zooma-rule", s.textToMap, emitted.id(), emitted.confidence()));
+        return r;
     }
 
     /**
@@ -48,9 +82,40 @@ public class StringMapper {
      * @param deep    if {@code true}, always deep; {@code false}, never deep; {@code null}, auto
      */
     public List<MapResult> mapOne(StringToMap s, Filter sources, String model, Boolean deep) {
+        return mapOne(s, sources, model, deep, RuleContext.forQuery(s, sources, null));
+    }
+
+    /**
+     * As {@link #mapOne(StringToMap, Filter, String, Boolean)}, but threading a
+     * shared {@link RuleContext}. REWRITE rules run first and may normalise the
+     * query text / effective type used for retrieval; the original text and
+     * property type are preserved on the results for grouping.
+     */
+    public List<MapResult> mapOne(StringToMap s, Filter sources, String model, Boolean deep, RuleContext ruleCtx) {
         try {
-            var annotated = annotationEngine.annotate(s.textToMap, s.propertyType, sources, model, deep)
-                .collect(Collectors.toList());
+            if (ruleEngine != null && !ruleEngine.isEmpty() && ruleCtx != null) {
+                ruleEngine.fire(RuleStage.REWRITE, ruleCtx);
+                // OVERRIDE: a curated phrase→term shortcut short-circuits retrieval.
+                RuleContext.EmittedTerm emitted = ruleEngine.overrideTerm(ruleCtx);
+                if (emitted != null && emitted.id() != null) {
+                    return List.of(overrideResult(s, emitted));
+                }
+            }
+            String text = ruleCtx != null ? ruleCtx.effectiveText() : s.textToMap;
+            String type = ruleCtx != null && ruleCtx.effectivePropertyTypeOrNull() != null
+                ? ruleCtx.effectivePropertyTypeOrNull() : s.propertyType;
+            List<Annotation> annotated = new ArrayList<>(
+                annotationEngine.annotate(text, type, sources, model, deep).collect(Collectors.toList()));
+
+            // Bounded variant fan-out: also search any REWRITE-generated query
+            // variants, always shallow (deep=false) and capped, then merge. The
+            // downstream dedup/fusion collapses overlap with the primary results.
+            if (ruleCtx != null && !ruleCtx.queryVariants().isEmpty()) {
+                for (String variant : ruleCtx.queryVariants().stream().limit(maxQueryVariants()).toList()) {
+                    annotated.addAll(annotationEngine.annotate(variant, type, sources, model, false)
+                        .collect(Collectors.toList()));
+                }
+            }
 
             // Only resolve terms that don't already carry a resolvedTerm from the matcher
             var termIrisToResolve = annotated.stream()

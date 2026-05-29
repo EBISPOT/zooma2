@@ -18,6 +18,14 @@ public class MapResult {
     public List<V3MappingProvenanceStepDto> mappingProvenance;
     public String error;
 
+    /**
+     * Internal ranking signal — Reciprocal-Rank-Fusion score across matchers plus
+     * a small ontology-priority bonus when {@code targetOntologies} is set.
+     * Used for sorting and dedup; not serialised on the API. Defaults to 0; the
+     * {@code RankFusion} step assigns the real value before deduplication.
+     */
+    public transient double rankingScore;
+
     public static MapResult error(String textToMap, String propertyType, String errorMessage) {
         MapResult r = new MapResult();
         r.textToMap = textToMap;
