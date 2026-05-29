@@ -107,6 +107,8 @@ public class ZoomaConfig {
     }
 
     public static class OlsEmbeddingConfig {
+        /** When false, embedding (semantic/vector) matching is skipped entirely. Default true. */
+        public Boolean enabled;
         public Double min_similarity;
         public Integer max_deep_results;
         public Integer max_shallow_results;

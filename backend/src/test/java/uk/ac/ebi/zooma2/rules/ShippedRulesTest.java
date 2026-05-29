@@ -38,7 +38,7 @@ class ShippedRulesTest {
         Assumptions.assumeTrue(Files.isDirectory(dir), "repo-root rules/ present");
 
         RuleEngine e = RuleSetLoader.loadFrom(dir);
-        assertTrue(e.ruleSetCount() >= 5, "expected trait-default, analyte-default, gwas-catalog, trait-canonical, analyte-lipid");
+        assertTrue(e.ruleSetCount() >= 6, "expected trait-default, analyte-default, gwas-catalog, trait-canonical, analyte-lipid, hdruk");
 
         // trait-default rejects the forbidden id PATO_0000461 (also caught by the allowlist)
         assertTrue(e.shouldReject(disease("x"), term("PATO_0000461", "normal")));

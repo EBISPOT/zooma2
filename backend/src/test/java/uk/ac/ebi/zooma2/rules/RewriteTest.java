@@ -83,6 +83,7 @@ class RewriteTest {
     @Test
     void genericTransformsBehaveAsSpecified() {
         assertEquals("lung disease", NamedTransforms.apply("stripParentheticals", "lung disease (chronic)", null));
+        assertEquals("CKD", NamedTransforms.apply("extractParenthetical", "Chronic Kidney Disease (CKD)", null));
         assertEquals("heart disease", NamedTransforms.apply("collapseDuplicateTokens", "heart heart heart disease", null));
     }
 }

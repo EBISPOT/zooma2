@@ -18,6 +18,7 @@ public final class NamedTransforms {
     public interface Transform { String apply(String input, Map<String, String> params); }
 
     private static final Pattern PARENTHETICAL = Pattern.compile("\\([^()]*\\)");
+    private static final Pattern FIRST_PAREN = Pattern.compile("\\(([^()]+)\\)");
     private static final Pattern WS = Pattern.compile("\\s+");
 
     // Only domain-agnostic transforms live here. Domain-specific normalisation
@@ -26,6 +27,11 @@ public final class NamedTransforms {
     private static final Map<String, Transform> REGISTRY = Map.of(
         "stripParentheticals", (in, p) -> in == null ? null
             : WS.matcher(PARENTHETICAL.matcher(in).replaceAll(" ")).replaceAll(" ").trim(),
+        "extractParenthetical", (in, p) -> {
+            if (in == null) return "";
+            var m = FIRST_PAREN.matcher(in);
+            return m.find() ? m.group(1).trim() : "";
+        },
         "collapseDuplicateTokens", (in, p) -> collapseDuplicates(in),
         "lowercaseTrim", (in, p) -> in == null ? null : in.trim().toLowerCase(Locale.ROOT)
     );
