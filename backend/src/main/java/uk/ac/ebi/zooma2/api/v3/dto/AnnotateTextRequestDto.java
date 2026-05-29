@@ -22,4 +22,11 @@ public class AnnotateTextRequestDto {
 
     /** Filter to restrict datasources. */
     public V3FilterDto filter;
+
+    /**
+     * Rulesets to apply for this request, by id. When set, only the named rulesets
+     * (and the rulesets they include) are applied; when omitted, all default
+     * rulesets apply.
+     */
+    public List<String> ruleSets;
 }

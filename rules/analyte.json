@@ -1,0 +1,12 @@
+{
+  "id": "analyte-default",
+  "domain": "analyte",
+  "note": "Analyte engine restricts outputs to EFO/OBA. propertyType scope maps Zooma hints to the script's analyte input types.",
+  "appliesWhen": { "propertyTypeIn": ["measurement", "analyte", "protein", "metabolite", "protein_name", "metabolite_name"] },
+  "rules": [
+    { "id": "reject-non-allowed-analyte-ontology", "stage": "gate", "priority": 100,
+      "note": "ALLOWED_ONTOLOGY_ID_RE @369 = ^(EFO|OBA)[:_]\\d+$ (enforced @31172)",
+      "when": { "not": { "candidateOntologyIn": ["efo", "oba"] } },
+      "then": [ { "reject": { "reason": "analyte outputs must be EFO or OBA (ALLOWED_ONTOLOGY_ID_RE)" } } ] }
+  ]
+}

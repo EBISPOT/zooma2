@@ -94,6 +94,7 @@ public class ZoomaConfig {
     public OlsEmbeddingConfig ols_embedding;
     public OxoConfig oxo;
     public List<OntologyPreset> ontology_presets;
+    public RulesConfig rules;
 
     public static String getOlsUrl() {
         return System.getenv().getOrDefault("ZOOMA2_OLS_URL", DEFAULT_OLS_URL);
@@ -123,5 +124,18 @@ public class ZoomaConfig {
         public String description;
         public List<String> ontologies;
         public Boolean include_obo_ontologies;
+    }
+
+    /**
+     * Declarative rule-engine configuration. Optional: when absent, the engine
+     * loads rulesets from the default {@code rules/} directory. Set
+     * {@code enabled=false} to disable rules entirely, or {@code path} to point at
+     * an alternative rulesets directory.
+     */
+    public static class RulesConfig {
+        public Boolean enabled;
+        public String path;
+        /** Max number of REWRITE-generated query variants to search per query (default 3). */
+        public Integer max_query_variants;
     }
 }

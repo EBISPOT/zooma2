@@ -16,25 +16,52 @@ public class Filter {
     public final List<String> preferred;
     public final List<String> targetOntologies;
     public final boolean includeOtherOntologies;
+    /**
+     * When {@code true}, deduplication collapses to a single best result per
+     * target ontology. Opt-in: callers that want a full candidate set (e.g.
+     * for downstream re-ranking) should leave this {@code false}.
+     */
+    public final boolean limitPerOntology;
+    /**
+     * Rulesets to apply for this request, by id. Empty means "all default
+     * rulesets"; non-empty selects exactly those (and the rulesets they include).
+     */
+    public final List<String> ruleSets;
 
-    private Filter(List<String> required, List<String> preferred, List<String> targetOntologies, boolean includeOtherOntologies) {
+    private Filter(List<String> required, List<String> preferred, List<String> targetOntologies,
+                   boolean includeOtherOntologies, boolean limitPerOntology, List<String> ruleSets) {
         this.required = required;
         this.preferred = preferred;
         this.targetOntologies = targetOntologies;
         this.includeOtherOntologies = includeOtherOntologies;
+        this.limitPerOntology = limitPerOntology;
+        this.ruleSets = ruleSets != null ? ruleSets : new ArrayList<>();
     }
 
     /**
-     * Factory method to create a Filter from lists.
-     * Used by API layers to convert from DTOs to internal Filter.
+     * Factory method to create a Filter from lists. Defaults
+     * {@code limitPerOntology} to {@code false} (opt-in).
      */
     public static Filter fromLists(List<String> required, List<String> preferred, List<String> targetOntologies, boolean includeOtherOntologies) {
+        return fromLists(required, preferred, targetOntologies, includeOtherOntologies, false);
+    }
+
+    /** Full factory with explicit {@code limitPerOntology}. */
+    public static Filter fromLists(List<String> required, List<String> preferred, List<String> targetOntologies,
+                                   boolean includeOtherOntologies, boolean limitPerOntology) {
         return new Filter(
             required != null ? required : new ArrayList<>(),
             preferred != null ? preferred : new ArrayList<>(),
             targetOntologies != null ? targetOntologies : new ArrayList<>(),
-            includeOtherOntologies
+            includeOtherOntologies,
+            limitPerOntology,
+            null
         );
+    }
+
+    /** Returns a copy of this filter with the given ruleset selection (by ruleset id). */
+    public Filter withRuleSets(List<String> ruleSets) {
+        return new Filter(required, preferred, targetOntologies, includeOtherOntologies, limitPerOntology, ruleSets);
     }
 
     private static final Pattern PART = Pattern.compile("\\s*([a-zA-Z]+)\\s*:\\s*\\[(.*?)\\]\\s*");
@@ -70,7 +97,7 @@ public class Filter {
         }
 
         // v2 parse: ontologies become targetOntologies with hard filter (includeOtherOntologies=false)
-        return new Filter(required, preferred, ontologies, ontologies.isEmpty());
+        return new Filter(required, preferred, ontologies, ontologies.isEmpty(), false, null);
     }
 
     private static List<String> smartSplit(String s) {
@@ -97,7 +124,9 @@ public class Filter {
             "required", required,
             "preferred", preferred,
             "targetOntologies", targetOntologies,
-            "includeOtherOntologies", includeOtherOntologies
+            "includeOtherOntologies", includeOtherOntologies,
+            "limitPerOntology", limitPerOntology,
+            "ruleSets", ruleSets
         );
     }
 }

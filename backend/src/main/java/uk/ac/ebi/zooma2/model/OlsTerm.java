@@ -14,6 +14,20 @@ public class OlsTerm {
     public Boolean is_obsolete;
     public String term_replaced_by;
     public Map<String, List<String>> annotation;
+
+    /**
+     * Transitive is-a ancestors (subClassOf closure), from OLS v2's
+     * {@code directAncestor} field. Populated only when the term was
+     * fetched via the v2 class-detail path (e.g. by AncestorSurfacer);
+     * {@code null} after v1 lookups. The OLS naming is confusing —
+     * "directAncestor" in v2 is the full transitive is-a closure, while
+     * "hierarchicalAncestor" also includes partonomy.
+     */
+    public List<String> directAncestor;
+
+    /** Number of hierarchical descendants (also from v2). Used to filter
+     *  root-ish terms when picking an umbrella ancestor. */
+    public Integer numHierarchicalDescendants;
     
     public String getDescription() {
         return description != null && !description.isEmpty() ? description.get(0) : null;

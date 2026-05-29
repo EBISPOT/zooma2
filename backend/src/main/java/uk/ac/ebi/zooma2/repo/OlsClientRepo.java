@@ -188,6 +188,126 @@ public class OlsClientRepo {
         return result;
     }
 
+    /**
+     * Fetch terms with their is-a ancestor closure populated, using OLS v2's
+     * class-detail endpoint. Returns each {@link OlsTerm} with
+     * {@code directAncestor} (strict subClassOf closure, not partonomy) and
+     * {@code numHierarchicalDescendants} filled in.
+     *
+     * <p>Uses the same {@link OlsTermCache} as {@link #resolveTerms}: a cached
+     * entry is reused only when its {@code directAncestor} field is non-null,
+     * so v1-resolved cache entries get upgraded to v2 on first ancestor
+     * lookup. Fetches happen in parallel across the IRIs.
+     *
+     * @param iris      IRIs to fetch
+     * @param ontology  OLS ontology id (e.g. "mondo") all of these IRIs belong to
+     */
+    public Map<String, OlsTerm> fetchTermsWithAncestors(Collection<String> iris, String ontology) {
+        if (iris == null || iris.isEmpty()) return Map.of();
+        if (ontology == null || ontology.isBlank()) return Map.of();
+        String ont = ontology.toLowerCase(java.util.Locale.ROOT);
+
+        Map<String, OlsTerm> result = new HashMap<>();
+        List<String> toFetch = new ArrayList<>();
+        if (termCache != null) {
+            Map<String, OlsTerm> cached = termCache.getTerms(iris);
+            for (String iri : iris) {
+                OlsTerm t = cached.get(iri);
+                if (t != null && t.directAncestor != null) {
+                    result.put(iri, t);
+                } else {
+                    toFetch.add(iri);
+                }
+            }
+        } else {
+            toFetch.addAll(iris);
+        }
+        if (toFetch.isEmpty()) return result;
+
+        var fetched = toFetch.stream()
+            .filter(i -> i != null && !i.isEmpty())
+            .parallel()
+            .map((String iri) -> fetchOneV2(iri, ont))
+            .filter(t -> t != null)
+            .toList();
+
+        if (termCache != null && !fetched.isEmpty()) {
+            termCache.saveTerms(fetched);
+        }
+        for (var t : fetched) {
+            if (t.iri != null) result.put(t.iri, t);
+        }
+        return result;
+    }
+
+    /**
+     * Number of classes in the given ontology, fetched from
+     * {@code /api/v2/ontologies/{ontology}}. Used by {@link uk.ac.ebi.zooma2.AncestorSurfacer}
+     * to normalise descendant counts into an Information Content (IC) score
+     * so the "too broad" cutoff scales with ontology size instead of being a
+     * fixed absolute number. Cached per-process; -1 on failure.
+     */
+    public int getOntologyClassCount(String ontology) {
+        if (ontology == null || ontology.isBlank()) return -1;
+        String key = ontology.toLowerCase(java.util.Locale.ROOT);
+        return ontologyClassCount.computeIfAbsent(key, this::fetchOntologyClassCount);
+    }
+
+    private final java.util.concurrent.ConcurrentHashMap<String, Integer> ontologyClassCount =
+        new java.util.concurrent.ConcurrentHashMap<>();
+
+    private int fetchOntologyClassCount(String ontology) {
+        try {
+            String url = getOlsUrl() + "/api/v2/ontologies/" + ontology;
+            var json = urlToJson(url);
+            if (json == null || !json.isJsonObject()) return -1;
+            var obj = json.getAsJsonObject();
+            if (!obj.has("numberOfClasses") || obj.get("numberOfClasses").isJsonNull()) return -1;
+            return obj.get("numberOfClasses").getAsInt();
+        } catch (IOException | RuntimeException e) {
+            System.err.println("Failed to fetch class count for ontology " + ontology + ": " + e.getMessage());
+            return -1;
+        }
+    }
+
+    private OlsTerm fetchOneV2(String iri, String ontology) {
+        try {
+            String enc = java.net.URLEncoder.encode(iri, java.nio.charset.StandardCharsets.UTF_8);
+            enc = java.net.URLEncoder.encode(enc, java.nio.charset.StandardCharsets.UTF_8);
+            String url = getOlsUrl() + "/api/v2/ontologies/" + ontology + "/classes/" + enc;
+            var json = urlToJson(url);
+            if (json == null || !json.isJsonObject()) return null;
+            var obj = json.getAsJsonObject();
+            OlsTerm t = new OlsTerm();
+            t.iri = firstStringMember(obj, "iri");
+            if (t.iri == null) t.iri = iri;
+            t.label = firstStringMember(obj, "label");
+            t.short_form = firstStringMember(obj, "shortForm", "short_form");
+            t.ontology_name = firstStringMember(obj, "ontologyId", "ontology_name");
+            if (t.ontology_name == null) t.ontology_name = ontology;
+            t.synonyms = stringListMember(obj, "synonym");
+            if (t.synonyms == null || t.synonyms.isEmpty()) {
+                t.synonyms = stringListMember(obj, "synonyms");
+            }
+            t.is_obsolete = firstBooleanMember(obj, "isObsolete", "is_obsolete");
+            t.directAncestor = stringListMember(obj, "directAncestor");
+            if (t.directAncestor == null) t.directAncestor = List.of();
+            if (obj.has("numHierarchicalDescendants") && !obj.get("numHierarchicalDescendants").isJsonNull()) {
+                try {
+                    t.numHierarchicalDescendants = obj.get("numHierarchicalDescendants").getAsInt();
+                } catch (NumberFormatException | UnsupportedOperationException ignore) {
+                    t.numHierarchicalDescendants = 0;
+                }
+            } else {
+                t.numHierarchicalDescendants = 0;
+            }
+            return t;
+        } catch (IOException e) {
+            System.err.println("Failed v2 class lookup for " + iri + " in " + ontology + ": " + e.getMessage());
+            return null;
+        }
+    }
+
     public Collection<OlsTerm> findByLabelAndOntologies(String stringToMap, Collection<String> ontologyIds) {
 
         var escaped = java.net.URLEncoder.encode(stringToMap, java.nio.charset.StandardCharsets.UTF_8);

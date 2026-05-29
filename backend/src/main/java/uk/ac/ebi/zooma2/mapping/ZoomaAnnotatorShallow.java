@@ -1,5 +1,6 @@
 package uk.ac.ebi.zooma2.mapping;
 
+import uk.ac.ebi.zooma2.AncestorSurfacer;
 import uk.ac.ebi.zooma2.Deduplicator;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
@@ -7,6 +8,7 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
+import uk.ac.ebi.zooma2.rules.RuleContext;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
 
 import java.util.List;
@@ -28,11 +30,22 @@ public class ZoomaAnnotatorShallow {
     private final StringMapper stringMapper;
     private final OlsTextTaggerMatcher textTaggerService;
     private final Deduplicator deduplicator;
+    private final AncestorSurfacer ancestorSurfacer;
 
     public ZoomaAnnotatorShallow(StringMapper stringMapper, OlsTextTaggerMatcher textTaggerService, Deduplicator deduplicator) {
+        this(stringMapper, textTaggerService, deduplicator, null);
+    }
+
+    public ZoomaAnnotatorShallow(StringMapper stringMapper, OlsTextTaggerMatcher textTaggerService,
+                                 Deduplicator deduplicator, AncestorSurfacer ancestorSurfacer) {
         this.stringMapper = stringMapper;
         this.textTaggerService = textTaggerService;
         this.deduplicator = deduplicator;
+        this.ancestorSurfacer = ancestorSurfacer;
+    }
+
+    private List<MapResult> withAncestor(List<MapResult> deduped, Filter filter) {
+        return ancestorSurfacer != null ? ancestorSurfacer.augment(deduped, filter) : deduped;
     }
 
     /**
@@ -60,13 +73,14 @@ public class ZoomaAnnotatorShallow {
                     if (Thread.currentThread().isInterrupted()) return;
                     AnnotationEngine.setShallowPassOnly(true);
                     try {
+                        RuleContext ruleCtx = RuleContext.forQuery(prop, filter, excludeTermIds);
                         var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
                         if (textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
                             var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, false);
-                            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
+                            onPropertyMapped.accept(prop, withAncestor(deduplicator.deduplicate(results, filter, excludeTermIds, ruleCtx), filter));
                             return;
                         }
-                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, false);
+                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, false, ruleCtx);
                         if (!taggerAnnotations.isEmpty()) {
                             results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, false));
                         }
@@ -74,7 +88,7 @@ public class ZoomaAnnotatorShallow {
                             needsDeepSearch.add(prop);
                             return;
                         }
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
+                        onPropertyMapped.accept(prop, withAncestor(deduplicator.deduplicate(results, filter, excludeTermIds, ruleCtx), filter));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {

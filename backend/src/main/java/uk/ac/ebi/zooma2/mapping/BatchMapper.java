@@ -1,11 +1,13 @@
 package uk.ac.ebi.zooma2.mapping;
 
+import uk.ac.ebi.zooma2.AncestorSurfacer;
 import uk.ac.ebi.zooma2.Deduplicator;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
+import uk.ac.ebi.zooma2.rules.RuleContext;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
 import java.util.Collection;
 import java.util.List;
@@ -29,15 +31,22 @@ public class BatchMapper {
     private final StringMapper stringMapper;
     private final OlsTextTaggerMatcher textTaggerService;
     private final Deduplicator deduplicator;
+    private final AncestorSurfacer ancestorSurfacer;
     private final ZoomaAnnotatorShallow shallowAnnotator;
     private final ZoomaAnnotatorDeep deepAnnotator;
 
     public BatchMapper(StringMapper stringMapper, OlsTextTaggerMatcher textTaggerService, Deduplicator deduplicator) {
+        this(stringMapper, textTaggerService, deduplicator, null);
+    }
+
+    public BatchMapper(StringMapper stringMapper, OlsTextTaggerMatcher textTaggerService,
+                       Deduplicator deduplicator, AncestorSurfacer ancestorSurfacer) {
         this.stringMapper = stringMapper;
         this.textTaggerService = textTaggerService;
         this.deduplicator = deduplicator;
-        this.shallowAnnotator = new ZoomaAnnotatorShallow(stringMapper, textTaggerService, deduplicator);
-        this.deepAnnotator = new ZoomaAnnotatorDeep(stringMapper, deduplicator);
+        this.ancestorSurfacer = ancestorSurfacer;
+        this.shallowAnnotator = new ZoomaAnnotatorShallow(stringMapper, textTaggerService, deduplicator, ancestorSurfacer);
+        this.deepAnnotator = new ZoomaAnnotatorDeep(stringMapper, deduplicator, ancestorSurfacer);
     }
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources) {
@@ -70,21 +79,22 @@ public class BatchMapper {
         return properties.stream()
             .parallel()
             .flatMap(s -> {
+                RuleContext ruleCtx = RuleContext.forQuery(s, sources, excludeTermIds);
                 var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
                 if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources)) {
                     var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
-                    var deduped = deduplicator.deduplicate(results, sources, excludeTermIds);
-                    return deduped.stream();
+                    var deduped = deduplicator.deduplicate(results, sources, excludeTermIds, ruleCtx);
+                    return (ancestorSurfacer != null ? ancestorSurfacer.augment(deduped, sources) : deduped).stream();
                 }
-                var results = stringMapper.mapOne(s, sources, model, deep);
+                var results = stringMapper.mapOne(s, sources, model, deep, ruleCtx);
                 if (!taggerAnnotations.isEmpty()) {
                     var taggerResults = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
                     results.addAll(taggerResults);
                 }
                 var deduped = returnAll
-                    ? deduplicator.deduplicateLight(results, sources, excludeTermIds)
-                    : deduplicator.deduplicate(results, sources, excludeTermIds);
-                return deduped.stream();
+                    ? deduplicator.deduplicateLight(results, sources, excludeTermIds, ruleCtx)
+                    : deduplicator.deduplicate(results, sources, excludeTermIds, ruleCtx);
+                return (ancestorSurfacer != null ? ancestorSurfacer.augment(deduped, sources) : deduped).stream();
             })
             .collect(Collectors.toList());
     }
@@ -143,18 +153,19 @@ public class BatchMapper {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
                     try {
+                        RuleContext ruleCtx = RuleContext.forQuery(prop, filter, excludeTermIds);
                         var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
                         if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
                             var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, Boolean.TRUE.equals(deep));
-                            onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
+                            onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll, ruleCtx));
                             return;
                         }
 
-                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, deep);
+                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, deep, ruleCtx);
                         if (!taggerAnnotations.isEmpty()) {
                             results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, Boolean.TRUE.equals(deep)));
                         }
-                        onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
+                        onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll, ruleCtx));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
@@ -185,9 +196,11 @@ public class BatchMapper {
             List<MapResult> results,
             Filter filter,
             List<String> excludeTermIds,
-            boolean returnAll) {
-        return returnAll
-            ? deduplicator.deduplicateLight(results, filter, excludeTermIds)
-            : deduplicator.deduplicate(results, filter, excludeTermIds);
+            boolean returnAll,
+            RuleContext ruleCtx) {
+        var deduped = returnAll
+            ? deduplicator.deduplicateLight(results, filter, excludeTermIds, ruleCtx)
+            : deduplicator.deduplicate(results, filter, excludeTermIds, ruleCtx);
+        return ancestorSurfacer != null ? ancestorSurfacer.augment(deduped, filter) : deduped;
     }
 }
