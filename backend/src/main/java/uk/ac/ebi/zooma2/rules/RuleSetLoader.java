@@ -63,19 +63,38 @@ public final class RuleSetLoader {
         return RuleEngine.empty();
     }
 
+    private static Path resolveAndValidateRulesDir(Path dir) {
+        if (dir == null) return null;
+
+        Path configuredBase = Paths.get(RULES_PATH).toAbsolutePath().normalize();
+        Path candidate = dir.toAbsolutePath().normalize();
+
+        if (!candidate.startsWith(configuredBase)) {
+            System.err.println("Rejected rules directory outside allowed base (" + configuredBase + "): " + candidate);
+            return null;
+        }
+        return candidate;
+    }
+
     public static RuleEngine loadFrom(Path dir) {
-        if (dir == null || !Files.isDirectory(dir)) {
+        Path safeDir = resolveAndValidateRulesDir(dir);
+        if (safeDir == null || !Files.isDirectory(safeDir)) {
             System.err.println("Rules directory not found (" + dir + "); rule engine disabled.");
             return RuleEngine.empty();
         }
         Gson gson = gson();
         List<RuleSet> ruleSets = new ArrayList<>();
-        try (Stream<Path> files = Files.list(dir)) {
+        try (Stream<Path> files = Files.list(safeDir)) {
             List<Path> jsonFiles = files
+                .map(p -> p.toAbsolutePath().normalize())
+                .filter(p -> p.startsWith(safeDir))
                 .filter(p -> p.toString().toLowerCase(Locale.ROOT).endsWith(".json"))
                 .sorted()
                 .collect(Collectors.toList());
             for (Path p : jsonFiles) {
+                if (!p.startsWith(safeDir)) {
+                    throw new RuntimeException("Rejected rule file outside rules directory: " + p);
+                }
                 try (Reader r = Files.newBufferedReader(p, StandardCharsets.UTF_8)) {
                     RuleSet rs = gson.fromJson(r, RuleSet.class);
                     if (rs != null) ruleSets.add(rs);
@@ -84,9 +103,9 @@ public final class RuleSetLoader {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Failed to list rules directory " + dir, e);
+            throw new RuntimeException("Failed to list rules directory " + safeDir, e);
         }
-        System.err.println("Loaded " + ruleSets.size() + " ruleset(s) from " + dir);
+        System.err.println("Loaded " + ruleSets.size() + " ruleset(s) from " + safeDir);
         return new RuleEngine(ruleSets);
     }
 
