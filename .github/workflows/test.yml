@@ -39,7 +39,7 @@ jobs:
       - name: Build backend
         run: |
           cd backend
-          mvn package -q -DskipTests
+          mvn package -q
 
       - name: Run integration tests
         run: ./tests/run_tests.sh
