@@ -1,0 +1,179 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Mus <genus>",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mus <genus>",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10088"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10088",
+          "uri": "ncbitaxon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Mus sp.",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mus sp.",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10095"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10095",
+          "uri": "ncbitaxon"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "omit",
+          "label": "Mice",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mice",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0024808"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "OMIT_0024808",
+          "uri": "omit"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "omit",
+          "label": "MICE",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "MICE",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0033484"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "OMIT_0033484",
+          "uri": "omit"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "hgnc",
+          "label": "MICE",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "MICE",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:hgnc",
+              "target": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/7094"
+            }
+          ],
+          "ontology": "hgnc",
+          "termId": "hgnc_7094",
+          "uri": "hgnc"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "mesh",
+          "label": "Mice",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mice",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D051379"
+            }
+          ],
+          "ontology": "mesh",
+          "termId": "http://id.nlm.nih.gov/mesh/D051379",
+          "uri": "mesh"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "ncit",
+          "label": "Mouse",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mouse",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C14238"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C14238",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "pr",
+          "label": "caspase-14",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mice",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "caspase-14",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:pr",
+              "target": "http://purl.obolibrary.org/obo/PR_000005054"
+            }
+          ],
+          "ontology": "pr",
+          "termId": "PR_000005054",
+          "uri": "pr"
+        }
+      ],
+      "error": null,
+      "propertyType": "organism",
+      "textToMap": "mice"
+    }
+  ]
+}

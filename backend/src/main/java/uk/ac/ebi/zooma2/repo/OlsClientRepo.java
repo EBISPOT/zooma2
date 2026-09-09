@@ -658,7 +658,7 @@ public class OlsClientRepo {
         // word-boundary delimiters so only whole tokens match
         urlBuilder.append("&delimiters=").append(
             java.net.URLEncoder.encode(" ,.;:!?\t\n()[]{}\"'/\\-_", java.nio.charset.StandardCharsets.UTF_8));
-        urlBuilder.append("&minLength=6");
+        urlBuilder.append("&minLength=").append(minMatchLengthFor(terms));
         if (ontologyIds != null) {
             for (String ont : ontologyIds) {
                 urlBuilder.append("&ontologyId=").append(
@@ -729,6 +729,26 @@ public class OlsClientRepo {
             System.err.println("Error calling tag_text: " + e.getMessage());
             return Map.of();
         }
+    }
+
+    /**
+     * Minimum matched-string length for a tag_text call over discrete input terms.
+     *
+     * <p>Longer minimums cut noise, but a fixed minimum of 6 silently disabled exact
+     * matching for short inputs — common organism names like "rat", "mice" or "yeast"
+     * never reached the tagger and fell through to far less precise fuzzy/embedding
+     * search. Derive the minimum from the shortest term in the batch instead, capped
+     * at the old value of 6 so batches of long terms behave exactly as before.
+     * Junk sub-term matches this admits carry proportionally low coverage and are
+     * down-weighted or dropped downstream.
+     */
+    private static int minMatchLengthFor(List<String> terms) {
+        int shortest = terms.stream()
+            .filter(t -> t != null && !t.isEmpty())
+            .mapToInt(String::length)
+            .min()
+            .orElse(6);
+        return Math.max(2, Math.min(6, shortest));
     }
 
     /**
