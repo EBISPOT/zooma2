@@ -1,0 +1,32 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.8234831800000001,
+          "datasource": "ecto",
+          "label": "exposure to vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "vasopressin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "exposure to vasopressin",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.925262,
+              "source": "ols:ecto",
+              "target": "http://purl.obolibrary.org/obo/ECTO_9000460"
+            }
+          ],
+          "ontology": "ecto",
+          "termId": "ECTO_9000460",
+          "uri": "ecto"
+        }
+      ],
+      "error": null,
+      "propertyType": null,
+      "textToMap": "vasopressin"
+    }
+  ]
+}

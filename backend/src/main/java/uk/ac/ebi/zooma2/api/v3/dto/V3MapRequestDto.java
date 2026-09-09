@@ -20,6 +20,12 @@ public class V3MapRequestDto {
     /** When false, only return results from target ontologies (default: true). */
     public Boolean includeOtherOntologies;
 
+    /**
+     * When true, restrict results to the target ontologies' own namespaces,
+     * excluding terms they merely import (default: false).
+     */
+    public Boolean definingOnly;
+
     /** Filter to restrict datasources. */
     public V3FilterDto filter;
 

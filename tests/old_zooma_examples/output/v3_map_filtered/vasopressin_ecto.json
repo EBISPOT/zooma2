@@ -1,0 +1,32 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.85,
+          "datasource": "ecto",
+          "label": "vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 0.85,
+              "input": "vasopressin",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.85,
+              "source": "ols:ecto",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_9937"
+            }
+          ],
+          "ontology": "ecto",
+          "termId": "CHEBI_9937",
+          "uri": "ecto"
+        }
+      ],
+      "error": null,
+      "propertyType": null,
+      "textToMap": "vasopressin"
+    }
+  ]
+}

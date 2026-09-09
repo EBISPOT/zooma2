@@ -237,6 +237,38 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
 
     done < "$INPUT_FILE"
 
+    # ---- 2b. Test ontology-filtered mapping (defining_only, issue #5) ----
+    # ECTO ships its CHEBI import closure: the default ontology filter keeps
+    # imported terms, defining_only:[true] restricts to ECTO's own namespace.
+
+    mkdir -p "$ACTUAL_DIR/v2_annotate_filtered" "$ACTUAL_DIR/v3_map_filtered"
+
+    v2_ecto_url="$BASE_URL/v2/api/services/annotate?propertyValue=vasopressin&filter=required:%5Bnone%5D,ontologies:%5Becto%5D"
+    curl -sf "$v2_ecto_url" | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/vasopressin_ecto.json"
+    compare_output "$TEST_NAME/v2_annotate_filtered/vasopressin_ecto" \
+        "$ACTUAL_DIR/v2_annotate_filtered/vasopressin_ecto.json" \
+        "$OUTPUT_DIR/v2_annotate_filtered/vasopressin_ecto.json"
+
+    curl -sf "${v2_ecto_url},defining_only:%5Btrue%5D" | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/vasopressin_ecto_defining_only.json"
+    compare_output "$TEST_NAME/v2_annotate_filtered/vasopressin_ecto_defining_only" \
+        "$ACTUAL_DIR/v2_annotate_filtered/vasopressin_ecto_defining_only.json" \
+        "$OUTPUT_DIR/v2_annotate_filtered/vasopressin_ecto_defining_only.json"
+
+    v3_ecto_base='{"properties":[{"textToMap":"vasopressin"}],"targetOntologies":["ecto"],"includeOtherOntologies":false'
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d "${v3_ecto_base}}" | normalise_json > "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto.json"
+    compare_output "$TEST_NAME/v3_map_filtered/vasopressin_ecto" \
+        "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto.json" \
+        "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto.json"
+
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d "${v3_ecto_base},\"definingOnly\":true}" | normalise_json > "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json"
+    compare_output "$TEST_NAME/v3_map_filtered/vasopressin_ecto_defining_only" \
+        "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json" \
+        "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json"
+
     # ---- 3. Test batch v3 map (all properties at once) ----
 
     # Build JSON array of all properties

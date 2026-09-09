@@ -8,6 +8,7 @@ import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
+import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.List;
 import java.util.Map;
@@ -106,7 +107,9 @@ public class ZoomaAnnotatorShallow {
     /**
      * Returns {@code true} if the shallow-pass results indicate this property needs a
      * deep search: target ontologies were specified, results were found, but none came
-     * from a target ontology.
+     * from a target ontology. Under {@code definingOnly}, a result from a target
+     * ontology only counts if the term is in that ontology's own namespace —
+     * an imported term will be filtered out, so it must not satisfy the search.
      */
     private boolean needsDeep(List<MapResult> results, Filter filter) {
         if (filter.targetOntologies == null || filter.targetOntologies.isEmpty()) return false;
@@ -114,6 +117,7 @@ public class ZoomaAnnotatorShallow {
         Set<String> targetsLower = filter.targetOntologies.stream()
             .map(String::toLowerCase).collect(Collectors.toSet());
         return results.stream().noneMatch(r ->
-            r.ontologyURI != null && targetsLower.contains(r.ontologyURI.toLowerCase()));
+            r.ontologyURI != null && targetsLower.contains(r.ontologyURI.toLowerCase())
+            && (!filter.definingOnly || TermNamespace.inNamespaces(r.ontologyTermID, targetsLower)));
     }
 }

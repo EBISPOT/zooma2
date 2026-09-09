@@ -10,24 +10,28 @@ import java.util.regex.Pattern;
 
 import io.javalin.http.BadRequestResponse;
 
-// Filter parser for e.g. required:[atlas,gwas],preferred:[gwas],ontologies:[none]
+// Filter parser for e.g. required:[atlas,gwas],preferred:[gwas],ontologies:[none],defining_only:[true]
 public class V2FilterDto {
     public final List<String> required;
     public final List<String> preferred;
     public final List<String> ontologies;
+    /** When true, restrict results to the filter ontologies' own namespaces (exclude imported terms). */
+    public final boolean definingOnly;
 
-    private V2FilterDto(List<String> required, List<String> preferred, List<String> ontologies) {
+    private V2FilterDto(List<String> required, List<String> preferred, List<String> ontologies, boolean definingOnly) {
         this.required = required;
         this.preferred = preferred;
         this.ontologies = ontologies;
+        this.definingOnly = definingOnly;
     }
 
-    private static final Pattern PART = Pattern.compile("\\s*([a-zA-Z]+)\\s*:\\s*\\[(.*?)\\]\\s*");
+    private static final Pattern PART = Pattern.compile("\\s*([a-zA-Z_]+)\\s*:\\s*\\[(.*?)\\]\\s*");
 
     public static V2FilterDto parse(String raw) {
         List<String> required = new ArrayList<>();
         List<String> preferred = new ArrayList<>();
         List<String> ontologies = new ArrayList<>();
+        boolean definingOnly = false;
 
         if (raw != null && !raw.isBlank()) {
             List<String> parts = smartSplit(raw);
@@ -49,12 +53,13 @@ public class V2FilterDto {
                     case "required"   -> required.addAll(values);
                     case "preferred"  -> preferred.addAll(values);
                     case "ontologies" -> ontologies.addAll(values);
+                    case "defining_only" -> definingOnly = uk.ac.ebi.zooma2.model.Filter.parseDefiningOnly(values);
                     default -> throw new BadRequestResponse("Unknown filter key: " + key);
                 }
             }
         }
 
-        return new V2FilterDto(required, preferred, ontologies);
+        return new V2FilterDto(required, preferred, ontologies, definingOnly);
     }
 
     private static List<String> smartSplit(String s) {
@@ -80,7 +85,8 @@ public class V2FilterDto {
         return Map.of(
             "required", required,
             "preferred", preferred,
-            "ontologies", ontologies
+            "ontologies", ontologies,
+            "definingOnly", definingOnly
         );
     }
 
@@ -89,6 +95,6 @@ public class V2FilterDto {
      * V2's ontologies become targetOntologies with hard filter (includeOtherOntologies=false).
      */
     public uk.ac.ebi.zooma2.model.Filter toFilter() {
-        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies, ontologies.isEmpty());
+        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies, ontologies.isEmpty(), definingOnly);
     }
 }
