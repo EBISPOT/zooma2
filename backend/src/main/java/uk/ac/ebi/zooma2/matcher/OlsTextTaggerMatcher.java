@@ -141,7 +141,47 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
             }
             result.put(inputTerm, annotations);
         }
+
+        addCommonOrganismNameMatches(terms, result);
         return result;
+    }
+
+    /**
+     * Curated fallback for organism shorthand missing from every available source
+     * (see {@link CommonOrganismNames}). Injected in the same shape as tag_text
+     * CURATION matches so downstream ranking — including the organism-type
+     * taxonomy preference — treats it like any other curated annotation.
+     */
+    private void addCommonOrganismNameMatches(List<String> terms, Map<String, List<Annotation>> result) {
+        for (String term : terms) {
+            String taxonIri = CommonOrganismNames.taxonIri(term);
+            if (taxonIri == null) continue;
+            var annotations = result.computeIfAbsent(term, k -> new ArrayList<>());
+            if (annotations.stream().anyMatch(a -> a.semanticTags.contains(taxonIri))) continue;
+            OlsTerm taxon = olsRepo.resolveTerms(List.of(taxonIri)).get(taxonIri);
+            if (taxon == null) continue; // unresolvable in OLS — no fallback
+
+            Annotation a = new Annotation();
+            a.annotatedProperty = new Annotation.AnnotatedProperty();
+            a.annotatedProperty.propertyType = "unspecified";
+            a.annotatedProperty.propertyValue = term;
+            a.semanticTags = List.of(taxonIri);
+            a.confidence = 0.95;
+            a.provenance = new Annotation.Provenance();
+            a.provenance.source = new Annotation.Source();
+            a.provenance.source.type = "DATABASE";
+            a.provenance.source.name = "zooma";
+            a.provenance.source.uri = "zooma";
+            a.provenance.evidence = "CURATED_COMMON_ORGANISM_NAME";
+            a.provenance.generator = "ZOOMA";
+            a.provenance.generatedDate = new Date().toString();
+            a.mappingProvenance = List.of(V3MappingProvenanceStepDto.curated(
+                "zooma", "CURATED_COMMON_ORGANISM_NAME", term,
+                taxon.label, taxonIri, 1.0
+            ));
+            a.resolvedTerm = taxon;
+            annotations.add(a);
+        }
     }
 
     /**

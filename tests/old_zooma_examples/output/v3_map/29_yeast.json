@@ -4,6 +4,27 @@
       "candidates": [
         {
           "confidence": 1.0,
+          "datasource": "zooma",
+          "label": "Saccharomyces cerevisiae",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "yeast",
+              "matchType": "CURATED_COMMON_ORGANISM_NAME",
+              "matchedText": "Saccharomyces cerevisiae",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "zooma",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_4932"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_4932",
+          "uri": "ncbitaxon"
+        },
+        {
+          "confidence": 0.9,
           "datasource": "foodon",
           "label": "yeast",
           "mappingProvenance": [
@@ -24,7 +45,7 @@
           "uri": "foodon"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Yeast Present",
           "mappingProvenance": [
@@ -45,7 +66,7 @@
           "uri": "ncit"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Yeast",
           "mappingProvenance": [
@@ -66,7 +87,7 @@
           "uri": "ncit"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Yeast",
           "mappingProvenance": [
@@ -87,7 +108,7 @@
           "uri": "ncit"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Yeast Cell Measurement",
           "mappingProvenance": [
@@ -108,7 +129,7 @@
           "uri": "ncit"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "snomed",
           "label": "Yeast (substance)",
           "mappingProvenance": [
@@ -129,7 +150,7 @@
           "uri": "snomed"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "snomed",
           "label": "Yeast (organism)",
           "mappingProvenance": [
