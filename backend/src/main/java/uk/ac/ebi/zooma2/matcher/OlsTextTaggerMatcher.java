@@ -132,7 +132,7 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                 preResolved.iri = match.termIri;
                 preResolved.label = match.termLabel;
                 preResolved.ontology_name = match.ontologyId;
-                preResolved.short_form = match.shortForm != null ? match.shortForm : prefixMap.iriToShortForm(match.termIri);
+                preResolved.short_form = match.shortForm != null ? match.shortForm : shortFormFromIri(match.termIri);
                 preResolved.synonyms = match.synonyms;
                 preResolved.is_obsolete = match.isObsolete;
                 a.resolvedTerm = preResolved;
@@ -142,6 +142,21 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
             result.put(inputTerm, annotations);
         }
         return result;
+    }
+
+    /**
+     * OLS-style short form for a term IRI. For OBO PURLs the IRI tail is the short
+     * form OLS itself reports (e.g. NCBITaxon_10116), so use it directly — the
+     * prefix-map rendering lowercases the prefix, which stops results for the same
+     * term found via other matchers from deduplicating.
+     */
+    private String shortFormFromIri(String iri) {
+        if (iri == null) return null;
+        String oboPrefix = "http://purl.obolibrary.org/obo/";
+        if (iri.startsWith(oboPrefix) && !iri.substring(oboPrefix.length()).contains("/")) {
+            return iri.substring(oboPrefix.length());
+        }
+        return prefixMap.iriToShortForm(iri);
     }
 
     /**

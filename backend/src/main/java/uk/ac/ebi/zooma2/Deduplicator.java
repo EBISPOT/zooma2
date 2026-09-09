@@ -18,12 +18,18 @@ import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
  *
  * All rules are applied in order:
  *   1. Filter by allowed ontologies (if an ontology filter is active)
- *   2. Suppress curated-embedding results when a curated-exact result exists
- *   3. Among embedding results, keep only the best match (ties allowed)
- *   4. Drop results much weaker than the best match
- *   5. Deduplicate by ontologyTermID, keeping the highest confidence
+ *   2. For organism-typed queries, prefer taxonomy (NCBITaxon) results
+ *   3. Suppress curated-embedding results when a curated-exact result exists
+ *   4. Among embedding results, keep only the best match (ties allowed)
+ *   5. Drop results much weaker than the best match
+ *   6. Deduplicate by ontologyTermID, keeping the highest confidence
  */
 public class Deduplicator {
+
+    /** Confidence at or above which a match counts as lexically grounded (exact-match tier). */
+    private static final double STRONG_MATCH_CONFIDENCE = 0.85;
+    /** Confidence adjustment applied by the organism-type taxonomy preference. */
+    private static final double TAXONOMY_PREFERENCE_ADJUSTMENT = 0.1;
 
     private final PrefixMap prefixMap;
 
@@ -50,6 +56,9 @@ public class Deduplicator {
 
         // 1. Filter by ontology
         filterByOntologies(results, filter);
+
+        // 1b. Organism-typed queries prefer taxonomy results
+        preferTaxonomyForOrganismQueries(results);
 
         // 2. If any curated-exact result exists, drop curated-embedding results
         suppressEmbeddingIfExactExists(results);
@@ -81,6 +90,7 @@ public class Deduplicator {
         excludeTerms(results, excludeTermIds);
         filterByRequiredDatasources(results, filter);
         filterByOntologies(results, filter);
+        preferTaxonomyForOrganismQueries(results);
         return deduplicateByTermId(results);
     }
 
@@ -129,6 +139,47 @@ public class Deduplicator {
             if (ds == null) return true;
             return !allowed.contains(ds.toLowerCase(Locale.ROOT));
         });
+    }
+
+    /**
+     * When the query's property type says the value is an organism (e.g.
+     * "organism", "species", "genus_species"), prefer taxonomy results.
+     *
+     * <p>Common organism names are wildly ambiguous across ontologies: "rat" is
+     * also a food product (FOODON), an NCIT concept, part of species names like
+     * rat snakes, etc. When the caller has told us the value is an organism and
+     * a lexically grounded NCBITaxon match exists, boost taxonomy matches and
+     * demote everything else so the taxon ranks first. Without a strong taxonomy
+     * match (e.g. "yeast", which NCBI Taxonomy has no synonym for) this rule
+     * does nothing, so exact matches from other ontologies still win.
+     */
+    void preferTaxonomyForOrganismQueries(List<MapResult> results) {
+        String propertyType = results.stream()
+            .filter(r -> r.error == null && r.propertyType != null)
+            .map(r -> r.propertyType)
+            .findFirst().orElse(null);
+        if (!isOrganismLikeType(propertyType)) {
+            return;
+        }
+
+        boolean hasStrongTaxonomyMatch = results.stream().anyMatch(r ->
+            r.error == null && isTaxonomyResult(r) && r.mappingConfidence >= STRONG_MATCH_CONFIDENCE);
+        if (!hasStrongTaxonomyMatch) {
+            return;
+        }
+
+        for (var r : results) {
+            if (r.error != null) continue;
+            if (isTaxonomyResult(r)) {
+                // Only boost lexically grounded matches; a weak embedding guess from
+                // NCBITaxon (e.g. a rat-snake species for "rat") earns no boost.
+                if (r.mappingConfidence >= STRONG_MATCH_CONFIDENCE) {
+                    r.mappingConfidence = Math.min(1.0, r.mappingConfidence + TAXONOMY_PREFERENCE_ADJUSTMENT);
+                }
+            } else {
+                r.mappingConfidence = Math.max(0.0, r.mappingConfidence - TAXONOMY_PREFERENCE_ADJUSTMENT);
+            }
+        }
     }
 
     /**
@@ -261,6 +312,35 @@ public class Deduplicator {
     }
 
     // ---- helpers ----
+
+    /**
+     * True if the property type describes a whole organism / species / taxon.
+     * Anatomy-flavoured types like "organism part" or "organismPart" must not match.
+     */
+    static boolean isOrganismLikeType(String propertyType) {
+        if (propertyType == null || propertyType.isBlank()) return false;
+        Set<String> tokens = new java.util.HashSet<>(List.of(propertyType.toLowerCase(Locale.ROOT)
+            .replaceAll("[^a-z0-9]+", " ")
+            .trim()
+            .split(" ")));
+        boolean organismLike = tokens.contains("organism") || tokens.contains("species");
+        boolean excluded = tokens.contains("part") || tokens.contains("parts")
+            || tokens.contains("age") || tokens.contains("unit") || tokens.contains("disease");
+        return organismLike && !excluded;
+    }
+
+    /**
+     * True if the result is an NCBI Taxonomy term, whichever ontology it was
+     * resolved through (EFO, MRO etc. re-expose NCBITaxon terms under their
+     * original short forms).
+     */
+    private static boolean isTaxonomyResult(MapResult r) {
+        if (r.ontologyTermID != null
+                && r.ontologyTermID.toLowerCase(Locale.ROOT).startsWith("ncbitaxon")) {
+            return true;
+        }
+        return "ncbitaxon".equals(getOntologyPrefix(r));
+    }
 
     private static String getOntologyPrefix(MapResult r) {
         // Prefer the term ID prefix (e.g. "EFO" from "EFO:0000699") over ontologyURI,

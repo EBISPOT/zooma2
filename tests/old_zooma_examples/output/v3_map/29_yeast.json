@@ -1,0 +1,158 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "foodon",
+          "label": "yeast",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "yeast",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:foodon",
+              "target": "http://purl.obolibrary.org/obo/FOODON_03411345"
+            }
+          ],
+          "ontology": "foodon",
+          "termId": "FOODON_03411345",
+          "uri": "foodon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Yeast Present",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast Present",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C120913"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C120913",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Yeast",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C14286"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C14286",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Yeast",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C66676"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C66676",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Yeast Cell Measurement",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast Cell Measurement",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C74664"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C74664",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "snomed",
+          "label": "Yeast (substance)",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast (substance)",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/412534006"
+            }
+          ],
+          "ontology": "snomed",
+          "termId": "http://snomed.info/id/412534006",
+          "uri": "snomed"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "snomed",
+          "label": "Yeast (organism)",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "yeast",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Yeast (organism)",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/62093005"
+            }
+          ],
+          "ontology": "snomed",
+          "termId": "http://snomed.info/id/62093005",
+          "uri": "snomed"
+        }
+      ],
+      "error": null,
+      "propertyType": "organism",
+      "textToMap": "yeast"
+    }
+  ]
+}

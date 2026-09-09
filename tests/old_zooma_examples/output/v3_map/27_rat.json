@@ -1,0 +1,158 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Rattus",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Rattus",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10114"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10114",
+          "uri": "ncbitaxon"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Rattus norvegicus",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Rattus norvegicus",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10116"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10116",
+          "uri": "ncbitaxon"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "foodon",
+          "label": "rat",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "rat",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:foodon",
+              "target": "http://purl.obolibrary.org/obo/FOODON_03414848"
+            }
+          ],
+          "ontology": "foodon",
+          "termId": "FOODON_03414848",
+          "uri": "foodon"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "vbo",
+          "label": "Rat Terrier (Dog)",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Rat Terrier (Dog)",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:vbo",
+              "target": "http://purl.obolibrary.org/obo/VBO_0201125"
+            }
+          ],
+          "ontology": "vbo",
+          "termId": "VBO_0201125",
+          "uri": "vbo"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "sio",
+          "label": "rat",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "rat",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:sio",
+              "target": "http://semanticscience.org/resource/SIO_000487"
+            }
+          ],
+          "ontology": "sio",
+          "termId": "http://semanticscience.org/resource/SIO_000487",
+          "uri": "sio"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "ncit",
+          "label": "Rat",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Rat",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C160998"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C160998",
+          "uri": "ncit"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "ncit",
+          "label": "Rapid Antigen Test",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "rat",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Rapid Antigen Test",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C53465"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C53465",
+          "uri": "ncit"
+        }
+      ],
+      "error": null,
+      "propertyType": "organism",
+      "textToMap": "rat"
+    }
+  ]
+}
