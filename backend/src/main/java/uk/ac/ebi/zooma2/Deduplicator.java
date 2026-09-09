@@ -12,12 +12,14 @@ import java.util.stream.Collectors;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
+import uk.ac.ebi.zooma2.util.TermNamespace;
 
 /**
  * Centralised deduplication and filtering of mapping results.
  *
  * All rules are applied in order:
  *   1. Filter by allowed ontologies (if an ontology filter is active)
+ *   1b. Restrict to the target ontologies' own namespaces (if definingOnly is set)
  *   2. For organism-typed queries, prefer taxonomy (NCBITaxon) results
  *   3. Suppress curated-embedding results when a curated-exact result exists
  *   4. Among embedding results, keep only the best match (ties allowed)
@@ -57,7 +59,10 @@ public class Deduplicator {
         // 1. Filter by ontology
         filterByOntologies(results, filter);
 
-        // 1b. Organism-typed queries prefer taxonomy results
+        // 1b. Restrict to the target ontologies' own namespaces if requested
+        filterToDefiningNamespace(results, filter);
+
+        // 1c. Organism-typed queries prefer taxonomy results
         preferTaxonomyForOrganismQueries(results);
 
         // 2. If any curated-exact result exists, drop curated-embedding results
@@ -90,6 +95,7 @@ public class Deduplicator {
         excludeTerms(results, excludeTermIds);
         filterByRequiredDatasources(results, filter);
         filterByOntologies(results, filter);
+        filterToDefiningNamespace(results, filter);
         preferTaxonomyForOrganismQueries(results);
         return deduplicateByTermId(results);
     }
@@ -138,6 +144,38 @@ public class Deduplicator {
             String ds = r.datasource;
             if (ds == null) return true;
             return !allowed.contains(ds.toLowerCase(Locale.ROOT));
+        });
+    }
+
+    /**
+     * When {@code definingOnly} is set alongside target ontologies, drop results
+     * whose term does not belong to a target ontology's own namespace — i.e.
+     * terms the ontology merely imports. ECTO ships its CHEBI import closure,
+     * so a query filtered to {@code ecto} can otherwise return bare CHEBI
+     * chemicals alongside ECTO's own exposure classes.
+     *
+     * <p>Namespace membership is judged by the term id's prefix (ECTO_9000460
+     * → ecto, CHEBI_9937 → chebi), which under OBO conventions names the
+     * defining ontology whatever file the term was found in. Terms with no
+     * recognisable prefix (e.g. bare SNOMED numbers) fall back to the ontology
+     * that resolved them, matching the plain ontology filter's behaviour.
+     */
+    void filterToDefiningNamespace(List<MapResult> results, Filter filter) {
+        if (filter == null || !filter.definingOnly
+                || filter.targetOntologies == null || filter.targetOntologies.isEmpty()) {
+            return;
+        }
+        Set<String> targets = filter.targetOntologies.stream()
+            .map(s -> s.toLowerCase(Locale.ROOT))
+            .collect(Collectors.toSet());
+        results.removeIf(r -> {
+            if (r.error != null) return false;
+            String prefix = TermNamespace.prefixOf(r.ontologyTermID);
+            if (prefix != null) {
+                return !targets.contains(prefix);
+            }
+            String resolvingOntology = r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
+            return resolvingOntology == null || !targets.contains(resolvingOntology);
         });
     }
 

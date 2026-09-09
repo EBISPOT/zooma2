@@ -180,9 +180,10 @@ public class ZoomaApiV3 {
         
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        boolean definingOnly = request.definingOnly != null && request.definingOnly;
         var filter = request.filter != null
-            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
-            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies, definingOnly)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies, definingOnly);
         
         // Use requested model, or get default from OLS (first with can_embed=true)
         String model = request.model;
@@ -247,9 +248,10 @@ public class ZoomaApiV3 {
         
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        boolean definingOnly = request.definingOnly != null && request.definingOnly;
         var filter = request.filter != null
-            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
-            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies, definingOnly)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies, definingOnly);
         
         String model = request.model;
         if (model == null || model.isEmpty()) {
@@ -378,9 +380,10 @@ public class ZoomaApiV3 {
 
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
+        boolean definingOnly = request.definingOnly != null && request.definingOnly;
         var filter = request.filter != null
-            ? request.filter.toFilter(targetOntologies, includeOtherOntologies)
-            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies);
+            ? request.filter.toFilter(targetOntologies, includeOtherOntologies, definingOnly)
+            : Filter.fromLists(null, null, targetOntologies, includeOtherOntologies, definingOnly);
 
         String model = request.model;
         if (model == null || model.isEmpty()) {

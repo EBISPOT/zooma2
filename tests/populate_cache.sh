@@ -137,6 +137,16 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
 
     done < "$INPUT_FILE"
 
+    # Ontology-filtered cases (defining_only, issue #5)
+    v2_ecto_url="$BASE_URL/v2/api/services/annotate?propertyValue=vasopressin&filter=required:%5Bnone%5D,ontologies:%5Becto%5D"
+    curl -sf "$v2_ecto_url" > /dev/null || true
+    curl -sf "${v2_ecto_url},defining_only:%5Btrue%5D" > /dev/null || true
+    v3_ecto_base='{"properties":[{"textToMap":"vasopressin"}],"targetOntologies":["ecto"],"includeOtherOntologies":false'
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" -H "Content-Type: application/json" \
+        -d "${v3_ecto_base}}" > /dev/null || true
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" -H "Content-Type: application/json" \
+        -d "${v3_ecto_base},\"definingOnly\":true}" > /dev/null || true
+
     # Batch v3 map
     v3_batch_body=$(python3 -c "
 import csv, json

@@ -17,14 +17,15 @@ public class V3FilterDto {
 
     /**
      * Convert this DTO to the internal Filter model.
-     * Target ontologies and includeOtherOntologies are set at the request level, not here.
+     * Target ontologies, includeOtherOntologies and definingOnly are set at the request level, not here.
      */
-    public Filter toFilter(List<String> targetOntologies, boolean includeOtherOntologies) {
+    public Filter toFilter(List<String> targetOntologies, boolean includeOtherOntologies, boolean definingOnly) {
         return Filter.fromLists(
             required != null ? required : List.of(),
             preferred != null ? preferred : List.of(),
             targetOntologies != null ? targetOntologies : List.of(),
-            includeOtherOntologies
+            includeOtherOntologies,
+            definingOnly
         );
     }
 }

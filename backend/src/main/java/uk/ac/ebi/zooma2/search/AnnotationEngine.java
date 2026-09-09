@@ -11,6 +11,7 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OxoClient;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
+import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,9 +131,16 @@ public class AnnotationEngine {
             // (auto-escalation is also suppressed when shallowPassOnly is set)
             boolean needsDeep = Boolean.TRUE.equals(deep);
             if (deep == null && !shallowPassOnly.get() && hasTargets && !allResults.isEmpty()) {
+                // Under definingOnly, a result from a target ontology only satisfies the
+                // search if the term is in that ontology's own namespace — an imported
+                // term will be filtered out downstream.
+                boolean definingOnly = sources != null && sources.definingOnly;
                 boolean hasTargetResult = allResults.stream().anyMatch(a ->
                     a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
-                    && targetsLower.contains(a.provenance.source.name.toLowerCase()));
+                    && targetsLower.contains(a.provenance.source.name.toLowerCase())
+                    && (!definingOnly || TermNamespace.inNamespaces(
+                        a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null,
+                        targetsLower)));
                 if (!hasTargetResult) {
                     System.err.println("Shallow search found no results from target ontologies " +
                         context.targetOntologies + " — escalating to deep");

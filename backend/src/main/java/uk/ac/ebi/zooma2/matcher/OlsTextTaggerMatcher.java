@@ -6,6 +6,7 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -164,7 +165,11 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
      * the target-ontology constraint. Used to short-circuit expensive matchers.
      *
      * <p>If {@code filter} specifies target ontologies, at least one 1.0-confidence annotation
-     * must originate from one of them. If no targets are set, any 1.0 match qualifies.
+     * must originate from one of them. Under {@code definingOnly} the matched term must also
+     * be in a target ontology's own namespace — a full match on a term the ontology merely
+     * imports will be filtered from the results, so it must not short-circuit the search
+     * that could find a defining-namespace term. If no targets are set, any 1.0 match
+     * qualifies.
      */
     public boolean hasFullMatchFromTargetOntologies(List<Annotation> taggerAnnotations, Filter filter) {
         if (taggerAnnotations == null || taggerAnnotations.isEmpty()) return false;
@@ -176,9 +181,14 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                 a.confidence >= 1.0
                 && a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                 && targets.contains(a.provenance.source.name.toLowerCase())
+                && (!filter.definingOnly || TermNamespace.inNamespaces(firstSemanticTag(a), targets))
             );
         }
         return taggerAnnotations.stream().anyMatch(a -> a.confidence >= 1.0);
+    }
+
+    private static String firstSemanticTag(Annotation a) {
+        return a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null;
     }
 
     /**
