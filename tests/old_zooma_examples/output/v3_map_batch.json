@@ -1095,28 +1095,28 @@
     {
       "candidates": [
         {
-          "confidence": 0.7624909591674804,
-          "datasource": "cmpo",
-          "label": "increased cell size",
+          "confidence": 0.78746399,
+          "datasource": "bto",
+          "label": "large cell carcinoma cell",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Big cells",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "increased cell size",
+              "matchedText": "large cell carcinoma cell",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8567314147949219,
-              "source": "ols:cmpo",
-              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000128"
+              "similarity": 0.884791,
+              "source": "ols:bto",
+              "target": "http://purl.obolibrary.org/obo/BTO_0002059"
             }
           ],
-          "ontology": "cmpo",
-          "termId": "CMPO_0000128",
-          "uri": "cmpo"
+          "ontology": "bto",
+          "termId": "BTO_0002059",
+          "uri": "bto"
         },
         {
-          "confidence": 0.7590759325027466,
+          "confidence": 0.78516067,
           "datasource": "upheno",
           "label": "increased cell mass",
           "mappingProvenance": [
@@ -1127,7 +1127,7 @@
               "matchedText": "increased cell mass",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8528943061828613,
+              "similarity": 0.882203,
               "source": "ols:upheno",
               "target": "http://purl.obolibrary.org/obo/UPHENO_0084811"
             }
@@ -2187,7 +2187,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8489628124237061,
+          "confidence": 0.85465988,
           "datasource": "mondo",
           "label": "lung adenocarcinoma in situ",
           "mappingProvenance": [
@@ -2198,7 +2198,7 @@
               "matchedText": "lung adenocarcinoma in situ",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.9538908004760742,
+              "similarity": 0.960292,
               "source": "ols:mondo",
               "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
             }
@@ -2206,6 +2206,27 @@
           "ontology": "mondo",
           "termId": "MONDO_0000503",
           "uri": "mondo"
+        },
+        {
+          "confidence": 0.85073765,
+          "datasource": "efo",
+          "label": "lung adenocarcinoma grade",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Lung adenocarcinoma disease",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "lung adenocarcinoma grade",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.955885,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0005620"
+            }
+          ],
+          "ontology": "efo",
+          "termId": "EFO_0005620",
+          "uri": "efo"
         }
       ],
       "error": null,

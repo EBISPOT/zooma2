@@ -269,6 +269,16 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json" \
         "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json"
 
+    # Case-insensitivity (issue #7): a capitalised query must find the same
+    # lowercase-labelled ECTO term as the lowercase query.
+    for cisplatin_case in cisplatin Cisplatin; do
+        curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${cisplatin_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" \
+            | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json"
+        compare_output "$TEST_NAME/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only" \
+            "$ACTUAL_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json" \
+            "$OUTPUT_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json"
+    done
+
     # ---- 3. Test batch v3 map (all properties at once) ----
 
     # Build JSON array of all properties

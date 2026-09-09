@@ -1,8 +1,12 @@
 package uk.ac.ebi.zooma2.matcher;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.model.Annotation;
@@ -63,15 +67,49 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     private List<Annotation> searchWithSize(MatchContext context, int size) {
         List<Annotation> annotations = new ArrayList<>();
 
-        var terms = olsRepo.findByEmbeddingSearch(context.stringToMap, OLS_MODEL, null, size, timeoutMs);
+        var terms = searchBothCasings(context.stringToMap, size);
         for (var term : terms) {
             if (term.score != null && term.score < minSimilarity) {
                 continue;
             }
             annotations.add(createAnnotation(term, context));
         }
-        
+
         return annotations;
+    }
+
+    /**
+     * Embedding vectors are case-sensitive: "Cisplatin" and "cisplatin" land in
+     * different neighbourhoods, and ontology labels are typically lowercase, so
+     * a capitalised query can miss every relevant term. Search the query as
+     * given and, when it contains upper case, its lowercased form too, merging
+     * by IRI and keeping the higher score — case then never gates a match,
+     * while queries whose casing is meaningful (gene symbols, acronyms) keep
+     * their original-case results. Lowercase queries behave exactly as before.
+     */
+    private Collection<OlsTerm> searchBothCasings(String query, int size) {
+        var results = olsRepo.findByEmbeddingSearch(query, OLS_MODEL, null, size, timeoutMs);
+        String lowercased = query.toLowerCase(Locale.ROOT);
+        if (lowercased.equals(query)) {
+            return results;
+        }
+        var lowercasedResults = olsRepo.findByEmbeddingSearch(lowercased, OLS_MODEL, null, size, timeoutMs);
+        Map<String, OlsTerm> byIri = new LinkedHashMap<>();
+        for (var term : results) {
+            if (term.iri != null) byIri.put(term.iri, term);
+        }
+        for (var term : lowercasedResults) {
+            if (term.iri == null) continue;
+            OlsTerm existing = byIri.get(term.iri);
+            if (existing == null || score(term) > score(existing)) {
+                byIri.put(term.iri, term);
+            }
+        }
+        return byIri.values();
+    }
+
+    private static double score(OlsTerm term) {
+        return term.score != null ? term.score : 0.0;
     }
 
     private Annotation createAnnotation(OlsTerm term, MatchContext context) {

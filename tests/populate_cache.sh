@@ -146,6 +146,9 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         -d "${v3_ecto_base}}" > /dev/null || true
     curl -sf -X POST "$BASE_URL/v3/api/services/map" -H "Content-Type: application/json" \
         -d "${v3_ecto_base},\"definingOnly\":true}" > /dev/null || true
+    for cisplatin_case in cisplatin Cisplatin; do
+        curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${cisplatin_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" > /dev/null || true
+    done
 
     # Batch v3 map
     v3_batch_body=$(python3 -c "
