@@ -21,6 +21,26 @@ public class MapResult {
     /** {@code true} when the result's datasource or ontology is one the caller listed as preferred; otherwise unset. */
     public Boolean preferred;
     public String error;
+    /**
+     * Set on a pseudo-result that carries a degradation notice for its property
+     * (an OLS endpoint was unavailable, terms could not be resolved) rather than
+     * a candidate. Kept through deduplication like error results and surfaced on
+     * the property, never as a candidate.
+     */
+    public String warning;
+
+    /** True for error and warning pseudo-results, which are never candidates. */
+    public boolean isDiagnostic() {
+        return error != null || warning != null;
+    }
+
+    public static MapResult warning(String textToMap, String propertyType, String message) {
+        MapResult r = new MapResult();
+        r.textToMap = textToMap;
+        r.propertyType = propertyType;
+        r.warning = message;
+        return r;
+    }
 
     /**
      * A message for an error result that keeps the exception's identity: many
@@ -59,6 +79,8 @@ public class MapResult {
                Objects.equals(ontologyURI, that.ontologyURI) &&
                Objects.equals(datasource, that.datasource) &&
                Objects.equals(preferred, that.preferred) &&
+               Objects.equals(error, that.error) &&
+               Objects.equals(warning, that.warning) &&
                Objects.equals(mappingProvenance, that.mappingProvenance);
     }
 
@@ -66,6 +88,6 @@ public class MapResult {
     public int hashCode() {
         return Objects.hash(propertyType, textToMap, ontologyTermLabel,
                             ontologyTermSynonyms, Double.valueOf(mappingConfidence),
-                            ontologyTermID, ontologyTermIri, ontologyURI, datasource, preferred, mappingProvenance);
+                            ontologyTermID, ontologyTermIri, ontologyURI, datasource, preferred, error, warning, mappingProvenance);
     }
 }

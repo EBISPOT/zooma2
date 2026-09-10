@@ -136,7 +136,7 @@ public class Deduplicator {
             .map(s -> s.toLowerCase(Locale.ROOT))
             .collect(Collectors.toSet());
         for (var r : results) {
-            if (r.error != null) continue;
+            if (r.isDiagnostic()) continue;
             boolean fromPreferredDatasource = r.datasource != null && preferred.contains(r.datasource.toLowerCase(Locale.ROOT));
             boolean fromPreferredOntology = ontologiesOf(r).stream().anyMatch(preferred::contains);
             if (fromPreferredDatasource || fromPreferredOntology) {
@@ -156,7 +156,7 @@ public class Deduplicator {
         if (excludeTermIds == null || excludeTermIds.isEmpty()) return;
         Set<String> excluded = excludedForms(excludeTermIds, prefixMap);
         results.removeIf(r -> {
-            if (r.error != null) return false;
+            if (r.isDiagnostic()) return false;
             return TermIds.matchesAny(excluded, r.ontologyTermID, r.ontologyTermIri)
                 || (r.ontologyTermID != null && TermIds.matchesAny(excluded, null, prefixMap.shortFormToIri(r.ontologyTermID)));
         });
@@ -181,7 +181,7 @@ public class Deduplicator {
             .map(String::toLowerCase)
             .collect(Collectors.toSet());
         results.removeIf(r -> {
-            if (r.error != null) return false; // preserve error results
+            if (r.isDiagnostic()) return false; // preserve error results
             return targetOntologyOf(r, allowed) == null;
         });
     }
@@ -197,7 +197,7 @@ public class Deduplicator {
         // results come from ontologies (datasource = ontology name) and should
         // not be restricted by the DATABASE-level required filter.
         results.removeIf(r -> {
-            if (r.error != null) return false;
+            if (r.isDiagnostic()) return false;
             if (!isCurated(r)) return false;
             String ds = r.datasource;
             if (ds == null) return true;
@@ -227,7 +227,7 @@ public class Deduplicator {
             .map(s -> s.toLowerCase(Locale.ROOT))
             .collect(Collectors.toSet());
         results.removeIf(r -> {
-            if (r.error != null) return false;
+            if (r.isDiagnostic()) return false;
             String prefix = TermNamespace.prefixOf(r.ontologyTermID);
             if (prefix != null) {
                 return !targets.contains(prefix);
@@ -255,7 +255,7 @@ public class Deduplicator {
      */
     void preferTaxonomyForOrganismQueries(List<MapResult> results) {
         String propertyType = results.stream()
-            .filter(r -> r.error == null && r.propertyType != null)
+            .filter(r -> !r.isDiagnostic() && r.propertyType != null)
             .map(r -> r.propertyType)
             .findFirst().orElse(null);
         if (!isOrganismLikeType(propertyType)) {
@@ -263,13 +263,13 @@ public class Deduplicator {
         }
 
         boolean hasStrongTaxonomyMatch = results.stream().anyMatch(r ->
-            r.error == null && isTaxonomyResult(r) && isLexicallyGrounded(r));
+            !r.isDiagnostic() && isTaxonomyResult(r) && isLexicallyGrounded(r));
         if (!hasStrongTaxonomyMatch) {
             return;
         }
 
         for (var r : results) {
-            if (r.error != null) continue;
+            if (r.isDiagnostic()) continue;
             if (isTaxonomyResult(r)) {
                 // Only boost lexically grounded matches; a weak embedding guess from
                 // NCBITaxon (e.g. a rat-snake species for "rat") earns no boost.
@@ -414,7 +414,7 @@ public class Deduplicator {
         double best = 0.0;
         Map<String, Double> bestPerTarget = new HashMap<>();
         for (var r : results) {
-            if (r.error != null) continue;
+            if (r.isDiagnostic()) continue;
             best = Math.max(best, r.mappingConfidence);
             String onto = targetOntologyOf(r, targets);
             if (onto != null) {
@@ -425,7 +425,7 @@ public class Deduplicator {
         // Absolute-quality floor against the global best (all modes).
         if (best >= WEAK_RESULT_MIN_BEST) {
             double floor = best - WEAK_RESULT_GAP;
-            results.removeIf(r -> r.error == null
+            results.removeIf(r -> !r.isDiagnostic()
                 && r.mappingConfidence < floor
                 && !(hardFilter && isBestOfItsTargetOntology(r, targets, bestPerTarget)));
         }
@@ -433,7 +433,7 @@ public class Deduplicator {
         // Hard filter: tight gap within each target ontology, never across ontologies.
         if (hardFilter) {
             results.removeIf(r -> {
-                if (r.error != null) return false;
+                if (r.isDiagnostic()) return false;
                 String onto = targetOntologyOf(r, targets);
                 Double ontologyBest = onto != null ? bestPerTarget.get(onto) : null;
                 return ontologyBest != null && r.mappingConfidence < ontologyBest - TARGET_ONTOLOGY_GAP;
@@ -444,7 +444,7 @@ public class Deduplicator {
         if (softPreference && !bestPerTarget.isEmpty()) {
             double bestTarget = Collections.max(bestPerTarget.values());
             results.removeIf(r -> {
-                if (r.error != null) return false;
+                if (r.isDiagnostic()) return false;
                 boolean isTarget = targetOntologyOf(r, targets) != null;
                 return !isTarget && bestTarget >= r.mappingConfidence - TARGET_ONTOLOGY_GAP;
             });
@@ -477,7 +477,7 @@ public class Deduplicator {
         LinkedHashMap<String, MapResult> best = new LinkedHashMap<>();
         List<MapResult> errorResults = new ArrayList<>();
         for (var r : results) {
-            if (r.error != null) { errorResults.add(r); continue; }
+            if (r.isDiagnostic()) { errorResults.add(r); continue; } // errors and warnings pass through
             String key = r.ontologyTermIri != null ? r.ontologyTermIri
                 : (r.ontologyTermID != null ? prefixMap.shortFormToIri(r.ontologyTermID) : null);
             if (key == null) continue;

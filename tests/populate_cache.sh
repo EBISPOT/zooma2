@@ -21,6 +21,9 @@ ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 PORT="${ZOOMA2_TEST_PORT:-8090}"
 BASE_URL="http://localhost:${PORT}"
 ZOOMA_JAR="$ROOT_DIR/backend/target/zooma2-1.0-SNAPSHOT.jar"
+# The cached OLS data was captured on a fixed date; never expire it here so the
+# suite stays offline and deterministic (production defaults to 30 days).
+export ZOOMA2_CACHE_TTL_SECONDS=0
 
 log() { echo "==> $*" >&2; }
 

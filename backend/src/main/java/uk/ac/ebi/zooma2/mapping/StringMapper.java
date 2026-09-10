@@ -12,6 +12,7 @@ import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
 import uk.ac.ebi.zooma2.search.EscalationPolicy;
+import uk.ac.ebi.zooma2.util.Diagnostics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,6 +99,16 @@ public class StringMapper {
                                  Boolean deep, List<String> excludeTermIds) {
         // Result order is engine (Phase 1, then Phase 2) followed by tagger, as it
         // always has been: candidate order is the tie-breaker for equal scores downstream.
+        List<String> warnings = Diagnostics.begin();
+        try {
+            return mapShallowCollectingWarnings(s, taggerAnnotations, filter, model, deep, excludeTermIds, warnings);
+        } finally {
+            Diagnostics.end();
+        }
+    }
+
+    private MappingRun mapShallowCollectingWarnings(StringToMap s, List<Annotation> taggerAnnotations, Filter filter, String model,
+                                                    Boolean deep, List<String> excludeTermIds, List<String> warnings) {
         List<MapResult> taggerResults = new ArrayList<>();
         try {
             taggerResults.addAll(annotationsToMapResults(taggerAnnotations, s, false));
@@ -121,8 +132,10 @@ public class StringMapper {
             System.err.println("Error mapping '" + s.textToMap + "': " + MapResult.describe(e));
             e.printStackTrace();
             engineResults.add(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e)));
+            engineResults.addAll(warningResults(s, warnings));
             return new MappingRun(s, context, List.of(), engineResults, taggerResults, false);
         }
+        engineResults.addAll(warningResults(s, warnings));
 
         MappingRun run = new MappingRun(s, context, shallow, engineResults, taggerResults, false);
         boolean needsDeep = !Thread.currentThread().isInterrupted()
@@ -140,6 +153,7 @@ public class StringMapper {
      */
     public List<MapResult> mapDeep(MappingRun run) {
         List<MapResult> results = new ArrayList<>(run.engineResults);
+        List<String> warnings = Diagnostics.begin();
         try {
             List<Annotation> deep = annotationEngine.annotateDeep(run.context, run.shallowAnnotations);
             results.addAll(toMapResults(deep, run.property));
@@ -149,9 +163,26 @@ public class StringMapper {
             System.err.println("Error in deep search for '" + run.property.textToMap + "': " + MapResult.describe(e));
             e.printStackTrace();
             results.add(MapResult.error(run.property.textToMap, run.property.propertyType, MapResult.describe(e)));
+        } finally {
+            Diagnostics.end();
+        }
+        // The deep phase may hit the same outage the shallow phase already reported
+        java.util.Set<String> alreadyReported = new java.util.HashSet<>();
+        for (MapResult r : run.results) if (r.warning != null) alreadyReported.add(r.warning);
+        for (MapResult w : warningResults(run.property, warnings)) {
+            if (alreadyReported.add(w.warning)) results.add(w);
         }
         results.addAll(run.taggerResults);
         return results;
+    }
+
+    /** One warning pseudo-result per distinct message collected while mapping {@code s}. */
+    private static List<MapResult> warningResults(StringToMap s, List<String> warnings) {
+        List<MapResult> out = new ArrayList<>();
+        synchronized (warnings) {
+            for (String w : warnings) out.add(MapResult.warning(s.textToMap, s.propertyType, w));
+        }
+        return out;
     }
 
     /**

@@ -35,8 +35,53 @@ public class CachedHttpClient {
         return apiCache;
     }
 
+    /** A non-2xx response; carries the status so callers can tell a transient 503 from a definitive 404. */
+    public static class HttpStatusException extends IOException {
+        public final int statusCode;
+
+        public HttpStatusException(int statusCode, String message) {
+            super(message);
+            this.statusCode = statusCode;
+        }
+
+        /** 5xx and 429 may succeed on a retry; other statuses will not. */
+        public boolean isTransient() {
+            return statusCode >= 500 || statusCode == 429;
+        }
+    }
+
+    /** Delay before the single retry of a transiently failed request. */
+    static final long RETRY_DELAY_MS = 500;
+
+    /** One request the retry wrapper can repeat. */
+    private interface Attempt<T> {
+        T run() throws IOException;
+    }
+
     /**
-     * GET a URL and parse as JSON, with caching.
+     * Runs {@code attempt}, retrying it once after a short delay if it failed
+     * transiently (connection reset, timeout, 5xx, 429). Never retries a
+     * cancelled request or a definitive client error (4xx other than 429).
+     */
+    static <T> T withOneRetry(String what, Attempt<T> attempt) throws IOException {
+        try {
+            return attempt.run();
+        } catch (IOException first) {
+            if (RequestCancellation.isCancelled() || Thread.currentThread().isInterrupted()) throw first;
+            if (first instanceof HttpStatusException status && !status.isTransient()) throw first;
+            System.err.println("Retrying " + what + " after: " + first.getMessage());
+            try {
+                Thread.sleep(RETRY_DELAY_MS);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw first;
+            }
+            return attempt.run();
+        }
+    }
+
+    /**
+     * GET a URL and parse as JSON, with caching and one retry on transient failure.
      */
     public static JsonElement getJson(String url, int timeoutMs) throws IOException {
         if (RequestCancellation.isCancelled()) {
@@ -53,7 +98,10 @@ public class CachedHttpClient {
                 }
             }
         }
+        return withOneRetry("GET " + url, () -> getJsonOnce(url, timeoutMs));
+    }
 
+    private static JsonElement getJsonOnce(String url, int timeoutMs) throws IOException {
         RequestConfig config = RequestConfig.custom()
                 .setConnectTimeout(timeoutMs)
                 .setConnectionRequestTimeout(timeoutMs)
@@ -69,7 +117,7 @@ public class CachedHttpClient {
                 if (entity != null) {
                     String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
                     if (statusCode < 200 || statusCode >= 300) {
-                        throw new IOException("HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+                        throw new HttpStatusException(statusCode, "HTTP " + statusCode + " for GET " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
                     }
                     var parsed = parseJsonStrict(body, "GET", url);
                     if (apiCache != null) {
@@ -86,7 +134,7 @@ public class CachedHttpClient {
     }
 
     /**
-     * POST JSON to a URL and parse response as JSON, with caching.
+     * POST JSON to a URL and parse response as JSON, with caching and one retry on transient failure.
      */
     public static JsonElement postJson(String url, String jsonBody, int timeoutMs) throws IOException {
         if (RequestCancellation.isCancelled()) {
@@ -103,7 +151,10 @@ public class CachedHttpClient {
                 }
             }
         }
+        return withOneRetry("POST " + url, () -> postJsonOnce(url, jsonBody, timeoutMs));
+    }
 
+    private static JsonElement postJsonOnce(String url, String jsonBody, int timeoutMs) throws IOException {
         RequestConfig config = RequestConfig.custom()
                 .setConnectTimeout(timeoutMs)
                 .setConnectionRequestTimeout(timeoutMs)
@@ -123,7 +174,7 @@ public class CachedHttpClient {
                 if (entity != null) {
                     String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
                     if (statusCode < 200 || statusCode >= 300) {
-                        throw new IOException("HTTP " + statusCode + " for POST " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+                        throw new HttpStatusException(statusCode, "HTTP " + statusCode + " for POST " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
                     }
                     var parsed = parseJsonStrict(body, "POST", url);
                     if (apiCache != null) {

@@ -29,7 +29,7 @@ class MapAllContainmentTest {
     /** No tagger hits, never short-circuits. */
     private static class NoTagger extends OlsTextTaggerMatcher {
         NoTagger() { super(new OlsClientRepo(), PREFIX_MAP); }
-        @Override public Map<String, List<Annotation>> bulkTagText(List<String> terms) { return Map.of(); }
+        @Override public TaggerResults bulkTag(List<String> terms) { return new TaggerResults(Map.of(), java.util.Set.of(), null); }
     }
 
     /** Maps every text to one term, except "boom", which blows up. */

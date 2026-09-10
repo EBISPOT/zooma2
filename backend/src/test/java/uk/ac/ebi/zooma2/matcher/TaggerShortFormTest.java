@@ -25,14 +25,14 @@ class TaggerShortFormTest {
     /** OLS stub: canned tag_text hits and the ontology configuration OLS would apply. */
     private static class StubOlsRepo extends OlsClientRepo {
         @Override
-        public Map<String, List<TagTextMatch>> tagText(List<String> terms, List<String> ontologyIds) {
-            return Map.of("rat", List.of(
+        public TagTextResponse tagText(List<String> terms, List<String> ontologyIds) {
+            return new TagTextResponse(Map.of("rat", List.of(
                 new TagTextMatch("rat", "http://www.ebi.ac.uk/efo/EFO_0000400", "efo", 1.0, "LABEL", null, null, null, false),
                 new TagTextMatch("rat", "http://id.nlm.nih.gov/mesh/D051381", "mesh", 1.0, "LABEL", null, null, null, false),
                 new TagTextMatch("rat", "http://www.orpha.net/ORDO/Orphanet_224", "ordo", 1.0, "LABEL", null, null, null, false),
                 new TagTextMatch("rat", "http://purl.obolibrary.org/obo/NCBITaxon_10116", "ncbitaxon", 1.0, "LABEL", null, null, null, false),
                 new TagTextMatch("rat", "http://purl.obolibrary.org/obo/NCBITaxon_10116", "efo", 1.0, "synonym", null, null, null, false)
-            ));
+            )), java.util.Set.of(), null);
         }
 
         @Override

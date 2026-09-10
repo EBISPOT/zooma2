@@ -188,8 +188,10 @@ public class OlsClientRepo {
         // ForkJoinPool a parallel stream would use is CPU-sized and JVM-shared).
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = uk.ac.ebi.zooma2.util.RequestCancellation.getFlag();
         List<OlsTerm> resolved = new ArrayList<>();
+        List<String> transportFailures = new ArrayList<>();
+        List<String> notFound = new ArrayList<>();
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
-            List<java.util.concurrent.Future<OlsTerm>> futures = irisToFetch.stream()
+            List<java.util.concurrent.Future<TermFetch>> futures = irisToFetch.stream()
                 .filter(iri -> iri != null && !iri.isEmpty())
                 .map(iri -> executor.submit(() -> {
                     if (cancelFlag != null) uk.ac.ebi.zooma2.util.RequestCancellation.setFlag(cancelFlag);
@@ -198,16 +200,22 @@ public class OlsClientRepo {
                 .toList();
             for (var future : futures) {
                 try {
-                    OlsTerm term = future.get();
-                    if (term != null) resolved.add(term);
+                    TermFetch fetch = future.get();
+                    if (fetch.term != null) resolved.add(fetch.term);
+                    else if (fetch.transportFailure) transportFailures.add(fetch.message);
+                    else notFound.add(fetch.iri);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     futures.forEach(f -> f.cancel(true));
                     break;
                 } catch (java.util.concurrent.ExecutionException e) {
-                    System.err.println("Failed to get term from OLS: " + e.getCause());
+                    transportFailures.add(String.valueOf(e.getCause()));
                 }
             }
+        }
+        if (!transportFailures.isEmpty() && !uk.ac.ebi.zooma2.util.RequestCancellation.isCancelled()) {
+            uk.ac.ebi.zooma2.util.Diagnostics.warn("OLS term lookup failed for " + transportFailures.size() + " of "
+                + irisToFetch.size() + " terms (" + transportFailures.get(0) + "); candidates for those terms are missing");
         }
 
         // Save to cache and add to result
@@ -222,20 +230,20 @@ public class OlsClientRepo {
             resolvedIris.add(term.iri);
         }
         
-        if (termCache != null) {
-            // Mark IRIs that we tried but failed to resolve
-            Set<String> failedIris = new HashSet<>(fetchedIris);
-            failedIris.removeAll(resolvedIris);
-            if (!failedIris.isEmpty()) {
-                termCache.markFailed(failedIris);
-            }
+        if (termCache != null && !notFound.isEmpty()) {
+            // Only a definitive "no such term" from OLS is recorded; a transport
+            // failure must not become a permanent negative entry.
+            termCache.markFailed(notFound);
         }
 
         return result;
     }
 
-    /** One term by IRI from its defining ontology, or {@code null} if OLS has no such term or the call failed. */
-    private OlsTerm fetchTerm(String iri) {
+    /** Outcome of one term lookup: the term, a definitive miss, or a transport failure. */
+    private record TermFetch(String iri, OlsTerm term, boolean transportFailure, String message) {
+    }
+
+    private TermFetch fetchTerm(String iri) {
         try {
             var doubleEncoded = java.net.URLEncoder.encode(iri, java.nio.charset.StandardCharsets.UTF_8);
             doubleEncoded = java.net.URLEncoder.encode(doubleEncoded, java.nio.charset.StandardCharsets.UTF_8);
@@ -246,14 +254,25 @@ public class OlsClientRepo {
                 !found.getAsJsonObject().has("_embedded") ||
                 !found.getAsJsonObject().get("_embedded").getAsJsonObject().has("terms") ||
                 found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray().size() == 0) {
-                return null;
+                return new TermFetch(iri, null, false, null);
             }
             var terms = found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray();
-            return gson.fromJson(terms.get(0), OlsTerm.class);
+            return new TermFetch(iri, gson.fromJson(terms.get(0), OlsTerm.class), false, null);
+        } catch (CachedHttpClient.HttpStatusException e) {
+            // 404 is OLS saying "no such term"; anything else is the service misbehaving
+            if (e.statusCode == 404) return new TermFetch(iri, null, false, null);
+            System.err.println("Failed to get term from OLS with IRI: " + iri + " - " + e.getMessage());
+            return new TermFetch(iri, null, true, e.getMessage());
         } catch (IOException e) {
-            System.err.println("Failed to get term from OLS (2) with IRI: " + iri + " - " + e.getMessage());
-            return null;
+            System.err.println("Failed to get term from OLS with IRI: " + iri + " - " + e.getMessage());
+            return new TermFetch(iri, null, true, e.getMessage());
         }
+    }
+
+    /** Records a degradation for the property being mapped, unless the request was simply cancelled. */
+    private static void warn(String what, Exception e) {
+        if (uk.ac.ebi.zooma2.util.RequestCancellation.isCancelled()) return;
+        uk.ac.ebi.zooma2.util.Diagnostics.warn(what + ": " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
     }
 
     /**
@@ -286,10 +305,10 @@ public class OlsClientRepo {
             }
             return results;
         } catch (IOException e) {
-            System.err.println("OLS LLM Similar: Error querying " + termIri + ": " + e.getMessage());
+            warn("OLS similar-class expansion unavailable", e);
             return List.of();
         } catch (RuntimeException e) {
-            System.err.println("OLS LLM Similar: Error parsing response for " + termIri + ": " + e.getMessage());
+            warn("OLS similar-class expansion returned an unreadable response", e);
             return List.of();
         } finally {
             similarSemaphore.release();
@@ -408,12 +427,10 @@ public class OlsClientRepo {
             return results;
             
         } catch (IOException e) {
-            System.err.println("Error in OLS embedding search: " + e.getMessage());
-            e.printStackTrace();
+            warn("OLS embedding search unavailable", e);
             return List.of();
         } catch (RuntimeException e) {
-            System.err.println("Error parsing OLS embedding search response: " + e.getMessage());
-            e.printStackTrace();
+            warn("OLS embedding search returned an unreadable response", e);
             return List.of();
         } finally {
             embeddingSemaphore.release();
@@ -517,19 +534,99 @@ public class OlsClientRepo {
         return null;
     }
 
+    /** Largest tag_text request body, in bytes of joined input text; bigger batches are split. */
+    public static final int TAG_TEXT_MAX_CHUNK_BYTES = 64 * 1024;
+    /** Most input terms per tag_text request. */
+    public static final int TAG_TEXT_MAX_CHUNK_TERMS = 500;
+
     /**
-     * Use OLS text tagger (Aho-Corasick) to find exact lexical matches for multiple terms in one request.
-     * Joins all terms with newlines, POSTs to /api/v2/tag_text, then maps results back to input terms.
+     * Result of a bulk tag_text call: matches per input term, plus the terms whose
+     * request failed even after a retry. A failed chunk degrades only its own
+     * terms; the caller reports the failure on those properties instead of
+     * silently returning them without their exact-match tier.
+     */
+    public static final class TagTextResponse {
+        public final Map<String, List<TagTextMatch>> matches;
+        public final Set<String> failedTerms;
+        public final String failure;
+
+        public TagTextResponse(Map<String, List<TagTextMatch>> matches, Set<String> failedTerms, String failure) {
+            this.matches = matches;
+            this.failedTerms = failedTerms;
+            this.failure = failure;
+        }
+    }
+
+    /**
+     * Use OLS text tagger (Aho-Corasick) to find exact lexical matches for multiple terms.
+     * The terms are joined with newlines and POSTed to /api/v2/tag_text in chunks of at
+     * most {@link #TAG_TEXT_MAX_CHUNK_BYTES} / {@link #TAG_TEXT_MAX_CHUNK_TERMS}, run
+     * concurrently, each retried once on a transient failure; results are mapped back
+     * to the input terms. A batch that fits in one chunk produces exactly the request
+     * a single call always did.
      *
      * @param terms List of input terms to match
      * @param ontologyIds Optional list of ontology IDs to restrict to
-     * @return Map of input term → list of TagTextMatch results
      */
-    public Map<String, List<TagTextMatch>> tagText(List<String> terms, List<String> ontologyIds) {
+    public TagTextResponse tagText(List<String> terms, List<String> ontologyIds) {
         if (terms == null || terms.isEmpty()) {
-            return Map.of();
+            return new TagTextResponse(Map.of(), Set.of(), null);
+        }
+        List<List<String>> chunks = chunkTerms(terms, TAG_TEXT_MAX_CHUNK_BYTES, TAG_TEXT_MAX_CHUNK_TERMS);
+        if (chunks.size() == 1) {
+            return tagTextChunk(chunks.get(0), ontologyIds);
         }
 
+        final java.util.concurrent.atomic.AtomicBoolean cancelFlag = uk.ac.ebi.zooma2.util.RequestCancellation.getFlag();
+        Map<String, List<TagTextMatch>> matches = new HashMap<>();
+        Set<String> failedTerms = new HashSet<>();
+        String failure = null;
+        try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
+            List<java.util.concurrent.Future<TagTextResponse>> futures = chunks.stream()
+                .map(chunk -> executor.submit(() -> {
+                    if (cancelFlag != null) uk.ac.ebi.zooma2.util.RequestCancellation.setFlag(cancelFlag);
+                    return tagTextChunk(chunk, ontologyIds);
+                }))
+                .toList();
+            for (int i = 0; i < futures.size(); i++) {
+                try {
+                    TagTextResponse chunkResponse = futures.get(i).get();
+                    matches.putAll(chunkResponse.matches);
+                    failedTerms.addAll(chunkResponse.failedTerms);
+                    if (chunkResponse.failure != null && failure == null) failure = chunkResponse.failure;
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    futures.forEach(f -> f.cancel(true));
+                    break;
+                } catch (java.util.concurrent.ExecutionException e) {
+                    failedTerms.addAll(chunks.get(i));
+                    if (failure == null) failure = String.valueOf(e.getCause());
+                }
+            }
+        }
+        return new TagTextResponse(matches, failedTerms, failure);
+    }
+
+    /** Splits terms in order into chunks bounded by joined UTF-8 size and count; an oversized term gets its own chunk. */
+    static List<List<String>> chunkTerms(List<String> terms, int maxBytes, int maxTerms) {
+        List<List<String>> chunks = new ArrayList<>();
+        List<String> current = new ArrayList<>();
+        int currentBytes = 0;
+        for (String term : terms) {
+            int bytes = String.valueOf(term).getBytes(StandardCharsets.UTF_8).length + 1;
+            if (!current.isEmpty() && (current.size() >= maxTerms || currentBytes + bytes > maxBytes)) {
+                chunks.add(current);
+                current = new ArrayList<>();
+                currentBytes = 0;
+            }
+            current.add(term);
+            currentBytes += bytes;
+        }
+        if (!current.isEmpty()) chunks.add(current);
+        return chunks;
+    }
+
+    private TagTextResponse tagTextChunk(List<String> terms, List<String> ontologyIds) {
         // OLS tag_text returns UTF-8 byte offsets. Keep the joined text and
         // term boundaries in bytes until the HTTP request body needs a String.
         var joinedText = joinTermsAsUtf8(terms);
@@ -555,7 +652,7 @@ public class OlsClientRepo {
 
             if (json == null || !json.getAsJsonObject().has("entities")) {
                 System.err.println("No entities in tag_text response");
-                return Map.of();
+                return new TagTextResponse(Map.of(), Set.of(), null);
             }
 
             var entities = json.getAsJsonObject().get("entities").getAsJsonArray();
@@ -590,6 +687,12 @@ public class OlsClientRepo {
                     if (startByte >= joinedText.termStartBytes()[i] && endByte <= joinedText.termEndBytes()[i]) {
                         int matchedLength = endByte - startByte;
                         int termLength = joinedText.termEndBytes()[i] - joinedText.termStartBytes()[i];
+                        // The request's minLength is the batch minimum; each term keeps only
+                        // matches that clear its own minimum, so a term's results never
+                        // depend on which other terms shared the batch.
+                        if (!acceptsMatch(terms.get(i), matchedLength)) {
+                            break;
+                        }
                         double coverage = termLength > 0 ? (double) matchedLength / termLength : 0.0;
                         var match = new TagTextMatch(termLabel, termIri, ontologyId, coverage, stringType, source, shortForm, synonyms, isObsolete);
                         results.computeIfAbsent(terms.get(i), k -> new ArrayList<>()).add(match);
@@ -606,11 +709,13 @@ public class OlsClientRepo {
                     .toList());
             }
 
-            return results;
+            return new TagTextResponse(results, Set.of(), null);
 
         } catch (IOException e) {
-            System.err.println("Error calling tag_text: " + e.getMessage());
-            return Map.of();
+            if (!uk.ac.ebi.zooma2.util.RequestCancellation.isCancelled()) {
+                System.err.println("Error calling tag_text for " + terms.size() + " terms: " + e.getMessage());
+            }
+            return new TagTextResponse(Map.of(), new HashSet<>(terms), e.getMessage());
         }
     }
 
@@ -632,6 +737,11 @@ public class OlsClientRepo {
             .min()
             .orElse(6);
         return Math.max(2, Math.min(6, shortest));
+    }
+
+    /** Whether a match of {@code matchedBytes} bytes clears {@code term}'s own minimum (the value a batch of just that term would request). */
+    static boolean acceptsMatch(String term, int matchedBytes) {
+        return matchedBytes >= minMatchLengthFor(List.of(term));
     }
 
     /**
@@ -884,10 +994,10 @@ public class OlsClientRepo {
             }
             return results;
         } catch (IOException e) {
-            System.err.println("Error in OLS fuzzy search: " + e.getMessage());
+            warn("OLS lexical search unavailable", e);
             return List.of();
         } catch (RuntimeException e) {
-            System.err.println("Error parsing OLS fuzzy search response: " + e.getMessage());
+            warn("OLS lexical search returned an unreadable response", e);
             return List.of();
         }
         } finally {

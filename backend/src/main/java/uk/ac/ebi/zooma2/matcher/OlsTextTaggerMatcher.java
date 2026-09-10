@@ -48,13 +48,32 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                .getOrDefault(context.stringToMap, List.of());
     }
 
+    /** Annotations per input term, plus the terms whose tag_text request failed. */
+    public static final class TaggerResults {
+        public final Map<String, List<Annotation>> byTerm;
+        public final Set<String> failedTerms;
+        public final String failure;
+
+        public TaggerResults(Map<String, List<Annotation>> byTerm, Set<String> failedTerms, String failure) {
+            this.byTerm = byTerm;
+            this.failedTerms = failedTerms;
+            this.failure = failure;
+        }
+    }
+
     /**
-     * Bulk-tags all input terms via the OLS text tagger (single HTTP call).
+     * Bulk-tags all input terms via the OLS text tagger.
      *
      * @return map from each input term to its list of {@link Annotation}s
      */
     public Map<String, List<Annotation>> bulkTagText(List<String> terms) {
-        var tagResults = olsRepo.tagText(terms, null);
+        return bulkTag(terms).byTerm;
+    }
+
+    /** As {@link #bulkTagText}, also reporting the terms whose request failed so callers can flag them. */
+    public TaggerResults bulkTag(List<String> terms) {
+        var response = olsRepo.tagText(terms, null);
+        var tagResults = response.matches;
         Map<String, List<Annotation>> result = new HashMap<>();
 
         for (var entry : tagResults.entrySet()) {
@@ -140,7 +159,7 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
             }
             result.put(inputTerm, annotations);
         }
-        return result;
+        return new TaggerResults(result, response.failedTerms, response.failure);
     }
 
     /**

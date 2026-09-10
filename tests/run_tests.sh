@@ -20,6 +20,9 @@ UPDATE_EXPECTED="${UPDATE_EXPECTED:-0}"
 FAILED=0
 
 export ZOOMA2_OLS_URL="${ZOOMA2_OLS_URL:-https://www.ebi.ac.uk/ols4}"
+# The cached OLS data was captured on a fixed date; never expire it here so the
+# suite stays offline and deterministic (production defaults to 30 days).
+export ZOOMA2_CACHE_TTL_SECONDS=0
 
 # ---- helpers ---------------------------------------------------------------
 

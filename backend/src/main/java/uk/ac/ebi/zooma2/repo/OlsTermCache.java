@@ -14,10 +14,22 @@ import uk.ac.ebi.zooma2.model.OlsTerm;
 public class OlsTermCache {
 
     private final ZoomaDatabase db;
+    private final long ttlSeconds;
     private final Gson gson = new Gson();
 
     public OlsTermCache(ZoomaDatabase db) {
+        this(db, CacheTtl.fromEnvironment());
+    }
+
+    /** @param ttlSeconds age after which a cached term is treated as absent (0 = never) */
+    public OlsTermCache(ZoomaDatabase db, long ttlSeconds) {
         this.db = db;
+        this.ttlSeconds = ttlSeconds;
+    }
+
+    private String freshOnly() {
+        String fresh = CacheTtl.freshnessPredicate(db, ttlSeconds);
+        return fresh != null ? " AND " + fresh : "";
     }
 
     /**
@@ -25,7 +37,7 @@ public class OlsTermCache {
      * @return OlsTerm or null if not cached
      */
     public OlsTerm getTerm(String iri) {
-        String sql = "SELECT term_json FROM ols_terms WHERE iri = ?";
+        String sql = "SELECT term_json FROM ols_terms WHERE iri = ?" + freshOnly();
         
         try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -57,7 +69,7 @@ public class OlsTermCache {
         
         // Build query with placeholders
         String placeholders = String.join(",", Collections.nCopies(iris.size(), "?"));
-        String sql = "SELECT iri, term_json FROM ols_terms WHERE iri IN (" + placeholders + ")";
+        String sql = "SELECT iri, term_json FROM ols_terms WHERE iri IN (" + placeholders + ")" + freshOnly();
         
         try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
