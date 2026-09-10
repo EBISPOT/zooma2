@@ -37,8 +37,10 @@ public class V3MapRequestDto {
 
     /**
      * When true, always run Phase 2 (deep embedding, cross-reference expansion).
-     * When false, skip Phase 2 even if target ontologies are not found in Phase 1.
-     * Defaults to the value of {@code returnAll} if not set.
+     * When false, never run it. When unset (the default), Phase 2 runs only when
+     * target ontologies are set and Phase 1 finds nothing from them that settles
+     * the search (see {@code EscalationPolicy}); it is independent of
+     * {@code returnAll}.
      */
     public Boolean deep;
 }

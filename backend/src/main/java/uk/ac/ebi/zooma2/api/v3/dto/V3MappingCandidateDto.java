@@ -1,6 +1,8 @@
 package uk.ac.ebi.zooma2.api.v3.dto;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import uk.ac.ebi.zooma2.model.MapResult;
 
 /**
@@ -17,7 +19,7 @@ public class V3MappingCandidateDto {
     /** The ontology this term belongs to (e.g., "efo", "mondo"). */
     public String ontology;
 
-    /** Full URI of the ontology term. */
+    /** Full IRI of the ontology term (e.g. "http://www.ebi.ac.uk/efo/EFO_0000001"). */
     public String uri;
 
     /** Confidence score (0.0 to 1.0). */
@@ -25,6 +27,14 @@ public class V3MappingCandidateDto {
 
     /** Source of this mapping (e.g., "atlas", "gwas", "ols"). */
     public String datasource;
+
+    /**
+     * {@code true} when the candidate's datasource or ontology is in the request's
+     * {@code filter.preferred} list; such candidates are ranked ahead of equally
+     * confident ones. Omitted otherwise.
+     */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Boolean preferred;
 
     /** Provenance chain explaining how this mapping was established. */
     public List<V3MappingProvenanceStepDto> mappingProvenance;
@@ -37,9 +47,10 @@ public class V3MappingCandidateDto {
         dto.termId = internal.ontologyTermID;
         dto.label = internal.ontologyTermLabel;
         dto.ontology = internal.ontologyURI;
-        dto.uri = internal.ontologyURI;
+        dto.uri = internal.ontologyTermIri;
         dto.confidence = internal.mappingConfidence;
         dto.datasource = internal.datasource;
+        dto.preferred = internal.preferred;
         dto.mappingProvenance = internal.mappingProvenance;
         return dto;
     }

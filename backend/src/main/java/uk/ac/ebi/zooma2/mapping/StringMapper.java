@@ -104,8 +104,9 @@ public class StringMapper {
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
-            System.err.println("Error converting tagger results for '" + s.textToMap + "': " + e.getMessage());
-            taggerResults.add(MapResult.error(s.textToMap, s.propertyType, e.getMessage()));
+            System.err.println("Error converting tagger results for '" + s.textToMap + "': " + MapResult.describe(e));
+            e.printStackTrace();
+            taggerResults.add(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e)));
         }
 
         MatchContext context = new MatchContext(s.textToMap, s.propertyType, filter, model);
@@ -117,8 +118,9 @@ public class StringMapper {
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
-            System.err.println("Error mapping '" + s.textToMap + "': " + e.getMessage());
-            engineResults.add(MapResult.error(s.textToMap, s.propertyType, e.getMessage()));
+            System.err.println("Error mapping '" + s.textToMap + "': " + MapResult.describe(e));
+            e.printStackTrace();
+            engineResults.add(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e)));
             return new MappingRun(s, context, List.of(), engineResults, taggerResults, false);
         }
 
@@ -144,8 +146,9 @@ public class StringMapper {
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
-            System.err.println("Error in deep search for '" + run.property.textToMap + "': " + e.getMessage());
-            results.add(MapResult.error(run.property.textToMap, run.property.propertyType, e.getMessage()));
+            System.err.println("Error in deep search for '" + run.property.textToMap + "': " + MapResult.describe(e));
+            e.printStackTrace();
+            results.add(MapResult.error(run.property.textToMap, run.property.propertyType, MapResult.describe(e)));
         }
         results.addAll(run.taggerResults);
         return results;

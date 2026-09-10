@@ -100,6 +100,9 @@ public class Deduplicator {
         // 7. Among remaining results, remove lower-priority ontology results
         keepHigherPriorityOnTie(deduped, filter);
 
+        // 8. Flag results from the caller's preferred sources (a ranking tie-break, not a score change)
+        markPreferred(deduped, filter);
+
         return deduped;
     }
 
@@ -114,10 +117,33 @@ public class Deduplicator {
         filterByOntologies(results, filter);
         filterToDefiningNamespace(results, filter);
         preferTaxonomyForOrganismQueries(results);
-        return deduplicateByTermId(results);
+        var deduped = deduplicateByTermId(results);
+        markPreferred(deduped, filter);
+        return deduped;
     }
 
     // ---- individual rules (package-visible for testing) ----
+
+    /**
+     * Marks results whose curated datasource or ontology (found-in or defining)
+     * is in the filter's {@code preferred} list. Preferred results rank ahead of
+     * equally confident ones (see {@code EvidenceTier.resultRanking}); their
+     * confidence is not changed, so the flag is visible to clients as such.
+     */
+    void markPreferred(List<MapResult> results, Filter filter) {
+        if (filter == null || filter.preferred == null || filter.preferred.isEmpty()) return;
+        Set<String> preferred = filter.preferred.stream()
+            .map(s -> s.toLowerCase(Locale.ROOT))
+            .collect(Collectors.toSet());
+        for (var r : results) {
+            if (r.error != null) continue;
+            boolean fromPreferredDatasource = r.datasource != null && preferred.contains(r.datasource.toLowerCase(Locale.ROOT));
+            boolean fromPreferredOntology = ontologiesOf(r).stream().anyMatch(preferred::contains);
+            if (fromPreferredDatasource || fromPreferredOntology) {
+                r.preferred = Boolean.TRUE;
+            }
+        }
+    }
 
     /**
      * Drops results the caller rejected. An excluded id may be a short form in any
