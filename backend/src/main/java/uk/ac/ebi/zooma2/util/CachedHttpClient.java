@@ -8,6 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -65,19 +66,7 @@ public class CachedHttpClient {
 
         try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(url);
-            // Abort the in-flight request as soon as the cancellation flag is set
-            AtomicBoolean flag = RequestCancellation.getFlag();
-            Thread watcher = null;
-            if (flag != null) {
-                Thread callerThread = Thread.currentThread();
-                watcher = Thread.ofVirtual().start(() -> {
-                    while (!flag.get()) {
-                        try { Thread.sleep(100); } catch (InterruptedException e) { return; }
-                    }
-                    request.abort();
-                    callerThread.interrupt();
-                });
-            }
+            Thread watcher = abortOnCancellation(request);
             try {
                 HttpResponse response = client.execute(request);
                 int statusCode = response.getStatusLine().getStatusCode();
@@ -129,23 +118,52 @@ public class CachedHttpClient {
             HttpPost request = new HttpPost(url);
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(jsonBody, "UTF-8"));
-            HttpResponse response = client.execute(request);
-            int statusCode = response.getStatusLine().getStatusCode();
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-                if (statusCode < 200 || statusCode >= 300) {
-                    throw new IOException("HTTP " + statusCode + " for POST " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+            // The bulk tag_text POST is the largest single request in the pipeline; it
+            // must abort on client disconnect just like the GETs.
+            Thread watcher = abortOnCancellation(request);
+            try {
+                HttpResponse response = client.execute(request);
+                int statusCode = response.getStatusLine().getStatusCode();
+                HttpEntity entity = response.getEntity();
+                if (entity != null) {
+                    String body = EntityUtils.toString(entity, StandardCharsets.UTF_8);
+                    if (statusCode < 200 || statusCode >= 300) {
+                        throw new IOException("HTTP " + statusCode + " for POST " + url + ": " + body.substring(0, Math.min(body.length(), 500)));
+                    }
+                    var parsed = parseJsonStrict(body, "POST", url);
+                    if (apiCache != null) {
+                        apiCache.put("POST", url, jsonBody, body, null, statusCode);
+                    }
+                    return parsed;
+                } else {
+                    throw new IOException("Response was null for POST " + url);
                 }
-                var parsed = parseJsonStrict(body, "POST", url);
-                if (apiCache != null) {
-                    apiCache.put("POST", url, jsonBody, body, null, statusCode);
-                }
-                return parsed;
-            } else {
-                throw new IOException("Response was null for POST " + url);
+            } finally {
+                if (watcher != null) watcher.interrupt();
             }
         }
+    }
+
+    /**
+     * Aborts {@code request} and interrupts the calling thread as soon as the
+     * current request's cancellation flag is set (a streaming client
+     * disconnected), so an in-flight OLS call ends immediately instead of
+     * running to completion or timeout for a response nobody will read.
+     *
+     * @return the watcher thread, which the caller must interrupt once the
+     *         request has completed, or {@code null} if no flag is registered
+     */
+    static Thread abortOnCancellation(HttpRequestBase request) {
+        AtomicBoolean flag = RequestCancellation.getFlag();
+        if (flag == null) return null;
+        Thread callerThread = Thread.currentThread();
+        return Thread.ofVirtual().start(() -> {
+            while (!flag.get()) {
+                try { Thread.sleep(100); } catch (InterruptedException e) { return; }
+            }
+            request.abort();
+            callerThread.interrupt();
+        });
     }
 
     /**
