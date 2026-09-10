@@ -13,6 +13,8 @@ public class MapResult {
     public String ontologyTermSynonyms;
     public double mappingConfidence;
     public String ontologyTermID;
+    /** Full IRI of the term; the key results are deduplicated and excluded by. */
+    public String ontologyTermIri;
     public String ontologyURI;
     public String datasource;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
@@ -39,6 +41,7 @@ public class MapResult {
                Objects.equals(ontologyTermSynonyms, that.ontologyTermSynonyms) &&
                mappingConfidence == that.mappingConfidence &&
                Objects.equals(ontologyTermID, that.ontologyTermID) &&
+               Objects.equals(ontologyTermIri, that.ontologyTermIri) &&
                Objects.equals(ontologyURI, that.ontologyURI) &&
                Objects.equals(datasource, that.datasource) &&
                Objects.equals(mappingProvenance, that.mappingProvenance);
@@ -48,6 +51,6 @@ public class MapResult {
     public int hashCode() {
         return Objects.hash(propertyType, textToMap, ontologyTermLabel,
                             ontologyTermSynonyms, Double.valueOf(mappingConfidence),
-                            ontologyTermID, ontologyURI, datasource, mappingProvenance);
+                            ontologyTermID, ontologyTermIri, ontologyURI, datasource, mappingProvenance);
     }
 }

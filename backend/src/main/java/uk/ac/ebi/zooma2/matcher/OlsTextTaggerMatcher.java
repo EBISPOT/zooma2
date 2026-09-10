@@ -129,7 +129,7 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                 preResolved.iri = match.termIri;
                 preResolved.label = match.termLabel;
                 preResolved.ontology_name = match.ontologyId;
-                preResolved.short_form = match.shortForm != null ? match.shortForm : shortFormFromIri(match.termIri);
+                preResolved.short_form = match.shortForm != null ? match.shortForm : shortFormFromIri(match.termIri, match.ontologyId);
                 preResolved.synonyms = match.synonyms;
                 preResolved.is_obsolete = match.isObsolete;
                 a.resolvedTerm = preResolved;
@@ -142,18 +142,15 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
     }
 
     /**
-     * OLS-style short form for a term IRI. For OBO PURLs the IRI tail is the short
-     * form OLS itself reports (e.g. NCBITaxon_10116), so use it directly — the
-     * prefix-map rendering lowercases the prefix, which stops results for the same
-     * term found via other matchers from deduplicating.
+     * tag_text reports only the IRI, so derive the short form the way OLS does for
+     * that ontology (EFO_0000400, mesh_D000686, ORDO_224, NCBITaxon_10116), so the
+     * id matches what other matchers get from OLS for the same term. Results are
+     * deduplicated by IRI regardless, so this only affects the id clients see.
      */
-    private String shortFormFromIri(String iri) {
+    private String shortFormFromIri(String iri, String ontologyId) {
         if (iri == null) return null;
-        String oboPrefix = "http://purl.obolibrary.org/obo/";
-        if (iri.startsWith(oboPrefix) && !iri.substring(oboPrefix.length()).contains("/")) {
-            return iri.substring(oboPrefix.length());
-        }
-        return prefixMap.iriToShortForm(iri);
+        String olsStyle = olsRepo.olsShortForm(ontologyId, iri);
+        return olsStyle != null ? olsStyle : prefixMap.iriToShortForm(iri);
     }
 
     /**
@@ -180,7 +177,7 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                 isDefinitive(a)
                 && a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                 && targets.contains(a.provenance.source.name.toLowerCase())
-                && (!filter.definingOnly || TermNamespace.inNamespaces(firstSemanticTag(a), targets))
+                && (!filter.definingOnly || TermNamespace.inNamespaces(namespaceIdOf(a), targets))
             );
         }
         return taggerAnnotations.stream().anyMatch(OlsTextTaggerMatcher::isDefinitive);
@@ -190,7 +187,15 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
         return EvidenceTier.of(a.mappingProvenance).isDefinitive();
     }
 
-    private static String firstSemanticTag(Annotation a) {
+    /**
+     * The id to judge an annotation's namespace by: the OLS short form when the
+     * term is resolved (it carries the ontology's own prefix even for ontologies
+     * whose IRIs don't, e.g. EDAM_data_0849), otherwise the IRI.
+     */
+    static String namespaceIdOf(Annotation a) {
+        if (a.resolvedTerm != null && a.resolvedTerm.short_form != null && !a.resolvedTerm.short_form.isBlank()) {
+            return a.resolvedTerm.short_form;
+        }
         return a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null;
     }
 }

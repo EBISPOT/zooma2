@@ -167,6 +167,8 @@ public class StringMapper {
                 }
             }
 
+            r.ontologyTermIri = finalTerm != null && finalTerm.iri != null ? finalTerm.iri
+                : (expandedTag != null && expandedTag.startsWith("http") ? expandedTag : null);
             if (finalTerm != null) {
                 r.ontologyTermID = finalTerm.short_form;
                 r.ontologyTermLabel = finalTerm.label;

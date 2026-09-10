@@ -118,15 +118,41 @@ public class Deduplicator {
 
     // ---- individual rules (package-visible for testing) ----
 
+    /**
+     * Drops results the caller rejected. An excluded id may be a short form in any
+     * casing ({@code EFO_0000400}, {@code efo_0000400}), a CURIE, an OLS-style id
+     * ({@code mesh_D000686}) or the IRI itself, and the Bioregistry's canonical URL
+     * for a prefix is not always OLS's IRI (MeSH, SNOMED), so an id and a result are
+     * compared on every form both sides can take rather than on one expansion.
+     */
     void excludeTerms(List<MapResult> results, List<String> excludeTermIds) {
         if (excludeTermIds == null || excludeTermIds.isEmpty()) return;
-        Set<String> excluded = excludeTermIds.stream()
-            .map(id -> prefixMap.shortFormToIri(id))
-            .collect(Collectors.toSet());
+        Set<String> excluded = new java.util.HashSet<>();
+        for (String id : excludeTermIds) {
+            if (id == null || id.isBlank()) continue;
+            addIdForms(excluded, id, prefixMap.shortFormToIri(id));
+        }
         results.removeIf(r -> {
-            if (r.ontologyTermID == null) return false;
-            return excluded.contains(prefixMap.shortFormToIri(r.ontologyTermID));
+            if (r.error != null) return false;
+            Set<String> forms = new java.util.HashSet<>();
+            addIdForms(forms, r.ontologyTermID, r.ontologyTermIri);
+            if (r.ontologyTermID != null) addIdForms(forms, null, prefixMap.shortFormToIri(r.ontologyTermID));
+            forms.retainAll(excluded);
+            return !forms.isEmpty();
         });
+    }
+
+    /** Lower-cased comparison forms of a term id: the id, the IRI, and the IRI's prefixed local part. */
+    private static void addIdForms(Set<String> forms, String id, String iri) {
+        if (id != null && !id.isBlank()) forms.add(id.toLowerCase(Locale.ROOT));
+        if (iri != null && !iri.isBlank()) {
+            forms.add(iri.toLowerCase(Locale.ROOT));
+            int cut = Math.max(iri.lastIndexOf('/'), iri.lastIndexOf('#'));
+            String local = cut >= 0 ? iri.substring(cut + 1) : iri;
+            // Only a prefixed local part (EFO_0000400) identifies a term on its own;
+            // a bare number could collide across ontologies.
+            if (local.contains("_") || local.contains(":")) forms.add(local.toLowerCase(Locale.ROOT));
+        }
     }
 
     void filterByOntologies(List<MapResult> results, Filter filter) {
@@ -138,9 +164,7 @@ public class Deduplicator {
             .collect(Collectors.toSet());
         results.removeIf(r -> {
             if (r.error != null) return false; // preserve error results
-            String onto = getOntologyPrefix(r);
-            if (onto == null) return true;
-            return !allowed.contains(onto);
+            return targetOntologyOf(r, allowed) == null;
         });
     }
 
@@ -256,14 +280,14 @@ public class Deduplicator {
         // Find best confidence per target ontology
         Map<String, Double> bestPerOntology = new HashMap<>();
         for (var r : results) {
-            String onto = getOntologyPrefix(r);
-            if (onto == null || !targets.contains(onto)) continue;
+            String onto = targetOntologyOf(r, targets);
+            if (onto == null) continue;
             bestPerOntology.merge(onto, r.mappingConfidence, Math::max);
         }
 
         results.removeIf(r -> {
-            String onto = getOntologyPrefix(r);
-            if (onto == null || !targets.contains(onto)) return false;
+            String onto = targetOntologyOf(r, targets);
+            if (onto == null) return false;
             return r.mappingConfidence < bestPerOntology.get(onto);
         });
     }
@@ -287,14 +311,14 @@ public class Deduplicator {
         // target-ontology result exists with equal or better confidence
         Set<MapResult> toRemove = new java.util.HashSet<>();
         for (var r : results) {
-            String onto = getOntologyPrefix(r);
-            if (onto == null || !priority.containsKey(onto)) continue;
+            String onto = targetOntologyOf(r, priority.keySet());
+            if (onto == null) continue;
             int myPriority = priority.get(onto);
 
             for (var other : results) {
                 if (other == r) continue;
-                String otherOnto = getOntologyPrefix(other);
-                if (otherOnto == null || !priority.containsKey(otherOnto)) continue;
+                String otherOnto = targetOntologyOf(other, priority.keySet());
+                if (otherOnto == null) continue;
                 int otherPriority = priority.get(otherOnto);
 
                 // If a higher-priority result exists with equal or better score, remove this one
@@ -374,8 +398,8 @@ public class Deduplicator {
         for (var r : results) {
             if (r.error != null) continue;
             best = Math.max(best, r.mappingConfidence);
-            String onto = getOntologyPrefix(r);
-            if (onto != null && targets.contains(onto)) {
+            String onto = targetOntologyOf(r, targets);
+            if (onto != null) {
                 bestPerTarget.merge(onto, r.mappingConfidence, Math::max);
             }
         }
@@ -385,14 +409,15 @@ public class Deduplicator {
             double floor = best - WEAK_RESULT_GAP;
             results.removeIf(r -> r.error == null
                 && r.mappingConfidence < floor
-                && !(hardFilter && isBestOfItsTargetOntology(r, bestPerTarget)));
+                && !(hardFilter && isBestOfItsTargetOntology(r, targets, bestPerTarget)));
         }
 
         // Hard filter: tight gap within each target ontology, never across ontologies.
         if (hardFilter) {
             results.removeIf(r -> {
                 if (r.error != null) return false;
-                Double ontologyBest = bestPerTarget.get(getOntologyPrefix(r));
+                String onto = targetOntologyOf(r, targets);
+                Double ontologyBest = onto != null ? bestPerTarget.get(onto) : null;
                 return ontologyBest != null && r.mappingConfidence < ontologyBest - TARGET_ONTOLOGY_GAP;
             });
         }
@@ -402,8 +427,7 @@ public class Deduplicator {
             double bestTarget = Collections.max(bestPerTarget.values());
             results.removeIf(r -> {
                 if (r.error != null) return false;
-                String onto = getOntologyPrefix(r);
-                boolean isTarget = onto != null && targets.contains(onto);
+                boolean isTarget = targetOntologyOf(r, targets) != null;
                 return !isTarget && bestTarget >= r.mappingConfidence - TARGET_ONTOLOGY_GAP;
             });
         }
@@ -418,19 +442,27 @@ public class Deduplicator {
     }
 
     /** True if the result ties with the best confidence seen for its (target) ontology. */
-    private static boolean isBestOfItsTargetOntology(MapResult r, Map<String, Double> bestPerTarget) {
-        Double ontologyBest = bestPerTarget.get(getOntologyPrefix(r));
+    private static boolean isBestOfItsTargetOntology(MapResult r, Set<String> targets, Map<String, Double> bestPerTarget) {
+        String onto = targetOntologyOf(r, targets);
+        Double ontologyBest = onto != null ? bestPerTarget.get(onto) : null;
         return ontologyBest != null && r.mappingConfidence >= ontologyBest;
     }
 
+    /**
+     * One result per term. Keyed by the term's IRI, which every matcher reports
+     * verbatim from OLS; short forms are not a safe key because the same term can
+     * carry differently rendered ids depending on which matcher found it, and
+     * expanding a short form through the Bioregistry does not always yield OLS's
+     * IRI (MeSH, SNOMED). Results without an IRI fall back to the expanded id.
+     */
     List<MapResult> deduplicateByTermId(List<MapResult> results) {
         LinkedHashMap<String, MapResult> best = new LinkedHashMap<>();
         List<MapResult> errorResults = new ArrayList<>();
         for (var r : results) {
             if (r.error != null) { errorResults.add(r); continue; }
-            String key = r.ontologyTermID;
+            String key = r.ontologyTermIri != null ? r.ontologyTermIri
+                : (r.ontologyTermID != null ? prefixMap.shortFormToIri(r.ontologyTermID) : null);
             if (key == null) continue;
-            key = prefixMap.shortFormToIri(key);
             MapResult existing = best.get(key);
             // Higher confidence wins; on a tie the stronger evidence tier wins, so a
             // curated full match is the one reported rather than whichever came first.
@@ -467,23 +499,41 @@ public class Deduplicator {
      * original short forms).
      */
     private static boolean isTaxonomyResult(MapResult r) {
-        if (r.ontologyTermID != null
-                && r.ontologyTermID.toLowerCase(Locale.ROOT).startsWith("ncbitaxon")) {
-            return true;
-        }
-        return "ncbitaxon".equals(getOntologyPrefix(r));
+        return ontologiesOf(r).contains("ncbitaxon");
     }
 
-    private static String getOntologyPrefix(MapResult r) {
-        // Prefer the term ID prefix (e.g. "EFO" from "EFO:0000699") over ontologyURI,
-        // because ontologyURI comes from OLS's ontology_name which reflects the ontology
-        // file that contained the term — not necessarily the term's own ontology.
-        // e.g. MONDO imports EFO terms, so EFO:0000699 resolved from MONDO has
-        // ontology_name="mondo", which would misidentify it.
-        if (r.ontologyTermID != null && r.ontologyTermID.contains(":")) {
-            return r.ontologyTermID.split(":")[0].toLowerCase(Locale.ROOT);
-        }
-        return r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
+    /**
+     * The ontologies a result belongs to, in the sense the ontology filter uses:
+     * the ontology whose file it was found in ({@code ontologyURI}, OLS's
+     * {@code ontology_name}) and the ontology that defines its id namespace
+     * ({@code EFO_0000699} → efo, whichever file it came from). Both count: the
+     * plain filter means "available in ontology X", imports included, and an
+     * imported term is available in both its defining and its importing ontology.
+     * {@code definingOnly} narrows to the namespace alone (see
+     * {@link #filterToDefiningNamespace}). Judging by the file alone, as before,
+     * made an NCBITaxon term surfaced through EFO fail an {@code ncbitaxon}
+     * filter; judging by the namespace alone would break the documented
+     * imports-included semantics.
+     */
+    private static Set<String> ontologiesOf(MapResult r) {
+        Set<String> ontologies = new java.util.HashSet<>();
+        if (r.ontologyURI != null) ontologies.add(r.ontologyURI.toLowerCase(Locale.ROOT));
+        String namespace = TermNamespace.prefixOf(r.ontologyTermID);
+        if (namespace != null) ontologies.add(namespace);
+        return ontologies;
+    }
+
+    /**
+     * The target ontology a result is counted under, or {@code null} if it belongs
+     * to none of them. The id namespace wins when both it and the containing file
+     * are targets, so a term is always counted under the ontology that defines it.
+     */
+    private static String targetOntologyOf(MapResult r, Set<String> lowercaseTargets) {
+        String namespace = TermNamespace.prefixOf(r.ontologyTermID);
+        if (namespace != null && lowercaseTargets.contains(namespace)) return namespace;
+        String file = r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
+        if (file != null && lowercaseTargets.contains(file)) return file;
+        return null;
     }
 
     /**
