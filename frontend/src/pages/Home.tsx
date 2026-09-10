@@ -40,9 +40,12 @@ export default function Home() {
   const [segments, setSegments] = useState<ZoomaApi.AnnotateTextSegmentsResult | null>(null)
   const [activeSegment, setActiveSegment] = useState<string | undefined>(undefined)
   const [removedPhrases, setRemovedPhrases] = useState<Set<string>>(new Set())
+  // Set when the datasource list can't be fetched; the page is unusable
+  // without it, so say so instead of leaving Search to throw.
+  const [loadError, setLoadError] = useState<string | null>(null)
 
   useEffect(() => {
-    loadDatasources()
+    loadDatasources().catch(e => setLoadError(`Could not load the datasource list from the Zooma API: ${e}`))
     ZoomaApi.getOntologyPresets().then(presets => {
       setOntologyPresets(presets)
       // Apply first preset as default if no ontologies configured yet
@@ -489,12 +492,15 @@ export default function Home() {
 
             {/* Annotate Button */}
             <Box sx={{ display: 'flex', alignItems: 'center', mt: 3, gap: 1.5 }}>
+              {loadError && (
+                <div style={{ color: '#b00020', marginBottom: 8 }}>{loadError}</div>
+              )}
               <Button
                 variant="contained"
                 color="success"
                 size="large"
                 onClick={inputMode === 'mapStrings' ? onClickAnnotate : onClickAnnotateText}
-                disabled={searching || (inputMode === 'mapStrings' ? getQueryCount() === 0 : !annotateText.trim())}
+                disabled={searching || !datasourceConfig || (inputMode === 'mapStrings' ? getQueryCount() === 0 : !annotateText.trim())}
                 sx={{ 
                   px: 4, 
                   py: 1.25,

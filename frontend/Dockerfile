@@ -21,6 +21,10 @@ FROM caddy:2-alpine
 
 ARG PUBLIC_URL=/spot/zooma/
 ENV PUBLIC_URL=${PUBLIC_URL}
+# PUBLIC_URL without its trailing slash, for the redirect in the Caddyfile.
+# Kept in step with PUBLIC_URL by hand; Caddyfile placeholders can't strip it.
+ARG PUBLIC_PATH=/spot/zooma
+ENV PUBLIC_PATH=${PUBLIC_PATH}
 # The upstream image gives the caddy binary cap_net_bind_service so it can
 # bind :80/:443. We listen on 8080 and run with allowPrivilegeEscalation
 # disabled, under which the kernel refuses to exec a binary that carries

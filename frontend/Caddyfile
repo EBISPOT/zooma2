@@ -10,6 +10,13 @@
 		Content-Security-Policy "default-src 'self'; connect-src 'self' https://www.ebi.ac.uk https://wwwdev.ebi.ac.uk; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://ebi.emblstatic.net; font-src 'self' data: https://fonts.gstatic.com https://ebi.emblstatic.net; script-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 	}
 
+	# The EBI edge reaches this container by node port, not through the
+	# cluster ingress, so nothing upstream adds the trailing slash: without
+	# this, /spot/zooma matched no handler and served an empty 200 (a white
+	# page) while /spot/zooma/ worked.
+	@bare path {$PUBLIC_PATH}
+	redir @bare {$PUBLIC_URL} 308
+
 	handle_path {$PUBLIC_URL}* {
 		root * /srv
 		try_files {path} /index.html

@@ -59,3 +59,10 @@ console.log("### Copying misc files");
 if (fs.existsSync("./src/banner.txt")) {
   fs.copyFileSync("./src/banner.txt", "./dist/banner.txt"); // home page banner text
 }
+// Static files referenced from index.html (manifest.json, icons) live in
+// public/ and are copied into dist verbatim; dist itself is build output.
+if (fs.existsSync("./public")) {
+  for (const f of fs.readdirSync("./public")) {
+    fs.copyFileSync(`./public/${f}`, `./dist/${f}`);
+  }
+}
