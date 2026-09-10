@@ -57,7 +57,7 @@ public class AnnotationEngine {
         }
 
         this.oxoMatcher = new OxoMatcher(oxoClient, olsRepo);
-        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null, olsRepo.getSimilarSemaphore());
+        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null);
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {

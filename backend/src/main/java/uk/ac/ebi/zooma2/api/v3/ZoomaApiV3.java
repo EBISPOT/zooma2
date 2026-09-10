@@ -280,8 +280,8 @@ public class ZoomaApiV3 {
 
         // Create cancellation flag before mapEach so the heartbeat and mapEach share
         // the same AtomicBoolean instance (newCancellationFlag reuses if already set).
-        var cancelled = RequestCancellation.newFlag();
-        try {
+        try (var scope = RequestCancellation.acquire()) {
+            var cancelled = scope.flag();
             var out = ctx.res().getOutputStream();
             var completed = new java.util.concurrent.atomic.AtomicInteger(0);
             var mappingDone = new java.util.concurrent.atomic.AtomicBoolean(false);
@@ -358,8 +358,11 @@ public class ZoomaApiV3 {
                     doneEvent.put("type", "done");
                     doneEvent.put("completed", total);
                     doneEvent.put("total", total);
-                    out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                    out.flush();
+                    // Same lock as the heartbeat: it may still be mid-write until it sees mappingDone
+                    synchronized (out) {
+                        out.write((gson.toJson(doneEvent) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                        out.flush();
+                    }
                 }
             } finally {
                 mappingDone.set(true);
@@ -368,8 +371,6 @@ public class ZoomaApiV3 {
 
         } catch (IOException | java.io.UncheckedIOException e) {
             System.err.println("Client disconnected during streaming, stopping mapping (" + e.getMessage() + ")");
-        } finally {
-            RequestCancellation.clearFlag();
         }
     }
 
@@ -449,8 +450,8 @@ public class ZoomaApiV3 {
         ctx.res().setContentType("application/x-ndjson");
         ctx.res().setCharacterEncoding("UTF-8");
 
-        var cancelled = RequestCancellation.newFlag();
-        try {
+        try (var scope = RequestCancellation.acquire()) {
+            var cancelled = scope.flag();
             var out = ctx.res().getOutputStream();
 
             // Step 3: Immediately send segments message
@@ -556,8 +557,6 @@ public class ZoomaApiV3 {
 
         } catch (IOException | java.io.UncheckedIOException e) {
             System.err.println("Client disconnected during annotate-text streaming (" + e.getMessage() + ")");
-        } finally {
-            RequestCancellation.clearFlag();
         }
     }
 

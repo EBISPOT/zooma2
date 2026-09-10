@@ -7,10 +7,13 @@ import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -71,22 +74,51 @@ public class BatchMapper {
             .collect(Collectors.toList());
         var tagTextResults = textTaggerService.bulkTagText(allTerms);
 
-        return properties.stream()
-            .parallel()
-            .flatMap(s -> {
-                var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
-                if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources, excludeTermIds)) {
-                    var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
-                    var deduped = deduplicator.deduplicate(results, sources, excludeTermIds);
-                    return deduped.stream();
+        // Virtual threads, not a parallel stream: the work is blocking OLS I/O, which on
+        // the CPU-sized common ForkJoinPool caps concurrency and lets one large request
+        // starve every other request's parallel work. Each property is contained: a
+        // failure yields an error result for that property, not a 500 for the request.
+        final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            List<Future<List<MapResult>>> futures = properties.stream().map(s ->
+                executor.submit(() -> {
+                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                    try {
+                        var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
+                        if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources, excludeTermIds)) {
+                            var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
+                            return deduplicator.deduplicate(results, sources, excludeTermIds);
+                        }
+                        var results = stringMapper.map(s, taggerAnnotations, sources, model, deep, excludeTermIds);
+                        return deduplicateForMode(results, sources, excludeTermIds, returnAll);
+                    } catch (java.io.UncheckedIOException e) {
+                        throw e;
+                    } catch (Exception e) {
+                        System.err.println("Error mapping property '" + s.textToMap + "': " + MapResult.describe(e));
+                        e.printStackTrace();
+                        return List.of(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e)));
+                    }
+                })
+            ).collect(Collectors.toList());
+
+            List<MapResult> all = new ArrayList<>();
+            for (var future : futures) {
+                try {
+                    all.addAll(future.get());
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    futures.forEach(f -> f.cancel(true));
+                    throw new RuntimeException("Interrupted while mapping", e);
+                } catch (ExecutionException e) {
+                    if (e.getCause() instanceof java.io.UncheckedIOException) {
+                        futures.forEach(f -> f.cancel(true));
+                        throw (java.io.UncheckedIOException) e.getCause();
+                    }
+                    throw new RuntimeException(e.getCause() != null ? e.getCause() : e);
                 }
-                var results = stringMapper.map(s, taggerAnnotations, sources, model, deep, excludeTermIds);
-                var deduped = returnAll
-                    ? deduplicator.deduplicateLight(results, sources, excludeTermIds)
-                    : deduplicator.deduplicate(results, sources, excludeTermIds);
-                return deduped.stream();
-            })
-            .collect(Collectors.toList());
+            }
+            return all;
+        }
     }
 
     /**
@@ -125,6 +157,13 @@ public class BatchMapper {
             properties, tagTextResults, filter, model, excludeTermIds, onPropertyMapped
         );
         if (needsDeep.isEmpty()) return;
+        // Deferred properties never reach the callback that aborts on disconnect, so a
+        // client that left during the shallow pass would otherwise get a deep pass run
+        // (and, before the passes shared one flag, an uncancellable one) on its behalf.
+        if (RequestCancellation.isCancelled()) {
+            System.err.println("Skipping deep search for " + needsDeep.size() + " properties: request cancelled");
+            return;
+        }
         System.err.println("Running deep search for " + needsDeep.size() + " properties after shallow pass");
         deepAnnotator.runPass(needsDeep, filter, excludeTermIds, onPropertyMapped);
     }
@@ -139,9 +178,9 @@ public class BatchMapper {
             Boolean deep,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
-        var cancelled = RequestCancellation.newFlag();
-
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var scope = RequestCancellation.acquire();
+             var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            var cancelled = scope.flag();
             var futures = properties.stream().map(prop ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
@@ -178,8 +217,6 @@ public class BatchMapper {
                     System.err.println("Error mapping property: " + e.getMessage());
                 }
             }
-        } finally {
-            RequestCancellation.clearFlag();
         }
     }
 

@@ -49,10 +49,13 @@ public class ZoomaAnnotatorShallow {
             List<String> excludeTermIds,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
-        var cancelled = RequestCancellation.newFlag();
+        // Join the request's cancellation flag (created by the streaming endpoint) so a
+        // client disconnect reaches this pass and every later one; own it only if absent.
         var needsDeepSearch = new CopyOnWriteArrayList<StringMapper.MappingRun>();
 
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var scope = RequestCancellation.acquire();
+             var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            var cancelled = scope.flag();
             var futures = properties.stream().map(prop ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
@@ -90,8 +93,6 @@ public class ZoomaAnnotatorShallow {
                     System.err.println("Error mapping property: " + e.getMessage());
                 }
             }
-        } finally {
-            RequestCancellation.clearFlag();
         }
 
         return needsDeepSearch;

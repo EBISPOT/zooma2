@@ -36,9 +36,12 @@ public class ZoomaAnnotatorDeep {
             List<String> excludeTermIds,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
-        var cancelled = RequestCancellation.newFlag();
+        // Join the request's cancellation flag (created by the streaming endpoint) so a
+        // client disconnect reaches this pass and every later one; own it only if absent.
 
-        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        try (var scope = RequestCancellation.acquire();
+             var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            var cancelled = scope.flag();
             var futures = runs.stream().map(run ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
@@ -67,8 +70,6 @@ public class ZoomaAnnotatorDeep {
                     System.err.println("Error in deep mapping: " + e.getMessage());
                 }
             }
-        } finally {
-            RequestCancellation.clearFlag();
         }
     }
 }
