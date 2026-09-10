@@ -28,7 +28,10 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     private final int maxResults;
     private final int shallowResults;
     private final int timeoutMs;
+    private final int maxScopedOntologies;
     private static final String OLS_MODEL = "llama-embed-nemotron-8b_pca512";
+    /** Default for the most target ontologies queried one by one (llm_search takes a single ontologyId per call). */
+    public static final int DEFAULT_MAX_SCOPED_ONTOLOGIES = 5;
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo) {
         this(olsRepo, 0.7, 100, 10, 60000);
@@ -39,11 +42,16 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     }
 
     public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults, int shallowResults, int timeoutMs) {
+        this(olsRepo, minSimilarity, maxResults, shallowResults, timeoutMs, DEFAULT_MAX_SCOPED_ONTOLOGIES);
+    }
+
+    public OlsEmbeddingMatcher(OlsClientRepo olsRepo, double minSimilarity, int maxResults, int shallowResults, int timeoutMs, int maxScopedOntologies) {
         this.olsRepo = olsRepo;
         this.minSimilarity = minSimilarity;
         this.maxResults = maxResults;
         this.shallowResults = shallowResults;
         this.timeoutMs = timeoutMs;
+        this.maxScopedOntologies = maxScopedOntologies;
     }
 
     @Override
@@ -67,7 +75,7 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     private List<Annotation> searchWithSize(MatchContext context, int size) {
         List<Annotation> annotations = new ArrayList<>();
 
-        var terms = searchBothCasings(context.stringToMap, size);
+        var terms = search(context, size);
         for (var term : terms) {
             // A term without a similarity score cannot be shown to clear the
             // threshold, and one without an IRI cannot be a mapping at all.
@@ -81,33 +89,54 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     }
 
     /**
-     * Embedding vectors are case-sensitive: "Cisplatin" and "cisplatin" land in
-     * different neighbourhoods, and ontology labels are typically lowercase, so
-     * a capitalised query can miss every relevant term. Search the query as
-     * given and, when it contains upper case, its lowercased form too, merging
-     * by IRI and keeping the higher score — case then never gates a match,
-     * while queries whose casing is meaningful (gene symbols, acronyms) keep
-     * their original-case results. Lowercase queries behave exactly as before.
+     * Runs the searches a query needs and merges them by IRI, keeping the higher score.
+     *
+     * <p>Casing: embedding vectors are case-sensitive: "Cisplatin" and "cisplatin"
+     * land in different neighbourhoods, and ontology labels are typically
+     * lowercase, so a capitalised query is also searched lowercased; queries whose
+     * casing is meaningful (gene symbols, acronyms) keep their original-case
+     * results.
+     *
+     * <p>Scope: the global top-k cannot reach a target-ontology term that sits
+     * below dozens of hits from bigger ontologies, so with target ontologies the
+     * query is also run restricted to each of them (llm_search takes one
+     * ontologyId per call; verified that two return nothing), up to
+     * {@code maxScopedOntologies}. Under a hard filter the scoped calls replace
+     * the global one; under a soft preference they add to it.
      */
-    private Collection<OlsTerm> searchBothCasings(String query, int size) {
-        var results = olsRepo.findByEmbeddingSearch(query, OLS_MODEL, null, size, timeoutMs);
-        String lowercased = query.toLowerCase(Locale.ROOT);
-        if (lowercased.equals(query)) {
-            return results;
+    private Collection<OlsTerm> search(MatchContext context, int size) {
+        List<String> scoped = RetrievalScope.perOntologyTargets(context, maxScopedOntologies);
+        boolean global = !RetrievalScope.hardFilter(context) || scoped.isEmpty();
+        if (RetrievalScope.hasTargets(context) && scoped.isEmpty()) {
+            System.err.println("Embedding search for '" + context.stringToMap + "': " + context.targetOntologies.size()
+                + " target ontologies exceed max_scoped_ontologies=" + maxScopedOntologies + ", global search only");
         }
-        var lowercasedResults = olsRepo.findByEmbeddingSearch(lowercased, OLS_MODEL, null, size, timeoutMs);
+
         Map<String, OlsTerm> byIri = new LinkedHashMap<>();
-        for (var term : results) {
-            if (term.iri != null) byIri.put(term.iri, term);
+        for (String casing : casings(context.stringToMap)) {
+            if (global) {
+                merge(byIri, olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, null, size, timeoutMs));
+            }
+            for (String ontologyId : scoped) {
+                merge(byIri, olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, ontologyId, size, timeoutMs));
+            }
         }
-        for (var term : lowercasedResults) {
+        return byIri.values();
+    }
+
+    private static List<String> casings(String query) {
+        String lowercased = query.toLowerCase(Locale.ROOT);
+        return lowercased.equals(query) ? List.of(query) : List.of(query, lowercased);
+    }
+
+    private static void merge(Map<String, OlsTerm> byIri, Collection<OlsTerm> terms) {
+        for (var term : terms) {
             if (term.iri == null) continue;
             OlsTerm existing = byIri.get(term.iri);
             if (existing == null || score(term) > score(existing)) {
                 byIri.put(term.iri, term);
             }
         }
-        return byIri.values();
     }
 
     private static double score(OlsTerm term) {

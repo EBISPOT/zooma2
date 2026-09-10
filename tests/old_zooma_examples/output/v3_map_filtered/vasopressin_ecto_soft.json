@@ -1,0 +1,284 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "chebi",
+          "label": "vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:chebi",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_9937"
+            }
+          ],
+          "ontology": "chebi",
+          "termId": "CHEBI_9937",
+          "uri": "http://purl.obolibrary.org/obo/CHEBI_9937"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "xco",
+          "label": "vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:xco",
+              "target": "http://purl.obolibrary.org/obo/XCO_0000932"
+            }
+          ],
+          "ontology": "xco",
+          "termId": "XCO_0000932",
+          "uri": "http://purl.obolibrary.org/obo/XCO_0000932"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "bao",
+          "label": "vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:bao",
+              "target": "http://www.bioassayontology.org/bao#BAO_0001044"
+            }
+          ],
+          "ontology": "bao",
+          "termId": "BAO_0001044",
+          "uri": "http://www.bioassayontology.org/bao#BAO_0001044"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Vasopressin, Unspecified",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Vasopressin, Unspecified",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C184932"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C184932",
+          "uri": "http://purl.obolibrary.org/obo/NCIT_C184932"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Arginine-Vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Arginine-Vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C2285"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C2285",
+          "uri": "http://purl.obolibrary.org/obo/NCIT_C2285"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Antidiuretic Hormone Measurement",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Antidiuretic Hormone Measurement",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C74847"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C74847",
+          "uri": "http://purl.obolibrary.org/obo/NCIT_C74847"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Argipressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Argipressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C926"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C926",
+          "uri": "http://purl.obolibrary.org/obo/NCIT_C926"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "fma",
+          "label": "Vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "Vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:fma",
+              "target": "http://purl.org/sig/ont/fma/fma74646"
+            }
+          ],
+          "ontology": "fma",
+          "termId": "fma74646",
+          "uri": "http://purl.org/sig/ont/fma/fma74646"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "txpo",
+          "label": "vasopressin",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressin",
+              "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+              "matchedText": "vasopressin",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:txpo",
+              "target": "http://purl.obolibrary.org/obo/IMR_0100201"
+            }
+          ],
+          "ontology": "txpo",
+          "termId": "IMR_0100201",
+          "uri": "http://purl.obolibrary.org/obo/IMR_0100201"
+        },
+        {
+          "confidence": 0.8392388500000001,
+          "datasource": "pr",
+          "label": "vasopressin/oxytocin receptor",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "vasopressin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "vasopressin/oxytocin receptor",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.942965,
+              "source": "ols:pr",
+              "target": "http://purl.obolibrary.org/obo/PR_000001562"
+            }
+          ],
+          "ontology": "pr",
+          "termId": "PR_000001562",
+          "uri": "http://purl.obolibrary.org/obo/PR_000001562"
+        },
+        {
+          "confidence": 0.83836042,
+          "datasource": "pr",
+          "label": "vasopressin V2 receptor",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "vasopressin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "vasopressin V2 receptor",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.941978,
+              "source": "ols:pr",
+              "target": "http://purl.obolibrary.org/obo/PR_000001683"
+            }
+          ],
+          "ontology": "pr",
+          "termId": "PR_000001683",
+          "uri": "http://purl.obolibrary.org/obo/PR_000001683"
+        },
+        {
+          "confidence": 0.83694087,
+          "datasource": "go",
+          "label": "vasopressin secretion",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "vasopressin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "vasopressin secretion",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.940383,
+              "source": "ols:go",
+              "target": "http://purl.obolibrary.org/obo/GO_0030103"
+            }
+          ],
+          "ontology": "go",
+          "termId": "GO_0030103",
+          "uri": "http://purl.obolibrary.org/obo/GO_0030103"
+        },
+        {
+          "confidence": 0.83647362,
+          "datasource": "pr",
+          "label": "vasopressin V1b receptor",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "vasopressin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "vasopressin V1b receptor",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.939858,
+              "source": "ols:pr",
+              "target": "http://purl.obolibrary.org/obo/PR_000001682"
+            }
+          ],
+          "ontology": "pr",
+          "termId": "PR_000001682",
+          "uri": "http://purl.obolibrary.org/obo/PR_000001682"
+        }
+      ],
+      "error": null,
+      "propertyType": null,
+      "textToMap": "vasopressin"
+    }
+  ]
+}

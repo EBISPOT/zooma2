@@ -52,7 +52,8 @@ public class AnnotationEngine {
             int maxRes = olsEmbeddingCfg.max_deep_results != null ? olsEmbeddingCfg.max_deep_results : 100;
             int shallowRes = olsEmbeddingCfg.max_shallow_results != null ? olsEmbeddingCfg.max_shallow_results : 10;
             int timeoutMs = olsEmbeddingCfg.timeout_ms != null ? olsEmbeddingCfg.timeout_ms : 60000;
-            this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo, minSim, maxRes, shallowRes, timeoutMs);
+            int maxScoped = olsEmbeddingCfg.max_scoped_ontologies != null ? olsEmbeddingCfg.max_scoped_ontologies : OlsEmbeddingMatcher.DEFAULT_MAX_SCOPED_ONTOLOGIES;
+            this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo, minSim, maxRes, shallowRes, timeoutMs, maxScoped);
         } else {
             this.olsEmbeddingMatcher = new OlsEmbeddingMatcher(olsRepo);
         }

@@ -10,7 +10,8 @@
         "max_shallow_results": 10,
         "timeout_ms": 60000,
         "max_concurrent_embedding_requests": 3,
-        "max_concurrent_similar_requests": 10
+        "max_concurrent_similar_requests": 10,
+        "max_scoped_ontologies": 5
     },
     "oxo": {
         "enabled": false
