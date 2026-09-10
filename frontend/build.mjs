@@ -62,7 +62,5 @@ if (fs.existsSync("./src/banner.txt")) {
 // Static files referenced from index.html (manifest.json, icons) live in
 // public/ and are copied into dist verbatim; dist itself is build output.
 if (fs.existsSync("./public")) {
-  for (const f of fs.readdirSync("./public")) {
-    fs.copyFileSync(`./public/${f}`, `./dist/${f}`);
-  }
+  fs.cpSync("./public", "./dist", { recursive: true });
 }
