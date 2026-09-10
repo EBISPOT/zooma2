@@ -33,6 +33,10 @@ public class V3PropertyMappingDto {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<String> warnings;
 
+    /** {@code true} when the per-property time budget ran out and the results may be incomplete; omitted otherwise. */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public Boolean truncated;
+
     public static V3PropertyMappingDto of(String propertyType, String textToMap, List<V3MappingCandidateDto> candidates) {
         var dto = new V3PropertyMappingDto();
         dto.propertyType = propertyType;
@@ -54,6 +58,7 @@ public class V3PropertyMappingDto {
         dto.error = results.stream().filter(r -> r.error != null).map(r -> r.error).findFirst().orElse(null);
         List<String> warnings = results.stream().filter(r -> r.warning != null).map(r -> r.warning).distinct().collect(Collectors.toList());
         dto.warnings = warnings.isEmpty() ? null : warnings;
+        dto.truncated = warnings.stream().anyMatch(w -> w.startsWith(uk.ac.ebi.zooma2.mapping.StringMapper.TRUNCATION_WARNING_PREFIX)) ? Boolean.TRUE : null;
         return dto;
     }
 }

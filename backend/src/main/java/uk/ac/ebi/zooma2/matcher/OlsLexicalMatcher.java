@@ -10,6 +10,7 @@ import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.util.Diagnostics;
 import uk.ac.ebi.zooma2.util.StringSimilarity;
 
 /**
@@ -58,12 +59,16 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
      */
     @Override
     public List<Annotation> findMatches(MatchContext context) {
+        if (context.isExpired()) {
+            Diagnostics.warn("Time budget exhausted before the lexical search; results may be incomplete");
+            return List.of();
+        }
         Map<String, OlsTerm> byIri = new LinkedHashMap<>();
         if (!RetrievalScope.hardFilter(context)) {
-            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs));
+            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, context.timeoutWithin(timeoutMs)));
         }
         if (RetrievalScope.hasTargets(context)) {
-            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs, RetrievalScope.targets(context)));
+            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, context.timeoutWithin(timeoutMs), RetrievalScope.targets(context)));
         }
         return byIri.values().stream()
             .map(t -> createAnnotation(t, context))

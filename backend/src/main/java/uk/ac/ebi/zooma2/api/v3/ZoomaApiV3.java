@@ -71,8 +71,9 @@ public class ZoomaApiV3 {
         // Embedding model endpoints
         app.get("/v3/api/models", this::getModels);
         
-        // Diagnostic endpoint
+        // Diagnostic endpoints
         app.get("/v3/api/status", this::getStatus);
+        app.get("/v3/api/metrics", ctx -> ctx.json(uk.ac.ebi.zooma2.util.Metrics.snapshot()));
         
         // Unified mapping endpoint - uses semantic search by default
         app.post("/v3/api/services/map", this::map);

@@ -2,6 +2,8 @@ target
 bundle.js
 bundle.js.map
 *.db
+*.db-wal
+*.db-shm
 # Allow compressed test databases to be committed (tracked by LFS)
 !tests/**/*.db.gz
 

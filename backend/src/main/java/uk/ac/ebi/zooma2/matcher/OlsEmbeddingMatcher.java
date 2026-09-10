@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import java.util.concurrent.Callable;
+
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.util.ConcurrentCalls;
+import uk.ac.ebi.zooma2.util.Diagnostics;
 
 /**
  * Finds embedding-based matches from OLS using embeddings.
@@ -66,7 +70,11 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
 
     /**
      * Deep embedding search with full maxResults. Only call this if the shallow
-     * search didn't return results from the target ontologies.
+     * search didn't return results from the target ontologies. It cannot be
+     * skipped on the strength of a short or low-scoring shallow page: OLS's
+     * approximate nearest-neighbour search is not monotonic across page sizes
+     * (in 7 of 54 cached page pairs a term outside the top ten outscored the
+     * tenth), so only the engine's filtering of already-seen terms is safe.
      */
     public List<Annotation> findDeepMatches(MatchContext context) {
         return searchWithSize(context, maxResults);
@@ -111,15 +119,29 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
             System.err.println("Embedding search for '" + context.stringToMap + "': " + context.targetOntologies.size()
                 + " target ontologies exceed max_scoped_ontologies=" + maxScopedOntologies + ", global search only");
         }
+        if (context.isExpired()) {
+            Diagnostics.warn("Time budget exhausted before the embedding search; results may be incomplete");
+            return List.of();
+        }
 
-        Map<String, OlsTerm> byIri = new LinkedHashMap<>();
+        // Every (casing, scope) query is independent, so they run concurrently: the
+        // dual-casing search used to double the latency of any capitalised query.
+        // Results are merged in a fixed order afterwards so ties resolve the same
+        // way as a sequential run would.
+        List<Callable<Collection<OlsTerm>>> calls = new ArrayList<>();
         for (String casing : casings(context.stringToMap)) {
             if (global) {
-                merge(byIri, olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, null, size, timeoutMs));
+                calls.add(() -> olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, null, size, context.timeoutWithin(timeoutMs)));
             }
             for (String ontologyId : scoped) {
-                merge(byIri, olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, ontologyId, size, timeoutMs));
+                calls.add(() -> olsRepo.findByEmbeddingSearch(casing, OLS_MODEL, ontologyId, size, context.timeoutWithin(timeoutMs)));
             }
+        }
+        List<Collection<OlsTerm>> raw = ConcurrentCalls.run(calls);
+
+        Map<String, OlsTerm> byIri = new LinkedHashMap<>();
+        for (Collection<OlsTerm> terms : raw) {
+            merge(byIri, terms);
         }
         return byIri.values();
     }

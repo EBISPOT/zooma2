@@ -33,12 +33,24 @@ public class StringMapper {
     private final OlsClientRepo olsRepo;
     private final PrefixMap prefixMap;
     private final ObsoleteTermResolver obsoleteResolver;
+    /** Wall-clock budget per phase, from config; 0 = none. */
+    private final long timeBudgetMillis;
 
     public StringMapper(AnnotationEngine annotationEngine, OlsClientRepo olsRepo, PrefixMap prefixMap) {
+        this(annotationEngine, olsRepo, prefixMap, configuredTimeBudgetMillis());
+    }
+
+    public StringMapper(AnnotationEngine annotationEngine, OlsClientRepo olsRepo, PrefixMap prefixMap, long timeBudgetMillis) {
         this.annotationEngine = annotationEngine;
         this.olsRepo = olsRepo;
         this.prefixMap = prefixMap;
         this.obsoleteResolver = new ObsoleteTermResolver(olsRepo, prefixMap);
+        this.timeBudgetMillis = timeBudgetMillis;
+    }
+
+    static long configuredTimeBudgetMillis() {
+        var cfg = uk.ac.ebi.zooma2.ZoomaConfig.config != null ? uk.ac.ebi.zooma2.ZoomaConfig.config.mapping : null;
+        return cfg != null && cfg.time_budget_ms != null ? cfg.time_budget_ms : 0L;
     }
 
     /**
@@ -121,11 +133,13 @@ public class StringMapper {
         }
 
         MatchContext context = new MatchContext(s.textToMap, s.propertyType, filter, model);
+        context.startBudget(timeBudgetMillis);
         List<MapResult> engineResults = new ArrayList<>();
         List<Annotation> shallow;
         try {
             shallow = annotationEngine.annotateShallow(context);
             engineResults.addAll(toMapResults(shallow, s));
+            noteTruncation(context);
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
@@ -155,8 +169,12 @@ public class StringMapper {
         List<MapResult> results = new ArrayList<>(run.engineResults);
         List<String> warnings = Diagnostics.begin();
         try {
+            // The deep phase gets its own budget: in the two-pass streaming flow it
+            // may start long after the shallow phase finished.
+            run.context.startBudget(timeBudgetMillis);
             List<Annotation> deep = annotationEngine.annotateDeep(run.context, run.shallowAnnotations);
             results.addAll(toMapResults(deep, run.property));
+            noteTruncation(run.context);
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
@@ -174,6 +192,15 @@ public class StringMapper {
         }
         results.addAll(run.taggerResults);
         return results;
+    }
+
+    /** Prefix of the warning that marks a property's results as cut short by the time budget. */
+    public static final String TRUNCATION_WARNING_PREFIX = "Time budget";
+
+    private static void noteTruncation(MatchContext context) {
+        if (context.hasBudget() && context.isExpired()) {
+            Diagnostics.warn(TRUNCATION_WARNING_PREFIX + " of " + context.budgetMillis() + " ms exhausted; results may be incomplete");
+        }
     }
 
     /** One warning pseudo-result per distinct message collected while mapping {@code s}. */

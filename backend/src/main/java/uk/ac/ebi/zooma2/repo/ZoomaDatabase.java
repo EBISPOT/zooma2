@@ -2,21 +2,32 @@ package uk.ac.ebi.zooma2.repo;
 
 import java.sql.*;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 /**
  * Unified database for Zooma. Manages a single SQLite (dev/test) or PostgreSQL (prod) database
  * with tables: votes, embeddings, ols_terms, ols_failed_iris, external_api_cache.
  *
+ * <p>Connections come from a pool: every cache lookup used to open a fresh JDBC
+ * connection (a file open for SQLite, a TCP+auth handshake for PostgreSQL), and
+ * a mapping request makes dozens of them. SQLite runs in WAL mode so readers do
+ * not block on the cache's writers, with a busy timeout instead of immediate
+ * "database is locked" failures.
+ *
  * Configure via env vars:
- *   ZOOMA2_DB_URL  – JDBC URL (default: jdbc:sqlite:zooma.db)
- *   ZOOMA2_DB_USER – username (PostgreSQL only)
- *   ZOOMA2_DB_PASS – password (PostgreSQL only)
+ *   ZOOMA2_DB_URL       – JDBC URL (default: jdbc:sqlite:zooma.db)
+ *   ZOOMA2_DB_USER      – username (PostgreSQL only)
+ *   ZOOMA2_DB_PASS      – password (PostgreSQL only)
+ *   ZOOMA2_DB_POOL_SIZE – connections in the pool (default 8 for SQLite, 16 for PostgreSQL)
  */
-public class ZoomaDatabase {
+public class ZoomaDatabase implements AutoCloseable {
 
     private final String jdbcUrl;
     private final String user;
     private final String password;
     private final boolean isPostgres;
+    private final HikariDataSource pool;
 
     public ZoomaDatabase() {
         this(
@@ -27,18 +38,58 @@ public class ZoomaDatabase {
     }
 
     public ZoomaDatabase(String jdbcUrl, String user, String password) {
+        this(jdbcUrl, user, password, configuredPoolSize(jdbcUrl.startsWith("jdbc:postgresql")));
+    }
+
+    public ZoomaDatabase(String jdbcUrl, String user, String password, int poolSize) {
         this.jdbcUrl = jdbcUrl;
         this.user = user;
         this.password = password;
         this.isPostgres = jdbcUrl.startsWith("jdbc:postgresql");
+        this.pool = createPool(poolSize);
         initAllTables();
     }
 
-    public Connection getConnection() throws SQLException {
+    private HikariDataSource createPool(int poolSize) {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(jdbcUrl);
         if (user != null) {
-            return DriverManager.getConnection(jdbcUrl, user, password);
+            config.setUsername(user);
+            config.setPassword(password);
         }
-        return DriverManager.getConnection(jdbcUrl);
+        config.setPoolName("zooma-db");
+        config.setMaximumPoolSize(Math.max(1, poolSize));
+        config.setConnectionTimeout(15_000);
+        if (!isPostgres) {
+            // Wait for a writer rather than failing immediately under concurrency
+            config.setConnectionInitSql("PRAGMA busy_timeout = 5000");
+        }
+        return new HikariDataSource(config);
+    }
+
+    static int configuredPoolSize(boolean postgres) {
+        String raw = System.getenv("ZOOMA2_DB_POOL_SIZE");
+        int fallback = postgres ? 16 : 8;
+        if (raw == null || raw.isBlank()) return fallback;
+        try {
+            int size = Integer.parseInt(raw.trim());
+            if (size < 1 || size > 256) throw new NumberFormatException("out of range");
+            return size;
+        } catch (NumberFormatException e) {
+            System.err.println("Ignoring invalid ZOOMA2_DB_POOL_SIZE='" + raw + "'; using " + fallback);
+            return fallback;
+        }
+    }
+
+    /** A pooled connection; close it to return it to the pool. */
+    public Connection getConnection() throws SQLException {
+        return pool.getConnection();
+    }
+
+    /** Closes the pool. For SQLite this checkpoints the WAL back into the main file. */
+    @Override
+    public void close() {
+        pool.close();
     }
 
     public boolean isPostgres() {
@@ -81,6 +132,11 @@ public class ZoomaDatabase {
         String blobType = isPostgres ? "BYTEA" : "BLOB";
 
         try (Connection conn = getConnection(); Statement stmt = conn.createStatement()) {
+
+            if (!isPostgres) {
+                // Persistent for the database file; readers no longer block on writers
+                stmt.execute("PRAGMA journal_mode = WAL");
+            }
 
             // --- votes ---
             stmt.execute("CREATE TABLE IF NOT EXISTS votes ("

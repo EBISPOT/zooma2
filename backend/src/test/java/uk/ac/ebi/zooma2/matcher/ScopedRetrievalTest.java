@@ -20,8 +20,8 @@ class ScopedRetrievalTest {
 
     /** Records every call; answers with one term per call, tagged by scope, plus a shared term with differing scores. */
     private static class RecordingRepo extends OlsClientRepo {
-        final List<String> lexicalCalls = new ArrayList<>();
-        final List<String> embeddingCalls = new ArrayList<>();
+        final List<String> lexicalCalls = java.util.Collections.synchronizedList(new ArrayList<>());
+        final List<String> embeddingCalls = java.util.Collections.synchronizedList(new ArrayList<>());
 
         private static OlsTerm term(String iri, String ontology, Double score) {
             OlsTerm t = new OlsTerm();
@@ -48,6 +48,10 @@ class ScopedRetrievalTest {
     private static MatchContext context(String query, Boolean includeOthers, String... targets) {
         Filter f = targets.length == 0 ? Filter.fromLists(null, null, null, true) : Filter.fromLists(null, null, List.of(targets), includeOthers);
         return new MatchContext(query, null, f, "m");
+    }
+
+    private static List<String> sorted(List<String> calls) {
+        return calls.stream().sorted().collect(Collectors.toList());
     }
 
     private static List<String> iris(List<Annotation> annotations) {
@@ -82,7 +86,7 @@ class ScopedRetrievalTest {
         RecordingRepo repo = new RecordingRepo();
         var matcher = new OlsEmbeddingMatcher(repo, 0.7, 100, 10, 1000, 5);
         var out = matcher.findMatches(context("vasopressin", false, "ecto", "envo"));
-        assertEquals(List.of("vasopressin@ecto", "vasopressin@envo"), repo.embeddingCalls);
+        assertEquals(List.of("vasopressin@ecto", "vasopressin@envo"), sorted(repo.embeddingCalls));
         assertEquals(3, out.size());
     }
 
@@ -91,7 +95,7 @@ class ScopedRetrievalTest {
         RecordingRepo repo = new RecordingRepo();
         var matcher = new OlsEmbeddingMatcher(repo, 0.7, 100, 10, 1000, 5);
         var out = matcher.findMatches(context("vasopressin", true, "ecto"));
-        assertEquals(List.of("vasopressin@global", "vasopressin@ecto"), repo.embeddingCalls);
+        assertEquals(List.of("vasopressin@ecto", "vasopressin@global"), sorted(repo.embeddingCalls), "calls run concurrently; compare as a set");
         Annotation shared = out.stream().filter(a -> a.semanticTags.get(0).equals("http://x/shared")).findFirst().orElseThrow();
         assertEquals(0.95 * 0.89, shared.confidence, 1e-9, "the scoped call's higher score wins");
         assertEquals(3, out.size());
@@ -102,7 +106,7 @@ class ScopedRetrievalTest {
         RecordingRepo repo = new RecordingRepo();
         var matcher = new OlsEmbeddingMatcher(repo, 0.7, 100, 10, 1000, 2);
         matcher.findMatches(context("vasopressin", false, "ecto", "envo", "chebi"));
-        assertEquals(List.of("vasopressin@global"), repo.embeddingCalls, "three targets, cap two: global only, as before");
+        assertEquals(List.of("vasopressin@global"), sorted(repo.embeddingCalls), "three targets, cap two: global only, as before");
     }
 
     @Test
@@ -110,7 +114,7 @@ class ScopedRetrievalTest {
         RecordingRepo repo = new RecordingRepo();
         var matcher = new OlsEmbeddingMatcher(repo, 0.7, 100, 10, 1000, 5);
         matcher.findMatches(context("Cisplatin", true, "ecto"));
-        assertEquals(List.of("Cisplatin@global", "Cisplatin@ecto", "cisplatin@global", "cisplatin@ecto"), repo.embeddingCalls);
+        assertEquals(List.of("Cisplatin@ecto", "Cisplatin@global", "cisplatin@ecto", "cisplatin@global"), sorted(repo.embeddingCalls));
         assertTrue(RetrievalScope.perOntologyTargets(context("x", true, "A", "a"), 5).equals(List.of("a")), "targets are lower-cased and de-duplicated");
     }
 }

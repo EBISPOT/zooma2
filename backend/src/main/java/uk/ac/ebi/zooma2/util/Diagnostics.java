@@ -52,6 +52,7 @@ public final class Diagnostics {
                 if (!sink.contains(message)) sink.add(message);
             }
         }
+        Metrics.WARNINGS.incrementAndGet();
         System.err.println("Warning: " + message);
     }
 }

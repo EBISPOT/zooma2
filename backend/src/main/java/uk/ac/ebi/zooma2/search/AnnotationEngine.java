@@ -136,6 +136,26 @@ public class AnnotationEngine {
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
         final List<String> sink = Diagnostics.current();
 
+        if (context.isExpired()) {
+            Diagnostics.warn("Time budget of " + context.budgetMillis() + " ms exhausted; the deep search was skipped and results may be incomplete");
+            return List.of();
+        }
+        // Terms the shallow embedding search already returned, with the confidence
+        // it gave them: the deep page repeats them, and a repeat is only redundant
+        // if it scores no higher (the two casings of a query can score the same
+        // term differently, and downstream deduplication keeps the higher). Only
+        // the embedding matcher's own hits count: a term the lexical matcher found
+        // is still new evidence when the deep embedding search finds it too.
+        java.util.Map<String, Double> seenScore = new java.util.HashMap<>();
+        if (shallowResults != null) {
+            for (Annotation a : shallowResults) {
+                boolean fromEmbedding = a.provenance != null && "OLS_EMBEDDING".equals(a.provenance.evidence);
+                if (fromEmbedding && a.semanticTags != null && !a.semanticTags.isEmpty()) {
+                    seenScore.merge(a.semanticTags.get(0), a.confidence, Math::max);
+                }
+            }
+        }
+
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
             System.err.println("Running deep search for '" + context.stringToMap + "'");
             var deepFuture = executor.submit(() -> {
@@ -145,12 +165,15 @@ public class AnnotationEngine {
             });
             List<Annotation> deepResults;
             try {
-                deepResults = deepFuture.get();
+                deepResults = new ArrayList<>(deepFuture.get()); // a skipped search returns an immutable empty list
             } catch (InterruptedException e) {
                 executor.shutdownNow();
                 Thread.currentThread().interrupt();
                 return List.of();
             }
+            // The larger page repeats the shallow top-k; only what is new, or better scored, is additional
+            deepResults.removeIf(a -> a.semanticTags != null && !a.semanticTags.isEmpty()
+                && seenScore.containsKey(a.semanticTags.get(0)) && seenScore.get(a.semanticTags.get(0)) >= a.confidence);
             List<Annotation> additional = new ArrayList<>(deepResults);
             if (!deepResults.isEmpty()) {
                 System.err.println("Deep embedding search found " + deepResults.size() + " additional results");
