@@ -282,6 +282,10 @@ public class OlsClientRepo {
      * on client disconnect), bounded by the similar-request semaphore.
      */
     public List<OlsTerm> findSimilarTerms(String termIri, String model, int size) {
+        return findSimilarTerms(termIri, model, size, 30000);
+    }
+
+    public List<OlsTerm> findSimilarTerms(String termIri, String model, int size, int timeoutMs) {
         try {
             similarSemaphore.acquire();
         } catch (InterruptedException e) {
@@ -294,7 +298,7 @@ public class OlsClientRepo {
                 java.net.URLEncoder.encode(termIri, java.nio.charset.StandardCharsets.UTF_8), java.nio.charset.StandardCharsets.UTF_8);
             String url = getOlsUrl() + "/api/v2/classes/" + encodedIri + "/llm_similar?model="
                 + java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8) + "&size=" + size;
-            var json = urlToJson(url);
+            var json = urlToJson(url, timeoutMs);
             if (json == null || !json.getAsJsonObject().has("elements")) {
                 return List.of();
             }
@@ -340,7 +344,29 @@ public class OlsClientRepo {
      * Get the default embedding model (first one with can_embed: true).
      * @return Model name or null if none available
      */
+    private volatile String defaultEmbeddingModel;
+    private volatile long defaultEmbeddingModelCheckedAt;
+    private static final long DEFAULT_MODEL_MEMO_MILLIS = 10 * 60 * 1000L;
+
+    /**
+     * Get the default embedding model (first one with can_embed: true), memoised
+     * for ten minutes: every mapping request used to look it up (a cache read at
+     * best, an OLS call at worst) for a value no matcher even reads.
+     */
     public String getDefaultEmbeddingModel() {
+        long now = System.currentTimeMillis();
+        if (defaultEmbeddingModel != null && now - defaultEmbeddingModelCheckedAt < DEFAULT_MODEL_MEMO_MILLIS) {
+            return defaultEmbeddingModel;
+        }
+        String model = lookupDefaultEmbeddingModel();
+        if (model != null) {
+            defaultEmbeddingModel = model;
+            defaultEmbeddingModelCheckedAt = now;
+        }
+        return model;
+    }
+
+    private String lookupDefaultEmbeddingModel() {
         var models = getEmbeddingModels();
         for (var model : models) {
             Object canEmbed = model.get("can_embed");

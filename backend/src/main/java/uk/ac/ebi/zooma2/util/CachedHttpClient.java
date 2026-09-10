@@ -7,7 +7,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -26,6 +28,25 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class CachedHttpClient {
 
     private static ExternalApiCache apiCache;
+
+    /**
+     * One client for the process, over a connection pool: every request used to
+     * build its own client and open a fresh TCP+TLS connection to OLS. Timeouts
+     * are per request, set on the request itself.
+     */
+    private static final CloseableHttpClient CLIENT = createClient();
+
+    private static CloseableHttpClient createClient() {
+        PoolingHttpClientConnectionManager pool = new PoolingHttpClientConnectionManager();
+        pool.setMaxTotal(64);
+        pool.setDefaultMaxPerRoute(32);
+        pool.setValidateAfterInactivity(2_000);
+        return HttpClientBuilder.create()
+            .useSystemProperties()
+            .setConnectionManager(pool)
+            .evictIdleConnections(60, java.util.concurrent.TimeUnit.SECONDS)
+            .build();
+    }
 
     public static void setApiCache(ExternalApiCache cache) {
         apiCache = cache;
@@ -67,8 +88,10 @@ public class CachedHttpClient {
         try {
             return attempt.run();
         } catch (IOException first) {
+            Metrics.HTTP_FAILURES.incrementAndGet();
             if (RequestCancellation.isCancelled() || Thread.currentThread().isInterrupted()) throw first;
             if (first instanceof HttpStatusException status && !status.isTransient()) throw first;
+            Metrics.HTTP_RETRIES.incrementAndGet();
             System.err.println("Retrying " + what + " after: " + first.getMessage());
             try {
                 Thread.sleep(RETRY_DELAY_MS);
@@ -91,12 +114,15 @@ public class CachedHttpClient {
             var cached = apiCache.get("GET", url, null);
             if (cached != null) {
                 try {
-                    return parseJsonStrict(cached.body, "GET", url);
+                    JsonElement parsed = parseJsonStrict(cached.body, "GET", url);
+                    Metrics.CACHE_HITS.incrementAndGet();
+                    return parsed;
                 } catch (IOException e) {
                     System.err.println("Evicting bad cached entry for GET " + url + ": " + e.getMessage());
                     apiCache.evict("GET", url, null);
                 }
             }
+            Metrics.CACHE_MISSES.incrementAndGet();
         }
         return withOneRetry("GET " + url, () -> getJsonOnce(url, timeoutMs));
     }
@@ -107,11 +133,12 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
+        {
             HttpGet request = new HttpGet(url);
+            request.setConfig(config);
+            Metrics.HTTP_REQUESTS.incrementAndGet();
             Thread watcher = abortOnCancellation(request);
-            try {
-                HttpResponse response = client.execute(request);
+            try (CloseableHttpResponse response = CLIENT.execute(request)) {
                 int statusCode = response.getStatusLine().getStatusCode();
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
@@ -144,12 +171,15 @@ public class CachedHttpClient {
             var cached = apiCache.get("POST", url, jsonBody);
             if (cached != null) {
                 try {
-                    return parseJsonStrict(cached.body, "POST", url);
+                    JsonElement parsed = parseJsonStrict(cached.body, "POST", url);
+                    Metrics.CACHE_HITS.incrementAndGet();
+                    return parsed;
                 } catch (IOException e) {
                     System.err.println("Evicting bad cached entry for POST " + url + ": " + e.getMessage());
                     apiCache.evict("POST", url, jsonBody);
                 }
             }
+            Metrics.CACHE_MISSES.incrementAndGet();
         }
         return withOneRetry("POST " + url, () -> postJsonOnce(url, jsonBody, timeoutMs));
     }
@@ -160,15 +190,16 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
+        {
             HttpPost request = new HttpPost(url);
+            request.setConfig(config);
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(jsonBody, "UTF-8"));
+            Metrics.HTTP_REQUESTS.incrementAndGet();
             // The bulk tag_text POST is the largest single request in the pipeline; it
             // must abort on client disconnect just like the GETs.
             Thread watcher = abortOnCancellation(request);
-            try {
-                HttpResponse response = client.execute(request);
+            try (CloseableHttpResponse response = CLIENT.execute(request)) {
                 int statusCode = response.getStatusLine().getStatusCode();
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
@@ -233,9 +264,11 @@ public class CachedHttpClient {
                 .setConnectionRequestTimeout(timeoutMs)
                 .setSocketTimeout(timeoutMs).build();
 
-        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
+        {
             HttpGet request = new HttpGet(url);
-            HttpResponse response = client.execute(request);
+            request.setConfig(config);
+            Metrics.HTTP_REQUESTS.incrementAndGet();
+            try (CloseableHttpResponse response = CLIENT.execute(request)) {
             int statusCode = response.getStatusLine().getStatusCode();
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -250,6 +283,7 @@ public class CachedHttpClient {
                 return parsed;
             } else {
                 throw new IOException("Response was null for GET " + url);
+            }
             }
         }
     }

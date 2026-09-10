@@ -6,7 +6,11 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
+
+import uk.ac.ebi.zooma2.util.ConcurrentCalls;
+import uk.ac.ebi.zooma2.util.Diagnostics;
 
 /**
  * Matcher that uses OLS V2 embedding similarity API to find semantically similar terms.
@@ -14,6 +18,7 @@ import java.util.stream.Collectors;
  */
 public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     private static final int DEFAULT_SIZE = 50;
+    private static final int SIMILAR_TIMEOUT_MS = 30000;
     
     /** Discount for an indirect mapping: the seed's confidence scaled by this and by the similarity. */
     private static final double EXPANSION_DISCOUNT = 0.7;
@@ -107,13 +112,24 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         // Key: sourceIri|model, Value: list of similar OlsTerms (already resolved from the response)
         Map<String, List<OlsTerm>> similarTermsBySource = new LinkedHashMap<>();
         
+        if (context.isExpired()) {
+            Diagnostics.warn("Time budget exhausted before the similar-class expansion; results may be incomplete");
+            return Collections.emptyList();
+        }
+        // One llm_similar call per seed and model, all independent: fan them out
+        // (the repo's semaphore bounds the concurrency) and merge in seed order.
+        List<String> keys = new ArrayList<>();
+        List<Callable<List<OlsTerm>>> calls = new ArrayList<>();
         for (String termIri : termIris) {
             for (String model : models) {
-                List<OlsTerm> similarTerms = olsRepo.findSimilarTerms(termIri, model, DEFAULT_SIZE);
-                if (!similarTerms.isEmpty()) {
-                    String key = termIri + "|" + model;
-                    similarTermsBySource.put(key, similarTerms);
-                }
+                keys.add(termIri + "|" + model);
+                calls.add(() -> olsRepo.findSimilarTerms(termIri, model, DEFAULT_SIZE, context.timeoutWithin(SIMILAR_TIMEOUT_MS)));
+            }
+        }
+        List<List<OlsTerm>> responses = ConcurrentCalls.run(calls);
+        for (int i = 0; i < keys.size(); i++) {
+            if (!responses.get(i).isEmpty()) {
+                similarTermsBySource.put(keys.get(i), responses.get(i));
             }
         }
 

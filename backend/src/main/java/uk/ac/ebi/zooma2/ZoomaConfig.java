@@ -90,6 +90,7 @@ public class ZoomaConfig {
     }
 
     public Map<String, String> prefix_map;
+    public MappingConfig mapping;
     public OlsLexicalConfig ols_lexical;
     public OlsEmbeddingConfig ols_embedding;
     public OxoConfig oxo;
@@ -97,6 +98,11 @@ public class ZoomaConfig {
 
     public static String getOlsUrl() {
         return System.getenv().getOrDefault("ZOOMA2_OLS_URL", DEFAULT_OLS_URL);
+    }
+
+    public static class MappingConfig {
+        /** Wall-clock budget per property and phase (shallow, deep); 0 disables. */
+        public Integer time_budget_ms;
     }
 
     public static class OlsLexicalConfig {

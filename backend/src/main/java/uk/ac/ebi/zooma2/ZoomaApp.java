@@ -23,6 +23,7 @@ public class ZoomaApp {
 
         // Initialize unified database
         var zoomaDb = new ZoomaDatabase();
+        Runtime.getRuntime().addShutdownHook(new Thread(zoomaDb::close, "db-pool-close"));
 
         // Initialize external API cache for transparent HTTP caching. Entries expire
         // after ZOOMA2_CACHE_TTL_SECONDS (0 = never) so ontology releases reach

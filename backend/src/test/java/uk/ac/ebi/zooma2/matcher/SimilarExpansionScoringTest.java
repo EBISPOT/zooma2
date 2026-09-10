@@ -29,7 +29,7 @@ class SimilarExpansionScoringTest {
         String seedIri = "http://purl.obolibrary.org/obo/CHEBI_27899";
         OlsClientRepo stub = new OlsClientRepo() {
             @Override
-            public List<OlsTerm> findSimilarTerms(String termIri, String model, int size) {
+            public List<OlsTerm> findSimilarTerms(String termIri, String model, int size, int timeoutMs) {
                 return List.of(
                     similar("http://purl.obolibrary.org/obo/ECTO_1", "ecto", 0.95),
                     similar("http://purl.obolibrary.org/obo/ECTO_2", "ecto", 0.6),   // below cutoff
