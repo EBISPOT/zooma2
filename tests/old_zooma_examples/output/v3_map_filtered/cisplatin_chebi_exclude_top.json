@@ -3,7 +3,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.8003146999999999,
+          "confidence": 0.8203147,
           "datasource": "chebi",
           "label": "cisplatin-modified (di)nucleotide",
           "mappingProvenance": [
@@ -20,6 +20,21 @@
             }
           ],
           "ontology": "chebi",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.55625,
+                "input": "cisplatin",
+                "matchType": "OLS_LEXICAL_CONTAINED",
+                "matchedText": "cisplatin-modified (di)nucleotide",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.55625,
+                "source": "ols:chebi",
+                "target": "http://purl.obolibrary.org/obo/CHEBI_76397"
+              }
+            ]
+          ],
           "termId": "CHEBI_76397",
           "uri": "http://purl.obolibrary.org/obo/CHEBI_76397"
         }

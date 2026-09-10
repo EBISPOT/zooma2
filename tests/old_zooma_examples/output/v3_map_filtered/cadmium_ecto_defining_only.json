@@ -5,18 +5,18 @@
         {
           "confidence": 0.89,
           "datasource": "ecto",
-          "label": "exposure to vasopressin",
+          "label": "exposure to cadmium",
           "mappingProvenance": [
             {
               "confidence": 0.89,
-              "input": "vasopressin",
+              "input": "cadmium",
               "matchType": "OLS_LEXICAL_CONTAINED",
-              "matchedText": "exposure to vasopressin",
+              "matchedText": "exposure to cadmium",
               "method": "lexical",
               "model": null,
               "similarity": 0.89,
               "source": "ols:ecto",
-              "target": "http://purl.obolibrary.org/obo/ECTO_9000460"
+              "target": "http://purl.obolibrary.org/obo/ECTO_0001566"
             }
           ],
           "ontology": "ecto",
@@ -24,24 +24,24 @@
             [
               {
                 "confidence": null,
-                "input": "vasopressin",
+                "input": "cadmium",
                 "matchType": "OLS_EMBEDDING",
-                "matchedText": "exposure to vasopressin",
+                "matchedText": "exposure to cadmium",
                 "method": "semantic",
                 "model": "llama-embed-nemotron-8b_pca512",
-                "similarity": 0.925262,
+                "similarity": 0.874983,
                 "source": "ols:ecto",
-                "target": "http://purl.obolibrary.org/obo/ECTO_9000460"
+                "target": "http://purl.obolibrary.org/obo/ECTO_0001566"
               }
             ]
           ],
-          "termId": "ECTO_9000460",
-          "uri": "http://purl.obolibrary.org/obo/ECTO_9000460"
+          "termId": "ECTO_0001566",
+          "uri": "http://purl.obolibrary.org/obo/ECTO_0001566"
         }
       ],
       "error": null,
       "propertyType": null,
-      "textToMap": "vasopressin"
+      "textToMap": "cadmium"
     }
   ]
 }
