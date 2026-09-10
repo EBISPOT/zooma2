@@ -119,7 +119,9 @@ public class OlsTermCache {
     }
 
     /**
-     * Save multiple terms to cache.
+     * Save multiple terms to cache. Fully replaces any existing row for the same
+     * IRI, so only complete records (from resolveTerms) should be saved here;
+     * partial entity-derived terms would erase replacement metadata.
      */
     public void saveTerms(Collection<OlsTerm> terms) {
         if (terms == null || terms.isEmpty()) {
