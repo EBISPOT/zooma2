@@ -149,6 +149,8 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
     for cisplatin_case in cisplatin Cisplatin; do
         curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${cisplatin_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" > /dev/null || true
     done
+    # Legacy ontologies:[none] sentinel (issue #16)
+    curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=diabetes&filter=required:%5Batlas%5D,ontologies:%5Bnone%5D" > /dev/null || true
 
     # Batch v3 map
     v3_batch_body=$(python3 -c "

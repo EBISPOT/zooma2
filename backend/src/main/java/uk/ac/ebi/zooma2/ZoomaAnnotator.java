@@ -90,9 +90,5 @@ public class ZoomaAnnotator {
         return olsRepo.tagWholeText(text, ontologyIds);
     }
 
-    boolean isNone(List<String> list) {
-        return textTaggerService.isNone(list);
-    }
-
     
 }

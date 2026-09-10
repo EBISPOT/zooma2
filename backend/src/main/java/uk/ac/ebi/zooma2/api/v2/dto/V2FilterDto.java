@@ -91,10 +91,31 @@ public class V2FilterDto {
     }
 
     /**
+     * Returns {@code true} if {@code list} is the legacy V2 sentinel meaning "no
+     * ontology selected": a single value {@code none} or {@code Select None}
+     * (case-insensitive), as sent by the old ZOOMA UI's ontology picker.
+     */
+    public static boolean isNoneSentinel(List<String> list) {
+        if (list == null || list.size() != 1) return false;
+        String v = list.get(0).trim();
+        return v.equalsIgnoreCase("none") || v.equalsIgnoreCase("Select None");
+    }
+
+    /**
      * Convert this DTO to the internal Filter model.
      * V2's ontologies become targetOntologies with hard filter (includeOtherOntologies=false).
+     *
+     * <p>{@code ontologies:[none]} is a sentinel, not an ontology. Passing it
+     * through literally made the hard filter drop every result (issue #16). In
+     * old ZOOMA it meant "do not search any ontology directly; only curated
+     * sources", but here the ontology-backed matchers are the main pipeline and
+     * {@code required:[..]} already restricts curated results to the named
+     * datasources on its own. So the sentinel is translated to "no ontology
+     * restriction": an empty target list with includeOtherOntologies=true.
+     * With no targets, definingOnly has nothing to restrict and is a no-op.
      */
     public uk.ac.ebi.zooma2.model.Filter toFilter() {
-        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, ontologies, ontologies.isEmpty(), definingOnly);
+        List<String> targets = isNoneSentinel(ontologies) ? List.of() : ontologies;
+        return uk.ac.ebi.zooma2.model.Filter.fromLists(required, preferred, targets, targets.isEmpty(), definingOnly);
     }
 }

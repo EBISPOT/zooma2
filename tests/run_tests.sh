@@ -279,6 +279,14 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
             "$OUTPUT_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json"
     done
 
+    # Legacy sentinel (issue #16): ontologies:[none] means "no ontology
+    # restriction", not a literal ontology called "none" (which returned []).
+    curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=diabetes&filter=required:%5Batlas%5D,ontologies:%5Bnone%5D" \
+        | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/diabetes_atlas_none.json"
+    compare_output "$TEST_NAME/v2_annotate_filtered/diabetes_atlas_none" \
+        "$ACTUAL_DIR/v2_annotate_filtered/diabetes_atlas_none.json" \
+        "$OUTPUT_DIR/v2_annotate_filtered/diabetes_atlas_none.json"
+
     # ---- 3. Test batch v3 map (all properties at once) ----
 
     # Build JSON array of all properties

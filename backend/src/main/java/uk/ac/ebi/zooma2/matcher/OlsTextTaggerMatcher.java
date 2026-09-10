@@ -190,14 +190,4 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
     private static String firstSemanticTag(Annotation a) {
         return a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null;
     }
-
-    /**
-     * Returns {@code true} if {@code list} is the sentinel "none" / "Select None" value
-     * used by the UI to indicate no selection.
-     */
-    public boolean isNone(List<String> list) {
-        return list != null &&
-            list.size() == 1 &&
-            (list.get(0).equals("none") || list.get(0).equals("Select None"));
-    }
 }
