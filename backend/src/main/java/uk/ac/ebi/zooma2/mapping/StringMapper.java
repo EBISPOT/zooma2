@@ -51,104 +51,7 @@ public class StringMapper {
         try {
             var annotated = annotationEngine.annotate(s.textToMap, s.propertyType, sources, model, deep)
                 .collect(Collectors.toList());
-
-            // Only resolve terms that don't already carry a resolvedTerm from the matcher
-            var termIrisToResolve = annotated.stream()
-                .filter(a -> a.resolvedTerm == null)
-                .flatMap(a -> a.semanticTags.stream())
-                .map(tag -> prefixMap.shortFormToIri(tag))
-                .collect(Collectors.toSet());
-
-            var termMap = termIrisToResolve.isEmpty() ? Map.<String, OlsTerm>of() : olsRepo.resolveTerms(termIrisToResolve);
-
-            // Build a combined map: pre-resolved terms + freshly resolved terms
-            Map<String, OlsTerm> allTerms = new HashMap<>(termMap);
-            for (var a : annotated) {
-                if (a.resolvedTerm != null && a.resolvedTerm.iri != null) {
-                    allTerms.putIfAbsent(a.resolvedTerm.iri, a.resolvedTerm);
-                }
-            }
-
-            // Obsolete term handling: resolve any that lack replacementIri, then fetch replacements
-            Set<String> obsoleteToResolve = new HashSet<>();
-            for (var term : allTerms.values()) {
-                if (term.isObsolete() && term.getReplacementIri() == null) {
-                    obsoleteToResolve.add(term.iri);
-                }
-            }
-            if (!obsoleteToResolve.isEmpty()) {
-                var resolvedObsolete = olsRepo.resolveTerms(obsoleteToResolve);
-                for (var entry : resolvedObsolete.entrySet()) {
-                    allTerms.put(entry.getKey(), entry.getValue());
-                    for (var a : annotated) {
-                        if (a.resolvedTerm != null && entry.getKey().equals(a.resolvedTerm.iri)) {
-                            a.resolvedTerm = entry.getValue();
-                        }
-                    }
-                }
-            }
-
-            Set<String> replacementIris = new HashSet<>();
-            for (var term : allTerms.values()) {
-                if (term.isObsolete() && term.getReplacementIri() != null) {
-                    replacementIris.add(term.getReplacementIri());
-                }
-            }
-            Map<String, OlsTerm> replacementTermMap = olsRepo.resolveTerms(replacementIris);
-            final Map<String, OlsTerm> replacements = replacementTermMap;
-
-            return annotated.stream().map(a -> {
-                var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
-                var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
-                MapResult r = new MapResult();
-                r.propertyType = s.propertyType != null ? s.propertyType : a.annotatedProperty.propertyType;
-                r.textToMap = s.textToMap;
-
-                OlsTerm term = a.resolvedTerm != null ? a.resolvedTerm :
-                               (expandedTag != null ? allTerms.get(expandedTag) : null);
-                OlsTerm finalTerm = term;
-
-                // Replace obsolete terms if possible, drop if not
-                if (term != null && term.isObsolete()) {
-                    if (term.getReplacementIri() != null) {
-                        OlsTerm replacement = replacements.get(term.getReplacementIri());
-                        if (replacement != null) {
-                            finalTerm = replacement;
-                            List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
-                            newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
-                                term.iri, term.label,
-                                replacement.iri, replacement.label,
-                                term.ontology_name
-                            ));
-                            a.mappingProvenance = newProvenance;
-                        } else {
-                            return null; // obsolete, replacement not resolvable
-                        }
-                    } else {
-                        return null; // obsolete with no replacement
-                    }
-                }
-
-                if (finalTerm != null) {
-                    r.ontologyTermID = finalTerm.short_form;
-                    r.ontologyTermLabel = finalTerm.label;
-                    r.ontologyTermSynonyms = finalTerm.synonyms != null ? String.join("|", finalTerm.synonyms) : null;
-                    r.ontologyURI = finalTerm.ontology_name;
-                } else {
-                    r.ontologyTermLabel = r.textToMap;
-                }
-                if (r.ontologyTermID == null && expandedTag != null) {
-                    r.ontologyTermID = prefixMap.iriToShortForm(expandedTag);
-                }
-                if (r.ontologyTermID == null && semanticTag != null) {
-                    r.ontologyTermID = semanticTag;
-                }
-                r.mappingConfidence = a.confidence;
-                r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
-                r.mappingProvenance = a.mappingProvenance;
-                return r;
-            }).filter(r -> r != null).collect(Collectors.toList());
-
+            return toMapResults(annotated, s);
         } catch (Exception e) {
             System.err.println("Error mapping '" + s.textToMap + "': " + e.getMessage());
             return List.of(MapResult.error(s.textToMap, s.propertyType, e.getMessage()));
@@ -159,6 +62,10 @@ public class StringMapper {
      * Converts pre-computed tagger {@link Annotation}s to {@link MapResult}s,
      * resolving full term details from OLS as needed.
      *
+     * <p>The tagger annotations are fetched once per batch and shared by every
+     * property with the same text, across threads and across the shallow and deep
+     * passes, so this method must never modify them (see {@link #toMapResults}).
+     *
      * @param preComputed tagger annotations (may carry a pre-resolved {@code resolvedTerm})
      * @param s           the original string-to-map (for propertyType context)
      * @param deep        whether to apply obsolete-term replacement
@@ -167,12 +74,28 @@ public class StringMapper {
         if (preComputed == null || preComputed.isEmpty()) {
             return List.of();
         }
+        return toMapResults(preComputed, s);
+    }
 
-        for (var a : preComputed) {
-            a.annotatedProperty.propertyType = s.propertyType != null ? s.propertyType : "unspecified";
-        }
+    /**
+     * Converts {@link Annotation}s to {@link MapResult}s: resolves term details from
+     * OLS, swaps obsolete terms for their replacements (recording the swap as an
+     * extra provenance step) and drops obsolete terms that have no replacement.
+     *
+     * <p>This is the single conversion used by both {@link #mapOne} and
+     * {@link #annotationsToMapResults}. It is side-effect free with respect to the
+     * annotations: everything derived here (effective property type, re-resolved
+     * obsolete terms, augmented provenance) lives in locals or on the new
+     * {@link MapResult}s, because the input list may be shared between concurrently
+     * running properties.
+     */
+    private List<MapResult> toMapResults(List<Annotation> annotations, StringToMap s) {
+        // Matchers default a missing property type to "unspecified"; apply the same
+        // rule here rather than reading it back from the (shared) annotations.
+        final String effectivePropertyType = s.propertyType != null ? s.propertyType : "unspecified";
 
-        var termIrisToResolve = preComputed.stream()
+        // Only resolve terms that don't already carry a resolvedTerm from the matcher
+        var termIrisToResolve = annotations.stream()
             .filter(a -> a.resolvedTerm == null)
             .flatMap(a -> a.semanticTags.stream())
             .map(tag -> prefixMap.shortFormToIri(tag))
@@ -180,30 +103,28 @@ public class StringMapper {
 
         var termMap = termIrisToResolve.isEmpty() ? Map.<String, OlsTerm>of() : olsRepo.resolveTerms(termIrisToResolve);
 
+        // Build a combined map: pre-resolved terms + freshly resolved terms
         Map<String, OlsTerm> allTerms = new HashMap<>(termMap);
-        for (var a : preComputed) {
+        for (var a : annotations) {
             if (a.resolvedTerm != null && a.resolvedTerm.iri != null) {
                 allTerms.putIfAbsent(a.resolvedTerm.iri, a.resolvedTerm);
             }
         }
 
-        Map<String, OlsTerm> replacementTermMap = Map.of();
+        // Obsolete term handling: re-resolve any that lack replacementIri (a pre-resolved
+        // term from a search hit may be missing that metadata), then fetch replacements.
+        // The re-resolved terms are kept in a local map, keyed by IRI, and looked up in
+        // place of the annotation's own resolvedTerm below.
         Set<String> obsoleteToResolve = new HashSet<>();
         for (var term : allTerms.values()) {
             if (term.isObsolete() && term.getReplacementIri() == null) {
                 obsoleteToResolve.add(term.iri);
             }
         }
+        Map<String, OlsTerm> reResolvedObsolete = new HashMap<>();
         if (!obsoleteToResolve.isEmpty()) {
-                var resolvedObsolete = olsRepo.resolveTerms(obsoleteToResolve);
-            for (var entry : resolvedObsolete.entrySet()) {
-                allTerms.put(entry.getKey(), entry.getValue());
-                for (var a : preComputed) {
-                    if (a.resolvedTerm != null && entry.getKey().equals(a.resolvedTerm.iri)) {
-                        a.resolvedTerm = entry.getValue();
-                    }
-                }
-            }
+            reResolvedObsolete.putAll(olsRepo.resolveTerms(obsoleteToResolve));
+            allTerms.putAll(reResolvedObsolete);
         }
 
         Set<String> replacementIris = new HashSet<>();
@@ -212,37 +133,37 @@ public class StringMapper {
                 replacementIris.add(term.getReplacementIri());
             }
         }
-        replacementTermMap = olsRepo.resolveTerms(replacementIris);
-        final Map<String, OlsTerm> replacements = replacementTermMap;
+        final Map<String, OlsTerm> replacements = olsRepo.resolveTerms(replacementIris);
 
-        return preComputed.stream().map(a -> {
+        return annotations.stream().map(a -> {
             var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
             var expandedTag = semanticTag != null ? prefixMap.shortFormToIri(semanticTag) : null;
             MapResult r = new MapResult();
-            r.propertyType = a.annotatedProperty.propertyType;
+            r.propertyType = effectivePropertyType;
             r.textToMap = s.textToMap;
 
-            OlsTerm term = a.resolvedTerm != null ? a.resolvedTerm :
+            OlsTerm term = a.resolvedTerm != null ? reResolvedObsolete.getOrDefault(a.resolvedTerm.iri, a.resolvedTerm) :
                            (expandedTag != null ? allTerms.get(expandedTag) : null);
             OlsTerm finalTerm = term;
+            List<V3MappingProvenanceStepDto> provenance = a.mappingProvenance;
 
+            // Replace obsolete terms if possible, drop if not
             if (term != null && term.isObsolete()) {
                 if (term.getReplacementIri() != null) {
                     OlsTerm replacement = replacements.get(term.getReplacementIri());
                     if (replacement != null) {
                         finalTerm = replacement;
-                        List<V3MappingProvenanceStepDto> newProvenance = new ArrayList<>(a.mappingProvenance);
-                        newProvenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
+                        provenance = new ArrayList<>(a.mappingProvenance);
+                        provenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
                             term.iri, term.label,
                             replacement.iri, replacement.label,
                             term.ontology_name
                         ));
-                        a.mappingProvenance = newProvenance;
                     } else {
-                        return null;
+                        return null; // obsolete, replacement not resolvable
                     }
                 } else {
-                    return null;
+                    return null; // obsolete with no replacement
                 }
             }
 
@@ -262,7 +183,7 @@ public class StringMapper {
             }
             r.mappingConfidence = a.confidence;
             r.datasource = a.provenance != null && a.provenance.source != null ? a.provenance.source.name : null;
-            r.mappingProvenance = a.mappingProvenance;
+            r.mappingProvenance = provenance;
             return r;
         }).filter(r -> r != null).collect(Collectors.toList());
     }
