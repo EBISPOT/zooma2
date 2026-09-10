@@ -5,7 +5,6 @@ import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.router.JavalinDefaultRoutingApi;
 import com.google.gson.Gson;
-import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
@@ -15,7 +14,6 @@ import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3FilterDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapResponseDto;
-import uk.ac.ebi.zooma2.api.v3.dto.V3MappingCandidateDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3StringToMapDto;
 import uk.ac.ebi.zooma2.model.Filter;
@@ -215,20 +213,9 @@ public class ZoomaApiV3 {
                 String key = propertyKey(prop.propertyType, prop.textToMap);
                 List<MapResult> results = groupedResults.getOrDefault(key, List.of());
                 
-                // Check if any result is an error
-                String error = results.stream()
-                    .filter(r -> r.error != null)
-                    .map(r -> r.error)
-                    .findFirst().orElse(null);
                 
-                List<V3MappingCandidateDto> candidates = results.stream()
-                    .filter(r -> r.error == null)
-                    .map(V3MappingCandidateDto::from)
-                    .sorted(EvidenceTier.candidateRanking())
-                    .collect(Collectors.toList());
                 
-                var dto = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
-                dto.error = error;
+                var dto = V3PropertyMappingDto.fromResults(prop.propertyType, prop.textToMap, results);
                 return dto;
             })
             .collect(Collectors.toList());
@@ -318,22 +305,10 @@ public class ZoomaApiV3 {
                         throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
                     }
 
-                    // Check if any result is an error
-                    String error = results.stream()
-                        .filter(r -> r.error != null)
-                        .map(r -> r.error)
-                        .findFirst().orElse(null);
-
-                    List<V3MappingCandidateDto> candidates = results.stream()
-                        .filter(r -> r.error == null)
-                        .map(V3MappingCandidateDto::from)
-                        .sorted(EvidenceTier.candidateRanking())
-                        .collect(Collectors.toList());
 
                     // Fan the single result out to every request occurrence of this property
                     for (StringToMap occurrence : occurrences.get(propertyKey(prop.propertyType, prop.textToMap))) {
-                        var mapping = V3PropertyMappingDto.of(occurrence.propertyType, occurrence.textToMap, candidates);
-                        mapping.error = error;
+                        var mapping = V3PropertyMappingDto.fromResults(occurrence.propertyType, occurrence.textToMap, results);
                         int done = completed.incrementAndGet();
 
                         var event = new LinkedHashMap<String, Object>();
@@ -509,19 +484,8 @@ public class ZoomaApiV3 {
                         throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
                     }
 
-                    String error = results.stream()
-                        .filter(r -> r.error != null)
-                        .map(r -> r.error)
-                        .findFirst().orElse(null);
 
-                    List<V3MappingCandidateDto> candidates = results.stream()
-                        .filter(r -> r.error == null)
-                        .map(V3MappingCandidateDto::from)
-                        .sorted(EvidenceTier.candidateRanking())
-                        .collect(Collectors.toList());
-
-                    var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
-                    mapping.error = error;
+                    var mapping = V3PropertyMappingDto.fromResults(prop.propertyType, prop.textToMap, results);
                     int done = completed.incrementAndGet();
 
                     var event = new LinkedHashMap<String, Object>();

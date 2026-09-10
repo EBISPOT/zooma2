@@ -24,9 +24,13 @@ public class ZoomaApp {
         // Initialize unified database
         var zoomaDb = new ZoomaDatabase();
 
-        // Initialize external API cache for transparent HTTP caching
-        var apiCache = new ExternalApiCache(zoomaDb);
+        // Initialize external API cache for transparent HTTP caching. Entries expire
+        // after ZOOMA2_CACHE_TTL_SECONDS (0 = never) so ontology releases reach
+        // previously-queried mappings; expired rows are purged at startup and hourly.
+        long cacheTtlSeconds = uk.ac.ebi.zooma2.repo.CacheTtl.fromEnvironment();
+        var apiCache = new ExternalApiCache(zoomaDb, cacheTtlSeconds);
         CachedHttpClient.setApiCache(apiCache);
+        startCacheMaintenance(apiCache);
 
         var olsLexicalCfg = ZoomaConfig.config.ols_lexical;
         int maxConcurrentLexical = (olsLexicalCfg != null && olsLexicalCfg.max_concurrent_requests != null)
@@ -39,7 +43,7 @@ public class ZoomaApp {
         var olsRepo = new OlsClientRepo(maxConcurrentEmbedding, maxConcurrentSimilar, maxConcurrentLexical);
 
         // Initialize OLS term cache using unified database
-        OlsTermCache olsTermCache = new OlsTermCache(zoomaDb);
+        OlsTermCache olsTermCache = new OlsTermCache(zoomaDb, cacheTtlSeconds);
         olsRepo.setTermCache(olsTermCache);
 
         var annotator = new ZoomaAnnotator(olsRepo);
@@ -101,6 +105,30 @@ public class ZoomaApp {
         ZoomaConfig.startConfigWatcher();
 
         app.start(configuredPort());
+    }
+
+    /** Purges expired cache rows now and then every hour, on a daemon thread. */
+    private static void startCacheMaintenance(ExternalApiCache apiCache) {
+        if (apiCache.getTtlSeconds() <= 0) {
+            System.err.println("Cache TTL is 0: cached OLS data never expires");
+            return;
+        }
+        System.err.println("Cache TTL: " + apiCache.getTtlSeconds() + " s");
+        Thread maintenance = new Thread(() -> {
+            while (true) {
+                try {
+                    int deleted = apiCache.purgeExpired();
+                    if (deleted > 0) System.err.println("Purged " + deleted + " expired cache rows");
+                    Thread.sleep(60 * 60 * 1000L);
+                } catch (InterruptedException e) {
+                    return;
+                } catch (RuntimeException e) {
+                    System.err.println("Cache purge failed: " + e.getMessage());
+                }
+            }
+        }, "cache-maintenance");
+        maintenance.setDaemon(true);
+        maintenance.start();
     }
 
     // ----------------- DTOs -----------------

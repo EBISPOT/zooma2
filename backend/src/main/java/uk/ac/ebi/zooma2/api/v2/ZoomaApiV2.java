@@ -241,7 +241,7 @@ public class ZoomaApiV2 {
 
     private List<MapResult> mapCompat(StringToMap stm, uk.ac.ebi.zooma2.model.Filter filter, String model) {
         return annotator.mapAll(Stream.of(stm), filter, model, null, true, true).stream()
-            .filter(r -> r.error == null)
+            .filter(r -> !r.isDiagnostic())
             .sorted(EvidenceTier.resultRanking())
             .collect(Collectors.toList());
     }

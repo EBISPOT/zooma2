@@ -72,7 +72,8 @@ public class BatchMapper {
             .filter(v -> v != null && !v.isEmpty())
             .distinct()
             .collect(Collectors.toList());
-        var tagTextResults = textTaggerService.bulkTagText(allTerms);
+        var tagged = textTaggerService.bulkTag(allTerms);
+        var tagTextResults = tagged.byTerm;
 
         // Virtual threads, not a parallel stream: the work is blocking OLS I/O, which on
         // the CPU-sized common ForkJoinPool caps concurrency and lets one large request
@@ -90,7 +91,7 @@ public class BatchMapper {
                             return deduplicator.deduplicate(results, sources, excludeTermIds);
                         }
                         var results = stringMapper.map(s, taggerAnnotations, sources, model, deep, excludeTermIds);
-                        return deduplicateForMode(results, sources, excludeTermIds, returnAll);
+                        return withTaggerWarning(tagged, s, deduplicateForMode(results, sources, excludeTermIds, returnAll));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
@@ -136,7 +137,7 @@ public class BatchMapper {
 
     public void mapEach(List<StringToMap> properties, Filter filter, String model,
                         List<String> excludeTermIds, boolean returnAll, Boolean deep,
-                        BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+                        BiConsumer<StringToMap, List<MapResult>> onPropertyMappedRaw) {
         // Tag each distinct text once: the tagger keys its results by text, so a
         // repeated text (e.g. the same value under two property types) would only
         // duplicate the hits, and would change the request body, defeating the cache.
@@ -145,8 +146,12 @@ public class BatchMapper {
             .filter(v -> v != null && !v.isEmpty())
             .distinct()
             .collect(Collectors.toList());
-        Map<String, List<Annotation>> tagTextResults = textTaggerService.bulkTagText(allTerms);
+        var tagged = textTaggerService.bulkTag(allTerms);
+        Map<String, List<Annotation>> tagTextResults = tagged.byTerm;
         System.err.println("Bulk tag_text returned matches for " + tagTextResults.size() + "/" + allTerms.size() + " terms");
+        // A failed tag_text chunk silently strips the exact-match tier from its
+        // properties; tell them so a degraded answer is not read as "no match".
+        final BiConsumer<StringToMap, List<MapResult>> onPropertyMapped = withTaggerWarnings(tagged, onPropertyMappedRaw);
 
         if (returnAll || deep != null) {
             mapEachSinglePass(properties, tagTextResults, filter, model, excludeTermIds, returnAll, deep, onPropertyMapped);
@@ -218,6 +223,22 @@ public class BatchMapper {
                 }
             }
         }
+    }
+
+    /** Wraps the completion callback so properties whose tag_text chunk failed carry a warning. */
+    private static BiConsumer<StringToMap, List<MapResult>> withTaggerWarnings(
+            OlsTextTaggerMatcher.TaggerResults tagged, BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+        if (tagged.failedTerms.isEmpty()) return onPropertyMapped;
+        return (prop, results) -> onPropertyMapped.accept(prop, withTaggerWarning(tagged, prop, results));
+    }
+
+    private static List<MapResult> withTaggerWarning(OlsTextTaggerMatcher.TaggerResults tagged, StringToMap prop, List<MapResult> results) {
+        if (!tagged.failedTerms.contains(prop.textToMap)) return results;
+        List<MapResult> withWarning = new ArrayList<>(results);
+        withWarning.add(MapResult.warning(prop.textToMap, prop.propertyType,
+            "OLS text tagger unavailable" + (tagged.failure != null ? ": " + tagged.failure : "")
+            + "; exact and curated matches may be missing"));
+        return withWarning;
     }
 
     private List<MapResult> deduplicateForMode(

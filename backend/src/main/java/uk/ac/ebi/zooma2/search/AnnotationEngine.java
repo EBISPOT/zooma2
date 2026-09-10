@@ -10,6 +10,7 @@ import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OxoClient;
+import uk.ac.ebi.zooma2.util.Diagnostics;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
 
 import java.util.ArrayList;
@@ -89,14 +90,17 @@ public class AnnotationEngine {
         // so it can be forwarded into the matcher-level virtual threads spawned below.
         // ThreadLocal is NOT inherited across virtual thread boundaries.
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
+        final List<String> sink = Diagnostics.current();
 
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
             var olsLexicalFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                Diagnostics.attach(sink);
                 return olsLexicalMatcher.findMatches(context);
             });
             var olsEmbeddingFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                Diagnostics.attach(sink);
                 return olsEmbeddingMatcher.findMatches(context);
             });
 
@@ -129,11 +133,13 @@ public class AnnotationEngine {
      */
     public List<Annotation> annotateDeep(MatchContext context, List<Annotation> shallowResults) {
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
+        final List<String> sink = Diagnostics.current();
 
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
             System.err.println("Running deep search for '" + context.stringToMap + "'");
             var deepFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                Diagnostics.attach(sink);
                 return olsEmbeddingMatcher.findDeepMatches(context);
             });
             List<Annotation> deepResults;
@@ -159,11 +165,13 @@ public class AnnotationEngine {
             var oxoFuture = oxoEnabled
                 ? executor.submit(() -> {
                     if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                Diagnostics.attach(sink);
                     return oxoMatcher.findMatches(expansionContext);
                 })
                 : null;
             var similarFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                Diagnostics.attach(sink);
                 return olsEmbeddingSimilarMatcher.findMatches(expansionContext);
             });
 

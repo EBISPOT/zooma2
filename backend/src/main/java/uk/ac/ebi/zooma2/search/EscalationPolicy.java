@@ -69,7 +69,7 @@ public final class EscalationPolicy {
         if (targets.isEmpty()) return true; // nothing to escalate for
         boolean definingOnly = filter != null && filter.definingOnly;
         return results.stream().anyMatch(r ->
-            r.error == null
+            !r.isDiagnostic()
             && r.mappingConfidence >= MIN_SATISFYING_CONFIDENCE
             && !TermIds.matchesAny(excludedForms, r.ontologyTermID, r.ontologyTermIri)
             && settles(r.ontologyURI, r.ontologyTermID, targets, definingOnly));
