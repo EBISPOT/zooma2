@@ -1,3 +1,8 @@
+# NodePort, not ClusterIP: the EBI edge load balancer that fronts
+# www/wwwdev.ebi.ac.uk targets these services by fixed node port, so switching
+# to ClusterIP (or letting Kubernetes allocate a port) takes the site down with
+# a 500 from the edge. The ports differ per cluster and are set in the release
+# values (backend.nodePort / frontend.nodePort); see values.yaml.
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,10 +10,13 @@ metadata:
   labels:
     app: {{ .Release.Name }}-backend
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: "application"
     port: 8090
+{{- if .Values.backend.nodePort }}
+    nodePort: {{ .Values.backend.nodePort }}
+{{- end }}
   selector:
     app: {{ .Release.Name }}-backend
 ---
@@ -19,9 +27,12 @@ metadata:
   labels:
     app: {{ .Release.Name }}-frontend
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: "application"
     port: 8080
+{{- if .Values.frontend.nodePort }}
+    nodePort: {{ .Values.frontend.nodePort }}
+{{- end }}
   selector:
     app: {{ .Release.Name }}-frontend

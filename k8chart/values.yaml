@@ -13,3 +13,11 @@ httpProxyPort: 3128
 httpsProxyHost: hh-wwwcache.ebi.ac.uk
 httpsProxyPort: 3128
 nonProxyHosts: "localhost|127.0.0.1|*.cluster.local|*.svc|kubernetes|*.svc.cluster.local"
+
+# Fixed node ports the EBI edge load balancer targets. These defaults are the
+# dev cluster's; prod's differ (backend 32107, frontend 30572) and must be set
+# on its release. A change here, or an unset value, breaks the public site.
+backend:
+  nodePort: 30502
+frontend:
+  nodePort: 31204
