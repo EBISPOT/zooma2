@@ -13,10 +13,8 @@ import uk.ac.ebi.zooma2.search.AnnotationEngine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -31,11 +29,13 @@ public class StringMapper {
     private final AnnotationEngine annotationEngine;
     private final OlsClientRepo olsRepo;
     private final PrefixMap prefixMap;
+    private final ObsoleteTermResolver obsoleteResolver;
 
     public StringMapper(AnnotationEngine annotationEngine, OlsClientRepo olsRepo, PrefixMap prefixMap) {
         this.annotationEngine = annotationEngine;
         this.olsRepo = olsRepo;
         this.prefixMap = prefixMap;
+        this.obsoleteResolver = new ObsoleteTermResolver(olsRepo, prefixMap);
     }
 
     /**
@@ -111,29 +111,11 @@ public class StringMapper {
             }
         }
 
-        // Obsolete term handling: re-resolve any that lack replacementIri (a pre-resolved
-        // term from a search hit may be missing that metadata), then fetch replacements.
-        // The re-resolved terms are kept in a local map, keyed by IRI, and looked up in
-        // place of the annotation's own resolvedTerm below.
-        Set<String> obsoleteToResolve = new HashSet<>();
-        for (var term : allTerms.values()) {
-            if (term.isObsolete() && term.getReplacementIri() == null) {
-                obsoleteToResolve.add(term.iri);
-            }
-        }
-        Map<String, OlsTerm> reResolvedObsolete = new HashMap<>();
-        if (!obsoleteToResolve.isEmpty()) {
-            reResolvedObsolete.putAll(olsRepo.resolveTerms(obsoleteToResolve));
-            allTerms.putAll(reResolvedObsolete);
-        }
-
-        Set<String> replacementIris = new HashSet<>();
-        for (var term : allTerms.values()) {
-            if (term.isObsolete() && term.getReplacementIri() != null) {
-                replacementIris.add(term.getReplacementIri());
-            }
-        }
-        final Map<String, OlsTerm> replacements = olsRepo.resolveTerms(replacementIris);
+        // Obsolete term handling: follow each obsolete term's replacement chain to a
+        // live term (see ObsoleteTermResolver). Resolutions are keyed by the obsolete
+        // term's IRI and kept local; the shared annotations are never modified.
+        final Map<String, ObsoleteTermResolver.Resolution> obsoleteResolutions =
+            obsoleteResolver.resolve(allTerms);
 
         return annotations.stream().map(a -> {
             var semanticTag = a.semanticTags.size() > 0 ? a.semanticTags.get(0) : null;
@@ -142,28 +124,22 @@ public class StringMapper {
             r.propertyType = effectivePropertyType;
             r.textToMap = s.textToMap;
 
-            OlsTerm term = a.resolvedTerm != null ? reResolvedObsolete.getOrDefault(a.resolvedTerm.iri, a.resolvedTerm) :
+            OlsTerm term = a.resolvedTerm != null ? a.resolvedTerm :
                            (expandedTag != null ? allTerms.get(expandedTag) : null);
             OlsTerm finalTerm = term;
             List<V3MappingProvenanceStepDto> provenance = a.mappingProvenance;
 
-            // Replace obsolete terms if possible, drop if not
+            // Swap an obsolete term for the live end of its replacement chain, recording
+            // one provenance step per hop; drop it if the chain could not be completed.
             if (term != null && term.isObsolete()) {
-                if (term.getReplacementIri() != null) {
-                    OlsTerm replacement = replacements.get(term.getReplacementIri());
-                    if (replacement != null) {
-                        finalTerm = replacement;
-                        provenance = new ArrayList<>(a.mappingProvenance);
-                        provenance.add(V3MappingProvenanceStepDto.obsoleteReplacement(
-                            term.iri, term.label,
-                            replacement.iri, replacement.label,
-                            term.ontology_name
-                        ));
-                    } else {
-                        return null; // obsolete, replacement not resolvable
-                    }
-                } else {
-                    return null; // obsolete with no replacement
+                var resolution = obsoleteResolutions.get(term.iri);
+                if (resolution == null) {
+                    return null; // obsolete with no (resolvable) replacement
+                }
+                finalTerm = resolution.finalTerm;
+                if (!resolution.steps.isEmpty()) {
+                    provenance = new ArrayList<>(a.mappingProvenance);
+                    provenance.addAll(resolution.steps);
                 }
             }
 

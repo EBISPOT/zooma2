@@ -139,6 +139,22 @@ public class OlsClientRepo {
         return ids;
     }
 
+    /**
+     * Whether a cached term carries everything resolveTerms is expected to return.
+     *
+     * <p>A full record from findByIdAndIsDefiningOntology always has is_obsolete set;
+     * for an obsolete term it also has the replacement pointer (term_replaced_by, or
+     * annotation.consider) or at least the annotation block. Terms derived from
+     * search-endpoint entities carry only is_obsolete, so an obsolete one with no
+     * replacement information and no annotation block is treated as partial and
+     * re-fetched (the HTTP response is itself cached, so this is cheap).
+     */
+    static boolean isCompleteCacheEntry(OlsTerm t) {
+        if (t.is_obsolete == null) return false;
+        if (!t.isObsolete()) return true;
+        return t.getReplacementIri() != null || t.annotation != null;
+    }
+
     public Map<String, OlsTerm> resolveTerms(Collection<String> termIris) {
 
         if(termIris == null || termIris.isEmpty()) {
@@ -154,10 +170,7 @@ public class OlsClientRepo {
             
             for (String iri : termIris) {
                 OlsTerm cachedTerm = cached.get(iri);
-                if (cachedTerm == null) {
-                    irisToFetch.add(iri);
-                } else if (cachedTerm.is_obsolete == null) {
-                    // Incomplete cache entry (e.g. from embedding search) — re-fetch for full metadata
+                if (cachedTerm == null || !isCompleteCacheEntry(cachedTerm)) {
                     irisToFetch.add(iri);
                 } else {
                     result.put(iri, cachedTerm);
@@ -459,11 +472,11 @@ public class OlsClientRepo {
                 results.add(term);
             }
             
-            // Cache all terms found
-            if (termCache != null && !results.isEmpty()) {
-                termCache.saveTerms(results);
-            }
-            
+            // Deliberately NOT saved to the term cache: an entity-derived term carries
+            // is_obsolete but never term_replaced_by / annotation, and saveTerms fully
+            // replaces the row, so it would clobber a complete record with a partial one
+            // that then passes isCompleteCacheEntry and can never be re-fetched. Callers
+            // consume these terms directly via Annotation.resolvedTerm.
             return results;
             
         } catch (IOException e) {
