@@ -331,6 +331,32 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v3_map_dedup/yeast_organism_and_untyped_twice.json" \
         "$OUTPUT_DIR/v3_map_dedup/yeast_organism_and_untyped_twice.json"
 
+    # ---- 2g. V2 async bulk job (issue #17) ----
+    # Submit every row as one legacy job, poll until 1.0, fetch the TSV report
+    # (minus its timestamp line). The job runs through the same pipeline as V3.
+    v2_job_body=$(python3 -c "
+import csv, json
+rows = []
+with open('$INPUT_FILE', newline='') as f:
+    for row in csv.DictReader(f, delimiter='\t'):
+        r = {'propertyValue': row['propertyValue']}
+        pt = row.get('propertyType', '').strip()
+        if pt:
+            r['propertyType'] = pt
+        rows.append(r)
+print(json.dumps(rows))
+")
+    v2_cookies="$ACTUAL_DIR/v2_job_cookies"
+    curl -sf -c "$v2_cookies" -X POST "$BASE_URL/v2/api/services/map" \
+        -H "Content-Type: application/json" -d "$v2_job_body" > /dev/null
+    for i in $(seq 1 300); do
+        v2_progress=$(curl -sf -b "$v2_cookies" "$BASE_URL/v2/api/services/map/status")
+        [ "$v2_progress" = "1.0" ] && break
+        sleep 1
+    done
+    curl -sf -b "$v2_cookies" "$BASE_URL/v2/api/services/map" | grep -v '^Run at:' > "$ACTUAL_DIR/v2_map_job.tsv"
+    compare_output "$TEST_NAME/v2_map_job" "$ACTUAL_DIR/v2_map_job.tsv" "$OUTPUT_DIR/v2_map_job.tsv"
+
     # ---- 3. Test batch v3 map (all properties at once) ----
 
     # Build JSON array of all properties

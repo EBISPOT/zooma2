@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
+import uk.ac.ebi.zooma2.api.RequestLimits;
 import uk.ac.ebi.zooma2.api.SourceMetadata;
 import uk.ac.ebi.zooma2.api.v3.dto.AnnotateTextRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
@@ -36,15 +37,15 @@ import java.util.stream.Stream;
  */
 public class ZoomaApiV3 {
 
-    private static final int MAX_PROPERTIES = envInt("ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000);
-    private static final int MAX_DEEP_PROPERTIES = envInt("ZOOMA2_MAX_DEEP_PROPERTIES", 200, 1, 100_000);
-    private static final int MAX_PROPERTY_TEXT_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TEXT_LENGTH", 1000, 1, 1_000_000);
-    private static final int MAX_PROPERTY_TYPE_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TYPE_LENGTH", 200, 1, 10_000);
-    private static final int MAX_ANNOTATE_TEXT_LENGTH = envInt("ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH", 50_000, 1, 5_000_000);
-    private static final int MAX_LIST_ITEMS = envInt("ZOOMA2_MAX_FILTER_ITEMS", 200, 1, 100_000);
-    private static final int MAX_LIST_ITEM_LENGTH = envInt("ZOOMA2_MAX_FILTER_ITEM_LENGTH", 200, 1, 10_000);
-    private static final int MAX_EXCLUDED_TERMS = envInt("ZOOMA2_MAX_EXCLUDED_TERMS", 1000, 1, 100_000);
-    private static final int MAX_MODEL_LENGTH = envInt("ZOOMA2_MAX_MODEL_LENGTH", 200, 1, 10_000);
+    private static final int MAX_PROPERTIES = RequestLimits.MAX_PROPERTIES;
+    private static final int MAX_DEEP_PROPERTIES = RequestLimits.MAX_DEEP_PROPERTIES;
+    private static final int MAX_PROPERTY_TEXT_LENGTH = RequestLimits.MAX_PROPERTY_TEXT_LENGTH;
+    private static final int MAX_PROPERTY_TYPE_LENGTH = RequestLimits.MAX_PROPERTY_TYPE_LENGTH;
+    private static final int MAX_ANNOTATE_TEXT_LENGTH = RequestLimits.MAX_ANNOTATE_TEXT_LENGTH;
+    private static final int MAX_LIST_ITEMS = RequestLimits.MAX_LIST_ITEMS;
+    private static final int MAX_LIST_ITEM_LENGTH = RequestLimits.MAX_LIST_ITEM_LENGTH;
+    private static final int MAX_EXCLUDED_TERMS = RequestLimits.MAX_EXCLUDED_TERMS;
+    private static final int MAX_MODEL_LENGTH = RequestLimits.MAX_MODEL_LENGTH;
 
     private final ZoomaAnnotator annotator;
     private final OlsClientRepo olsRepo;
@@ -629,46 +630,13 @@ public class ZoomaApiV3 {
     }
 
     private static void validateStringList(String name, List<String> values, int maxItems, int maxLength) {
-        if (values == null) {
-            return;
-        }
-        if (values.size() > maxItems) {
-            throw new BadRequestResponse("'" + name + "' cannot contain more than " + maxItems + " items");
-        }
-        for (int i = 0; i < values.size(); i++) {
-            validateString(name + "[" + i + "]", values.get(i), true, maxLength);
-        }
+        RequestLimits.validateStringList(name, values, maxItems, maxLength);
     }
 
     private static void validateString(String name, String value, boolean required, int maxLength) {
-        if (value == null || value.isBlank()) {
-            if (required) {
-                throw new BadRequestResponse("'" + name + "' is required and cannot be empty");
-            }
-            return;
-        }
-        if (value.length() > maxLength) {
-            throw new BadRequestResponse("'" + name + "' cannot be longer than " + maxLength + " characters");
-        }
+        RequestLimits.validateString(name, value, required, maxLength);
     }
 
-    private static int envInt(String name, int defaultValue, int min, int max) {
-        String raw = System.getenv(name);
-        if (raw == null || raw.isBlank()) {
-            return defaultValue;
-        }
-        try {
-            int parsed = Integer.parseInt(raw);
-            if (parsed < min || parsed > max) {
-                throw new NumberFormatException("out of range");
-            }
-            return parsed;
-        } catch (NumberFormatException e) {
-            System.err.println("Ignoring invalid " + name + "='" + raw + "'; using " + defaultValue);
-            return defaultValue;
-        }
-    }
-    
     private static <T> T bodyJson(Context ctx, Class<T> clazz) {
         try {
             return ctx.bodyAsClass(clazz);
