@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
@@ -39,8 +40,6 @@ import uk.ac.ebi.zooma2.util.TermNamespace;
  */
 public class Deduplicator {
 
-    /** Confidence at or above which a match counts as lexically grounded (exact-match tier). */
-    private static final double STRONG_MATCH_CONFIDENCE = 0.85;
     /** Confidence adjustment applied by the organism-type taxonomy preference. */
     private static final double TAXONOMY_PREFERENCE_ADJUSTMENT = 0.1;
     /** Weak-result suppression only engages once the best result is at least this confident. */
@@ -157,7 +156,7 @@ public class Deduplicator {
         // not be restricted by the DATABASE-level required filter.
         results.removeIf(r -> {
             if (r.error != null) return false;
-            if (!isCuratedExact(r)) return false;
+            if (!isCurated(r)) return false;
             String ds = r.datasource;
             if (ds == null) return true;
             return !allowed.contains(ds.toLowerCase(Locale.ROOT));
@@ -204,9 +203,13 @@ public class Deduplicator {
      * also a food product (FOODON), an NCIT concept, part of species names like
      * rat snakes, etc. When the caller has told us the value is an organism and
      * a lexically grounded NCBITaxon match exists, boost taxonomy matches and
-     * demote everything else so the taxon ranks first. Without a strong taxonomy
-     * match (e.g. "yeast", which NCBI Taxonomy has no synonym for) this rule
-     * does nothing, so exact matches from other ontologies still win.
+     * demote everything else so the taxon ranks first. Without a lexically
+     * grounded taxonomy match (e.g. "yeast", which NCBI Taxonomy has no synonym
+     * for) this rule does nothing, so exact matches from other ontologies still win.
+     *
+     * <p>"Lexically grounded" is judged on provenance ({@link #isLexicallyGrounded}),
+     * not on a score threshold: embedding scores can reach 0.89, so a score gate
+     * would let a semantic guess from NCBITaxon trigger and receive the boost.
      */
     void preferTaxonomyForOrganismQueries(List<MapResult> results) {
         String propertyType = results.stream()
@@ -218,7 +221,7 @@ public class Deduplicator {
         }
 
         boolean hasStrongTaxonomyMatch = results.stream().anyMatch(r ->
-            r.error == null && isTaxonomyResult(r) && r.mappingConfidence >= STRONG_MATCH_CONFIDENCE);
+            r.error == null && isTaxonomyResult(r) && isLexicallyGrounded(r));
         if (!hasStrongTaxonomyMatch) {
             return;
         }
@@ -228,7 +231,7 @@ public class Deduplicator {
             if (isTaxonomyResult(r)) {
                 // Only boost lexically grounded matches; a weak embedding guess from
                 // NCBITaxon (e.g. a rat-snake species for "rat") earns no boost.
-                if (r.mappingConfidence >= STRONG_MATCH_CONFIDENCE) {
+                if (isLexicallyGrounded(r)) {
                     r.mappingConfidence = Math.min(1.0, r.mappingConfidence + TAXONOMY_PREFERENCE_ADJUSTMENT);
                 }
             } else {
@@ -429,7 +432,9 @@ public class Deduplicator {
             if (key == null) continue;
             key = prefixMap.shortFormToIri(key);
             MapResult existing = best.get(key);
-            if (existing == null || r.mappingConfidence > existing.mappingConfidence) {
+            // Higher confidence wins; on a tie the stronger evidence tier wins, so a
+            // curated full match is the one reported rather than whichever came first.
+            if (existing == null || EvidenceTier.resultRanking().compare(r, existing) < 0) {
                 best.put(key, r);
             }
         }
@@ -481,10 +486,24 @@ public class Deduplicator {
         return r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
     }
 
-    private static boolean isCuratedExact(MapResult r) {
+    /**
+     * True only for a full curated match. A low-coverage CURATED_SUBSTRING is
+     * curated evidence too, but not strong enough to suppress every embedding
+     * candidate (which may include the only correct answer).
+     */
+    static boolean isCuratedExact(MapResult r) {
+        return EvidenceTier.of(r.mappingProvenance) == EvidenceTier.CURATED_FULL;
+    }
+
+    /** True for any curated-source evidence, full or substring (the datasource filter applies to all of it). */
+    static boolean isCurated(MapResult r) {
         if (r.mappingProvenance == null || r.mappingProvenance.isEmpty()) return false;
-        var step = r.mappingProvenance.get(0);
-        return "curated".equals(step.method);
+        return "curated".equals(r.mappingProvenance.get(0).method);
+    }
+
+    /** Curated or lexical full match; see {@link EvidenceTier#isLexicallyGrounded}. */
+    static boolean isLexicallyGrounded(MapResult r) {
+        return EvidenceTier.isLexicallyGrounded(r.mappingProvenance);
     }
 
     private static boolean isEmbeddingResult(MapResult r) {

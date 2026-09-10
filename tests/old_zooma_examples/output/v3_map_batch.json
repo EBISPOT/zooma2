@@ -647,18 +647,18 @@
     {
       "candidates": [
         {
-          "confidence": 0.85,
+          "confidence": 1.0,
           "datasource": "cco",
           "label": "Segawa syndrome autosomal recessive",
           "mappingProvenance": [
             {
-              "confidence": 0.85,
+              "confidence": 1.0,
               "input": "Segawa syndrome autosomal recessive",
               "matchType": "OLS_LEXICAL_FUZZY_LABEL",
               "matchedText": "Segawa syndrome autosomal recessive",
               "method": "lexical",
               "model": null,
-              "similarity": 0.85,
+              "similarity": 1.0,
               "source": "ols:cco",
               "target": "http://identifiers.org/omim/605407"
             }
@@ -687,27 +687,6 @@
           "ontology": "mesh",
           "termId": "mesh_C537537",
           "uri": "mesh"
-        },
-        {
-          "confidence": 0.7,
-          "datasource": "doid",
-          "label": "autosomal recessive Segawa syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.7,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "autosomal recessive Segawa syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.7,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0051059"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0051059",
-          "uri": "doid"
         }
       ],
       "error": null,
@@ -892,7 +871,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "cttv",
           "label": "Autosomal dominant non-syndromic genetic deafness",
           "mappingProvenance": [
@@ -920,7 +899,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "atlas",
           "label": "sulforaphane",
           "mappingProvenance": [
@@ -949,27 +928,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "mesh",
-          "label": "Amyloidosis, familial visceral",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "Amyloidosis, familial visceral",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Amyloidosis, familial visceral",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C538249"
-            }
-          ],
-          "ontology": "mesh",
-          "termId": "http://id.nlm.nih.gov/mesh/C538249",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.95,
           "datasource": "cttv",
           "label": "Hereditary amyloidosis with primary renal involvement",
           "mappingProvenance": [
@@ -988,6 +946,27 @@
           "ontology": "ordo",
           "termId": "orphanet.ordo_85450",
           "uri": "ordo"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Amyloidosis, familial visceral",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Amyloidosis, familial visceral",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C538249"
+            }
+          ],
+          "ontology": "mesh",
+          "termId": "http://id.nlm.nih.gov/mesh/C538249",
+          "uri": "mesh"
         }
       ],
       "error": null,
@@ -996,6 +975,27 @@
     },
     {
       "candidates": [
+        {
+          "confidence": 1.0,
+          "datasource": "eva-clinvar",
+          "label": "Autosomal dominant spastic paraplegia type 10",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Spastic paraplegia 10",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "Autosomal dominant spastic paraplegia type 10",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "eva-clinvar",
+              "target": "http://www.orpha.net/ORDO/Orphanet_100991"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "orphanet.ordo_100991",
+          "uri": "ordo"
+        },
         {
           "confidence": 1.0,
           "datasource": "ncit",
@@ -1016,27 +1016,6 @@
           "ontology": "ncit",
           "termId": "NCIT_C192058",
           "uri": "ncit"
-        },
-        {
-          "confidence": 0.95,
-          "datasource": "eva-clinvar",
-          "label": "Autosomal dominant spastic paraplegia type 10",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Spastic paraplegia 10",
-              "matchType": "CURATED_EXACT",
-              "matchedText": "Autosomal dominant spastic paraplegia type 10",
-              "method": "curated",
-              "model": null,
-              "similarity": 1.0,
-              "source": "eva-clinvar",
-              "target": "http://www.orpha.net/ORDO/Orphanet_100991"
-            }
-          ],
-          "ontology": "ordo",
-          "termId": "orphanet.ordo_100991",
-          "uri": "ordo"
         }
       ],
       "error": null,
@@ -1172,6 +1151,69 @@
     {
       "candidates": [
         {
+          "confidence": 0.77004135,
+          "datasource": "mondo",
+          "label": "long QT syndrome, KCNQ1-related, dog",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "long QT syndrome, KCNQ1-related, dog",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.865215,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_7770288"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_7770288",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.76726989,
+          "datasource": "mondo",
+          "label": "long QT syndrome, KCNQ1-related, rabbit",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "long QT syndrome, KCNQ1-related, rabbit",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.862101,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_1012868"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_1012868",
+          "uri": "mondo"
+        },
+        {
+          "confidence": 0.76519085,
+          "datasource": "mondo",
+          "label": "long QT syndrome, KCNH2-related, rabbit",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Long QT syndrome 3/6, digenic",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "long QT syndrome, KCNH2-related, rabbit",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.859765,
+              "source": "ols:mondo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_1012869"
+            }
+          ],
+          "ontology": "mondo",
+          "termId": "MONDO_1012869",
+          "uri": "mondo"
+        },
+        {
           "confidence": 0.5833333333333334,
           "datasource": "mesh",
           "label": "Long Qt Syndrome 3-6",
@@ -1191,993 +1233,6 @@
           "ontology": "mesh",
           "termId": "mesh_C566334",
           "uri": "mesh"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "mondo",
-          "label": "long QT syndrome 3",
-          "mappingProvenance": [
-            {
-              "confidence": 0.6206896551724138,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long QT syndrome 3",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0011377"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0011377",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "doid",
-          "label": "long QT syndrome 3",
-          "mappingProvenance": [
-            {
-              "confidence": 0.6206896551724138,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long QT syndrome 3",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0110646"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0110646",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "clinvar-xrefs",
-          "label": "Isolated congenital long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "CURATED_SUBSTRING",
-              "matchedText": "Isolated congenital long QT syndrome",
-              "method": "curated",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "clinvar-xrefs",
-              "target": "http://www.orpha.net/ORDO/Orphanet_101016"
-            }
-          ],
-          "ontology": "ordo",
-          "termId": "orphanet.ordo_101016",
-          "uri": "ordo"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "clinvar-xrefs",
-          "label": "Congenital long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "CURATED_SUBSTRING",
-              "matchedText": "Congenital long QT syndrome",
-              "method": "curated",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "clinvar-xrefs",
-              "target": "http://www.orpha.net/ORDO/Orphanet_768"
-            }
-          ],
-          "ontology": "ordo",
-          "termId": "orphanet.ordo_768",
-          "uri": "ordo"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "mesh",
-          "label": "Long Qt Syndrome 3",
-          "mappingProvenance": [
-            {
-              "confidence": 0.6206896551724138,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long Qt Syndrome 3",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C565840"
-            }
-          ],
-          "ontology": "mesh",
-          "termId": "http://id.nlm.nih.gov/mesh/C565840",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.5524137931034483,
-          "datasource": "ncit",
-          "label": "Long QT Syndrome 3",
-          "mappingProvenance": [
-            {
-              "confidence": 0.6206896551724138,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long QT Syndrome 3",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.6206896551724138,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C137959"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C137959",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "hp",
-          "label": "Prolonged QT interval",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Prolonged QT interval",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0001657"
-            }
-          ],
-          "ontology": "hp",
-          "termId": "HP_0001657",
-          "uri": "hp"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "cvdo",
-          "label": "long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long QT syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:cvdo",
-              "target": "http://purl.obolibrary.org/obo/CVDO_0000473"
-            }
-          ],
-          "ontology": "cvdo",
-          "termId": "CVDO_0000473",
-          "uri": "cvdo"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "doid",
-          "label": "long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long QT syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_2843"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_2843",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "omit",
-          "label": "Long QT Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long QT Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0009216"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "OMIT_0009216",
-          "uri": "omit"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "mondo",
-          "label": "long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long QT syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0002442"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0002442",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "mondo",
-          "label": "familial long QT syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "familial long QT syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0019171"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0019171",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "mesh",
-          "label": "Long QT Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long QT Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/D008133"
-            }
-          ],
-          "ontology": "mesh",
-          "termId": "http://id.nlm.nih.gov/mesh/D008133",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "ncit",
-          "label": "Long QT Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long QT Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C34786"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C34786",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.4910344827586207,
-          "datasource": "snomed",
-          "label": "Long QT syndrome (disorder)",
-          "mappingProvenance": [
-            {
-              "confidence": 0.5517241379310345,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long QT syndrome (disorder)",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.5517241379310345,
-              "source": "ols:snomed",
-              "target": "http://snomed.info/id/9651007"
-            }
-          ],
-          "ontology": "snomed",
-          "termId": "http://snomed.info/id/9651007",
-          "uri": "snomed"
-        },
-        {
-          "confidence": 0.4666666666666666,
-          "datasource": "mondo",
-          "label": "long QT syndrome 6",
-          "mappingProvenance": [
-            {
-              "confidence": 0.4666666666666666,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 6",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.4666666666666666,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013370"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0013370",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 9",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 9",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012736"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0012736",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 5",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 5",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013372"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0013372",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 13",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 13",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013279"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0013279",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 10",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 10",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012737"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0012737",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 2",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 2",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013367"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0013367",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "doid",
-          "label": "long QT syndrome 9",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 9",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0110650"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0110650",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 15",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 15",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0014550"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0014550",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "doid",
-          "label": "long QT syndrome 2",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 2",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0110645"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0110645",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 11",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 11",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0012738"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0012738",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 14",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 14",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0014548"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0014548",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "doid",
-          "label": "long QT syndrome 14",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 14",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0110655"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0110655",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "mondo",
-          "label": "long QT syndrome 12",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 12",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0013062"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0013062",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "doid",
-          "label": "long QT syndrome 13",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 13",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0110654"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0110654",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.3,
-          "datasource": "doid",
-          "label": "long QT syndrome 16",
-          "mappingProvenance": [
-            {
-              "confidence": 0.3,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "long QT syndrome 16",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.3,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0070533"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0070533",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "doid",
-          "label": "syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_225"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_225",
-          "uri": "doid"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "ogms",
-          "label": "syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:ogms",
-              "target": "http://purl.obolibrary.org/obo/OGMS_0000086"
-            }
-          ],
-          "ontology": "ogms",
-          "termId": "OGMS_0000086",
-          "uri": "ogms"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "gsso",
-          "label": "syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:gsso",
-              "target": "http://purl.obolibrary.org/obo/GSSO_000497"
-            }
-          ],
-          "ontology": "gsso",
-          "termId": "GSSO_000497",
-          "uri": "gsso"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "omit",
-          "label": "Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0014440"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "OMIT_0014440",
-          "uri": "omit"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "sio",
-          "label": "syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:sio",
-              "target": "http://semanticscience.org/resource/SIO_001017"
-            }
-          ],
-          "ontology": "sio",
-          "termId": "http://semanticscience.org/resource/SIO_001017",
-          "uri": "sio"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "mondo",
-          "label": "syndromic disease",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "syndromic disease",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0002254"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_0002254",
-          "uri": "mondo"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "mesh",
-          "label": "Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/D013577"
-            }
-          ],
-          "ontology": "mesh",
-          "termId": "http://id.nlm.nih.gov/mesh/D013577",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "ncit",
-          "label": "Genetic Syndrome Associated with Congenital Heart Defect",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Genetic Syndrome Associated with Congenital Heart Defect",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C168217"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C168217",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.24551724137931036,
-          "datasource": "ncit",
-          "label": "Syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.27586206896551724,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.27586206896551724,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C28193"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C28193",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "pato",
-          "label": "increased length",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "increased length",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:pato",
-              "target": "http://purl.obolibrary.org/obo/PATO_0000573"
-            }
-          ],
-          "ontology": "pato",
-          "termId": "PATO_0000573",
-          "uri": "pato"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "wbphenotype",
-          "label": "long",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "long",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:wbphenotype",
-              "target": "http://purl.obolibrary.org/obo/WBPhenotype_0000022"
-            }
-          ],
-          "ontology": "wbphenotype",
-          "termId": "WBPhenotype_0000022",
-          "uri": "wbphenotype"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "ncit",
-          "label": "Long Heart Murmur",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long Heart Murmur",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C168196"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C168196",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "ncit",
-          "label": "Long",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C25248"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C25248",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "ncit",
-          "label": "Long",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C48311"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C48311",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.12275862068965518,
-          "datasource": "snomed",
-          "label": "Long (qualifier value)",
-          "mappingProvenance": [
-            {
-              "confidence": 0.13793103448275862,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Long (qualifier value)",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.13793103448275862,
-              "source": "ols:snomed",
-              "target": "http://snomed.info/id/255511005"
-            }
-          ],
-          "ontology": "snomed",
-          "termId": "http://snomed.info/id/255511005",
-          "uri": "snomed"
-        },
-        {
-          "confidence": 0.09206896551724138,
-          "datasource": "snomed",
-          "label": "3/6",
-          "mappingProvenance": [
-            {
-              "confidence": 0.10344827586206896,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "3/6",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.10344827586206896,
-              "source": "ols:snomed",
-              "target": "http://snomed.info/id/260281002"
-            }
-          ],
-          "ontology": "snomed",
-          "termId": "http://snomed.info/id/260281002",
-          "uri": "snomed"
-        },
-        {
-          "confidence": 0.06999999999999999,
-          "datasource": "ordo",
-          "label": "Jervell and Lange-Nielsen syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.06999999999999999,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "Jervell and Lange-Nielsen syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.06999999999999999,
-              "source": "ols:ordo",
-              "target": "http://www.orpha.net/ORDO/Orphanet_90647"
-            }
-          ],
-          "ontology": "ordo",
-          "termId": "Orphanet_90647",
-          "uri": "ordo"
         }
       ],
       "error": null,
@@ -2264,18 +1319,18 @@
     {
       "candidates": [
         {
-          "confidence": 0.85,
+          "confidence": 1.0,
           "datasource": "fma",
           "label": "Left tibia",
           "mappingProvenance": [
             {
-              "confidence": 0.85,
+              "confidence": 1.0,
               "input": "left tibia",
               "matchType": "OLS_LEXICAL_FUZZY_LABEL",
               "matchedText": "Left tibia",
               "method": "lexical",
               "model": null,
-              "similarity": 0.85,
+              "similarity": 1.0,
               "source": "ols:fma",
               "target": "http://purl.org/sig/ont/fma/fma24478"
             }
@@ -2283,27 +1338,6 @@
           "ontology": "fma",
           "termId": "fma24478",
           "uri": "fma"
-        },
-        {
-          "confidence": 0.794971694946289,
-          "datasource": "snomed",
-          "label": "Disorder of left tibial nerve (disorder)",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "left tibia",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "Disorder of left tibial nerve (disorder)",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.8932266235351562,
-              "source": "ols:snomed",
-              "target": "http://snomed.info/id/1275624008"
-            }
-          ],
-          "ontology": "snomed",
-          "termId": "SNOMED_1275624008",
-          "uri": "snomed"
         }
       ],
       "error": null,
@@ -2537,7 +1571,7 @@
     {
       "candidates": [
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "erythrocyte volume",
           "mappingProvenance": [
@@ -2558,7 +1592,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "erythrocyte attribute",
           "mappingProvenance": [
@@ -2579,7 +1613,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "leukocyte quantity",
           "mappingProvenance": [
@@ -2600,7 +1634,7 @@
           "uri": "oba"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "erythrocyte count",
           "mappingProvenance": [
@@ -2621,7 +1655,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "hematocrit",
           "mappingProvenance": [
@@ -2642,7 +1676,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "hematological measurement",
           "mappingProvenance": [
@@ -2663,7 +1697,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "hemoglobin measurement",
           "mappingProvenance": [
@@ -2684,7 +1718,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "mean corpuscular hemoglobin concentration",
           "mappingProvenance": [
@@ -2705,7 +1739,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "lymphocyte count",
           "mappingProvenance": [
@@ -2726,7 +1760,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "albumin:globulin ratio measurement",
           "mappingProvenance": [
@@ -2747,7 +1781,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "platelet larger cell ratio",
           "mappingProvenance": [
@@ -2768,7 +1802,7 @@
           "uri": "efo"
         },
         {
-          "confidence": 0.95,
+          "confidence": 1.0,
           "datasource": "gwas",
           "label": "Red cell distribution width",
           "mappingProvenance": [

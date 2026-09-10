@@ -63,43 +63,39 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
                 boolean isCuration = "CURATION".equals(match.stringType);
                 boolean isSynonym = "synonym".equalsIgnoreCase(match.stringType);
 
-                double confidence;
                 String matchType;
                 String provenanceMethod;
                 String sourceType;
                 String sourceName;
 
                 if (isCuration && isFullMatch) {
-                    confidence = 0.95;
                     matchType = "CURATED_EXACT";
                     provenanceMethod = "curated";
                     sourceType = "DATABASE";
                     sourceName = match.source != null ? match.source : match.ontologyId;
                 } else if (isFullMatch && isSynonym) {
-                    confidence = 0.9;
                     matchType = "OLS_TEXT_TAGGER_SYNONYM";
                     provenanceMethod = "lexical";
                     sourceType = "ONTOLOGY";
                     sourceName = match.ontologyId;
                 } else if (isFullMatch) {
-                    confidence = 1.0;
                     matchType = "OLS_TEXT_TAGGER";
                     provenanceMethod = "lexical";
                     sourceType = "ONTOLOGY";
                     sourceName = match.ontologyId;
                 } else if (isCuration) {
-                    confidence = match.coverage * 0.89;
                     matchType = "CURATED_SUBSTRING";
                     provenanceMethod = "curated";
                     sourceType = "DATABASE";
                     sourceName = match.source != null ? match.source : match.ontologyId;
                 } else {
-                    confidence = match.coverage * 0.89;
                     matchType = "OLS_TEXT_TAGGER_SUBSTRING";
                     provenanceMethod = "lexical";
                     sourceType = "ONTOLOGY";
                     sourceName = match.ontologyId;
                 }
+                // The score belongs to the evidence class, not to this matcher: see EvidenceTier.
+                double confidence = EvidenceTier.ofMatchType(matchType).confidence(match.coverage);
 
                 Annotation a = new Annotation();
                 a.annotatedProperty = new Annotation.AnnotatedProperty();
@@ -161,14 +157,17 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
     }
 
     /**
-     * Returns {@code true} if the tagger produced a confidence-1.0 match that satisfies
-     * the target-ontology constraint. Used to short-circuit expensive matchers.
+     * Returns {@code true} if the tagger produced a definitive match (curated full match or
+     * primary-label full match, see {@link EvidenceTier#isDefinitive()}) that satisfies the
+     * target-ontology constraint. Used to short-circuit expensive matchers. The test is on
+     * the evidence tier rather than {@code confidence >= 1.0} so that a curated full match
+     * short-circuits just like a label match.
      *
-     * <p>If {@code filter} specifies target ontologies, at least one 1.0-confidence annotation
+     * <p>If {@code filter} specifies target ontologies, at least one definitive annotation
      * must originate from one of them. Under {@code definingOnly} the matched term must also
      * be in a target ontology's own namespace — a full match on a term the ontology merely
      * imports will be filtered from the results, so it must not short-circuit the search
-     * that could find a defining-namespace term. If no targets are set, any 1.0 match
+     * that could find a defining-namespace term. If no targets are set, any definitive match
      * qualifies.
      */
     public boolean hasFullMatchFromTargetOntologies(List<Annotation> taggerAnnotations, Filter filter) {
@@ -178,13 +177,17 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
             Set<String> targets = filter.targetOntologies.stream()
                 .map(String::toLowerCase).collect(Collectors.toSet());
             return taggerAnnotations.stream().anyMatch(a ->
-                a.confidence >= 1.0
+                isDefinitive(a)
                 && a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                 && targets.contains(a.provenance.source.name.toLowerCase())
                 && (!filter.definingOnly || TermNamespace.inNamespaces(firstSemanticTag(a), targets))
             );
         }
-        return taggerAnnotations.stream().anyMatch(a -> a.confidence >= 1.0);
+        return taggerAnnotations.stream().anyMatch(OlsTextTaggerMatcher::isDefinitive);
+    }
+
+    private static boolean isDefinitive(Annotation a) {
+        return EvidenceTier.of(a.mappingProvenance).isDefinitive();
     }
 
     private static String firstSemanticTag(Annotation a) {

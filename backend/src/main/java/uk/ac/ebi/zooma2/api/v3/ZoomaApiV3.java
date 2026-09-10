@@ -5,6 +5,7 @@ import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.router.JavalinDefaultRoutingApi;
 import com.google.gson.Gson;
+import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
@@ -223,10 +224,7 @@ public class ZoomaApiV3 {
                 List<V3MappingCandidateDto> candidates = results.stream()
                     .filter(r -> r.error == null)
                     .map(V3MappingCandidateDto::from)
-                    .sorted(Comparator.comparing(
-                        c -> c.confidence != null ? c.confidence : 0.0, 
-                        Comparator.reverseOrder()
-                    ))
+                    .sorted(EvidenceTier.candidateRanking())
                     .collect(Collectors.toList());
                 
                 var dto = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
@@ -329,10 +327,7 @@ public class ZoomaApiV3 {
                     List<V3MappingCandidateDto> candidates = results.stream()
                         .filter(r -> r.error == null)
                         .map(V3MappingCandidateDto::from)
-                        .sorted(Comparator.comparing(
-                            c -> c.confidence != null ? c.confidence : 0.0,
-                            Comparator.reverseOrder()
-                        ))
+                        .sorted(EvidenceTier.candidateRanking())
                         .collect(Collectors.toList());
 
                     // Fan the single result out to every request occurrence of this property
@@ -521,10 +516,7 @@ public class ZoomaApiV3 {
                     List<V3MappingCandidateDto> candidates = results.stream()
                         .filter(r -> r.error == null)
                         .map(V3MappingCandidateDto::from)
-                        .sorted(Comparator.comparing(
-                            c -> c.confidence != null ? c.confidence : 0.0,
-                            Comparator.reverseOrder()
-                        ))
+                        .sorted(EvidenceTier.candidateRanking())
                         .collect(Collectors.toList());
 
                     var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);

@@ -4,6 +4,7 @@ import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import io.javalin.http.InternalServerErrorResponse;
 import io.javalin.router.JavalinDefaultRoutingApi;
+import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
@@ -241,7 +242,7 @@ public class ZoomaApiV2 {
     private List<MapResult> mapCompat(StringToMap stm, uk.ac.ebi.zooma2.model.Filter filter, String model) {
         return annotator.mapAll(Stream.of(stm), filter, model, null, true, true).stream()
             .filter(r -> r.error == null)
-            .sorted(Comparator.comparingDouble((MapResult r) -> r.mappingConfidence).reversed())
+            .sorted(EvidenceTier.resultRanking())
             .collect(Collectors.toList());
     }
 

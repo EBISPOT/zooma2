@@ -21,7 +21,7 @@ public class V2MapResultDto {
         dto.propertyType = internal.propertyType;
         dto.propertyValue = internal.textToMap;
         dto.ontologyTermLabel = internal.ontologyTermLabel;
-        dto.mappingConfidence = scoreToLevel(internal.mappingConfidence);
+        dto.mappingConfidence = V2ConfidenceLevel.of(internal.mappingConfidence, internal.mappingProvenance);
         dto.ontologyTermID = internal.ontologyTermID;
         dto.ontologyURI = internal.ontologyURI;
         dto.datasource = internal.datasource;
@@ -49,12 +49,5 @@ public class V2MapResultDto {
         return Objects.hash(propertyType, propertyValue, ontologyTermLabel,
                             mappingConfidence, ontologyTermID, ontologyURI,
                             datasource);
-    }
-
-    private static String scoreToLevel(double score) {
-        if (score >= 0.9) return "HIGH";
-        if (score >= 0.7) return "GOOD";
-        if (score >= 0.5) return "MEDIUM";
-        return "LOW";
     }
 }

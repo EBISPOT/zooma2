@@ -92,7 +92,7 @@ public class V2AnnotationDto {
         V2AnnotationDto dto = new V2AnnotationDto();
         dto.uri = null;
         dto.semanticTags = internal.semanticTags;
-        dto.confidence = scoreToLevel(internal.confidence);
+        dto.confidence = V2ConfidenceLevel.of(internal.confidence, internal.mappingProvenance);
         dto.replacedBy = Collections.emptyList();
         dto.replaces = Collections.emptyList();
         dto.annotatedBiologicalEntities = Collections.emptyList();
@@ -230,12 +230,5 @@ public class V2AnnotationDto {
         } catch (ParseException ignored) {}
         // Return current time as fallback
         return System.currentTimeMillis();
-    }
-
-    private static String scoreToLevel(double score) {
-        if (score >= 0.9) return "HIGH";
-        if (score >= 0.7) return "GOOD";
-        if (score >= 0.5) return "MEDIUM";
-        return "LOW";
     }
 }
