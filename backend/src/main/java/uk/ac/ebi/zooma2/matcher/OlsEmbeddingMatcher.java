@@ -148,6 +148,6 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     }
 
     private static double capEmbeddingScore(double score) {
-        return score * 0.89;
+        return EvidenceTier.EMBEDDING.confidence(score);
     }
 }

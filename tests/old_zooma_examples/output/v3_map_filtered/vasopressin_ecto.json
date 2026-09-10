@@ -3,18 +3,18 @@
     {
       "candidates": [
         {
-          "confidence": 0.85,
+          "confidence": 1.0,
           "datasource": "ecto",
           "label": "vasopressin",
           "mappingProvenance": [
             {
-              "confidence": 0.85,
+              "confidence": 1.0,
               "input": "vasopressin",
               "matchType": "OLS_LEXICAL_FUZZY_LABEL",
               "matchedText": "vasopressin",
               "method": "lexical",
               "model": null,
-              "similarity": 0.85,
+              "similarity": 1.0,
               "source": "ols:ecto",
               "target": "http://purl.obolibrary.org/obo/CHEBI_9937"
             }

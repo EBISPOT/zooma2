@@ -500,6 +500,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FSIO_000487",
+          "semanticTag": "http://semanticscience.org/resource/SIO_000487"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "organism",
+      "propertyValue": "rat",
+      "uri": null
+    },
+    "confidence": "HIGH",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FSIO_000487",
+            "semanticTag": "http://semanticscience.org/resource/SIO_000487"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "organism",
+        "propertyValue": "rat",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "sio",
+        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "sio",
+          "type": "ONTOLOGY",
+          "uri": "sio"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://semanticscience.org/resource/SIO_000487"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://semanticscience.org/resource/SIO_000487"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCBITaxon_9664",
           "semanticTag": "http://purl.obolibrary.org/obo/NCBITaxon_9664"
         }
@@ -1274,77 +1345,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/NCBITaxon_31632"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FSIO_000487",
-          "semanticTag": "http://semanticscience.org/resource/SIO_000487"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "organism",
-      "propertyValue": "rat",
-      "uri": null
-    },
-    "confidence": "GOOD",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsemanticscience.org%2Fresource%2FSIO_000487",
-            "semanticTag": "http://semanticscience.org/resource/SIO_000487"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "organism",
-        "propertyValue": "rat",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "sio",
-        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "sio",
-          "type": "ONTOLOGY",
-          "uri": "sio"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://semanticscience.org/resource/SIO_000487"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://semanticscience.org/resource/SIO_000487"
     ],
     "uri": null
   },

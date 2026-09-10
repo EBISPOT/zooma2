@@ -4,27 +4,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "mesh",
-          "label": "Amyloidosis, familial visceral",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "Amyloidosis, familial visceral",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Amyloidosis, familial visceral",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:mesh",
-              "target": "http://id.nlm.nih.gov/mesh/C538249"
-            }
-          ],
-          "ontology": "mesh",
-          "termId": "http://id.nlm.nih.gov/mesh/C538249",
-          "uri": "mesh"
-        },
-        {
-          "confidence": 0.95,
           "datasource": "cttv",
           "label": "Hereditary amyloidosis with primary renal involvement",
           "mappingProvenance": [
@@ -43,6 +22,27 @@
           "ontology": "ordo",
           "termId": "orphanet.ordo_85450",
           "uri": "ordo"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "mesh",
+          "label": "Amyloidosis, familial visceral",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Amyloidosis, familial visceral",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Amyloidosis, familial visceral",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/C538249"
+            }
+          ],
+          "ontology": "mesh",
+          "termId": "http://id.nlm.nih.gov/mesh/C538249",
+          "uri": "mesh"
         }
       ],
       "error": null,

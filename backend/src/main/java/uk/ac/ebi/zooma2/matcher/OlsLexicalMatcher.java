@@ -14,14 +14,23 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 /**
  * Finds fuzzy lexical matches from OLS using Solr's edismax search.
  * Complements exact tag_text matches with fuzzy/partial results.
- * Confidence capped at 0.85 to stay below exact matches.
+ *
+ * <p>An exact label or synonym hit found here is the same evidence as the text
+ * tagger's full match, so it is scored from the same {@link EvidenceTier} table
+ * rather than with a matcher-specific number. Non-exact hits use a token-overlap
+ * formula that stays below the partial-match cap.
  */
 public class OlsLexicalMatcher implements AnnotationMatcher {
 
     private final OlsClientRepo olsRepo;
     private final int maxResults;
     private final int timeoutMs;
-    private static final double MAX_CONFIDENCE = 0.85;
+    /**
+     * Weight applied to the token-Jaccard similarity of a non-exact fuzzy hit.
+     * Kept as-is (issue #19 is reworking this formula); it sits below
+     * {@link EvidenceTier#PARTIAL}'s cap so fuzzy hits never outrank substring hits.
+     */
+    private static final double FUZZY_PARTIAL_WEIGHT = 0.70;
 
     public OlsLexicalMatcher(OlsClientRepo olsRepo) {
         this(olsRepo, 20, 60000);
@@ -56,7 +65,6 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.semanticTags = List.of(t.iri);
         a.resolvedTerm = t;
 
-        // Compute confidence: exact label match gets MAX_CONFIDENCE, synonym slightly less, others lower
         boolean isExactLabel = t.label != null && t.label.equalsIgnoreCase(context.stringToMap);
         boolean isSynonymMatch = false;
         if (!isExactLabel && t.synonyms != null) {
@@ -68,12 +76,15 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
             }
         }
 
-        if (isExactLabel) {
-            a.confidence = MAX_CONFIDENCE;
-        } else if (isSynonymMatch) {
-            a.confidence = MAX_CONFIDENCE - 0.05;
+        String matchType = isExactLabel ? "OLS_LEXICAL_FUZZY_LABEL"
+            : isSynonymMatch ? "OLS_LEXICAL_FUZZY_SYNONYM"
+            : "OLS_LEXICAL_FUZZY";
+
+        EvidenceTier tier = EvidenceTier.ofMatchType(matchType);
+        if (tier.isFullMatch()) {
+            a.confidence = tier.confidence(1.0);
         } else {
-            a.confidence = (MAX_CONFIDENCE - 0.15) * bestSimilarity(context.stringToMap, t);
+            a.confidence = FUZZY_PARTIAL_WEIGHT * bestSimilarity(context.stringToMap, t);
         }
 
         a.provenance = new Annotation.Provenance();
@@ -84,10 +95,6 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         a.provenance.evidence = "OLS_LEXICAL_FUZZY";
         a.provenance.generator = "ZOOMA";
         a.provenance.generatedDate = new Date().toString();
-
-        String matchType = isExactLabel ? "OLS_LEXICAL_FUZZY_LABEL" 
-            : isSynonymMatch ? "OLS_LEXICAL_FUZZY_SYNONYM"
-            : "OLS_LEXICAL_FUZZY";
 
         a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
             "ols:" + t.ontology_name,

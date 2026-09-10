@@ -3,18 +3,18 @@
     {
       "candidates": [
         {
-          "confidence": 0.85,
+          "confidence": 1.0,
           "datasource": "cco",
           "label": "Segawa syndrome autosomal recessive",
           "mappingProvenance": [
             {
-              "confidence": 0.85,
+              "confidence": 1.0,
               "input": "Segawa syndrome autosomal recessive",
               "matchType": "OLS_LEXICAL_FUZZY_LABEL",
               "matchedText": "Segawa syndrome autosomal recessive",
               "method": "lexical",
               "model": null,
-              "similarity": 0.85,
+              "similarity": 1.0,
               "source": "ols:cco",
               "target": "http://identifiers.org/omim/605407"
             }
@@ -43,27 +43,6 @@
           "ontology": "mesh",
           "termId": "mesh_C537537",
           "uri": "mesh"
-        },
-        {
-          "confidence": 0.7,
-          "datasource": "doid",
-          "label": "autosomal recessive Segawa syndrome",
-          "mappingProvenance": [
-            {
-              "confidence": 0.7,
-              "input": "Segawa syndrome autosomal recessive",
-              "matchType": "OLS_LEXICAL_FUZZY",
-              "matchedText": "autosomal recessive Segawa syndrome",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.7,
-              "source": "ols:doid",
-              "target": "http://purl.obolibrary.org/obo/DOID_0051059"
-            }
-          ],
-          "ontology": "doid",
-          "termId": "DOID_0051059",
-          "uri": "doid"
         }
       ],
       "error": null,

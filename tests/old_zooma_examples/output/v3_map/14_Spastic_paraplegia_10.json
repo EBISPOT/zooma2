@@ -4,27 +4,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "ncit",
-          "label": "Spastic Paraplegia 10",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "Spastic paraplegia 10",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Spastic Paraplegia 10",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ncit",
-              "target": "http://purl.obolibrary.org/obo/NCIT_C192058"
-            }
-          ],
-          "ontology": "ncit",
-          "termId": "NCIT_C192058",
-          "uri": "ncit"
-        },
-        {
-          "confidence": 0.95,
           "datasource": "eva-clinvar",
           "label": "Autosomal dominant spastic paraplegia type 10",
           "mappingProvenance": [
@@ -43,6 +22,27 @@
           "ontology": "ordo",
           "termId": "orphanet.ordo_100991",
           "uri": "ordo"
+        },
+        {
+          "confidence": 1.0,
+          "datasource": "ncit",
+          "label": "Spastic Paraplegia 10",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "Spastic paraplegia 10",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Spastic Paraplegia 10",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncit",
+              "target": "http://purl.obolibrary.org/obo/NCIT_C192058"
+            }
+          ],
+          "ontology": "ncit",
+          "termId": "NCIT_C192058",
+          "uri": "ncit"
         }
       ],
       "error": null,
