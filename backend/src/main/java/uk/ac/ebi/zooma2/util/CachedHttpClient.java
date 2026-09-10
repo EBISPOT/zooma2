@@ -2,7 +2,6 @@ package uk.ac.ebi.zooma2.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonParser;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
@@ -15,12 +14,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import uk.ac.ebi.zooma2.repo.ExternalApiCache;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -167,60 +162,6 @@ public class CachedHttpClient {
     }
 
     /**
-     * POST JSON to a URL and get raw binary response, with caching.
-     * Used for embedding service which returns binary float arrays.
-     * Caches the response as base64-encoded body plus headers as JSON.
-     */
-    public static BinaryResponse postBinary(String url, String jsonBody, int timeoutMs) throws IOException {
-        if (apiCache != null) {
-            var cached = apiCache.get("POST_BINARY", url, jsonBody);
-            if (cached != null) {
-                byte[] data = java.util.Base64.getDecoder().decode(cached.body);
-                Map<String, String> headers = new HashMap<>();
-                if (cached.headers != null && !cached.headers.isEmpty()) {
-                    var gson = new com.google.gson.Gson();
-                    @SuppressWarnings("unchecked")
-                    Map<String, String> parsed = gson.fromJson(cached.headers, Map.class);
-                    if (parsed != null) headers.putAll(parsed);
-                }
-                return new BinaryResponse(data, headers, cached.statusCode);
-            }
-        }
-
-        RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(timeoutMs)
-                .setConnectionRequestTimeout(timeoutMs)
-                .setSocketTimeout(timeoutMs).build();
-
-        try (CloseableHttpClient client = HttpClientBuilder.create().useSystemProperties().setDefaultRequestConfig(config).build()) {
-            HttpPost request = new HttpPost(url);
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(jsonBody, "UTF-8"));
-            HttpResponse response = client.execute(request);
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                byte[] data = EntityUtils.toByteArray(entity);
-                int statusCode = response.getStatusLine().getStatusCode();
-
-                Map<String, String> headers = new HashMap<>();
-                for (var header : response.getAllHeaders()) {
-                    headers.put(header.getName(), header.getValue());
-                }
-
-                if (apiCache != null) {
-                    String base64 = java.util.Base64.getEncoder().encodeToString(data);
-                    var gson = new com.google.gson.Gson();
-                    apiCache.put("POST_BINARY", url, jsonBody, base64, gson.toJson(headers), statusCode);
-                }
-
-                return new BinaryResponse(data, headers, statusCode);
-            } else {
-                throw new IOException("Response was null for POST " + url);
-            }
-        }
-    }
-
-    /**
      * GET a URL and parse as JSON, using system properties for proxy, with caching.
      */
     public static JsonElement getJsonWithSystemProperties(String url, int timeoutMs) throws IOException {
@@ -281,19 +222,4 @@ public class CachedHttpClient {
         }
     }
 
-    public static class BinaryResponse {
-        public final byte[] data;
-        public final Map<String, String> headers;
-        public final int statusCode;
-
-        public BinaryResponse(byte[] data, Map<String, String> headers, int statusCode) {
-            this.data = data;
-            this.headers = headers;
-            this.statusCode = statusCode;
-        }
-
-        public String getHeader(String name) {
-            return headers != null ? headers.get(name) : null;
-        }
-    }
 }
