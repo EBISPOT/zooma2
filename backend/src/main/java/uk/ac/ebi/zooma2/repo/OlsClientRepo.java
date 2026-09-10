@@ -40,10 +40,6 @@ public class OlsClientRepo {
         this(3, 10, 5);
     }
 
-    public Semaphore getSimilarSemaphore() {
-        return similarSemaphore;
-    }
-
     Gson gson = new Gson();
 
     private OlsTermCache termCache;
@@ -188,42 +184,31 @@ public class OlsClientRepo {
         // Track which IRIs we're fetching so we can mark failures
         Set<String> fetchedIris = new HashSet<>(irisToFetch);
 
-        // Fetch remaining from OLS (filter out nulls)
-        var resolved = irisToFetch
-            .stream()
-            .filter(iri -> iri != null && !iri.isEmpty())
-            .parallel()
-            .map((String iri) -> {
-
+        // Fetch remaining from OLS on virtual threads (blocking I/O; the common
+        // ForkJoinPool a parallel stream would use is CPU-sized and JVM-shared).
+        final java.util.concurrent.atomic.AtomicBoolean cancelFlag = uk.ac.ebi.zooma2.util.RequestCancellation.getFlag();
+        List<OlsTerm> resolved = new ArrayList<>();
+        try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
+            List<java.util.concurrent.Future<OlsTerm>> futures = irisToFetch.stream()
+                .filter(iri -> iri != null && !iri.isEmpty())
+                .map(iri -> executor.submit(() -> {
+                    if (cancelFlag != null) uk.ac.ebi.zooma2.util.RequestCancellation.setFlag(cancelFlag);
+                    return fetchTerm(iri);
+                }))
+                .toList();
+            for (var future : futures) {
                 try {
-
-                    var doubleEncoded = java.net.URLEncoder.encode(iri, java.nio.charset.StandardCharsets.UTF_8);
-                    doubleEncoded = java.net.URLEncoder.encode(doubleEncoded, java.nio.charset.StandardCharsets.UTF_8);
-
-                    var found = urlToJson(getOlsUrl() + "/api/terms/findByIdAndIsDefiningOntology/" + doubleEncoded);
-
-                    if(found == null ||
-                        !found.getAsJsonObject().has("_embedded") ||
-                        !found.getAsJsonObject().get("_embedded").getAsJsonObject().has("terms") ||
-                        found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray().size() == 0) {
-
-                        // System.err.println("Failed to get term from OLS (1) with IRI: " + iri);
-                        return null;
-                    }
-
-
-                    var terms = found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray();
-
-                    return gson.fromJson(terms.get(0), OlsTerm.class);
-
-                } catch (IOException e) {
-                    System.err.println("Failed to get term from OLS (2) with IRI: " + iri + " - " + e.getMessage());
-                    return null;
+                    OlsTerm term = future.get();
+                    if (term != null) resolved.add(term);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    futures.forEach(f -> f.cancel(true));
+                    break;
+                } catch (java.util.concurrent.ExecutionException e) {
+                    System.err.println("Failed to get term from OLS: " + e.getCause());
                 }
-
-            })
-            .filter(t -> t != null)
-            .toList();
+            }
+        }
 
         // Save to cache and add to result
         if (termCache != null && !resolved.isEmpty()) {
@@ -247,6 +232,68 @@ public class OlsClientRepo {
         }
 
         return result;
+    }
+
+    /** One term by IRI from its defining ontology, or {@code null} if OLS has no such term or the call failed. */
+    private OlsTerm fetchTerm(String iri) {
+        try {
+            var doubleEncoded = java.net.URLEncoder.encode(iri, java.nio.charset.StandardCharsets.UTF_8);
+            doubleEncoded = java.net.URLEncoder.encode(doubleEncoded, java.nio.charset.StandardCharsets.UTF_8);
+
+            var found = urlToJson(getOlsUrl() + "/api/terms/findByIdAndIsDefiningOntology/" + doubleEncoded);
+
+            if (found == null ||
+                !found.getAsJsonObject().has("_embedded") ||
+                !found.getAsJsonObject().get("_embedded").getAsJsonObject().has("terms") ||
+                found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray().size() == 0) {
+                return null;
+            }
+            var terms = found.getAsJsonObject().get("_embedded").getAsJsonObject().get("terms").getAsJsonArray();
+            return gson.fromJson(terms.get(0), OlsTerm.class);
+        } catch (IOException e) {
+            System.err.println("Failed to get term from OLS (2) with IRI: " + iri + " - " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Classes semantically similar to a term, from OLS's llm_similar endpoint,
+     * through the cached, cancellable HTTP client like every other OLS call
+     * (so responses are cached, visible to the offline test harness, and aborted
+     * on client disconnect), bounded by the similar-request semaphore.
+     */
+    public List<OlsTerm> findSimilarTerms(String termIri, String model, int size) {
+        try {
+            similarSemaphore.acquire();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return List.of();
+        }
+        try {
+            // Double URL encode the IRI as required by OLS V2 API
+            String encodedIri = java.net.URLEncoder.encode(
+                java.net.URLEncoder.encode(termIri, java.nio.charset.StandardCharsets.UTF_8), java.nio.charset.StandardCharsets.UTF_8);
+            String url = getOlsUrl() + "/api/v2/classes/" + encodedIri + "/llm_similar?model="
+                + java.net.URLEncoder.encode(model, java.nio.charset.StandardCharsets.UTF_8) + "&size=" + size;
+            var json = urlToJson(url);
+            if (json == null || !json.getAsJsonObject().has("elements")) {
+                return List.of();
+            }
+            List<OlsTerm> results = new ArrayList<>();
+            for (var element : json.getAsJsonObject().get("elements").getAsJsonArray()) {
+                var term = olsTermFromEntity(element.getAsJsonObject());
+                if (term.iri != null) results.add(term);
+            }
+            return results;
+        } catch (IOException e) {
+            System.err.println("OLS LLM Similar: Error querying " + termIri + ": " + e.getMessage());
+            return List.of();
+        } catch (RuntimeException e) {
+            System.err.println("OLS LLM Similar: Error parsing response for " + termIri + ": " + e.getMessage());
+            return List.of();
+        } finally {
+            similarSemaphore.release();
+        }
     }
 
     public Collection<OlsTerm> findByLabelAndOntologies(String stringToMap, Collection<String> ontologyIds) {
