@@ -1,15 +1,14 @@
 package uk.ac.ebi.zooma2.matcher;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.util.StringSimilarity;
 
 /**
  * Finds fuzzy lexical matches from OLS using Solr's edismax search.
@@ -26,9 +25,9 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
     private final int maxResults;
     private final int timeoutMs;
     /**
-     * Weight applied to the token-Jaccard similarity of a non-exact fuzzy hit.
-     * Kept as-is (issue #19 is reworking this formula); it sits below
-     * {@link EvidenceTier#PARTIAL}'s cap so fuzzy hits never outrank substring hits.
+     * Weight applied to the blended similarity of a non-exact fuzzy hit; it sits
+     * below {@link EvidenceTier#PARTIAL}'s cap so fuzzy hits never outrank
+     * substring hits.
      */
     private static final double FUZZY_PARTIAL_WEIGHT = 0.70;
 
@@ -51,6 +50,7 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
     public List<Annotation> findMatches(MatchContext context) {
         var terms = olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs);
         return terms.stream()
+            .filter(t -> t.iri != null) // an entity without an IRI cannot be a mapping
             .map(t -> createAnnotation(t, context))
             .collect(Collectors.toList());
     }
@@ -108,30 +108,20 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         return a;
     }
 
-    /** Best Jaccard token overlap between {@code query} and the term's label + all synonyms. */
+    /**
+     * Best similarity between the query and the term's label or any synonym:
+     * token overlap blended with character-level similarity (see
+     * {@link StringSimilarity#blended}), so a one-token typo or morphological
+     * variant ("melanomma" / "melanoma") no longer scores zero. OLS's entity
+     * search returns no relevance score of its own, so this is the only signal.
+     */
     private double bestSimilarity(String query, OlsTerm t) {
-        double best = t.label != null ? jaccardTokenOverlap(query, t.label) : 0.0;
+        double best = t.label != null ? StringSimilarity.blended(query, t.label) : 0.0;
         if (t.synonyms != null) {
             for (String syn : t.synonyms) {
-                best = Math.max(best, jaccardTokenOverlap(query, syn));
+                best = Math.max(best, StringSimilarity.blended(query, syn));
             }
         }
         return best;
-    }
-
-    private double jaccardTokenOverlap(String a, String b) {
-        Set<String> tokA = tokenSet(a);
-        Set<String> tokB = tokenSet(b);
-        if (tokA.isEmpty() && tokB.isEmpty()) return 1.0;
-        if (tokA.isEmpty() || tokB.isEmpty()) return 0.0;
-        long intersection = tokA.stream().filter(tokB::contains).count();
-        long union = tokA.size() + tokB.size() - intersection;
-        return (double) intersection / union;
-    }
-
-    private Set<String> tokenSet(String s) {
-        return Arrays.stream(s.toLowerCase().split("\\W+"))
-            .filter(t -> !t.isEmpty())
-            .collect(Collectors.toSet());
     }
 }

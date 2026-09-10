@@ -69,7 +69,9 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
 
         var terms = searchBothCasings(context.stringToMap, size);
         for (var term : terms) {
-            if (term.score != null && term.score < minSimilarity) {
+            // A term without a similarity score cannot be shown to clear the
+            // threshold, and one without an IRI cannot be a mapping at all.
+            if (term.iri == null || term.score == null || term.score < minSimilarity) {
                 continue;
             }
             annotations.add(createAnnotation(term, context));
@@ -121,7 +123,7 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
         
         a.semanticTags = List.of(term.iri);
         a.resolvedTerm = term;
-        a.confidence = capEmbeddingScore(term.score != null ? term.score : 0.6);
+        a.confidence = capEmbeddingScore(term.score);
         
         a.provenance = new Annotation.Provenance();
         a.provenance.source = new Annotation.Source();
