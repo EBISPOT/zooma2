@@ -4,132 +4,6 @@
       "candidates": [
         {
           "confidence": 1.0,
-          "datasource": "bto",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:bto",
-              "target": "http://purl.obolibrary.org/obo/BTO_0000232"
-            }
-          ],
-          "ontology": "bto",
-          "termId": "BTO_0000232",
-          "uri": "http://purl.obolibrary.org/obo/BTO_0000232"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "emapa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:emapa",
-              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
-            }
-          ],
-          "ontology": "emapa",
-          "termId": "EMAPA_17787",
-          "uri": "http://purl.obolibrary.org/obo/EMAPA_17787"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "termId": "MA_0000198",
-          "uri": "http://purl.obolibrary.org/obo/MA_0000198"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "xao",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:xao",
-              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
-            }
-          ],
-          "ontology": "xao",
-          "termId": "XAO_0003098",
-          "uri": "http://purl.obolibrary.org/obo/XAO_0003098"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "OMIT_0003860",
-          "uri": "http://purl.obolibrary.org/obo/OMIT_0003860"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "zfa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:zfa",
-              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
-            }
-          ],
-          "ontology": "zfa",
-          "termId": "ZFA_0000100",
-          "uri": "http://purl.obolibrary.org/obo/ZFA_0000100"
-        },
-        {
-          "confidence": 1.0,
           "datasource": "uberon",
           "label": "cerebellum",
           "mappingProvenance": [
@@ -150,7 +24,133 @@
           "uri": "http://purl.obolibrary.org/obo/UBERON_0002037"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
+          "datasource": "bto",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:bto",
+              "target": "http://purl.obolibrary.org/obo/BTO_0000232"
+            }
+          ],
+          "ontology": "bto",
+          "termId": "BTO_0000232",
+          "uri": "http://purl.obolibrary.org/obo/BTO_0000232"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "emapa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+            }
+          ],
+          "ontology": "emapa",
+          "termId": "EMAPA_17787",
+          "uri": "http://purl.obolibrary.org/obo/EMAPA_17787"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "termId": "MA_0000198",
+          "uri": "http://purl.obolibrary.org/obo/MA_0000198"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "xao",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:xao",
+              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
+            }
+          ],
+          "ontology": "xao",
+          "termId": "XAO_0003098",
+          "uri": "http://purl.obolibrary.org/obo/XAO_0003098"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "omit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "OMIT_0003860",
+          "uri": "http://purl.obolibrary.org/obo/OMIT_0003860"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "zfa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:zfa",
+              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
+            }
+          ],
+          "ontology": "zfa",
+          "termId": "ZFA_0000100",
+          "uri": "http://purl.obolibrary.org/obo/ZFA_0000100"
+        },
+        {
+          "confidence": 0.9,
           "datasource": "mesh",
           "label": "Cerebellum",
           "mappingProvenance": [
@@ -171,7 +171,7 @@
           "uri": "http://id.nlm.nih.gov/mesh/D002531"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Cerebellum",
           "mappingProvenance": [

@@ -18,6 +18,11 @@ public class MapResult {
     public String ontologyURI;
     public String datasource;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
+    /**
+     * Provenance chains of other evidence channels that independently found the
+     * same term (set when results are merged by term); {@code null} when none.
+     */
+    public List<List<V3MappingProvenanceStepDto>> supportingProvenance;
     /** {@code true} when the result's datasource or ontology is one the caller listed as preferred; otherwise unset. */
     public Boolean preferred;
     public String error;

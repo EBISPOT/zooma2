@@ -3,25 +3,46 @@
     {
       "candidates": [
         {
-          "confidence": 1.0,
-          "datasource": "sysmicro",
+          "confidence": 0.8271795511245728,
+          "datasource": "cmpo",
           "label": "increased substrate-dependent cell migration, cell extension phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Impaired cell migration with increased protrusive activity",
-              "matchType": "CURATED_EXACT",
+              "matchType": "OLS_EMBEDDING",
               "matchedText": "increased substrate-dependent cell migration, cell extension phenotype",
-              "method": "curated",
-              "model": null,
-              "similarity": 1.0,
-              "source": "sysmicro",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.929415225982666,
+              "source": "ols:cmpo",
               "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
             }
           ],
           "ontology": "cmpo",
           "termId": "CMPO_0000349",
           "uri": "http://www.ebi.ac.uk/cmpo/CMPO_0000349"
+        },
+        {
+          "confidence": 0.8271795511245728,
+          "datasource": "cmpo",
+          "label": "impaired cell migration",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "Impaired cell migration with increased protrusive activity",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "impaired cell migration",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.929415225982666,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000309"
+            }
+          ],
+          "ontology": "cmpo",
+          "termId": "CMPO_0000309",
+          "uri": "http://www.ebi.ac.uk/cmpo/CMPO_0000309"
         }
       ],
       "error": null,

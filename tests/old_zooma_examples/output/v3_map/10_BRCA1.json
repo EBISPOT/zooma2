@@ -148,27 +148,6 @@
           "ontology": "ncit",
           "termId": "NCIT_C52060",
           "uri": "http://purl.obolibrary.org/obo/NCIT_C52060"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "pr",
-          "label": "breast cancer type 1 susceptibility protein",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "BRCA1",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "breast cancer type 1 susceptibility protein",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000004803"
-            }
-          ],
-          "ontology": "pr",
-          "termId": "PR_000004803",
-          "uri": "http://purl.obolibrary.org/obo/PR_000004803"
         }
       ],
       "error": null,

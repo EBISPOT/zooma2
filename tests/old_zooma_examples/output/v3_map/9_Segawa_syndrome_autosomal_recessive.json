@@ -24,7 +24,7 @@
           "uri": "http://identifiers.org/omim/605407"
         },
         {
-          "confidence": 0.8119674682617187,
+          "confidence": 0.8319674682617187,
           "datasource": "mesh",
           "label": "Segawa syndrome, autosomal recessive",
           "mappingProvenance": [
@@ -41,6 +41,21 @@
             }
           ],
           "ontology": "mesh",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7,
+                "input": "Segawa syndrome autosomal recessive",
+                "matchType": "OLS_LEXICAL_FUZZY",
+                "matchedText": "Segawa syndrome, autosomal recessive",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7,
+                "source": "ols:mesh",
+                "target": "http://id.nlm.nih.gov/mesh/C537537"
+              }
+            ]
+          ],
           "termId": "mesh_C537537",
           "uri": "http://id.nlm.nih.gov/mesh/C537537"
         }

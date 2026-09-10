@@ -14,7 +14,7 @@
       "propertyValue": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses",
       "uri": null
     },
-    "confidence": "HIGH",
+    "confidence": "GOOD",
     "derivedFrom": {
       "_links": {
         "olslinks": [
@@ -33,14 +33,14 @@
       "provenance": {
         "accuracy": null,
         "annotationDate": 0,
-        "annotator": "sysmicro",
-        "evidence": "CURATED_EXACT",
+        "annotator": "cmpo",
+        "evidence": "OLS_EMBEDDING",
         "generatedDate": 0,
         "generator": "ZOOMA",
         "source": {
-          "name": "sysmicro",
-          "type": "DATABASE",
-          "uri": "https://www.ebi.ac.uk/fg/sym"
+          "name": "cmpo",
+          "type": "ONTOLOGY",
+          "uri": "cmpo"
         }
       },
       "replacedBy": [],
@@ -7948,6 +7948,77 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/PATO_0002118"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fw3id.org%2Fmixs%2FIsotopologApproachEnum%23multiple",
+          "semanticTag": "https://w3id.org/mixs/IsotopologApproachEnum#multiple"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "unspecified",
+      "propertyValue": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fw3id.org%2Fmixs%2FIsotopologApproachEnum%23multiple",
+            "semanticTag": "https://w3id.org/mixs/IsotopologApproachEnum#multiple"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "unspecified",
+        "propertyValue": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "gscmixs",
+        "evidence": "OLS_TEXT_TAGGER_SUBSTRING",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "gscmixs",
+          "type": "ONTOLOGY",
+          "uri": "gscmixs"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "https://w3id.org/mixs/IsotopologApproachEnum#multiple"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "https://w3id.org/mixs/IsotopologApproachEnum#multiple"
     ],
     "uri": null
   },

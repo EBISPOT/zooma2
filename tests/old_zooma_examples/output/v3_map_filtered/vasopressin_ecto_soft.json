@@ -20,6 +20,34 @@
             }
           ],
           "ontology": "chebi",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 1.0,
+                "input": "vasopressin",
+                "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+                "matchedText": "vasopressin",
+                "method": "lexical",
+                "model": null,
+                "similarity": 1.0,
+                "source": "ols:chebi",
+                "target": "http://purl.obolibrary.org/obo/CHEBI_9937"
+              }
+            ],
+            [
+              {
+                "confidence": null,
+                "input": "vasopressin",
+                "matchType": "OLS_EMBEDDING",
+                "matchedText": "vasopressin",
+                "method": "semantic",
+                "model": "llama-embed-nemotron-8b_pca512",
+                "similarity": 0.924345,
+                "source": "ols:chebi",
+                "target": "http://purl.obolibrary.org/obo/CHEBI_9937"
+              }
+            ]
+          ],
           "termId": "CHEBI_9937",
           "uri": "http://purl.obolibrary.org/obo/CHEBI_9937"
         },
@@ -41,6 +69,21 @@
             }
           ],
           "ontology": "xco",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 1.0,
+                "input": "vasopressin",
+                "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+                "matchedText": "vasopressin",
+                "method": "lexical",
+                "model": null,
+                "similarity": 1.0,
+                "source": "ols:xco",
+                "target": "http://purl.obolibrary.org/obo/XCO_0000932"
+              }
+            ]
+          ],
           "termId": "XCO_0000932",
           "uri": "http://purl.obolibrary.org/obo/XCO_0000932"
         },
@@ -62,6 +105,21 @@
             }
           ],
           "ontology": "bao",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 1.0,
+                "input": "vasopressin",
+                "matchType": "OLS_LEXICAL_FUZZY_LABEL",
+                "matchedText": "vasopressin",
+                "method": "lexical",
+                "model": null,
+                "similarity": 1.0,
+                "source": "ols:bao",
+                "target": "http://www.bioassayontology.org/bao#BAO_0001044"
+              }
+            ]
+          ],
           "termId": "BAO_0001044",
           "uri": "http://www.bioassayontology.org/bao#BAO_0001044"
         },
@@ -190,6 +248,48 @@
           "ontology": "txpo",
           "termId": "IMR_0100201",
           "uri": "http://purl.obolibrary.org/obo/IMR_0100201"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "omit",
+          "label": "Vasopressins",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressins",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Vasopressins",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0015500"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "OMIT_0015500",
+          "uri": "http://purl.obolibrary.org/obo/OMIT_0015500"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "mesh",
+          "label": "Vasopressins",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "vasopressins",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Vasopressins",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:mesh",
+              "target": "http://id.nlm.nih.gov/mesh/D014667"
+            }
+          ],
+          "ontology": "mesh",
+          "termId": "mesh_D014667",
+          "uri": "http://id.nlm.nih.gov/mesh/D014667"
         },
         {
           "confidence": 0.8392388500000001,

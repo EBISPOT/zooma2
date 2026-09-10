@@ -67,6 +67,27 @@
         },
         {
           "confidence": 0.801,
+          "datasource": "ordo",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:ordo",
+              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
+            }
+          ],
+          "ontology": "ordo",
+          "termId": "ORDO_183669",
+          "uri": "http://www.orpha.net/ORDO/Orphanet_183669"
+        },
+        {
+          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -106,27 +127,6 @@
           "ontology": "hp",
           "termId": "HP_0004432",
           "uri": "http://purl.obolibrary.org/obo/HP_0004432"
-        },
-        {
-          "confidence": 0.801,
-          "datasource": "ordo",
-          "label": "Agammaglobulinemia",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:ordo",
-              "target": "http://www.orpha.net/ORDO/Orphanet_183669"
-            }
-          ],
-          "ontology": "ordo",
-          "termId": "ORDO_183669",
-          "uri": "http://www.orpha.net/ORDO/Orphanet_183669"
         },
         {
           "confidence": 0.801,
