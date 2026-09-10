@@ -1,4 +1,103 @@
 {
+    "property_type_priors": [
+        {
+            "types": [
+                "organism",
+                "species",
+                "strain",
+                "taxon"
+            ],
+            "exclude": [
+                "part",
+                "parts",
+                "age",
+                "unit",
+                "disease"
+            ],
+            "namespaces": [
+                "ncbitaxon"
+            ]
+        },
+        {
+            "types": [
+                "disease",
+                "disorder",
+                "diagnosis",
+                "condition"
+            ],
+            "namespaces": [
+                "mondo",
+                "efo"
+            ]
+        },
+        {
+            "types": [
+                "phenotype",
+                "trait"
+            ],
+            "namespaces": [
+                "hp",
+                "mp",
+                "efo",
+                "oba"
+            ]
+        },
+        {
+            "types": [
+                "cell type",
+                "cell"
+            ],
+            "exclude": [
+                "line",
+                "lines"
+            ],
+            "namespaces": [
+                "cl"
+            ]
+        },
+        {
+            "types": [
+                "cell line"
+            ],
+            "namespaces": [
+                "clo",
+                "efo"
+            ]
+        },
+        {
+            "types": [
+                "anatomy",
+                "organism part",
+                "tissue",
+                "organ",
+                "body part"
+            ],
+            "namespaces": [
+                "uberon",
+                "efo"
+            ]
+        },
+        {
+            "types": [
+                "chemical",
+                "compound",
+                "drug",
+                "treatment"
+            ],
+            "namespaces": [
+                "chebi"
+            ]
+        },
+        {
+            "types": [
+                "unit",
+                "units"
+            ],
+            "namespaces": [
+                "uo"
+            ]
+        }
+    ],
     "mapping": {
         "time_budget_ms": 60000
     },
@@ -22,12 +121,97 @@
     "ontology_presets": [
         {
             "name": "EFO and OBO Foundry",
-            "ontologies": ["efo","uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "ontologies": [
+                "efo",
+                "uberon",
+                "cl",
+                "pcl",
+                "go",
+                "bspo",
+                "pato",
+                "oba",
+                "hp",
+                "mp",
+                "fypo",
+                "mondo",
+                "chebi",
+                "ro",
+                "ecto",
+                "envo",
+                "obi",
+                "maxo",
+                "eco",
+                "ncbitaxon",
+                "pr",
+                "ncit",
+                "po",
+                "ppo",
+                "to",
+                "peco",
+                "fbbt",
+                "foodon",
+                "pco",
+                "iao",
+                "mmo",
+                "mi",
+                "so",
+                "wbbt",
+                "wbls",
+                "wbphenotype",
+                "zfa",
+                "apo",
+                "mmusdv",
+                "hsapdv",
+                "vbo",
+                "uo"
+            ],
             "include_obo_ontologies": true
         },
         {
             "name": "Just OBO Foundry",
-            "ontologies": ["uberon","cl","pcl","go","bspo","pato","oba","hp","mp","fypo","mondo","chebi","ro","ecto","envo","obi","maxo","eco","ncbitaxon","pr","ncit","po","ppo","to","peco","fbbt","foodon","pco","iao","mmo","mi","so","wbbt","wbls","wbphenotype","zfa","apo","mmusdv","hsapdv","vbo","uo"],
+            "ontologies": [
+                "uberon",
+                "cl",
+                "pcl",
+                "go",
+                "bspo",
+                "pato",
+                "oba",
+                "hp",
+                "mp",
+                "fypo",
+                "mondo",
+                "chebi",
+                "ro",
+                "ecto",
+                "envo",
+                "obi",
+                "maxo",
+                "eco",
+                "ncbitaxon",
+                "pr",
+                "ncit",
+                "po",
+                "ppo",
+                "to",
+                "peco",
+                "fbbt",
+                "foodon",
+                "pco",
+                "iao",
+                "mmo",
+                "mi",
+                "so",
+                "wbbt",
+                "wbls",
+                "wbphenotype",
+                "zfa",
+                "apo",
+                "mmusdv",
+                "hsapdv",
+                "vbo",
+                "uo"
+            ],
             "include_obo_ontologies": true
         }
     ],

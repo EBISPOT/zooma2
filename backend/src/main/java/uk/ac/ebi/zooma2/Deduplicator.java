@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
 import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
@@ -26,7 +27,10 @@ import uk.ac.ebi.zooma2.util.TermNamespace;
  *   1. Filter by allowed ontologies (if the ontology filter is hard, i.e.
  *      target ontologies set and includeOtherOntologies=false)
  *   1b. Restrict to the target ontologies' own namespaces (if definingOnly is set)
- *   1c. For organism-typed queries, prefer taxonomy (NCBITaxon) results
+ *   1c. Prefer the namespaces the property type implies (organism → NCBITaxon,
+ *      disease → MONDO/EFO, ...; see property_type_priors in config.json)
+ *   1d. Note the channels that agree on a term: the best-ranked result gains a
+ *      small bonus per corroborating channel and keeps their provenance
  *   2. Suppress curated-embedding results when a curated-exact result exists
  *   3. Among embedding results, keep only the best match (ties allowed)
  *   4. Drop weak results: anything more than 0.2 below the global best (all
@@ -41,8 +45,39 @@ import uk.ac.ebi.zooma2.util.TermNamespace;
  */
 public class Deduplicator {
 
-    /** Confidence adjustment applied by the organism-type taxonomy preference. */
+    /** Confidence adjustment applied by the property-type namespace preference. */
     private static final double TAXONOMY_PREFERENCE_ADJUSTMENT = 0.1;
+    /** Bonus per additional evidence channel that independently found the same term. */
+    static final double CORROBORATION_BONUS = 0.02;
+    /**
+     * A channel only corroborates when its own result is at least this confident
+     * (the V2 "MEDIUM" floor): a fuzzy hit at 0.17 similarity agreeing with an
+     * embedding guess is coincidence, not evidence, and must not lift that guess
+     * over the weak-result gap.
+     */
+    static final double MIN_CORROBORATING_CONFIDENCE = 0.5;
+
+    /** The built-in property-type priors, used when config.json has none. */
+    static final List<ZoomaConfig.PropertyTypePrior> DEFAULT_PRIORS = List.of(
+        prior(List.of("organism", "species", "strain", "taxon"), List.of("ncbitaxon"), List.of("part", "parts", "age", "unit", "disease")),
+        prior(List.of("disease", "disorder", "diagnosis", "condition"), List.of("mondo", "efo"), List.of()),
+        prior(List.of("phenotype", "trait"), List.of("hp", "mp", "efo", "oba"), List.of()),
+        prior(List.of("cell type", "cell"), List.of("cl"), List.of("line", "lines")),
+        prior(List.of("cell line"), List.of("clo", "efo"), List.of()),
+        prior(List.of("anatomy", "organism part", "tissue", "organ", "body part"), List.of("uberon", "efo"), List.of()),
+        prior(List.of("chemical", "compound", "drug", "treatment"), List.of("chebi"), List.of()),
+        prior(List.of("unit", "units"), List.of("uo"), List.of())
+    );
+
+    private static ZoomaConfig.PropertyTypePrior prior(List<String> types, List<String> namespaces, List<String> exclude) {
+        var p = new ZoomaConfig.PropertyTypePrior();
+        p.types = types;
+        p.namespaces = namespaces;
+        p.exclude = exclude;
+        return p;
+    }
+
+    private final List<ZoomaConfig.PropertyTypePrior> priors;
     /** Weak-result suppression only engages once the best result is at least this confident. */
     public static final double WEAK_RESULT_MIN_BEST = 0.7;
     /** Results more than this far below the global best are dropped as an absolute-quality floor. */
@@ -53,7 +88,13 @@ public class Deduplicator {
     private final PrefixMap prefixMap;
 
     public Deduplicator(PrefixMap prefixMap) {
+        this(prefixMap, ZoomaConfig.config != null && ZoomaConfig.config.property_type_priors != null
+            ? ZoomaConfig.config.property_type_priors : DEFAULT_PRIORS);
+    }
+
+    public Deduplicator(PrefixMap prefixMap, List<ZoomaConfig.PropertyTypePrior> priors) {
         this.prefixMap = prefixMap;
+        this.priors = priors != null ? priors : DEFAULT_PRIORS;
     }
 
     /**
@@ -79,8 +120,12 @@ public class Deduplicator {
         // 1b. Restrict to the target ontologies' own namespaces if requested
         filterToDefiningNamespace(results, filter);
 
-        // 1c. Organism-typed queries prefer taxonomy results
-        preferTaxonomyForOrganismQueries(results);
+        // 1c. The property type says what kind of thing the value is: prefer those namespaces
+        preferNamespacesForPropertyType(results);
+
+        // 1d. Note which channels agree on a term (corroboration bonus, supporting
+        //     provenance) before any rule below can delete one of them
+        recordCorroboration(results);
 
         // 2. If any curated-exact result exists, drop curated-embedding results
         suppressEmbeddingIfExactExists(results);
@@ -116,7 +161,8 @@ public class Deduplicator {
         filterByRequiredDatasources(results, filter);
         filterByOntologies(results, filter);
         filterToDefiningNamespace(results, filter);
-        preferTaxonomyForOrganismQueries(results);
+        preferNamespacesForPropertyType(results);
+        recordCorroboration(results);
         var deduped = deduplicateByTermId(results);
         markPreferred(deduped, filter);
         return deduped;
@@ -253,26 +299,31 @@ public class Deduplicator {
      * not on a score threshold: embedding scores can reach 0.89, so a score gate
      * would let a semantic guess from NCBITaxon trigger and receive the boost.
      */
-    void preferTaxonomyForOrganismQueries(List<MapResult> results) {
+    void preferNamespacesForPropertyType(List<MapResult> results) {
         String propertyType = results.stream()
             .filter(r -> !r.isDiagnostic() && r.propertyType != null)
             .map(r -> r.propertyType)
             .findFirst().orElse(null);
-        if (!isOrganismLikeType(propertyType)) {
+        Set<String> preferred = preferredNamespacesFor(propertyType, priors);
+        if (preferred.isEmpty()) {
             return;
         }
 
-        boolean hasStrongTaxonomyMatch = results.stream().anyMatch(r ->
-            !r.isDiagnostic() && isTaxonomyResult(r) && isLexicallyGrounded(r));
-        if (!hasStrongTaxonomyMatch) {
+        // The same gate as the original organism rule, now on provenance: only a
+        // lexically grounded match in a preferred namespace proves the caller's type
+        // hint applies to this value. Without one (e.g. "yeast", which NCBI Taxonomy
+        // has no synonym for) the rule does nothing and exact matches elsewhere win.
+        boolean hasGroundedPreferredMatch = results.stream().anyMatch(r ->
+            !r.isDiagnostic() && isInNamespaces(r, preferred) && isLexicallyGrounded(r));
+        if (!hasGroundedPreferredMatch) {
             return;
         }
 
         for (var r : results) {
             if (r.isDiagnostic()) continue;
-            if (isTaxonomyResult(r)) {
+            if (isInNamespaces(r, preferred)) {
                 // Only boost lexically grounded matches; a weak embedding guess from
-                // NCBITaxon (e.g. a rat-snake species for "rat") earns no boost.
+                // the preferred namespace (e.g. a rat-snake species for "rat") earns no boost.
                 if (isLexicallyGrounded(r)) {
                     r.mappingConfidence = Math.min(1.0, r.mappingConfidence + TAXONOMY_PREFERENCE_ADJUSTMENT);
                 }
@@ -280,6 +331,38 @@ public class Deduplicator {
                 r.mappingConfidence = Math.max(0.0, r.mappingConfidence - TAXONOMY_PREFERENCE_ADJUSTMENT);
             }
         }
+    }
+
+    /**
+     * The namespaces the priors prefer for a property type: every prior whose
+     * {@code types} phrase is contained in the type's words (and none of whose
+     * {@code exclude} words is) contributes, in table order.
+     */
+    static Set<String> preferredNamespacesFor(String propertyType, List<ZoomaConfig.PropertyTypePrior> priors) {
+        Set<String> namespaces = new java.util.LinkedHashSet<>();
+        if (propertyType == null || propertyType.isBlank() || priors == null) return namespaces;
+        Set<String> tokens = tokensOf(propertyType);
+        for (var prior : priors) {
+            if (prior == null || prior.types == null || prior.namespaces == null) continue;
+            boolean excluded = prior.exclude != null && prior.exclude.stream().anyMatch(x -> tokens.contains(x.toLowerCase(Locale.ROOT)));
+            if (excluded) continue;
+            boolean matches = prior.types.stream().anyMatch(phrase -> tokens.containsAll(tokensOf(phrase)));
+            if (matches) {
+                for (String ns : prior.namespaces) namespaces.add(ns.toLowerCase(Locale.ROOT));
+            }
+        }
+        return namespaces;
+    }
+
+    private static Set<String> tokensOf(String text) {
+        return new java.util.HashSet<>(List.of(text.toLowerCase(Locale.ROOT)
+            .replaceAll("[^a-z0-9]+", " ")
+            .trim()
+            .split(" ")));
+    }
+
+    private static boolean isInNamespaces(MapResult r, Set<String> namespaces) {
+        return ontologiesOf(r).stream().anyMatch(namespaces::contains);
     }
 
     /**
@@ -478,8 +561,7 @@ public class Deduplicator {
         List<MapResult> errorResults = new ArrayList<>();
         for (var r : results) {
             if (r.isDiagnostic()) { errorResults.add(r); continue; } // errors and warnings pass through
-            String key = r.ontologyTermIri != null ? r.ontologyTermIri
-                : (r.ontologyTermID != null ? prefixMap.shortFormToIri(r.ontologyTermID) : null);
+            String key = termKey(r);
             if (key == null) continue;
             MapResult existing = best.get(key);
             // Higher confidence wins; on a tie the stronger evidence tier wins, so a
@@ -493,6 +575,61 @@ public class Deduplicator {
         return result;
     }
 
+    private String termKey(MapResult r) {
+        return r.ontologyTermIri != null ? r.ontologyTermIri
+            : (r.ontologyTermID != null ? prefixMap.shortFormToIri(r.ontologyTermID) : null);
+    }
+
+    /**
+     * A term found independently by several channels (tagger, lexical search,
+     * embedding, ...) is more likely right than one found by a single channel,
+     * and the caller should see that. For each term the best-ranked result gains
+     * {@link #CORROBORATION_BONUS} per additional distinct channel, capped at its
+     * evidence tier's ceiling so corroboration can never lift a guess above a
+     * full match, and keeps the other channels' chains as supporting provenance.
+     * Deliberately not {@code 1 - Π(1 - c)}: two 0.85s must not become 0.98.
+     *
+     * <p>Nothing is removed here: this runs before the embedding-suppression
+     * rules so that an embedding hit which agrees with a label match is credited
+     * before those rules discard it, and {@link #deduplicateByTermId} later picks
+     * the same best-ranked result (the bonus only raises it).
+     */
+    void recordCorroboration(List<MapResult> results) {
+        Map<String, List<MapResult>> byTerm = new LinkedHashMap<>();
+        for (var r : results) {
+            if (r.isDiagnostic()) continue;
+            String key = termKey(r);
+            if (key != null) byTerm.computeIfAbsent(key, k -> new ArrayList<>()).add(r);
+        }
+        for (var group : byTerm.values()) {
+            if (group.size() < 2) continue;
+            MapResult winner = group.stream().min(EvidenceTier.resultRanking()).orElseThrow();
+            Set<String> channels = new java.util.HashSet<>();
+            channels.add(channelOf(winner));
+            List<List<V3MappingProvenanceStepDto>> supporting = new ArrayList<>();
+            for (MapResult other : group) {
+                if (other == winner || other.mappingProvenance == null || other.mappingProvenance.isEmpty()) continue;
+                if (other.mappingConfidence < MIN_CORROBORATING_CONFIDENCE) continue;
+                if (channels.add(channelOf(other))) {
+                    supporting.add(other.mappingProvenance);
+                }
+            }
+            if (supporting.isEmpty()) continue;
+            winner.supportingProvenance = supporting;
+            EvidenceTier tier = EvidenceTier.of(winner.mappingProvenance);
+            double ceiling = tier == EvidenceTier.NONE ? winner.mappingConfidence : tier.maxConfidence;
+            winner.mappingConfidence = Math.min(Math.max(ceiling, winner.mappingConfidence),
+                winner.mappingConfidence + supporting.size() * CORROBORATION_BONUS);
+        }
+    }
+
+    /** The evidence channel a result came from: its first provenance step's method and match type. */
+    private static String channelOf(MapResult r) {
+        if (r.mappingProvenance == null || r.mappingProvenance.isEmpty()) return "";
+        var step = r.mappingProvenance.get(0);
+        return step.method + ":" + step.matchType;
+    }
+
     // ---- helpers ----
 
     /**
@@ -500,15 +637,7 @@ public class Deduplicator {
      * Anatomy-flavoured types like "organism part" or "organismPart" must not match.
      */
     static boolean isOrganismLikeType(String propertyType) {
-        if (propertyType == null || propertyType.isBlank()) return false;
-        Set<String> tokens = new java.util.HashSet<>(List.of(propertyType.toLowerCase(Locale.ROOT)
-            .replaceAll("[^a-z0-9]+", " ")
-            .trim()
-            .split(" ")));
-        boolean organismLike = tokens.contains("organism") || tokens.contains("species");
-        boolean excluded = tokens.contains("part") || tokens.contains("parts")
-            || tokens.contains("age") || tokens.contains("unit") || tokens.contains("disease");
-        return organismLike && !excluded;
+        return preferredNamespacesFor(propertyType, DEFAULT_PRIORS).contains("ncbitaxon");
     }
 
     /**

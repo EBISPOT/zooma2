@@ -7,10 +7,14 @@ import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.Deduplicator;
+import uk.ac.ebi.zooma2.util.QueryVariants;
 import uk.ac.ebi.zooma2.util.TermIds;
 import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +31,14 @@ import java.util.stream.Collectors;
  * matcher by {@link uk.ac.ebi.zooma2.search.AnnotationEngine}.
  */
 public class OlsTextTaggerMatcher implements AnnotationMatcher {
+
+    /**
+     * Confidence factor for a hit reached through a spelling variant rather than
+     * the text itself: a variant label match (0.95) still outranks a direct
+     * synonym match (0.9) and every partial or embedding match, but not a direct
+     * label match.
+     */
+    public static final double VARIANT_DISCOUNT = 0.95;
 
     private final OlsClientRepo olsRepo;
     private final PrefixMap prefixMap;
@@ -70,96 +82,143 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
         return bulkTag(terms).byTerm;
     }
 
-    /** As {@link #bulkTagText}, also reporting the terms whose request failed so callers can flag them. */
+    /**
+     * As {@link #bulkTagText}, also reporting the terms whose request failed so callers can flag them.
+     *
+     * <p>Each term is tagged together with its {@link QueryVariants spelling variants}
+     * (plural/singular, hyphenation, Greek letters, British/American spelling,
+     * numerals). A full match on a variant is attributed to the original term at
+     * {@link #VARIANT_DISCOUNT}, with the variant recorded as the provenance
+     * {@code input}, unless the original already hit the same term. Substring
+     * hits on a variant are ignored: the variants exist to give the exact tier
+     * some tolerance, and a variant's substring hits are the original's plus
+     * noise from the altered word ("nuclei" → "nucleus" in a dozen ontologies).
+     */
     public TaggerResults bulkTag(List<String> terms) {
-        var response = olsRepo.tagText(terms, null);
+        Map<String, List<String>> variantsByTerm = new LinkedHashMap<>();
+        Set<String> inputs = new LinkedHashSet<>();
+        for (String term : terms) {
+            if (term == null || variantsByTerm.containsKey(term)) continue;
+            List<String> variants = QueryVariants.variants(term);
+            variantsByTerm.put(term, variants);
+            inputs.add(term);
+            inputs.addAll(variants);
+        }
+        var response = olsRepo.tagText(new ArrayList<>(inputs), null);
         var tagResults = response.matches;
         Map<String, List<Annotation>> result = new HashMap<>();
 
-        for (var entry : tagResults.entrySet()) {
+        for (var entry : variantsByTerm.entrySet()) {
             String inputTerm = entry.getKey();
-            List<Annotation> annotations = new ArrayList<>();
-            for (var match : entry.getValue()) {
-                boolean isFullMatch = match.coverage >= 1.0;
-                boolean isCuration = "CURATION".equals(match.stringType);
-                boolean isSynonym = "synonym".equalsIgnoreCase(match.stringType);
-
-                String matchType;
-                String provenanceMethod;
-                String sourceType;
-                String sourceName;
-
-                if (isCuration && isFullMatch) {
-                    matchType = "CURATED_EXACT";
-                    provenanceMethod = "curated";
-                    sourceType = "DATABASE";
-                    sourceName = match.source != null ? match.source : match.ontologyId;
-                } else if (isFullMatch && isSynonym) {
-                    matchType = "OLS_TEXT_TAGGER_SYNONYM";
-                    provenanceMethod = "lexical";
-                    sourceType = "ONTOLOGY";
-                    sourceName = match.ontologyId;
-                } else if (isFullMatch) {
-                    matchType = "OLS_TEXT_TAGGER";
-                    provenanceMethod = "lexical";
-                    sourceType = "ONTOLOGY";
-                    sourceName = match.ontologyId;
-                } else if (isCuration) {
-                    matchType = "CURATED_SUBSTRING";
-                    provenanceMethod = "curated";
-                    sourceType = "DATABASE";
-                    sourceName = match.source != null ? match.source : match.ontologyId;
-                } else {
-                    matchType = "OLS_TEXT_TAGGER_SUBSTRING";
-                    provenanceMethod = "lexical";
-                    sourceType = "ONTOLOGY";
-                    sourceName = match.ontologyId;
+            var direct = tagResults.get(inputTerm);
+            if (direct == null && !response.failedTerms.contains(inputTerm)) {
+                direct = List.of();
+            }
+            if (direct == null) continue; // the request for this term failed
+            List<Annotation> annotations = new ArrayList<>(toAnnotations(inputTerm, inputTerm, direct, 1.0));
+            Set<String> seenIris = new HashSet<>();
+            for (var a : annotations) seenIris.addAll(a.semanticTags);
+            for (String variant : entry.getValue()) {
+                var hits = tagResults.get(variant);
+                if (hits == null) continue;
+                var fullHits = hits.stream().filter(m -> m.coverage >= 1.0).toList();
+                for (var a : toAnnotations(inputTerm, variant, fullHits, VARIANT_DISCOUNT)) {
+                    if (seenIris.addAll(a.semanticTags)) annotations.add(a);
                 }
-                // The score belongs to the evidence class, not to this matcher: see EvidenceTier.
-                double confidence = EvidenceTier.ofMatchType(matchType).confidence(match.coverage);
-
-                Annotation a = new Annotation();
-                a.annotatedProperty = new Annotation.AnnotatedProperty();
-                a.annotatedProperty.propertyType = "unspecified";
-                a.annotatedProperty.propertyValue = inputTerm;
-                a.semanticTags = List.of(match.termIri);
-                a.confidence = confidence;
-                a.provenance = new Annotation.Provenance();
-                a.provenance.source = new Annotation.Source();
-                a.provenance.source.type = sourceType;
-                a.provenance.source.name = sourceName;
-                a.provenance.source.uri = sourceName;
-                a.provenance.evidence = matchType;
-                a.provenance.generator = "ZOOMA";
-                a.provenance.generatedDate = new Date().toString();
-
-                if ("curated".equals(provenanceMethod)) {
-                    a.mappingProvenance = List.of(V3MappingProvenanceStepDto.curated(
-                        sourceName, matchType, inputTerm,
-                        match.termLabel, match.termIri, match.coverage
-                    ));
-                } else {
-                    a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
-                        "ols:" + match.ontologyId, matchType, inputTerm,
-                        match.termLabel, match.termIri, match.coverage
-                    ));
-                }
-
-                // Build pre-resolved OlsTerm from tag_text metadata so we can skip resolveTerms()
-                OlsTerm preResolved = new OlsTerm();
-                preResolved.iri = match.termIri;
-                preResolved.label = match.termLabel;
-                preResolved.ontology_name = match.ontologyId;
-                preResolved.short_form = match.shortForm != null ? match.shortForm : shortFormFromIri(match.termIri, match.ontologyId);
-                preResolved.synonyms = match.synonyms;
-                preResolved.is_obsolete = match.isObsolete;
-                a.resolvedTerm = preResolved;
-
-                annotations.add(a);
             }
             result.put(inputTerm, annotations);
         }
-        return new TaggerResults(result, response.failedTerms, response.failure);
+        Set<String> failed = new HashSet<>(response.failedTerms);
+        failed.retainAll(variantsByTerm.keySet());
+        return new TaggerResults(result, failed, response.failure);
+    }
+
+    /**
+     * @param inputTerm the term the caller asked about
+     * @param tagged    the text actually tagged: the term itself or one of its variants
+     * @param discount  1.0 for the term itself, {@link #VARIANT_DISCOUNT} for a variant
+     */
+    private List<Annotation> toAnnotations(String inputTerm, String tagged, List<OlsClientRepo.TagTextMatch> matches, double discount) {
+        List<Annotation> annotations = new ArrayList<>();
+        for (var match : matches) {
+            boolean isFullMatch = match.coverage >= 1.0;
+            boolean isCuration = "CURATION".equals(match.stringType);
+            boolean isSynonym = "synonym".equalsIgnoreCase(match.stringType);
+
+            String matchType;
+            String provenanceMethod;
+            String sourceType;
+            String sourceName;
+
+            if (isCuration && isFullMatch) {
+                matchType = "CURATED_EXACT";
+                provenanceMethod = "curated";
+                sourceType = "DATABASE";
+                sourceName = match.source != null ? match.source : match.ontologyId;
+            } else if (isFullMatch && isSynonym) {
+                matchType = "OLS_TEXT_TAGGER_SYNONYM";
+                provenanceMethod = "lexical";
+                sourceType = "ONTOLOGY";
+                sourceName = match.ontologyId;
+            } else if (isFullMatch) {
+                matchType = "OLS_TEXT_TAGGER";
+                provenanceMethod = "lexical";
+                sourceType = "ONTOLOGY";
+                sourceName = match.ontologyId;
+            } else if (isCuration) {
+                matchType = "CURATED_SUBSTRING";
+                provenanceMethod = "curated";
+                sourceType = "DATABASE";
+                sourceName = match.source != null ? match.source : match.ontologyId;
+            } else {
+                matchType = "OLS_TEXT_TAGGER_SUBSTRING";
+                provenanceMethod = "lexical";
+                sourceType = "ONTOLOGY";
+                sourceName = match.ontologyId;
+            }
+            // The score belongs to the evidence class, not to this matcher: see EvidenceTier.
+            double confidence = EvidenceTier.ofMatchType(matchType).confidence(match.coverage) * discount;
+
+            Annotation a = new Annotation();
+            a.annotatedProperty = new Annotation.AnnotatedProperty();
+            a.annotatedProperty.propertyType = "unspecified";
+            a.annotatedProperty.propertyValue = inputTerm;
+            a.semanticTags = List.of(match.termIri);
+            a.confidence = confidence;
+            a.provenance = new Annotation.Provenance();
+            a.provenance.source = new Annotation.Source();
+            a.provenance.source.type = sourceType;
+            a.provenance.source.name = sourceName;
+            a.provenance.source.uri = sourceName;
+            a.provenance.evidence = matchType;
+            a.provenance.generator = "ZOOMA";
+            a.provenance.generatedDate = new Date().toString();
+
+            if ("curated".equals(provenanceMethod)) {
+                a.mappingProvenance = List.of(V3MappingProvenanceStepDto.curated(
+                    sourceName, matchType, tagged,
+                    match.termLabel, match.termIri, match.coverage
+                ));
+            } else {
+                a.mappingProvenance = List.of(V3MappingProvenanceStepDto.lexical(
+                    "ols:" + match.ontologyId, matchType, tagged,
+                    match.termLabel, match.termIri, match.coverage
+                ));
+            }
+
+            // Build pre-resolved OlsTerm from tag_text metadata so we can skip resolveTerms()
+            OlsTerm preResolved = new OlsTerm();
+            preResolved.iri = match.termIri;
+            preResolved.label = match.termLabel;
+            preResolved.ontology_name = match.ontologyId;
+            preResolved.short_form = match.shortForm != null ? match.shortForm : shortFormFromIri(match.termIri, match.ontologyId);
+            preResolved.synonyms = match.synonyms;
+            preResolved.is_obsolete = match.isObsolete;
+            a.resolvedTerm = preResolved;
+
+            annotations.add(a);
+        }
+        return annotations;
     }
 
     /**

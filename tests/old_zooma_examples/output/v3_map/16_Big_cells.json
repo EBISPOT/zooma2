@@ -3,19 +3,19 @@
     {
       "candidates": [
         {
-          "confidence": 1.0,
-          "datasource": "sysmicro",
+          "confidence": 0.95,
+          "datasource": "cmpo",
           "label": "increased cell size",
           "mappingProvenance": [
             {
-              "confidence": null,
-              "input": "Big cells",
-              "matchType": "CURATED_EXACT",
+              "confidence": 1.0,
+              "input": "Big cell",
+              "matchType": "OLS_TEXT_TAGGER",
               "matchedText": "increased cell size",
-              "method": "curated",
+              "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "sysmicro",
+              "source": "ols:cmpo",
               "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000128"
             }
           ],

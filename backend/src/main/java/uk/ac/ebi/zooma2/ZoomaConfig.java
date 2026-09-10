@@ -91,6 +91,8 @@ public class ZoomaConfig {
 
     public Map<String, String> prefix_map;
     public MappingConfig mapping;
+    /** Ranking priors by property type (see {@link PropertyTypePrior}); the built-in table applies when absent. */
+    public List<PropertyTypePrior> property_type_priors;
     public OlsLexicalConfig ols_lexical;
     public OlsEmbeddingConfig ols_embedding;
     public OxoConfig oxo;
@@ -98,6 +100,18 @@ public class ZoomaConfig {
 
     public static String getOlsUrl() {
         return System.getenv().getOrDefault("ZOOMA2_OLS_URL", DEFAULT_OLS_URL);
+    }
+
+    /**
+     * "When the caller says the value is a {type}, prefer terms from {namespaces}":
+     * a property type matches when every word of one of its {@code types} phrases
+     * appears in the type and none of its {@code exclude} words does ("organism
+     * part" is anatomy, not an organism).
+     */
+    public static class PropertyTypePrior {
+        public List<String> types;
+        public List<String> namespaces;
+        public List<String> exclude;
     }
 
     public static class MappingConfig {

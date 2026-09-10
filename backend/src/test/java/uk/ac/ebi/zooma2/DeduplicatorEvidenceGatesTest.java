@@ -87,7 +87,7 @@ class DeduplicatorEvidenceGatesTest {
         for (MapResult r : List.of(taxonGuess, foodLabel)) r.propertyType = "organism";
         List<MapResult> results = new ArrayList<>(List.of(taxonGuess, foodLabel));
 
-        dedup.preferTaxonomyForOrganismQueries(results);
+        dedup.preferNamespacesForPropertyType(results);
 
         assertEquals(0.87, taxonGuess.mappingConfidence, 1e-9, "no boost without a lexically grounded taxon match");
         assertEquals(1.0, foodLabel.mappingConfidence, 1e-9, "no demotion either");
@@ -101,7 +101,7 @@ class DeduplicatorEvidenceGatesTest {
         for (MapResult r : List.of(taxonSynonym, taxonGuess, foodLabel)) r.propertyType = "organism";
         List<MapResult> results = new ArrayList<>(List.of(taxonSynonym, taxonGuess, foodLabel));
 
-        dedup.preferTaxonomyForOrganismQueries(results);
+        dedup.preferNamespacesForPropertyType(results);
 
         assertEquals(1.0, taxonSynonym.mappingConfidence, 1e-9, "grounded taxon match boosted");
         assertEquals(0.87, taxonGuess.mappingConfidence, 1e-9, "embedding guess from NCBITaxon earns no boost");

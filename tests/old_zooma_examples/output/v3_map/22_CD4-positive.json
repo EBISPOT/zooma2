@@ -22,6 +22,27 @@
           "ontology": "ncit",
           "termId": "NCIT_C153220",
           "uri": "http://purl.obolibrary.org/obo/NCIT_C153220"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "atlas",
+          "label": "T cell",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4 positive",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "T cell",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "atlas",
+              "target": "http://purl.obolibrary.org/obo/CL_0000084"
+            }
+          ],
+          "ontology": "cl",
+          "termId": "CL_0000084",
+          "uri": "http://purl.obolibrary.org/obo/CL_0000084"
         }
       ],
       "error": null,

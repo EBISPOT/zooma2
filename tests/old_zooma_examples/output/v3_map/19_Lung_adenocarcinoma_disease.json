@@ -3,46 +3,87 @@
     {
       "candidates": [
         {
-          "confidence": 0.85465988,
-          "datasource": "mondo",
-          "label": "lung adenocarcinoma in situ",
+          "confidence": 0.8676366090774537,
+          "datasource": "efo",
+          "label": "lung adenocarcinoma",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Lung adenocarcinoma disease",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma in situ",
+              "matchedText": "obsolete_lung adenocarcinoma",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.960292,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
+              "similarity": 0.9524006843566895,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0000571"
+            },
+            {
+              "confidence": 1.0,
+              "input": "http://www.ebi.ac.uk/efo/EFO_0000571",
+              "matchType": "OBSOLETE_REPLACEMENT",
+              "matchedText": "obsolete_lung adenocarcinoma → lung adenocarcinoma",
+              "method": "cross_reference",
+              "model": null,
+              "similarity": null,
+              "source": "ols:efo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0005061"
             }
           ],
           "ontology": "mondo",
-          "termId": "MONDO_0000503",
-          "uri": "http://purl.obolibrary.org/obo/MONDO_0000503"
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7037037037037037,
+                "input": "Lung adenocarcinoma disease",
+                "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+                "matchedText": "lung adenocarcinoma",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7037037037037037,
+                "source": "ols:mondo",
+                "target": "http://purl.obolibrary.org/obo/MONDO_0005061"
+              }
+            ]
+          ],
+          "termId": "MONDO_0005061",
+          "uri": "http://purl.obolibrary.org/obo/MONDO_0005061"
         },
         {
-          "confidence": 0.85073765,
-          "datasource": "efo",
-          "label": "lung adenocarcinoma grade",
+          "confidence": 0.86557565,
+          "datasource": "doid",
+          "label": "lung adenocarcinoma",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Lung adenocarcinoma disease",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma grade",
+              "matchedText": "lung adenocarcinoma",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.955885,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0005620"
+              "similarity": 0.950085,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_3910"
             }
           ],
-          "ontology": "efo",
-          "termId": "EFO_0005620",
-          "uri": "http://www.ebi.ac.uk/efo/EFO_0005620"
+          "ontology": "doid",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7037037037037037,
+                "input": "Lung adenocarcinoma disease",
+                "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+                "matchedText": "adenocarcinoma de pulmón",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7037037037037037,
+                "source": "ols:doid",
+                "target": "http://purl.obolibrary.org/obo/DOID_3910"
+              }
+            ]
+          ],
+          "termId": "DOID_3910",
+          "uri": "http://purl.obolibrary.org/obo/DOID_3910"
         }
       ],
       "error": null,

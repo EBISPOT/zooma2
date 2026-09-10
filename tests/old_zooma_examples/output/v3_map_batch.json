@@ -116,27 +116,6 @@
         },
         {
           "confidence": 0.801,
-          "datasource": "hp",
-          "label": "Agammaglobulinemia",
-          "mappingProvenance": [
-            {
-              "confidence": 0.9,
-              "input": "Agammaglobulinemia 2",
-              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
-              "matchedText": "Agammaglobulinemia",
-              "method": "lexical",
-              "model": null,
-              "similarity": 0.9,
-              "source": "ols:hp",
-              "target": "http://purl.obolibrary.org/obo/HP_0004432"
-            }
-          ],
-          "ontology": "hp",
-          "termId": "HP_0004432",
-          "uri": "http://purl.obolibrary.org/obo/HP_0004432"
-        },
-        {
-          "confidence": 0.801,
           "datasource": "mondo",
           "label": "agammaglobulinemia",
           "mappingProvenance": [
@@ -155,6 +134,27 @@
           "ontology": "mondo",
           "termId": "MONDO_0015977",
           "uri": "http://purl.obolibrary.org/obo/MONDO_0015977"
+        },
+        {
+          "confidence": 0.801,
+          "datasource": "hp",
+          "label": "Agammaglobulinemia",
+          "mappingProvenance": [
+            {
+              "confidence": 0.9,
+              "input": "Agammaglobulinemia 2",
+              "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+              "matchedText": "Agammaglobulinemia",
+              "method": "lexical",
+              "model": null,
+              "similarity": 0.9,
+              "source": "ols:hp",
+              "target": "http://purl.obolibrary.org/obo/HP_0004432"
+            }
+          ],
+          "ontology": "hp",
+          "termId": "HP_0004432",
+          "uri": "http://purl.obolibrary.org/obo/HP_0004432"
         },
         {
           "confidence": 0.801,
@@ -668,7 +668,7 @@
           "uri": "http://identifiers.org/omim/605407"
         },
         {
-          "confidence": 0.8119674682617187,
+          "confidence": 0.8319674682617187,
           "datasource": "mesh",
           "label": "Segawa syndrome, autosomal recessive",
           "mappingProvenance": [
@@ -685,6 +685,21 @@
             }
           ],
           "ontology": "mesh",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7,
+                "input": "Segawa syndrome autosomal recessive",
+                "matchType": "OLS_LEXICAL_FUZZY",
+                "matchedText": "Segawa syndrome, autosomal recessive",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7,
+                "source": "ols:mesh",
+                "target": "http://id.nlm.nih.gov/mesh/C537537"
+              }
+            ]
+          ],
           "termId": "mesh_C537537",
           "uri": "http://id.nlm.nih.gov/mesh/C537537"
         }
@@ -841,27 +856,6 @@
           "ontology": "ncit",
           "termId": "NCIT_C52060",
           "uri": "http://purl.obolibrary.org/obo/NCIT_C52060"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "pr",
-          "label": "breast cancer type 1 susceptibility protein",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "BRCA1",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "breast cancer type 1 susceptibility protein",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000004803"
-            }
-          ],
-          "ontology": "pr",
-          "termId": "PR_000004803",
-          "uri": "http://purl.obolibrary.org/obo/PR_000004803"
         }
       ],
       "error": null,
@@ -1074,46 +1068,25 @@
     {
       "candidates": [
         {
-          "confidence": 0.78746399,
-          "datasource": "bto",
-          "label": "large cell carcinoma cell",
+          "confidence": 0.95,
+          "datasource": "cmpo",
+          "label": "increased cell size",
           "mappingProvenance": [
             {
-              "confidence": null,
-              "input": "Big cells",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "large cell carcinoma cell",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.884791,
-              "source": "ols:bto",
-              "target": "http://purl.obolibrary.org/obo/BTO_0002059"
+              "confidence": 1.0,
+              "input": "Big cell",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "increased cell size",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:cmpo",
+              "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000128"
             }
           ],
-          "ontology": "bto",
-          "termId": "BTO_0002059",
-          "uri": "http://purl.obolibrary.org/obo/BTO_0002059"
-        },
-        {
-          "confidence": 0.78516067,
-          "datasource": "upheno",
-          "label": "increased cell mass",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Big cells",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "increased cell mass",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.882203,
-              "source": "ols:upheno",
-              "target": "http://purl.obolibrary.org/obo/UPHENO_0084811"
-            }
-          ],
-          "ontology": "upheno",
-          "termId": "UPHENO_0084811",
-          "uri": "http://purl.obolibrary.org/obo/UPHENO_0084811"
+          "ontology": "cmpo",
+          "termId": "CMPO_0000128",
+          "uri": "http://www.ebi.ac.uk/cmpo/CMPO_0000128"
         }
       ],
       "error": null,
@@ -1151,67 +1124,40 @@
     {
       "candidates": [
         {
-          "confidence": 0.77004135,
+          "confidence": 0.7773544000000001,
           "datasource": "mondo",
-          "label": "long QT syndrome, KCNQ1-related, dog",
+          "label": "long QT syndrome 3",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Long QT syndrome 3/6, digenic",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "long QT syndrome, KCNQ1-related, dog",
+              "matchedText": "long QT syndrome 3",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.865215,
+              "similarity": 0.85096,
               "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_7770288"
+              "target": "http://purl.obolibrary.org/obo/MONDO_0011377"
             }
           ],
           "ontology": "mondo",
-          "termId": "MONDO_7770288",
-          "uri": "http://purl.obolibrary.org/obo/MONDO_7770288"
-        },
-        {
-          "confidence": 0.76726989,
-          "datasource": "mondo",
-          "label": "long QT syndrome, KCNQ1-related, rabbit",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "long QT syndrome, KCNQ1-related, rabbit",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.862101,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_1012868"
-            }
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.6206896551724138,
+                "input": "Long QT syndrome 3/6, digenic",
+                "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+                "matchedText": "long QT syndrome 3",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.6206896551724138,
+                "source": "ols:mondo",
+                "target": "http://purl.obolibrary.org/obo/MONDO_0011377"
+              }
+            ]
           ],
-          "ontology": "mondo",
-          "termId": "MONDO_1012868",
-          "uri": "http://purl.obolibrary.org/obo/MONDO_1012868"
-        },
-        {
-          "confidence": 0.76519085,
-          "datasource": "mondo",
-          "label": "long QT syndrome, KCNH2-related, rabbit",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "Long QT syndrome 3/6, digenic",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "long QT syndrome, KCNH2-related, rabbit",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.859765,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_1012869"
-            }
-          ],
-          "ontology": "mondo",
-          "termId": "MONDO_1012869",
-          "uri": "http://purl.obolibrary.org/obo/MONDO_1012869"
+          "termId": "MONDO_0011377",
+          "uri": "http://purl.obolibrary.org/obo/MONDO_0011377"
         },
         {
           "confidence": 0.5833333333333334,
@@ -1242,46 +1188,87 @@
     {
       "candidates": [
         {
-          "confidence": 0.85465988,
-          "datasource": "mondo",
-          "label": "lung adenocarcinoma in situ",
+          "confidence": 0.8676366090774537,
+          "datasource": "efo",
+          "label": "lung adenocarcinoma",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Lung adenocarcinoma disease",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma in situ",
+              "matchedText": "obsolete_lung adenocarcinoma",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.960292,
-              "source": "ols:mondo",
-              "target": "http://purl.obolibrary.org/obo/MONDO_0000503"
+              "similarity": 0.9524006843566895,
+              "source": "ols:efo",
+              "target": "http://www.ebi.ac.uk/efo/EFO_0000571"
+            },
+            {
+              "confidence": 1.0,
+              "input": "http://www.ebi.ac.uk/efo/EFO_0000571",
+              "matchType": "OBSOLETE_REPLACEMENT",
+              "matchedText": "obsolete_lung adenocarcinoma → lung adenocarcinoma",
+              "method": "cross_reference",
+              "model": null,
+              "similarity": null,
+              "source": "ols:efo",
+              "target": "http://purl.obolibrary.org/obo/MONDO_0005061"
             }
           ],
           "ontology": "mondo",
-          "termId": "MONDO_0000503",
-          "uri": "http://purl.obolibrary.org/obo/MONDO_0000503"
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7037037037037037,
+                "input": "Lung adenocarcinoma disease",
+                "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+                "matchedText": "lung adenocarcinoma",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7037037037037037,
+                "source": "ols:mondo",
+                "target": "http://purl.obolibrary.org/obo/MONDO_0005061"
+              }
+            ]
+          ],
+          "termId": "MONDO_0005061",
+          "uri": "http://purl.obolibrary.org/obo/MONDO_0005061"
         },
         {
-          "confidence": 0.85073765,
-          "datasource": "efo",
-          "label": "lung adenocarcinoma grade",
+          "confidence": 0.86557565,
+          "datasource": "doid",
+          "label": "lung adenocarcinoma",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "Lung adenocarcinoma disease",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "lung adenocarcinoma grade",
+              "matchedText": "lung adenocarcinoma",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.955885,
-              "source": "ols:efo",
-              "target": "http://www.ebi.ac.uk/efo/EFO_0005620"
+              "similarity": 0.950085,
+              "source": "ols:doid",
+              "target": "http://purl.obolibrary.org/obo/DOID_3910"
             }
           ],
-          "ontology": "efo",
-          "termId": "EFO_0005620",
-          "uri": "http://www.ebi.ac.uk/efo/EFO_0005620"
+          "ontology": "doid",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7037037037037037,
+                "input": "Lung adenocarcinoma disease",
+                "matchType": "OLS_TEXT_TAGGER_SUBSTRING",
+                "matchedText": "adenocarcinoma de pulmón",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7037037037037037,
+                "source": "ols:doid",
+                "target": "http://purl.obolibrary.org/obo/DOID_3910"
+              }
+            ]
+          ],
+          "termId": "DOID_3910",
+          "uri": "http://purl.obolibrary.org/obo/DOID_3910"
         }
       ],
       "error": null,
@@ -1366,6 +1353,27 @@
           "ontology": "ncit",
           "termId": "NCIT_C153220",
           "uri": "http://purl.obolibrary.org/obo/NCIT_C153220"
+        },
+        {
+          "confidence": 0.95,
+          "datasource": "atlas",
+          "label": "T cell",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "CD4 positive",
+              "matchType": "CURATED_EXACT",
+              "matchedText": "T cell",
+              "method": "curated",
+              "model": null,
+              "similarity": 1.0,
+              "source": "atlas",
+              "target": "http://purl.obolibrary.org/obo/CL_0000084"
+            }
+          ],
+          "ontology": "cl",
+          "termId": "CL_0000084",
+          "uri": "http://purl.obolibrary.org/obo/CL_0000084"
         }
       ],
       "error": null,
@@ -1374,132 +1382,6 @@
     },
     {
       "candidates": [
-        {
-          "confidence": 1.0,
-          "datasource": "bto",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:bto",
-              "target": "http://purl.obolibrary.org/obo/BTO_0000232"
-            }
-          ],
-          "ontology": "bto",
-          "termId": "BTO_0000232",
-          "uri": "http://purl.obolibrary.org/obo/BTO_0000232"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "emapa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:emapa",
-              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
-            }
-          ],
-          "ontology": "emapa",
-          "termId": "EMAPA_17787",
-          "uri": "http://purl.obolibrary.org/obo/EMAPA_17787"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "ma",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:ma",
-              "target": "http://purl.obolibrary.org/obo/MA_0000198"
-            }
-          ],
-          "ontology": "ma",
-          "termId": "MA_0000198",
-          "uri": "http://purl.obolibrary.org/obo/MA_0000198"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "xao",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:xao",
-              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
-            }
-          ],
-          "ontology": "xao",
-          "termId": "XAO_0003098",
-          "uri": "http://purl.obolibrary.org/obo/XAO_0003098"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "zfa",
-          "label": "cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:zfa",
-              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
-            }
-          ],
-          "ontology": "zfa",
-          "termId": "ZFA_0000100",
-          "uri": "http://purl.obolibrary.org/obo/ZFA_0000100"
-        },
-        {
-          "confidence": 1.0,
-          "datasource": "omit",
-          "label": "Cerebellum",
-          "mappingProvenance": [
-            {
-              "confidence": 1.0,
-              "input": "cerebellum",
-              "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "Cerebellum",
-              "method": "lexical",
-              "model": null,
-              "similarity": 1.0,
-              "source": "ols:omit",
-              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
-            }
-          ],
-          "ontology": "omit",
-          "termId": "OMIT_0003860",
-          "uri": "http://purl.obolibrary.org/obo/OMIT_0003860"
-        },
         {
           "confidence": 1.0,
           "datasource": "uberon",
@@ -1522,7 +1404,133 @@
           "uri": "http://purl.obolibrary.org/obo/UBERON_0002037"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
+          "datasource": "bto",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:bto",
+              "target": "http://purl.obolibrary.org/obo/BTO_0000232"
+            }
+          ],
+          "ontology": "bto",
+          "termId": "BTO_0000232",
+          "uri": "http://purl.obolibrary.org/obo/BTO_0000232"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "emapa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_17787"
+            }
+          ],
+          "ontology": "emapa",
+          "termId": "EMAPA_17787",
+          "uri": "http://purl.obolibrary.org/obo/EMAPA_17787"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "ma",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ma",
+              "target": "http://purl.obolibrary.org/obo/MA_0000198"
+            }
+          ],
+          "ontology": "ma",
+          "termId": "MA_0000198",
+          "uri": "http://purl.obolibrary.org/obo/MA_0000198"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "xao",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:xao",
+              "target": "http://purl.obolibrary.org/obo/XAO_0003098"
+            }
+          ],
+          "ontology": "xao",
+          "termId": "XAO_0003098",
+          "uri": "http://purl.obolibrary.org/obo/XAO_0003098"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "zfa",
+          "label": "cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:zfa",
+              "target": "http://purl.obolibrary.org/obo/ZFA_0000100"
+            }
+          ],
+          "ontology": "zfa",
+          "termId": "ZFA_0000100",
+          "uri": "http://purl.obolibrary.org/obo/ZFA_0000100"
+        },
+        {
+          "confidence": 0.9,
+          "datasource": "omit",
+          "label": "Cerebellum",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "cerebellum",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Cerebellum",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:omit",
+              "target": "http://purl.obolibrary.org/obo/OMIT_0003860"
+            }
+          ],
+          "ontology": "omit",
+          "termId": "OMIT_0003860",
+          "uri": "http://purl.obolibrary.org/obo/OMIT_0003860"
+        },
+        {
+          "confidence": 0.9,
           "datasource": "mesh",
           "label": "Cerebellum",
           "mappingProvenance": [
@@ -1543,7 +1551,7 @@
           "uri": "http://id.nlm.nih.gov/mesh/D002531"
         },
         {
-          "confidence": 1.0,
+          "confidence": 0.9,
           "datasource": "ncit",
           "label": "Cerebellum",
           "mappingProvenance": [
@@ -2082,6 +2090,27 @@
           "uri": "http://purl.obolibrary.org/obo/NCBITaxon_10095"
         },
         {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Mus musculus",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mus musculus",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10090"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10090",
+          "uri": "http://purl.obolibrary.org/obo/NCBITaxon_10090"
+        },
+        {
           "confidence": 0.9,
           "datasource": "omit",
           "label": "Mice",
@@ -2187,25 +2216,67 @@
           "uri": "http://purl.obolibrary.org/obo/NCIT_C14238"
         },
         {
-          "confidence": 0.9,
-          "datasource": "pr",
-          "label": "caspase-14",
+          "confidence": 0.85,
+          "datasource": "emapa",
+          "label": "mouse",
           "mappingProvenance": [
             {
               "confidence": 1.0,
-              "input": "mice",
+              "input": "mouse",
               "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "caspase-14",
+              "matchedText": "mouse",
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000005054"
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_25765"
             }
           ],
-          "ontology": "pr",
-          "termId": "PR_000005054",
-          "uri": "http://purl.obolibrary.org/obo/PR_000005054"
+          "ontology": "emapa",
+          "termId": "EMAPA_25765",
+          "uri": "http://purl.obolibrary.org/obo/EMAPA_25765"
+        },
+        {
+          "confidence": 0.85,
+          "datasource": "sio",
+          "label": "mouse",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "mouse",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:sio",
+              "target": "http://semanticscience.org/resource/SIO_000486"
+            }
+          ],
+          "ontology": "sio",
+          "termId": "SIO_000486",
+          "uri": "http://semanticscience.org/resource/SIO_000486"
+        },
+        {
+          "confidence": 0.85,
+          "datasource": "snomed",
+          "label": "Mouse (organism)",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mouse (organism)",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/82968002"
+            }
+          ],
+          "ontology": "snomed",
+          "termId": "SNOMED_82968002",
+          "uri": "http://snomed.info/id/82968002"
         }
       ],
       "error": null,

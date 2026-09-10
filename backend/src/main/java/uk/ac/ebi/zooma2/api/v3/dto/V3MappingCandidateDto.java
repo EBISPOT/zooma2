@@ -40,6 +40,14 @@ public class V3MappingCandidateDto {
     public List<V3MappingProvenanceStepDto> mappingProvenance;
 
     /**
+     * Provenance chains of the other evidence channels that independently found
+     * the same term (e.g. an embedding hit corroborating a label match). Each
+     * such channel adds a small bonus to the confidence. Omitted when none.
+     */
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public List<List<V3MappingProvenanceStepDto>> supportingProvenance;
+
+    /**
      * Create a candidate from an internal MapResult.
      */
     public static V3MappingCandidateDto from(MapResult internal) {
@@ -52,6 +60,7 @@ public class V3MappingCandidateDto {
         dto.datasource = internal.datasource;
         dto.preferred = internal.preferred;
         dto.mappingProvenance = internal.mappingProvenance;
+        dto.supportingProvenance = internal.supportingProvenance;
         return dto;
     }
 }

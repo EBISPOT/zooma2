@@ -45,6 +45,27 @@
           "uri": "http://purl.obolibrary.org/obo/NCBITaxon_10095"
         },
         {
+          "confidence": 1.0,
+          "datasource": "ncbitaxon",
+          "label": "Mus musculus",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mus musculus",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:ncbitaxon",
+              "target": "http://purl.obolibrary.org/obo/NCBITaxon_10090"
+            }
+          ],
+          "ontology": "ncbitaxon",
+          "termId": "NCBITaxon_10090",
+          "uri": "http://purl.obolibrary.org/obo/NCBITaxon_10090"
+        },
+        {
           "confidence": 0.9,
           "datasource": "omit",
           "label": "Mice",
@@ -150,25 +171,67 @@
           "uri": "http://purl.obolibrary.org/obo/NCIT_C14238"
         },
         {
-          "confidence": 0.9,
-          "datasource": "pr",
-          "label": "caspase-14",
+          "confidence": 0.85,
+          "datasource": "emapa",
+          "label": "mouse",
           "mappingProvenance": [
             {
               "confidence": 1.0,
-              "input": "mice",
+              "input": "mouse",
               "matchType": "OLS_TEXT_TAGGER",
-              "matchedText": "caspase-14",
+              "matchedText": "mouse",
               "method": "lexical",
               "model": null,
               "similarity": 1.0,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000005054"
+              "source": "ols:emapa",
+              "target": "http://purl.obolibrary.org/obo/EMAPA_25765"
             }
           ],
-          "ontology": "pr",
-          "termId": "PR_000005054",
-          "uri": "http://purl.obolibrary.org/obo/PR_000005054"
+          "ontology": "emapa",
+          "termId": "EMAPA_25765",
+          "uri": "http://purl.obolibrary.org/obo/EMAPA_25765"
+        },
+        {
+          "confidence": 0.85,
+          "datasource": "sio",
+          "label": "mouse",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "mouse",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:sio",
+              "target": "http://semanticscience.org/resource/SIO_000486"
+            }
+          ],
+          "ontology": "sio",
+          "termId": "SIO_000486",
+          "uri": "http://semanticscience.org/resource/SIO_000486"
+        },
+        {
+          "confidence": 0.85,
+          "datasource": "snomed",
+          "label": "Mouse (organism)",
+          "mappingProvenance": [
+            {
+              "confidence": 1.0,
+              "input": "mouse",
+              "matchType": "OLS_TEXT_TAGGER",
+              "matchedText": "Mouse (organism)",
+              "method": "lexical",
+              "model": null,
+              "similarity": 1.0,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/82968002"
+            }
+          ],
+          "ontology": "snomed",
+          "termId": "SNOMED_82968002",
+          "uri": "http://snomed.info/id/82968002"
         }
       ],
       "error": null,

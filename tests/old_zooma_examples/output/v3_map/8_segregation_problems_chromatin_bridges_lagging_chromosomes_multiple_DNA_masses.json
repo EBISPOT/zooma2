@@ -3,19 +3,19 @@
     {
       "candidates": [
         {
-          "confidence": 1.0,
-          "datasource": "sysmicro",
+          "confidence": 0.8108458185195923,
+          "datasource": "cmpo",
           "label": "abnormal chromosome segregation phenotype",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "segregation problems/chromatin bridges/lagging chromosomes/multiple DNA masses",
-              "matchType": "CURATED_EXACT",
+              "matchType": "OLS_EMBEDDING",
               "matchedText": "abnormal chromosome segregation phenotype",
-              "method": "curated",
-              "model": null,
-              "similarity": 1.0,
-              "source": "sysmicro",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.9110627174377441,
+              "source": "ols:cmpo",
               "target": "http://www.ebi.ac.uk/cmpo/CMPO_0000326"
             }
           ],
