@@ -145,6 +145,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
+          "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "organism",
+      "propertyValue": "mice",
+      "uri": null
+    },
+    "confidence": "HIGH",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
+            "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "organism",
+        "propertyValue": "mice",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "mesh",
+        "evidence": "OLS_TEXT_TAGGER",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "mesh",
+          "type": "ONTOLOGY",
+          "uri": "mesh"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "http://id.nlm.nih.gov/mesh/D051379"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "http://id.nlm.nih.gov/mesh/D051379"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fwww.genenames.org%2Fdata%2Fgene-symbol-report%2F%23%21%2Fhgnc_id%2F7094",
           "semanticTag": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/7094"
         }
@@ -358,77 +429,6 @@
     "_links": {
       "olslinks": [
         {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "organism",
-      "propertyValue": "mice",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "organism",
-        "propertyValue": "mice",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_TEXT_TAGGER",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/D051379"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/D051379"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C14238",
           "semanticTag": "http://purl.obolibrary.org/obo/NCIT_C14238"
         }
@@ -564,77 +564,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/PR_000005054"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
-          "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "organism",
-      "propertyValue": "mice",
-      "uri": null
-    },
-    "confidence": "HIGH",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fid.nlm.nih.gov%2Fmesh%2FD051379",
-            "semanticTag": "http://id.nlm.nih.gov/mesh/D051379"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "organism",
-        "propertyValue": "mice",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "mesh",
-        "evidence": "OLS_LEXICAL_FUZZY_LABEL",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "mesh",
-          "type": "ONTOLOGY",
-          "uri": "mesh"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "http://id.nlm.nih.gov/mesh/D051379"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "http://id.nlm.nih.gov/mesh/D051379"
     ],
     "uri": null
   },

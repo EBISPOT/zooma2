@@ -18,6 +18,23 @@ class TermNamespaceTest {
     }
 
     @Test
+    void prefixEndsAtTheFirstUnderscore() {
+        // Local ids may contain underscores; OBO/OLS prefixes never do (issue #12)
+        assertEquals("edam", TermNamespace.prefixOf("EDAM_data_0006"));
+        assertEquals("edam", TermNamespace.prefixOf("EDAM_topic_0621"));
+        assertEquals("ncbitaxon", TermNamespace.prefixOf("NCBITaxon_10116"));
+        assertEquals("mesh", TermNamespace.prefixOf("mesh_D000686"));
+    }
+
+    @Test
+    void iriWhoseLocalPartLacksThePrefixIsJudgedByThatLocalPart() {
+        // Callers pass the OLS short form (EDAM_data_0006) when they have it; from
+        // the bare IRI only the local part is visible.
+        assertEquals("data", TermNamespace.prefixOf("http://edamontology.org/data_0006"));
+        assertNull(TermNamespace.prefixOf("http://id.nlm.nih.gov/mesh/D000686"));
+    }
+
+    @Test
     void prefixOfCurie() {
         assertEquals("efo", TermNamespace.prefixOf("EFO:0000400"));
     }

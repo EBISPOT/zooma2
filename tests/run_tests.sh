@@ -287,6 +287,23 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v2_annotate_filtered/diabetes_atlas_none.json" \
         "$OUTPUT_DIR/v2_annotate_filtered/diabetes_atlas_none.json"
 
+    # ---- 2d. Term-id normalisation (issue #12) ----
+    # A term belongs to the ontology whose file it was found in AND to the
+    # ontology that defines its id namespace: an NCBITaxon term surfaced through
+    # EFO must pass an ncbitaxon filter.
+    curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=rat&propertyType=organism&filter=required:%5Bnone%5D,ontologies:%5Bncbitaxon%5D" \
+        | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/rat_ncbitaxon.json"
+    compare_output "$TEST_NAME/v2_annotate_filtered/rat_ncbitaxon" \
+        "$ACTUAL_DIR/v2_annotate_filtered/rat_ncbitaxon.json" \
+        "$OUTPUT_DIR/v2_annotate_filtered/rat_ncbitaxon.json"
+    # Multi-underscore short forms (EDAM_data_0849) must be recognised as EDAM's
+    # own namespace under defining_only.
+    curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=Sequence%20record&filter=required:%5Bnone%5D,ontologies:%5Bedam%5D,defining_only:%5Btrue%5D" \
+        | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/sequence_record_edam_defining_only.json"
+    compare_output "$TEST_NAME/v2_annotate_filtered/sequence_record_edam_defining_only" \
+        "$ACTUAL_DIR/v2_annotate_filtered/sequence_record_edam_defining_only.json" \
+        "$OUTPUT_DIR/v2_annotate_filtered/sequence_record_edam_defining_only.json"
+
     # ---- 2c. Duplicate properties in one request (issue #9) ----
     # The same text under two property types shares one set of tagger annotations;
     # converting them must not cross-contaminate the groups, and identical properties

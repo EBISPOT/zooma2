@@ -60,6 +60,54 @@ public class OlsClientRepo {
         return termCache;
     }
 
+    /** ontologyId -> ontology, built once from getOntologies(); null until loaded. */
+    private volatile Map<String, OlsOntology> ontologyIndex;
+    private volatile long ontologyIndexFailedAtMillis;
+    private static final long ONTOLOGY_INDEX_RETRY_MILLIS = 5 * 60 * 1000L;
+
+    /**
+     * The OLS-style short form of a term IRI in the given ontology (see
+     * {@link OlsShortForms}), using the ontology's configured prefix and base
+     * URIs. If the ontology list cannot be loaded, falls back to the rule with no
+     * configuration, which is exact for OBO PURLs and EFO-style IRIs.
+     */
+    public String olsShortForm(String ontologyId, String iri) {
+        OlsOntology ontology = ontologyId != null ? ontologyConfig(ontologyId) : null;
+        if (ontology == null || ontology.config == null) {
+            return OlsShortForms.shortForm(ontologyId, null, null, iri);
+        }
+        return OlsShortForms.shortForm(ontologyId, ontology.config.preferredPrefix, ontology.config.baseUris, iri);
+    }
+
+    private OlsOntology ontologyConfig(String ontologyId) {
+        Map<String, OlsOntology> index = ontologyIndex;
+        if (index == null) {
+            index = loadOntologyIndex();
+        }
+        return index.get(ontologyId.toLowerCase());
+    }
+
+    private synchronized Map<String, OlsOntology> loadOntologyIndex() {
+        if (ontologyIndex != null) return ontologyIndex;
+        // Don't hammer OLS during an outage: one attempt per retry window, and an
+        // empty index (configuration-free short forms) in between.
+        if (System.currentTimeMillis() - ontologyIndexFailedAtMillis < ONTOLOGY_INDEX_RETRY_MILLIS) {
+            return Map.of();
+        }
+        try {
+            Map<String, OlsOntology> index = new HashMap<>();
+            for (OlsOntology o : getOntologies()) {
+                if (o != null && o.ontologyId != null) index.put(o.ontologyId.toLowerCase(), o);
+            }
+            ontologyIndex = index;
+            return index;
+        } catch (IOException | RuntimeException e) {
+            System.err.println("Could not load the OLS ontology list for short forms: " + e.getMessage());
+            ontologyIndexFailedAtMillis = System.currentTimeMillis();
+            return Map.of();
+        }
+    }
+
     public List<OlsOntology> getOntologies() throws IOException {
 
         var json = urlToJson(getOlsUrl() + "/api/ontologies?size=1000");

@@ -20,10 +20,13 @@ public final class TermNamespace {
      * The lowercased namespace prefix of a term id, or {@code null} when no
      * prefix is recognisable.
      *
-     * <p>Accepts short forms ({@code ECTO_9000460} → {@code ecto}), CURIEs
-     * ({@code CHEBI:9937} → {@code chebi}) and full IRIs (the last path or
-     * fragment segment is parsed the same way). Identifiers with no prefix
-     * convention (e.g. bare SNOMED numbers) yield {@code null}.
+     * <p>Accepts short forms ({@code ECTO_9000460} → {@code ecto},
+     * {@code EDAM_data_0006} → {@code edam}), CURIEs ({@code CHEBI:9937} →
+     * {@code chebi}) and full IRIs (the last path or fragment segment is parsed
+     * the same way). Identifiers with no prefix convention (e.g. bare SNOMED
+     * numbers) yield {@code null}. Prefer passing an OLS short form over an IRI
+     * where one is available: OLS short forms always carry the ontology's own
+     * prefix, whereas an IRI's local part may not ({@code .../data_0006}).
      */
     /**
      * Whether a term id belongs to one of the given ontologies' own namespaces.
@@ -50,7 +53,9 @@ public final class TermNamespace {
         if (colon > 0) {
             return local.substring(0, colon).toLowerCase(Locale.ROOT);
         }
-        int underscore = local.lastIndexOf('_');
+        // OBO and OLS prefixes never contain underscores, but local ids can
+        // (EDAM_data_0006), so the prefix ends at the first underscore.
+        int underscore = local.indexOf('_');
         if (underscore > 0) {
             return local.substring(0, underscore).toLowerCase(Locale.ROOT);
         }

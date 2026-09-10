@@ -139,7 +139,9 @@ public class AnnotationEngine {
                     a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                     && targetsLower.contains(a.provenance.source.name.toLowerCase())
                     && (!definingOnly || TermNamespace.inNamespaces(
-                        a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null,
+                        a.resolvedTerm != null && a.resolvedTerm.short_form != null && !a.resolvedTerm.short_form.isBlank()
+                            ? a.resolvedTerm.short_form
+                            : (a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null),
                         targetsLower)));
                 if (!hasTargetResult) {
                     System.err.println("Shallow search found no results from target ontologies " +
