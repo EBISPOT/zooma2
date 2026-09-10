@@ -1,6 +1,7 @@
 package uk.ac.ebi.zooma2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,13 +19,23 @@ import uk.ac.ebi.zooma2.util.TermNamespace;
  * Centralised deduplication and filtering of mapping results.
  *
  * All rules are applied in order:
- *   1. Filter by allowed ontologies (if an ontology filter is active)
+ *   0. Exclude rejected term IDs (thumbs-down)
+ *   0b. Restrict curated results to the required datasources
+ *   1. Filter by allowed ontologies (if the ontology filter is hard, i.e.
+ *      target ontologies set and includeOtherOntologies=false)
  *   1b. Restrict to the target ontologies' own namespaces (if definingOnly is set)
- *   2. For organism-typed queries, prefer taxonomy (NCBITaxon) results
- *   3. Suppress curated-embedding results when a curated-exact result exists
- *   4. Among embedding results, keep only the best match (ties allowed)
- *   5. Drop results much weaker than the best match
- *   6. Deduplicate by ontologyTermID, keeping the highest confidence
+ *   1c. For organism-typed queries, prefer taxonomy (NCBITaxon) results
+ *   2. Suppress curated-embedding results when a curated-exact result exists
+ *   3. Among embedding results, keep only the best match (ties allowed)
+ *   4. Drop weak results: anything more than 0.2 below the global best (all
+ *      modes; each target ontology's own best is exempt under a hard filter),
+ *      plus, when target ontologies are set, the tight 0.05 gap - applied
+ *      within each target ontology under a hard filter, and only against
+ *      non-target results under a soft preference (includeOtherOntologies=true)
+ *   5. Deduplicate by ontologyTermID, keeping the highest confidence
+ *   6. When target ontologies are set, keep only the best result per target ontology
+ *   7. Among target ontologies, drop lower-priority results that tie with or
+ *      lose to a higher-priority ontology's result
  */
 public class Deduplicator {
 
@@ -32,6 +43,12 @@ public class Deduplicator {
     private static final double STRONG_MATCH_CONFIDENCE = 0.85;
     /** Confidence adjustment applied by the organism-type taxonomy preference. */
     private static final double TAXONOMY_PREFERENCE_ADJUSTMENT = 0.1;
+    /** Weak-result suppression only engages once the best result is at least this confident. */
+    private static final double WEAK_RESULT_MIN_BEST = 0.7;
+    /** Results more than this far below the global best are dropped as an absolute-quality floor. */
+    private static final double WEAK_RESULT_GAP = 0.2;
+    /** Tight gap used when target ontologies are set: near-misses this close to a better result are redundant. */
+    private static final double TARGET_ONTOLOGY_GAP = 0.05;
 
     private final PrefixMap prefixMap;
 
@@ -314,21 +331,93 @@ public class Deduplicator {
     }
 
     /**
-     * If the best result is significantly stronger than weaker results,
-     * drop the weak ones. When target ontologies are set, use a tighter
-     * threshold (0.05) so near-misses from other ontologies are suppressed.
-     * Otherwise keep results within 0.2 of the best.
+     * Drop results that are clearly weaker than the competition. Which gaps
+     * apply depends on the ontology filter mode: a <em>hard filter</em> is
+     * target ontologies with {@code includeOtherOntologies=false} (V2
+     * {@code ontologies:[..]}, V3 {@code includeOtherOntologies:false}); a
+     * <em>soft preference</em> is target ontologies with
+     * {@code includeOtherOntologies=true} (V3's default), where non-target
+     * results are still in the list.
+     *
+     * <ul>
+     *   <li><b>Absolute-quality floor (all modes).</b> If the global best is at
+     *   least 0.7, drop results more than 0.2 below it. Under a hard filter each
+     *   target ontology's own best result is exempt: the caller explicitly asked
+     *   for that ontology and {@link #keepBestPerTargetOntology} will keep
+     *   exactly that result, so e.g. MONDO's best at 0.6 survives next to an
+     *   EFO 1.0 when both ontologies were requested.</li>
+     *   <li><b>Hard filter: tight gap within each target ontology.</b> Drop
+     *   results more than 0.05 below their <em>own</em> ontology's best. A
+     *   result is never measured against another ontology's best, so a weakly
+     *   matching but requested ontology cannot be emptied by a strong one.</li>
+     *   <li><b>Soft preference: tight gap against non-target results only.</b>
+     *   Drop a non-target result when some target-ontology result scores within
+     *   0.05 of it or better (FOODON 0.97 loses to EFO 1.0). Target results are
+     *   subject only to the floor, so a strong non-target hit never deletes the
+     *   preferred ontology's best candidate (EFO 0.85 survives FOODON 1.0). This
+     *   keeps the original intent - near-misses from other ontologies are
+     *   suppressed when the caller prefers X - without penalising X itself.</li>
+     * </ul>
+     *
+     * Error results are left alone, as in the other rules.
      */
     void suppressWeakResults(List<MapResult> results, Filter filter) {
-        double best = results.stream()
-            .mapToDouble(r -> r.mappingConfidence)
-            .max()
-            .orElse(0.0);
-        boolean hasTargetOntologies = filter != null && filter.targetOntologies != null && !filter.targetOntologies.isEmpty();
-        double gap = hasTargetOntologies ? 0.05 : 0.2;
-        if (best >= 0.7) {
-            results.removeIf(r -> r.mappingConfidence < best - gap);
+        Set<String> targets = targetOntologies(filter);
+        boolean hardFilter = !targets.isEmpty() && !filter.includeOtherOntologies;
+        boolean softPreference = !targets.isEmpty() && filter.includeOtherOntologies;
+
+        double best = 0.0;
+        Map<String, Double> bestPerTarget = new HashMap<>();
+        for (var r : results) {
+            if (r.error != null) continue;
+            best = Math.max(best, r.mappingConfidence);
+            String onto = getOntologyPrefix(r);
+            if (onto != null && targets.contains(onto)) {
+                bestPerTarget.merge(onto, r.mappingConfidence, Math::max);
+            }
         }
+
+        // Absolute-quality floor against the global best (all modes).
+        if (best >= WEAK_RESULT_MIN_BEST) {
+            double floor = best - WEAK_RESULT_GAP;
+            results.removeIf(r -> r.error == null
+                && r.mappingConfidence < floor
+                && !(hardFilter && isBestOfItsTargetOntology(r, bestPerTarget)));
+        }
+
+        // Hard filter: tight gap within each target ontology, never across ontologies.
+        if (hardFilter) {
+            results.removeIf(r -> {
+                if (r.error != null) return false;
+                Double ontologyBest = bestPerTarget.get(getOntologyPrefix(r));
+                return ontologyBest != null && r.mappingConfidence < ontologyBest - TARGET_ONTOLOGY_GAP;
+            });
+        }
+
+        // Soft preference: the tight gap only ever penalises non-target results.
+        if (softPreference && !bestPerTarget.isEmpty()) {
+            double bestTarget = Collections.max(bestPerTarget.values());
+            results.removeIf(r -> {
+                if (r.error != null) return false;
+                String onto = getOntologyPrefix(r);
+                boolean isTarget = onto != null && targets.contains(onto);
+                return !isTarget && bestTarget >= r.mappingConfidence - TARGET_ONTOLOGY_GAP;
+            });
+        }
+    }
+
+    /** Lower-cased target ontologies of the filter, or an empty set when none are set. */
+    private static Set<String> targetOntologies(Filter filter) {
+        if (filter == null || filter.targetOntologies == null) return Set.of();
+        return filter.targetOntologies.stream()
+            .map(s -> s.toLowerCase(Locale.ROOT))
+            .collect(Collectors.toSet());
+    }
+
+    /** True if the result ties with the best confidence seen for its (target) ontology. */
+    private static boolean isBestOfItsTargetOntology(MapResult r, Map<String, Double> bestPerTarget) {
+        Double ontologyBest = bestPerTarget.get(getOntologyPrefix(r));
+        return ontologyBest != null && r.mappingConfidence >= ontologyBest;
     }
 
     List<MapResult> deduplicateByTermId(List<MapResult> results) {
