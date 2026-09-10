@@ -282,14 +282,26 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto_soft.json"
 
     # Case-insensitivity (issue #7): a capitalised query must find the same
-    # lowercase-labelled ECTO term as the lowercase query.
-    for cisplatin_case in cisplatin Cisplatin; do
-        curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${cisplatin_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" \
-            | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json"
-        compare_output "$TEST_NAME/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only" \
-            "$ACTUAL_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json" \
-            "$OUTPUT_DIR/v2_annotate_filtered/${cisplatin_case}_ecto_defining_only.json"
+    # lowercase-labelled ECTO term as the lowercase query. Bare mentions (issue
+    # #26): "cadmium" and "tea" must reach the ECTO terms whose labels embed them;
+    # "hypoxia" has no such label and still falls back to the embedding search.
+    for ecto_case in cisplatin Cisplatin cadmium tea hypoxia; do
+        curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${ecto_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" \
+            | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json"
+        compare_output "$TEST_NAME/v2_annotate_filtered/${ecto_case}_ecto_defining_only" \
+            "$ACTUAL_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json" \
+            "$OUTPUT_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json"
     done
+
+    # Bare mention (issue #26), V3 view: the lexical containment hit on
+    # "exposure to cadmium" decides, with its provenance, not an embedding guess.
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d '{"properties":[{"textToMap":"cadmium"}],"targetOntologies":["ecto"],"includeOtherOntologies":false,"definingOnly":true}' \
+        | normalise_json > "$ACTUAL_DIR/v3_map_filtered/cadmium_ecto_defining_only.json"
+    compare_output "$TEST_NAME/v3_map_filtered/cadmium_ecto_defining_only" \
+        "$ACTUAL_DIR/v3_map_filtered/cadmium_ecto_defining_only.json" \
+        "$OUTPUT_DIR/v3_map_filtered/cadmium_ecto_defining_only.json"
 
     # Legacy sentinel (issue #16): ontologies:[none] means "no ontology
     # restriction", not a literal ontology called "none" (which returned []).

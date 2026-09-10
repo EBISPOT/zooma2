@@ -89,6 +89,7 @@ public enum EvidenceTier {
                 return SYNONYM_FULL;
             case "CURATED_SUBSTRING":
             case "OLS_TEXT_TAGGER_SUBSTRING":
+            case "OLS_LEXICAL_CONTAINED":
             case "OLS_LEXICAL_FUZZY":
                 return PARTIAL;
             case "OLS_EMBEDDING":

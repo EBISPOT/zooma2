@@ -292,88 +292,40 @@
           "uri": "http://id.nlm.nih.gov/mesh/D014667"
         },
         {
-          "confidence": 0.8392388500000001,
-          "datasource": "pr",
-          "label": "vasopressin/oxytocin receptor",
+          "confidence": 0.8434831800000001,
+          "datasource": "ecto",
+          "label": "exposure to vasopressin",
           "mappingProvenance": [
             {
               "confidence": null,
               "input": "vasopressin",
               "matchType": "OLS_EMBEDDING",
-              "matchedText": "vasopressin/oxytocin receptor",
+              "matchedText": "exposure to vasopressin",
               "method": "semantic",
               "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.942965,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000001562"
+              "similarity": 0.925262,
+              "source": "ols:ecto",
+              "target": "http://purl.obolibrary.org/obo/ECTO_9000460"
             }
           ],
-          "ontology": "pr",
-          "termId": "PR_000001562",
-          "uri": "http://purl.obolibrary.org/obo/PR_000001562"
-        },
-        {
-          "confidence": 0.83836042,
-          "datasource": "pr",
-          "label": "vasopressin V2 receptor",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "vasopressin",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "vasopressin V2 receptor",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.941978,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000001683"
-            }
+          "ontology": "ecto",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.6675,
+                "input": "vasopressin",
+                "matchType": "OLS_LEXICAL_CONTAINED",
+                "matchedText": "exposure to vasopressin",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.6675,
+                "source": "ols:ecto",
+                "target": "http://purl.obolibrary.org/obo/ECTO_9000460"
+              }
+            ]
           ],
-          "ontology": "pr",
-          "termId": "PR_000001683",
-          "uri": "http://purl.obolibrary.org/obo/PR_000001683"
-        },
-        {
-          "confidence": 0.83694087,
-          "datasource": "go",
-          "label": "vasopressin secretion",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "vasopressin",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "vasopressin secretion",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.940383,
-              "source": "ols:go",
-              "target": "http://purl.obolibrary.org/obo/GO_0030103"
-            }
-          ],
-          "ontology": "go",
-          "termId": "GO_0030103",
-          "uri": "http://purl.obolibrary.org/obo/GO_0030103"
-        },
-        {
-          "confidence": 0.83647362,
-          "datasource": "pr",
-          "label": "vasopressin V1b receptor",
-          "mappingProvenance": [
-            {
-              "confidence": null,
-              "input": "vasopressin",
-              "matchType": "OLS_EMBEDDING",
-              "matchedText": "vasopressin V1b receptor",
-              "method": "semantic",
-              "model": "llama-embed-nemotron-8b_pca512",
-              "similarity": 0.939858,
-              "source": "ols:pr",
-              "target": "http://purl.obolibrary.org/obo/PR_000001682"
-            }
-          ],
-          "ontology": "pr",
-          "termId": "PR_000001682",
-          "uri": "http://purl.obolibrary.org/obo/PR_000001682"
+          "termId": "ECTO_9000460",
+          "uri": "http://purl.obolibrary.org/obo/ECTO_9000460"
         }
       ],
       "error": null,

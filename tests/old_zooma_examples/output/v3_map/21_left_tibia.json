@@ -22,6 +22,78 @@
           "ontology": "fma",
           "termId": "fma24478",
           "uri": "http://purl.org/sig/ont/fma/fma24478"
+        },
+        {
+          "confidence": 0.8022108602523804,
+          "datasource": "snomed",
+          "label": "Infection of left tibia associated with internal fixation device (disorder)",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "left tibia",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Infection of left tibia associated with internal fixation device (disorder)",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8788886070251465,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/12214691000119109"
+            }
+          ],
+          "ontology": "snomed",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.55625,
+                "input": "left tibia",
+                "matchType": "OLS_LEXICAL_CONTAINED",
+                "matchedText": "Infection of left tibia associated with internal fixation device (disorder)",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.55625,
+                "source": "ols:snomed",
+                "target": "http://snomed.info/id/12214691000119109"
+              }
+            ]
+          ],
+          "termId": "SNOMED_12214691000119109",
+          "uri": "http://snomed.info/id/12214691000119109"
+        },
+        {
+          "confidence": 0.8019405269622804,
+          "datasource": "snomed",
+          "label": "Left tibia vara",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "left tibia",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "Left tibia vara",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.8785848617553711,
+              "source": "ols:snomed",
+              "target": "http://snomed.info/id/15875351000119108"
+            }
+          ],
+          "ontology": "snomed",
+          "supportingProvenance": [
+            [
+              {
+                "confidence": 0.7416666666666666,
+                "input": "left tibia",
+                "matchType": "OLS_LEXICAL_CONTAINED",
+                "matchedText": "Left tibia vara",
+                "method": "lexical",
+                "model": null,
+                "similarity": 0.7416666666666666,
+                "source": "ols:snomed",
+                "target": "http://snomed.info/id/15875351000119108"
+              }
+            ]
+          ],
+          "termId": "SNOMED_15875351000119108",
+          "uri": "http://snomed.info/id/15875351000119108"
         }
       ],
       "error": null,
