@@ -8,6 +8,7 @@ import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.ZoomaAnnotator;
 import uk.ac.ebi.zooma2.ZoomaConfig;
 import uk.ac.ebi.zooma2.api.PropertyTypeMetadata;
+import uk.ac.ebi.zooma2.api.RequestLimits;
 import uk.ac.ebi.zooma2.api.SourceMetadata;
 import uk.ac.ebi.zooma2.api.v2.dto.V2AnnotationDto;
 import uk.ac.ebi.zooma2.api.v2.dto.V2FilterDto;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,19 +44,51 @@ public class ZoomaApiV2 {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
-    private static class MapJob {
+    static class MapJob {
         final List<V2StringToMapDto> inputs;
         final String filterRaw;
-        volatile double progress;       // 0.0 .. 1.0
+        /** Fraction of properties done; stays below 1.0 until {@link #results} is published. */
+        volatile double progress;
         volatile List<V2MapResultDto> results;
-        final long createdAt = System.currentTimeMillis();
+        final long createdAt;
+        /** Wall-clock time the results were published, 0 while the job is running. */
+        volatile long completedAt = 0L;
 
         MapJob(List<V2StringToMapDto> inputs, String filterRaw) {
+            this(inputs, filterRaw, System.currentTimeMillis());
+        }
+
+        MapJob(List<V2StringToMapDto> inputs, String filterRaw, long createdAt) {
             this.inputs = inputs;
             this.filterRaw = filterRaw;
+            this.createdAt = createdAt;
             this.progress = 0.0;
             this.results = null;
         }
+
+        /** Results first, then completion, so no poller can see progress 1.0 before the results exist. */
+        void complete(List<V2MapResultDto> finalResults) {
+            this.results = finalResults;
+            this.completedAt = System.currentTimeMillis();
+            this.progress = 1.0;
+        }
+    }
+
+    /** A client that has not collected its results within this long is gone. */
+    static final long EVICT_COMPLETED_AFTER_MS = 30L * 60 * 1000;
+    /** A job still running after this long is stuck; bound memory even so. */
+    static final long EVICT_RUNNING_AFTER_MS = 6L * 60 * 60 * 1000;
+
+    /**
+     * Jobs are evicted by completion age, not creation age: the old rule removed
+     * any job older than 30 minutes, so a long batch was evicted mid-run by an
+     * unrelated submit and its owner's polls reset to 0 forever.
+     */
+    static boolean shouldEvict(MapJob job, long now) {
+        if (job.completedAt > 0) {
+            return now - job.completedAt > EVICT_COMPLETED_AFTER_MS;
+        }
+        return now - job.createdAt > EVICT_RUNNING_AFTER_MS;
     }
 
     public ZoomaApiV2(ZoomaAnnotator annotator, OlsClientRepo olsRepo) {
@@ -87,6 +121,8 @@ public class ZoomaApiV2 {
         String propertyValue = q(ctx, "propertyValue", true);
         String propertyType  = q(ctx, "propertyType", false);
         String filterRaw     = q(ctx, "filter", false);
+        RequestLimits.validateString("propertyValue", propertyValue, true, RequestLimits.MAX_PROPERTY_TEXT_LENGTH);
+        RequestLimits.validateString("propertyType", propertyType, false, RequestLimits.MAX_PROPERTY_TYPE_LENGTH);
 
         var filterDto = V2FilterDto.parse(filterRaw);
         var filter = filterDto != null ? filterDto.toFilter() : null;
@@ -104,9 +140,12 @@ public class ZoomaApiV2 {
 
     private void mapSubmit(Context ctx) {
         var v2StringsToMap = bodyJson(ctx, V2StringToMapDto[].class);
+        validateSubmission(v2StringsToMap);
         int count = v2StringsToMap.length;
 
         String filterRaw = q(ctx, "filter", false);
+        // Parse now so a malformed filter is a 400, not a silently empty job
+        V2FilterDto.parse(filterRaw);
         var job = new MapJob(Arrays.asList(v2StringsToMap), filterRaw);
         String sessionId = generateSessionId();
 
@@ -114,42 +153,87 @@ public class ZoomaApiV2 {
         ctx.cookie("JSESSIONID", sessionId, -1);
         evictOldJobs();
 
-        // Run mapping asynchronously
-        Thread.startVirtualThread(() -> {
-            try {
-                var filterDto = V2FilterDto.parse(job.filterRaw);
-                var filter = filterDto != null ? filterDto.toFilter() : null;
-                String model = resolveModel();
-
-                List<V2MapResultDto> allResults = new ArrayList<>();
-                int total = job.inputs.size();
-
-                for (int i = 0; i < total; i++) {
-                    var stm = job.inputs.get(i).toStringToMap();
-                    var results = mapCompat(stm, filter, model);
-                    for (var r : results) {
-                        allResults.add(V2MapResultDto.from(r));
-                    }
-                    job.progress = (double)(i + 1) / total;
-                }
-
-                job.results = allResults;
-            } catch (Exception e) {
-                job.progress = 1.0;
-                job.results = List.of();
-                System.err.println("Async map job failed: " + e.getMessage());
-            }
-        });
+        // Run the whole batch through the same pipeline as V3: one bulk tag_text
+        // call and one virtual thread per property, instead of one full deep
+        // mapping (and one bulk-tagger POST) per property in sequence.
+        Thread.startVirtualThread(() -> runJob(job));
 
         ctx.contentType("text/plain");
         ctx.result("Mapping request of " + count + " properties was successfully received");
+    }
+
+    private void runJob(MapJob job) {
+        try {
+            var filterDto = V2FilterDto.parse(job.filterRaw);
+            var filter = filterDto != null ? filterDto.toFilter() : null;
+            String model = resolveModel();
+            int total = job.inputs.size();
+
+            List<StringToMap> properties = new ArrayList<>(total);
+            Map<StringToMap, Integer> inputIndex = new IdentityHashMap<>();
+            for (int i = 0; i < total; i++) {
+                var stm = job.inputs.get(i).toStringToMap();
+                properties.add(stm);
+                inputIndex.put(stm, i);
+            }
+
+            // Properties complete in any order; the report keeps input order.
+            List<List<V2MapResultDto>> perInput = new ArrayList<>(Collections.nCopies(total, null));
+            var completed = new AtomicInteger();
+            // deep=null: escalate to the deep search only when an ontology filter is set
+            // and the shallow search misses it, as V3 does, rather than forcing the full
+            // deep pipeline for every property of a spreadsheet.
+            annotator.mapEach(properties, filter, model, null, true, null, (prop, results) -> {
+                List<V2MapResultDto> dtos = results.stream()
+                    .filter(r -> !r.isDiagnostic())
+                    .sorted(EvidenceTier.resultRanking())
+                    .map(V2MapResultDto::from)
+                    .collect(Collectors.toList());
+                synchronized (perInput) {
+                    perInput.set(inputIndex.get(prop), dtos);
+                }
+                // Never 1.0 here: that is the signal that the results are published
+                job.progress = Math.min(0.99, (double) completed.incrementAndGet() / total);
+            });
+
+            List<V2MapResultDto> allResults = new ArrayList<>();
+            synchronized (perInput) {
+                for (var rows : perInput) {
+                    if (rows != null) allResults.addAll(rows);
+                }
+            }
+            job.complete(allResults);
+        } catch (Exception e) {
+            System.err.println("Async map job failed: " + MapResult.describe(e));
+            e.printStackTrace();
+            job.complete(List.of());
+        }
+    }
+
+    /** The V3 input caps, applied to a legacy bulk submission. */
+    static void validateSubmission(V2StringToMapDto[] rows) {
+        if (rows == null || rows.length == 0) {
+            throw new BadRequestResponse("Request body must be a non-empty array of properties");
+        }
+        if (rows.length > RequestLimits.MAX_PROPERTIES) {
+            throw new BadRequestResponse("Request cannot contain more than " + RequestLimits.MAX_PROPERTIES + " properties");
+        }
+        for (int i = 0; i < rows.length; i++) {
+            if (rows[i] == null) {
+                throw new BadRequestResponse("properties[" + i + "] cannot be null");
+            }
+            RequestLimits.validateString("properties[" + i + "].propertyValue", rows[i].propertyValue, true, RequestLimits.MAX_PROPERTY_TEXT_LENGTH);
+            RequestLimits.validateString("properties[" + i + "].propertyType", rows[i].propertyType, false, RequestLimits.MAX_PROPERTY_TYPE_LENGTH);
+        }
     }
 
     private void mapStatus(Context ctx) {
         disableCaching(ctx);
         String sessionId = ctx.cookie("JSESSIONID");
         MapJob job = sessionId != null ? mapJobs.get(sessionId) : null;
-        double progress = job != null ? job.progress : 0.0;
+        // 1.0 means "results are ready to fetch", so it is derived from the results
+        // having been published rather than from the running count.
+        double progress = job == null ? 0.0 : (job.results != null ? 1.0 : Math.min(job.progress, 0.99));
         ctx.contentType("text/plain");
         ctx.result(String.valueOf(progress));
     }
@@ -331,10 +415,10 @@ public class ZoomaApiV2 {
         return firstStep.source.startsWith("ols:") ? firstStep.source.substring(4) : firstStep.source;
     }
 
-    /** Remove jobs older than 30 minutes to prevent unbounded memory growth. */
+    /** Remove finished jobs nobody collected and stuck jobs, to prevent unbounded memory growth. */
     private void evictOldJobs() {
-        long cutoff = System.currentTimeMillis() - 30 * 60 * 1000;
-        mapJobs.entrySet().removeIf(e -> e.getValue().createdAt < cutoff);
+        long now = System.currentTimeMillis();
+        mapJobs.entrySet().removeIf(e -> shouldEvict(e.getValue(), now));
     }
     
     private static String q(Context ctx, String name, boolean required) {

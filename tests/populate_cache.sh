@@ -167,6 +167,27 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
     curl -sf -X POST "$BASE_URL/v3/api/services/map" -H "Content-Type: application/json" \
         -d '{"properties":[{"textToMap":"yeast","propertyType":"organism"},{"textToMap":"yeast"},{"textToMap":"yeast"}]}' > /dev/null || true
 
+    # V2 async bulk job (issue #17)
+    v2_job_body=$(python3 -c "
+import csv, json
+rows = []
+with open('$INPUT_FILE', newline='') as f:
+    for row in csv.DictReader(f, delimiter='\t'):
+        r = {'propertyValue': row['propertyValue']}
+        pt = row.get('propertyType', '').strip()
+        if pt:
+            r['propertyType'] = pt
+        rows.append(r)
+print(json.dumps(rows))
+")
+    v2_cookies="$(mktemp)"
+    curl -sf -c "$v2_cookies" -X POST "$BASE_URL/v2/api/services/map" -H "Content-Type: application/json" -d "$v2_job_body" > /dev/null || true
+    for i in $(seq 1 300); do
+        [ "$(curl -sf -b "$v2_cookies" "$BASE_URL/v2/api/services/map/status")" = "1.0" ] && break
+        sleep 1
+    done
+    curl -sf -b "$v2_cookies" "$BASE_URL/v2/api/services/map" > /dev/null || true
+
     # Batch v3 map
     v3_batch_body=$(python3 -c "
 import csv, json
