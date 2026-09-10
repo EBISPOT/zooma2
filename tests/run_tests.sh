@@ -272,6 +272,15 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json" \
         "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto_defining_only.json"
 
+    # Soft preference (issue #20): the scoped search runs in addition to the global
+    # one, so ECTO's own terms appear alongside the global candidates.
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d '{"properties":[{"textToMap":"vasopressin"}],"targetOntologies":["ecto"]}' | normalise_json > "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_soft.json"
+    compare_output "$TEST_NAME/v3_map_filtered/vasopressin_ecto_soft" \
+        "$ACTUAL_DIR/v3_map_filtered/vasopressin_ecto_soft.json" \
+        "$OUTPUT_DIR/v3_map_filtered/vasopressin_ecto_soft.json"
+
     # Case-insensitivity (issue #7): a capitalised query must find the same
     # lowercase-labelled ECTO term as the lowercase query.
     for cisplatin_case in cisplatin Cisplatin; do

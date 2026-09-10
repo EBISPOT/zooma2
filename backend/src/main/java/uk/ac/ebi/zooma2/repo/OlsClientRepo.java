@@ -969,6 +969,15 @@ public class OlsClientRepo {
     }
 
     public List<OlsTerm> findByFuzzySearch(String query, int size, int timeoutMs) {
+        return findByFuzzySearch(query, size, timeoutMs, null);
+    }
+
+    /**
+     * @param ontologyIds restrict the search to these ontologies (any number; OLS
+     *                    OR-filters repeated {@code ontologyId} parameters), or
+     *                    {@code null}/empty for a global search
+     */
+    public List<OlsTerm> findByFuzzySearch(String query, int size, int timeoutMs, Collection<String> ontologyIds) {
         try {
             lexicalSemaphore.acquire();
         } catch (InterruptedException e) {
@@ -978,6 +987,11 @@ public class OlsClientRepo {
         try {
         var escaped = java.net.URLEncoder.encode(query, java.nio.charset.StandardCharsets.UTF_8);
         var url = getOlsUrl() + "/api/v2/entities?search=" + escaped + "&exactMatch=false&size=" + size + "&type=class";
+        if (ontologyIds != null) {
+            for (String ontologyId : ontologyIds) {
+                url += "&ontologyId=" + java.net.URLEncoder.encode(ontologyId.toLowerCase(java.util.Locale.ROOT), java.nio.charset.StandardCharsets.UTF_8);
+            }
+        }
 
         try {
             var json = urlToJson(url, timeoutMs);

@@ -1,7 +1,9 @@
 package uk.ac.ebi.zooma2.matcher;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import uk.ac.ebi.zooma2.api.v3.dto.V3MappingProvenanceStepDto;
@@ -46,13 +48,33 @@ public class OlsLexicalMatcher implements AnnotationMatcher {
         return "ols_lexical";
     }
 
+    /**
+     * The global search returns the global top-k, so a target-ontology term that
+     * sits below dozens of hits from bigger ontologies is unreachable however
+     * well it matches. With target ontologies the search is also run restricted
+     * to them (one call: OLS OR-filters repeated ontologyId parameters); under a
+     * hard filter only that call is made, under a soft preference both are and
+     * the results are merged by IRI.
+     */
     @Override
     public List<Annotation> findMatches(MatchContext context) {
-        var terms = olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs);
-        return terms.stream()
-            .filter(t -> t.iri != null) // an entity without an IRI cannot be a mapping
+        Map<String, OlsTerm> byIri = new LinkedHashMap<>();
+        if (!RetrievalScope.hardFilter(context)) {
+            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs));
+        }
+        if (RetrievalScope.hasTargets(context)) {
+            merge(byIri, olsRepo.findByFuzzySearch(context.stringToMap, maxResults, timeoutMs, RetrievalScope.targets(context)));
+        }
+        return byIri.values().stream()
             .map(t -> createAnnotation(t, context))
             .collect(Collectors.toList());
+    }
+
+    private static void merge(Map<String, OlsTerm> byIri, List<OlsTerm> terms) {
+        for (OlsTerm t : terms) {
+            if (t.iri == null) continue; // an entity without an IRI cannot be a mapping
+            byIri.putIfAbsent(t.iri, t);
+        }
     }
 
     private Annotation createAnnotation(OlsTerm t, MatchContext context) {

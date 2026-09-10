@@ -112,6 +112,8 @@ public class ZoomaConfig {
         public Integer timeout_ms;
         public Integer max_concurrent_embedding_requests;
         public Integer max_concurrent_similar_requests;
+        /** Most target ontologies the embedding search queries one by one (llm_search takes a single ontology per call). */
+        public Integer max_scoped_ontologies;
     }
 
     public static class OxoConfig {
