@@ -18,7 +18,21 @@ public class MapResult {
     public String ontologyURI;
     public String datasource;
     public List<V3MappingProvenanceStepDto> mappingProvenance;
+    /** {@code true} when the result's datasource or ontology is one the caller listed as preferred; otherwise unset. */
+    public Boolean preferred;
     public String error;
+
+    /**
+     * A message for an error result that keeps the exception's identity: many
+     * runtime exceptions (NPE, class casts) carry no message at all, and an
+     * empty error string tells the caller nothing.
+     */
+    public static String describe(Throwable e) {
+        if (e == null) return "unknown error";
+        String name = e.getClass().getSimpleName();
+        String message = e.getMessage();
+        return message == null || message.isBlank() ? name : name + ": " + message;
+    }
 
     public static MapResult error(String textToMap, String propertyType, String errorMessage) {
         MapResult r = new MapResult();
@@ -44,6 +58,7 @@ public class MapResult {
                Objects.equals(ontologyTermIri, that.ontologyTermIri) &&
                Objects.equals(ontologyURI, that.ontologyURI) &&
                Objects.equals(datasource, that.datasource) &&
+               Objects.equals(preferred, that.preferred) &&
                Objects.equals(mappingProvenance, that.mappingProvenance);
     }
 
@@ -51,6 +66,6 @@ public class MapResult {
     public int hashCode() {
         return Objects.hash(propertyType, textToMap, ontologyTermLabel,
                             ontologyTermSynonyms, Double.valueOf(mappingConfidence),
-                            ontologyTermID, ontologyTermIri, ontologyURI, datasource, mappingProvenance);
+                            ontologyTermID, ontologyTermIri, ontologyURI, datasource, preferred, mappingProvenance);
     }
 }

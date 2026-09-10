@@ -12,7 +12,12 @@ public class PrefixMap {
     Map<String, String> iriPrefixToZoomaPrefix = new HashMap<>();
 
     public PrefixMap() {
-        bioregistry = new Bioregistry();
+        this(new Bioregistry());
+    }
+
+    /** With a specific registry, e.g. {@link Bioregistry#fromSnapshot()} for offline tests. */
+    public PrefixMap(Bioregistry bioregistry) {
+        this.bioregistry = bioregistry;
 
         var prefix_map = ZoomaConfig.config.prefix_map;
 

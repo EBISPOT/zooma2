@@ -12,7 +12,12 @@ public class V3FilterDto {
     /** Required datasources - results must come from one of these. */
     public List<String> required;
 
-    /** Preferred datasources - results from these are ranked higher. */
+    /**
+     * Preferred sources: curated datasource names (e.g. "atlas", "gwas") or
+     * ontology ids (e.g. "efo"). Candidates from these are flagged
+     * {@code preferred} and ranked ahead of equally confident candidates; their
+     * confidence scores are not changed.
+     */
     public List<String> preferred;
 
     /**

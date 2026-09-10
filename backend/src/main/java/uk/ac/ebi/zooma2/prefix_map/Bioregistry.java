@@ -1,14 +1,22 @@
 package uk.ac.ebi.zooma2.prefix_map;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import uk.ac.ebi.zooma2.util.CachedHttpClient;
 
 import java.io.IOException;
-import java.util.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Pattern;
-
 
 /**
  * The Bioregistry (https://bioregistry.io) is an open source, community curated registry
@@ -16,120 +24,160 @@ import java.util.regex.Pattern;
  * can be used to look generate links for prefixes found in xrefs and other components of
  * ontologies.
  *
- * Source code and data is availale under CC0/MIT licenses at https://github.com/biopragmatics/bioregistry
+ * <p>Source code and data is available under CC0/MIT licenses at https://github.com/biopragmatics/bioregistry
+ *
+ * <p>Construction never touches the network: a vendored snapshot on the classpath
+ * ({@value #SNAPSHOT_RESOURCE}, refreshed with {@code backend/scripts/update-bioregistry-snapshot.py})
+ * is loaded first, so a cold start does not depend on GitHub. The live registry is
+ * then fetched on a background thread and, if that succeeds, swapped in atomically;
+ * readers always see one complete, immutable index.
  */
 public class Bioregistry {
 
-    Gson gson = new Gson();
+    public static final String DEFAULT_URL = "https://raw.githubusercontent.com/biopragmatics/bioregistry/main/exports/registry/registry.json";
+    static final String SNAPSHOT_RESOURCE = "/bioregistry/registry.json";
 
-    public String registryUrl;
+    public final String registryUrl;
 
-    JsonObject theRegistry;
-    Map<String, JsonObject> prefixToDatabase = new HashMap<>();
+    private final AtomicReference<Index> index;
 
-    Map<String, String> iriPrefixToDatabase = new TreeMap<>((s1, s2) -> {
-        if (s1.length() > s2.length()) {
-            return -1;
-        } else if (s1.length() < s2.length()) {
-            return 1;
-        } else {
+    /** Lookup structures built from one registry document; never mutated after construction. */
+    private static final class Index {
+        final Map<String, JsonObject> prefixToDatabase = new HashMap<>();
+        final TreeMap<String, String> iriPrefixToDatabase = new TreeMap<>((s1, s2) -> {
+            if (s1.length() > s2.length()) return -1;
+            if (s1.length() < s2.length()) return 1;
             return s1.compareTo(s2);
-        }
-    });
+        });
+        final ConcurrentHashMap<String, Pattern> patterns = new ConcurrentHashMap<>();
+        final int size;
 
-    Map<String, Pattern> patterns = new HashMap<>();
+        Index(JsonObject registry) {
+            this.size = registry.size();
+            for (var entry : registry.entrySet()) {
+                if (!entry.getValue().isJsonObject()) continue;
+                JsonObject db = entry.getValue().getAsJsonObject();
 
-    public Bioregistry() {
-        this("https://raw.githubusercontent.com/biopragmatics/bioregistry/main/exports/registry/registry.json");
-    }
+                // The key is the canonical Bioregistry prefix, always lowercase
+                prefixToDatabase.put(norm(entry.getKey()), db);
 
-    public Bioregistry(String jsonUrl){
+                // The preferred prefix can have various capitalization, usually the same as canonical
+                JsonElement preferred = db.get("preferred_prefix");
+                if (preferred != null && preferred.isJsonPrimitive()) {
+                    prefixToDatabase.put(norm(preferred.getAsString()), db);
+                }
 
-        this.registryUrl = jsonUrl;
+                JsonElement synonyms = db.get("synonyms");
+                if (synonyms != null && synonyms.isJsonArray()) {
+                    for (JsonElement synonym : synonyms.getAsJsonArray()) {
+                        prefixToDatabase.put(norm(synonym.getAsString()), db);
+                    }
+                }
 
-        try {
-            theRegistry = urlToJson(jsonUrl).getAsJsonObject();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        for(var entry : theRegistry.entrySet()) {
-
-            JsonObject db = entry.getValue().getAsJsonObject();
-
-            // The key is the canonical Bioregistry prefix, always lowercase
-            prefixToDatabase.put(norm(entry.getKey()), db);
-
-            // The preferred prefix can have various capitalization,
-            // usually is same as canonical
-            prefixToDatabase.put(norm(db.get("preferred_prefix").getAsString()), db);
-
-            JsonElement synonyms = db.get("synonyms");
-
-            if(synonyms != null) {
-                for(JsonElement synonym : synonyms.getAsJsonArray()) {
-                    prefixToDatabase.put(norm(synonym.getAsString()), db);
+                JsonElement uriFormat = db.get("uri_format");
+                if (uriFormat != null && uriFormat.isJsonPrimitive()) {
+                    String format = uriFormat.getAsString();
+                    // TODO: based on charlie's PR but maybe we should regex match the format?
+                    if (format.endsWith("$1")) {
+                        String uriPrefix = format.substring(0, format.length() - 2);
+                        iriPrefixToDatabase.put(uriPrefix, entry.getKey());
+                    }
                 }
             }
-            
-            JsonElement uriFormat = db.get("uri_format");
-            if (uriFormat != null && uriFormat.isJsonPrimitive()) {
-                String format = uriFormat.getAsString();
-                // TODO: based on charlie's PR but maybe we should regex match the format?
-                if(format.endsWith("$1")) {
-                    String uriPrefix = format.substring(0, format.length() - 2);
-                    iriPrefixToDatabase.put(uriPrefix, entry.getKey());
-                }
-            }  
         }
+    }
 
+    /** Snapshot now, live registry when the background refresh completes. */
+    public Bioregistry() {
+        this(DEFAULT_URL, true);
+    }
+
+    /** Snapshot now, refreshed in the background from {@code jsonUrl}. */
+    public Bioregistry(String jsonUrl) {
+        this(jsonUrl, true);
+    }
+
+    /** The vendored snapshot only, no network at all; for tests and offline use. */
+    public static Bioregistry fromSnapshot() {
+        return new Bioregistry(null, false);
+    }
+
+    private Bioregistry(String jsonUrl, boolean refresh) {
+        this.registryUrl = jsonUrl;
+        this.index = new AtomicReference<>(new Index(loadSnapshot()));
+        if (refresh && jsonUrl != null) {
+            startRefresh(jsonUrl);
+        }
+    }
+
+    private static JsonObject loadSnapshot() {
+        try (InputStream in = Bioregistry.class.getResourceAsStream(SNAPSHOT_RESOURCE)) {
+            if (in == null) {
+                throw new IllegalStateException("Bioregistry snapshot missing from classpath: " + SNAPSHOT_RESOURCE);
+            }
+            return JsonParser.parseReader(new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject();
+        } catch (IOException e) {
+            throw new UncheckedIOException("Cannot read Bioregistry snapshot " + SNAPSHOT_RESOURCE, e);
+        }
+    }
+
+    private void startRefresh(String url) {
+        Thread refresh = new Thread(() -> {
+            try {
+                JsonObject fresh = urlToJson(url).getAsJsonObject();
+                Index built = new Index(fresh);
+                index.set(built);
+                System.err.println("Bioregistry refreshed from " + url + " (" + built.size + " entries)");
+            } catch (Exception e) {
+                System.err.println("Bioregistry refresh from " + url + " failed, keeping the vendored snapshot: "
+                    + e.getClass().getSimpleName() + (e.getMessage() != null ? ": " + e.getMessage() : ""));
+            }
+        }, "bioregistry-refresh");
+        refresh.setDaemon(true);
+        refresh.start();
     }
 
     public String getRegistryUrl() {
-        return  registryUrl;
+        return registryUrl;
+    }
+
+    /** Number of registry entries in the index currently in use. */
+    public int size() {
+        return index.get().size;
     }
 
     public String getUrlForId(String databaseId, String id) {
-
-        JsonObject db = prefixToDatabase.get(norm(databaseId));
-
-        if(db == null)
-            return null;
-
-        if(id == null)
-            return null;
+        Index current = index.get();
+        JsonObject db = current.prefixToDatabase.get(norm(databaseId));
+        if (db == null) return null;
+        if (id == null) return null;
 
         JsonElement patternObj = db.get("pattern");
+        if (patternObj == null) return null;
 
-        if(patternObj == null)
-            return null;
-
-        Pattern pattern = getPattern(patternObj.getAsString());
-
-        if(!pattern.matcher(id).matches()) {
+        Pattern pattern = current.patterns.computeIfAbsent(patternObj.getAsString(), Pattern::compile);
+        if (!pattern.matcher(id).matches()) {
             return null;
         }
 
         JsonElement uriFormat = db.get("uri_format");
-
-        if(uriFormat == null) {
+        if (uriFormat == null) {
             return null;
         }
-
         return uriFormat.getAsString().replace("$1", id);
     }
-                                                        
+
     public String getCurieForUrl(String url) {
-        for (var entry : iriPrefixToDatabase.entrySet()) {
-          String key = entry.getKey();
-          if (url.startsWith(key)) {
-              String local_unique_identifier = url.substring(key.length());
-              return entry.getValue() + ":" + local_unique_identifier;
-          }
+        for (var entry : index.get().iriPrefixToDatabase.entrySet()) {
+            String key = entry.getKey();
+            if (url.startsWith(key)) {
+                String localUniqueIdentifier = url.substring(key.length());
+                return entry.getValue() + ":" + localUniqueIdentifier;
+            }
         }
         return null;
     }
-    
+
     private static String norm(String s) {
         // see https://github.com/biopragmatics/bioregistry/blob/a7424ef4a0d22eaca61d3a86c6175e2059e9c855/src/bioregistry/utils.py#L128-L133
         s = s.toLowerCase(Locale.ROOT);
@@ -140,21 +188,7 @@ public class Bioregistry {
         return s;
     }
 
-    private Pattern getPattern(String patternStr) {
-
-        Pattern found = patterns.get(patternStr);
-
-        if(found != null) {
-            return found;
-        }
-
-        Pattern pattern = Pattern.compile(patternStr);
-        patterns.put(patternStr, pattern);
-        return pattern;
-    }
-
     private JsonElement urlToJson(String url) throws IOException {
         return CachedHttpClient.getJsonWithSystemProperties(url, 5000);
     }
-
 }

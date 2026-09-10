@@ -163,15 +163,21 @@ public enum EvidenceTier {
         return tierRank * 2 + (viaFuzzyEndpoint ? 1 : 0);
     }
 
-    /** Highest confidence first; equal confidences ordered by {@link #rankOf} so curated evidence ranks first. */
+    /**
+     * Highest confidence first; among equals, results from the caller's preferred
+     * sources ({@code MapResult.preferred}) first, then {@link #rankOf} so curated
+     * evidence ranks first.
+     */
     public static Comparator<MapResult> resultRanking() {
         return Comparator.comparingDouble((MapResult r) -> r.mappingConfidence).reversed()
+            .thenComparing((MapResult r) -> Boolean.TRUE.equals(r.preferred) ? 0 : 1)
             .thenComparingInt(r -> rankOf(r.mappingProvenance));
     }
 
-    /** Highest confidence first; equal confidences ordered by {@link #rankOf} so curated evidence ranks first. */
+    /** As {@link #resultRanking()}, for the V3 candidate DTOs. */
     public static Comparator<V3MappingCandidateDto> candidateRanking() {
         return Comparator.comparingDouble((V3MappingCandidateDto c) -> c.confidence != null ? c.confidence : 0.0).reversed()
+            .thenComparing((V3MappingCandidateDto c) -> Boolean.TRUE.equals(c.preferred) ? 0 : 1)
             .thenComparingInt(c -> rankOf(c.mappingProvenance));
     }
 }

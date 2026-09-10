@@ -159,8 +159,9 @@ public class BatchMapper {
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
-                        System.err.println("Error mapping property '" + prop.textToMap + "': " + e.getMessage());
-                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, e.getMessage())));
+                        System.err.println("Error mapping property '" + prop.textToMap + "': " + MapResult.describe(e));
+                        e.printStackTrace();
+                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, MapResult.describe(e))));
                     }
                 })
             ).collect(Collectors.toList());

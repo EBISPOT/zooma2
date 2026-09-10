@@ -53,13 +53,22 @@ public class V2FilterDto {
                     case "required"   -> required.addAll(values);
                     case "preferred"  -> preferred.addAll(values);
                     case "ontologies" -> ontologies.addAll(values);
-                    case "defining_only" -> definingOnly = uk.ac.ebi.zooma2.model.Filter.parseDefiningOnly(values);
+                    case "defining_only" -> definingOnly = parseDefiningOnly(values);
                     default -> throw new BadRequestResponse("Unknown filter key: " + key);
                 }
             }
         }
 
         return new V2FilterDto(required, preferred, ontologies, definingOnly);
+    }
+
+    /** Parses the single true/false value of a {@code defining_only:[...]} filter part. */
+    static boolean parseDefiningOnly(List<String> values) {
+        if (values.size() != 1
+                || !(values.get(0).equalsIgnoreCase("true") || values.get(0).equalsIgnoreCase("false"))) {
+            throw new BadRequestResponse("defining_only takes a single true/false value, e.g. defining_only:[true]");
+        }
+        return values.get(0).equalsIgnoreCase("true");
     }
 
     private static List<String> smartSplit(String s) {
