@@ -22,9 +22,15 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       volumes:
-        - name: {{ .Release.Name }}-import
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-import-pvc
+        # The SQLite database (external API cache, OLS term cache, embeddings)
+        # lives on node-local disk, not NFS. It ran in WAL mode on the NFS
+        # import volume, and SQLite's WAL locking does not work over NFS: every
+        # cache write serialised behind NFS locks and a two-term mapping took
+        # 12-62 seconds, exhausting the 60 s search budget. On an emptyDir the
+        # same request takes under a second. The tables are caches (votes is
+        # disabled), so losing them on a pod restart only costs a warm-up.
+        - name: db
+          emptyDir: {}
         - name: tmp
           emptyDir: {}
       containers:
@@ -39,7 +45,7 @@ spec:
                 - ALL
           volumeMounts:
             - mountPath: "/data"
-              name: {{ .Release.Name }}-import
+              name: db
             - mountPath: "/tmp"
               name: tmp
           ports:
