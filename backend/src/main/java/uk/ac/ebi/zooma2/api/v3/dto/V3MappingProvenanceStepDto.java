@@ -112,54 +112,6 @@ public class V3MappingProvenanceStepDto {
     }
 
     /**
-     * Create a provenance step for traversing up the ontology hierarchy to find a superclass.
-     * Uses rdfs:subClassOf relationships only.
-     * @param childTermIri The IRI of the child/specific term
-     * @param childTermLabel The label of the child term
-     * @param parentTermIri The IRI of the parent/superclass term
-     * @param parentTermLabel The label of the parent term
-     * @param ontology The ontology containing the terms
-     */
-    public static V3MappingProvenanceStepDto superclass(
-            String childTermIri, String childTermLabel,
-            String parentTermIri, String parentTermLabel,
-            String ontology) {
-        var step = new V3MappingProvenanceStepDto();
-        step.method = "ontology_traversal";
-        step.matchType = "OLS_SUPERCLASS";
-        step.source = "ols:" + ontology;
-        step.input = childTermIri;
-        step.matchedText = childTermLabel + " ⊂ " + parentTermLabel;
-        step.target = parentTermIri;
-        step.confidence = 1.0;
-        return step;
-    }
-
-    /**
-     * Create a provenance step for traversing up the ontology hierarchy using hierarchical relationships.
-     * Includes part-of and other hierarchical relationships beyond just rdfs:subClassOf.
-     * @param childTermIri The IRI of the child/specific term
-     * @param childTermLabel The label of the child term
-     * @param ancestorTermIri The IRI of the ancestor term
-     * @param ancestorTermLabel The label of the ancestor term
-     * @param ontology The ontology containing the terms
-     */
-    public static V3MappingProvenanceStepDto hierarchicalAncestor(
-            String childTermIri, String childTermLabel,
-            String ancestorTermIri, String ancestorTermLabel,
-            String ontology) {
-        var step = new V3MappingProvenanceStepDto();
-        step.method = "ontology_traversal";
-        step.matchType = "OLS_HIERARCHICAL_ANCESTOR";
-        step.source = "ols:" + ontology;
-        step.input = childTermIri;
-        step.matchedText = childTermLabel + " ⊑ " + ancestorTermLabel;
-        step.target = ancestorTermIri;
-        step.confidence = 1.0;
-        return step;
-    }
-
-    /**
      * Create a provenance step for OXO cross-reference mapping.
      * @param sourceId The source term ID (e.g., "DOID:162")
      * @param sourceLabel The label of the source term
