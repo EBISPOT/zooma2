@@ -6,13 +6,10 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.matcher.OlsTextTaggerMatcher;
-import uk.ac.ebi.zooma2.search.AnnotationEngine;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
-import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
@@ -20,9 +17,10 @@ import java.util.stream.Collectors;
 
 /**
  * Handles Pass 1 (shallow-only search) of the two-pass batch mapping strategy.
- * Each property is searched without deep embedding or OXO lookups.
- * Properties where no target-ontology result was found are returned so the
- * caller can run a subsequent deep pass on them.
+ * Each property runs the tagger conversion and Phase 1 only. Properties for
+ * which the escalation policy asks for Phase 2 are returned as
+ * {@link StringMapper.MappingRun}s so the caller can complete them in a
+ * subsequent deep pass without repeating Phase 1.
  */
 public class ZoomaAnnotatorShallow {
 
@@ -37,13 +35,13 @@ public class ZoomaAnnotatorShallow {
     }
 
     /**
-     * Runs a shallow-only pass for all properties in parallel using virtual threads.
-     * Calls {@code onPropertyMapped} for each property whose shallow results are
-     * sufficient; properties that need a deep pass are returned for deferred processing.
+     * Runs the shallow pass for all properties in parallel using virtual threads.
+     * Calls {@code onPropertyMapped} for each property whose shallow results settle
+     * the search; the rest are returned for the deep pass.
      *
-     * @return the subset of properties that need a subsequent deep pass
+     * @return the runs that need a subsequent deep pass
      */
-    public List<StringToMap> runPass(
+    public List<StringMapper.MappingRun> runPass(
             List<StringToMap> properties,
             Map<String, List<Annotation>> tagTextResults,
             Filter filter,
@@ -52,37 +50,31 @@ public class ZoomaAnnotatorShallow {
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
         var cancelled = RequestCancellation.newFlag();
-        var needsDeepSearch = new CopyOnWriteArrayList<StringToMap>();
+        var needsDeepSearch = new CopyOnWriteArrayList<StringMapper.MappingRun>();
 
         try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
             var futures = properties.stream().map(prop ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
-                    AnnotationEngine.setShallowPassOnly(true);
                     try {
                         var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
-                        if (textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
+                        if (textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter, excludeTermIds)) {
                             var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, false);
                             onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
                             return;
                         }
-                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, false);
-                        if (!taggerAnnotations.isEmpty()) {
-                            results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, false));
-                        }
-                        if (needsDeep(results, filter)) {
-                            needsDeepSearch.add(prop);
+                        var run = stringMapper.mapShallow(prop, taggerAnnotations, filter, model, null, excludeTermIds);
+                        if (run.needsDeep) {
+                            needsDeepSearch.add(run);
                             return;
                         }
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
+                        onPropertyMapped.accept(prop, deduplicator.deduplicate(run.results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
                         System.err.println("Error mapping property '" + prop.textToMap + "': " + e.getMessage());
                         onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, e.getMessage())));
-                    } finally {
-                        AnnotationEngine.setShallowPassOnly(false);
                     }
                 })
             ).collect(Collectors.toList());
@@ -102,22 +94,5 @@ public class ZoomaAnnotatorShallow {
         }
 
         return needsDeepSearch;
-    }
-
-    /**
-     * Returns {@code true} if the shallow-pass results indicate this property needs a
-     * deep search: target ontologies were specified, results were found, but none came
-     * from a target ontology. Under {@code definingOnly}, a result from a target
-     * ontology only counts if the term is in that ontology's own namespace —
-     * an imported term will be filtered out, so it must not satisfy the search.
-     */
-    private boolean needsDeep(List<MapResult> results, Filter filter) {
-        if (filter.targetOntologies == null || filter.targetOntologies.isEmpty()) return false;
-        if (results.isEmpty()) return false;
-        Set<String> targetsLower = filter.targetOntologies.stream()
-            .map(String::toLowerCase).collect(Collectors.toSet());
-        return results.stream().noneMatch(r ->
-            r.ontologyURI != null && targetsLower.contains(r.ontologyURI.toLowerCase())
-            && (!filter.definingOnly || TermNamespace.inNamespaces(r.ontologyTermID, targetsLower)));
     }
 }

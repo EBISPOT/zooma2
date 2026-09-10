@@ -6,6 +6,8 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.OlsTerm;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
+import uk.ac.ebi.zooma2.Deduplicator;
+import uk.ac.ebi.zooma2.util.TermIds;
 import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.ArrayList;
@@ -168,19 +170,36 @@ public class OlsTextTaggerMatcher implements AnnotationMatcher {
      * qualifies.
      */
     public boolean hasFullMatchFromTargetOntologies(List<Annotation> taggerAnnotations, Filter filter) {
+        return hasFullMatchFromTargetOntologies(taggerAnnotations, filter, null);
+    }
+
+    /**
+     * As above, ignoring annotations whose term the caller excluded ("try again"):
+     * when the only definitive match is the excluded term, the search must go on
+     * to find alternatives rather than short-circuit to an empty answer.
+     */
+    public boolean hasFullMatchFromTargetOntologies(List<Annotation> taggerAnnotations, Filter filter, List<String> excludeTermIds) {
         if (taggerAnnotations == null || taggerAnnotations.isEmpty()) return false;
+        Set<String> excluded = Deduplicator.excludedForms(excludeTermIds, prefixMap);
+        List<Annotation> eligible = taggerAnnotations.stream()
+            .filter(a -> !TermIds.matchesAny(excluded, a.resolvedTerm != null ? a.resolvedTerm.short_form : null, firstSemanticTag(a)))
+            .collect(Collectors.toList());
         boolean hasTargets = filter != null && filter.targetOntologies != null && !filter.targetOntologies.isEmpty();
         if (hasTargets) {
             Set<String> targets = filter.targetOntologies.stream()
                 .map(String::toLowerCase).collect(Collectors.toSet());
-            return taggerAnnotations.stream().anyMatch(a ->
+            return eligible.stream().anyMatch(a ->
                 isDefinitive(a)
                 && a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
                 && targets.contains(a.provenance.source.name.toLowerCase())
                 && (!filter.definingOnly || TermNamespace.inNamespaces(namespaceIdOf(a), targets))
             );
         }
-        return taggerAnnotations.stream().anyMatch(OlsTextTaggerMatcher::isDefinitive);
+        return eligible.stream().anyMatch(OlsTextTaggerMatcher::isDefinitive);
+    }
+
+    private static String firstSemanticTag(Annotation a) {
+        return a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null;
     }
 
     private static boolean isDefinitive(Annotation a) {

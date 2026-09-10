@@ -75,16 +75,12 @@ public class BatchMapper {
             .parallel()
             .flatMap(s -> {
                 var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
-                if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources)) {
+                if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, sources, excludeTermIds)) {
                     var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
                     var deduped = deduplicator.deduplicate(results, sources, excludeTermIds);
                     return deduped.stream();
                 }
-                var results = stringMapper.mapOne(s, sources, model, deep);
-                if (!taggerAnnotations.isEmpty()) {
-                    var taggerResults = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
-                    results.addAll(taggerResults);
-                }
+                var results = stringMapper.map(s, taggerAnnotations, sources, model, deep, excludeTermIds);
                 var deduped = returnAll
                     ? deduplicator.deduplicateLight(results, sources, excludeTermIds)
                     : deduplicator.deduplicate(results, sources, excludeTermIds);
@@ -97,9 +93,9 @@ public class BatchMapper {
      * Processes a batch of strings in parallel using virtual threads, calling
      * {@code onPropertyMapped} as each string completes.
      *
-     * <p>Pass 1: all strings run with shallow-only search (auto-escalation suppressed).
-     * Strings where the shallow pass found no target-ontology result are deferred to Pass 2.
-     * Pass 2: deferred strings run with full deep search.
+     * <p>Pass 1: all strings run the shallow search. Strings for which the escalation
+     * policy asks for Phase 2 are deferred. Pass 2: the deferred runs are completed
+     * with the deep search, seeded with their Phase-1 annotations.
      */
     public void mapEach(List<StringToMap> properties, Filter filter, String model,
                         BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
@@ -125,12 +121,12 @@ public class BatchMapper {
             return;
         }
 
-        List<StringToMap> needsDeep = shallowAnnotator.runPass(
+        List<StringMapper.MappingRun> needsDeep = shallowAnnotator.runPass(
             properties, tagTextResults, filter, model, excludeTermIds, onPropertyMapped
         );
         if (needsDeep.isEmpty()) return;
         System.err.println("Running deep search for " + needsDeep.size() + " properties after shallow pass");
-        deepAnnotator.runPass(needsDeep, tagTextResults, filter, model, excludeTermIds, onPropertyMapped);
+        deepAnnotator.runPass(needsDeep, filter, excludeTermIds, onPropertyMapped);
     }
 
     private void mapEachSinglePass(
@@ -152,16 +148,13 @@ public class BatchMapper {
                     if (Thread.currentThread().isInterrupted()) return;
                     try {
                         var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
-                        if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter)) {
+                        if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter, excludeTermIds)) {
                             var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, Boolean.TRUE.equals(deep));
                             onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
                             return;
                         }
 
-                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, deep);
-                        if (!taggerAnnotations.isEmpty()) {
-                            results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, Boolean.TRUE.equals(deep)));
-                        }
+                        List<MapResult> results = stringMapper.map(prop, taggerAnnotations, filter, model, deep, excludeTermIds);
                         onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;

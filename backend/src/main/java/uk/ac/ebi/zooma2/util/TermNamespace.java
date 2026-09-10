@@ -39,6 +39,22 @@ public final class TermNamespace {
         return prefix == null || lowercaseOntologyIds.contains(prefix);
     }
 
+    /**
+     * The target ontology a term is counted under, or {@code null} if none: the
+     * ontology that defines its id namespace wins, otherwise the ontology whose
+     * file it was found in ({@code ontologyName}). Both count because the plain
+     * ontology filter means "available in ontology X", imports included; the
+     * Deduplicator and the deep-search escalation policy share this definition.
+     */
+    public static String targetOntologyOf(String ontologyName, String idOrIri, java.util.Set<String> lowercaseTargets) {
+        if (lowercaseTargets == null || lowercaseTargets.isEmpty()) return null;
+        String namespace = prefixOf(idOrIri);
+        if (namespace != null && lowercaseTargets.contains(namespace)) return namespace;
+        String file = ontologyName != null ? ontologyName.toLowerCase(Locale.ROOT) : null;
+        if (file != null && lowercaseTargets.contains(file)) return file;
+        return null;
+    }
+
     public static String prefixOf(String idOrIri) {
         if (idOrIri == null || idOrIri.isBlank()) return null;
 
