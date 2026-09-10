@@ -15,12 +15,25 @@ import java.util.stream.Collectors;
 public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     private static final int DEFAULT_SIZE = 50;
     
+    /** Discount for an indirect mapping: the seed's confidence scaled by this and by the similarity. */
+    private static final double EXPANSION_DISCOUNT = 0.7;
+
     private final OlsClientRepo olsRepo;
     private final List<String> models;
+    private final double minSimilarity;
 
     public OlsEmbeddingSimilarMatcher(OlsClientRepo olsRepo, List<String> models) {
+        this(olsRepo, models, 0.7);
+    }
+
+    /**
+     * @param minSimilarity similar classes below this embedding similarity are not
+     *                      expanded to (the same threshold the embedding matcher uses)
+     */
+    public OlsEmbeddingSimilarMatcher(OlsClientRepo olsRepo, List<String> models, double minSimilarity) {
         this.olsRepo = olsRepo;
         this.models = models != null && !models.isEmpty() ? models : getDefaultModels();
+        this.minSimilarity = minSimilarity;
     }
 
     private List<String> getDefaultModels() {
@@ -129,6 +142,9 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
                 if (similarTerm.iri == null || similarTerm.ontology_name == null) continue;
                 if (!preferredOntologiesLower.contains(similarTerm.ontology_name.toLowerCase())) continue;
                 if (similarTerm.iri.equals(sourceIri)) continue;
+                // A near-identical class and a barely related one must not rank alike:
+                // no score means no evidence, and a weak similarity is not an expansion.
+                if (similarTerm.score == null || similarTerm.score < minSimilarity) continue;
 
                 for (Annotation sourceAnnotation : sourceAnnotations) {
                     Annotation expandedAnnotation = createExpandedAnnotation(
@@ -187,8 +203,9 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         expandedAnnotation.semanticTags = List.of(similarTerm.iri);
         expandedAnnotation.resolvedTerm = similarTerm;
         
-        // Reduce confidence slightly since this is an indirect mapping
-        expandedAnnotation.confidence = reduceConfidence(sourceAnnotation.confidence);
+        // Indirect mapping: the seed's confidence, discounted, scaled by how similar
+        // the class actually is (the caller has already applied the cutoff).
+        expandedAnnotation.confidence = sourceAnnotation.confidence * EXPANSION_DISCOUNT * similarTerm.score;
         
         // Copy provenance
         expandedAnnotation.provenance = new Annotation.Provenance();
@@ -217,10 +234,10 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         step.matchType = "OLS_LLM_SIMILAR";
         step.source = "ols:" + similarTerm.ontology_name;
         step.model = model;
-        step.confidence = 0.9; // High confidence for LLM similarity
+        step.confidence = expandedAnnotation.confidence;
         step.input = sourceIri;
         step.matchedText = similarTerm.label;
-        step.similarity = null; // OLS V2 doesn't provide similarity scores
+        step.similarity = similarTerm.score;
         step.target = similarTerm.iri;
         
         newProvenance.add(step);
@@ -233,10 +250,4 @@ public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
         return expandedAnnotation;
     }
 
-    /**
-     * Reduce confidence for indirect mappings.
-     */
-    private double reduceConfidence(double originalConfidence) {
-        return originalConfidence * 0.7;
-    }
 }

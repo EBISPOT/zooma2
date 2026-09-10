@@ -7955,6 +7955,77 @@
     "_links": {
       "olslinks": [
         {
+          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fpurl.brain-bican.org%2Fontology%2Fdhbao%2FDHBA_10656",
+          "semanticTag": "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
+        }
+      ]
+    },
+    "annotatedBiologicalEntities": [],
+    "annotatedProperty": {
+      "propertyType": "organism part",
+      "propertyValue": "cerebellum",
+      "uri": null
+    },
+    "confidence": "LOW",
+    "derivedFrom": {
+      "_links": {
+        "olslinks": [
+          {
+            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fpurl.brain-bican.org%2Fontology%2Fdhbao%2FDHBA_10656",
+            "semanticTag": "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
+          }
+        ]
+      },
+      "annotatedBiologicalEntities": [],
+      "annotatedProperty": {
+        "propertyType": "organism part",
+        "propertyValue": "cerebellum",
+        "uri": null
+      },
+      "provenance": {
+        "accuracy": null,
+        "annotationDate": 0,
+        "annotator": "cl",
+        "evidence": "OLS_LEXICAL_FUZZY",
+        "generatedDate": 0,
+        "generator": "ZOOMA",
+        "source": {
+          "name": "cl",
+          "type": "ONTOLOGY",
+          "uri": "cl"
+        }
+      },
+      "replacedBy": [],
+      "replaces": [],
+      "semanticTags": [
+        "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
+      ],
+      "uri": null
+    },
+    "provenance": {
+      "accuracy": null,
+      "annotationDate": 0,
+      "annotator": "ZOOMA",
+      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
+      "generatedDate": 0,
+      "generator": "ZOOMA",
+      "source": {
+        "name": "zooma",
+        "type": "DATABASE",
+        "uri": "www.ebi.ac.uk/spot/zooma"
+      }
+    },
+    "replacedBy": [],
+    "replaces": [],
+    "semanticTags": [
+      "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
+    ],
+    "uri": null
+  },
+  {
+    "_links": {
+      "olslinks": [
+        {
           "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=http%3A%2F%2Fsnomed.info%2Fid%2F1157174006",
           "semanticTag": "http://snomed.info/id/1157174006"
         }
@@ -8090,77 +8161,6 @@
     "replaces": [],
     "semanticTags": [
       "http://purl.obolibrary.org/obo/CL_2000028"
-    ],
-    "uri": null
-  },
-  {
-    "_links": {
-      "olslinks": [
-        {
-          "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fpurl.brain-bican.org%2Fontology%2Fdhbao%2FDHBA_10656",
-          "semanticTag": "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
-        }
-      ]
-    },
-    "annotatedBiologicalEntities": [],
-    "annotatedProperty": {
-      "propertyType": "organism part",
-      "propertyValue": "cerebellum",
-      "uri": null
-    },
-    "confidence": "LOW",
-    "derivedFrom": {
-      "_links": {
-        "olslinks": [
-          {
-            "href": "https://www.ebi.ac.uk/ols4/api/terms?iri=https%3A%2F%2Fpurl.brain-bican.org%2Fontology%2Fdhbao%2FDHBA_10656",
-            "semanticTag": "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
-          }
-        ]
-      },
-      "annotatedBiologicalEntities": [],
-      "annotatedProperty": {
-        "propertyType": "organism part",
-        "propertyValue": "cerebellum",
-        "uri": null
-      },
-      "provenance": {
-        "accuracy": null,
-        "annotationDate": 0,
-        "annotator": "cl",
-        "evidence": "OLS_LEXICAL_FUZZY",
-        "generatedDate": 0,
-        "generator": "ZOOMA",
-        "source": {
-          "name": "cl",
-          "type": "ONTOLOGY",
-          "uri": "cl"
-        }
-      },
-      "replacedBy": [],
-      "replaces": [],
-      "semanticTags": [
-        "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
-      ],
-      "uri": null
-    },
-    "provenance": {
-      "accuracy": null,
-      "annotationDate": 0,
-      "annotator": "ZOOMA",
-      "evidence": "ZOOMA_INFERRED_FROM_CURATED",
-      "generatedDate": 0,
-      "generator": "ZOOMA",
-      "source": {
-        "name": "zooma",
-        "type": "DATABASE",
-        "uri": "www.ebi.ac.uk/spot/zooma"
-      }
-    },
-    "replacedBy": [],
-    "replaces": [],
-    "semanticTags": [
-      "https://purl.brain-bican.org/ontology/dhbao/DHBA_10656"
     ],
     "uri": null
   }

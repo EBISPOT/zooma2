@@ -179,8 +179,18 @@ public class OxoMatcher implements AnnotationMatcher {
         expandedAnnotation.semanticTags = List.of(targetIri);
         expandedAnnotation.resolvedTerm = targetTerm;
         
-        // Reduce confidence slightly since this is an indirect mapping
-        expandedAnnotation.confidence = reduceConfidence(sourceAnnotation.confidence);
+        // Add OXO cross-reference step using the helper method; its confidence
+        // falls with mapping distance (direct 0.95, one hop 0.85, further 0.75)
+        V3MappingProvenanceStepDto oxoStep = V3MappingProvenanceStepDto.oxoMapping(
+            oxoMapping.sourceId,
+            oxoMapping.sourceLabel,
+            oxoMapping.targetId,
+            oxoMapping.targetLabel,
+            oxoMapping.distance
+        );
+
+        // Indirect mapping: the seed's confidence scaled by the hop's own confidence
+        expandedAnnotation.confidence = sourceAnnotation.confidence * oxoStep.confidence;
         
         // Copy provenance
         expandedAnnotation.provenance = new Annotation.Provenance();
@@ -207,14 +217,7 @@ public class OxoMatcher implements AnnotationMatcher {
             newProvenance.addAll(sourceAnnotation.mappingProvenance);
         }
         
-        // Add OXO cross-reference step using the helper method
-        newProvenance.add(V3MappingProvenanceStepDto.oxoMapping(
-            oxoMapping.sourceId,
-            oxoMapping.sourceLabel,
-            oxoMapping.targetId,
-            oxoMapping.targetLabel,
-            oxoMapping.distance
-        ));
+        newProvenance.add(oxoStep);
         
         expandedAnnotation.mappingProvenance = newProvenance;
         
@@ -224,27 +227,4 @@ public class OxoMatcher implements AnnotationMatcher {
         return expandedAnnotation;
     }
 
-    /**
-     * Reduce confidence for indirect mappings.
-     */
-    private double reduceConfidence(double originalConfidence) {
-        return originalConfidence * 0.7;
-    }
-
-    /**
-     * Calculate confidence based on OXO mapping distance.
-     * Distance 1 (direct) = 0.95
-     * Distance 2 (one hop) = 0.85
-     * Distance 3+ = 0.75
-     */
-    private Double calculateOxoConfidence(int distance) {
-        switch (distance) {
-            case 1:
-                return 0.95;
-            case 2:
-                return 0.85;
-            default:
-                return 0.75;
-        }
-    }
 }

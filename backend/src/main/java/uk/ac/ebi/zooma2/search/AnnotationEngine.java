@@ -46,8 +46,8 @@ public class AnnotationEngine {
         this.olsLexicalMatcher = new OlsLexicalMatcher(olsRepo, lexicalMaxResults, lexicalTimeoutMs);
 
         var olsEmbeddingCfg = ZoomaConfig.config.ols_embedding;
+        double minSim = olsEmbeddingCfg != null && olsEmbeddingCfg.min_similarity != null ? olsEmbeddingCfg.min_similarity : 0.7;
         if (olsEmbeddingCfg != null) {
-            double minSim = olsEmbeddingCfg.min_similarity != null ? olsEmbeddingCfg.min_similarity : 0.7;
             int maxRes = olsEmbeddingCfg.max_deep_results != null ? olsEmbeddingCfg.max_deep_results : 100;
             int shallowRes = olsEmbeddingCfg.max_shallow_results != null ? olsEmbeddingCfg.max_shallow_results : 10;
             int timeoutMs = olsEmbeddingCfg.timeout_ms != null ? olsEmbeddingCfg.timeout_ms : 60000;
@@ -57,7 +57,7 @@ public class AnnotationEngine {
         }
 
         this.oxoMatcher = new OxoMatcher(oxoClient, olsRepo);
-        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null);
+        this.olsEmbeddingSimilarMatcher = new OlsEmbeddingSimilarMatcher(olsRepo, null, minSim);
     }
 
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources) {
