@@ -17,7 +17,11 @@ public final class RequestLimits {
     public static final int MAX_PROPERTY_TEXT_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TEXT_LENGTH", 1000, 1, 1_000_000);
     public static final int MAX_PROPERTY_TYPE_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TYPE_LENGTH", 200, 1, 10_000);
     public static final int MAX_ANNOTATE_TEXT_LENGTH = envInt("ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH", 50_000, 1, 5_000_000);
-    public static final int MAX_LIST_ITEMS = envInt("ZOOMA2_MAX_FILTER_ITEMS", 200, 1, 100_000);
+    // Bounds the datasource/ontology filter lists. It has to admit the
+    // server's own ontology presets after expansion (the OBO Foundry preset
+    // resolves to 216 ontologies) and a "select all" of every OLS ontology,
+    // otherwise the default search 400s against its own configuration.
+    public static final int MAX_LIST_ITEMS = envInt("ZOOMA2_MAX_FILTER_ITEMS", 1000, 1, 100_000);
     public static final int MAX_LIST_ITEM_LENGTH = envInt("ZOOMA2_MAX_FILTER_ITEM_LENGTH", 200, 1, 10_000);
     public static final int MAX_EXCLUDED_TERMS = envInt("ZOOMA2_MAX_EXCLUDED_TERMS", 1000, 1, 100_000);
     public static final int MAX_MODEL_LENGTH = envInt("ZOOMA2_MAX_MODEL_LENGTH", 200, 1, 10_000);
