@@ -61,9 +61,13 @@ public class BatchMapper {
                                         List<String> excludeTermIds, boolean returnAll, Boolean deep) {
         List<StringToMap> properties = stringsToMap.collect(Collectors.toList());
 
+        // Tag each distinct text once: the tagger keys its results by text, so a
+        // repeated text (e.g. the same value under two property types) would only
+        // duplicate the hits, and would change the request body, defeating the cache.
         List<String> allTerms = properties.stream()
             .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
+            .distinct()
             .collect(Collectors.toList());
         var tagTextResults = textTaggerService.bulkTagText(allTerms);
 
@@ -105,9 +109,13 @@ public class BatchMapper {
     public void mapEach(List<StringToMap> properties, Filter filter, String model,
                         List<String> excludeTermIds, boolean returnAll, Boolean deep,
                         BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+        // Tag each distinct text once: the tagger keys its results by text, so a
+        // repeated text (e.g. the same value under two property types) would only
+        // duplicate the hits, and would change the request body, defeating the cache.
         List<String> allTerms = properties.stream()
             .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
+            .distinct()
             .collect(Collectors.toList());
         Map<String, List<Annotation>> tagTextResults = textTaggerService.bulkTagText(allTerms);
         System.err.println("Bulk tag_text returned matches for " + tagTextResults.size() + "/" + allTerms.size() + " terms");

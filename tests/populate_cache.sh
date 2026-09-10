@@ -152,6 +152,10 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
     # Legacy ontologies:[none] sentinel (issue #16)
     curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=diabetes&filter=required:%5Batlas%5D,ontologies:%5Bnone%5D" > /dev/null || true
 
+    # Duplicate properties in one request (issue #9)
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" -H "Content-Type: application/json" \
+        -d '{"properties":[{"textToMap":"yeast","propertyType":"organism"},{"textToMap":"yeast"},{"textToMap":"yeast"}]}' > /dev/null || true
+
     # Batch v3 map
     v3_batch_body=$(python3 -c "
 import csv, json

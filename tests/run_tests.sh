@@ -287,6 +287,19 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v2_annotate_filtered/diabetes_atlas_none.json" \
         "$OUTPUT_DIR/v2_annotate_filtered/diabetes_atlas_none.json"
 
+    # ---- 2c. Duplicate properties in one request (issue #9) ----
+    # The same text under two property types shares one set of tagger annotations;
+    # converting them must not cross-contaminate the groups, and identical properties
+    # must each receive the single result exactly once (not a concatenated list).
+    mkdir -p "$ACTUAL_DIR/v3_map_dedup"
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d '{"properties":[{"textToMap":"yeast","propertyType":"organism"},{"textToMap":"yeast"},{"textToMap":"yeast"}]}' \
+        | normalise_json > "$ACTUAL_DIR/v3_map_dedup/yeast_organism_and_untyped_twice.json"
+    compare_output "$TEST_NAME/v3_map_dedup/yeast_organism_and_untyped_twice" \
+        "$ACTUAL_DIR/v3_map_dedup/yeast_organism_and_untyped_twice.json" \
+        "$OUTPUT_DIR/v3_map_dedup/yeast_organism_and_untyped_twice.json"
+
     # ---- 3. Test batch v3 map (all properties at once) ----
 
     # Build JSON array of all properties

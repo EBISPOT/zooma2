@@ -175,9 +175,13 @@ public class ZoomaApiV3 {
     private void map(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
         validateMapRequest(request);
-        
-        var internalStringsToMap = request.properties.stream().map(V3StringToMapDto::toStringToMap);
-        
+
+        // Map each distinct (propertyType, textToMap) pair exactly once; the response
+        // loop below fans the single result out to every occurrence in the request.
+        var internalStringsToMap = distinctProperties(groupOccurrences(
+            request.properties.stream().map(V3StringToMapDto::toStringToMap).collect(Collectors.toList())
+        )).stream();
+
         var targetOntologies = request.targetOntologies;
         boolean includeOtherOntologies = request.includeOtherOntologies == null || request.includeOtherOntologies;
         boolean definingOnly = request.definingOnly != null && request.definingOnly;
@@ -202,12 +206,12 @@ public class ZoomaApiV3 {
         
         // Group results by input property (normalizing null/unspecified propertyType)
         Map<String, List<MapResult>> groupedResults = internalResults.stream()
-            .collect(Collectors.groupingBy(r -> normalizePropertyType(r.propertyType) + "|||" + r.textToMap));
-        
-        // Build response grouped by input property
+            .collect(Collectors.groupingBy(r -> propertyKey(r.propertyType, r.textToMap)));
+
+        // Build response grouped by input property; duplicate properties share one group
         List<V3PropertyMappingDto> mappings = request.properties.stream()
             .map(prop -> {
-                String key = normalizePropertyType(prop.propertyType) + "|||" + prop.textToMap;
+                String key = propertyKey(prop.propertyType, prop.textToMap);
                 List<MapResult> results = groupedResults.getOrDefault(key, List.of());
                 
                 // Check if any result is an error
@@ -263,12 +267,16 @@ public class ZoomaApiV3 {
 
         boolean returnAll = request.returnAll != null && request.returnAll;
         
+        // completed/total count request occurrences, but each distinct
+        // (propertyType, textToMap) pair is mapped only once and its result is
+        // emitted once per occurrence.
         int total = request.properties.size();
-        
-        List<uk.ac.ebi.zooma2.model.StringToMap> properties = request.properties.stream()
+
+        Map<String, List<StringToMap>> occurrences = groupOccurrences(request.properties.stream()
             .map(V3StringToMapDto::toStringToMap)
-            .collect(Collectors.toList());
-        
+            .collect(Collectors.toList()));
+        List<StringToMap> properties = distinctProperties(occurrences);
+
         ctx.res().setContentType("application/x-ndjson");
         ctx.res().setCharacterEncoding("UTF-8");
 
@@ -327,23 +335,26 @@ public class ZoomaApiV3 {
                         ))
                         .collect(Collectors.toList());
 
-                    var mapping = V3PropertyMappingDto.of(prop.propertyType, prop.textToMap, candidates);
-                    mapping.error = error;
-                    int done = completed.incrementAndGet();
+                    // Fan the single result out to every request occurrence of this property
+                    for (StringToMap occurrence : occurrences.get(propertyKey(prop.propertyType, prop.textToMap))) {
+                        var mapping = V3PropertyMappingDto.of(occurrence.propertyType, occurrence.textToMap, candidates);
+                        mapping.error = error;
+                        int done = completed.incrementAndGet();
 
-                    var event = new LinkedHashMap<String, Object>();
-                    event.put("type", "result");
-                    event.put("mapping", mapping);
-                    event.put("completed", done);
-                    event.put("total", total);
+                        var event = new LinkedHashMap<String, Object>();
+                        event.put("type", "result");
+                        event.put("mapping", mapping);
+                        event.put("completed", done);
+                        event.put("total", total);
 
-                    try {
-                        synchronized (out) {
-                            out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
-                            out.flush();
+                        try {
+                            synchronized (out) {
+                                out.write((gson.toJson(event) + "\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                                out.flush();
+                            }
+                        } catch (IOException e) {
+                            throw new java.io.UncheckedIOException(e);
                         }
-                    } catch (IOException e) {
-                        throw new java.io.UncheckedIOException(e);
                     }
                 });
 
@@ -584,6 +595,36 @@ public class ZoomaApiV3 {
             return "";
         }
         return propertyType;
+    }
+
+    /**
+     * Key identifying one distinct mapping job. Two request properties with the same
+     * text and the same normalised property type (null, "" and "unspecified" are all
+     * "no type") produce identical results, so they are mapped once and share it.
+     */
+    static String propertyKey(String propertyType, String textToMap) {
+        return normalizePropertyType(propertyType) + "|||" + textToMap;
+    }
+
+    /**
+     * Groups request properties by {@link #propertyKey}, preserving first-occurrence
+     * order of the keys and request order within each group.
+     */
+    static Map<String, List<StringToMap>> groupOccurrences(List<StringToMap> properties) {
+        Map<String, List<StringToMap>> occurrences = new LinkedHashMap<>();
+        for (StringToMap p : properties) {
+            occurrences.computeIfAbsent(propertyKey(p.propertyType, p.textToMap), k -> new ArrayList<>()).add(p);
+        }
+        return occurrences;
+    }
+
+    /**
+     * The properties to actually map: the first occurrence of each distinct key.
+     * The mapper hands these same objects back to the completion callback, so a
+     * result can be matched to its occurrences via {@link #propertyKey}.
+     */
+    static List<StringToMap> distinctProperties(Map<String, List<StringToMap>> occurrences) {
+        return occurrences.values().stream().map(group -> group.get(0)).collect(Collectors.toList());
     }
 
     private static void validateMapRequest(V3MapRequestDto request) {
