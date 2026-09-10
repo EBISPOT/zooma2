@@ -14,6 +14,7 @@ import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
+import uk.ac.ebi.zooma2.util.TermIds;
 import uk.ac.ebi.zooma2.util.TermNamespace;
 
 /**
@@ -43,7 +44,7 @@ public class Deduplicator {
     /** Confidence adjustment applied by the organism-type taxonomy preference. */
     private static final double TAXONOMY_PREFERENCE_ADJUSTMENT = 0.1;
     /** Weak-result suppression only engages once the best result is at least this confident. */
-    private static final double WEAK_RESULT_MIN_BEST = 0.7;
+    public static final double WEAK_RESULT_MIN_BEST = 0.7;
     /** Results more than this far below the global best are dropped as an absolute-quality floor. */
     private static final double WEAK_RESULT_GAP = 0.2;
     /** Tight gap used when target ontologies are set: near-misses this close to a better result are redundant. */
@@ -127,32 +128,23 @@ public class Deduplicator {
      */
     void excludeTerms(List<MapResult> results, List<String> excludeTermIds) {
         if (excludeTermIds == null || excludeTermIds.isEmpty()) return;
-        Set<String> excluded = new java.util.HashSet<>();
-        for (String id : excludeTermIds) {
-            if (id == null || id.isBlank()) continue;
-            addIdForms(excluded, id, prefixMap.shortFormToIri(id));
-        }
+        Set<String> excluded = excludedForms(excludeTermIds, prefixMap);
         results.removeIf(r -> {
             if (r.error != null) return false;
-            Set<String> forms = new java.util.HashSet<>();
-            addIdForms(forms, r.ontologyTermID, r.ontologyTermIri);
-            if (r.ontologyTermID != null) addIdForms(forms, null, prefixMap.shortFormToIri(r.ontologyTermID));
-            forms.retainAll(excluded);
-            return !forms.isEmpty();
+            return TermIds.matchesAny(excluded, r.ontologyTermID, r.ontologyTermIri)
+                || (r.ontologyTermID != null && TermIds.matchesAny(excluded, null, prefixMap.shortFormToIri(r.ontologyTermID)));
         });
     }
 
-    /** Lower-cased comparison forms of a term id: the id, the IRI, and the IRI's prefixed local part. */
-    private static void addIdForms(Set<String> forms, String id, String iri) {
-        if (id != null && !id.isBlank()) forms.add(id.toLowerCase(Locale.ROOT));
-        if (iri != null && !iri.isBlank()) {
-            forms.add(iri.toLowerCase(Locale.ROOT));
-            int cut = Math.max(iri.lastIndexOf('/'), iri.lastIndexOf('#'));
-            String local = cut >= 0 ? iri.substring(cut + 1) : iri;
-            // Only a prefixed local part (EFO_0000400) identifies a term on its own;
-            // a bare number could collide across ontologies.
-            if (local.contains("_") || local.contains(":")) forms.add(local.toLowerCase(Locale.ROOT));
+    /** Every comparison form of the caller's excluded ids (see {@link TermIds}); empty when there are none. */
+    public static Set<String> excludedForms(List<String> excludeTermIds, PrefixMap prefixMap) {
+        Set<String> excluded = new java.util.HashSet<>();
+        if (excludeTermIds == null) return excluded;
+        for (String id : excludeTermIds) {
+            if (id == null || id.isBlank()) continue;
+            TermIds.addForms(excluded, id, prefixMap.shortFormToIri(id));
         }
+        return excluded;
     }
 
     void filterByOntologies(List<MapResult> results, Filter filter) {
@@ -529,11 +521,7 @@ public class Deduplicator {
      * are targets, so a term is always counted under the ontology that defines it.
      */
     private static String targetOntologyOf(MapResult r, Set<String> lowercaseTargets) {
-        String namespace = TermNamespace.prefixOf(r.ontologyTermID);
-        if (namespace != null && lowercaseTargets.contains(namespace)) return namespace;
-        String file = r.ontologyURI != null ? r.ontologyURI.toLowerCase(Locale.ROOT) : null;
-        if (file != null && lowercaseTargets.contains(file)) return file;
-        return null;
+        return TermNamespace.targetOntologyOf(r.ontologyURI, r.ontologyTermID, lowercaseTargets);
     }
 
     /**

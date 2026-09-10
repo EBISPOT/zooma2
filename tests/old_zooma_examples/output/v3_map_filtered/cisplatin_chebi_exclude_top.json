@@ -1,0 +1,32 @@
+{
+  "mappings": [
+    {
+      "candidates": [
+        {
+          "confidence": 0.8003146999999999,
+          "datasource": "chebi",
+          "label": "cisplatin-modified (di)nucleotide",
+          "mappingProvenance": [
+            {
+              "confidence": null,
+              "input": "cisplatin",
+              "matchType": "OLS_EMBEDDING",
+              "matchedText": "cisplatin-modified (di)nucleotide",
+              "method": "semantic",
+              "model": "llama-embed-nemotron-8b_pca512",
+              "similarity": 0.89923,
+              "source": "ols:chebi",
+              "target": "http://purl.obolibrary.org/obo/CHEBI_76397"
+            }
+          ],
+          "ontology": "chebi",
+          "termId": "CHEBI_76397",
+          "uri": "chebi"
+        }
+      ],
+      "error": null,
+      "propertyType": null,
+      "textToMap": "cisplatin"
+    }
+  ]
+}

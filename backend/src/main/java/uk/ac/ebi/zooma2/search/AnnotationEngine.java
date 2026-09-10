@@ -11,38 +11,26 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.repo.OxoClient;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
-import uk.ac.ebi.zooma2.util.TermNamespace;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * Orchestrates the multi-phase ontology annotation search for a single string.
  *
- * <p>Phase 1 (always): OLS lexical + shallow OLS embedding run concurrently.
- * Phase 2 (conditional): deep embedding, OXO cross-mapping, and embedding-similarity
- * expansion run when the shallow pass either missed target ontologies (auto-escalation)
- * or was explicitly requested via {@code deep=true}.
+ * <p>Phase 1 ({@link #annotateShallow}): OLS lexical + shallow OLS embedding run
+ * concurrently. Phase 2 ({@link #annotateDeep}): deep embedding, OXO
+ * cross-mapping (when enabled) and embedding-similarity expansion, seeded with
+ * the Phase-1 annotations.
  *
- * <p>The {@link #shallowPassOnly} ThreadLocal is set by {@code BatchMapper}'s first pass
- * to suppress auto-escalation — all shallow searches complete before any deep search starts.
+ * <p>Whether Phase 2 runs is not decided here. {@code StringMapper} evaluates
+ * {@link EscalationPolicy} over the converted Phase-1 results together with the
+ * text-tagger results, so every entry point applies one criterion.
+ * {@link #annotate(String, String, Filter, String, Boolean)} composes the two
+ * phases for callers that have no tagger results.
  */
 public class AnnotationEngine {
-
-    /**
-     * When set to {@code true} on the current thread, auto-escalation to deep search is
-     * suppressed inside {@link #annotate}. Used by the two-pass batch mapping flow.
-     */
-    static final ThreadLocal<Boolean> shallowPassOnly = ThreadLocal.withInitial(() -> false);
-
-    /** Sets the shallow-pass-only flag on the current thread. */
-    public static void setShallowPassOnly(boolean value) {
-        if (value) shallowPassOnly.set(true);
-        else shallowPassOnly.remove();
-    }
 
     private final OlsLexicalMatcher olsLexicalMatcher;
     private final OlsEmbeddingMatcher olsEmbeddingMatcher;
@@ -77,30 +65,32 @@ public class AnnotationEngine {
     }
 
     /**
-     * Runs all configured search strategies and returns the combined annotation stream.
+     * Runs Phase 1 and, per {@link EscalationPolicy}, Phase 2, and returns the
+     * combined annotation stream. For callers without tagger results.
      *
-     * @param stringToMap the text to annotate
-     * @param type        property type hint (may be {@code null})
-     * @param sources     filter specifying target ontologies / datasources
-     * @param model       embedding model identifier
-     * @param deep        if {@code true}, always runs Phase 2; if {@code false}, never runs Phase 2;
-     *                    if {@code null}, auto-escalates when Phase 1 misses target ontologies
+     * @param deep {@code true} always runs Phase 2, {@code false} never, {@code null} auto-escalates
      */
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model, Boolean deep) {
+        MatchContext context = new MatchContext(stringToMap, type, sources, model);
+        List<Annotation> shallow = annotateShallow(context);
+        if (Thread.currentThread().isInterrupted()) {
+            return shallow.stream();
+        }
+        List<Annotation> all = new ArrayList<>(shallow);
+        if (EscalationPolicy.needsDeepForAnnotations(shallow, sources, deep)) {
+            all.addAll(annotateDeep(context, shallow));
+        }
+        return all.stream();
+    }
 
+    /** Phase 1: OLS lexical + shallow OLS embedding, concurrently. Empty (with the interrupt flag set) if interrupted. */
+    public List<Annotation> annotateShallow(MatchContext context) {
         // Capture the cancellation flag from the calling (property-level) virtual thread
         // so it can be forwarded into the matcher-level virtual threads spawned below.
         // ThreadLocal is NOT inherited across virtual thread boundaries.
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
 
-        MatchContext context = new MatchContext(stringToMap, type, sources, model);
-        boolean hasTargets = context.targetOntologies != null && !context.targetOntologies.isEmpty();
-        Set<String> targetsLower = hasTargets
-            ? context.targetOntologies.stream().map(String::toLowerCase).collect(Collectors.toSet())
-            : Set.of();
-
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
-            // Phase 1: OLS lexical + shallow OLS embedding run concurrently
             var olsLexicalFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                 return olsLexicalMatcher.findMatches(context);
@@ -110,108 +100,98 @@ public class AnnotationEngine {
                 return olsEmbeddingMatcher.findMatches(context);
             });
 
-            List<Annotation> allResults = new ArrayList<>();
+            List<Annotation> results = new ArrayList<>();
             try {
-                allResults.addAll(olsLexicalFuture.get());
-                allResults.addAll(olsEmbeddingFuture.get());
+                results.addAll(olsLexicalFuture.get());
+                results.addAll(olsEmbeddingFuture.get());
             } catch (InterruptedException e) {
                 executor.shutdownNow();
                 Thread.currentThread().interrupt();
-                return Stream.empty();
+                return List.of();
             }
 
-            System.err.println("Phase 1 results for '" + stringToMap + "': " + allResults.size() +
+            System.err.println("Phase 1 results for '" + context.stringToMap + "': " + results.size() +
                 " (" + olsLexicalMatcher.getName() + "=" + olsLexicalFuture.get().size() +
                 ", " + olsEmbeddingMatcher.getName() + "=" + olsEmbeddingFuture.get().size() + ")");
-
-            // Phase 2 trigger:
-            //   deep=true  → always run Phase 2
-            //   deep=false → never run Phase 2
-            //   deep=null  → auto-escalate if Phase 1 missed target ontologies
-            // (auto-escalation is also suppressed when shallowPassOnly is set)
-            boolean needsDeep = Boolean.TRUE.equals(deep);
-            if (deep == null && !shallowPassOnly.get() && hasTargets && !allResults.isEmpty()) {
-                // Under definingOnly, a result from a target ontology only satisfies the
-                // search if the term is in that ontology's own namespace — an imported
-                // term will be filtered out downstream.
-                boolean definingOnly = sources != null && sources.definingOnly;
-                boolean hasTargetResult = allResults.stream().anyMatch(a ->
-                    a.provenance != null && a.provenance.source != null && a.provenance.source.name != null
-                    && targetsLower.contains(a.provenance.source.name.toLowerCase())
-                    && (!definingOnly || TermNamespace.inNamespaces(
-                        a.resolvedTerm != null && a.resolvedTerm.short_form != null && !a.resolvedTerm.short_form.isBlank()
-                            ? a.resolvedTerm.short_form
-                            : (a.semanticTags != null && !a.semanticTags.isEmpty() ? a.semanticTags.get(0) : null),
-                        targetsLower)));
-                if (!hasTargetResult) {
-                    System.err.println("Shallow search found no results from target ontologies " +
-                        context.targetOntologies + " — escalating to deep");
-                    needsDeep = true;
-                }
-            }
-
-            if (needsDeep && !allResults.isEmpty()) {
-                System.err.println("Running deep search for '" + stringToMap + "'");
-                var deepFuture = executor.submit(() -> {
-                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
-                    return olsEmbeddingMatcher.findDeepMatches(context);
-                });
-                List<Annotation> deepResults;
-                try {
-                    deepResults = deepFuture.get();
-                } catch (InterruptedException e) {
-                    executor.shutdownNow();
-                    Thread.currentThread().interrupt();
-                    return allResults.stream();
-                }
-                if (!deepResults.isEmpty()) {
-                    System.err.println("Deep embedding search found " + deepResults.size() + " additional results");
-                    allResults.addAll(deepResults);
-                }
-
-                MatchContext expansionContext = context.withPreviousResults(allResults);
-
-                var oxoCfg = ZoomaConfig.config.oxo;
-                boolean oxoEnabled = oxoCfg == null || oxoCfg.enabled == null || oxoCfg.enabled;
-
-                var oxoFuture = oxoEnabled
-                    ? executor.submit(() -> {
-                        if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
-                        return oxoMatcher.findMatches(expansionContext);
-                    })
-                    : null;
-                var similarFuture = executor.submit(() -> {
-                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
-                    return olsEmbeddingSimilarMatcher.findMatches(expansionContext);
-                });
-
-                List<Annotation> oxoResults;
-                List<Annotation> embeddingSimilarResults;
-                try {
-                    oxoResults = oxoFuture != null ? oxoFuture.get() : List.of();
-                    embeddingSimilarResults = similarFuture.get();
-                } catch (InterruptedException e) {
-                    executor.shutdownNow();
-                    Thread.currentThread().interrupt();
-                    return allResults.stream();
-                }
-
-                if (!oxoResults.isEmpty()) {
-                    System.err.println("OXO expanded " + oxoResults.size() + " additional results to preferred ontologies");
-                    allResults.addAll(oxoResults);
-                }
-                if (!embeddingSimilarResults.isEmpty()) {
-                    System.err.println("OLS embedding similarity expanded " + embeddingSimilarResults.size() + " additional results");
-                    allResults.addAll(embeddingSimilarResults);
-                }
-            }
-
-            return allResults.stream();
+            return results;
 
         } catch (Exception e) {
             System.err.println("Error in parallel search: " + e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("Search failed for '" + stringToMap + "': " + e.getMessage(), e);
+            throw new RuntimeException("Search failed for '" + context.stringToMap + "': " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Phase 2: deep embedding search, then OXO and embedding-similarity expansion
+     * seeded with the Phase-1 annotations plus the deep hits. Returns only the
+     * additional annotations; the caller already holds the Phase-1 ones.
+     */
+    public List<Annotation> annotateDeep(MatchContext context, List<Annotation> shallowResults) {
+        final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
+
+        try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
+            System.err.println("Running deep search for '" + context.stringToMap + "'");
+            var deepFuture = executor.submit(() -> {
+                if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                return olsEmbeddingMatcher.findDeepMatches(context);
+            });
+            List<Annotation> deepResults;
+            try {
+                deepResults = deepFuture.get();
+            } catch (InterruptedException e) {
+                executor.shutdownNow();
+                Thread.currentThread().interrupt();
+                return List.of();
+            }
+            List<Annotation> additional = new ArrayList<>(deepResults);
+            if (!deepResults.isEmpty()) {
+                System.err.println("Deep embedding search found " + deepResults.size() + " additional results");
+            }
+
+            List<Annotation> seeds = new ArrayList<>(shallowResults != null ? shallowResults : List.of());
+            seeds.addAll(deepResults);
+            MatchContext expansionContext = context.withPreviousResults(seeds);
+
+            var oxoCfg = ZoomaConfig.config.oxo;
+            boolean oxoEnabled = oxoCfg == null || oxoCfg.enabled == null || oxoCfg.enabled;
+
+            var oxoFuture = oxoEnabled
+                ? executor.submit(() -> {
+                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                    return oxoMatcher.findMatches(expansionContext);
+                })
+                : null;
+            var similarFuture = executor.submit(() -> {
+                if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                return olsEmbeddingSimilarMatcher.findMatches(expansionContext);
+            });
+
+            List<Annotation> oxoResults;
+            List<Annotation> embeddingSimilarResults;
+            try {
+                oxoResults = oxoFuture != null ? oxoFuture.get() : List.of();
+                embeddingSimilarResults = similarFuture.get();
+            } catch (InterruptedException e) {
+                executor.shutdownNow();
+                Thread.currentThread().interrupt();
+                return additional;
+            }
+
+            if (!oxoResults.isEmpty()) {
+                System.err.println("OXO expanded " + oxoResults.size() + " additional results to preferred ontologies");
+                additional.addAll(oxoResults);
+            }
+            if (!embeddingSimilarResults.isEmpty()) {
+                System.err.println("OLS embedding similarity expanded " + embeddingSimilarResults.size() + " additional results");
+                additional.addAll(embeddingSimilarResults);
+            }
+            return additional;
+
+        } catch (Exception e) {
+            System.err.println("Error in deep search: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Deep search failed for '" + context.stringToMap + "': " + e.getMessage(), e);
         }
     }
 }

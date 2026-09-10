@@ -1,22 +1,20 @@
 package uk.ac.ebi.zooma2.mapping;
 
 import uk.ac.ebi.zooma2.Deduplicator;
-import uk.ac.ebi.zooma2.model.Annotation;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.model.StringToMap;
 import uk.ac.ebi.zooma2.util.RequestCancellation;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 /**
- * Handles Pass 2 (full deep search) of the two-pass batch mapping strategy.
- * Runs deep embedding, OXO and similarity lookups for properties that
- * {@link ZoomaAnnotatorShallow} could not resolve to a target-ontology term.
+ * Handles Pass 2 (deep search) of the two-pass batch mapping strategy: completes
+ * the runs {@link ZoomaAnnotatorShallow} deferred by running Phase 2 on each,
+ * seeded with the Phase-1 annotations it already holds.
  */
 public class ZoomaAnnotatorDeep {
 
@@ -29,30 +27,25 @@ public class ZoomaAnnotatorDeep {
     }
 
     /**
-     * Runs a deep-search pass for the given properties in parallel using virtual threads,
-     * calling {@code onPropertyMapped} as each property completes.
+     * Runs the deep pass for the given runs in parallel using virtual threads,
+     * calling {@code onPropertyMapped} as each completes.
      */
     public void runPass(
-            List<StringToMap> properties,
-            Map<String, List<Annotation>> tagTextResults,
+            List<StringMapper.MappingRun> runs,
             Filter filter,
-            String model,
             List<String> excludeTermIds,
             BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
 
         var cancelled = RequestCancellation.newFlag();
 
         try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            var futures = properties.stream().map(prop ->
+            var futures = runs.stream().map(run ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
+                    StringToMap prop = run.property;
                     try {
-                        List<MapResult> results = stringMapper.mapOne(prop, filter, model, true);
-                        var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
-                        if (!taggerAnnotations.isEmpty()) {
-                            results.addAll(stringMapper.annotationsToMapResults(taggerAnnotations, prop, false));
-                        }
+                        List<MapResult> results = stringMapper.mapDeep(run);
                         onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;

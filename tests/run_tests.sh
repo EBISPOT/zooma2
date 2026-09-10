@@ -304,6 +304,17 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
         "$ACTUAL_DIR/v2_annotate_filtered/sequence_record_edam_defining_only.json" \
         "$OUTPUT_DIR/v2_annotate_filtered/sequence_record_edam_defining_only.json"
 
+    # ---- 2e. "Try again" through the tagger short-circuit (issue #14) ----
+    # cisplatin's only full match in CHEBI is CHEBI_27899; excluding it must not
+    # short-circuit the search to an empty answer but return alternatives.
+    curl -sf -X POST "$BASE_URL/v3/api/services/map" \
+        -H "Content-Type: application/json" \
+        -d '{"properties":[{"textToMap":"cisplatin"}],"targetOntologies":["chebi"],"includeOtherOntologies":false,"excludeTermIds":["CHEBI_27899"]}' \
+        | normalise_json > "$ACTUAL_DIR/v3_map_filtered/cisplatin_chebi_exclude_top.json"
+    compare_output "$TEST_NAME/v3_map_filtered/cisplatin_chebi_exclude_top" \
+        "$ACTUAL_DIR/v3_map_filtered/cisplatin_chebi_exclude_top.json" \
+        "$OUTPUT_DIR/v3_map_filtered/cisplatin_chebi_exclude_top.json"
+
     # ---- 2c. Duplicate properties in one request (issue #9) ----
     # The same text under two property types shares one set of tagger annotations;
     # converting them must not cross-contaminate the groups, and identical properties
