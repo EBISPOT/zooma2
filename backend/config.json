@@ -104,15 +104,15 @@
     "ols_lexical": {
         "max_results": 20,
         "timeout_ms": 60000,
-        "max_concurrent_requests": 5
+        "max_concurrent_requests": 12
     },
     "ols_embedding": {
         "min_similarity": 0.7,
         "max_deep_results": 100,
         "max_shallow_results": 10,
         "timeout_ms": 60000,
-        "max_concurrent_embedding_requests": 3,
-        "max_concurrent_similar_requests": 10,
+        "max_concurrent_embedding_requests": 12,
+        "max_concurrent_similar_requests": 16,
         "max_scoped_ontologies": 5
     },
     "oxo": {

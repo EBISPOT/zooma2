@@ -43,8 +43,8 @@ public class CachedHttpClient {
         // With 32 per route, a cold cache on prod saw term lookups queue past
         // their timeout ("Timeout waiting for connection from pool"), fail, and
         // retry, taking the whole search past the edge's 60 s limit.
-        pool.setMaxTotal(128);
-        pool.setDefaultMaxPerRoute(64);
+        pool.setMaxTotal(256);
+        pool.setDefaultMaxPerRoute(128);
         pool.setValidateAfterInactivity(2_000);
         return HttpClientBuilder.create()
             .useSystemProperties()
