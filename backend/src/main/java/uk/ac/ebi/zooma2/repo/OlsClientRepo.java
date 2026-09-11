@@ -1061,7 +1061,11 @@ public class OlsClientRepo {
     }
 
     private JsonElement urlToJson(String url) throws IOException {
-        return CachedHttpClient.getJson(url, 30000);
+        // OLS answers in well under a second; a socket that hangs is dead, not
+        // slow, and waiting out a 30s timeout on one was the source of the
+        // occasional 30-60s stalls in an otherwise ~1s search. One retry on a
+        // fresh connection costs far less than the wait.
+        return CachedHttpClient.getJson(url, 15000);
     }
 
     private JsonElement urlToJson(String url, int timeoutMs) throws IOException {

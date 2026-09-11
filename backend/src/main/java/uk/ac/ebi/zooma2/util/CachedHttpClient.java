@@ -49,7 +49,7 @@ public class CachedHttpClient {
         return HttpClientBuilder.create()
             .useSystemProperties()
             .setConnectionManager(pool)
-            .evictIdleConnections(60, java.util.concurrent.TimeUnit.SECONDS)
+            .evictIdleConnections(15, java.util.concurrent.TimeUnit.SECONDS)
             .build();
     }
 

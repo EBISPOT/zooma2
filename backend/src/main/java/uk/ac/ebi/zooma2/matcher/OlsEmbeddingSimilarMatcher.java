@@ -18,7 +18,7 @@ import uk.ac.ebi.zooma2.util.Diagnostics;
  */
 public class OlsEmbeddingSimilarMatcher implements AnnotationMatcher {
     private static final int DEFAULT_SIZE = 50;
-    private static final int SIMILAR_TIMEOUT_MS = 30000;
+    private static final int SIMILAR_TIMEOUT_MS = 15000;
     
     /** Discount for an indirect mapping: the seed's confidence scaled by this and by the similarity. */
     private static final double EXPANSION_DISCOUNT = 0.7;
