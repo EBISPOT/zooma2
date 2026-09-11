@@ -38,8 +38,13 @@ public class CachedHttpClient {
 
     private static CloseableHttpClient createClient() {
         PoolingHttpClientConnectionManager pool = new PoolingHttpClientConnectionManager();
-        pool.setMaxTotal(64);
-        pool.setDefaultMaxPerRoute(32);
+        // A search fans out into a few hundred OLS calls (term lookups per
+        // candidate, plus the semaphore-bounded lexical/embedding/similar calls).
+        // With 32 per route, a cold cache on prod saw term lookups queue past
+        // their timeout ("Timeout waiting for connection from pool"), fail, and
+        // retry, taking the whole search past the edge's 60 s limit.
+        pool.setMaxTotal(128);
+        pool.setDefaultMaxPerRoute(64);
         pool.setValidateAfterInactivity(2_000);
         return HttpClientBuilder.create()
             .useSystemProperties()
@@ -91,6 +96,10 @@ public class CachedHttpClient {
             Metrics.HTTP_FAILURES.incrementAndGet();
             if (RequestCancellation.isCancelled() || Thread.currentThread().isInterrupted()) throw first;
             if (first instanceof HttpStatusException status && !status.isTransient()) throw first;
+            // Waiting for a pooled connection is local congestion, not a flaky
+            // upstream: retrying just re-queues behind the same backlog and
+            // doubles the load that caused it.
+            if (first instanceof org.apache.http.conn.ConnectionPoolTimeoutException) throw first;
             Metrics.HTTP_RETRIES.incrementAndGet();
             System.err.println("Retrying " + what + " after: " + first.getMessage());
             try {

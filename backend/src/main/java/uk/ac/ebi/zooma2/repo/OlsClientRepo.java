@@ -29,11 +29,15 @@ public class OlsClientRepo {
     private final Semaphore embeddingSemaphore;
     private final Semaphore similarSemaphore;
     private final Semaphore lexicalSemaphore;
+    /** Concurrent per-IRI term lookups; keeps the shared HTTP pool free for the other call classes. */
+    private static final int MAX_CONCURRENT_TERM_FETCHES = 24;
+    private final Semaphore termFetchSemaphore;
 
     public OlsClientRepo(int maxConcurrentEmbedding, int maxConcurrentSimilar, int maxConcurrentLexical) {
         this.embeddingSemaphore = new Semaphore(maxConcurrentEmbedding);
         this.similarSemaphore = new Semaphore(maxConcurrentSimilar);
         this.lexicalSemaphore = new Semaphore(maxConcurrentLexical);
+        this.termFetchSemaphore = new Semaphore(MAX_CONCURRENT_TERM_FETCHES);
     }
 
     public OlsClientRepo() {
@@ -195,7 +199,14 @@ public class OlsClientRepo {
                 .filter(iri -> iri != null && !iri.isEmpty())
                 .map(iri -> executor.submit(() -> {
                     if (cancelFlag != null) uk.ac.ebi.zooma2.util.RequestCancellation.setFlag(cancelFlag);
-                    return fetchTerm(iri);
+                    // Bounded like the other OLS call classes: one virtual thread
+                    // per IRI otherwise floods the shared connection pool.
+                    termFetchSemaphore.acquire();
+                    try {
+                        return fetchTerm(iri);
+                    } finally {
+                        termFetchSemaphore.release();
+                    }
                 }))
                 .toList();
             for (var future : futures) {

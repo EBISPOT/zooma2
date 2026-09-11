@@ -12,7 +12,10 @@ httpProxyHost: hh-wwwcache.ebi.ac.uk
 httpProxyPort: 3128
 httpsProxyHost: hh-wwwcache.ebi.ac.uk
 httpsProxyPort: 3128
-nonProxyHosts: "localhost|127.0.0.1|*.cluster.local|*.svc|kubernetes|*.svc.cluster.local"
+# EBI hosts (OLS on www/wwwdev) are reachable directly from the pods; going
+# through the web cache as CONNECT tunnels added NoHttpResponse drops and
+# retries under load, for no benefit.
+nonProxyHosts: "localhost|127.0.0.1|*.cluster.local|*.svc|kubernetes|*.svc.cluster.local|*.ebi.ac.uk"
 
 # Fixed node ports the EBI edge load balancer targets. These defaults are the
 # dev cluster's; prod's differ (backend 32107, frontend 30572) and must be set
