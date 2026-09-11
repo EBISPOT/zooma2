@@ -1,0 +1,9 @@
+# Production overrides (values.yaml defaults are the dev cluster's).
+#   helm upgrade zooma2 k8chart -n ontotools -f k8chart/values-prod.yaml
+olsUrl: https://www.ebi.ac.uk/ols4
+nfsDir: /ifs/public/rw/ontotools/zooma2/prod
+# Fixed node ports the EBI edge load balancer targets on the prod cluster.
+backend:
+  nodePort: 32107
+frontend:
+  nodePort: 30572

@@ -8,7 +8,11 @@ RUN npm ci
 COPY . .
 
 ARG PUBLIC_URL=/spot/zooma/
-ARG REACT_APP_APIURL=https://wwwdev.ebi.ac.uk/spot/zooma/
+# The API is served under the same path prefix on every host (www, wwwdev),
+# so a relative URL lets one image serve both; the old absolute default made
+# a prod deployment of this image call the dev API. Only the fetch prefix
+# uses it. Override at build time for a non-standard layout.
+ARG REACT_APP_APIURL=/spot/zooma/
 ARG ZOOMA_MINIFY=true
 
 ENV PUBLIC_URL=${PUBLIC_URL}
