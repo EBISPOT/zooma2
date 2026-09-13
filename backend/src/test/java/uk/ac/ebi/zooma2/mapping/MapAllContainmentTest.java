@@ -57,7 +57,7 @@ class MapAllContainmentTest {
     }
 
     @Test
-    void aFailingPropertyYieldsAnErrorResultAndTheOthersMapNormally() {
+    void aFailingStringYieldsAnErrorResultAndTheOthersMapNormally() {
         BatchMapper batch = new BatchMapper(new ExplodingMapper(), new NoTagger(), new Deduplicator(PREFIX_MAP));
         List<StringToMap> inputs = List.of(stringToMap("liver"), stringToMap("boom"), stringToMap("kidney"));
 

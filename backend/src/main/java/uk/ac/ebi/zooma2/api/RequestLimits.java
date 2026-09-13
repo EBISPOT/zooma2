@@ -12,7 +12,7 @@ import io.javalin.http.BadRequestResponse;
  */
 public final class RequestLimits {
 
-    /** Strings per V3 map request; the older name ZOOMA2_MAX_PROPERTIES is still honoured. */
+    /** Strings per map request, V2 and V3; the older name ZOOMA2_MAX_PROPERTIES is still honoured. */
     public static final int MAX_STRINGS = envInt("ZOOMA2_MAX_STRINGS", "ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000);
     public static final int MAX_DEEP_STRINGS = envInt("ZOOMA2_MAX_DEEP_STRINGS", "ZOOMA2_MAX_DEEP_PROPERTIES", 200, 1, 100_000);
     public static final int MAX_STRING_LENGTH = envInt("ZOOMA2_MAX_STRING_LENGTH", "ZOOMA2_MAX_PROPERTY_TEXT_LENGTH", 1000, 1, 1_000_000);
@@ -62,7 +62,11 @@ public final class RequestLimits {
         return envInt(System::getenv, name, legacyName, defaultValue, min, max);
     }
 
-    /** {@code name} from {@code env}, else {@code legacyName} (an earlier name for the same limit), else the default. */
+    /**
+     * {@code name} from {@code env}, else {@code legacyName} (an earlier name for the same
+     * limit), else the default. A new name that is set but invalid is reported and yields
+     * the default; the legacy name is consulted only when the new one is absent.
+     */
     static int envInt(java.util.function.Function<String, String> env, String name, String legacyName, int defaultValue, int min, int max) {
         String raw = env.apply(name);
         if ((raw == null || raw.isBlank()) && legacyName != null) {

@@ -595,7 +595,7 @@ public class ZoomaApiV3 {
             throw new BadRequestResponse("'properties' cannot contain more than " + MAX_STRINGS + " items");
         }
         if (Boolean.TRUE.equals(request.deep) && request.properties.size() > MAX_DEEP_STRINGS) {
-            throw new BadRequestResponse("'deep' requests cannot contain more than " + MAX_DEEP_STRINGS + " strings");
+            throw new BadRequestResponse("'deep' requests cannot contain more than " + MAX_DEEP_STRINGS + " items");
         }
         validateString("model", request.model, false, MAX_MODEL_LENGTH);
         validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);

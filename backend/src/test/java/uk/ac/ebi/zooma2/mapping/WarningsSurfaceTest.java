@@ -51,7 +51,7 @@ class WarningsSurfaceTest {
     }
 
     @Test
-    void matcherOutagesBecomeWarningsOnThePropertyNotSilentEmptiness() {
+    void matcherOutagesBecomeWarningsOnTheStringNotSilentEmptiness() {
         StringMapper mapper = new StringMapper(new OutageEngine(), new OlsClientRepo(), PREFIX_MAP);
         List<MapResult> results = mapper.map(stringToMap("diabetes"), List.of(), Filter.fromLists(null, null, List.of("efo"), false), "m", null, null);
 
@@ -70,7 +70,7 @@ class WarningsSurfaceTest {
     }
 
     @Test
-    void aFailedTaggerChunkWarnsExactlyItsOwnProperties() {
+    void aFailedTaggerChunkWarnsExactlyItsOwnStrings() {
         OlsTextTaggerMatcher failingTagger = new OlsTextTaggerMatcher(new OlsClientRepo(), PREFIX_MAP) {
             @Override public TaggerResults bulkTag(List<String> terms) {
                 return new TaggerResults(Map.of(), java.util.Set.of("kidney"), "HTTP 503 for POST tag_text");

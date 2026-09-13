@@ -68,7 +68,7 @@ class TimeBudgetTest {
     }
 
     @Test
-    void aPropertyThatRunsOutOfBudgetIsFlaggedTruncated() {
+    void aStringThatRunsOutOfBudgetIsFlaggedTruncated() {
         AnnotationEngine slowEngine = new AnnotationEngine(new OlsClientRepo()) {
             @Override public List<Annotation> annotateShallow(MatchContext c) {
                 try { Thread.sleep(60); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }

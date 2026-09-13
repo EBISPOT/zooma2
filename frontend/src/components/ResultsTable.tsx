@@ -43,12 +43,12 @@ interface ResultsTableProps {
     resultsVersion: number;
     datasources: ZoomaDatasources | undefined;
     searchParams?: ZoomaApi.SearchParams;
-    inputProperties?: { textToMap: string; propertyType: string }[];
+    inputStrings?: { textToMap: string; propertyType: string }[];
     searching?: boolean;
     highlightedText?: string;
 }
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, datasources, searchParams, inputProperties, searching, highlightedText }) => {
+const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, datasources, searchParams, inputStrings, searching, highlightedText }) => {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(100);
@@ -77,7 +77,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
 
     // Generate in-progress placeholder rows for strings that haven't returned yet
     const inProgressRows = useMemo(() => 
-        (searching && inputProperties) ? inputProperties
+        (searching && inputStrings) ? inputStrings
             .filter(p => !returnedKeys.has((p.textToMap || '') + '\t' + (p.propertyType || '')))
             .map(p => ({
                 textToMap: p.textToMap,
@@ -91,20 +91,20 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                 _inProgress: true as const,
                 mappingProvenance: undefined,
             })) : [],
-        [searching, inputProperties, returnedKeys]
+        [searching, inputStrings, returnedKeys]
     );
 
     // Sort by input order: build an index map from textToMap+type to input position
     const inputOrderMap = useMemo(() => {
         const map = new Map<string, number>();
-        if (inputProperties) {
-            inputProperties.forEach((p, i) => {
+        if (inputStrings) {
+            inputStrings.forEach((p, i) => {
                 const key = (p.textToMap || '') + '\t' + (p.propertyType || '');
                 if (!map.has(key)) map.set(key, i);
             });
         }
         return map;
-    }, [inputProperties]);
+    }, [inputStrings]);
 
     // Combine, sort, apply overrides
     const effectiveResults = useMemo(() => {
@@ -124,16 +124,16 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     }, [results, resultsVersion, inProgressRows, inputOrderMap, overrides]);
 
     // Build set of input keys (text + type) that have at least one approved row
-    const approvedPropertyKeys = useMemo(() => {
-        const propKeys = new Set<string>();
+    const approvedInputKeys = useMemo(() => {
+        const inputKeys = new Set<string>();
         approved.forEach(key => {
             const lastTab = key.lastIndexOf('\t');
-            if (lastTab > 0) propKeys.add(key.substring(0, lastTab));
+            if (lastTab > 0) inputKeys.add(key.substring(0, lastTab));
         });
-        return propKeys;
+        return inputKeys;
     }, [approved]);
 
-    // Property keys with multiple high-confidence (>=0.9) rows → show as yellow not green
+    // Input keys with multiple high-confidence (>=0.9) rows → show as yellow not green
     const multiGreenKeys = useMemo(() => {
         const counts = new Map<string, number>();
         for (const r of effectiveResults) {
@@ -152,12 +152,12 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         .filter(r => {
             // If this string has an approved row, hide all non-approved rows for it
             if (approved.has(r._key)) return true;
-            const propKey = (r.textToMap || '') + '\t' + (r.propertyType || '');
-            if (approvedPropertyKeys.has(propKey)) return false;
+            const inputKey = (r.textToMap || '') + '\t' + (r.propertyType || '');
+            if (approvedInputKeys.has(inputKey)) return false;
             return true;
         })
 ,
-        [effectiveResults, removedKeys, approved, approvedPropertyKeys]
+        [effectiveResults, removedKeys, approved, approvedInputKeys]
     );
     const paginatedResults = filteredResults.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
@@ -213,9 +213,9 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         );
 
         // Collect existing table results for this string to merge into candidates
-        const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
+        const inputKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
         const existingResults = results.filter(r =>
-            (r.textToMap || '') + '\t' + (r.propertyType || '') === propKey
+            (r.textToMap || '') + '\t' + (r.propertyType || '') === inputKey
             && r.ontologyTermID
             && r.mappingConfidence !== 'Did not map'
         );
@@ -275,8 +275,8 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
 
     const handleRetry = async (result: ZoomaApi.SearchResult) => {
         if (!searchParams) return;
-        const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
-        setRetrying(prev => new Set(prev).add(propKey));
+        const inputKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
+        setRetrying(prev => new Set(prev).add(inputKey));
         try {
             const newResults = await ZoomaApi.remapOne(
                 searchParams, result.textToMap, result.propertyType, []
@@ -286,7 +286,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                 setOverrides(prev => new Map(prev).set(stableKey, newResults[0]));
             }
         } finally {
-            setRetrying(prev => { const next = new Set(prev); next.delete(propKey); return next; });
+            setRetrying(prev => { const next = new Set(prev); next.delete(inputKey); return next; });
         }
     };
 
@@ -313,9 +313,9 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
                             const isInProgress = result._inProgress;
                             const isError = !!(result as any).error;
                             const isMapped = result.mappingConfidence !== 'Did not map' && !isInProgress && !isError && !!result.ontologyTermID;
-                            const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
-                            const isRetrying = retrying.has(propKey);
-                            const rowClass = isError ? 'error-row' : isInProgress ? 'in-progress' : isApproved ? 'automatic' : (getResultClass(result) === 'automatic' && multiGreenKeys.has(propKey)) ? 'curation' : getResultClass(result);
+                            const inputKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
+                            const isRetrying = retrying.has(inputKey);
+                            const rowClass = isError ? 'error-row' : isInProgress ? 'in-progress' : isApproved ? 'automatic' : (getResultClass(result) === 'automatic' && multiGreenKeys.has(inputKey)) ? 'curation' : getResultClass(result);
                             const isHighlighted = !!highlightedText && result.textToMap?.toLowerCase() === highlightedText.toLowerCase();
                             return (
                                 <TableRow 

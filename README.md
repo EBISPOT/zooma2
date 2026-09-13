@@ -27,7 +27,7 @@ Environment variables:
 | `ZOOMA2_CONTEXT_PATH` | (none) | No | URL path prefix, e.g. `/spot/zooma` |
 | `ZOOMA2_CORS_ALLOWED_ORIGINS` | EBI + localhost origins | No | Comma-separated allowed browser origins; use `*` only for local testing |
 | `ZOOMA2_MAX_REQUEST_BYTES` | `2097152` | No | Maximum request body size |
-| `ZOOMA2_MAX_STRINGS` | `1000` | No | Maximum strings accepted by V3 map endpoints (`ZOOMA2_MAX_PROPERTIES` still accepted) |
+| `ZOOMA2_MAX_STRINGS` | `1000` | No | Maximum strings accepted by the V2 and V3 map endpoints (`ZOOMA2_MAX_PROPERTIES` still accepted) |
 | `ZOOMA2_MAX_DEEP_STRINGS` | `200` | No | Maximum strings accepted when `deep=true` (`ZOOMA2_MAX_DEEP_PROPERTIES` still accepted) |
 | `ZOOMA2_MAX_STRING_LENGTH` | `1000` | No | Maximum length of one string to map (`ZOOMA2_MAX_PROPERTY_TEXT_LENGTH` still accepted) |
 | `ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH` | `50000` | No | Maximum length for annotate-text input |

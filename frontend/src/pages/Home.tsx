@@ -584,7 +584,7 @@ export default function Home() {
               )}
               
               {resultsRef.current.length > 0 ? (
-                <ResultsTable results={removedPhrases.size > 0 ? resultsRef.current.filter(r => !removedPhrases.has((r.textToMap || '').toLowerCase())) : resultsRef.current} resultsVersion={resultsVersion} datasources={datasources} searchParams={lastSearchParams} inputProperties={lastSearchParams?.properties} searching={searching} highlightedText={activeSegment} />
+                <ResultsTable results={removedPhrases.size > 0 ? resultsRef.current.filter(r => !removedPhrases.has((r.textToMap || '').toLowerCase())) : resultsRef.current} resultsVersion={resultsVersion} datasources={datasources} searchParams={lastSearchParams} inputStrings={lastSearchParams?.properties} searching={searching} highlightedText={activeSegment} />
               ) : searching && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 6 }}>
                   <CircularProgress />

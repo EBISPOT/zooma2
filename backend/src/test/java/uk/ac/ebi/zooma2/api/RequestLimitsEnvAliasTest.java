@@ -25,5 +25,8 @@ class RequestLimitsEnvAliasTest {
             "ZOOMA2_MAX_STRINGS", "ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000));
         assertEquals(1000, RequestLimits.envInt(Map.of("ZOOMA2_MAX_STRINGS", "0")::get,
             "ZOOMA2_MAX_STRINGS", null, 1000, 1, 100_000));
+        // an explicitly set new name is authoritative even when invalid: the legacy value is not consulted
+        assertEquals(1000, RequestLimits.envInt(Map.of("ZOOMA2_MAX_STRINGS", "0", "ZOOMA2_MAX_PROPERTIES", "70")::get,
+            "ZOOMA2_MAX_STRINGS", "ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000));
     }
 }

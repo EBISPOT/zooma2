@@ -47,7 +47,7 @@ public class ZoomaApiV2 {
     static class MapJob {
         final List<V2StringToMapDto> inputs;
         final String filterRaw;
-        /** Fraction of properties done; stays below 1.0 until {@link #results} is published. */
+        /** Fraction of strings done; stays below 1.0 until {@link #results} is published. */
         volatile double progress;
         volatile List<V2MapResultDto> results;
         final long createdAt;
@@ -154,8 +154,8 @@ public class ZoomaApiV2 {
         evictOldJobs();
 
         // Run the whole batch through the same pipeline as V3: one bulk tag_text
-        // call and one virtual thread per property, instead of one full deep
-        // mapping (and one bulk-tagger POST) per property in sequence.
+        // call and one virtual thread per string, instead of one full deep
+        // mapping (and one bulk-tagger POST) per string in sequence.
         Thread.startVirtualThread(() -> runJob(job));
 
         ctx.contentType("text/plain");
@@ -177,12 +177,12 @@ public class ZoomaApiV2 {
                 inputIndex.put(stm, i);
             }
 
-            // Properties complete in any order; the report keeps input order.
+            // Strings complete in any order; the report keeps input order.
             List<List<V2MapResultDto>> perInput = new ArrayList<>(Collections.nCopies(total, null));
             var completed = new AtomicInteger();
             // deep=null: escalate to the deep search only when an ontology filter is set
             // and the shallow search misses it, as V3 does, rather than forcing the full
-            // deep pipeline for every property of a spreadsheet.
+            // deep pipeline for every string of a spreadsheet.
             annotator.mapEach(stringsToMap, filter, model, null, true, null, (stringToMap, results) -> {
                 List<V2MapResultDto> dtos = results.stream()
                     .filter(r -> !r.isDiagnostic())
