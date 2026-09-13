@@ -62,12 +62,12 @@ public class BatchMapper {
 
     public Collection<MapResult> mapAll(Stream<StringToMap> stringsToMap, Filter sources, String model,
                                         List<String> excludeTermIds, boolean returnAll, Boolean deep) {
-        List<StringToMap> properties = stringsToMap.collect(Collectors.toList());
+        List<StringToMap> inputs = stringsToMap.collect(Collectors.toList());
 
         // Tag each distinct text once: the tagger keys its results by text, so a
         // repeated text (e.g. the same value under two property types) would only
         // duplicate the hits, and would change the request body, defeating the cache.
-        List<String> allTerms = properties.stream()
+        List<String> allTerms = inputs.stream()
             .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
             .distinct()
@@ -77,11 +77,11 @@ public class BatchMapper {
 
         // Virtual threads, not a parallel stream: the work is blocking OLS I/O, which on
         // the CPU-sized common ForkJoinPool caps concurrency and lets one large request
-        // starve every other request's parallel work. Each property is contained: a
-        // failure yields an error result for that property, not a 500 for the request.
+        // starve every other request's parallel work. Each string is contained: a
+        // failure yields an error result for that string, not a 500 for the request.
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();
         try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
-            List<Future<List<MapResult>>> futures = properties.stream().map(s ->
+            List<Future<List<MapResult>>> futures = inputs.stream().map(s ->
                 executor.submit(() -> {
                     if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                     try {
@@ -95,7 +95,7 @@ public class BatchMapper {
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
-                        System.err.println("Error mapping property '" + s.textToMap + "': " + MapResult.describe(e));
+                        System.err.println("Error mapping '" + s.textToMap + "': " + MapResult.describe(e));
                         e.printStackTrace();
                         return List.of(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e)));
                     }
@@ -124,24 +124,24 @@ public class BatchMapper {
 
     /**
      * Processes a batch of strings in parallel using virtual threads, calling
-     * {@code onPropertyMapped} as each string completes.
+     * {@code onStringMapped} as each string completes.
      *
      * <p>Pass 1: all strings run the shallow search. Strings for which the escalation
      * policy asks for Phase 2 are deferred. Pass 2: the deferred runs are completed
      * with the deep search, seeded with their Phase-1 annotations.
      */
-    public void mapEach(List<StringToMap> properties, Filter filter, String model,
-                        BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
-        mapEach(properties, filter, model, null, false, null, onPropertyMapped);
+    public void mapEach(List<StringToMap> stringsToMap, Filter filter, String model,
+                        BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
+        mapEach(stringsToMap, filter, model, null, false, null, onStringMapped);
     }
 
-    public void mapEach(List<StringToMap> properties, Filter filter, String model,
+    public void mapEach(List<StringToMap> stringsToMap, Filter filter, String model,
                         List<String> excludeTermIds, boolean returnAll, Boolean deep,
-                        BiConsumer<StringToMap, List<MapResult>> onPropertyMappedRaw) {
+                        BiConsumer<StringToMap, List<MapResult>> onStringMappedRaw) {
         // Tag each distinct text once: the tagger keys its results by text, so a
         // repeated text (e.g. the same value under two property types) would only
         // duplicate the hits, and would change the request body, defeating the cache.
-        List<String> allTerms = properties.stream()
+        List<String> allTerms = stringsToMap.stream()
             .map(p -> p.textToMap)
             .filter(v -> v != null && !v.isEmpty())
             .distinct()
@@ -150,62 +150,62 @@ public class BatchMapper {
         Map<String, List<Annotation>> tagTextResults = tagged.byTerm;
         System.err.println("Bulk tag_text returned matches for " + tagTextResults.size() + "/" + allTerms.size() + " terms");
         // A failed tag_text chunk silently strips the exact-match tier from its
-        // properties; tell them so a degraded answer is not read as "no match".
-        final BiConsumer<StringToMap, List<MapResult>> onPropertyMapped = withTaggerWarnings(tagged, onPropertyMappedRaw);
+        // strings; tell them so a degraded answer is not read as "no match".
+        final BiConsumer<StringToMap, List<MapResult>> onStringMapped = withTaggerWarnings(tagged, onStringMappedRaw);
 
         if (returnAll || deep != null) {
-            mapEachSinglePass(properties, tagTextResults, filter, model, excludeTermIds, returnAll, deep, onPropertyMapped);
+            mapEachSinglePass(stringsToMap, tagTextResults, filter, model, excludeTermIds, returnAll, deep, onStringMapped);
             return;
         }
 
         List<StringMapper.MappingRun> needsDeep = shallowAnnotator.runPass(
-            properties, tagTextResults, filter, model, excludeTermIds, onPropertyMapped
+            stringsToMap, tagTextResults, filter, model, excludeTermIds, onStringMapped
         );
         if (needsDeep.isEmpty()) return;
-        // Deferred properties never reach the callback that aborts on disconnect, so a
+        // Deferred strings never reach the callback that aborts on disconnect, so a
         // client that left during the shallow pass would otherwise get a deep pass run
         // (and, before the passes shared one flag, an uncancellable one) on its behalf.
         if (RequestCancellation.isCancelled()) {
-            System.err.println("Skipping deep search for " + needsDeep.size() + " properties: request cancelled");
+            System.err.println("Skipping deep search for " + needsDeep.size() + " strings: request cancelled");
             return;
         }
-        System.err.println("Running deep search for " + needsDeep.size() + " properties after shallow pass");
-        deepAnnotator.runPass(needsDeep, filter, excludeTermIds, onPropertyMapped);
+        System.err.println("Running deep search for " + needsDeep.size() + " strings after shallow pass");
+        deepAnnotator.runPass(needsDeep, filter, excludeTermIds, onStringMapped);
     }
 
     private void mapEachSinglePass(
-            List<StringToMap> properties,
+            List<StringToMap> stringsToMap,
             Map<String, List<Annotation>> tagTextResults,
             Filter filter,
             String model,
             List<String> excludeTermIds,
             boolean returnAll,
             Boolean deep,
-            BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+            BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
 
         try (var scope = RequestCancellation.acquire();
              var executor = Executors.newVirtualThreadPerTaskExecutor()) {
             var cancelled = scope.flag();
-            var futures = properties.stream().map(prop ->
+            var futures = stringsToMap.stream().map(s ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
                     try {
-                        var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
+                        var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
                         if (!returnAll && textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter, excludeTermIds)) {
-                            var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, Boolean.TRUE.equals(deep));
-                            onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
+                            var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, Boolean.TRUE.equals(deep));
+                            onStringMapped.accept(s, deduplicateForMode(results, filter, excludeTermIds, returnAll));
                             return;
                         }
 
-                        List<MapResult> results = stringMapper.map(prop, taggerAnnotations, filter, model, deep, excludeTermIds);
-                        onPropertyMapped.accept(prop, deduplicateForMode(results, filter, excludeTermIds, returnAll));
+                        List<MapResult> results = stringMapper.map(s, taggerAnnotations, filter, model, deep, excludeTermIds);
+                        onStringMapped.accept(s, deduplicateForMode(results, filter, excludeTermIds, returnAll));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
-                        System.err.println("Error mapping property '" + prop.textToMap + "': " + MapResult.describe(e));
+                        System.err.println("Error mapping '" + s.textToMap + "': " + MapResult.describe(e));
                         e.printStackTrace();
-                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, MapResult.describe(e))));
+                        onStringMapped.accept(s, List.of(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e))));
                     }
                 })
             ).collect(Collectors.toList());
@@ -219,23 +219,23 @@ public class BatchMapper {
                         futures.forEach(f -> f.cancel(true));
                         throw (java.io.UncheckedIOException) e.getCause();
                     }
-                    System.err.println("Error mapping property: " + e.getMessage());
+                    System.err.println("Error mapping string: " + e.getMessage());
                 }
             }
         }
     }
 
-    /** Wraps the completion callback so properties whose tag_text chunk failed carry a warning. */
+    /** Wraps the completion callback so strings whose tag_text chunk failed carry a warning. */
     private static BiConsumer<StringToMap, List<MapResult>> withTaggerWarnings(
-            OlsTextTaggerMatcher.TaggerResults tagged, BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
-        if (tagged.failedTerms.isEmpty()) return onPropertyMapped;
-        return (prop, results) -> onPropertyMapped.accept(prop, withTaggerWarning(tagged, prop, results));
+            OlsTextTaggerMatcher.TaggerResults tagged, BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
+        if (tagged.failedTerms.isEmpty()) return onStringMapped;
+        return (s, results) -> onStringMapped.accept(s, withTaggerWarning(tagged, s, results));
     }
 
-    private static List<MapResult> withTaggerWarning(OlsTextTaggerMatcher.TaggerResults tagged, StringToMap prop, List<MapResult> results) {
-        if (!tagged.failedTerms.contains(prop.textToMap)) return results;
+    private static List<MapResult> withTaggerWarning(OlsTextTaggerMatcher.TaggerResults tagged, StringToMap s, List<MapResult> results) {
+        if (!tagged.failedTerms.contains(s.textToMap)) return results;
         List<MapResult> withWarning = new ArrayList<>(results);
-        withWarning.add(MapResult.warning(prop.textToMap, prop.propertyType,
+        withWarning.add(MapResult.warning(s.textToMap, s.propertyType,
             "OLS text tagger unavailable" + (tagged.failure != null ? ": " + tagged.failure : "")
             + "; exact and curated matches may be missing"));
         return withWarning;

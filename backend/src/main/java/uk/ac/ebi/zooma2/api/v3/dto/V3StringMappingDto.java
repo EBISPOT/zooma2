@@ -8,46 +8,46 @@ import uk.ac.ebi.zooma2.matcher.EvidenceTier;
 import uk.ac.ebi.zooma2.model.MapResult;
 
 /**
- * Mapping results for a single input property.
+ * Mapping results for one input string.
  */
-public class V3PropertyMappingDto {
+public class V3StringMappingDto {
 
     /** The property type from the input. */
     public String propertyType;
 
-    /** The property value from the input. */
+    /** The string from the input. */
     public String textToMap;
 
     /** Candidate ontology term mappings, ranked by confidence. */
     public List<V3MappingCandidateDto> candidates;
 
-    /** Error message if mapping failed for this property. */
+    /** Error message if mapping failed for this string. */
     public String error;
 
     /**
      * Degradations that did not fail the mapping but may have cost candidates:
      * an OLS endpoint unavailable, terms that could not be resolved. Absent
-     * when the mapping ran cleanly. A property with warnings and no candidates
+     * when the mapping ran cleanly. A string with warnings and no candidates
      * should not be taken as "nothing matches".
      */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<String> warnings;
 
-    /** {@code true} when the per-property time budget ran out and the results may be incomplete; omitted otherwise. */
+    /** {@code true} when the per-string time budget ran out and the results may be incomplete; omitted otherwise. */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public Boolean truncated;
 
-    public static V3PropertyMappingDto of(String propertyType, String textToMap, List<V3MappingCandidateDto> candidates) {
-        var dto = new V3PropertyMappingDto();
+    public static V3StringMappingDto of(String propertyType, String textToMap, List<V3MappingCandidateDto> candidates) {
+        var dto = new V3StringMappingDto();
         dto.propertyType = propertyType;
         dto.textToMap = textToMap;
         dto.candidates = candidates;
         return dto;
     }
 
-    /** Candidates (ranked), first error and distinct warnings from one property's deduplicated results. */
-    public static V3PropertyMappingDto fromResults(String propertyType, String textToMap, List<MapResult> results) {
-        var dto = new V3PropertyMappingDto();
+    /** Candidates (ranked), first error and distinct warnings from one string's deduplicated results. */
+    public static V3StringMappingDto fromResults(String propertyType, String textToMap, List<MapResult> results) {
+        var dto = new V3StringMappingDto();
         dto.propertyType = propertyType;
         dto.textToMap = textToMap;
         dto.candidates = results.stream()

@@ -280,7 +280,7 @@ public class OlsClientRepo {
         }
     }
 
-    /** Records a degradation for the property being mapped, unless the request was simply cancelled. */
+    /** Records a degradation for the string being mapped, unless the request was simply cancelled. */
     private static void warn(String what, Exception e) {
         if (uk.ac.ebi.zooma2.util.RequestCancellation.isCancelled()) return;
         uk.ac.ebi.zooma2.util.Diagnostics.warn(what + ": " + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()));
@@ -579,7 +579,7 @@ public class OlsClientRepo {
     /**
      * Result of a bulk tag_text call: matches per input term, plus the terms whose
      * request failed even after a retry. A failed chunk degrades only its own
-     * terms; the caller reports the failure on those properties instead of
+     * terms; the caller reports the failure on those strings instead of
      * silently returning them without their exact-match tier.
      */
     public static final class TagTextResponse {

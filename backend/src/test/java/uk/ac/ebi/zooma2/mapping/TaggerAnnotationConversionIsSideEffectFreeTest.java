@@ -27,7 +27,7 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 
 /**
  * The tagger annotations for a text are fetched once per batch and shared by every
- * property with that text, across threads and across the shallow/deep passes.
+ * string with that text, across threads and across the shallow/deep passes.
  * Converting them to {@link MapResult}s must therefore never modify them, and must
  * give the same answer no matter how many times (or from how many threads) it runs.
  */
@@ -110,7 +110,7 @@ class TaggerAnnotationConversionIsSideEffectFreeTest {
         );
     }
 
-    private static StringToMap property(String propertyType) {
+    private static StringToMap stringToMap(String propertyType) {
         StringToMap s = new StringToMap();
         s.textToMap = "some text";
         s.propertyType = propertyType;
@@ -136,8 +136,8 @@ class TaggerAnnotationConversionIsSideEffectFreeTest {
         List<List<V3MappingProvenanceStepDto>> provenanceBefore =
             annotations.stream().map(a -> a.mappingProvenance).collect(Collectors.toList());
 
-        List<MapResult> first = mapper.annotationsToMapResults(annotations, property("organism"), false);
-        List<MapResult> second = mapper.annotationsToMapResults(annotations, property(null), true);
+        List<MapResult> first = mapper.annotationsToMapResults(annotations, stringToMap("organism"), false);
+        List<MapResult> second = mapper.annotationsToMapResults(annotations, stringToMap(null), true);
 
         for (int i = 0; i < annotations.size(); i++) {
             Annotation a = annotations.get(i);
@@ -183,7 +183,7 @@ class TaggerAnnotationConversionIsSideEffectFreeTest {
                 final String expected = type != null ? type : "unspecified";
                 futures.add(executor.submit(() -> {
                     for (int i = 0; i < 200; i++) {
-                        List<MapResult> results = mapper.annotationsToMapResults(shared, property(type), i % 2 == 0);
+                        List<MapResult> results = mapper.annotationsToMapResults(shared, stringToMap(type), i % 2 == 0);
                         if (results.size() != 2) problems.add("size " + results.size() + " for " + type);
                         for (MapResult r : results) {
                             if (!expected.equals(r.propertyType)) problems.add("got " + r.propertyType + " for " + type);

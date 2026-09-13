@@ -54,15 +54,15 @@ public class ZoomaAnnotator {
         return batchMapper.mapAll(stringsToMap, sources, model, excludeTermIds, returnAll, deep);
     }
 
-    public void mapEach(List<StringToMap> properties, Filter filter, String model,
-                        java.util.function.BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
-        batchMapper.mapEach(properties, filter, model, onPropertyMapped);
+    public void mapEach(List<StringToMap> stringsToMap, Filter filter, String model,
+                        java.util.function.BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
+        batchMapper.mapEach(stringsToMap, filter, model, onStringMapped);
     }
 
-    public void mapEach(List<StringToMap> properties, Filter filter, String model,
+    public void mapEach(List<StringToMap> stringsToMap, Filter filter, String model,
                         List<String> excludeTermIds, boolean returnAll, Boolean deep,
-                        java.util.function.BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
-        batchMapper.mapEach(properties, filter, model, excludeTermIds, returnAll, deep, onPropertyMapped);
+                        java.util.function.BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
+        batchMapper.mapEach(stringsToMap, filter, model, excludeTermIds, returnAll, deep, onStringMapped);
     }
 
     public List<MapResult> mapOne(StringToMap s, Filter sources, String model, Boolean deep) {

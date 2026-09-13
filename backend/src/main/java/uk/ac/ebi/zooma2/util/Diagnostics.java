@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Per-property warning sink. Anything that degrades a mapping without failing
+ * Per-string warning sink. Anything that degrades a mapping without failing
  * it outright (an OLS endpoint unavailable, terms that could not be resolved,
- * an unreadable response) reports here, and the property's response carries
+ * an unreadable response) reports here, and the string's response carries
  * the messages, so an outage produces a visibly degraded answer rather than a
  * clean, empty one.
  *
- * <p>The sink is thread-local. {@code StringMapper} opens one for the property
+ * <p>The sink is thread-local. {@code StringMapper} opens one for the string
  * it is mapping and drains it into warning results; {@code AnnotationEngine}
  * attaches the same list to the matcher threads it spawns (virtual threads do
  * not inherit thread-locals). Code running with no sink just logs.
@@ -43,7 +43,7 @@ public final class Diagnostics {
         if (sink != null) SINK.set(sink);
     }
 
-    /** Records a warning for the property being mapped (deduplicated) and logs it. */
+    /** Records a warning for the string being mapped (deduplicated) and logs it. */
     public static void warn(String message) {
         if (message == null || message.isBlank()) return;
         List<String> sink = SINK.get();

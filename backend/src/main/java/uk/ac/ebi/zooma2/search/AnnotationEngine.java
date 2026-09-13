@@ -87,7 +87,7 @@ public class AnnotationEngine {
 
     /** Phase 1: OLS lexical + shallow OLS embedding, concurrently. Empty (with the interrupt flag set) if interrupted. */
     public List<Annotation> annotateShallow(MatchContext context) {
-        // Capture the cancellation flag from the calling (property-level) virtual thread
+        // Capture the cancellation flag from the calling (per-string) virtual thread
         // so it can be forwarded into the matcher-level virtual threads spawned below.
         // ThreadLocal is NOT inherited across virtual thread boundaries.
         final java.util.concurrent.atomic.AtomicBoolean cancelFlag = RequestCancellation.getFlag();

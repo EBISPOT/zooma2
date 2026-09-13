@@ -165,8 +165,8 @@ const endpoints = [
   { method: "GET", path: "/sources", description: "Available curated datasources and ontologies.", target: "sources" },
   { method: "GET", path: "/models", description: "Embedding models available from OLS.", target: "models" },
   { method: "GET", path: "/ontology-presets", description: "Configured ontology presets for common searches.", target: "ontology-presets" },
-  { method: "POST", path: "/services/map", description: "Map one or more properties to ontology term candidates.", target: "mapping" },
-  { method: "POST", path: "/services/map-stream", description: "Stream property mapping progress as NDJSON.", target: "streaming-map" },
+  { method: "POST", path: "/services/map", description: "Map one or more strings to ontology term candidates.", target: "mapping" },
+  { method: "POST", path: "/services/map-stream", description: "Stream mapping progress as NDJSON, one event per string.", target: "streaming-map" },
   { method: "POST", path: "/services/annotate-text-stream", description: "Segment free text and stream mappings for extracted phrases.", target: "annotate-text" },
 ];
 
@@ -287,10 +287,10 @@ V3Filter {
 }
 
 V3MapResponse {
-  mappings: V3PropertyMapping[]
+  mappings: V3StringMapping[]
 }
 
-V3PropertyMapping {
+V3StringMapping {
   propertyType?: string
   textToMap: string
   candidates: V3MappingCandidate[]
@@ -452,10 +452,12 @@ export default function Docs() {
                 <CodeBlock title="Response">{ontologyPresetsResponse}</CodeBlock>
               </Section>
 
-              <Section id="mapping" title="POST /services/map" subtitle="Batch property mapping">
+              <Section id="mapping" title="POST /services/map" subtitle="Batch string mapping">
                 <Typography paragraph>
-                  Maps one or more input properties to ranked ontology term candidates. Results are grouped by input
-                  property.
+                  Maps one or more input strings to ranked ontology term candidates. Each entry in{" "}
+                  <InlineCode>properties</InlineCode> (<InlineCode>strings</InlineCode> is accepted as an alias) is one string to map,
+                  with an optional <InlineCode>propertyType</InlineCode> naming the kind of thing it describes, such as{" "}
+                  <InlineCode>organism part</InlineCode>. Results are grouped by input string.
                 </Typography>
                 <CodeBlock title="Request" language="json">{mappingRequest}</CodeBlock>
                 <CodeBlock title="Response" language="json">{mappingResponse}</CodeBlock>
@@ -466,10 +468,10 @@ export default function Docs() {
                 </Typography>
               </Section>
 
-              <Section id="streaming-map" title="POST /services/map-stream" subtitle="Streaming batch property mapping">
+              <Section id="streaming-map" title="POST /services/map-stream" subtitle="Streaming batch string mapping">
                 <Typography paragraph>
                   Accepts the same request body as <InlineCode>/services/map</InlineCode> and streams NDJSON events as
-                  each property completes. <InlineCode>ping</InlineCode> events are heartbeats and can be ignored.
+                  each string completes. <InlineCode>ping</InlineCode> events are heartbeats and can be ignored.
                 </Typography>
                 <CodeBlock title="Events" language="ndjson">{mapStreamEvents}</CodeBlock>
               </Section>

@@ -4,14 +4,14 @@ import java.util.List;
 
 /**
  * Response for the V3 mapping endpoint.
- * Results are grouped by input property.
+ * Results are grouped by input string.
  */
 public class V3MapResponseDto {
 
-    /** Mappings grouped by input property. */
-    public List<V3PropertyMappingDto> mappings;
+    /** Mappings grouped by input string. */
+    public List<V3StringMappingDto> mappings;
 
-    public static V3MapResponseDto of(List<V3PropertyMappingDto> mappings) {
+    public static V3MapResponseDto of(List<V3StringMappingDto> mappings) {
         var response = new V3MapResponseDto();
         response.mappings = mappings;
         return response;

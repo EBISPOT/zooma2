@@ -86,9 +86,9 @@ class StringMapperEscalationTest {
     }
 
     private static final Filter ECTO = Filter.fromLists(null, null, List.of("ecto"), false);
-    private static final StringToMap PROP = property();
+    private static final StringToMap INPUT = stringToMap();
 
-    private static StringToMap property() {
+    private static StringToMap stringToMap() {
         StringToMap s = new StringToMap();
         s.textToMap = "vasopressin";
         return s;
@@ -103,7 +103,7 @@ class StringMapperEscalationTest {
         StubEngine engine = new StubEngine(List.of(), List.of(annotation("ECTO_1", "ecto", 0.8, "OLS_EMBEDDING")));
         StringMapper mapper = new StringMapper(engine, new OlsClientRepo(), prefixMap);
 
-        List<MapResult> results = mapper.map(PROP, List.of(), ECTO, "m", true, null);
+        List<MapResult> results = mapper.map(INPUT, List.of(), ECTO, "m", true, null);
 
         assertEquals(1, engine.deepCalls);
         assertEquals(List.of("ECTO_1"), ids(results));
@@ -114,7 +114,7 @@ class StringMapperEscalationTest {
         StubEngine engine = new StubEngine(List.of(annotation("CHEBI_1", "chebi", 1.0, "OLS_TEXT_TAGGER")), List.of());
         StringMapper mapper = new StringMapper(engine, new OlsClientRepo(), prefixMap);
 
-        mapper.map(PROP, List.of(), ECTO, "m", false, null);
+        mapper.map(INPUT, List.of(), ECTO, "m", false, null);
 
         assertEquals(0, engine.deepCalls);
     }
@@ -126,7 +126,7 @@ class StringMapperEscalationTest {
         StringMapper mapper = new StringMapper(engine, new OlsClientRepo(), prefixMap);
         Annotation taggerEcto = annotation("ECTO_2", "ecto", 0.9, "OLS_TEXT_TAGGER_SYNONYM");
 
-        List<MapResult> results = mapper.map(PROP, List.of(taggerEcto), ECTO, "m", null, null);
+        List<MapResult> results = mapper.map(INPUT, List.of(taggerEcto), ECTO, "m", null, null);
 
         assertEquals(0, engine.deepCalls);
         assertEquals(List.of("CHEBI_1", "ECTO_2"), ids(results), "engine results first, tagger results after");
@@ -144,7 +144,7 @@ class StringMapperEscalationTest {
 
     private static int mapDeepCalls(StubEngine engine, StringMapper mapper, List<String> excluded) {
         int before = engine.deepCalls;
-        mapper.map(PROP, List.of(), ECTO, "m", null, excluded);
+        mapper.map(INPUT, List.of(), ECTO, "m", null, excluded);
         return engine.deepCalls - before;
     }
 
@@ -155,7 +155,7 @@ class StringMapperEscalationTest {
         StringMapper mapper = new StringMapper(engine, new OlsClientRepo(), prefixMap);
         Annotation tagger = annotation("MONDO_1", "mondo", 0.9, "OLS_TEXT_TAGGER_SYNONYM");
 
-        StringMapper.MappingRun run = mapper.mapShallow(PROP, List.of(tagger), ECTO, "m", null, null);
+        StringMapper.MappingRun run = mapper.mapShallow(INPUT, List.of(tagger), ECTO, "m", null, null);
         assertTrue(run.needsDeep);
         assertEquals(List.of("CHEBI_1", "MONDO_1"), ids(run.results));
         assertEquals(1, engine.shallowCalls);
@@ -167,6 +167,6 @@ class StringMapperEscalationTest {
         assertEquals(1, engine.seedsSeen.size());
         assertSame(shallowHit, engine.seedsSeen.get(0), "the deep pass is seeded with the Phase-1 annotations");
         assertEquals(List.of("CHEBI_1", "ECTO_3", "MONDO_1"), ids(complete), "engine Phase 1, Phase 2, then tagger");
-        assertFalse(mapper.mapShallow(PROP, List.of(tagger, annotation("ECTO_4", "ecto", 0.9, "OLS_TEXT_TAGGER")), ECTO, "m", null, null).needsDeep);
+        assertFalse(mapper.mapShallow(INPUT, List.of(tagger, annotation("ECTO_4", "ecto", 0.9, "OLS_TEXT_TAGGER")), ECTO, "m", null, null).needsDeep);
     }
 }

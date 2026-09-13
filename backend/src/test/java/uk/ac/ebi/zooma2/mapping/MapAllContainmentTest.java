@@ -21,7 +21,7 @@ import uk.ac.ebi.zooma2.prefix_map.Bioregistry;
 import uk.ac.ebi.zooma2.prefix_map.PrefixMap;
 import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 
-/** One bad property must not fail the whole non-streaming request (issue #23 item 7, done with #18's rewrite of mapAll). */
+/** One bad string must not fail the whole non-streaming request (issue #23 item 7, done with #18's rewrite of mapAll). */
 class MapAllContainmentTest {
 
     private static final PrefixMap PREFIX_MAP = new PrefixMap(Bioregistry.fromSnapshot());
@@ -50,18 +50,18 @@ class MapAllContainmentTest {
         }
     }
 
-    private static StringToMap property(String text) {
+    private static StringToMap stringToMap(String text) {
         StringToMap s = new StringToMap();
         s.textToMap = text;
         return s;
     }
 
     @Test
-    void aFailingPropertyYieldsAnErrorResultAndTheOthersMapNormally() {
+    void aFailingStringYieldsAnErrorResultAndTheOthersMapNormally() {
         BatchMapper batch = new BatchMapper(new ExplodingMapper(), new NoTagger(), new Deduplicator(PREFIX_MAP));
-        List<StringToMap> props = List.of(property("liver"), property("boom"), property("kidney"));
+        List<StringToMap> inputs = List.of(stringToMap("liver"), stringToMap("boom"), stringToMap("kidney"));
 
-        List<MapResult> results = new ArrayList<>(batch.mapAll(props.stream(), Filter.fromLists(null, null, null, true), "m", null, false, null));
+        List<MapResult> results = new ArrayList<>(batch.mapAll(inputs.stream(), Filter.fromLists(null, null, null, true), "m", null, false, null));
 
         assertEquals(3, results.size());
         assertEquals(List.of("liver", "boom", "kidney"), results.stream().map(r -> r.textToMap).toList(), "input order kept");

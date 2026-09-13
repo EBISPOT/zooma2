@@ -59,7 +59,7 @@ class LexicalFuzzyConfidenceTest {
     }
 
     @Test
-    void entitiesWithoutAnIriAreSkippedInsteadOfFailingTheProperty() {
+    void entitiesWithoutAnIriAreSkippedInsteadOfFailingTheString() {
         List<Annotation> out = match("melanoma", term("melanoma", null), term("melanoma", "http://x/1"));
         assertEquals(1, out.size());
         assertEquals("http://x/1", out.get(0).semanticTags.get(0));

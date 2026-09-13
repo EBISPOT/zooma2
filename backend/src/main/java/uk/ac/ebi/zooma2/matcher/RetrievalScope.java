@@ -37,7 +37,7 @@ public final class RetrievalScope {
      * The targets to query one by one for an endpoint that accepts a single
      * ontology per call: all of them up to {@code maxScoped}, otherwise none (a
      * preset can carry a hundred ontologies, and a hundred embedding calls per
-     * property is not a recall strategy). An empty result means "global only".
+     * string is not a recall strategy). An empty result means "global only".
      */
     public static List<String> perOntologyTargets(MatchContext context, int maxScoped) {
         List<String> targets = targets(context);

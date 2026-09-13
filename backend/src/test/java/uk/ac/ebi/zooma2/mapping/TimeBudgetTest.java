@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
+import uk.ac.ebi.zooma2.api.v3.dto.V3StringMappingDto;
 import uk.ac.ebi.zooma2.matcher.MatchContext;
 import uk.ac.ebi.zooma2.matcher.OlsLexicalMatcher;
 import uk.ac.ebi.zooma2.model.Annotation;
@@ -25,7 +25,7 @@ import uk.ac.ebi.zooma2.repo.OlsClientRepo;
 import uk.ac.ebi.zooma2.search.AnnotationEngine;
 import uk.ac.ebi.zooma2.util.Diagnostics;
 
-/** A per-property time budget bounds the chained stage timeouts, and running out is reported (issue #22, point 5). */
+/** A per-string time budget bounds the chained stage timeouts, and running out is reported (issue #22, point 5). */
 class TimeBudgetTest {
 
     @Test
@@ -68,7 +68,7 @@ class TimeBudgetTest {
     }
 
     @Test
-    void aPropertyThatRunsOutOfBudgetIsFlaggedTruncated() {
+    void aStringThatRunsOutOfBudgetIsFlaggedTruncated() {
         AnnotationEngine slowEngine = new AnnotationEngine(new OlsClientRepo()) {
             @Override public List<Annotation> annotateShallow(MatchContext c) {
                 try { Thread.sleep(60); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
@@ -80,12 +80,12 @@ class TimeBudgetTest {
         s.textToMap = "x";
 
         List<MapResult> results = mapper.map(s, List.of(), Filter.fromLists(null, null, null, true), "m", false, null);
-        V3PropertyMappingDto dto = V3PropertyMappingDto.fromResults(null, "x", results);
+        V3StringMappingDto dto = V3StringMappingDto.fromResults(null, "x", results);
 
         assertEquals(Boolean.TRUE, dto.truncated);
         assertTrue(dto.warnings.get(0).startsWith("Time budget of 20 ms exhausted"), dto.warnings.get(0));
 
         StringMapper unbounded = new StringMapper(slowEngine, new OlsClientRepo(), new PrefixMap(Bioregistry.fromSnapshot()), 0);
-        assertNull(V3PropertyMappingDto.fromResults(null, "x", unbounded.map(s, List.of(), Filter.fromLists(null, null, null, true), "m", false, null)).truncated);
+        assertNull(V3StringMappingDto.fromResults(null, "x", unbounded.map(s, List.of(), Filter.fromLists(null, null, null, true), "m", false, null)).truncated);
     }
 }

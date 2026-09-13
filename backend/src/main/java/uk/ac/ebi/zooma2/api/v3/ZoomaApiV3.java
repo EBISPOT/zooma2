@@ -15,7 +15,7 @@ import uk.ac.ebi.zooma2.api.v3.dto.TextSegmentDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3FilterDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapRequestDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3MapResponseDto;
-import uk.ac.ebi.zooma2.api.v3.dto.V3PropertyMappingDto;
+import uk.ac.ebi.zooma2.api.v3.dto.V3StringMappingDto;
 import uk.ac.ebi.zooma2.api.v3.dto.V3StringToMapDto;
 import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
@@ -37,9 +37,9 @@ import java.util.stream.Stream;
  */
 public class ZoomaApiV3 {
 
-    private static final int MAX_PROPERTIES = RequestLimits.MAX_PROPERTIES;
-    private static final int MAX_DEEP_PROPERTIES = RequestLimits.MAX_DEEP_PROPERTIES;
-    private static final int MAX_PROPERTY_TEXT_LENGTH = RequestLimits.MAX_PROPERTY_TEXT_LENGTH;
+    private static final int MAX_STRINGS = RequestLimits.MAX_STRINGS;
+    private static final int MAX_DEEP_STRINGS = RequestLimits.MAX_DEEP_STRINGS;
+    private static final int MAX_STRING_LENGTH = RequestLimits.MAX_STRING_LENGTH;
     private static final int MAX_PROPERTY_TYPE_LENGTH = RequestLimits.MAX_PROPERTY_TYPE_LENGTH;
     private static final int MAX_ANNOTATE_TEXT_LENGTH = RequestLimits.MAX_ANNOTATE_TEXT_LENGTH;
     private static final int MAX_LIST_ITEMS = RequestLimits.MAX_LIST_ITEMS;
@@ -78,7 +78,7 @@ public class ZoomaApiV3 {
         // Unified mapping endpoint - uses semantic search by default
         app.post("/v3/api/services/map", this::map);
         
-        // Streaming mapping endpoint - sends results as NDJSON as each property completes
+        // Streaming mapping endpoint - sends results as NDJSON as each string completes
         app.post("/v3/api/services/map-stream", this::mapStream);
 
         // Annotate text endpoint - NLP segmentation + streaming mapping
@@ -179,7 +179,7 @@ public class ZoomaApiV3 {
 
         // Map each distinct (propertyType, textToMap) pair exactly once; the response
         // loop below fans the single result out to every occurrence in the request.
-        var internalStringsToMap = distinctProperties(groupOccurrences(
+        var internalStringsToMap = distinctStrings(groupOccurrences(
             request.properties.stream().map(V3StringToMapDto::toStringToMap).collect(Collectors.toList())
         )).stream();
 
@@ -205,19 +205,19 @@ public class ZoomaApiV3 {
             internalStringsToMap, filter, model, request.excludeTermIds, returnAll, request.deep
         );
         
-        // Group results by input property (normalizing null/unspecified propertyType)
+        // Group results by input string (normalizing null/unspecified propertyType)
         Map<String, List<MapResult>> groupedResults = internalResults.stream()
-            .collect(Collectors.groupingBy(r -> propertyKey(r.propertyType, r.textToMap)));
+            .collect(Collectors.groupingBy(r -> mappingKey(r.propertyType, r.textToMap)));
 
-        // Build response grouped by input property; duplicate properties share one group
-        List<V3PropertyMappingDto> mappings = request.properties.stream()
-            .map(prop -> {
-                String key = propertyKey(prop.propertyType, prop.textToMap);
+        // Build response grouped by input string; duplicate strings share one group
+        List<V3StringMappingDto> mappings = request.properties.stream()
+            .map(entry -> {
+                String key = mappingKey(entry.propertyType, entry.textToMap);
                 List<MapResult> results = groupedResults.getOrDefault(key, List.of());
                 
                 
                 
-                var dto = V3PropertyMappingDto.fromResults(prop.propertyType, prop.textToMap, results);
+                var dto = V3StringMappingDto.fromResults(entry.propertyType, entry.textToMap, results);
                 return dto;
             })
             .collect(Collectors.toList());
@@ -227,11 +227,11 @@ public class ZoomaApiV3 {
 
     /**
      * Streaming mapping endpoint. Sends results as NDJSON (one JSON object per line)
-     * as each property completes mapping. Each line is a JSON object with:
+     * as each string completes mapping. Each line is a JSON object with:
      * - type: "result" or "done"
-     * - mapping: V3PropertyMappingDto (for "result" events)
-     * - completed: number of properties mapped so far
-     * - total: total number of properties to map
+     * - mapping: V3StringMappingDto (for "result" events)
+     * - completed: number of strings mapped so far
+     * - total: total number of strings to map
      */
     private void mapStream(Context ctx) {
         var request = bodyJson(ctx, V3MapRequestDto.class);
@@ -262,7 +262,7 @@ public class ZoomaApiV3 {
         Map<String, List<StringToMap>> occurrences = groupOccurrences(request.properties.stream()
             .map(V3StringToMapDto::toStringToMap)
             .collect(Collectors.toList()));
-        List<StringToMap> properties = distinctProperties(occurrences);
+        List<StringToMap> stringsToMap = distinctStrings(occurrences);
 
         ctx.res().setContentType("application/x-ndjson");
         ctx.res().setCharacterEncoding("UTF-8");
@@ -301,16 +301,16 @@ public class ZoomaApiV3 {
             });
 
             try {
-                annotator.mapEach(properties, filter, model, request.excludeTermIds, returnAll, request.deep, (prop, results) -> {
+                annotator.mapEach(stringsToMap, filter, model, request.excludeTermIds, returnAll, request.deep, (stringToMap, results) -> {
                     // Abort immediately if heartbeat (or a prior write) already detected disconnect.
                     if (cancelled.get()) {
                         throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
                     }
 
 
-                    // Fan the single result out to every request occurrence of this property
-                    for (StringToMap occurrence : occurrences.get(propertyKey(prop.propertyType, prop.textToMap))) {
-                        var mapping = V3PropertyMappingDto.fromResults(occurrence.propertyType, occurrence.textToMap, results);
+                    // Fan the single result out to every request occurrence of this string
+                    for (StringToMap occurrence : occurrences.get(mappingKey(stringToMap.propertyType, stringToMap.textToMap))) {
+                        var mapping = V3StringMappingDto.fromResults(occurrence.propertyType, occurrence.textToMap, results);
                         int done = completed.incrementAndGet();
 
                         var event = new LinkedHashMap<String, Object>();
@@ -411,7 +411,7 @@ public class ZoomaApiV3 {
         int total = mergedResult.uniqueTexts().size();
 
         // Build StringToMap list from merged unique texts
-        List<StringToMap> properties = mergedResult.uniqueTexts().stream()
+        List<StringToMap> stringsToMap = mergedResult.uniqueTexts().stream()
             .map(text -> {
                 var stm = new StringToMap();
                 stm.textToMap = text;
@@ -481,13 +481,13 @@ public class ZoomaApiV3 {
             });
 
             try {
-                annotator.mapEach(properties, filter, model, (prop, results) -> {
+                annotator.mapEach(stringsToMap, filter, model, (stringToMap, results) -> {
                     if (cancelled.get()) {
                         throw new java.io.UncheckedIOException(new IOException("Client disconnected"));
                     }
 
 
-                    var mapping = V3PropertyMappingDto.fromResults(prop.propertyType, prop.textToMap, results);
+                    var mapping = V3StringMappingDto.fromResults(stringToMap.propertyType, stringToMap.textToMap, results);
                     int done = completed.incrementAndGet();
 
                     var event = new LinkedHashMap<String, Object>();
@@ -555,32 +555,32 @@ public class ZoomaApiV3 {
     }
 
     /**
-     * Key identifying one distinct mapping job. Two request properties with the same
+     * Key identifying one distinct mapping job. Two request strings with the same
      * text and the same normalised property type (null, "" and "unspecified" are all
      * "no type") produce identical results, so they are mapped once and share it.
      */
-    static String propertyKey(String propertyType, String textToMap) {
+    static String mappingKey(String propertyType, String textToMap) {
         return normalizePropertyType(propertyType) + "|||" + textToMap;
     }
 
     /**
-     * Groups request properties by {@link #propertyKey}, preserving first-occurrence
+     * Groups request strings by {@link #mappingKey}, preserving first-occurrence
      * order of the keys and request order within each group.
      */
-    static Map<String, List<StringToMap>> groupOccurrences(List<StringToMap> properties) {
+    static Map<String, List<StringToMap>> groupOccurrences(List<StringToMap> stringsToMap) {
         Map<String, List<StringToMap>> occurrences = new LinkedHashMap<>();
-        for (StringToMap p : properties) {
-            occurrences.computeIfAbsent(propertyKey(p.propertyType, p.textToMap), k -> new ArrayList<>()).add(p);
+        for (StringToMap p : stringsToMap) {
+            occurrences.computeIfAbsent(mappingKey(p.propertyType, p.textToMap), k -> new ArrayList<>()).add(p);
         }
         return occurrences;
     }
 
     /**
-     * The properties to actually map: the first occurrence of each distinct key.
+     * The strings to actually map: the first occurrence of each distinct key.
      * The mapper hands these same objects back to the completion callback, so a
-     * result can be matched to its occurrences via {@link #propertyKey}.
+     * result can be matched to its occurrences via {@link #mappingKey}.
      */
-    static List<StringToMap> distinctProperties(Map<String, List<StringToMap>> occurrences) {
+    static List<StringToMap> distinctStrings(Map<String, List<StringToMap>> occurrences) {
         return occurrences.values().stream().map(group -> group.get(0)).collect(Collectors.toList());
     }
 
@@ -591,11 +591,11 @@ public class ZoomaApiV3 {
         if (request.properties == null || request.properties.isEmpty()) {
             throw new BadRequestResponse("'properties' is required and cannot be empty");
         }
-        if (request.properties.size() > MAX_PROPERTIES) {
-            throw new BadRequestResponse("'properties' cannot contain more than " + MAX_PROPERTIES + " items");
+        if (request.properties.size() > MAX_STRINGS) {
+            throw new BadRequestResponse("'properties' cannot contain more than " + MAX_STRINGS + " items");
         }
-        if (Boolean.TRUE.equals(request.deep) && request.properties.size() > MAX_DEEP_PROPERTIES) {
-            throw new BadRequestResponse("'deep' requests cannot contain more than " + MAX_DEEP_PROPERTIES + " properties");
+        if (Boolean.TRUE.equals(request.deep) && request.properties.size() > MAX_DEEP_STRINGS) {
+            throw new BadRequestResponse("'deep' requests cannot contain more than " + MAX_DEEP_STRINGS + " items");
         }
         validateString("model", request.model, false, MAX_MODEL_LENGTH);
         validateStringList("targetOntologies", request.targetOntologies, MAX_LIST_ITEMS, MAX_LIST_ITEM_LENGTH);
@@ -603,12 +603,12 @@ public class ZoomaApiV3 {
         validateFilter(request.filter);
 
         for (int i = 0; i < request.properties.size(); i++) {
-            var property = request.properties.get(i);
-            if (property == null) {
+            var entry = request.properties.get(i);
+            if (entry == null) {
                 throw new BadRequestResponse("'properties[" + i + "]' cannot be null");
             }
-            validateString("properties[" + i + "].textToMap", property.textToMap, true, MAX_PROPERTY_TEXT_LENGTH);
-            validateString("properties[" + i + "].propertyType", property.propertyType, false, MAX_PROPERTY_TYPE_LENGTH);
+            validateString("properties[" + i + "].textToMap", entry.textToMap, true, MAX_STRING_LENGTH);
+            validateString("properties[" + i + "].propertyType", entry.propertyType, false, MAX_PROPERTY_TYPE_LENGTH);
         }
     }
 

@@ -12,7 +12,7 @@ import uk.ac.ebi.zooma2.model.Filter;
 import uk.ac.ebi.zooma2.model.MapResult;
 import uk.ac.ebi.zooma2.util.TermIds;
 
-/** One decision, one criterion: when does a property need the deep search phase? */
+/** One decision, one criterion: when does a string need the deep search phase? */
 class EscalationPolicyTest {
 
     private static MapResult result(String id, String iri, String foundIn, double confidence) {

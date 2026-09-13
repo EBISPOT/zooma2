@@ -54,7 +54,7 @@ public class MatchContext {
 
     /**
      * Starts (or restarts, for the next phase) a time budget of {@code millis}.
-     * The stages a property goes through each carry their own 30–60 s timeouts;
+     * The stages a string goes through each carry their own 30–60 s timeouts;
      * chained, the worst case ran to minutes. The budget bounds the wall-clock
      * time a phase may spend: every OLS call is capped to what remains, and a
      * phase that starts with nothing left is skipped and reported as truncated.

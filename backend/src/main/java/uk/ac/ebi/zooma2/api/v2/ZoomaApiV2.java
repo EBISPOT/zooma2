@@ -47,7 +47,7 @@ public class ZoomaApiV2 {
     static class MapJob {
         final List<V2StringToMapDto> inputs;
         final String filterRaw;
-        /** Fraction of properties done; stays below 1.0 until {@link #results} is published. */
+        /** Fraction of strings done; stays below 1.0 until {@link #results} is published. */
         volatile double progress;
         volatile List<V2MapResultDto> results;
         final long createdAt;
@@ -121,7 +121,7 @@ public class ZoomaApiV2 {
         String propertyValue = q(ctx, "propertyValue", true);
         String propertyType  = q(ctx, "propertyType", false);
         String filterRaw     = q(ctx, "filter", false);
-        RequestLimits.validateString("propertyValue", propertyValue, true, RequestLimits.MAX_PROPERTY_TEXT_LENGTH);
+        RequestLimits.validateString("propertyValue", propertyValue, true, RequestLimits.MAX_STRING_LENGTH);
         RequestLimits.validateString("propertyType", propertyType, false, RequestLimits.MAX_PROPERTY_TYPE_LENGTH);
 
         var filterDto = V2FilterDto.parse(filterRaw);
@@ -154,8 +154,8 @@ public class ZoomaApiV2 {
         evictOldJobs();
 
         // Run the whole batch through the same pipeline as V3: one bulk tag_text
-        // call and one virtual thread per property, instead of one full deep
-        // mapping (and one bulk-tagger POST) per property in sequence.
+        // call and one virtual thread per string, instead of one full deep
+        // mapping (and one bulk-tagger POST) per string in sequence.
         Thread.startVirtualThread(() -> runJob(job));
 
         ctx.contentType("text/plain");
@@ -169,28 +169,28 @@ public class ZoomaApiV2 {
             String model = resolveModel();
             int total = job.inputs.size();
 
-            List<StringToMap> properties = new ArrayList<>(total);
+            List<StringToMap> stringsToMap = new ArrayList<>(total);
             Map<StringToMap, Integer> inputIndex = new IdentityHashMap<>();
             for (int i = 0; i < total; i++) {
                 var stm = job.inputs.get(i).toStringToMap();
-                properties.add(stm);
+                stringsToMap.add(stm);
                 inputIndex.put(stm, i);
             }
 
-            // Properties complete in any order; the report keeps input order.
+            // Strings complete in any order; the report keeps input order.
             List<List<V2MapResultDto>> perInput = new ArrayList<>(Collections.nCopies(total, null));
             var completed = new AtomicInteger();
             // deep=null: escalate to the deep search only when an ontology filter is set
             // and the shallow search misses it, as V3 does, rather than forcing the full
-            // deep pipeline for every property of a spreadsheet.
-            annotator.mapEach(properties, filter, model, null, true, null, (prop, results) -> {
+            // deep pipeline for every string of a spreadsheet.
+            annotator.mapEach(stringsToMap, filter, model, null, true, null, (stringToMap, results) -> {
                 List<V2MapResultDto> dtos = results.stream()
                     .filter(r -> !r.isDiagnostic())
                     .sorted(EvidenceTier.resultRanking())
                     .map(V2MapResultDto::from)
                     .collect(Collectors.toList());
                 synchronized (perInput) {
-                    perInput.set(inputIndex.get(prop), dtos);
+                    perInput.set(inputIndex.get(stringToMap), dtos);
                 }
                 // Never 1.0 here: that is the signal that the results are published
                 job.progress = Math.min(0.99, (double) completed.incrementAndGet() / total);
@@ -215,14 +215,14 @@ public class ZoomaApiV2 {
         if (rows == null || rows.length == 0) {
             throw new BadRequestResponse("Request body must be a non-empty array of properties");
         }
-        if (rows.length > RequestLimits.MAX_PROPERTIES) {
-            throw new BadRequestResponse("Request cannot contain more than " + RequestLimits.MAX_PROPERTIES + " properties");
+        if (rows.length > RequestLimits.MAX_STRINGS) {
+            throw new BadRequestResponse("Request cannot contain more than " + RequestLimits.MAX_STRINGS + " properties");
         }
         for (int i = 0; i < rows.length; i++) {
             if (rows[i] == null) {
                 throw new BadRequestResponse("properties[" + i + "] cannot be null");
             }
-            RequestLimits.validateString("properties[" + i + "].propertyValue", rows[i].propertyValue, true, RequestLimits.MAX_PROPERTY_TEXT_LENGTH);
+            RequestLimits.validateString("properties[" + i + "].propertyValue", rows[i].propertyValue, true, RequestLimits.MAX_STRING_LENGTH);
             RequestLimits.validateString("properties[" + i + "].propertyType", rows[i].propertyType, false, RequestLimits.MAX_PROPERTY_TYPE_LENGTH);
         }
     }

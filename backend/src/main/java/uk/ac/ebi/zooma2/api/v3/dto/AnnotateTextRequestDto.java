@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Request body for the annotate-text endpoint.
- * Accepts free text instead of a properties list.
+ * Accepts free text instead of a list of strings to map.
  */
 public class AnnotateTextRequestDto {
 

@@ -115,7 +115,7 @@ public class ZoomaConfig {
     }
 
     public static class MappingConfig {
-        /** Wall-clock budget per property and phase (shallow, deep); 0 disables. */
+        /** Wall-clock budget per string and phase (shallow, deep); 0 disables. */
         public Integer time_budget_ms;
     }
 

@@ -2,13 +2,19 @@ package uk.ac.ebi.zooma2.api.v3.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 /**
  * Request body for the V3 mapping endpoint.
  * All parameters are in the body - no query parameters.
  */
 public class V3MapRequestDto {
 
-    /** List of properties to map to ontology terms. */
+    /**
+     * The strings to map to ontology terms, each with an optional property type.
+     * The field keeps its original name; {@code strings} is accepted as an alias.
+     */
+    @JsonAlias("strings")
     public List<V3StringToMapDto> properties;
 
     /** Embedding model to use (default: text-embedding-3-small). */

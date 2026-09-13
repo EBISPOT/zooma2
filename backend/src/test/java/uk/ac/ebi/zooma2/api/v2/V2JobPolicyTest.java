@@ -52,10 +52,10 @@ class V2JobPolicyTest {
     void submissionsAreBoundedLikeV3() {
         assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[0]));
         assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {row("", null)}));
-        assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {row("x".repeat(RequestLimits.MAX_PROPERTY_TEXT_LENGTH + 1), null)}));
+        assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {row("x".repeat(RequestLimits.MAX_STRING_LENGTH + 1), null)}));
         assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {row("rat", "t".repeat(RequestLimits.MAX_PROPERTY_TYPE_LENGTH + 1))}));
         assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {null}));
-        var tooMany = new V2StringToMapDto[RequestLimits.MAX_PROPERTIES + 1];
+        var tooMany = new V2StringToMapDto[RequestLimits.MAX_STRINGS + 1];
         java.util.Arrays.fill(tooMany, row("rat", null));
         assertThrows(BadRequestResponse.class, () -> ZoomaApiV2.validateSubmission(tooMany));
         ZoomaApiV2.validateSubmission(new V2StringToMapDto[] {row("rat", "organism"), row("mice", null)});
