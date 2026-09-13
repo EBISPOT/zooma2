@@ -1,6 +1,6 @@
 # Zooma 2
 
-Ontology mapping service. Maps free-text property values to ontology terms using curated mappings, lexical matching, and embedding similarity search.
+Ontology mapping service. Maps free-text strings to ontology terms using curated mappings, lexical matching, and embedding similarity search.
 
 ## Quick start
 
@@ -27,9 +27,9 @@ Environment variables:
 | `ZOOMA2_CONTEXT_PATH` | (none) | No | URL path prefix, e.g. `/spot/zooma` |
 | `ZOOMA2_CORS_ALLOWED_ORIGINS` | EBI + localhost origins | No | Comma-separated allowed browser origins; use `*` only for local testing |
 | `ZOOMA2_MAX_REQUEST_BYTES` | `2097152` | No | Maximum request body size |
-| `ZOOMA2_MAX_PROPERTIES` | `1000` | No | Maximum properties accepted by V3 map endpoints |
-| `ZOOMA2_MAX_DEEP_PROPERTIES` | `200` | No | Maximum properties accepted when `deep=true` |
-| `ZOOMA2_MAX_PROPERTY_TEXT_LENGTH` | `1000` | No | Maximum length for one property value |
+| `ZOOMA2_MAX_STRINGS` | `1000` | No | Maximum strings accepted by V3 map endpoints (`ZOOMA2_MAX_PROPERTIES` still accepted) |
+| `ZOOMA2_MAX_DEEP_STRINGS` | `200` | No | Maximum strings accepted when `deep=true` (`ZOOMA2_MAX_DEEP_PROPERTIES` still accepted) |
+| `ZOOMA2_MAX_STRING_LENGTH` | `1000` | No | Maximum length of one string to map (`ZOOMA2_MAX_PROPERTY_TEXT_LENGTH` still accepted) |
 | `ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH` | `50000` | No | Maximum length for annotate-text input |
 | `ZOOMA2_CACHE_TTL_SECONDS` | `2592000` (30 days) | No | How long cached OLS responses and terms stay valid; `0` never expires (the test suite uses this) |
 | `ZOOMA2_DB_POOL_SIZE` | `8` (SQLite) / `16` (PostgreSQL) | No | Database connections in the pool |

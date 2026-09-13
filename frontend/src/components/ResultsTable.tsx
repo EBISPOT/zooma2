@@ -66,7 +66,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     const [selectedAlternative, setSelectedAlternative] = useState<string | null>(null);
     // Error detail modal state
     const [errorDetail, setErrorDetail] = useState<string | null>(null);
-    // Retrying state: set of property keys currently being retried
+    // Retrying state: set of input keys (text + type) currently being retried
     const [retrying, setRetrying] = useState<Set<string>>(new Set());
 
     // Build a set of textToMap+type keys that have returned results
@@ -75,7 +75,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         [results, resultsVersion]
     );
 
-    // Generate in-progress placeholder rows for properties that haven't returned yet
+    // Generate in-progress placeholder rows for strings that haven't returned yet
     const inProgressRows = useMemo(() => 
         (searching && inputProperties) ? inputProperties
             .filter(p => !returnedKeys.has((p.textToMap || '') + '\t' + (p.propertyType || '')))
@@ -123,7 +123,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
         });
     }, [results, resultsVersion, inProgressRows, inputOrderMap, overrides]);
 
-    // Build set of property keys (value+type) that have at least one approved row
+    // Build set of input keys (text + type) that have at least one approved row
     const approvedPropertyKeys = useMemo(() => {
         const propKeys = new Set<string>();
         approved.forEach(key => {
@@ -150,7 +150,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
     const filteredResults = useMemo(() => effectiveResults
         .filter(r => !removedKeys.has(r._key))
         .filter(r => {
-            // If this property has an approved row, hide all non-approved rows for it
+            // If this string has an approved row, hide all non-approved rows for it
             if (approved.has(r._key)) return true;
             const propKey = (r.textToMap || '') + '\t' + (r.propertyType || '');
             if (approvedPropertyKeys.has(propKey)) return false;
@@ -212,7 +212,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, resultsVersion, da
             result.ontologyURI, 'down'
         );
 
-        // Collect existing table results for this property to merge into candidates
+        // Collect existing table results for this string to merge into candidates
         const propKey = (result.textToMap || '') + '\t' + (result.propertyType || '');
         const existingResults = results.filter(r =>
             (r.textToMap || '') + '\t' + (r.propertyType || '') === propKey

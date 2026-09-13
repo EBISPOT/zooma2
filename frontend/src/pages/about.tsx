@@ -105,7 +105,7 @@ export default function About() {
                   Programmatic annotation
                 </Typography>
                 <Typography color="text.secondary">
-                  Use the REST API to map batches of properties or annotate free text programatically.
+                  Use the REST API to map batches of strings or annotate free text programmatically.
                 </Typography>
               </Grid>
             </Grid>

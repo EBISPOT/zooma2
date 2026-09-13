@@ -54,12 +54,12 @@ public class StringMapper {
     }
 
     /**
-     * One property's mapping in flight after the shallow phase: the results so
+     * One string's mapping in flight after the shallow phase: the results so
      * far (tagger + Phase 1), whether {@link EscalationPolicy} wants Phase 2, and
      * what Phase 2 needs so it need not repeat Phase 1.
      */
     public static final class MappingRun {
-        public final StringToMap property;
+        public final StringToMap stringToMap;
         /** Engine (Phase 1) results followed by tagger results. */
         public final List<MapResult> results;
         public final boolean needsDeep;
@@ -68,9 +68,9 @@ public class StringMapper {
         final List<MapResult> engineResults;
         final List<MapResult> taggerResults;
 
-        MappingRun(StringToMap property, MatchContext context, List<Annotation> shallowAnnotations,
+        MappingRun(StringToMap stringToMap, MatchContext context, List<Annotation> shallowAnnotations,
                    List<MapResult> engineResults, List<MapResult> taggerResults, boolean needsDeep) {
-            this.property = property;
+            this.stringToMap = stringToMap;
             this.context = context;
             this.shallowAnnotations = shallowAnnotations;
             this.engineResults = engineResults;
@@ -173,28 +173,28 @@ public class StringMapper {
             // may start long after the shallow phase finished.
             run.context.startBudget(timeBudgetMillis);
             List<Annotation> deep = annotationEngine.annotateDeep(run.context, run.shallowAnnotations);
-            results.addAll(toMapResults(deep, run.property));
+            results.addAll(toMapResults(deep, run.stringToMap));
             noteTruncation(run.context);
         } catch (java.io.UncheckedIOException e) {
             throw e;
         } catch (Exception e) {
-            System.err.println("Error in deep search for '" + run.property.textToMap + "': " + MapResult.describe(e));
+            System.err.println("Error in deep search for '" + run.stringToMap.textToMap + "': " + MapResult.describe(e));
             e.printStackTrace();
-            results.add(MapResult.error(run.property.textToMap, run.property.propertyType, MapResult.describe(e)));
+            results.add(MapResult.error(run.stringToMap.textToMap, run.stringToMap.propertyType, MapResult.describe(e)));
         } finally {
             Diagnostics.end();
         }
         // The deep phase may hit the same outage the shallow phase already reported
         java.util.Set<String> alreadyReported = new java.util.HashSet<>();
         for (MapResult r : run.results) if (r.warning != null) alreadyReported.add(r.warning);
-        for (MapResult w : warningResults(run.property, warnings)) {
+        for (MapResult w : warningResults(run.stringToMap, warnings)) {
             if (alreadyReported.add(w.warning)) results.add(w);
         }
         results.addAll(run.taggerResults);
         return results;
     }
 
-    /** Prefix of the warning that marks a property's results as cut short by the time budget. */
+    /** Prefix of the warning that marks a string's results as cut short by the time budget. */
     public static final String TRUNCATION_WARNING_PREFIX = "Time budget";
 
     private static void noteTruncation(MatchContext context) {
@@ -217,7 +217,7 @@ public class StringMapper {
      * resolving full term details from OLS as needed.
      *
      * <p>The tagger annotations are fetched once per batch and shared by every
-     * property with the same text, across threads and across the shallow and deep
+     * string with the same text, across threads and across the shallow and deep
      * passes, so this method must never modify them (see {@link #toMapResults}).
      *
      * @param preComputed tagger annotations (may carry a pre-resolved {@code resolvedTerm})
@@ -241,7 +241,7 @@ public class StringMapper {
      * annotations: everything derived here (effective property type, re-resolved
      * obsolete terms, augmented provenance) lives in locals or on the new
      * {@link MapResult}s, because the input list may be shared between concurrently
-     * running properties.
+     * running strings.
      */
     private List<MapResult> toMapResults(List<Annotation> annotations, StringToMap s) {
         // Matchers default a missing property type to "unspecified"; apply the same

@@ -27,10 +27,10 @@ public class MapResult {
     public Boolean preferred;
     public String error;
     /**
-     * Set on a pseudo-result that carries a degradation notice for its property
+     * Set on a pseudo-result that carries a degradation notice for its string
      * (an OLS endpoint was unavailable, terms could not be resolved) rather than
      * a candidate. Kept through deduplication like error results and surfaced on
-     * the property, never as a candidate.
+     * the string, never as a candidate.
      */
     public String warning;
 

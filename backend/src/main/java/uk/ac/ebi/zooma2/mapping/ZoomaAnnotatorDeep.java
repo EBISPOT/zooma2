@@ -28,13 +28,13 @@ public class ZoomaAnnotatorDeep {
 
     /**
      * Runs the deep pass for the given runs in parallel using virtual threads,
-     * calling {@code onPropertyMapped} as each completes.
+     * calling {@code onStringMapped} as each completes.
      */
     public void runPass(
             List<StringMapper.MappingRun> runs,
             Filter filter,
             List<String> excludeTermIds,
-            BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+            BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
 
         // Join the request's cancellation flag (created by the streaming endpoint) so a
         // client disconnect reaches this pass and every later one; own it only if absent.
@@ -46,16 +46,16 @@ public class ZoomaAnnotatorDeep {
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
-                    StringToMap prop = run.property;
+                    StringToMap s = run.stringToMap;
                     try {
                         List<MapResult> results = stringMapper.mapDeep(run);
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
+                        onStringMapped.accept(s, deduplicator.deduplicate(results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
-                        System.err.println("Error in deep search for '" + prop.textToMap + "': " + MapResult.describe(e));
+                        System.err.println("Error in deep search for '" + s.textToMap + "': " + MapResult.describe(e));
                         e.printStackTrace();
-                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, MapResult.describe(e))));
+                        onStringMapped.accept(s, List.of(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e))));
                     }
                 })
             ).collect(Collectors.toList());

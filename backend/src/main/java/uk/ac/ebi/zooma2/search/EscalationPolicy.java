@@ -13,7 +13,7 @@ import uk.ac.ebi.zooma2.util.TermIds;
 import uk.ac.ebi.zooma2.util.TermNamespace;
 
 /**
- * The one place that decides whether a property needs the deep search phase.
+ * The one place that decides whether a string needs the deep search phase.
  *
  * <p>Every entry point ({@code /map}, {@code /map-stream}, the legacy V2 path)
  * evaluates this over the same input: the shallow engine results together with

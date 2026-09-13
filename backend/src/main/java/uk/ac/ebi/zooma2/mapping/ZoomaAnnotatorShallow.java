@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 /**
  * Handles Pass 1 (shallow-only search) of the two-pass batch mapping strategy.
- * Each property runs the tagger conversion and Phase 1 only. Properties for
+ * Each string runs the tagger conversion and Phase 1 only. Strings for
  * which the escalation policy asks for Phase 2 are returned as
  * {@link StringMapper.MappingRun}s so the caller can complete them in a
  * subsequent deep pass without repeating Phase 1.
@@ -35,19 +35,19 @@ public class ZoomaAnnotatorShallow {
     }
 
     /**
-     * Runs the shallow pass for all properties in parallel using virtual threads.
-     * Calls {@code onPropertyMapped} for each property whose shallow results settle
+     * Runs the shallow pass for all strings in parallel using virtual threads.
+     * Calls {@code onStringMapped} for each string whose shallow results settle
      * the search; the rest are returned for the deep pass.
      *
      * @return the runs that need a subsequent deep pass
      */
     public List<StringMapper.MappingRun> runPass(
-            List<StringToMap> properties,
+            List<StringToMap> stringsToMap,
             Map<String, List<Annotation>> tagTextResults,
             Filter filter,
             String model,
             List<String> excludeTermIds,
-            BiConsumer<StringToMap, List<MapResult>> onPropertyMapped) {
+            BiConsumer<StringToMap, List<MapResult>> onStringMapped) {
 
         // Join the request's cancellation flag (created by the streaming endpoint) so a
         // client disconnect reaches this pass and every later one; own it only if absent.
@@ -56,29 +56,29 @@ public class ZoomaAnnotatorShallow {
         try (var scope = RequestCancellation.acquire();
              var executor = Executors.newVirtualThreadPerTaskExecutor()) {
             var cancelled = scope.flag();
-            var futures = properties.stream().map(prop ->
+            var futures = stringsToMap.stream().map(s ->
                 executor.submit(() -> {
                     RequestCancellation.setFlag(cancelled);
                     if (Thread.currentThread().isInterrupted()) return;
                     try {
-                        var taggerAnnotations = tagTextResults.getOrDefault(prop.textToMap, List.of());
+                        var taggerAnnotations = tagTextResults.getOrDefault(s.textToMap, List.of());
                         if (textTaggerService.hasFullMatchFromTargetOntologies(taggerAnnotations, filter, excludeTermIds)) {
-                            var results = stringMapper.annotationsToMapResults(taggerAnnotations, prop, false);
-                            onPropertyMapped.accept(prop, deduplicator.deduplicate(results, filter, excludeTermIds));
+                            var results = stringMapper.annotationsToMapResults(taggerAnnotations, s, false);
+                            onStringMapped.accept(s, deduplicator.deduplicate(results, filter, excludeTermIds));
                             return;
                         }
-                        var run = stringMapper.mapShallow(prop, taggerAnnotations, filter, model, null, excludeTermIds);
+                        var run = stringMapper.mapShallow(s, taggerAnnotations, filter, model, null, excludeTermIds);
                         if (run.needsDeep) {
                             needsDeepSearch.add(run);
                             return;
                         }
-                        onPropertyMapped.accept(prop, deduplicator.deduplicate(run.results, filter, excludeTermIds));
+                        onStringMapped.accept(s, deduplicator.deduplicate(run.results, filter, excludeTermIds));
                     } catch (java.io.UncheckedIOException e) {
                         throw e;
                     } catch (Exception e) {
-                        System.err.println("Error mapping property '" + prop.textToMap + "': " + MapResult.describe(e));
+                        System.err.println("Error mapping '" + s.textToMap + "': " + MapResult.describe(e));
                         e.printStackTrace();
-                        onPropertyMapped.accept(prop, List.of(MapResult.error(prop.textToMap, prop.propertyType, MapResult.describe(e))));
+                        onStringMapped.accept(s, List.of(MapResult.error(s.textToMap, s.propertyType, MapResult.describe(e))));
                     }
                 })
             ).collect(Collectors.toList());
@@ -90,7 +90,7 @@ public class ZoomaAnnotatorShallow {
                         futures.forEach(f -> f.cancel(true));
                         throw (java.io.UncheckedIOException) e.getCause();
                     }
-                    System.err.println("Error mapping property: " + e.getMessage());
+                    System.err.println("Error mapping string: " + e.getMessage());
                 }
             }
         }

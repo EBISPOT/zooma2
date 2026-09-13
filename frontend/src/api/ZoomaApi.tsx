@@ -4,9 +4,6 @@ if(apiUrl?.endsWith('/')) {
     apiUrl = apiUrl.slice(0, -1)
 }
 
-export interface SearchProperty {
-}
-
 export interface SearchParams {
     properties: { 
         textToMap: string
@@ -41,10 +38,10 @@ export interface SearchResult {
 
 // V3 API response types
 export interface V3MapResponse {
-    mappings: V3PropertyMapping[]
+    mappings: V3StringMapping[]
 }
 
-export interface V3PropertyMapping {
+export interface V3StringMapping {
     propertyType: string
     textToMap: string
     candidates: V3MappingCandidate[]
@@ -148,7 +145,7 @@ function buildFilter(params: SearchParams) {
 }
 
 /**
- * Re-map a single property, excluding specific term IDs (for thumbs-down).
+ * Re-map a single string, excluding specific term IDs (for thumbs-down).
  */
 export async function remapOne(
     params: SearchParams,
@@ -213,7 +210,7 @@ export async function remapOne(
 }
 
 /**
- * Fetch all candidate mappings for a single property (light dedup only).
+ * Fetch all candidate mappings for a single string (light dedup only).
  * Used for the alternative mappings modal.
  */
 export async function fetchAllCandidates(
@@ -360,7 +357,7 @@ export interface StreamProgress {
 }
 
 /**
- * Streaming version of search. Calls onProgress as each property completes mapping.
+ * Streaming version of search. Calls onProgress as each string completes mapping.
  * Returns an AbortController that can be used to cancel the request.
  */
 export function searchStream(
@@ -410,7 +407,7 @@ export function searchStream(
                 const event = JSON.parse(line)
 
                 if (event.type === 'result') {
-                    const mapping = event.mapping as V3PropertyMapping
+                    const mapping = event.mapping as V3StringMapping
                     if (mapping.error) {
                         allResults.push({
                             propertyType: mapping.propertyType,
@@ -437,7 +434,7 @@ export function searchStream(
                             mappingProvenance: candidate.mappingProvenance
                         })
                     }
-                    // If the property had no candidates, add a "did not map" entry
+                    // If the string had no candidates, add a "did not map" entry
                     if (mapping.candidates.length === 0) {
                         allResults.push({
                             propertyType: mapping.propertyType,
@@ -562,7 +559,7 @@ export function annotateTextStream(
                         originalText: event.originalText as string
                     })
                 } else if (event.type === 'result') {
-                    const mapping = event.mapping as V3PropertyMapping
+                    const mapping = event.mapping as V3StringMapping
                     if (mapping.error) {
                         allResults.push({
                             propertyType: mapping.propertyType,
