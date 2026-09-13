@@ -12,10 +12,10 @@ import io.javalin.http.BadRequestResponse;
  */
 public final class RequestLimits {
 
-    /** Strings per map request, V2 and V3; the older name ZOOMA2_MAX_PROPERTIES is still honoured. */
-    public static final int MAX_STRINGS = envInt("ZOOMA2_MAX_STRINGS", "ZOOMA2_MAX_PROPERTIES", 1000, 1, 100_000);
-    public static final int MAX_DEEP_STRINGS = envInt("ZOOMA2_MAX_DEEP_STRINGS", "ZOOMA2_MAX_DEEP_PROPERTIES", 200, 1, 100_000);
-    public static final int MAX_STRING_LENGTH = envInt("ZOOMA2_MAX_STRING_LENGTH", "ZOOMA2_MAX_PROPERTY_TEXT_LENGTH", 1000, 1, 1_000_000);
+    /** Strings per map request, V2 and V3. */
+    public static final int MAX_STRINGS = envInt("ZOOMA2_MAX_STRINGS", 1000, 1, 100_000);
+    public static final int MAX_DEEP_STRINGS = envInt("ZOOMA2_MAX_DEEP_STRINGS", 200, 1, 100_000);
+    public static final int MAX_STRING_LENGTH = envInt("ZOOMA2_MAX_STRING_LENGTH", 1000, 1, 1_000_000);
     public static final int MAX_PROPERTY_TYPE_LENGTH = envInt("ZOOMA2_MAX_PROPERTY_TYPE_LENGTH", 200, 1, 10_000);
     public static final int MAX_ANNOTATE_TEXT_LENGTH = envInt("ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH", 50_000, 1, 5_000_000);
     // Bounds the datasource/ontology filter lists. It has to admit the
@@ -55,24 +55,7 @@ public final class RequestLimits {
     }
 
     static int envInt(String name, int defaultValue, int min, int max) {
-        return envInt(System::getenv, name, null, defaultValue, min, max);
-    }
-
-    static int envInt(String name, String legacyName, int defaultValue, int min, int max) {
-        return envInt(System::getenv, name, legacyName, defaultValue, min, max);
-    }
-
-    /**
-     * {@code name} from {@code env}, else {@code legacyName} (an earlier name for the same
-     * limit), else the default. A new name that is set but invalid is reported and yields
-     * the default; the legacy name is consulted only when the new one is absent.
-     */
-    static int envInt(java.util.function.Function<String, String> env, String name, String legacyName, int defaultValue, int min, int max) {
-        String raw = env.apply(name);
-        if ((raw == null || raw.isBlank()) && legacyName != null) {
-            raw = env.apply(legacyName);
-            name = legacyName;
-        }
+        String raw = System.getenv(name);
         if (raw == null || raw.isBlank()) {
             return defaultValue;
         }
