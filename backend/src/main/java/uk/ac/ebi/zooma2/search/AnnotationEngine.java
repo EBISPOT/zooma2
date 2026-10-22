@@ -30,6 +30,10 @@ import java.util.stream.Stream;
  * text-tagger results, so every entry point applies one criterion.
  * {@link #annotate(String, String, Filter, String, Boolean)} composes the two
  * phases for callers that have no tagger results.
+ *
+ * <p>When the caller has already decided on Phase 2 ({@link MatchContext#deepForced}),
+ * Phase 1 fetches the deep embedding page in place of the shallow one and Phase 2
+ * fetches none, so the embedding search runs once per property rather than twice.
  */
 public class AnnotationEngine {
 
@@ -74,6 +78,7 @@ public class AnnotationEngine {
      */
     public Stream<Annotation> annotate(String stringToMap, String type, Filter sources, String model, Boolean deep) {
         MatchContext context = new MatchContext(stringToMap, type, sources, model);
+        context.deepForced = Boolean.TRUE.equals(deep);
         List<Annotation> shallow = annotateShallow(context);
         if (Thread.currentThread().isInterrupted()) {
             return shallow.stream();
@@ -102,7 +107,10 @@ public class AnnotationEngine {
             var olsEmbeddingFuture = executor.submit(() -> {
                 if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
                 Diagnostics.attach(sink);
-                return olsEmbeddingMatcher.findMatches(context);
+                // Phase 2 already decided: fetch its page now instead of a shallow
+                // page it would only supersede, so a filtered search costs one
+                // scoped vector search rather than two (issue #50).
+                return context.deepForced ? olsEmbeddingMatcher.findDeepMatches(context) : olsEmbeddingMatcher.findMatches(context);
             });
 
             List<Annotation> results = new ArrayList<>();
@@ -158,18 +166,23 @@ public class AnnotationEngine {
 
         try (var executor = java.util.concurrent.Executors.newVirtualThreadPerTaskExecutor()) {
             System.err.println("Running deep search for '" + context.stringToMap + "'");
-            var deepFuture = executor.submit(() -> {
-                if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
-                Diagnostics.attach(sink);
-                return olsEmbeddingMatcher.findDeepMatches(context);
-            });
             List<Annotation> deepResults;
-            try {
-                deepResults = new ArrayList<>(deepFuture.get()); // a skipped search returns an immutable empty list
-            } catch (InterruptedException e) {
-                executor.shutdownNow();
-                Thread.currentThread().interrupt();
-                return List.of();
+            if (context.deepForced) {
+                // Phase 1 already fetched the deep embedding page (see annotateShallow)
+                deepResults = new ArrayList<>();
+            } else {
+                var deepFuture = executor.submit(() -> {
+                    if (cancelFlag != null) RequestCancellation.setFlag(cancelFlag);
+                    Diagnostics.attach(sink);
+                    return olsEmbeddingMatcher.findDeepMatches(context);
+                });
+                try {
+                    deepResults = new ArrayList<>(deepFuture.get()); // a skipped search returns an immutable empty list
+                } catch (InterruptedException e) {
+                    executor.shutdownNow();
+                    Thread.currentThread().interrupt();
+                    return List.of();
+                }
             }
             // The larger page repeats the shallow top-k; only what is new, or better scored, is additional
             deepResults.removeIf(a -> a.semanticTags != null && !a.semanticTags.isEmpty()

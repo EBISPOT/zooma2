@@ -69,9 +69,11 @@ public class OlsEmbeddingMatcher implements AnnotationMatcher {
     }
 
     /**
-     * Deep embedding search with full maxResults. Only call this if the shallow
-     * search didn't return results from the target ontologies. It cannot be
-     * skipped on the strength of a short or low-scoring shallow page: OLS's
+     * Deep embedding search with full maxResults. Phase 2 calls this when the
+     * shallow search didn't return results from the target ontologies; a search
+     * the caller forced deep ({@link MatchContext#deepForced}) calls it from
+     * Phase 1 in place of {@link #findMatches}. It cannot be skipped on the
+     * strength of a short or low-scoring shallow page: OLS's
      * approximate nearest-neighbour search is not monotonic across page sizes
      * (in 7 of 54 cached page pairs a term outside the top ten outscored the
      * tenth), so only the engine's filtering of already-seen terms is safe.

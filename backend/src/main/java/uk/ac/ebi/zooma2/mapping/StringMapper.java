@@ -133,6 +133,7 @@ public class StringMapper {
         }
 
         MatchContext context = new MatchContext(s.textToMap, s.propertyType, filter, model);
+        context.deepForced = Boolean.TRUE.equals(deep);
         context.startBudget(timeBudgetMillis);
         List<MapResult> engineResults = new ArrayList<>();
         List<Annotation> shallow;

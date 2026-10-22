@@ -27,6 +27,15 @@ public class MatchContext {
     /** Results from a previous matcher (for chained matchers like superclass traversal) */
     public List<Annotation> previousResults;
 
+    /**
+     * True when the caller has already decided that Phase 2 will run
+     * ({@code deep=true}). Phase 1 then fetches the deep embedding page straight
+     * away and Phase 2 fetches none: the shallow page would only be superseded,
+     * and under an ontology filter each page is a scoped vector search that OLS
+     * answers in seconds to tens of seconds (issue #50).
+     */
+    public boolean deepForced;
+
     /** Wall-clock deadline (System.nanoTime based) for the current phase; 0 = no budget. */
     private volatile long deadlineNanos;
     private volatile long budgetMillis;
@@ -47,6 +56,7 @@ public class MatchContext {
     public MatchContext withPreviousResults(List<Annotation> previousResults) {
         MatchContext newContext = new MatchContext(stringToMap, propertyType, sources, model);
         newContext.previousResults = previousResults;
+        newContext.deepForced = deepForced;
         newContext.deadlineNanos = deadlineNanos;
         newContext.budgetMillis = budgetMillis;
         return newContext;

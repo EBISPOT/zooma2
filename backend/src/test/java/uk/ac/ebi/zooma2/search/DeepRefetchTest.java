@@ -78,4 +78,23 @@ class DeepRefetchTest {
         assertTrue(deep.stream().noneMatch(a -> a.semanticTags.get(0).matches("http://x/[0-9]$")), "ranks 0-9 filtered");
         assertEquals(List.of(10, 100), repo.sizesRequested);
     }
+
+    @Test
+    void aForcedDeepRunFetchesTheDeepPageOnceInPhaseOne() {
+        // With Phase 2 decided up front (deep=true) the shallow page would only be
+        // superseded, so Phase 1 fetches the deep page and Phase 2 fetches nothing:
+        // one embedding search per property, which under an ontology filter is one
+        // scoped vector search instead of two (issue #50).
+        IndexRepo repo = new IndexRepo(25);
+        AnnotationEngine engine = new AnnotationEngine(repo);
+        MatchContext context = new MatchContext("q", null, Filter.fromLists(null, null, List.of("efo"), false), "m");
+        context.deepForced = true;
+
+        List<Annotation> shallow = engine.annotateShallow(context);
+        assertEquals(26, shallow.size(), "all 25 embedding hits plus the lexical one, in Phase 1");
+
+        List<Annotation> deep = engine.annotateDeep(context, shallow);
+        assertTrue(deep.isEmpty(), "nothing left for Phase 2 to add");
+        assertEquals(List.of(100), repo.sizesRequested, "the deep page once, no shallow page");
+    }
 }

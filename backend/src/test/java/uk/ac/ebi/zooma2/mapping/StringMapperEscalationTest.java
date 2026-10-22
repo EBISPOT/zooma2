@@ -43,6 +43,7 @@ class StringMapperEscalationTest {
         int shallowCalls = 0;
         int deepCalls = 0;
         List<Annotation> seedsSeen;
+        MatchContext contextSeen;
 
         StubEngine(List<Annotation> shallow, List<Annotation> deep) {
             super(new OlsClientRepo());
@@ -53,6 +54,7 @@ class StringMapperEscalationTest {
         @Override
         public List<Annotation> annotateShallow(MatchContext context) {
             shallowCalls++;
+            contextSeen = context;
             return new ArrayList<>(shallow);
         }
 
@@ -107,6 +109,19 @@ class StringMapperEscalationTest {
 
         assertEquals(1, engine.deepCalls);
         assertEquals(List.of("ECTO_1"), ids(results));
+    }
+
+    @Test
+    void deepRequestedUpFrontIsMarkedOnTheContextForPhaseOne() {
+        StubEngine engine = new StubEngine(List.of(), List.of());
+        StringMapper mapper = new StringMapper(engine, new OlsClientRepo(), prefixMap);
+
+        mapper.map(PROP, List.of(), ECTO, "m", true, null);
+        assertTrue(engine.contextSeen.deepForced, "deep=true: Phase 1 fetches the deep embedding page itself");
+        mapper.map(PROP, List.of(), ECTO, "m", null, null);
+        assertFalse(engine.contextSeen.deepForced, "auto-escalation keeps the shallow page");
+        mapper.map(PROP, List.of(), ECTO, "m", false, null);
+        assertFalse(engine.contextSeen.deepForced);
     }
 
     @Test
