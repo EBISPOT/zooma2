@@ -286,11 +286,15 @@ for TEST_DIR in "${TEST_DIRS[@]}"; do
     # #26): "cadmium" and "tea" must reach the ECTO terms whose labels embed them;
     # "hypoxia" has no such label and still falls back to the embedding search.
     for ecto_case in cisplatin Cisplatin cadmium tea hypoxia; do
+        # Lowercase the file stem and suffix a capitalised query, so "cisplatin"
+        # and "Cisplatin" don't collide on case-insensitive filesystems (macOS).
+        ecto_stem="$(printf '%s' "$ecto_case" | tr '[:upper:]' '[:lower:]')"
+        [ "$ecto_stem" = "$ecto_case" ] || ecto_stem="${ecto_stem}_capitalised"
         curl -sf "$BASE_URL/v2/api/services/annotate?propertyValue=${ecto_case}&filter=required:%5Bnone%5D,ontologies:%5Becto%5D,defining_only:%5Btrue%5D" \
-            | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json"
-        compare_output "$TEST_NAME/v2_annotate_filtered/${ecto_case}_ecto_defining_only" \
-            "$ACTUAL_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json" \
-            "$OUTPUT_DIR/v2_annotate_filtered/${ecto_case}_ecto_defining_only.json"
+            | normalise_json > "$ACTUAL_DIR/v2_annotate_filtered/${ecto_stem}_ecto_defining_only.json"
+        compare_output "$TEST_NAME/v2_annotate_filtered/${ecto_stem}_ecto_defining_only" \
+            "$ACTUAL_DIR/v2_annotate_filtered/${ecto_stem}_ecto_defining_only.json" \
+            "$OUTPUT_DIR/v2_annotate_filtered/${ecto_stem}_ecto_defining_only.json"
     done
 
     # Bare mention (issue #26), V3 view: the lexical containment hit on
