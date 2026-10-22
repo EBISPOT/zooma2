@@ -29,8 +29,15 @@ spec:
         # 12-62 seconds, exhausting the 60 s search budget. On an emptyDir the
         # same request takes under a second. The tables are caches (votes is
         # disabled), so losing them on a pod restart only costs a warm-up.
+        #
+        # The backend keeps the file under ZOOMA2_CACHE_MAX_BYTES itself; the
+        # sizeLimit is the backstop. Without one, the file grew to 139 GB in
+        # ten days and filled a worker's disk (2026-10-12): the node went into
+        # DiskPressure and evicted every pod on it, 39 times over. With the
+        # limit the kubelet evicts this pod alone.
         - name: db
-          emptyDir: {}
+          emptyDir:
+            sizeLimit: {{ .Values.dbVolumeSizeLimit }}
         - name: tmp
           emptyDir: {}
       containers:
@@ -50,18 +57,26 @@ spec:
               name: tmp
           ports:
             - containerPort: 8090
+          # /health is a constant string, but Jetty serves it from the same
+          # thread pool as searches. With the default 1 s timeout, a burst of
+          # slow searches read as "dead" and the backend was killed mid-load
+          # (exit 143), then restarted into the same burst. 10 s and four
+          # failures mean unresponsive for two minutes before a restart.
           livenessProbe:
             httpGet:
               path: /spot/zooma/v3/api/health
               port: 8090
             initialDelaySeconds: 30
             periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 4
           readinessProbe:
             httpGet:
               path: /spot/zooma/v3/api/health
               port: 8090
             initialDelaySeconds: 10
             periodSeconds: 10
+            timeoutSeconds: 5
           resources:
             requests:
               memory: 16Gi
@@ -76,6 +91,8 @@ spec:
               value: /app/config.json
             - name: ZOOMA2_DB_URL
               value: "jdbc:sqlite:{{.Values.dbPath}}"
+            - name: ZOOMA2_CACHE_MAX_BYTES
+              value: {{ .Values.cacheMaxBytes | quote }}
             - name: ZOOMA2_OLS_URL
               value: {{ .Values.olsUrl | quote }}
             - name: ZOOMA2_CORS_ALLOWED_ORIGINS

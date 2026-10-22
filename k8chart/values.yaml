@@ -6,6 +6,13 @@ ingress:
 nfsServer: hh-isi-srv-vlan1496.ebi.ac.uk
 nfsDir: /ifs/public/rw/ontotools/zooma2/dev
 dbPath: /data/zooma.db
+# Ceiling on the SQLite cache (gzipped OLS responses); the oldest are dropped
+# to stay under it. 10 GiB fits in the pod's page cache next to the JVM, so
+# lookups stay in memory. A deep search response is ~200 KB compressed.
+cacheMaxBytes: "10737418240"
+# Backstop on the emptyDir holding the cache: well above cacheMaxBytes plus
+# the WAL, far below a worker's disk.
+dbVolumeSizeLimit: 40Gi
 olsUrl: https://wwwdev.ebi.ac.uk/ols4
 corsAllowedOrigins: "https://www.ebi.ac.uk,https://wwwdev.ebi.ac.uk"
 httpProxyHost: hh-wwwcache.ebi.ac.uk

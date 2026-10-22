@@ -63,6 +63,10 @@ public class ZoomaDatabase implements AutoCloseable {
         if (!isPostgres) {
             // Wait for a writer rather than failing immediately under concurrency
             config.setConnectionInitSql("PRAGMA busy_timeout = 5000");
+            // In WAL mode NORMAL fsyncs at checkpoints only; FULL fsynced every
+            // cache put (one per OLS call). A crash can lose the last few cache
+            // writes, never corrupt the file, and the cache is rebuilt anyway.
+            config.addDataSourceProperty("synchronous", "NORMAL");
         }
         return new HikariDataSource(config);
     }
@@ -183,21 +187,47 @@ public class ZoomaDatabase implements AutoCloseable {
                 + ")");
 
             // --- external_api_cache ---
+            // response_body holds gzipped bytes (see ExternalApiCache); older
+            // databases declared it TEXT, which SQLite stores bytes in regardless.
             stmt.execute("CREATE TABLE IF NOT EXISTS external_api_cache ("
                 + "method TEXT NOT NULL, "
                 + "url TEXT NOT NULL, "
                 + "request_body TEXT, "
-                + "response_body TEXT NOT NULL, "
+                + "response_body " + blobType + " NOT NULL, "
                 + "response_headers TEXT, "
                 + "status_code INTEGER DEFAULT 200, "
                 + "created_at " + timestampDefault
                 + ")");
             stmt.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_api_cache_lookup "
                 + "ON external_api_cache(method, url, coalesce(request_body, ''))");
+            if (isPostgres) {
+                migrateResponseBodyToBytea(stmt);
+            }
+
+            // The purge and the size cap select rows by age. Without these the
+            // purge scanned every row, and in SQLite a row's created_at sits
+            // after its multi-megabyte body, so that meant reading the whole
+            // file under the write lock. On an existing large database the
+            // first start after this change builds the index with one such scan.
+            stmt.execute("CREATE INDEX IF NOT EXISTS idx_api_cache_created ON external_api_cache(created_at)");
+            stmt.execute("CREATE INDEX IF NOT EXISTS idx_ols_terms_created ON ols_terms(created_at)");
+            stmt.execute("CREATE INDEX IF NOT EXISTS idx_ols_failed_at ON ols_failed_iris(failed_at)");
 
             System.err.println("ZoomaDatabase initialized: " + jdbcUrl);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to initialize ZoomaDatabase", e);
+        }
+    }
+
+    /** A PostgreSQL table created before bodies were gzipped has a TEXT response_body; bytes need BYTEA. */
+    private static void migrateResponseBodyToBytea(Statement stmt) throws SQLException {
+        try (ResultSet rs = stmt.executeQuery("SELECT data_type FROM information_schema.columns "
+                + "WHERE table_name = 'external_api_cache' AND column_name = 'response_body'")) {
+            if (rs.next() && "text".equalsIgnoreCase(rs.getString(1))) {
+                stmt.execute("ALTER TABLE external_api_cache ALTER COLUMN response_body TYPE BYTEA "
+                    + "USING convert_to(response_body, 'UTF8')");
+                System.err.println("Migrated external_api_cache.response_body to BYTEA");
+            }
         }
     }
 }

@@ -19,6 +19,8 @@ import java.util.*;
 
 public class ZoomaApp {
 
+    static final long CACHE_MAINTENANCE_INTERVAL_MS = 5 * 60 * 1000L;
+
     public static void main(String[] args) {
 
         // Initialize unified database
@@ -108,23 +110,36 @@ public class ZoomaApp {
         app.start(configuredPort());
     }
 
-    /** Purges expired cache rows now and then every hour, on a daemon thread. */
+    /**
+     * Purges expired cache rows and trims the cache to its byte cap, now and
+     * then every {@link #CACHE_MAINTENANCE_INTERVAL_MS}, on a daemon thread.
+     * Five minutes rather than an hour: a bulk client once wrote 70 GB of
+     * responses in five hours, and the cap must keep up with such bursts.
+     */
     private static void startCacheMaintenance(ExternalApiCache apiCache) {
+        long maxBytes = ExternalApiCache.maxBytesFromEnvironment();
         if (apiCache.getTtlSeconds() <= 0) {
             System.err.println("Cache TTL is 0: cached OLS data never expires");
-            return;
+        } else {
+            System.err.println("Cache TTL: " + apiCache.getTtlSeconds() + " s");
         }
-        System.err.println("Cache TTL: " + apiCache.getTtlSeconds() + " s");
+        if (maxBytes <= 0) {
+            System.err.println("Cache size cap is 0: the cache can grow without bound");
+        } else {
+            System.err.println("Cache size cap: " + maxBytes + " bytes");
+        }
+        if (apiCache.getTtlSeconds() <= 0 && maxBytes <= 0) return;
         Thread maintenance = new Thread(() -> {
             while (true) {
                 try {
                     int deleted = apiCache.purgeExpired();
                     if (deleted > 0) System.err.println("Purged " + deleted + " expired cache rows");
-                    Thread.sleep(60 * 60 * 1000L);
+                    apiCache.enforceSizeCap(maxBytes);
+                    Thread.sleep(CACHE_MAINTENANCE_INTERVAL_MS);
                 } catch (InterruptedException e) {
                     return;
                 } catch (RuntimeException e) {
-                    System.err.println("Cache purge failed: " + e.getMessage());
+                    System.err.println("Cache maintenance failed: " + e.getMessage());
                 }
             }
         }, "cache-maintenance");

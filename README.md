@@ -32,6 +32,7 @@ Environment variables:
 | `ZOOMA2_MAX_PROPERTY_TEXT_LENGTH` | `1000` | No | Maximum length for one property value |
 | `ZOOMA2_MAX_ANNOTATE_TEXT_LENGTH` | `50000` | No | Maximum length for annotate-text input |
 | `ZOOMA2_CACHE_TTL_SECONDS` | `2592000` (30 days) | No | How long cached OLS responses and terms stay valid; `0` never expires (the test suite uses this) |
+| `ZOOMA2_CACHE_MAX_BYTES` | `10737418240` (10 GiB) | No | Ceiling on the cache database; the oldest cached responses are dropped to stay under it, checked every five minutes. `0` disables. SQLite only |
 | `ZOOMA2_DB_POOL_SIZE` | `8` (SQLite) / `16` (PostgreSQL) | No | Database connections in the pool |
 
 ## Database
